@@ -2,8 +2,9 @@
 
 basedir=$(dirname $(pwd))
 
-rm -rf $basedir/public
+rm -rf $basedir/home
 
 yarn build
 
-mv public $basedir
+mv public $basedir/home
+

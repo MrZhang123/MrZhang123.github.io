@@ -1,0 +1,288 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style data-href="/styles.fa78db3f7dd9f05316d1.css">@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/static/montserrat-latin-100-4124805c0503dbfe42dd67d7f5715964.woff2) format("woff2"),url(/static/montserrat-latin-100-c8fb2f714bbc7bc3e8dfffa916b286dc.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/static/montserrat-latin-100italic-e4bf47bd171a9b2a72dd84c58bf90edf.woff2) format("woff2"),url(/static/montserrat-latin-100italic-d1f3f2d02ee4d7d2d4b1ad865014f189.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/static/montserrat-latin-200-444ae007121264bc1969d49b4031f9b2.woff2) format("woff2"),url(/static/montserrat-latin-200-edbce16a90aa22c297a0307b85789837.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/static/montserrat-latin-200italic-f316c5d1ec40f3e68654c3f38b3999f3.woff2) format("woff2"),url(/static/montserrat-latin-200italic-d7bbb730d9b5e11720b3eb32326dcca7.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/static/montserrat-latin-300-0a7c6df06e85d978d096d4d18fd8d43d.woff2) format("woff2"),url(/static/montserrat-latin-300-5e86df2cad22d2ef2b03516334afae5e.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/static/montserrat-latin-300italic-c076c4892bc7a4be7b9097e97a35012d.woff2) format("woff2"),url(/static/montserrat-latin-300italic-37c74a8d2d0d36a0a2c6e9a37ee15b0c.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/static/montserrat-latin-400-501ce09c42716a2f6e1503a25eb174c9.woff2) format("woff2"),url(/static/montserrat-latin-400-f29d2b8559699b6beb5b29b25b8bc572.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/static/montserrat-latin-400italic-882908d9950d9c86ebd380877f293d95.woff2) format("woff2"),url(/static/montserrat-latin-400italic-22e7b04e5f2a901d49d4d342315a715a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/static/montserrat-latin-500-f0f2716c5fe401d175b88715e7d28685.woff2) format("woff2"),url(/static/montserrat-latin-500-991b453bf90a0980e78966d2af7e3d3a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/static/montserrat-latin-500italic-4590ebba421b3288c305305d7fa7b504.woff2) format("woff2"),url(/static/montserrat-latin-500italic-f3d41e4cdcc2314e49ddcea751d6f87f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/static/montserrat-latin-600-15c24f7109941777774ddd2c636c6a50.woff2) format("woff2"),url(/static/montserrat-latin-600-f6dc6096f48956908c1787d9a722570a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/static/montserrat-latin-600italic-6d10b80529d5c36c7c09fca7193af0fc.woff2) format("woff2"),url(/static/montserrat-latin-600italic-02c4833312d94b1b0866f073023a250e.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/static/montserrat-latin-700-79982cd1f74c6fa7451bf9b37ead09ff.woff2) format("woff2"),url(/static/montserrat-latin-700-957e93fbbe131a59791cd820d98b7109.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/static/montserrat-latin-700italic-283438e9577fe6a684466bb100e105ec.woff2) format("woff2"),url(/static/montserrat-latin-700italic-ca627c5ccc65cf80c2ecaea44b997de9.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/static/montserrat-latin-800-35386154b78d046218fc8f88a44ff515.woff2) format("woff2"),url(/static/montserrat-latin-800-756655905d91b77960888262e7d58d35.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/static/montserrat-latin-800italic-e1b52a7bd83e2324db6d92bdc206844c.woff2) format("woff2"),url(/static/montserrat-latin-800italic-a69f0add9d86c1a84311d7dd8693ba4a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/static/montserrat-latin-900-260c2ea3ef57feb82251952e605a36d5.woff2) format("woff2"),url(/static/montserrat-latin-900-186cae8091da578150d81958e217714a.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/static/montserrat-latin-900italic-d785fb9fc74588ffb7f306799709a97d.woff2) format("woff2"),url(/static/montserrat-latin-900italic-43b527fe77254f97ea36e2b54e845ec4.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/static/merriweather-latin-300-a50c381443e6993188ed9cc4b6806866.woff2) format("woff2"),url(/static/merriweather-latin-300-2c73b119ad85e697123658b8a091ff83.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/static/merriweather-latin-300italic-bd410cbf8c272acd4fbdd9f61a7015bf.woff2) format("woff2"),url(/static/merriweather-latin-300italic-9deeb422b65afb1daacc039296bb3640.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/static/merriweather-latin-400-f936cb550d4dcd769f75c453207ac5e6.woff2) format("woff2"),url(/static/merriweather-latin-400-ab0616e6d856817eff54eb8c5e1664e4.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/static/merriweather-latin-400italic-5c9a23d08e2c851e5a25795b940acd4f.woff2) format("woff2"),url(/static/merriweather-latin-400italic-0ab4b54f3b1e8b14cf755970fde8ce35.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/static/merriweather-latin-700-1636f13a52ca3f0eb8784c9c57f62082.woff2) format("woff2"),url(/static/merriweather-latin-700-cc673c945b482dc1378d4a3c95ffd175.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/static/merriweather-latin-700italic-8b0db67123584893c6591accbc51640c.woff2) format("woff2"),url(/static/merriweather-latin-700italic-513649f5b9ba4675cff15cf3f7ad4f2a.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/static/merriweather-latin-900-46631a9aab93dec3ed34f429dd1a5646.woff2) format("woff2"),url(/static/merriweather-latin-900-a0528570caa2c785891308ce604d8db7.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/static/merriweather-latin-900italic-a26a8168916e5d4e5485081171d7fdb0.woff2) format("woff2"),url(/static/merriweather-latin-900italic-db42a3f34378e69ef5aebb6717f1f33e.woff) format("woff")}code[class*=language-],pre[class*=language-]{color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{background:#073642}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:#fdf6e3}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{color:#657b83;background:#eee8d5}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.1.17"/><link rel="alternate" type="application/rss+xml" href="/rss.xml"/><link rel="shortcut icon" href="/icons/icon-48x48.png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png"/><title data-react-helmet="true">再见2017，你好2018 | Mr Zhang Blog</title><meta data-react-helmet="true" name="description" content="不知不觉中，2017年已经走到尾声，2018年马上要到来了，回想这一年，无论是工作还是生活都发生了很多变化，如果用一个字来总结2017，那么这个字就是“变”,这些事情让我有了更多的想法，这也让我对2018年有了期待。 工作，技术 201…"/><meta data-react-helmet="true" property="og:title" content="再见2017，你好2018"/><meta data-react-helmet="true" property="og:description" content="不知不觉中，2017年已经走到尾声，2018年马上要到来了，回想这一年，无论是工作还是生活都发生了很多变化，如果用一个字来总结2017，那么这个字就是“变”,这些事情让我有了更多的想法，这也让我对2018年有了期待。 工作，技术 201…"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Mark Zhang"/><meta data-react-helmet="true" name="twitter:title" content="再见2017，你好2018"/><meta data-react-helmet="true" name="twitter:description" content="不知不觉中，2017年已经走到尾声，2018年马上要到来了，回想这一年，无论是工作还是生活都发生了很多变化，如果用一个字来总结2017，那么这个字就是“变”,这些事情让我有了更多的想法，这也让我对2018年有了期待。 工作，技术 201…"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><link as="script" rel="preload" href="/component---src-templates-blog-post-js-03ef0048b01b229cf218.js"/><link as="script" rel="preload" href="/0-2f030b30c532a037312e.js"/><link as="script" rel="preload" href="/app-d0d89e150045940b8fbe.js"/><link as="script" rel="preload" href="/styles-dccc4a06eba7490f5acf.js"/><link as="script" rel="preload" href="/webpack-runtime-9be5ade65b46298166e6.js"/><link as="fetch" rel="preload" href="/static/d/704/path---2017-2018-new-year-ea-4-cfa-8zyukRpnCm6mJJfCi8eweaiv8k.json" crossorigin="use-credentials"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group"><div style="margin-left:auto;margin-right:auto;max-width:42rem;padding:2.625rem 1.3125rem"><h3 style="font-family:Montserrat, sans-serif;margin-top:0"><a style="box-shadow:none;text-decoration:none;color:inherit" href="/">Mr Zhang Blog</a></h3><h1>再见2017，你好2018</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem;margin-top:-1.75rem">December 31, 2017</p><div><blockquote>
+<p>不知不觉中，2017年已经走到尾声，2018年马上要到来了，回想这一年，无论是工作还是生活都发生了很多变化，如果用一个字来总结2017，那么这个字就是“变”,这些事情让我有了更多的想法，这也让我对2018年有了期待。</p>
+</blockquote>
+<h2>工作，技术</h2>
+<p>2017年，自己所在的项目组发生了很大的变化，业务有所调整，所以自己的工作内容也发生了重大的变化。</p>
+<p>回看这一年的周报，可以很明显的看到，在2017年上半年，工作内容集中在海外业务，但是到了下半年，工作内容已经开始逐步转向平台业务系统，开始接触很多的好玩儿的技术，像react，react native，vue等等这些框架开始大量使用。业务量的增长，人员的增多，让我的思想开始发生转变。</p>
+<h4>HOW ➡️ WHY</h4>
+<p>之前，由于业务并不是那么多样化，业务量也不是那么多，所以使用的技术相对单一，自己之前虽然也有学一些新的东西，但是这些东西也仅仅停留在学习如何使用上面，而对于为什么要这么用，可能并不会想太多。</p>
+<p>原理的理解让我对那些经常使用的技术有了更深入的理解，如果不理解为什么这么写而仅仅只是知道需要这么写就很容易忘记，而且每次写的时候还需要看看官方demo，这可以说是自己的亲身体会吧。</p>
+<p>之前在做完一个react项目再做另一个的时候，我发现我还是需要看官方demo才能记得，那个<code class="language-text">connect</code>怎么写，小括号，花括号怎么放，这让我很无语，这让我开始意识到我该学习一下为什么这里要这么写，所以自己该抽时间学习一下redux的原理，源码，在学习后，感觉写起来要顺利许多，这一点让我感触很深。</p>
+<p>还有一点，就是在使用那些新技术的时候，比如像vue，react的时候，最好不要一上来就全家桶，直接redux什么的一起上，最好还是有个渐进的过程，否则对于为什么需要这些库理解可能不会太深。之前做第一个项目的时候，交互虽然复杂，但是并没有用redux，这让我们在做项目的时候，遇到了很多回调，很深的传递，之后在项目中加入redux之后，才对为什么会有这些数据管理库有了更加深入的理解，我觉得这一点也是非常宝贵的，</p>
+<p>所以，我觉得今年关于技术思想上变化最大的，也是让我感触最深的是：</p>
+<ol>
+<li>要知其然，也要知其所以然，而不是盲目的学完这个学那个，这样的最终结果就是哪个都不是很精，并没有太大用处。</li>
+<li>在学习这些技术的同时要理解这些技术解决了开发中的哪些痛点，理解它们出现的原因，记得之前尤大也说过，vue是渐进式的框架，我觉得学习技术也要渐进式的学习，一个一个网上加，而不是搞大而全，这样才能理解更深入。</li>
+</ol>
+<h4>意识到团队的重要性，开始注重软实力</h4>
+<p>之前，由于人员相对较少，所以很多时候，可能是怎么方便怎么来，并不会考虑自己写的这些东西别人用的会不会舒服，自己写的代码别人能不能看懂，但是随着人员的增多，项目的增大，大家合作的越来越多，自己有时候也会负责项目的搭建，自己可能会写一些公共的代码块儿在项目中使用，这些工作的出现让我开始意识到团队合作的重要性，自己弄的东西，如何方便他人的使用，一个项目如何搭建更利于后期维护。</p>
+<p>现在的前端发展非常快，各种新技术层出不穷，但是在我们忙着学习新东西的时候，我们是否考虑过自己的代码写的足够健壮，如何写让别人读起来更加舒服，技术在更新，各种框架在变化，但是这些软实力并没有因此而变得不重要，它们依旧是考量一个工程师是否优秀的标准之一。</p>
+<p>今年开始，自己开始学着如何让项目的可维护性更高，代码如何写，更加健壮，开始注重修炼内功了，但是这并不是那么简单几天几个月就可以学会的，而是一个长期的过程，年底时候考虑过自己写一份代码规范，相当于一个revew规范吧，如何写代码更加合适，但是由于年底工作的繁忙并没有实现这个，我想这个将会是2018年的要做的头一件事儿了。</p>
+<p>关于2017年一年在技术方面让我产生思考，并让我发生转变的的就这两方面了，2018年我将沿着这两方面继续走下去✌️</p>
+<h2>生活</h2>
+<p>2017年关于生活上的，2017年也发生了很多事儿，尤其是在后半年的一些事儿让我记忆深刻，甚至引发一些思考。</p>
+<h4>学习英语</h4>
+<p>英语对于我这种技术人来说其实一直都很重要，因为经常会遇到阅读国外文章，文档的时候，所以英语好对于我来说是非常重要的，所以从2017年下半年开始，我开始再一次拿起英语，我觉得2018年，这也将是重中之重…</p>
+<h4>开始对金融投资感兴趣</h4>
+<p>数字货币比特币在2017年底可以说是占尽了风头，在谷歌搜索排行榜达到第一，为什么会这样的呢？因为在2017年，数字货币像比特币，莱特币，以太坊等等可以说是疯长，比特币一路狂飙，一度达到每个十万人民币，要知道这家伙年初的时候也就几千一个，着就说说，如果你持有几十个比特币，基本上离财富自由就不远了。</p>
+<p>记得第一次听说比特币是在上大学时候，那时候虽然对这个东西好奇，但是因为是学生，也没什么钱，所以并没有投资这些，之后就渐渐的淡忘了，直到今年年底，新闻开始大量报道比特币疯狂上涨以及各种稀奇古怪的丢失比特币的新闻，比如国外有一哥们儿扔了个硬盘，里面有几千个比特币，找不回来了，估计这哥们儿会后悔一辈子吧，哈哈…</p>
+<p>还有就是看到同学开始学着理财，自己也开始尝试，但是只是买了些基金，而且因为不是很懂这些，所以也是在乱买，年底的时候感觉不能这么胡来，得系统学习下这些东西到底是怎么弄的。</p>
+<p>这两件事儿让我开始对金融投资产生了兴趣，我觉得2018年我将要认真学习关于金融的东西</p>
+<h4>参与线下活动</h4>
+<p>2017年这一年，说实话，参与的活动变得少了，无论是技术还是非技术，相比于2016年少了很多，也许是因为2017年人工智能火爆，而前端相对于2016年热度降低不少，所以很多技术活动都是人工智能方面的，而非技术方面的其他活动，不知道为什么也参加少，可能是没找到好玩儿一点儿的，所以也少了。</p>
+<p>2018年还是要多参加活动，这样才能认识更多有意思的人，扩展自己的想法，而不是局限在技术这一个圈子内。</p>
+<h4>去上海参加Ultra China——人生中第一次参加音乐活动</h4>
+<p>如果说2016年对于我来说是民谣的一年，那么2017年就是我的电音元年了。2016年年底，开始有意识的听一些电音，开始知道有电音这种音乐风格。</p>
+<p>之前虽然也喜欢过各种各样的歌手，但是对于去现场，我并没有多大想法，感觉去不去都一样，没什么意思，直到遇到电音。去参加Ultra，人生中第一次参加音乐节。</p>
+<p>2017年初，听说世界顶级电音节之一——Ultra Music Festival要来中国上海了，非常的激动，毕竟自己虽然喜欢电音，但是因为这些音乐节都在国外举行，所以只能看看视频了，并没有去现场看到，这次Ultra来中国，举办首届Ultra China，可以说是必去无疑，虽然是一个人，但是还是决定去一趟。在经过抢票，安排行程住宿后，就盼望着9月8日了。</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/626f2d306f09f8cc1dd26da477561263/a5204/ultra1.jpeg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 359px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 178.27298050139277%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAkABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAIDAQT/xAAWAQEBAQAAAAAAAAAAAAAAAAABAgP/2gAMAwEAAhADEAAAAfDn2J1zSvK7z6MqJNBVgv8A/8QAHRAAAgEEAwAAAAAAAAAAAAAAAQIAEBESMQMhQf/aAAgBAQABBQLiUMzpi52CMWJJNLw9nyHdLT//xAAXEQADAQAAAAAAAAAAAAAAAAABEBEA/9oACAEDAQE/ASa5gv/EABURAQEAAAAAAAAAAAAAAAAAAAEg/9oACAECAQE/ASv/xAAbEAACAQUAAAAAAAAAAAAAAAAAEBEwMUFRof/aAAgBAQAGPwKCFbpp4of/xAAbEAADAQADAQAAAAAAAAAAAAAAARExIUFRYf/aAAgBAQABPyGxZ0VBNClJG1tgwaT4zXIs8vpUXn7pTG+xNHjjg3K5OhaNKf/aAAwDAQACAAMAAAAQMyqBB9//xAAWEQEBAQAAAAAAAAAAAAAAAAABEDH/2gAIAQMBAT8QPUSNT//EABcRAQADAAAAAAAAAAAAAAAAAAEAEBH/2gAIAQIBAT8QCOzYU1//xAAfEAEBAAICAgMBAAAAAAAAAAABEQAhMUFRcRCRoYH/2gAIAQEAAT8QqnQ0NVvH1k51ux0l6fGMEcGGni7ibxq5eAxoJ/bvLGVTm4uvgq/TLJQTqvS7xp1VbVuURNre8qkQju/E7n0yUif3L2n7z//Z'); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="Ultra China海报"
+        title=""
+        src="/static/626f2d306f09f8cc1dd26da477561263/a5204/ultra1.jpeg"
+        srcset="/static/626f2d306f09f8cc1dd26da477561263/65c50/ultra1.jpeg 148w,
+/static/626f2d306f09f8cc1dd26da477561263/b9bec/ultra1.jpeg 295w,
+/static/626f2d306f09f8cc1dd26da477561263/a5204/ultra1.jpeg 359w"
+        sizes="(max-width: 359px) 100vw, 359px"
+      />
+  </span>
+  </a></p>
+<p>经过忙碌的工作，耐心的等待，2017年9月8日终于到来，这两天，全国的顶级raver纷纷乘坐各种交通工具来到上海，参加属于他们的顶级电音节。</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/562a5eac3aad58ca1d7164e465941bfd/57c76/raver.jpeg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 73.17073170731707%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAMEAQX/xAAVAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAB6eMnKqHjP//EABsQAAEEAwAAAAAAAAAAAAAAAAIAAQMREhMi/9oACAEBAAEFAttkR8xsTCUVpoiyX//EABYRAAMAAAAAAAAAAAAAAAAAABARIf/aAAgBAwEBPwGIf//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABoQAAICAwAAAAAAAAAAAAAAAAABESEQMWH/2gAIAQEABj8C4Qm3JZsvH//EABoQAQACAwEAAAAAAAAAAAAAAAEAESExQRD/2gAIAQEAAT8hShk5SFaKBRGNXBSiO1EnSs2Pn//aAAwDAQACAAMAAAAQt8//xAAWEQEBAQAAAAAAAAAAAAAAAAABEEH/2gAIAQMBAT8QNmf/xAAWEQEBAQAAAAAAAAAAAAAAAAARARD/2gAIAQIBAT8Qq5//xAAeEAEBAAIBBQEAAAAAAAAAAAABEQAhQRAxYXGR4f/aAAgBAQABPxCsUaoEnP5jUzrtKeDBiOyFZxcqXF0kuFgDC2T186f/2Q=='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="全国的raver赶往上海"
+        title=""
+        src="/static/562a5eac3aad58ca1d7164e465941bfd/f8fb9/raver.jpeg"
+        srcset="/static/562a5eac3aad58ca1d7164e465941bfd/e8976/raver.jpeg 148w,
+/static/562a5eac3aad58ca1d7164e465941bfd/63df2/raver.jpeg 295w,
+/static/562a5eac3aad58ca1d7164e465941bfd/f8fb9/raver.jpeg 590w,
+/static/562a5eac3aad58ca1d7164e465941bfd/85e3d/raver.jpeg 885w,
+/static/562a5eac3aad58ca1d7164e465941bfd/d1924/raver.jpeg 1180w,
+/static/562a5eac3aad58ca1d7164e465941bfd/57c76/raver.jpeg 1476w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+  </span>
+  </a></p>
+<p>我记得8号我坐动车去上海，动车给我晚点了，我也是醉了。最终在晚点90分钟后，成功在凌晨抵达上海，也是够艰难的😂。</p>
+<p>两天的狂欢即将开始…</p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/28aae89460583d1904f363be58bdf760/90e0b/ultra2.jpeg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIBAwX/xAAWAQEBAQAAAAAAAAAAAAAAAAADAgT/2gAMAwEAAhADEAAAAcZ0fQdJIVf/xAAaEAACAgMAAAAAAAAAAAAAAAAAAQIQAxES/9oACAEBAAEFAktjxSVRZ06//8QAFREBAQAAAAAAAAAAAAAAAAAAARD/2gAIAQMBAT8BVn//xAAXEQADAQAAAAAAAAAAAAAAAAAAAhEB/9oACAECAQE/AcVYQ//EABgQAAIDAAAAAAAAAAAAAAAAABAhAAEx/9oACAEBAAY/AlHR0f/EABkQAQEAAwEAAAAAAAAAAAAAAAEAESExEP/aAAgBAQABPyFHiB5QPEOQI7bnt//aAAwDAQACAAMAAAAQ8z//xAAXEQADAQAAAAAAAAAAAAAAAAAAAREh/9oACAEDAQE/EKcKz//EABYRAQEBAAAAAAAAAAAAAAAAAAERAP/aAAgBAgEBPxCVTJu//8QAGRAAAwEBAQAAAAAAAAAAAAAAAAERITFh/9oACAEBAAE/EGdky7h7Oq9KzRaMQSgkaenY/9k='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="ultra1"
+        title=""
+        src="/static/28aae89460583d1904f363be58bdf760/f8fb9/ultra2.jpeg"
+        srcset="/static/28aae89460583d1904f363be58bdf760/e8976/ultra2.jpeg 148w,
+/static/28aae89460583d1904f363be58bdf760/63df2/ultra2.jpeg 295w,
+/static/28aae89460583d1904f363be58bdf760/f8fb9/ultra2.jpeg 590w,
+/static/28aae89460583d1904f363be58bdf760/85e3d/ultra2.jpeg 885w,
+/static/28aae89460583d1904f363be58bdf760/d1924/ultra2.jpeg 1180w,
+/static/28aae89460583d1904f363be58bdf760/9452e/ultra2.jpeg 1770w,
+/static/28aae89460583d1904f363be58bdf760/90e0b/ultra2.jpeg 1920w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+  </span>
+  </a></p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/d6d98e20500c8eb6e6639757b5f0f2dd/90e0b/ultra3.jpeg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMFBP/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAGS9bJqkYgP/8QAGxAAAgEFAAAAAAAAAAAAAAAAAQIDABESITL/2gAIAQEAAQUCK4mwd1ihIptlOf/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAwEBPwFkf//EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAgBAgEBPwFtf//EABwQAAEDBQAAAAAAAAAAAAAAAAABESECEBJBcf/aAAgBAQAGPwJNjtihFQnSbf/EABwQAQACAgMBAAAAAAAAAAAAAAEAESFhMUGBwf/aAAgBAQABPyHnAdRAplbVfJRl3CStePsdHc//2gAMAwEAAgADAAAAEIAf/8QAFxEBAQEBAAAAAAAAAAAAAAAAAQARIf/aAAgBAwEBPxAFMhO5f//EABYRAQEBAAAAAAAAAAAAAAAAAAEAEf/aAAgBAgEBPxBQZJy//8QAGxABAQADAQEBAAAAAAAAAAAAAREAITFBcaH/2gAIAQEAAT8QeZSKL8wORwT5q4SAcWO4ModCmnzKCRRX12xlgUV0bc//2Q=='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="ultra2"
+        title=""
+        src="/static/d6d98e20500c8eb6e6639757b5f0f2dd/f8fb9/ultra3.jpeg"
+        srcset="/static/d6d98e20500c8eb6e6639757b5f0f2dd/e8976/ultra3.jpeg 148w,
+/static/d6d98e20500c8eb6e6639757b5f0f2dd/63df2/ultra3.jpeg 295w,
+/static/d6d98e20500c8eb6e6639757b5f0f2dd/f8fb9/ultra3.jpeg 590w,
+/static/d6d98e20500c8eb6e6639757b5f0f2dd/85e3d/ultra3.jpeg 885w,
+/static/d6d98e20500c8eb6e6639757b5f0f2dd/d1924/ultra3.jpeg 1180w,
+/static/d6d98e20500c8eb6e6639757b5f0f2dd/9452e/ultra3.jpeg 1770w,
+/static/d6d98e20500c8eb6e6639757b5f0f2dd/90e0b/ultra3.jpeg 1920w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+  </span>
+  </a></p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/ae2320c0bd7b39782d7d4021aab682ae/90e0b/ultra4.jpeg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAIFAf/EABYBAQEBAAAAAAAAAAAAAAAAAAIBA//aAAwDAQACEAMQAAABTJbR1iUHT//EABoQAAICAwAAAAAAAAAAAAAAAAABAgQUMUH/2gAIAQEAAQUCdqbFYnEzBHFr/8QAFxEAAwEAAAAAAAAAAAAAAAAAAAEDEf/aAAgBAwEBPwHBSR//xAAWEQEBAQAAAAAAAAAAAAAAAAAAERL/2gAIAQIBAT8BrT//xAAaEAEAAQUAAAAAAAAAAAAAAAABAAIgIjEz/9oACAEBAAY/AsUpnQSas//EABwQAAMAAgMBAAAAAAAAAAAAAAABESFBMWFxkf/aAAgBAQABPyHje3VYK4u2WTx+j4ZuKpP/2gAMAwEAAgADAAAAEKM//8QAGBEBAQADAAAAAAAAAAAAAAAAAQARMaH/2gAIAQMBAT8QC6kA463/xAAVEQEBAAAAAAAAAAAAAAAAAAABAP/aAAgBAgEBPxBir//EAB0QAQACAgIDAAAAAAAAAAAAAAEAESFBUWGh4fH/2gAIAQEAAT8QLBYVkF0+puiKMg3TKO7v5jIc1cHDpB8xCoWnE//Z'); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="ultra3"
+        title=""
+        src="/static/ae2320c0bd7b39782d7d4021aab682ae/f8fb9/ultra4.jpeg"
+        srcset="/static/ae2320c0bd7b39782d7d4021aab682ae/e8976/ultra4.jpeg 148w,
+/static/ae2320c0bd7b39782d7d4021aab682ae/63df2/ultra4.jpeg 295w,
+/static/ae2320c0bd7b39782d7d4021aab682ae/f8fb9/ultra4.jpeg 590w,
+/static/ae2320c0bd7b39782d7d4021aab682ae/85e3d/ultra4.jpeg 885w,
+/static/ae2320c0bd7b39782d7d4021aab682ae/d1924/ultra4.jpeg 1180w,
+/static/ae2320c0bd7b39782d7d4021aab682ae/9452e/ultra4.jpeg 1770w,
+/static/ae2320c0bd7b39782d7d4021aab682ae/90e0b/ultra4.jpeg 1920w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+  </span>
+  </a></p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/72866faf0061ec69bccec0f9da274a12/90e0b/ultra5.jpeg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAECA//EABYBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAABlw9RGgf/xAAYEAEBAQEBAAAAAAAAAAAAAAAAARECMv/aAAgBAQABBQLirWr5jH//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/AT//xAAVEQEBAAAAAAAAAAAAAAAAAAAAEf/aAAgBAgEBPwFX/8QAFxABAAMAAAAAAAAAAAAAAAAAAQAgIf/aAAgBAQAGPwKYlf/EABkQAAMBAQEAAAAAAAAAAAAAAAABESFRYf/aAAgBAQABPyFjUqnppqG9MuJiI4f/2gAMAwEAAgADAAAAEODv/8QAFxEBAAMAAAAAAAAAAAAAAAAAAAERQf/aAAgBAwEBPxDFS//EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAECAQE/EKh//8QAGxABAAMBAAMAAAAAAAAAAAAAAQARITFBkfH/2gAIAQEAAT8QXvid88QcXnQKgviOyBe7UC+i6NqC9Pqf/9k='); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="ultra4"
+        title=""
+        src="/static/72866faf0061ec69bccec0f9da274a12/f8fb9/ultra5.jpeg"
+        srcset="/static/72866faf0061ec69bccec0f9da274a12/e8976/ultra5.jpeg 148w,
+/static/72866faf0061ec69bccec0f9da274a12/63df2/ultra5.jpeg 295w,
+/static/72866faf0061ec69bccec0f9da274a12/f8fb9/ultra5.jpeg 590w,
+/static/72866faf0061ec69bccec0f9da274a12/85e3d/ultra5.jpeg 885w,
+/static/72866faf0061ec69bccec0f9da274a12/d1924/ultra5.jpeg 1180w,
+/static/72866faf0061ec69bccec0f9da274a12/9452e/ultra5.jpeg 1770w,
+/static/72866faf0061ec69bccec0f9da274a12/90e0b/ultra5.jpeg 1920w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+  </span>
+  </a></p>
+<p><a
+    class="gatsby-resp-image-link"
+    href="/static/1965ce9a19a1fdfd1a91f09328183578/90e0b/ultra6.jpeg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-wrapper"
+    style="position: relative; display: block;  max-width: 590px; margin-left: auto; margin-right: auto;"
+  >
+    <span
+      class="gatsby-resp-image-background-image"
+      style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAUBAwT/xAAWAQEBAQAAAAAAAAAAAAAAAAADAAH/2gAMAwEAAhADEAAAAUTLEYNJJL//xAAaEAACAgMAAAAAAAAAAAAAAAAAAQIDEBIh/9oACAEBAAEFAiVS0xJ9P//EABcRAAMBAAAAAAAAAAAAAAAAAAECEDH/2gAIAQMBAT8BYFsn/8QAFBEBAAAAAAAAAAAAAAAAAAAAEP/aAAgBAgEBPwE//8QAGRAAAQUAAAAAAAAAAAAAAAAAEQABEiAy/9oACAEBAAY/AlFtA1//xAAaEAEBAAIDAAAAAAAAAAAAAAABEQAQQVFh/9oACAEBAAE/IcrASfT3pYYzfMNf/9oADAMBAAIAAwAAABBjL//EABYRAQEBAAAAAAAAAAAAAAAAAAEREP/aAAgBAwEBPxBIVJn/xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAbEAADAAMBAQAAAAAAAAAAAAAAARExQWEh8P/aAAgBAQABPxCPKG4q6SisfcGhyZv0prkFSmuDyf/Z'); background-size: cover; display: block;"
+    ></span>
+    <img
+        class="gatsby-resp-image-image"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;box-shadow:inset 0px 0px 0px 400px white;"
+        alt="ultra5"
+        title=""
+        src="/static/1965ce9a19a1fdfd1a91f09328183578/f8fb9/ultra6.jpeg"
+        srcset="/static/1965ce9a19a1fdfd1a91f09328183578/e8976/ultra6.jpeg 148w,
+/static/1965ce9a19a1fdfd1a91f09328183578/63df2/ultra6.jpeg 295w,
+/static/1965ce9a19a1fdfd1a91f09328183578/f8fb9/ultra6.jpeg 590w,
+/static/1965ce9a19a1fdfd1a91f09328183578/85e3d/ultra6.jpeg 885w,
+/static/1965ce9a19a1fdfd1a91f09328183578/d1924/ultra6.jpeg 1180w,
+/static/1965ce9a19a1fdfd1a91f09328183578/9452e/ultra6.jpeg 1770w,
+/static/1965ce9a19a1fdfd1a91f09328183578/90e0b/ultra6.jpeg 1920w"
+        sizes="(max-width: 590px) 100vw, 590px"
+      />
+  </span>
+  </a></p>
+<p>两天的狂欢可以说是让人精疲力尽，各种腰酸腿疼，但是并不后悔，因为之前对于音乐，从未有过如此喜欢的感觉。虽然难说再见，各种不舍，但是最终还是在9月11日，踏上回京的高铁…</p>
+<p>再见Ultra，2018年上海，不见不散…</p>
+<p>前几天听说2018年，EDC要来中国上海了，又一大顶级电音节登陆上海，我想说，tomorrowland来中国还远吗？哈哈，看来明年至少去一趟上海了✌️。</p>
+<p>附：</p>
+<p><a href="http://music.163.com/#/mv?id=5611744">Armin Van Buuren tomorrowland 2017 live</a></p>
+<p><a href="https://www.mixcloud.com/wnmfestofficial/armin-van-buuren-a-state-of-trance-846-year-mix-2017/">Armin Van Buuren Year Mix 2017</a></p>
+<p><a href="http://music.163.com/#/mv?id=5611747">Martin Garrix tomorrowland 2017 live</a></p>
+<p><a href="https://www.mixcloud.com/wnmfestofficial/hardwell-hardwell-on-air-off-the-record-034-yearmix-part-2/">Hardwell Year Mix 2017 live</a></p>
+<h2>结语</h2>
+<p>此刻，距离2018年还有不到一个小时。今天，对这一年的小确幸送上微笑，也向这一年的遗憾送上拥抱；对这一年坚持过的自己说声“谢谢”，也向这一年放弃过的自己说声“在努力”；为这一年世界的美好点赞，也向这一年流过的泪告别。</p>
+<p>再见2017，你好2018…</p></div><hr style="margin-bottom:1.75rem"/><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAIFBgH/xAAWAQEBAQAAAAAAAAAAAAAAAAADAgT/2gAMAwEAAhADEAAAAbSt7NIt0h1lhoPUjOn/xAAcEAACAgIDAAAAAAAAAAAAAAABAwACBCEREjL/2gAIAQEAAQUCyK9lhNzBoMyTUIyeWRnpI3P/xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAXEQADAQAAAAAAAAAAAAAAAAABECFB/9oACAECAQE/AaAsX//EABsQAAIDAAMAAAAAAAAAAAAAAAABEBExIUFx/9oACAEBAAY/AuOjaEilpTxwx+R//8QAHRAAAgICAwEAAAAAAAAAAAAAAREAIRBhUXGBkf/aAAgBAQABPyEvOtDBUB0gU9vnBqUgDRxdlwRB2+Y//9oADAMBAAIAAwAAABC3IMH/xAAXEQEBAQEAAAAAAAAAAAAAAAABEBFB/9oACAEDAQE/EMF1nZ//xAAWEQADAAAAAAAAAAAAAAAAAAABIDH/2gAIAQIBAT8QEyP/xAAcEAEAAgIDAQAAAAAAAAAAAAABETEAIRBRYXH/2gAIAQEAAT8QeShKZIjTS+Y7isEnwwMUiJKNdZYz0kv16a42SVNuMStPihHj/9k=" alt="Mark Zhang" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition:opacity 0.5s;transition-delay:0.25s;border-radius:50%"/><noscript><picture><source srcSet="/static/42c38aa908251e45553331cc77873a78/c3bbc/profile-pic.jpg 1x,
+/static/42c38aa908251e45553331cc77873a78/ac385/profile-pic.jpg 1.5x,
+/static/42c38aa908251e45553331cc77873a78/587d5/profile-pic.jpg 2x,
+/static/42c38aa908251e45553331cc77873a78/20b3c/profile-pic.jpg 3x" /><img width="50" height="50" src="/static/42c38aa908251e45553331cc77873a78/c3bbc/profile-pic.jpg" alt="Mark Zhang" style="position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Written by <strong>Mark Zhang</strong> who lives and works in Beijing.<br/>Web Developer &amp; Designer</p></div><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/2017-rnWebview/">← <!-- -->RN Webview与Web的通信与调试</a></li><li><a rel="next" href="/2018-maf/">MAF项目总结<!-- --> →</a></li></ul><footer>© <!-- -->2019<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div></div><script>
+  
+  
+  if(true) {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  }
+  if (typeof ga === "function") {
+    ga('create', 'undefined', 'auto', {});
+      
+      
+      
+      }
+      </script><script id="gatsby-script-loader">/*<![CDATA[*/window.page={"componentChunkName":"component---src-templates-blog-post-js","jsonName":"2017-2018-new-year-ea4","path":"/2017-2018NewYear/"};window.dataPath="704/path---2017-2018-new-year-ea-4-cfa-8zyukRpnCm6mJJfCi8eweaiv8k";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-d0d89e150045940b8fbe.js"],"component---node-modules-gatsby-plugin-offline-app-shell-js":["/component---node-modules-gatsby-plugin-offline-app-shell-js-523040c197df53e4c36b.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-03ef0048b01b229cf218.js"],"component---src-templates-blog-index-js":["/component---src-templates-blog-index-js-703b42898def842597a2.js"],"component---src-pages-404-js":["/component---src-pages-404-js-94d6430c832cb95f9498.js"],"pages-manifest":["/pages-manifest-45f99f2da78d70f6ab83.js"]};/*]]>*/</script><script src="/webpack-runtime-9be5ade65b46298166e6.js" async=""></script><script src="/styles-dccc4a06eba7490f5acf.js" async=""></script><script src="/app-d0d89e150045940b8fbe.js" async=""></script><script src="/0-2f030b30c532a037312e.js" async=""></script><script src="/component---src-templates-blog-post-js-03ef0048b01b229cf218.js" async=""></script></body></html>
