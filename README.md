@@ -1,2 +1,3 @@
-# MrZhang123.github.io
-All my site
+# Site
+
+* [Mark Zhang Blog](https://mrzhang123.github.io/blog/home/)
