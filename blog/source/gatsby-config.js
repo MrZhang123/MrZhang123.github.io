@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: `/blog/home`,
   siteMetadata: {
-    title: `Mr Zhang Blog`,
+    title: `Mark Zhang Blog`,
     author: `Mark Zhang`,
     description: `记录点滴`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
@@ -58,7 +58,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Mr Zhang Blog`,
+        name: `Mark Zhang Blog`,
         short_name: `Blog`,
         start_url: `/`,
         background_color: `#ffffff`,
