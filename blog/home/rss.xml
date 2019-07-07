@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 07 Jul 2019 07:48:57 GMT</lastBuildDate><item><title><![CDATA[【译】10个React组件的戒律]]></title><description><![CDATA[原文链接：The 10 Component Commandments创建被很多人用的组件是很难的。如果那些作为公共API，你需要非常谨慎的考虑哪些是可以接收的。这篇文章将给你快速介绍API…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//2019-componentsTips/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//2019-componentsTips/</guid><pubDate>Sun, 07 Jul 2019 15:43:00 GMT</pubDate><content:encoded>&lt;p&gt;原文链接：&lt;a href=&quot;https://dev.to/selbekk/the-10-component-commandments-2a7f&quot;&gt;The 10 Component Commandments&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 07 Jul 2019 08:46:35 GMT</lastBuildDate><item><title><![CDATA[【译】10个React组件的戒律]]></title><description><![CDATA[原文链接：The 10 Component Commandments创建被很多人用的组件是很难的。如果那些作为公共API，你需要非常谨慎的考虑哪些是可以接收的。这篇文章将给你快速介绍API…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//2019-componentsTips/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//2019-componentsTips/</guid><pubDate>Sun, 07 Jul 2019 15:43:00 GMT</pubDate><content:encoded>&lt;p&gt;原文链接：&lt;a href=&quot;https://dev.to/selbekk/the-10-component-commandments-2a7f&quot;&gt;The 10 Component Commandments&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;创建被很多人用的组件是很难的。如果那些&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;作为公共API，你需要非常谨慎的考虑哪些&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;是可以接收的。&lt;/p&gt;
 &lt;p&gt;这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。&lt;/p&gt;
 &lt;p&gt;&lt;a
@@ -82,7 +82,7 @@
 &lt;p&gt;这里有4个黄金法则适用于Pascal中的REST API和旧程序，但是如何转化到现代世界的React？&lt;/p&gt;
 &lt;p&gt;就像我们前面提到的，组件有它们自己的API。我们称它们为&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt; , 这就是我们如何用数据，回调函数和其他功能来提供组件。我们如何构建不违反上述规则的&lt;code class=&quot;language-text&quot;&gt;props&lt;/code&gt;对象？我们如何写方便其他开发人员测试的组件？&lt;/p&gt;
 &lt;p&gt;我们创建了当你创建你的组件的时候&lt;strong&gt;10个需要遵循的规则&lt;/strong&gt;清单，希望它们对你有用。&lt;/p&gt;
-&lt;h3&gt;编写文档&lt;/h3&gt;
+&lt;h3&gt;1.编写文档&lt;/h3&gt;
 &lt;p&gt;如果没有好的文档说明你的组件如何使用，那么根据定义，这个组件是无用的，虽然几乎所有的用户都可以查看组件的实现方式，但是这样做用户体验会很糟糕。&lt;/p&gt;
 &lt;p&gt;有几种方式来记录组件，但是这里的三种选择是我们所推荐的：&lt;/p&gt;
 &lt;ul&gt;
@@ -194,7 +194,7 @@ Grid&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;defaultProps &
     &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;提供足够的默认值&lt;/h3&gt;
+&lt;h3&gt;7.提供足够的默认值&lt;/h3&gt;
 &lt;p&gt;只要你可以，请确保为你的props提供足够的默认值。通过这种方式，你可以使你必须传递props的数量最少——这样可以大大简化你的实现。&lt;/p&gt;
 &lt;p&gt;拿&lt;code class=&quot;language-text&quot;&gt;onClick&lt;/code&gt;处理函数举例。如果你的代码中没有要求，提供一个空函数作为默认值。通过这种方式，你可以调用该函数，就好像它总是被提供。&lt;/p&gt;
 &lt;p&gt;另一个例子是自定义输入。除非明确提供，否则假设输入的字符串是一个空字符串。这将让你确保你始终处理的是字符串对象，而不是&lt;code class=&quot;language-text&quot;&gt;undefined&lt;/code&gt;或者&lt;code class=&quot;language-text&quot;&gt;null&lt;/code&gt;。&lt;/p&gt;

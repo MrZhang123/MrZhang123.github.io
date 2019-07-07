@@ -82,7 +82,7 @@
 <p>这里有4个黄金法则适用于Pascal中的REST API和旧程序，但是如何转化到现代世界的React？</p>
 <p>就像我们前面提到的，组件有它们自己的API。我们称它们为<code class="language-text">props</code> , 这就是我们如何用数据，回调函数和其他功能来提供组件。我们如何构建不违反上述规则的<code class="language-text">props</code>对象？我们如何写方便其他开发人员测试的组件？</p>
 <p>我们创建了当你创建你的组件的时候<strong>10个需要遵循的规则</strong>清单，希望它们对你有用。</p>
-<h3>编写文档</h3>
+<h3>1.编写文档</h3>
 <p>如果没有好的文档说明你的组件如何使用，那么根据定义，这个组件是无用的，虽然几乎所有的用户都可以查看组件的实现方式，但是这样做用户体验会很糟糕。</p>
 <p>有几种方式来记录组件，但是这里的三种选择是我们所推荐的：</p>
 <ul>
@@ -194,7 +194,7 @@ Grid<span class="token punctuation">.</span>defaultProps <span class="token oper
     <span class="token operator">/</span><span class="token operator">></span>
   <span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
-<h3>提供足够的默认值</h3>
+<h3>7.提供足够的默认值</h3>
 <p>只要你可以，请确保为你的props提供足够的默认值。通过这种方式，你可以使你必须传递props的数量最少——这样可以大大简化你的实现。</p>
 <p>拿<code class="language-text">onClick</code>处理函数举例。如果你的代码中没有要求，提供一个空函数作为默认值。通过这种方式，你可以调用该函数，就好像它总是被提供。</p>
 <p>另一个例子是自定义输入。除非明确提供，否则假设输入的字符串是一个空字符串。这将让你确保你始终处理的是字符串对象，而不是<code class="language-text">undefined</code>或者<code class="language-text">null</code>。</p>
