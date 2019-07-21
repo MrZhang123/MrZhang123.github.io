@@ -1,4 +1,261 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 16 Jul 2019 01:46:21 GMT</lastBuildDate><item><title><![CDATA[Roman To Int]]></title><description><![CDATA[题目 罗马数字使用七个不同的符号表示：，，，，，和。 例如，罗马数字表示2，就是将两个1加在一起。12被写作。27被写作，就是++。 罗马数字通常从左到右，从最大到最小。然而，数字4不是。而是。因为1写到5前面得到4，相同的原理，9被表示成。这里有…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//2019-leetCode-romanToInt/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//2019-leetCode-romanToInt/</guid><pubDate>Tue, 16 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;题目&lt;/h3&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 21 Jul 2019 14:25:48 GMT</lastBuildDate><item><title><![CDATA[「译」ES 草案：class私有属性]]></title><description><![CDATA[原文链接：https://2ality.com/2019/07/private-class-fields.html class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分： 公有class属性 私有class…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//2019-privateFields/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//2019-privateFields/</guid><pubDate>Sun, 21 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;原文链接：&lt;a href=&quot;https://2ality.com/2019/07/private-class-fields.html&quot;&gt;https://2ality.com/2019/07/private-class-fields.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://2ality.com/2019/07/public-class-fields.html&quot;&gt;公有class属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;私有class属性&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在这篇文章中，我们看看&lt;em&gt;私有属性&lt;/em&gt;，在类和实例中的一种新的私有插槽。这个功能是ES草案&lt;a href=&quot;https://github.com/tc39/proposal-class-fields&quot;&gt;“JavaScript类属性声明”&lt;/a&gt;的一部分。&lt;/p&gt;
+&lt;h2&gt;1.概览&lt;/h2&gt;
+&lt;p&gt;私有属性是一种与属性不同的新的数据插槽。它们只能在它们声明的class body内直接访问。&lt;/p&gt;
+&lt;h3&gt;1.1 静态私有属性&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyClass&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// 声明并初始化静态私有属性&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; #privateStaticField &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getPrivateStaticField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; MyClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#privateStaticField&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// (A)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;throws&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;MyClass.#privateStaticField&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;SyntaxError&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    message&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Undefined private field undefined:&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&apos; must be declared in an enclosing class&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;MyClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrivateStaticField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;小窍门：永远不要用&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;来访问一个静态私有属性，始终使用直接类名（就像A行那样）。为什么会在本文后面解释。&lt;/p&gt;
+&lt;h3&gt;1.2 实例私有属性&lt;/h3&gt;
+&lt;p&gt;使用带有初始值的私有属性（等号后面跟着值）。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyClass&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// 声明并初始化&lt;/span&gt;
+  #privateInstanceField &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;getPrivateInstanceField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#privateInstanceField&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;throws&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;eval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;new MyClass().#privateInstanceField&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;SyntaxError&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    message&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Undefined private field undefined:&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&apos; must be declared in an enclosing class&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyClass&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrivateInstanceField&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用未初始化的实例私有属性：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DataStore&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  #data&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// must be declared&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; data&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;getData&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#data&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;deepEqual&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  Reflect&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ownKeys&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;DataStore&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;2. 从下划线到实例私有属性&lt;/h2&gt;
+&lt;p&gt;在JavaScript中保持数据私有的公共约定是使用带有下划线的属性名。在这个部分，我们从使用这个约定的代码开始，然后更改它，到使用实例私有属性。&lt;/p&gt;
+&lt;h3&gt;2.1 从下划线开始&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Countdown&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;counter&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; action&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; counter&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// private&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_action &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; action&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// private&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;dec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_counter &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_counter&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;_counter &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;_action&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 变量并非真正的私有&lt;/span&gt;
+assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;deepEqual&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  Reflect&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ownKeys&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Countdown&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;_counter&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;_action&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这个约定并没有给我们任何保护；它仅仅建议使用这个class的用户：不要使用这些属性，它们是私有的。&lt;/p&gt;
+&lt;h3&gt;2.2 切换到实例私有属性&lt;/h3&gt;
+&lt;p&gt;我们可以用实例私有属性代替下划线：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;我们用哈希符&lt;code class=&quot;language-text&quot;&gt;#&lt;/code&gt;替换每一个下划线&lt;code class=&quot;language-text&quot;&gt;_&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;我们在类的顶部声明所有的私有属性。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Countdown&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  #counter&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  #action&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;counter&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; action&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; counter&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#action &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; action&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;dec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#counter &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#counter&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#counter &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#&lt;span class=&quot;token function&quot;&gt;action&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// The data is now private:&lt;/span&gt;
+assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;deepEqual&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  Reflect&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ownKeys&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Countdown&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;3. 类主体内的所有代码都可以访问私有属性&lt;/h2&gt;
+&lt;p&gt;例如，实例方法可以访问静态私有属性：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyClass&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; #privateStaticField &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;getPrivateFieldOfClass&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;theClass&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; theClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#privateStaticField&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyClass&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrivateFieldOfClass&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;MyClass&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;一个静态方法可以访问实例私有属性：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyClass&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  #privateInstanceField &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getPrivateFieldOfInstance&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;theInstance&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; theInstance&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#privateInstanceField&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  MyClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrivateFieldOfInstance&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyClass&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;4.（高级）&lt;/h2&gt;
+&lt;p&gt;其余部分涵盖类私有属性的高级用法&lt;/p&gt;
+&lt;h2&gt;5. 深入：私有属性是被如何管理的？&lt;/h2&gt;
+&lt;p&gt;在规范中，私有属性通过附加到对象上的数据结构进行管理。私有属性的大致处理过程如下：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// Private names&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; _counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    __Description__&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;counter&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    __Kind__&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;field&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; _action &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    __Description__&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;action&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    __Kind__&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;field&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// Maps private names to values&lt;/span&gt;
+    __PrivateFieldValues__ &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Countdown&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;counter&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; action&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__PrivateFieldValues__&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_counter&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; counter&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__PrivateFieldValues__&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_action&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; action&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;dec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__PrivateFieldValues__&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_counter&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__PrivateFieldValues__&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+        _counter&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__PrivateFieldValues__&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_counter&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      
+      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__PrivateFieldValues__&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_counter&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;__PrivateFieldValues__&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_action&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里有两点很重要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;私有名称&lt;/em&gt;是唯一的key。它们只能在class内访问。&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;私有属性的值&lt;/em&gt;是一个&lt;strong&gt;私有名称=&gt;值的字典&lt;/strong&gt;。每个拥有私有属性的实例都有这样一个字典。只能通过私有变量的key访问其value。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;意义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在类&lt;code class=&quot;language-text&quot;&gt;Countdown&lt;/code&gt;中，只能访问存储在&lt;code class=&quot;language-text&quot;&gt;.#counter&lt;/code&gt; 和 &lt;code class=&quot;language-text&quot;&gt;#action&lt;/code&gt; 的私有数据——因为在这个类中你只有这两个私有变量。&lt;/li&gt;
+&lt;li&gt;私有属性不能被子类访问。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;6. 陷阱：使用&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;访问私有静态属性&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;你可以使用&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;访问公有静态属性，但是你不应该使用它访问私有静态属性。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;6.1 &lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;和静态公有变量&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SuperClass&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; publicData &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getPublicViaThis&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;publicData&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SubClass&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SuperClass&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;公有静态属性是属性。如果我们用一个方法调用：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;SuperClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPublicViaThis&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;指向&lt;code class=&quot;language-text&quot;&gt;SuperClass&lt;/code&gt;，一切都按照我们预想的那样工作。我们也可以通过子类调用&lt;code class=&quot;language-text&quot;&gt;.getPublicViaThis()&lt;/code&gt;。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;SubClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPublicViaThis&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;SubClass&lt;/code&gt;继承了&lt;code class=&quot;language-text&quot;&gt;.getPublicViaThis()&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;指向&lt;code class=&quot;language-text&quot;&gt;SubClass&lt;/code&gt;，代码依旧可以运用，因为&lt;code class=&quot;language-text&quot;&gt;SubClass&lt;/code&gt;也继承了&lt;code class=&quot;language-text&quot;&gt;.publicData&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;（注：在这种情况下设置&lt;code class=&quot;language-text&quot;&gt;.publicData&lt;/code&gt;会在&lt;code class=&quot;language-text&quot;&gt;SubClass&lt;/code&gt;上创建新的属性，这个属性不会覆盖在&lt;code class=&quot;language-text&quot;&gt;SuperClass&lt;/code&gt;上定义的属性）&lt;/p&gt;
+&lt;h3&gt;6.2 &lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;和私有静态属性&lt;/h3&gt;
+&lt;p&gt;考虑这段代码：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SuperClass&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; #privateData &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getPrivateViaThis&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#privateData&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getPrivateViaClassName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; SuperClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;#privateData&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SubClass&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;SuperClass&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过&lt;code class=&quot;language-text&quot;&gt;SuperClass&lt;/code&gt;可以调用&lt;code class=&quot;language-text&quot;&gt;.getPrivateViaThis()&lt;/code&gt;，因为&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;指向&lt;code class=&quot;language-text&quot;&gt;SuperClass&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;SuperClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrivateViaThis&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然而，通过&lt;code class=&quot;language-text&quot;&gt;SubClass&lt;/code&gt;无法调用&lt;code class=&quot;language-text&quot;&gt;.getPrivateViaThis()&lt;/code&gt;，因为此时&lt;code class=&quot;language-text&quot;&gt;this&lt;/code&gt;指向&lt;code class=&quot;language-text&quot;&gt;SubClass&lt;/code&gt;，而&lt;code class=&quot;language-text&quot;&gt;SubClass&lt;/code&gt;没有私有静态变量&lt;code class=&quot;language-text&quot;&gt;.#privateData&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;throws&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; SubClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrivateViaThis&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;TypeError&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    message&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Read of private field #privateData from&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;
+      &lt;span class=&quot;token string&quot;&gt;&apos; an object which did not contain the field&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;解决办法是直接通过&lt;code class=&quot;language-text&quot;&gt;SuperClass&lt;/code&gt;访问&lt;code class=&quot;language-text&quot;&gt;.#privateData&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;equal&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;SubClass&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getPrivateViaClassName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;7. “友好”和“被保护的”隐私&lt;/h2&gt;
+&lt;p&gt;有时候我们想要某些实体成为某一类的“朋友”。这个朋友应该可以访问calss的私有数据。在以下代码中，函数&lt;code class=&quot;language-text&quot;&gt;getCounter()&lt;/code&gt;是类&lt;code class=&quot;language-text&quot;&gt;Countdown&lt;/code&gt;的朋友。我们通过使用&lt;code class=&quot;language-text&quot;&gt;WeakMaps&lt;/code&gt;生成私有数据，这样&lt;code class=&quot;language-text&quot;&gt;Countdown&lt;/code&gt;就允许朋友们访问该数据。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; _counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WeakMap&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; _action &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;WeakMap&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Countdown&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;counter&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; action&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    _counter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; counter&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    _action&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; action&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;dec&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; counter &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; _counter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;counter &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    counter&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    _counter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; counter&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;counter &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      _action&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;getCounter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;countdown&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; counter&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;countdown&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这样就很容易控制哪些可以访问私有数据：如果它们可以使用&lt;code class=&quot;language-text&quot;&gt;_counter&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;_action&lt;/code&gt;，它们就可以访问私有数据。如果我们将之前的代码片段放到一个模块中，那么数据在整个模块中是私有的。&lt;/p&gt;
+&lt;p&gt;有关此技术的更多信息，请咨询Sect的“&lt;a href=&quot;https://exploringjs.com/impatient-js/ch_weakmaps.html#private-data-in-weakmaps&quot;&gt;使用&lt;code class=&quot;language-text&quot;&gt;WeakMaps&lt;/code&gt;保持私有数据&lt;/a&gt;”。这同样适用于在superclass和subclass之间共享私有数据（“被保护”的可见度）。&lt;/p&gt;
+&lt;h2&gt;8. FAQ&lt;/h2&gt;
+&lt;h3&gt;8.1 为什么是&lt;code class=&quot;language-text&quot;&gt;#&lt;/code&gt;？为什么不通过&lt;code class=&quot;language-text&quot;&gt;private&lt;/code&gt;属性声明私有属性？&lt;/h3&gt;
+&lt;p&gt;原则上，私有属性应该用如下方式声明：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;MyClass&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;compare&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; other&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但是我们不能在整个class内的任何地方使用属性名值——它们总是被解释为私有变量。&lt;/p&gt;
+&lt;p&gt;静态类型语言，例如TypeScript在这方面具有更多的灵活性：它们在编译的时候就知道是否是MyClass的一个实例并且可以是否将&lt;code class=&quot;language-text&quot;&gt;.value&lt;/code&gt;作为一个私有变量对待。&lt;/p&gt;
+&lt;h2&gt;key word&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;class私有属性（private class fields）&lt;/li&gt;
+&lt;li&gt;静态私有属性（private static fields）&lt;/li&gt;
+&lt;li&gt;实例私有属性（private instance fields）&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Roman To Int]]></title><description><![CDATA[题目 罗马数字使用七个不同的符号表示：，，，，，和。 例如，罗马数字表示2，就是将两个1加在一起。12被写作。27被写作，就是++。 罗马数字通常从左到右，从最大到最小。然而，数字4不是。而是。因为1写到5前面得到4，相同的原理，9被表示成。这里有…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//2019-leetCode-romanToInt/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//2019-leetCode-romanToInt/</guid><pubDate>Tue, 16 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;题目&lt;/h3&gt;
 &lt;p&gt;罗马数字使用七个不同的符号表示：&lt;code class=&quot;language-text&quot;&gt;I&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;V&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;X&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;L&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;C&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;D&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;M&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Symbol     Value
 I          1
@@ -187,7 +444,7 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/eb935b750f7a08ad9116ecd5a115f81e/bbe88/1.jpg&quot;
+    href=&quot;/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/bbe88/1.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -200,11 +457,11 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;API?&quot;
         title=&quot;API?&quot;
-        src=&quot;/static/eb935b750f7a08ad9116ecd5a115f81e/c739e/1.jpg&quot;
-        srcset=&quot;/static/eb935b750f7a08ad9116ecd5a115f81e/8ee9c/1.jpg 148w,
-/static/eb935b750f7a08ad9116ecd5a115f81e/ebbe7/1.jpg 295w,
-/static/eb935b750f7a08ad9116ecd5a115f81e/c739e/1.jpg 590w,
-/static/eb935b750f7a08ad9116ecd5a115f81e/bbe88/1.jpg 880w&quot;
+        src=&quot;/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/c739e/1.jpg&quot;
+        srcset=&quot;/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/8ee9c/1.jpg 148w,
+/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/ebbe7/1.jpg 295w,
+/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/c739e/1.jpg 590w,
+/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/bbe88/1.jpg 880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -235,7 +492,7 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/15e2c733cf1d3b5e5916c17692a6df5a/bbe88/2.jpg&quot;
+    href=&quot;/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/bbe88/2.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -248,11 +505,11 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;component&quot;
         title=&quot;component&quot;
-        src=&quot;/static/15e2c733cf1d3b5e5916c17692a6df5a/c739e/2.jpg&quot;
-        srcset=&quot;/static/15e2c733cf1d3b5e5916c17692a6df5a/8ee9c/2.jpg 148w,
-/static/15e2c733cf1d3b5e5916c17692a6df5a/ebbe7/2.jpg 295w,
-/static/15e2c733cf1d3b5e5916c17692a6df5a/c739e/2.jpg 590w,
-/static/15e2c733cf1d3b5e5916c17692a6df5a/bbe88/2.jpg 880w&quot;
+        src=&quot;/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/c739e/2.jpg&quot;
+        srcset=&quot;/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/8ee9c/2.jpg 148w,
+/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/ebbe7/2.jpg 295w,
+/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/c739e/2.jpg 590w,
+/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/bbe88/2.jpg 880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -410,7 +667,7 @@ Grid&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;defaultProps &
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/7ad87b749411892458b193a48597d91f/8e724/iterm2.png&quot;
+    href=&quot;/blog/home/static/7ad87b749411892458b193a48597d91f/8e724/iterm2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -423,13 +680,13 @@ Grid&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;defaultProps &
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;item2原生分屏图片&quot;
         title=&quot;item2原生分屏图片&quot;
-        src=&quot;/static/7ad87b749411892458b193a48597d91f/b9e4f/iterm2.png&quot;
-        srcset=&quot;/static/7ad87b749411892458b193a48597d91f/cf440/iterm2.png 148w,
-/static/7ad87b749411892458b193a48597d91f/d2d38/iterm2.png 295w,
-/static/7ad87b749411892458b193a48597d91f/b9e4f/iterm2.png 590w,
-/static/7ad87b749411892458b193a48597d91f/f9b6a/iterm2.png 885w,
-/static/7ad87b749411892458b193a48597d91f/2d849/iterm2.png 1180w,
-/static/7ad87b749411892458b193a48597d91f/8e724/iterm2.png 2880w&quot;
+        src=&quot;/blog/home/static/7ad87b749411892458b193a48597d91f/b9e4f/iterm2.png&quot;
+        srcset=&quot;/blog/home/static/7ad87b749411892458b193a48597d91f/cf440/iterm2.png 148w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/d2d38/iterm2.png 295w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/b9e4f/iterm2.png 590w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/f9b6a/iterm2.png 885w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/2d849/iterm2.png 1180w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/8e724/iterm2.png 2880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -442,7 +699,7 @@ Grid&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;defaultProps &
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/f79b48e59fc466892c17aeef84137813/8e724/tmux.png&quot;
+    href=&quot;/blog/home/static/f79b48e59fc466892c17aeef84137813/8e724/tmux.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -455,13 +712,13 @@ Grid&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;defaultProps &
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;tmux分屏图片&quot;
         title=&quot;tmux分屏图片&quot;
-        src=&quot;/static/f79b48e59fc466892c17aeef84137813/b9e4f/tmux.png&quot;
-        srcset=&quot;/static/f79b48e59fc466892c17aeef84137813/cf440/tmux.png 148w,
-/static/f79b48e59fc466892c17aeef84137813/d2d38/tmux.png 295w,
-/static/f79b48e59fc466892c17aeef84137813/b9e4f/tmux.png 590w,
-/static/f79b48e59fc466892c17aeef84137813/f9b6a/tmux.png 885w,
-/static/f79b48e59fc466892c17aeef84137813/2d849/tmux.png 1180w,
-/static/f79b48e59fc466892c17aeef84137813/8e724/tmux.png 2880w&quot;
+        src=&quot;/blog/home/static/f79b48e59fc466892c17aeef84137813/b9e4f/tmux.png&quot;
+        srcset=&quot;/blog/home/static/f79b48e59fc466892c17aeef84137813/cf440/tmux.png 148w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/d2d38/tmux.png 295w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/b9e4f/tmux.png 590w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/f9b6a/tmux.png 885w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/2d849/tmux.png 1180w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/8e724/tmux.png 2880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -491,7 +748,7 @@ sudo apt-get install tmux&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/9b791d54fdb8381a150ab4b31189ab69/6ab21/tmux-name.png&quot;
+    href=&quot;/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/6ab21/tmux-name.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -504,13 +761,13 @@ sudo apt-get install tmux&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;tmux名词标注&quot;
         title=&quot;tmux名词标注&quot;
-        src=&quot;/static/9b791d54fdb8381a150ab4b31189ab69/b9e4f/tmux-name.png&quot;
-        srcset=&quot;/static/9b791d54fdb8381a150ab4b31189ab69/cf440/tmux-name.png 148w,
-/static/9b791d54fdb8381a150ab4b31189ab69/d2d38/tmux-name.png 295w,
-/static/9b791d54fdb8381a150ab4b31189ab69/b9e4f/tmux-name.png 590w,
-/static/9b791d54fdb8381a150ab4b31189ab69/f9b6a/tmux-name.png 885w,
-/static/9b791d54fdb8381a150ab4b31189ab69/2d849/tmux-name.png 1180w,
-/static/9b791d54fdb8381a150ab4b31189ab69/6ab21/tmux-name.png 2088w&quot;
+        src=&quot;/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/b9e4f/tmux-name.png&quot;
+        srcset=&quot;/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/cf440/tmux-name.png 148w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/d2d38/tmux-name.png 295w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/b9e4f/tmux-name.png 590w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/f9b6a/tmux-name.png 885w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/2d849/tmux-name.png 1180w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/6ab21/tmux-name.png 2088w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -554,7 +811,7 @@ tmux ls&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/40b60a33f7f25db184a4bff6091e976c/8e724/tmux-showall.png&quot;
+    href=&quot;/blog/home/static/40b60a33f7f25db184a4bff6091e976c/8e724/tmux-showall.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -567,13 +824,13 @@ tmux ls&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;tmux展示所有session和window的图&quot;
         title=&quot;tmux展示所有session和window的图&quot;
-        src=&quot;/static/40b60a33f7f25db184a4bff6091e976c/b9e4f/tmux-showall.png&quot;
-        srcset=&quot;/static/40b60a33f7f25db184a4bff6091e976c/cf440/tmux-showall.png 148w,
-/static/40b60a33f7f25db184a4bff6091e976c/d2d38/tmux-showall.png 295w,
-/static/40b60a33f7f25db184a4bff6091e976c/b9e4f/tmux-showall.png 590w,
-/static/40b60a33f7f25db184a4bff6091e976c/f9b6a/tmux-showall.png 885w,
-/static/40b60a33f7f25db184a4bff6091e976c/2d849/tmux-showall.png 1180w,
-/static/40b60a33f7f25db184a4bff6091e976c/8e724/tmux-showall.png 2880w&quot;
+        src=&quot;/blog/home/static/40b60a33f7f25db184a4bff6091e976c/b9e4f/tmux-showall.png&quot;
+        srcset=&quot;/blog/home/static/40b60a33f7f25db184a4bff6091e976c/cf440/tmux-showall.png 148w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/d2d38/tmux-showall.png 295w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/b9e4f/tmux-showall.png 590w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/f9b6a/tmux-showall.png 885w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/2d849/tmux-showall.png 1180w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/8e724/tmux-showall.png 2880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1236,7 +1493,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5dac6/react-fiber-old.jpg&quot;
+    href=&quot;/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5dac6/react-fiber-old.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1249,13 +1506,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react fiber old&quot;
         title=&quot;react fiber old&quot;
-        src=&quot;/static/ef9335f056c3af1c5ab49f5dfd3f9df9/c739e/react-fiber-old.jpg&quot;
-        srcset=&quot;/static/ef9335f056c3af1c5ab49f5dfd3f9df9/8ee9c/react-fiber-old.jpg 148w,
-/static/ef9335f056c3af1c5ab49f5dfd3f9df9/ebbe7/react-fiber-old.jpg 295w,
-/static/ef9335f056c3af1c5ab49f5dfd3f9df9/c739e/react-fiber-old.jpg 590w,
-/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5413e/react-fiber-old.jpg 885w,
-/static/ef9335f056c3af1c5ab49f5dfd3f9df9/4efde/react-fiber-old.jpg 1180w,
-/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5dac6/react-fiber-old.jpg 2740w&quot;
+        src=&quot;/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/c739e/react-fiber-old.jpg&quot;
+        srcset=&quot;/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/8ee9c/react-fiber-old.jpg 148w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/ebbe7/react-fiber-old.jpg 295w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/c739e/react-fiber-old.jpg 590w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5413e/react-fiber-old.jpg 885w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/4efde/react-fiber-old.jpg 1180w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5dac6/react-fiber-old.jpg 2740w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1276,7 +1533,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/1fcfb45015a368b120c299765971126e/13438/react-fiber-new.jpg&quot;
+    href=&quot;/blog/home/static/1fcfb45015a368b120c299765971126e/13438/react-fiber-new.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1289,13 +1546,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react fiber new&quot;
         title=&quot;react fiber new&quot;
-        src=&quot;/static/1fcfb45015a368b120c299765971126e/c739e/react-fiber-new.jpg&quot;
-        srcset=&quot;/static/1fcfb45015a368b120c299765971126e/8ee9c/react-fiber-new.jpg 148w,
-/static/1fcfb45015a368b120c299765971126e/ebbe7/react-fiber-new.jpg 295w,
-/static/1fcfb45015a368b120c299765971126e/c739e/react-fiber-new.jpg 590w,
-/static/1fcfb45015a368b120c299765971126e/5413e/react-fiber-new.jpg 885w,
-/static/1fcfb45015a368b120c299765971126e/4efde/react-fiber-new.jpg 1180w,
-/static/1fcfb45015a368b120c299765971126e/13438/react-fiber-new.jpg 1984w&quot;
+        src=&quot;/blog/home/static/1fcfb45015a368b120c299765971126e/c739e/react-fiber-new.jpg&quot;
+        srcset=&quot;/blog/home/static/1fcfb45015a368b120c299765971126e/8ee9c/react-fiber-new.jpg 148w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/ebbe7/react-fiber-new.jpg 295w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/c739e/react-fiber-new.jpg 590w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/5413e/react-fiber-new.jpg 885w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/4efde/react-fiber-new.jpg 1180w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/13438/react-fiber-new.jpg 1984w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1310,7 +1567,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/3394b8b1f1dd69afbf908a6b862d2841/6967e/Fiber-2.png&quot;
+    href=&quot;/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/6967e/Fiber-2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1323,13 +1580,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Fiber 2&quot;
         title=&quot;Fiber 2&quot;
-        src=&quot;/static/3394b8b1f1dd69afbf908a6b862d2841/b9e4f/Fiber-2.png&quot;
-        srcset=&quot;/static/3394b8b1f1dd69afbf908a6b862d2841/cf440/Fiber-2.png 148w,
-/static/3394b8b1f1dd69afbf908a6b862d2841/d2d38/Fiber-2.png 295w,
-/static/3394b8b1f1dd69afbf908a6b862d2841/b9e4f/Fiber-2.png 590w,
-/static/3394b8b1f1dd69afbf908a6b862d2841/f9b6a/Fiber-2.png 885w,
-/static/3394b8b1f1dd69afbf908a6b862d2841/2d849/Fiber-2.png 1180w,
-/static/3394b8b1f1dd69afbf908a6b862d2841/6967e/Fiber-2.png 1376w&quot;
+        src=&quot;/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/b9e4f/Fiber-2.png&quot;
+        srcset=&quot;/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/cf440/Fiber-2.png 148w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/d2d38/Fiber-2.png 295w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/b9e4f/Fiber-2.png 590w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/f9b6a/Fiber-2.png 885w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/2d849/Fiber-2.png 1180w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/6967e/Fiber-2.png 1376w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1360,7 +1617,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/cbf63934fa6130a03fba07752e5dc80a/d40c8/old-lifecycle.png&quot;
+    href=&quot;/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/d40c8/old-lifecycle.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1373,13 +1630,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;old lifecycle&quot;
         title=&quot;old lifecycle&quot;
-        src=&quot;/static/cbf63934fa6130a03fba07752e5dc80a/b9e4f/old-lifecycle.png&quot;
-        srcset=&quot;/static/cbf63934fa6130a03fba07752e5dc80a/cf440/old-lifecycle.png 148w,
-/static/cbf63934fa6130a03fba07752e5dc80a/d2d38/old-lifecycle.png 295w,
-/static/cbf63934fa6130a03fba07752e5dc80a/b9e4f/old-lifecycle.png 590w,
-/static/cbf63934fa6130a03fba07752e5dc80a/f9b6a/old-lifecycle.png 885w,
-/static/cbf63934fa6130a03fba07752e5dc80a/2d849/old-lifecycle.png 1180w,
-/static/cbf63934fa6130a03fba07752e5dc80a/d40c8/old-lifecycle.png 2000w&quot;
+        src=&quot;/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/b9e4f/old-lifecycle.png&quot;
+        srcset=&quot;/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/cf440/old-lifecycle.png 148w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/d2d38/old-lifecycle.png 295w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/b9e4f/old-lifecycle.png 590w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/f9b6a/old-lifecycle.png 885w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/2d849/old-lifecycle.png 1180w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/d40c8/old-lifecycle.png 2000w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1413,7 +1670,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0639b29d9862deedbfb8c37d207f51bd/430fe/react16.3-lifecycle.png&quot;
+    href=&quot;/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/430fe/react16.3-lifecycle.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1426,13 +1683,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react16 3 lifecycle&quot;
         title=&quot;react16 3 lifecycle&quot;
-        src=&quot;/static/0639b29d9862deedbfb8c37d207f51bd/b9e4f/react16.3-lifecycle.png&quot;
-        srcset=&quot;/static/0639b29d9862deedbfb8c37d207f51bd/cf440/react16.3-lifecycle.png 148w,
-/static/0639b29d9862deedbfb8c37d207f51bd/d2d38/react16.3-lifecycle.png 295w,
-/static/0639b29d9862deedbfb8c37d207f51bd/b9e4f/react16.3-lifecycle.png 590w,
-/static/0639b29d9862deedbfb8c37d207f51bd/f9b6a/react16.3-lifecycle.png 885w,
-/static/0639b29d9862deedbfb8c37d207f51bd/2d849/react16.3-lifecycle.png 1180w,
-/static/0639b29d9862deedbfb8c37d207f51bd/430fe/react16.3-lifecycle.png 2284w&quot;
+        src=&quot;/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/b9e4f/react16.3-lifecycle.png&quot;
+        srcset=&quot;/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/cf440/react16.3-lifecycle.png 148w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/d2d38/react16.3-lifecycle.png 295w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/b9e4f/react16.3-lifecycle.png 590w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/f9b6a/react16.3-lifecycle.png 885w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/2d849/react16.3-lifecycle.png 1180w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/430fe/react16.3-lifecycle.png 2284w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1446,7 +1703,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/6b266db01b2ee8d56e570e5e69483fa4/e79f6/react16.4-lifecycle.png&quot;
+    href=&quot;/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/e79f6/react16.4-lifecycle.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1459,13 +1716,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react16 4 lifecycle&quot;
         title=&quot;react16 4 lifecycle&quot;
-        src=&quot;/static/6b266db01b2ee8d56e570e5e69483fa4/b9e4f/react16.4-lifecycle.png&quot;
-        srcset=&quot;/static/6b266db01b2ee8d56e570e5e69483fa4/cf440/react16.4-lifecycle.png 148w,
-/static/6b266db01b2ee8d56e570e5e69483fa4/d2d38/react16.4-lifecycle.png 295w,
-/static/6b266db01b2ee8d56e570e5e69483fa4/b9e4f/react16.4-lifecycle.png 590w,
-/static/6b266db01b2ee8d56e570e5e69483fa4/f9b6a/react16.4-lifecycle.png 885w,
-/static/6b266db01b2ee8d56e570e5e69483fa4/2d849/react16.4-lifecycle.png 1180w,
-/static/6b266db01b2ee8d56e570e5e69483fa4/e79f6/react16.4-lifecycle.png 2286w&quot;
+        src=&quot;/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/b9e4f/react16.4-lifecycle.png&quot;
+        srcset=&quot;/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/cf440/react16.4-lifecycle.png 148w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/d2d38/react16.4-lifecycle.png 295w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/b9e4f/react16.4-lifecycle.png 590w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/f9b6a/react16.4-lifecycle.png 885w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/2d849/react16.4-lifecycle.png 1180w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/e79f6/react16.4-lifecycle.png 2286w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1541,7 +1798,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/4b75a/time-siling%26Suspense.jpg&quot;
+    href=&quot;/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/4b75a/time-siling%26Suspense.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1554,13 +1811,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;time siling Suspense&quot;
         title=&quot;time siling Suspense&quot;
-        src=&quot;/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/c739e/time-siling%26Suspense.jpg&quot;
-        srcset=&quot;/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/8ee9c/time-siling%26Suspense.jpg 148w,
-/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/ebbe7/time-siling%26Suspense.jpg 295w,
-/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/c739e/time-siling%26Suspense.jpg 590w,
-/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/5413e/time-siling%26Suspense.jpg 885w,
-/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/4efde/time-siling%26Suspense.jpg 1180w,
-/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/4b75a/time-siling%26Suspense.jpg 2396w&quot;
+        src=&quot;/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/c739e/time-siling%26Suspense.jpg&quot;
+        srcset=&quot;/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/8ee9c/time-siling%26Suspense.jpg 148w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/ebbe7/time-siling%26Suspense.jpg 295w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/c739e/time-siling%26Suspense.jpg 590w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/5413e/time-siling%26Suspense.jpg 885w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/4efde/time-siling%26Suspense.jpg 1180w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/4b75a/time-siling%26Suspense.jpg 2396w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1574,7 +1831,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/6f424/time-slicing.jpg&quot;
+    href=&quot;/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/6f424/time-slicing.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1587,13 +1844,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;time slicing&quot;
         title=&quot;time slicing&quot;
-        src=&quot;/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/c739e/time-slicing.jpg&quot;
-        srcset=&quot;/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/8ee9c/time-slicing.jpg 148w,
-/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/ebbe7/time-slicing.jpg 295w,
-/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/c739e/time-slicing.jpg 590w,
-/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/5413e/time-slicing.jpg 885w,
-/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/4efde/time-slicing.jpg 1180w,
-/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/6f424/time-slicing.jpg 2320w&quot;
+        src=&quot;/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/c739e/time-slicing.jpg&quot;
+        srcset=&quot;/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/8ee9c/time-slicing.jpg 148w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/ebbe7/time-slicing.jpg 295w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/c739e/time-slicing.jpg 590w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/5413e/time-slicing.jpg 885w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/4efde/time-slicing.jpg 1180w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/6f424/time-slicing.jpg 2320w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1611,7 +1868,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/54bcf733f10b5424f81ea02787485d7f/8814d/Suspense.png&quot;
+    href=&quot;/blog/home/static/54bcf733f10b5424f81ea02787485d7f/8814d/Suspense.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1624,10 +1881,10 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Suspense&quot;
         title=&quot;Suspense&quot;
-        src=&quot;/static/54bcf733f10b5424f81ea02787485d7f/8814d/Suspense.png&quot;
-        srcset=&quot;/static/54bcf733f10b5424f81ea02787485d7f/cf440/Suspense.png 148w,
-/static/54bcf733f10b5424f81ea02787485d7f/d2d38/Suspense.png 295w,
-/static/54bcf733f10b5424f81ea02787485d7f/8814d/Suspense.png 565w&quot;
+        src=&quot;/blog/home/static/54bcf733f10b5424f81ea02787485d7f/8814d/Suspense.png&quot;
+        srcset=&quot;/blog/home/static/54bcf733f10b5424f81ea02787485d7f/cf440/Suspense.png 148w,
+/blog/home/static/54bcf733f10b5424f81ea02787485d7f/d2d38/Suspense.png 295w,
+/blog/home/static/54bcf733f10b5424f81ea02787485d7f/8814d/Suspense.png 565w&quot;
         sizes=&quot;(max-width: 565px) 100vw, 565px&quot;
       /&gt;
   &lt;/a&gt;
@@ -1808,7 +2065,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/4d97a13bb8db302af58ff084ef59f3f3/6c315/2019newyear.jpg&quot;
+    href=&quot;/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/6c315/2019newyear.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1821,13 +2078,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;2019newyear&quot;
         title=&quot;2019newyear&quot;
-        src=&quot;/static/4d97a13bb8db302af58ff084ef59f3f3/c739e/2019newyear.jpg&quot;
-        srcset=&quot;/static/4d97a13bb8db302af58ff084ef59f3f3/8ee9c/2019newyear.jpg 148w,
-/static/4d97a13bb8db302af58ff084ef59f3f3/ebbe7/2019newyear.jpg 295w,
-/static/4d97a13bb8db302af58ff084ef59f3f3/c739e/2019newyear.jpg 590w,
-/static/4d97a13bb8db302af58ff084ef59f3f3/5413e/2019newyear.jpg 885w,
-/static/4d97a13bb8db302af58ff084ef59f3f3/4efde/2019newyear.jpg 1180w,
-/static/4d97a13bb8db302af58ff084ef59f3f3/6c315/2019newyear.jpg 1280w&quot;
+        src=&quot;/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/c739e/2019newyear.jpg&quot;
+        srcset=&quot;/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/8ee9c/2019newyear.jpg 148w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/ebbe7/2019newyear.jpg 295w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/c739e/2019newyear.jpg 590w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/5413e/2019newyear.jpg 885w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/4efde/2019newyear.jpg 1180w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/6c315/2019newyear.jpg 1280w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -2036,7 +2293,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/3541eb188f04f12b0db10b0277a96fec/82472/redux-flow.jpg&quot;
+    href=&quot;/blog/home/static/3541eb188f04f12b0db10b0277a96fec/82472/redux-flow.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2049,11 +2306,11 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Redux数据流&quot;
         title=&quot;Redux数据流&quot;
-        src=&quot;/static/3541eb188f04f12b0db10b0277a96fec/c739e/redux-flow.jpg&quot;
-        srcset=&quot;/static/3541eb188f04f12b0db10b0277a96fec/8ee9c/redux-flow.jpg 148w,
-/static/3541eb188f04f12b0db10b0277a96fec/ebbe7/redux-flow.jpg 295w,
-/static/3541eb188f04f12b0db10b0277a96fec/c739e/redux-flow.jpg 590w,
-/static/3541eb188f04f12b0db10b0277a96fec/82472/redux-flow.jpg 600w&quot;
+        src=&quot;/blog/home/static/3541eb188f04f12b0db10b0277a96fec/c739e/redux-flow.jpg&quot;
+        srcset=&quot;/blog/home/static/3541eb188f04f12b0db10b0277a96fec/8ee9c/redux-flow.jpg 148w,
+/blog/home/static/3541eb188f04f12b0db10b0277a96fec/ebbe7/redux-flow.jpg 295w,
+/blog/home/static/3541eb188f04f12b0db10b0277a96fec/c739e/redux-flow.jpg 590w,
+/blog/home/static/3541eb188f04f12b0db10b0277a96fec/82472/redux-flow.jpg 600w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -2086,7 +2343,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/94e4f2e622f913ca13df75ed383421a9/4dacb/redux-middleware-enhancer.png&quot;
+    href=&quot;/blog/home/static/94e4f2e622f913ca13df75ed383421a9/4dacb/redux-middleware-enhancer.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2099,11 +2356,11 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Redux中间件增强器示意图&quot;
         title=&quot;Redux中间件增强器示意图&quot;
-        src=&quot;/static/94e4f2e622f913ca13df75ed383421a9/b9e4f/redux-middleware-enhancer.png&quot;
-        srcset=&quot;/static/94e4f2e622f913ca13df75ed383421a9/cf440/redux-middleware-enhancer.png 148w,
-/static/94e4f2e622f913ca13df75ed383421a9/d2d38/redux-middleware-enhancer.png 295w,
-/static/94e4f2e622f913ca13df75ed383421a9/b9e4f/redux-middleware-enhancer.png 590w,
-/static/94e4f2e622f913ca13df75ed383421a9/4dacb/redux-middleware-enhancer.png 782w&quot;
+        src=&quot;/blog/home/static/94e4f2e622f913ca13df75ed383421a9/b9e4f/redux-middleware-enhancer.png&quot;
+        srcset=&quot;/blog/home/static/94e4f2e622f913ca13df75ed383421a9/cf440/redux-middleware-enhancer.png 148w,
+/blog/home/static/94e4f2e622f913ca13df75ed383421a9/d2d38/redux-middleware-enhancer.png 295w,
+/blog/home/static/94e4f2e622f913ca13df75ed383421a9/b9e4f/redux-middleware-enhancer.png 590w,
+/blog/home/static/94e4f2e622f913ca13df75ed383421a9/4dacb/redux-middleware-enhancer.png 782w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3227,7 +3484,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/626f2d306f09f8cc1dd26da477561263/afa7a/ultra1.jpg&quot;
+    href=&quot;/blog/home/static/626f2d306f09f8cc1dd26da477561263/afa7a/ultra1.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3240,10 +3497,10 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Ultra China海报&quot;
         title=&quot;Ultra China海报&quot;
-        src=&quot;/static/626f2d306f09f8cc1dd26da477561263/afa7a/ultra1.jpg&quot;
-        srcset=&quot;/static/626f2d306f09f8cc1dd26da477561263/8ee9c/ultra1.jpg 148w,
-/static/626f2d306f09f8cc1dd26da477561263/ebbe7/ultra1.jpg 295w,
-/static/626f2d306f09f8cc1dd26da477561263/afa7a/ultra1.jpg 359w&quot;
+        src=&quot;/blog/home/static/626f2d306f09f8cc1dd26da477561263/afa7a/ultra1.jpg&quot;
+        srcset=&quot;/blog/home/static/626f2d306f09f8cc1dd26da477561263/8ee9c/ultra1.jpg 148w,
+/blog/home/static/626f2d306f09f8cc1dd26da477561263/ebbe7/ultra1.jpg 295w,
+/blog/home/static/626f2d306f09f8cc1dd26da477561263/afa7a/ultra1.jpg 359w&quot;
         sizes=&quot;(max-width: 359px) 100vw, 359px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3255,7 +3512,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/562a5eac3aad58ca1d7164e465941bfd/d1d34/raver.jpg&quot;
+    href=&quot;/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/d1d34/raver.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3268,13 +3525,13 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;全国的raver赶往上海&quot;
         title=&quot;全国的raver赶往上海&quot;
-        src=&quot;/static/562a5eac3aad58ca1d7164e465941bfd/c739e/raver.jpg&quot;
-        srcset=&quot;/static/562a5eac3aad58ca1d7164e465941bfd/8ee9c/raver.jpg 148w,
-/static/562a5eac3aad58ca1d7164e465941bfd/ebbe7/raver.jpg 295w,
-/static/562a5eac3aad58ca1d7164e465941bfd/c739e/raver.jpg 590w,
-/static/562a5eac3aad58ca1d7164e465941bfd/5413e/raver.jpg 885w,
-/static/562a5eac3aad58ca1d7164e465941bfd/4efde/raver.jpg 1180w,
-/static/562a5eac3aad58ca1d7164e465941bfd/d1d34/raver.jpg 1476w&quot;
+        src=&quot;/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/c739e/raver.jpg&quot;
+        srcset=&quot;/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/8ee9c/raver.jpg 148w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/ebbe7/raver.jpg 295w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/c739e/raver.jpg 590w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/5413e/raver.jpg 885w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/4efde/raver.jpg 1180w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/d1d34/raver.jpg 1476w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3287,7 +3544,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/28aae89460583d1904f363be58bdf760/fb329/ultra2.jpg&quot;
+    href=&quot;/blog/home/static/28aae89460583d1904f363be58bdf760/fb329/ultra2.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3300,13 +3557,13 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra1&quot;
         title=&quot;ultra1&quot;
-        src=&quot;/static/28aae89460583d1904f363be58bdf760/c739e/ultra2.jpg&quot;
-        srcset=&quot;/static/28aae89460583d1904f363be58bdf760/8ee9c/ultra2.jpg 148w,
-/static/28aae89460583d1904f363be58bdf760/ebbe7/ultra2.jpg 295w,
-/static/28aae89460583d1904f363be58bdf760/c739e/ultra2.jpg 590w,
-/static/28aae89460583d1904f363be58bdf760/5413e/ultra2.jpg 885w,
-/static/28aae89460583d1904f363be58bdf760/4efde/ultra2.jpg 1180w,
-/static/28aae89460583d1904f363be58bdf760/fb329/ultra2.jpg 1920w&quot;
+        src=&quot;/blog/home/static/28aae89460583d1904f363be58bdf760/c739e/ultra2.jpg&quot;
+        srcset=&quot;/blog/home/static/28aae89460583d1904f363be58bdf760/8ee9c/ultra2.jpg 148w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/ebbe7/ultra2.jpg 295w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/c739e/ultra2.jpg 590w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/5413e/ultra2.jpg 885w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/4efde/ultra2.jpg 1180w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/fb329/ultra2.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3317,7 +3574,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/d6d98e20500c8eb6e6639757b5f0f2dd/fb329/ultra3.jpg&quot;
+    href=&quot;/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/fb329/ultra3.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3330,13 +3587,13 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra2&quot;
         title=&quot;ultra2&quot;
-        src=&quot;/static/d6d98e20500c8eb6e6639757b5f0f2dd/c739e/ultra3.jpg&quot;
-        srcset=&quot;/static/d6d98e20500c8eb6e6639757b5f0f2dd/8ee9c/ultra3.jpg 148w,
-/static/d6d98e20500c8eb6e6639757b5f0f2dd/ebbe7/ultra3.jpg 295w,
-/static/d6d98e20500c8eb6e6639757b5f0f2dd/c739e/ultra3.jpg 590w,
-/static/d6d98e20500c8eb6e6639757b5f0f2dd/5413e/ultra3.jpg 885w,
-/static/d6d98e20500c8eb6e6639757b5f0f2dd/4efde/ultra3.jpg 1180w,
-/static/d6d98e20500c8eb6e6639757b5f0f2dd/fb329/ultra3.jpg 1920w&quot;
+        src=&quot;/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/c739e/ultra3.jpg&quot;
+        srcset=&quot;/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/8ee9c/ultra3.jpg 148w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/ebbe7/ultra3.jpg 295w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/c739e/ultra3.jpg 590w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/5413e/ultra3.jpg 885w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/4efde/ultra3.jpg 1180w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/fb329/ultra3.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3347,7 +3604,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/ae2320c0bd7b39782d7d4021aab682ae/fb329/ultra4.jpg&quot;
+    href=&quot;/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/fb329/ultra4.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3360,13 +3617,13 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra3&quot;
         title=&quot;ultra3&quot;
-        src=&quot;/static/ae2320c0bd7b39782d7d4021aab682ae/c739e/ultra4.jpg&quot;
-        srcset=&quot;/static/ae2320c0bd7b39782d7d4021aab682ae/8ee9c/ultra4.jpg 148w,
-/static/ae2320c0bd7b39782d7d4021aab682ae/ebbe7/ultra4.jpg 295w,
-/static/ae2320c0bd7b39782d7d4021aab682ae/c739e/ultra4.jpg 590w,
-/static/ae2320c0bd7b39782d7d4021aab682ae/5413e/ultra4.jpg 885w,
-/static/ae2320c0bd7b39782d7d4021aab682ae/4efde/ultra4.jpg 1180w,
-/static/ae2320c0bd7b39782d7d4021aab682ae/fb329/ultra4.jpg 1920w&quot;
+        src=&quot;/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/c739e/ultra4.jpg&quot;
+        srcset=&quot;/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/8ee9c/ultra4.jpg 148w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/ebbe7/ultra4.jpg 295w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/c739e/ultra4.jpg 590w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/5413e/ultra4.jpg 885w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/4efde/ultra4.jpg 1180w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/fb329/ultra4.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3377,7 +3634,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/72866faf0061ec69bccec0f9da274a12/fb329/ultra5.jpg&quot;
+    href=&quot;/blog/home/static/72866faf0061ec69bccec0f9da274a12/fb329/ultra5.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3390,13 +3647,13 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra4&quot;
         title=&quot;ultra4&quot;
-        src=&quot;/static/72866faf0061ec69bccec0f9da274a12/c739e/ultra5.jpg&quot;
-        srcset=&quot;/static/72866faf0061ec69bccec0f9da274a12/8ee9c/ultra5.jpg 148w,
-/static/72866faf0061ec69bccec0f9da274a12/ebbe7/ultra5.jpg 295w,
-/static/72866faf0061ec69bccec0f9da274a12/c739e/ultra5.jpg 590w,
-/static/72866faf0061ec69bccec0f9da274a12/5413e/ultra5.jpg 885w,
-/static/72866faf0061ec69bccec0f9da274a12/4efde/ultra5.jpg 1180w,
-/static/72866faf0061ec69bccec0f9da274a12/fb329/ultra5.jpg 1920w&quot;
+        src=&quot;/blog/home/static/72866faf0061ec69bccec0f9da274a12/c739e/ultra5.jpg&quot;
+        srcset=&quot;/blog/home/static/72866faf0061ec69bccec0f9da274a12/8ee9c/ultra5.jpg 148w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/ebbe7/ultra5.jpg 295w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/c739e/ultra5.jpg 590w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/5413e/ultra5.jpg 885w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/4efde/ultra5.jpg 1180w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/fb329/ultra5.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3407,7 +3664,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/1965ce9a19a1fdfd1a91f09328183578/fb329/ultra6.jpg&quot;
+    href=&quot;/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/fb329/ultra6.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3420,13 +3677,13 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra5&quot;
         title=&quot;ultra5&quot;
-        src=&quot;/static/1965ce9a19a1fdfd1a91f09328183578/c739e/ultra6.jpg&quot;
-        srcset=&quot;/static/1965ce9a19a1fdfd1a91f09328183578/8ee9c/ultra6.jpg 148w,
-/static/1965ce9a19a1fdfd1a91f09328183578/ebbe7/ultra6.jpg 295w,
-/static/1965ce9a19a1fdfd1a91f09328183578/c739e/ultra6.jpg 590w,
-/static/1965ce9a19a1fdfd1a91f09328183578/5413e/ultra6.jpg 885w,
-/static/1965ce9a19a1fdfd1a91f09328183578/4efde/ultra6.jpg 1180w,
-/static/1965ce9a19a1fdfd1a91f09328183578/fb329/ultra6.jpg 1920w&quot;
+        src=&quot;/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/c739e/ultra6.jpg&quot;
+        srcset=&quot;/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/8ee9c/ultra6.jpg 148w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/ebbe7/ultra6.jpg 295w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/c739e/ultra6.jpg 590w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/5413e/ultra6.jpg 885w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/4efde/ultra6.jpg 1180w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/fb329/ultra6.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3513,7 +3770,7 @@ window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/04485499f7a5acf74b2b510cecacbfaa/57ea0/webview_debug.jpg&quot;
+    href=&quot;/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/57ea0/webview_debug.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3526,13 +3783,13 @@ window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;webview_debug&quot;
         title=&quot;webview_debug&quot;
-        src=&quot;/static/04485499f7a5acf74b2b510cecacbfaa/c739e/webview_debug.jpg&quot;
-        srcset=&quot;/static/04485499f7a5acf74b2b510cecacbfaa/8ee9c/webview_debug.jpg 148w,
-/static/04485499f7a5acf74b2b510cecacbfaa/ebbe7/webview_debug.jpg 295w,
-/static/04485499f7a5acf74b2b510cecacbfaa/c739e/webview_debug.jpg 590w,
-/static/04485499f7a5acf74b2b510cecacbfaa/5413e/webview_debug.jpg 885w,
-/static/04485499f7a5acf74b2b510cecacbfaa/4efde/webview_debug.jpg 1180w,
-/static/04485499f7a5acf74b2b510cecacbfaa/57ea0/webview_debug.jpg 1243w&quot;
+        src=&quot;/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/c739e/webview_debug.jpg&quot;
+        srcset=&quot;/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/8ee9c/webview_debug.jpg 148w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/ebbe7/webview_debug.jpg 295w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/c739e/webview_debug.jpg 590w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/5413e/webview_debug.jpg 885w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/4efde/webview_debug.jpg 1180w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/57ea0/webview_debug.jpg 1243w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3544,7 +3801,7 @@ window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/4564e539e951e9430a2989dd65e4c007/32860/debug.jpg&quot;
+    href=&quot;/blog/home/static/4564e539e951e9430a2989dd65e4c007/32860/debug.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3557,13 +3814,13 @@ window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;debug&quot;
         title=&quot;debug&quot;
-        src=&quot;/static/4564e539e951e9430a2989dd65e4c007/c739e/debug.jpg&quot;
-        srcset=&quot;/static/4564e539e951e9430a2989dd65e4c007/8ee9c/debug.jpg 148w,
-/static/4564e539e951e9430a2989dd65e4c007/ebbe7/debug.jpg 295w,
-/static/4564e539e951e9430a2989dd65e4c007/c739e/debug.jpg 590w,
-/static/4564e539e951e9430a2989dd65e4c007/5413e/debug.jpg 885w,
-/static/4564e539e951e9430a2989dd65e4c007/4efde/debug.jpg 1180w,
-/static/4564e539e951e9430a2989dd65e4c007/32860/debug.jpg 2011w&quot;
+        src=&quot;/blog/home/static/4564e539e951e9430a2989dd65e4c007/c739e/debug.jpg&quot;
+        srcset=&quot;/blog/home/static/4564e539e951e9430a2989dd65e4c007/8ee9c/debug.jpg 148w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/ebbe7/debug.jpg 295w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/c739e/debug.jpg 590w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/5413e/debug.jpg 885w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/4efde/debug.jpg 1180w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/32860/debug.jpg 2011w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -3919,7 +4176,7 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w&lt;/code&gt;&lt;/pre&gt;&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/068c07109355a7f473dd786a2ebb8ed7/bff7b/react_redux.jpg&quot;
+    href=&quot;/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/bff7b/react_redux.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3932,12 +4189,12 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w&lt;/code&gt;&lt;/pre&gt;&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react_redux&quot;
         title=&quot;react_redux&quot;
-        src=&quot;/static/068c07109355a7f473dd786a2ebb8ed7/c739e/react_redux.jpg&quot;
-        srcset=&quot;/static/068c07109355a7f473dd786a2ebb8ed7/8ee9c/react_redux.jpg 148w,
-/static/068c07109355a7f473dd786a2ebb8ed7/ebbe7/react_redux.jpg 295w,
-/static/068c07109355a7f473dd786a2ebb8ed7/c739e/react_redux.jpg 590w,
-/static/068c07109355a7f473dd786a2ebb8ed7/5413e/react_redux.jpg 885w,
-/static/068c07109355a7f473dd786a2ebb8ed7/bff7b/react_redux.jpg 1167w&quot;
+        src=&quot;/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/c739e/react_redux.jpg&quot;
+        srcset=&quot;/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/8ee9c/react_redux.jpg 148w,
+/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/ebbe7/react_redux.jpg 295w,
+/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/c739e/react_redux.jpg 590w,
+/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/5413e/react_redux.jpg 885w,
+/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/bff7b/react_redux.jpg 1167w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -4654,7 +4911,7 @@ highlight = &lt;span class=&quot;token function&quot;&gt;hexo-config&lt;/span&gt
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/e9f7e4e06b028182decd25aff96f7393/9e7e8/webpack.jpg&quot;
+    href=&quot;/blog/home/static/e9f7e4e06b028182decd25aff96f7393/9e7e8/webpack.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -4667,13 +4924,13 @@ highlight = &lt;span class=&quot;token function&quot;&gt;hexo-config&lt;/span&gt
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;webpack&quot;
         title=&quot;webpack&quot;
-        src=&quot;/static/e9f7e4e06b028182decd25aff96f7393/c739e/webpack.jpg&quot;
-        srcset=&quot;/static/e9f7e4e06b028182decd25aff96f7393/8ee9c/webpack.jpg 148w,
-/static/e9f7e4e06b028182decd25aff96f7393/ebbe7/webpack.jpg 295w,
-/static/e9f7e4e06b028182decd25aff96f7393/c739e/webpack.jpg 590w,
-/static/e9f7e4e06b028182decd25aff96f7393/5413e/webpack.jpg 885w,
-/static/e9f7e4e06b028182decd25aff96f7393/4efde/webpack.jpg 1180w,
-/static/e9f7e4e06b028182decd25aff96f7393/9e7e8/webpack.jpg 2450w&quot;
+        src=&quot;/blog/home/static/e9f7e4e06b028182decd25aff96f7393/c739e/webpack.jpg&quot;
+        srcset=&quot;/blog/home/static/e9f7e4e06b028182decd25aff96f7393/8ee9c/webpack.jpg 148w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/ebbe7/webpack.jpg 295w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/c739e/webpack.jpg 590w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/5413e/webpack.jpg 885w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/4efde/webpack.jpg 1180w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/9e7e8/webpack.jpg 2450w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -4874,7 +5131,7 @@ plugins&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span c
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/fa5405c2b5847a96e4b9a0603b30eab0/cad07/vue.jpg&quot;
+    href=&quot;/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/cad07/vue.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -4887,11 +5144,11 @@ plugins&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span c
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;vue&quot;
         title=&quot;vue&quot;
-        src=&quot;/static/fa5405c2b5847a96e4b9a0603b30eab0/c739e/vue.jpg&quot;
-        srcset=&quot;/static/fa5405c2b5847a96e4b9a0603b30eab0/8ee9c/vue.jpg 148w,
-/static/fa5405c2b5847a96e4b9a0603b30eab0/ebbe7/vue.jpg 295w,
-/static/fa5405c2b5847a96e4b9a0603b30eab0/c739e/vue.jpg 590w,
-/static/fa5405c2b5847a96e4b9a0603b30eab0/cad07/vue.jpg 720w&quot;
+        src=&quot;/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/c739e/vue.jpg&quot;
+        srcset=&quot;/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/8ee9c/vue.jpg 148w,
+/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/ebbe7/vue.jpg 295w,
+/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/c739e/vue.jpg 590w,
+/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/cad07/vue.jpg 720w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -5169,7 +5426,7 @@ $commenting&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;spa
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/5ff3c2bb2fc030e858da77954aa07cc7/a296c/newyear.jpg&quot;
+    href=&quot;/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/a296c/newyear.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -5182,11 +5439,11 @@ $commenting&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;spa
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;newyear&quot;
         title=&quot;newyear&quot;
-        src=&quot;/static/5ff3c2bb2fc030e858da77954aa07cc7/c739e/newyear.jpg&quot;
-        srcset=&quot;/static/5ff3c2bb2fc030e858da77954aa07cc7/8ee9c/newyear.jpg 148w,
-/static/5ff3c2bb2fc030e858da77954aa07cc7/ebbe7/newyear.jpg 295w,
-/static/5ff3c2bb2fc030e858da77954aa07cc7/c739e/newyear.jpg 590w,
-/static/5ff3c2bb2fc030e858da77954aa07cc7/a296c/newyear.jpg 800w&quot;
+        src=&quot;/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/c739e/newyear.jpg&quot;
+        srcset=&quot;/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/8ee9c/newyear.jpg 148w,
+/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/ebbe7/newyear.jpg 295w,
+/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/c739e/newyear.jpg 590w,
+/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/a296c/newyear.jpg 800w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -5240,7 +5497,7 @@ $commenting&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;spa
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/cd511b42ee4e7eea942b1a0459438dbb/54bc5/promise-states.png&quot;
+    href=&quot;/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/54bc5/promise-states.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -5253,10 +5510,10 @@ $commenting&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;spa
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;图１&quot;
         title=&quot;图１&quot;
-        src=&quot;/static/cd511b42ee4e7eea942b1a0459438dbb/54bc5/promise-states.png&quot;
-        srcset=&quot;/static/cd511b42ee4e7eea942b1a0459438dbb/cf440/promise-states.png 148w,
-/static/cd511b42ee4e7eea942b1a0459438dbb/d2d38/promise-states.png 295w,
-/static/cd511b42ee4e7eea942b1a0459438dbb/54bc5/promise-states.png 318w&quot;
+        src=&quot;/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/54bc5/promise-states.png&quot;
+        srcset=&quot;/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/cf440/promise-states.png 148w,
+/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/d2d38/promise-states.png 295w,
+/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/54bc5/promise-states.png 318w&quot;
         sizes=&quot;(max-width: 318px) 100vw, 318px&quot;
       /&gt;
   &lt;/a&gt;
@@ -5455,7 +5712,7 @@ Promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/f3c67538af6a564dff665020c5887442/a82ee/then_catch.png&quot;
+    href=&quot;/blog/home/static/f3c67538af6a564dff665020c5887442/a82ee/then_catch.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -5468,11 +5725,11 @@ Promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;图２&quot;
         title=&quot;图２&quot;
-        src=&quot;/static/f3c67538af6a564dff665020c5887442/b9e4f/then_catch.png&quot;
-        srcset=&quot;/static/f3c67538af6a564dff665020c5887442/cf440/then_catch.png 148w,
-/static/f3c67538af6a564dff665020c5887442/d2d38/then_catch.png 295w,
-/static/f3c67538af6a564dff665020c5887442/b9e4f/then_catch.png 590w,
-/static/f3c67538af6a564dff665020c5887442/a82ee/then_catch.png 696w&quot;
+        src=&quot;/blog/home/static/f3c67538af6a564dff665020c5887442/b9e4f/then_catch.png&quot;
+        srcset=&quot;/blog/home/static/f3c67538af6a564dff665020c5887442/cf440/then_catch.png 148w,
+/blog/home/static/f3c67538af6a564dff665020c5887442/d2d38/then_catch.png 295w,
+/blog/home/static/f3c67538af6a564dff665020c5887442/b9e4f/then_catch.png 590w,
+/blog/home/static/f3c67538af6a564dff665020c5887442/a82ee/then_catch.png 696w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -5579,7 +5836,7 @@ this is taskB
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/f9f84810c2e7383f763b9173681f9c88/30cfa/github.png&quot;
+    href=&quot;/blog/home/static/f9f84810c2e7383f763b9173681f9c88/30cfa/github.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -5592,11 +5849,11 @@ this is taskB
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/f9f84810c2e7383f763b9173681f9c88/b9e4f/github.png&quot;
-        srcset=&quot;/static/f9f84810c2e7383f763b9173681f9c88/cf440/github.png 148w,
-/static/f9f84810c2e7383f763b9173681f9c88/d2d38/github.png 295w,
-/static/f9f84810c2e7383f763b9173681f9c88/b9e4f/github.png 590w,
-/static/f9f84810c2e7383f763b9173681f9c88/30cfa/github.png 748w&quot;
+        src=&quot;/blog/home/static/f9f84810c2e7383f763b9173681f9c88/b9e4f/github.png&quot;
+        srcset=&quot;/blog/home/static/f9f84810c2e7383f763b9173681f9c88/cf440/github.png 148w,
+/blog/home/static/f9f84810c2e7383f763b9173681f9c88/d2d38/github.png 295w,
+/blog/home/static/f9f84810c2e7383f763b9173681f9c88/b9e4f/github.png 590w,
+/blog/home/static/f9f84810c2e7383f763b9173681f9c88/30cfa/github.png 748w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -6350,7 +6607,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/327400b931ec32ecf240ba8c83e27bb9/f583d/string%26Array.png&quot;
+    href=&quot;/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/f583d/string%26Array.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6363,13 +6620,13 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/327400b931ec32ecf240ba8c83e27bb9/b9e4f/string%26Array.png&quot;
-        srcset=&quot;/static/327400b931ec32ecf240ba8c83e27bb9/cf440/string%26Array.png 148w,
-/static/327400b931ec32ecf240ba8c83e27bb9/d2d38/string%26Array.png 295w,
-/static/327400b931ec32ecf240ba8c83e27bb9/b9e4f/string%26Array.png 590w,
-/static/327400b931ec32ecf240ba8c83e27bb9/f9b6a/string%26Array.png 885w,
-/static/327400b931ec32ecf240ba8c83e27bb9/2d849/string%26Array.png 1180w,
-/static/327400b931ec32ecf240ba8c83e27bb9/f583d/string%26Array.png 2352w&quot;
+        src=&quot;/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/b9e4f/string%26Array.png&quot;
+        srcset=&quot;/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/cf440/string%26Array.png 148w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/d2d38/string%26Array.png 295w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/b9e4f/string%26Array.png 590w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/f9b6a/string%26Array.png 885w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/2d849/string%26Array.png 1180w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/f583d/string%26Array.png 2352w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -6384,7 +6641,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/b8cea7adfbc3e662190f03377879ffc3/bd128/offset_table.png&quot;
+    href=&quot;/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/bd128/offset_table.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6397,12 +6654,12 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/b8cea7adfbc3e662190f03377879ffc3/b9e4f/offset_table.png&quot;
-        srcset=&quot;/static/b8cea7adfbc3e662190f03377879ffc3/cf440/offset_table.png 148w,
-/static/b8cea7adfbc3e662190f03377879ffc3/d2d38/offset_table.png 295w,
-/static/b8cea7adfbc3e662190f03377879ffc3/b9e4f/offset_table.png 590w,
-/static/b8cea7adfbc3e662190f03377879ffc3/f9b6a/offset_table.png 885w,
-/static/b8cea7adfbc3e662190f03377879ffc3/bd128/offset_table.png 942w&quot;
+        src=&quot;/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/b9e4f/offset_table.png&quot;
+        srcset=&quot;/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/cf440/offset_table.png 148w,
+/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/d2d38/offset_table.png 295w,
+/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/b9e4f/offset_table.png 590w,
+/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/f9b6a/offset_table.png 885w,
+/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/bd128/offset_table.png 942w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -6414,7 +6671,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/4a705a961a82c8193ab277a6519714cf/ac127/offset.png&quot;
+    href=&quot;/blog/home/static/4a705a961a82c8193ab277a6519714cf/ac127/offset.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6427,11 +6684,11 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/4a705a961a82c8193ab277a6519714cf/b9e4f/offset.png&quot;
-        srcset=&quot;/static/4a705a961a82c8193ab277a6519714cf/cf440/offset.png 148w,
-/static/4a705a961a82c8193ab277a6519714cf/d2d38/offset.png 295w,
-/static/4a705a961a82c8193ab277a6519714cf/b9e4f/offset.png 590w,
-/static/4a705a961a82c8193ab277a6519714cf/ac127/offset.png 816w&quot;
+        src=&quot;/blog/home/static/4a705a961a82c8193ab277a6519714cf/b9e4f/offset.png&quot;
+        srcset=&quot;/blog/home/static/4a705a961a82c8193ab277a6519714cf/cf440/offset.png 148w,
+/blog/home/static/4a705a961a82c8193ab277a6519714cf/d2d38/offset.png 295w,
+/blog/home/static/4a705a961a82c8193ab277a6519714cf/b9e4f/offset.png 590w,
+/blog/home/static/4a705a961a82c8193ab277a6519714cf/ac127/offset.png 816w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -6444,7 +6701,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/ca2a47e4e2976c2855163f0d6850e9f8/10016/client_table.png&quot;
+    href=&quot;/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/10016/client_table.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6457,12 +6714,12 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/ca2a47e4e2976c2855163f0d6850e9f8/b9e4f/client_table.png&quot;
-        srcset=&quot;/static/ca2a47e4e2976c2855163f0d6850e9f8/cf440/client_table.png 148w,
-/static/ca2a47e4e2976c2855163f0d6850e9f8/d2d38/client_table.png 295w,
-/static/ca2a47e4e2976c2855163f0d6850e9f8/b9e4f/client_table.png 590w,
-/static/ca2a47e4e2976c2855163f0d6850e9f8/f9b6a/client_table.png 885w,
-/static/ca2a47e4e2976c2855163f0d6850e9f8/10016/client_table.png 939w&quot;
+        src=&quot;/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/b9e4f/client_table.png&quot;
+        srcset=&quot;/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/cf440/client_table.png 148w,
+/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/d2d38/client_table.png 295w,
+/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/b9e4f/client_table.png 590w,
+/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/f9b6a/client_table.png 885w,
+/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/10016/client_table.png 939w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -6473,7 +6730,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/3010402370455b3ff800d07493a4af5d/db64a/client.png&quot;
+    href=&quot;/blog/home/static/3010402370455b3ff800d07493a4af5d/db64a/client.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6486,11 +6743,11 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/3010402370455b3ff800d07493a4af5d/b9e4f/client.png&quot;
-        srcset=&quot;/static/3010402370455b3ff800d07493a4af5d/cf440/client.png 148w,
-/static/3010402370455b3ff800d07493a4af5d/d2d38/client.png 295w,
-/static/3010402370455b3ff800d07493a4af5d/b9e4f/client.png 590w,
-/static/3010402370455b3ff800d07493a4af5d/db64a/client.png 760w&quot;
+        src=&quot;/blog/home/static/3010402370455b3ff800d07493a4af5d/b9e4f/client.png&quot;
+        srcset=&quot;/blog/home/static/3010402370455b3ff800d07493a4af5d/cf440/client.png 148w,
+/blog/home/static/3010402370455b3ff800d07493a4af5d/d2d38/client.png 295w,
+/blog/home/static/3010402370455b3ff800d07493a4af5d/b9e4f/client.png 590w,
+/blog/home/static/3010402370455b3ff800d07493a4af5d/db64a/client.png 760w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -6504,7 +6761,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/e0b52f068584f2dd8dd149783740fafd/bd128/scroll_table.png&quot;
+    href=&quot;/blog/home/static/e0b52f068584f2dd8dd149783740fafd/bd128/scroll_table.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6517,12 +6774,12 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/e0b52f068584f2dd8dd149783740fafd/b9e4f/scroll_table.png&quot;
-        srcset=&quot;/static/e0b52f068584f2dd8dd149783740fafd/cf440/scroll_table.png 148w,
-/static/e0b52f068584f2dd8dd149783740fafd/d2d38/scroll_table.png 295w,
-/static/e0b52f068584f2dd8dd149783740fafd/b9e4f/scroll_table.png 590w,
-/static/e0b52f068584f2dd8dd149783740fafd/f9b6a/scroll_table.png 885w,
-/static/e0b52f068584f2dd8dd149783740fafd/bd128/scroll_table.png 942w&quot;
+        src=&quot;/blog/home/static/e0b52f068584f2dd8dd149783740fafd/b9e4f/scroll_table.png&quot;
+        srcset=&quot;/blog/home/static/e0b52f068584f2dd8dd149783740fafd/cf440/scroll_table.png 148w,
+/blog/home/static/e0b52f068584f2dd8dd149783740fafd/d2d38/scroll_table.png 295w,
+/blog/home/static/e0b52f068584f2dd8dd149783740fafd/b9e4f/scroll_table.png 590w,
+/blog/home/static/e0b52f068584f2dd8dd149783740fafd/f9b6a/scroll_table.png 885w,
+/blog/home/static/e0b52f068584f2dd8dd149783740fafd/bd128/scroll_table.png 942w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -6534,7 +6791,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/7958c58174a608ed2cbd97d165a4ff28/de00b/scroll.png&quot;
+    href=&quot;/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/de00b/scroll.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6547,12 +6804,12 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/7958c58174a608ed2cbd97d165a4ff28/b9e4f/scroll.png&quot;
-        srcset=&quot;/static/7958c58174a608ed2cbd97d165a4ff28/cf440/scroll.png 148w,
-/static/7958c58174a608ed2cbd97d165a4ff28/d2d38/scroll.png 295w,
-/static/7958c58174a608ed2cbd97d165a4ff28/b9e4f/scroll.png 590w,
-/static/7958c58174a608ed2cbd97d165a4ff28/f9b6a/scroll.png 885w,
-/static/7958c58174a608ed2cbd97d165a4ff28/de00b/scroll.png 1104w&quot;
+        src=&quot;/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/b9e4f/scroll.png&quot;
+        srcset=&quot;/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/cf440/scroll.png 148w,
+/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/d2d38/scroll.png 295w,
+/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/b9e4f/scroll.png 590w,
+/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/f9b6a/scroll.png 885w,
+/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/de00b/scroll.png 1104w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -7441,13 +7698,13 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;webpack官方解释图&quot;
         title=&quot;webpack官方解释图&quot;
-        src=&quot;/static/689ad4abdab59e7b4942a9400c45658b/c739e/what-is-webpack.jpg&quot;
-        srcset=&quot;/static/689ad4abdab59e7b4942a9400c45658b/8ee9c/what-is-webpack.jpg 148w,
-/static/689ad4abdab59e7b4942a9400c45658b/ebbe7/what-is-webpack.jpg 295w,
-/static/689ad4abdab59e7b4942a9400c45658b/c739e/what-is-webpack.jpg 590w,
-/static/689ad4abdab59e7b4942a9400c45658b/5413e/what-is-webpack.jpg 885w,
-/static/689ad4abdab59e7b4942a9400c45658b/4efde/what-is-webpack.jpg 1180w,
-/static/689ad4abdab59e7b4942a9400c45658b/faa2b/what-is-webpack.jpg 2598w&quot;
+        src=&quot;/blog/home/static/689ad4abdab59e7b4942a9400c45658b/c739e/what-is-webpack.jpg&quot;
+        srcset=&quot;/blog/home/static/689ad4abdab59e7b4942a9400c45658b/8ee9c/what-is-webpack.jpg 148w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/ebbe7/what-is-webpack.jpg 295w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/c739e/what-is-webpack.jpg 590w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/5413e/what-is-webpack.jpg 885w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/4efde/what-is-webpack.jpg 1180w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/faa2b/what-is-webpack.jpg 2598w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
     &lt;/span&gt;
@@ -7560,7 +7817,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/78ebdd908ca642173dbd9b992bbb9931/364a4/3.png&quot;
+    href=&quot;/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/364a4/3.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7573,11 +7830,11 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/78ebdd908ca642173dbd9b992bbb9931/b9e4f/3.png&quot;
-        srcset=&quot;/static/78ebdd908ca642173dbd9b992bbb9931/cf440/3.png 148w,
-/static/78ebdd908ca642173dbd9b992bbb9931/d2d38/3.png 295w,
-/static/78ebdd908ca642173dbd9b992bbb9931/b9e4f/3.png 590w,
-/static/78ebdd908ca642173dbd9b992bbb9931/364a4/3.png 793w&quot;
+        src=&quot;/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/b9e4f/3.png&quot;
+        srcset=&quot;/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/cf440/3.png 148w,
+/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/d2d38/3.png 295w,
+/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/b9e4f/3.png 590w,
+/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/364a4/3.png 793w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -7594,7 +7851,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/72ccf448e925d323a3c086afe1e53784/44457/4.png&quot;
+    href=&quot;/blog/home/static/72ccf448e925d323a3c086afe1e53784/44457/4.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7607,11 +7864,11 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/72ccf448e925d323a3c086afe1e53784/b9e4f/4.png&quot;
-        srcset=&quot;/static/72ccf448e925d323a3c086afe1e53784/cf440/4.png 148w,
-/static/72ccf448e925d323a3c086afe1e53784/d2d38/4.png 295w,
-/static/72ccf448e925d323a3c086afe1e53784/b9e4f/4.png 590w,
-/static/72ccf448e925d323a3c086afe1e53784/44457/4.png 787w&quot;
+        src=&quot;/blog/home/static/72ccf448e925d323a3c086afe1e53784/b9e4f/4.png&quot;
+        srcset=&quot;/blog/home/static/72ccf448e925d323a3c086afe1e53784/cf440/4.png 148w,
+/blog/home/static/72ccf448e925d323a3c086afe1e53784/d2d38/4.png 295w,
+/blog/home/static/72ccf448e925d323a3c086afe1e53784/b9e4f/4.png 590w,
+/blog/home/static/72ccf448e925d323a3c086afe1e53784/44457/4.png 787w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -7639,7 +7896,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/d55a383b83e3351b29ac897f128ffe3c/8f8c6/2.png&quot;
+    href=&quot;/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/8f8c6/2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7652,10 +7909,10 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/d55a383b83e3351b29ac897f128ffe3c/8f8c6/2.png&quot;
-        srcset=&quot;/static/d55a383b83e3351b29ac897f128ffe3c/cf440/2.png 148w,
-/static/d55a383b83e3351b29ac897f128ffe3c/d2d38/2.png 295w,
-/static/d55a383b83e3351b29ac897f128ffe3c/8f8c6/2.png 360w&quot;
+        src=&quot;/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/8f8c6/2.png&quot;
+        srcset=&quot;/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/cf440/2.png 148w,
+/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/d2d38/2.png 295w,
+/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/8f8c6/2.png 360w&quot;
         sizes=&quot;(max-width: 360px) 100vw, 360px&quot;
       /&gt;
   &lt;/a&gt;
@@ -7668,7 +7925,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/55a8db889d1b537c7435fb2c420986e6/f00c5/5.png&quot;
+    href=&quot;/blog/home/static/55a8db889d1b537c7435fb2c420986e6/f00c5/5.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7681,10 +7938,10 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/55a8db889d1b537c7435fb2c420986e6/f00c5/5.png&quot;
-        srcset=&quot;/static/55a8db889d1b537c7435fb2c420986e6/cf440/5.png 148w,
-/static/55a8db889d1b537c7435fb2c420986e6/d2d38/5.png 295w,
-/static/55a8db889d1b537c7435fb2c420986e6/f00c5/5.png 323w&quot;
+        src=&quot;/blog/home/static/55a8db889d1b537c7435fb2c420986e6/f00c5/5.png&quot;
+        srcset=&quot;/blog/home/static/55a8db889d1b537c7435fb2c420986e6/cf440/5.png 148w,
+/blog/home/static/55a8db889d1b537c7435fb2c420986e6/d2d38/5.png 295w,
+/blog/home/static/55a8db889d1b537c7435fb2c420986e6/f00c5/5.png 323w&quot;
         sizes=&quot;(max-width: 323px) 100vw, 323px&quot;
       /&gt;
   &lt;/a&gt;
@@ -7704,7 +7961,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/5606820f6601d7f303c5d42b45f24d11/d8c54/1.png&quot;
+    href=&quot;/blog/home/static/5606820f6601d7f303c5d42b45f24d11/d8c54/1.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7717,11 +7974,11 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/5606820f6601d7f303c5d42b45f24d11/b9e4f/1.png&quot;
-        srcset=&quot;/static/5606820f6601d7f303c5d42b45f24d11/cf440/1.png 148w,
-/static/5606820f6601d7f303c5d42b45f24d11/d2d38/1.png 295w,
-/static/5606820f6601d7f303c5d42b45f24d11/b9e4f/1.png 590w,
-/static/5606820f6601d7f303c5d42b45f24d11/d8c54/1.png 794w&quot;
+        src=&quot;/blog/home/static/5606820f6601d7f303c5d42b45f24d11/b9e4f/1.png&quot;
+        srcset=&quot;/blog/home/static/5606820f6601d7f303c5d42b45f24d11/cf440/1.png 148w,
+/blog/home/static/5606820f6601d7f303c5d42b45f24d11/d2d38/1.png 295w,
+/blog/home/static/5606820f6601d7f303c5d42b45f24d11/b9e4f/1.png 590w,
+/blog/home/static/5606820f6601d7f303c5d42b45f24d11/d8c54/1.png 794w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -7810,7 +8067,7 @@ a.大小不固定的图片垂直居中&lt;/p&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/cd90887f29fd52f67145e160bcb2297f/ef000/center.png&quot;
+    href=&quot;/blog/home/static/cd90887f29fd52f67145e160bcb2297f/ef000/center.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7823,10 +8080,10 @@ a.大小不固定的图片垂直居中&lt;/p&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/cd90887f29fd52f67145e160bcb2297f/ef000/center.png&quot;
-        srcset=&quot;/static/cd90887f29fd52f67145e160bcb2297f/cf440/center.png 148w,
-/static/cd90887f29fd52f67145e160bcb2297f/d2d38/center.png 295w,
-/static/cd90887f29fd52f67145e160bcb2297f/ef000/center.png 498w&quot;
+        src=&quot;/blog/home/static/cd90887f29fd52f67145e160bcb2297f/ef000/center.png&quot;
+        srcset=&quot;/blog/home/static/cd90887f29fd52f67145e160bcb2297f/cf440/center.png 148w,
+/blog/home/static/cd90887f29fd52f67145e160bcb2297f/d2d38/center.png 295w,
+/blog/home/static/cd90887f29fd52f67145e160bcb2297f/ef000/center.png 498w&quot;
         sizes=&quot;(max-width: 498px) 100vw, 498px&quot;
       /&gt;
   &lt;/a&gt;
@@ -7960,7 +8217,7 @@ gulp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/06151b6d368e92899deeded27388759b/e3e30/text-algin-last.png&quot;
+    href=&quot;/blog/home/static/06151b6d368e92899deeded27388759b/e3e30/text-algin-last.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7973,13 +8230,13 @@ gulp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/06151b6d368e92899deeded27388759b/b9e4f/text-algin-last.png&quot;
-        srcset=&quot;/static/06151b6d368e92899deeded27388759b/cf440/text-algin-last.png 148w,
-/static/06151b6d368e92899deeded27388759b/d2d38/text-algin-last.png 295w,
-/static/06151b6d368e92899deeded27388759b/b9e4f/text-algin-last.png 590w,
-/static/06151b6d368e92899deeded27388759b/f9b6a/text-algin-last.png 885w,
-/static/06151b6d368e92899deeded27388759b/2d849/text-algin-last.png 1180w,
-/static/06151b6d368e92899deeded27388759b/e3e30/text-algin-last.png 1271w&quot;
+        src=&quot;/blog/home/static/06151b6d368e92899deeded27388759b/b9e4f/text-algin-last.png&quot;
+        srcset=&quot;/blog/home/static/06151b6d368e92899deeded27388759b/cf440/text-algin-last.png 148w,
+/blog/home/static/06151b6d368e92899deeded27388759b/d2d38/text-algin-last.png 295w,
+/blog/home/static/06151b6d368e92899deeded27388759b/b9e4f/text-algin-last.png 590w,
+/blog/home/static/06151b6d368e92899deeded27388759b/f9b6a/text-algin-last.png 885w,
+/blog/home/static/06151b6d368e92899deeded27388759b/2d849/text-algin-last.png 1180w,
+/blog/home/static/06151b6d368e92899deeded27388759b/e3e30/text-algin-last.png 1271w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
@@ -8039,7 +8296,7 @@ gulp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/60c138fa02aec824a67a86a80a28247d/12e65/result.jpg&quot;
+    href=&quot;/blog/home/static/60c138fa02aec824a67a86a80a28247d/12e65/result.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8052,10 +8309,10 @@ gulp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/static/60c138fa02aec824a67a86a80a28247d/12e65/result.jpg&quot;
-        srcset=&quot;/static/60c138fa02aec824a67a86a80a28247d/8ee9c/result.jpg 148w,
-/static/60c138fa02aec824a67a86a80a28247d/ebbe7/result.jpg 295w,
-/static/60c138fa02aec824a67a86a80a28247d/12e65/result.jpg 454w&quot;
+        src=&quot;/blog/home/static/60c138fa02aec824a67a86a80a28247d/12e65/result.jpg&quot;
+        srcset=&quot;/blog/home/static/60c138fa02aec824a67a86a80a28247d/8ee9c/result.jpg 148w,
+/blog/home/static/60c138fa02aec824a67a86a80a28247d/ebbe7/result.jpg 295w,
+/blog/home/static/60c138fa02aec824a67a86a80a28247d/12e65/result.jpg 454w&quot;
         sizes=&quot;(max-width: 454px) 100vw, 454px&quot;
       /&gt;
   &lt;/a&gt;
@@ -8386,7 +8643,7 @@ uploader&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/effeca3ab4c791595d872ce5686d860c/ad9ce/canshu.png&quot;
+    href=&quot;/blog/home/static/effeca3ab4c791595d872ce5686d860c/ad9ce/canshu.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8399,11 +8656,11 @@ uploader&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;mahua&quot;
         title=&quot;mahua&quot;
-        src=&quot;/static/effeca3ab4c791595d872ce5686d860c/b9e4f/canshu.png&quot;
-        srcset=&quot;/static/effeca3ab4c791595d872ce5686d860c/cf440/canshu.png 148w,
-/static/effeca3ab4c791595d872ce5686d860c/d2d38/canshu.png 295w,
-/static/effeca3ab4c791595d872ce5686d860c/b9e4f/canshu.png 590w,
-/static/effeca3ab4c791595d872ce5686d860c/ad9ce/canshu.png 704w&quot;
+        src=&quot;/blog/home/static/effeca3ab4c791595d872ce5686d860c/b9e4f/canshu.png&quot;
+        srcset=&quot;/blog/home/static/effeca3ab4c791595d872ce5686d860c/cf440/canshu.png 148w,
+/blog/home/static/effeca3ab4c791595d872ce5686d860c/d2d38/canshu.png 295w,
+/blog/home/static/effeca3ab4c791595d872ce5686d860c/b9e4f/canshu.png 590w,
+/blog/home/static/effeca3ab4c791595d872ce5686d860c/ad9ce/canshu.png 704w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
       /&gt;
   &lt;/a&gt;
