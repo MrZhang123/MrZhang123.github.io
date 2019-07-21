@@ -17,7 +17,7 @@ class属性是关于直接在类体内创建属性和类似构造，这篇播客
 
 ## 1.概览
 
-私有属性是一种与属性不同的新的数据插槽。它们只能在它们声明的class body内直接访问。
+Private fields是一种与属性不同的新的数据插槽。它们只能在它们声明的class body内直接访问。
 
 ### 1.1 静态私有属性
 
@@ -40,11 +40,11 @@ assert.throws(
 assert.equal(MyClass.getPrivateStaticField(), 1);
 ```
 
-小窍门：永远不要用`this`来访问一个静态私有属性，始终使用直接类名（就像A行那样）。为什么会在本文后面解释。
+小窍门：永远不要用`this`来访问一个静态私有属性，直接使用类名访问即可（就像A行那样）。为什么会在本文后面解释。
 
 ### 1.2 实例私有属性
 
-使用带有初始值的私有属性（等号后面跟着值）。
+使用带有初始值的私有属性（等号后面跟值）。
 
 ```js
 class MyClass {
@@ -69,7 +69,7 @@ assert.equal(new MyClass().getPrivateInstanceField(), 2);
 
 ```js
 class DataStore {
-  #data; // must be declared
+  #data; // 必须声明
   constructor(data) {
     this.#data = data;
   }
@@ -108,7 +108,7 @@ assert.deepEqual(
   ['_counter', '_action']);
 ```
 
-这个约定并没有给我们任何保护；它仅仅建议使用这个class的用户：不要使用这些属性，它们是私有的。
+这个约定并没有给我们任何保护；它仅仅建议使用这个类的用户：不要使用这些属性，它们是私有的。
 
 ### 2.2 切换到实例私有属性
 
@@ -170,9 +170,9 @@ assert.equal(
 
 ## 4.（高级）
 
-其余部分涵盖类私有属性的高级用法
+剩余部分是关于类的私有属性的高级用法
 
-## 5. 深入：私有属性是被如何管理的？
+## 5. 深入理解私有属性
 
 在规范中，私有属性通过附加到对象上的数据结构进行管理。私有属性的大致处理过程如下：
 
@@ -214,7 +214,7 @@ assert.equal(
 这里有两点很重要：
 
 * *私有名称*是唯一的key。它们只能在class内访问。
-* *私有属性的值*是一个**私有名称=>值的字典**。每个拥有私有属性的实例都有这样一个字典。只能通过私有变量的key访问其value。
+* *私有属性的值*是一个**私有名称(key)=>值(value)的字典**。每个拥有私有属性的实例都有这样一个字典。只能通过私有变量的key访问其value。
 
 意义：
 
@@ -239,7 +239,7 @@ class SubClass extends SuperClass {
 }
 ```
 
-公有静态属性是属性。如果我们用一个方法调用：
+公有静态属性（Public static fields）是属性。如果我们用一个方法调用：
 
 ```js
 assert.equal(SuperClass.getPublicViaThis(), 1);
@@ -251,7 +251,7 @@ assert.equal(SuperClass.getPublicViaThis(), 1);
 assert.equal(SubClass.getPublicViaThis(), 1);
 ```
 
-`SubClass`继承了`.getPublicViaThis()`，`this`指向`SubClass`，代码依旧可以运用，因为`SubClass`也继承了`.publicData`。
+`SubClass`继承了`.getPublicViaThis()`方法，`this`指向`SubClass`，代码依旧可以运用，因为`SubClass`也继承了`.publicData`。
 
 （注：在这种情况下设置`.publicData`会在`SubClass`上创建新的属性，这个属性不会覆盖在`SuperClass`上定义的属性）
 
@@ -292,7 +292,7 @@ assert.throws(
 );
 ```
 
-解决办法是直接通过`SuperClass`访问`.#privateData`：
+解决办法是直接通过`SuperClass`访问`.#privateData`，就像`SuperClass`中的`getPrivateViaClassName`方法。
 
 ```js
 assert.equal(SubClass.getPrivateViaClassName(), 2);
@@ -300,7 +300,7 @@ assert.equal(SubClass.getPrivateViaClassName(), 2);
 
 ## 7. “友好”和“被保护的”隐私
 
-有时候我们想要某些实体成为某一类的“朋友”。这个朋友应该可以访问calss的私有数据。在以下代码中，函数`getCounter()`是类`Countdown`的朋友。我们通过使用`WeakMaps`生成私有数据，这样`Countdown`就允许朋友们访问该数据。
+有时候我们想要某些实体成为某一类的“朋友”。这个朋友应该可以访问calss的私有数据（译者注：这里其实就是想控制哪些可以访问私有属性，哪些不可以）。在以下代码中，函数`getCounter()`是类`Countdown`的朋友。我们通过使用`WeakMaps`生成私有数据，这样`Countdown`就允许朋友们访问该数据。
 
 ```js
 const _counter = new WeakMap();
@@ -326,9 +326,9 @@ function getCounter(countdown) {
 }
 ```
 
-这样就很容易控制哪些可以访问私有数据：如果它们可以使用`_counter`和`_action`，它们就可以访问私有数据。如果我们将之前的代码片段放到一个模块中，那么数据在整个模块中是私有的。
+这样就很容易控制哪些可以访问私有数据：如果它们可以使用`_counter`和`_action`，它们就可以访问私有数据。如果我们将前面的代码片段放到一个模块中，那么数据在整个模块中是私有的。
 
-有关此技术的更多信息，请咨询Sect的“[使用`WeakMaps`保持私有数据](https://exploringjs.com/impatient-js/ch_weakmaps.html#private-data-in-weakmaps)”。这同样适用于在superclass和subclass之间共享私有数据（“被保护”的可见度）。
+有关此技术的更多信息，可以查看Sect的“[使用`WeakMaps`保持私有数据](https://exploringjs.com/impatient-js/ch_weakmaps.html#private-data-in-weakmaps)”。这同样适用于在superclass和subclass之间共享私有数据（“被保护”的可见度）。
 
 ## 8. FAQ
 

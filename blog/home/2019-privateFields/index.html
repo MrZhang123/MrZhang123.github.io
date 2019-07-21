@@ -8,7 +8,7 @@
 </ol>
 <p>在这篇文章中，我们看看<em>私有属性</em>，在类和实例中的一种新的私有插槽。这个功能是ES草案<a href="https://github.com/tc39/proposal-class-fields">“JavaScript类属性声明”</a>的一部分。</p>
 <h2>1.概览</h2>
-<p>私有属性是一种与属性不同的新的数据插槽。它们只能在它们声明的class body内直接访问。</p>
+<p>Private fields是一种与属性不同的新的数据插槽。它们只能在它们声明的class body内直接访问。</p>
 <h3>1.1 静态私有属性</h3>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">MyClass</span> <span class="token punctuation">{</span>
   <span class="token comment">// 声明并初始化静态私有属性</span>
@@ -26,9 +26,9 @@ assert<span class="token punctuation">.</span><span class="token function">throw
   <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span>
 assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>MyClass<span class="token punctuation">.</span><span class="token function">getPrivateStaticField</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
-<p>小窍门：永远不要用<code class="language-text">this</code>来访问一个静态私有属性，始终使用直接类名（就像A行那样）。为什么会在本文后面解释。</p>
+<p>小窍门：永远不要用<code class="language-text">this</code>来访问一个静态私有属性，直接使用类名访问即可（就像A行那样）。为什么会在本文后面解释。</p>
 <h3>1.2 实例私有属性</h3>
-<p>使用带有初始值的私有属性（等号后面跟着值）。</p>
+<p>使用带有初始值的私有属性（等号后面跟值）。</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">MyClass</span> <span class="token punctuation">{</span>
   <span class="token comment">// 声明并初始化</span>
   #privateInstanceField <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
@@ -47,7 +47,7 @@ assert<span class="token punctuation">.</span><span class="token function">throw
 assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPrivateInstanceField</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p>使用未初始化的实例私有属性：</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">DataStore</span> <span class="token punctuation">{</span>
-  #data<span class="token punctuation">;</span> <span class="token comment">// must be declared</span>
+  #data<span class="token punctuation">;</span> <span class="token comment">// 必须声明</span>
   <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">data</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>#data <span class="token operator">=</span> data<span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
@@ -78,7 +78,7 @@ assert<span class="token punctuation">.</span><span class="token function">deepE
 assert<span class="token punctuation">.</span><span class="token function">deepEqual</span><span class="token punctuation">(</span>
   Reflect<span class="token punctuation">.</span><span class="token function">ownKeys</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Countdown</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
   <span class="token punctuation">[</span><span class="token string">'_counter'</span><span class="token punctuation">,</span> <span class="token string">'_action'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
-<p>这个约定并没有给我们任何保护；它仅仅建议使用这个class的用户：不要使用这些属性，它们是私有的。</p>
+<p>这个约定并没有给我们任何保护；它仅仅建议使用这个类的用户：不要使用这些属性，它们是私有的。</p>
 <h3>2.2 切换到实例私有属性</h3>
 <p>我们可以用实例私有属性代替下划线：</p>
 <ol>
@@ -125,8 +125,8 @@ assert<span class="token punctuation">.</span><span class="token function">equal
 assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>
   MyClass<span class="token punctuation">.</span><span class="token function">getPrivateFieldOfInstance</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">MyClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <h2>4.（高级）</h2>
-<p>其余部分涵盖类私有属性的高级用法</p>
-<h2>5. 深入：私有属性是被如何管理的？</h2>
+<p>剩余部分是关于类的私有属性的高级用法</p>
+<h2>5. 深入理解私有属性</h2>
 <p>在规范中，私有属性通过附加到对象上的数据结构进行管理。私有属性的大致处理过程如下：</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token punctuation">{</span>
   <span class="token comment">// Private names</span>
@@ -163,7 +163,7 @@ assert<span class="token punctuation">.</span><span class="token function">equal
 <p>这里有两点很重要：</p>
 <ul>
 <li><em>私有名称</em>是唯一的key。它们只能在class内访问。</li>
-<li><em>私有属性的值</em>是一个<strong>私有名称=>值的字典</strong>。每个拥有私有属性的实例都有这样一个字典。只能通过私有变量的key访问其value。</li>
+<li><em>私有属性的值</em>是一个<strong>私有名称(key)=>值(value)的字典</strong>。每个拥有私有属性的实例都有这样一个字典。只能通过私有变量的key访问其value。</li>
 </ul>
 <p>意义：</p>
 <ul>
@@ -182,11 +182,11 @@ assert<span class="token punctuation">.</span><span class="token function">equal
 <span class="token punctuation">}</span>
 <span class="token keyword">class</span> <span class="token class-name">SubClass</span> <span class="token keyword">extends</span> <span class="token class-name">SuperClass</span> <span class="token punctuation">{</span>
 <span class="token punctuation">}</span></code></pre></div>
-<p>公有静态属性是属性。如果我们用一个方法调用：</p>
+<p>公有静态属性（Public static fields）是属性。如果我们用一个方法调用：</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>SuperClass<span class="token punctuation">.</span><span class="token function">getPublicViaThis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <p><code class="language-text">this</code>指向<code class="language-text">SuperClass</code>，一切都按照我们预想的那样工作。我们也可以通过子类调用<code class="language-text">.getPublicViaThis()</code>。</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>SubClass<span class="token punctuation">.</span><span class="token function">getPublicViaThis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
-<p><code class="language-text">SubClass</code>继承了<code class="language-text">.getPublicViaThis()</code>，<code class="language-text">this</code>指向<code class="language-text">SubClass</code>，代码依旧可以运用，因为<code class="language-text">SubClass</code>也继承了<code class="language-text">.publicData</code>。</p>
+<p><code class="language-text">SubClass</code>继承了<code class="language-text">.getPublicViaThis()</code>方法，<code class="language-text">this</code>指向<code class="language-text">SubClass</code>，代码依旧可以运用，因为<code class="language-text">SubClass</code>也继承了<code class="language-text">.publicData</code>。</p>
 <p>（注：在这种情况下设置<code class="language-text">.publicData</code>会在<code class="language-text">SubClass</code>上创建新的属性，这个属性不会覆盖在<code class="language-text">SuperClass</code>上定义的属性）</p>
 <h3>6.2 <code class="language-text">this</code>和私有静态属性</h3>
 <p>考虑这段代码：</p>
@@ -212,10 +212,10 @@ assert<span class="token punctuation">.</span><span class="token function">equal
       <span class="token string">' an object which did not contain the field'</span><span class="token punctuation">,</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
-<p>解决办法是直接通过<code class="language-text">SuperClass</code>访问<code class="language-text">.#privateData</code>：</p>
+<p>解决办法是直接通过<code class="language-text">SuperClass</code>访问<code class="language-text">.#privateData</code>，就像<code class="language-text">SuperClass</code>中的<code class="language-text">getPrivateViaClassName</code>方法。</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">assert<span class="token punctuation">.</span><span class="token function">equal</span><span class="token punctuation">(</span>SubClass<span class="token punctuation">.</span><span class="token function">getPrivateViaClassName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
 <h2>7. “友好”和“被保护的”隐私</h2>
-<p>有时候我们想要某些实体成为某一类的“朋友”。这个朋友应该可以访问calss的私有数据。在以下代码中，函数<code class="language-text">getCounter()</code>是类<code class="language-text">Countdown</code>的朋友。我们通过使用<code class="language-text">WeakMaps</code>生成私有数据，这样<code class="language-text">Countdown</code>就允许朋友们访问该数据。</p>
+<p>有时候我们想要某些实体成为某一类的“朋友”。这个朋友应该可以访问calss的私有数据（译者注：这里其实就是想控制哪些可以访问私有属性，哪些不可以）。在以下代码中，函数<code class="language-text">getCounter()</code>是类<code class="language-text">Countdown</code>的朋友。我们通过使用<code class="language-text">WeakMaps</code>生成私有数据，这样<code class="language-text">Countdown</code>就允许朋友们访问该数据。</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> _counter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">const</span> _action <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
@@ -237,8 +237,8 @@ assert<span class="token punctuation">.</span><span class="token function">equal
 <span class="token keyword">function</span> <span class="token function">getCounter</span><span class="token punctuation">(</span><span class="token parameter">countdown</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> counter<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>countdown<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
-<p>这样就很容易控制哪些可以访问私有数据：如果它们可以使用<code class="language-text">_counter</code>和<code class="language-text">_action</code>，它们就可以访问私有数据。如果我们将之前的代码片段放到一个模块中，那么数据在整个模块中是私有的。</p>
-<p>有关此技术的更多信息，请咨询Sect的“<a href="https://exploringjs.com/impatient-js/ch_weakmaps.html#private-data-in-weakmaps">使用<code class="language-text">WeakMaps</code>保持私有数据</a>”。这同样适用于在superclass和subclass之间共享私有数据（“被保护”的可见度）。</p>
+<p>这样就很容易控制哪些可以访问私有数据：如果它们可以使用<code class="language-text">_counter</code>和<code class="language-text">_action</code>，它们就可以访问私有数据。如果我们将前面的代码片段放到一个模块中，那么数据在整个模块中是私有的。</p>
+<p>有关此技术的更多信息，可以查看Sect的“<a href="https://exploringjs.com/impatient-js/ch_weakmaps.html#private-data-in-weakmaps">使用<code class="language-text">WeakMaps</code>保持私有数据</a>”。这同样适用于在superclass和subclass之间共享私有数据（“被保护”的可见度）。</p>
 <h2>8. FAQ</h2>
 <h3>8.1 为什么是<code class="language-text">#</code>？为什么不通过<code class="language-text">private</code>属性声明私有属性？</h3>
 <p>原则上，私有属性应该用如下方式声明：</p>
