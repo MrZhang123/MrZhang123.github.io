@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 03 Sep 2019 00:09:56 GMT</lastBuildDate><item><title><![CDATA[「译」JS新特性“可选链式调用”]]></title><description><![CDATA[在JavaScript…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2019-optional-chaining/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2019-optional-chaining/</guid><pubDate>Tue, 03 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现&lt;code class=&quot;language-text&quot;&gt;null&lt;/code&gt;或&lt;code class=&quot;language-text&quot;&gt;undefined&lt;/code&gt;（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的&lt;code class=&quot;language-text&quot;&gt;if&lt;/code&gt;声明或者复制属性访问链的长的&lt;code class=&quot;language-text&quot;&gt;if&lt;/code&gt;条件：&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 22 Dec 2019 07:08:32 GMT</lastBuildDate><item><title><![CDATA[「译」JS新特性“可选链式调用”]]></title><description><![CDATA[在JavaScript…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2019-optional-chaining/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2019-optional-chaining/</guid><pubDate>Tue, 03 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现&lt;code class=&quot;language-text&quot;&gt;null&lt;/code&gt;或&lt;code class=&quot;language-text&quot;&gt;undefined&lt;/code&gt;（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的&lt;code class=&quot;language-text&quot;&gt;if&lt;/code&gt;声明或者复制属性访问链的长的&lt;code class=&quot;language-text&quot;&gt;if&lt;/code&gt;条件：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 容易出错的版本，可能抛出错误&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; nameLength &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; db&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 
@@ -80,7 +80,7 @@ db&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quo
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/0efb7fd69420de6d5325c716ebbec984/b4133/vim.jpg&quot;
+    href=&quot;/blog/home/static/0efb7fd69420de6d5325c716ebbec984/0a772/vim.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -93,13 +93,14 @@ db&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quo
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;vim&quot;
         title=&quot;vim&quot;
-        src=&quot;/blog/home/static/0efb7fd69420de6d5325c716ebbec984/c739e/vim.jpg&quot;
-        srcset=&quot;/blog/home/static/0efb7fd69420de6d5325c716ebbec984/8ee9c/vim.jpg 148w,
-/blog/home/static/0efb7fd69420de6d5325c716ebbec984/ebbe7/vim.jpg 295w,
-/blog/home/static/0efb7fd69420de6d5325c716ebbec984/c739e/vim.jpg 590w,
-/blog/home/static/0efb7fd69420de6d5325c716ebbec984/5413e/vim.jpg 885w,
-/blog/home/static/0efb7fd69420de6d5325c716ebbec984/b4133/vim.jpg 1080w&quot;
+        src=&quot;/blog/home/static/0efb7fd69420de6d5325c716ebbec984/88218/vim.jpg&quot;
+        srcset=&quot;/blog/home/static/0efb7fd69420de6d5325c716ebbec984/7237a/vim.jpg 148w,
+/blog/home/static/0efb7fd69420de6d5325c716ebbec984/0cfdf/vim.jpg 295w,
+/blog/home/static/0efb7fd69420de6d5325c716ebbec984/88218/vim.jpg 590w,
+/blog/home/static/0efb7fd69420de6d5325c716ebbec984/77d57/vim.jpg 885w,
+/blog/home/static/0efb7fd69420de6d5325c716ebbec984/0a772/vim.jpg 1080w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -111,9 +112,9 @@ db&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quo
 &lt;p&gt;一般情况下，vim的性能问题都是由于我们装插件太多导致的，本质上是因为vim不支持异步，但是现在（vim8+）支持异步了，所以很多插件都开始转向使用异步API实现自己的功能，比如大名鼎鼎的&lt;code class=&quot;language-text&quot;&gt;YouCompleteMe&lt;/code&gt;，不过也不是所有的插件都会做支持，毕竟vim好多年了，也许我们用的一些插件都停更好久了。&lt;/p&gt;
 &lt;h3&gt;vim启动优化&lt;/h3&gt;
 &lt;p&gt;为了优化vim启动，首先可以做的一点是将&lt;strong&gt;插件懒加载&lt;/strong&gt;，即用到哪个插件再加载哪个插件，通过&lt;code class=&quot;language-text&quot;&gt;vim-plug&lt;/code&gt;插件管理工具可以非常方便的做到，配置方式如下：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;Plug &amp;#39;mattn/emmet-vim&amp;#39;, { &amp;#39;for&amp;#39;: [&amp;#39;html&amp;#39;, &amp;#39;javascript.jsx&amp;#39;] }
-Plug &amp;#39;mxw/vim-jsx&amp;#39;, { &amp;#39;for&amp;#39;: &amp;#39;javascript.jsx&amp;#39; }
-Plug &amp;#39;scrooloose/nerdtree&amp;#39;, { &amp;#39;on&amp;#39;:  &amp;#39;NERDTreeToggle&amp;#39; }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;Plug &amp;#39;mattn/emmet-vim&amp;#39;undefined { &amp;#39;for&amp;#39;: [&amp;#39;html&amp;#39;undefined &amp;#39;javascript.jsx&amp;#39;] }
+Plug &amp;#39;mxw/vim-jsx&amp;#39;undefined { &amp;#39;for&amp;#39;: &amp;#39;javascript.jsx&amp;#39; }
+Plug &amp;#39;scrooloose/nerdtree&amp;#39;undefined { &amp;#39;on&amp;#39;:  &amp;#39;NERDTreeToggle&amp;#39; }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;on&lt;/code&gt;表示在某个条件下加载，例如上面的配置表示在输入命令&lt;code class=&quot;language-text&quot;&gt;NERDTreeToggle&lt;/code&gt;的时候加载&lt;code class=&quot;language-text&quot;&gt;nerdtree&lt;/code&gt;插件，&lt;code class=&quot;language-text&quot;&gt;for&lt;/code&gt;表示该插件针对某一类文件加载，例如&lt;code class=&quot;language-text&quot;&gt;vim-jsx&lt;/code&gt;插件只有在文件类型为&lt;code class=&quot;language-text&quot;&gt;javascript.jsx&lt;/code&gt;的时候加载。&lt;/p&gt;
 &lt;p&gt;这样就可以让vim在启动的时候，不加载不必要的插件。&lt;/p&gt;
 &lt;h3&gt;vim输入性能优化&lt;/h3&gt;
@@ -150,7 +151,7 @@ $ vim --startuptime vim.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/c5f2c/up.png&quot;
+    href=&quot;/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/7a2f6/up.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -163,12 +164,13 @@ $ vim --startuptime vim.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;up&quot;
         title=&quot;up&quot;
-        src=&quot;/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/b9e4f/up.png&quot;
-        srcset=&quot;/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/cf440/up.png 148w,
-/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/d2d38/up.png 295w,
-/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/b9e4f/up.png 590w,
-/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/c5f2c/up.png 846w&quot;
+        src=&quot;/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/799d3/up.png&quot;
+        srcset=&quot;/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/00d96/up.png 148w,
+/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/0b23c/up.png 295w,
+/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/799d3/up.png 590w,
+/blog/home/static/b2c0511e6147c1dbe1600d839ddaba7a/7a2f6/up.png 846w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -190,7 +192,7 @@ $ vim --startuptime vim.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/557d75b6b48df149c4e3158860031be3/922ae/down.png&quot;
+    href=&quot;/blog/home/static/557d75b6b48df149c4e3158860031be3/46592/down.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -203,12 +205,13 @@ $ vim --startuptime vim.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;up&quot;
         title=&quot;up&quot;
-        src=&quot;/blog/home/static/557d75b6b48df149c4e3158860031be3/b9e4f/down.png&quot;
-        srcset=&quot;/blog/home/static/557d75b6b48df149c4e3158860031be3/cf440/down.png 148w,
-/blog/home/static/557d75b6b48df149c4e3158860031be3/d2d38/down.png 295w,
-/blog/home/static/557d75b6b48df149c4e3158860031be3/b9e4f/down.png 590w,
-/blog/home/static/557d75b6b48df149c4e3158860031be3/922ae/down.png 874w&quot;
+        src=&quot;/blog/home/static/557d75b6b48df149c4e3158860031be3/799d3/down.png&quot;
+        srcset=&quot;/blog/home/static/557d75b6b48df149c4e3158860031be3/00d96/down.png 148w,
+/blog/home/static/557d75b6b48df149c4e3158860031be3/0b23c/down.png 295w,
+/blog/home/static/557d75b6b48df149c4e3158860031be3/799d3/down.png 590w,
+/blog/home/static/557d75b6b48df149c4e3158860031be3/46592/down.png 874w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -232,7 +235,7 @@ $ vim --startuptime vim.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/a5a46/add.jpg&quot;
+    href=&quot;/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/33e0f/add.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -245,13 +248,14 @@ $ vim --startuptime vim.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;add&quot;
         title=&quot;add&quot;
-        src=&quot;/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/c739e/add.jpg&quot;
-        srcset=&quot;/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/8ee9c/add.jpg 148w,
-/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/ebbe7/add.jpg 295w,
-/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/c739e/add.jpg 590w,
-/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/5413e/add.jpg 885w,
-/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/a5a46/add.jpg 962w&quot;
+        src=&quot;/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/88218/add.jpg&quot;
+        srcset=&quot;/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/7237a/add.jpg 148w,
+/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/0cfdf/add.jpg 295w,
+/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/88218/add.jpg 590w,
+/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/77d57/add.jpg 885w,
+/blog/home/static/a7e7863c9d6c437fc5a46c63a9977057/33e0f/add.jpg 962w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -282,7 +286,7 @@ $ vim --startuptime vim.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/a3a73/overview.png&quot;
+    href=&quot;/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/9528f/overview.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -295,14 +299,15 @@ $ vim --startuptime vim.log&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;add&quot;
         title=&quot;add&quot;
-        src=&quot;/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/b9e4f/overview.png&quot;
-        srcset=&quot;/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/cf440/overview.png 148w,
-/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/d2d38/overview.png 295w,
-/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/b9e4f/overview.png 590w,
-/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/f9b6a/overview.png 885w,
-/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/2d849/overview.png 1180w,
-/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/a3a73/overview.png 5037w&quot;
+        src=&quot;/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/799d3/overview.png&quot;
+        srcset=&quot;/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/00d96/overview.png 148w,
+/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/0b23c/overview.png 295w,
+/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/799d3/overview.png 590w,
+/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/2a3d6/overview.png 885w,
+/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/ae92f/overview.png 1180w,
+/blog/home/static/b4b2c95ec0723701cac14d8fc5ff4bdb/9528f/overview.png 5037w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -618,11 +623,11 @@ Output: 9
 
 Input: &amp;quot;LVIII&amp;quot;
 Output: 58
-Explanation: L = 50, V= 5, III = 3.
+Explanation: L = 50undefined V= 5undefined III = 3.
 
 Input: &amp;quot;MCMXCIV&amp;quot;
 Output: 1994
-Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Explanation: M = 1000undefined CM = 900undefined XC = 90 and IV = 4.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;strong&gt;难度：Easy&lt;/strong&gt;&lt;/p&gt;
 &lt;h3&gt;思路&lt;/h3&gt;
 &lt;ol&gt;
@@ -752,7 +757,7 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/bbe88/1.jpg&quot;
+    href=&quot;/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/3423f/1.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -765,12 +770,13 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;API?&quot;
         title=&quot;API?&quot;
-        src=&quot;/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/c739e/1.jpg&quot;
-        srcset=&quot;/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/8ee9c/1.jpg 148w,
-/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/ebbe7/1.jpg 295w,
-/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/c739e/1.jpg 590w,
-/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/bbe88/1.jpg 880w&quot;
+        src=&quot;/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/88218/1.jpg&quot;
+        srcset=&quot;/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/7237a/1.jpg 148w,
+/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/0cfdf/1.jpg 295w,
+/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/88218/1.jpg 590w,
+/blog/home/static/eb935b750f7a08ad9116ecd5a115f81e/3423f/1.jpg 880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -801,7 +807,7 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/bbe88/2.jpg&quot;
+    href=&quot;/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/3423f/2.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -814,12 +820,13 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;component&quot;
         title=&quot;component&quot;
-        src=&quot;/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/c739e/2.jpg&quot;
-        srcset=&quot;/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/8ee9c/2.jpg 148w,
-/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/ebbe7/2.jpg 295w,
-/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/c739e/2.jpg 590w,
-/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/bbe88/2.jpg 880w&quot;
+        src=&quot;/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/88218/2.jpg&quot;
+        srcset=&quot;/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/7237a/2.jpg 148w,
+/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/0cfdf/2.jpg 295w,
+/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/88218/2.jpg 590w,
+/blog/home/static/15e2c733cf1d3b5e5916c17692a6df5a/3423f/2.jpg 880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -977,7 +984,7 @@ Grid&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;defaultProps &
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/7ad87b749411892458b193a48597d91f/8e724/iterm2.png&quot;
+    href=&quot;/blog/home/static/7ad87b749411892458b193a48597d91f/020d3/iterm2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -990,14 +997,15 @@ Grid&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;defaultProps &
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;item2原生分屏图片&quot;
         title=&quot;item2原生分屏图片&quot;
-        src=&quot;/blog/home/static/7ad87b749411892458b193a48597d91f/b9e4f/iterm2.png&quot;
-        srcset=&quot;/blog/home/static/7ad87b749411892458b193a48597d91f/cf440/iterm2.png 148w,
-/blog/home/static/7ad87b749411892458b193a48597d91f/d2d38/iterm2.png 295w,
-/blog/home/static/7ad87b749411892458b193a48597d91f/b9e4f/iterm2.png 590w,
-/blog/home/static/7ad87b749411892458b193a48597d91f/f9b6a/iterm2.png 885w,
-/blog/home/static/7ad87b749411892458b193a48597d91f/2d849/iterm2.png 1180w,
-/blog/home/static/7ad87b749411892458b193a48597d91f/8e724/iterm2.png 2880w&quot;
+        src=&quot;/blog/home/static/7ad87b749411892458b193a48597d91f/799d3/iterm2.png&quot;
+        srcset=&quot;/blog/home/static/7ad87b749411892458b193a48597d91f/00d96/iterm2.png 148w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/0b23c/iterm2.png 295w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/799d3/iterm2.png 590w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/2a3d6/iterm2.png 885w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/ae92f/iterm2.png 1180w,
+/blog/home/static/7ad87b749411892458b193a48597d91f/020d3/iterm2.png 2880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -1010,7 +1018,7 @@ Grid&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;defaultProps &
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/f79b48e59fc466892c17aeef84137813/8e724/tmux.png&quot;
+    href=&quot;/blog/home/static/f79b48e59fc466892c17aeef84137813/020d3/tmux.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1023,14 +1031,15 @@ Grid&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;defaultProps &
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;tmux分屏图片&quot;
         title=&quot;tmux分屏图片&quot;
-        src=&quot;/blog/home/static/f79b48e59fc466892c17aeef84137813/b9e4f/tmux.png&quot;
-        srcset=&quot;/blog/home/static/f79b48e59fc466892c17aeef84137813/cf440/tmux.png 148w,
-/blog/home/static/f79b48e59fc466892c17aeef84137813/d2d38/tmux.png 295w,
-/blog/home/static/f79b48e59fc466892c17aeef84137813/b9e4f/tmux.png 590w,
-/blog/home/static/f79b48e59fc466892c17aeef84137813/f9b6a/tmux.png 885w,
-/blog/home/static/f79b48e59fc466892c17aeef84137813/2d849/tmux.png 1180w,
-/blog/home/static/f79b48e59fc466892c17aeef84137813/8e724/tmux.png 2880w&quot;
+        src=&quot;/blog/home/static/f79b48e59fc466892c17aeef84137813/799d3/tmux.png&quot;
+        srcset=&quot;/blog/home/static/f79b48e59fc466892c17aeef84137813/00d96/tmux.png 148w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/0b23c/tmux.png 295w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/799d3/tmux.png 590w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/2a3d6/tmux.png 885w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/ae92f/tmux.png 1180w,
+/blog/home/static/f79b48e59fc466892c17aeef84137813/020d3/tmux.png 2880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -1060,7 +1069,7 @@ sudo apt-get install tmux&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/6ab21/tmux-name.png&quot;
+    href=&quot;/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/55150/tmux-name.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1073,14 +1082,15 @@ sudo apt-get install tmux&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;tmux名词标注&quot;
         title=&quot;tmux名词标注&quot;
-        src=&quot;/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/b9e4f/tmux-name.png&quot;
-        srcset=&quot;/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/cf440/tmux-name.png 148w,
-/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/d2d38/tmux-name.png 295w,
-/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/b9e4f/tmux-name.png 590w,
-/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/f9b6a/tmux-name.png 885w,
-/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/2d849/tmux-name.png 1180w,
-/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/6ab21/tmux-name.png 2088w&quot;
+        src=&quot;/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/799d3/tmux-name.png&quot;
+        srcset=&quot;/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/00d96/tmux-name.png 148w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/0b23c/tmux-name.png 295w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/799d3/tmux-name.png 590w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/2a3d6/tmux-name.png 885w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/ae92f/tmux-name.png 1180w,
+/blog/home/static/9b791d54fdb8381a150ab4b31189ab69/55150/tmux-name.png 2088w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -1124,7 +1134,7 @@ tmux ls&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/40b60a33f7f25db184a4bff6091e976c/8e724/tmux-showall.png&quot;
+    href=&quot;/blog/home/static/40b60a33f7f25db184a4bff6091e976c/020d3/tmux-showall.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1137,14 +1147,15 @@ tmux ls&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;tmux展示所有session和window的图&quot;
         title=&quot;tmux展示所有session和window的图&quot;
-        src=&quot;/blog/home/static/40b60a33f7f25db184a4bff6091e976c/b9e4f/tmux-showall.png&quot;
-        srcset=&quot;/blog/home/static/40b60a33f7f25db184a4bff6091e976c/cf440/tmux-showall.png 148w,
-/blog/home/static/40b60a33f7f25db184a4bff6091e976c/d2d38/tmux-showall.png 295w,
-/blog/home/static/40b60a33f7f25db184a4bff6091e976c/b9e4f/tmux-showall.png 590w,
-/blog/home/static/40b60a33f7f25db184a4bff6091e976c/f9b6a/tmux-showall.png 885w,
-/blog/home/static/40b60a33f7f25db184a4bff6091e976c/2d849/tmux-showall.png 1180w,
-/blog/home/static/40b60a33f7f25db184a4bff6091e976c/8e724/tmux-showall.png 2880w&quot;
+        src=&quot;/blog/home/static/40b60a33f7f25db184a4bff6091e976c/799d3/tmux-showall.png&quot;
+        srcset=&quot;/blog/home/static/40b60a33f7f25db184a4bff6091e976c/00d96/tmux-showall.png 148w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/0b23c/tmux-showall.png 295w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/799d3/tmux-showall.png 590w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/2a3d6/tmux-showall.png 885w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/ae92f/tmux-showall.png 1180w,
+/blog/home/static/40b60a33f7f25db184a4bff6091e976c/020d3/tmux-showall.png 2880w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -1734,7 +1745,7 @@ qs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&
 &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;返回记忆化的回调。&lt;/p&gt;
 &lt;p&gt;该hooks用于实现类似于&lt;code class=&quot;language-text&quot;&gt;shouldComponentUpdate&lt;/code&gt;的功能。 用于防止不必要的渲染&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;useCallback(fn, deps)&lt;/code&gt;相当于&lt;code class=&quot;language-text&quot;&gt;useMemo(() =&amp;gt; fn, deps)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;useCallback(fnundefined deps)&lt;/code&gt;相当于&lt;code class=&quot;language-text&quot;&gt;useMemo(() =&amp;gt; fnundefined deps)&lt;/code&gt;&lt;/p&gt;
 &lt;h4&gt;useMemo&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; memoizedValue &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;useMemo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;computeExpensiveValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; b&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;返回一个记忆化的值。&lt;/p&gt;
@@ -1807,7 +1818,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5dac6/react-fiber-old.jpg&quot;
+    href=&quot;/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/3196a/react-fiber-old.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1820,14 +1831,15 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react fiber old&quot;
         title=&quot;react fiber old&quot;
-        src=&quot;/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/c739e/react-fiber-old.jpg&quot;
-        srcset=&quot;/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/8ee9c/react-fiber-old.jpg 148w,
-/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/ebbe7/react-fiber-old.jpg 295w,
-/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/c739e/react-fiber-old.jpg 590w,
-/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5413e/react-fiber-old.jpg 885w,
-/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/4efde/react-fiber-old.jpg 1180w,
-/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5dac6/react-fiber-old.jpg 2740w&quot;
+        src=&quot;/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/88218/react-fiber-old.jpg&quot;
+        srcset=&quot;/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/7237a/react-fiber-old.jpg 148w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/0cfdf/react-fiber-old.jpg 295w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/88218/react-fiber-old.jpg 590w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/77d57/react-fiber-old.jpg 885w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/5a917/react-fiber-old.jpg 1180w,
+/blog/home/static/ef9335f056c3af1c5ab49f5dfd3f9df9/3196a/react-fiber-old.jpg 2740w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -1848,7 +1860,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/1fcfb45015a368b120c299765971126e/13438/react-fiber-new.jpg&quot;
+    href=&quot;/blog/home/static/1fcfb45015a368b120c299765971126e/dfb00/react-fiber-new.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1861,14 +1873,15 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react fiber new&quot;
         title=&quot;react fiber new&quot;
-        src=&quot;/blog/home/static/1fcfb45015a368b120c299765971126e/c739e/react-fiber-new.jpg&quot;
-        srcset=&quot;/blog/home/static/1fcfb45015a368b120c299765971126e/8ee9c/react-fiber-new.jpg 148w,
-/blog/home/static/1fcfb45015a368b120c299765971126e/ebbe7/react-fiber-new.jpg 295w,
-/blog/home/static/1fcfb45015a368b120c299765971126e/c739e/react-fiber-new.jpg 590w,
-/blog/home/static/1fcfb45015a368b120c299765971126e/5413e/react-fiber-new.jpg 885w,
-/blog/home/static/1fcfb45015a368b120c299765971126e/4efde/react-fiber-new.jpg 1180w,
-/blog/home/static/1fcfb45015a368b120c299765971126e/13438/react-fiber-new.jpg 1984w&quot;
+        src=&quot;/blog/home/static/1fcfb45015a368b120c299765971126e/88218/react-fiber-new.jpg&quot;
+        srcset=&quot;/blog/home/static/1fcfb45015a368b120c299765971126e/7237a/react-fiber-new.jpg 148w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/0cfdf/react-fiber-new.jpg 295w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/88218/react-fiber-new.jpg 590w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/77d57/react-fiber-new.jpg 885w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/5a917/react-fiber-new.jpg 1180w,
+/blog/home/static/1fcfb45015a368b120c299765971126e/dfb00/react-fiber-new.jpg 1984w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -1883,7 +1896,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/6967e/Fiber-2.png&quot;
+    href=&quot;/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/6dfe4/Fiber-2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1896,14 +1909,15 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Fiber 2&quot;
         title=&quot;Fiber 2&quot;
-        src=&quot;/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/b9e4f/Fiber-2.png&quot;
-        srcset=&quot;/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/cf440/Fiber-2.png 148w,
-/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/d2d38/Fiber-2.png 295w,
-/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/b9e4f/Fiber-2.png 590w,
-/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/f9b6a/Fiber-2.png 885w,
-/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/2d849/Fiber-2.png 1180w,
-/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/6967e/Fiber-2.png 1376w&quot;
+        src=&quot;/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/799d3/Fiber-2.png&quot;
+        srcset=&quot;/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/00d96/Fiber-2.png 148w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/0b23c/Fiber-2.png 295w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/799d3/Fiber-2.png 590w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/2a3d6/Fiber-2.png 885w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/ae92f/Fiber-2.png 1180w,
+/blog/home/static/3394b8b1f1dd69afbf908a6b862d2841/6dfe4/Fiber-2.png 1376w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -1934,7 +1948,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/d40c8/old-lifecycle.png&quot;
+    href=&quot;/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/6864c/old-lifecycle.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -1947,14 +1961,15 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;old lifecycle&quot;
         title=&quot;old lifecycle&quot;
-        src=&quot;/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/b9e4f/old-lifecycle.png&quot;
-        srcset=&quot;/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/cf440/old-lifecycle.png 148w,
-/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/d2d38/old-lifecycle.png 295w,
-/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/b9e4f/old-lifecycle.png 590w,
-/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/f9b6a/old-lifecycle.png 885w,
-/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/2d849/old-lifecycle.png 1180w,
-/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/d40c8/old-lifecycle.png 2000w&quot;
+        src=&quot;/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/799d3/old-lifecycle.png&quot;
+        srcset=&quot;/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/00d96/old-lifecycle.png 148w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/0b23c/old-lifecycle.png 295w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/799d3/old-lifecycle.png 590w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/2a3d6/old-lifecycle.png 885w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/ae92f/old-lifecycle.png 1180w,
+/blog/home/static/cbf63934fa6130a03fba07752e5dc80a/6864c/old-lifecycle.png 2000w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -1988,7 +2003,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/430fe/react16.3-lifecycle.png&quot;
+    href=&quot;/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/43bcc/react16.3-lifecycle.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2001,14 +2016,15 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react16 3 lifecycle&quot;
         title=&quot;react16 3 lifecycle&quot;
-        src=&quot;/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/b9e4f/react16.3-lifecycle.png&quot;
-        srcset=&quot;/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/cf440/react16.3-lifecycle.png 148w,
-/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/d2d38/react16.3-lifecycle.png 295w,
-/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/b9e4f/react16.3-lifecycle.png 590w,
-/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/f9b6a/react16.3-lifecycle.png 885w,
-/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/2d849/react16.3-lifecycle.png 1180w,
-/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/430fe/react16.3-lifecycle.png 2284w&quot;
+        src=&quot;/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/799d3/react16.3-lifecycle.png&quot;
+        srcset=&quot;/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/00d96/react16.3-lifecycle.png 148w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/0b23c/react16.3-lifecycle.png 295w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/799d3/react16.3-lifecycle.png 590w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/2a3d6/react16.3-lifecycle.png 885w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/ae92f/react16.3-lifecycle.png 1180w,
+/blog/home/static/0639b29d9862deedbfb8c37d207f51bd/43bcc/react16.3-lifecycle.png 2284w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -2022,7 +2038,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/e79f6/react16.4-lifecycle.png&quot;
+    href=&quot;/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/a5af3/react16.4-lifecycle.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2035,14 +2051,15 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react16 4 lifecycle&quot;
         title=&quot;react16 4 lifecycle&quot;
-        src=&quot;/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/b9e4f/react16.4-lifecycle.png&quot;
-        srcset=&quot;/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/cf440/react16.4-lifecycle.png 148w,
-/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/d2d38/react16.4-lifecycle.png 295w,
-/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/b9e4f/react16.4-lifecycle.png 590w,
-/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/f9b6a/react16.4-lifecycle.png 885w,
-/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/2d849/react16.4-lifecycle.png 1180w,
-/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/e79f6/react16.4-lifecycle.png 2286w&quot;
+        src=&quot;/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/799d3/react16.4-lifecycle.png&quot;
+        srcset=&quot;/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/00d96/react16.4-lifecycle.png 148w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/0b23c/react16.4-lifecycle.png 295w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/799d3/react16.4-lifecycle.png 590w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/2a3d6/react16.4-lifecycle.png 885w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/ae92f/react16.4-lifecycle.png 1180w,
+/blog/home/static/6b266db01b2ee8d56e570e5e69483fa4/a5af3/react16.4-lifecycle.png 2286w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -2118,7 +2135,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/4b75a/time-siling%26Suspense.jpg&quot;
+    href=&quot;/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/bb74c/time-siling%26Suspense.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2131,14 +2148,15 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;time siling Suspense&quot;
         title=&quot;time siling Suspense&quot;
-        src=&quot;/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/c739e/time-siling%26Suspense.jpg&quot;
-        srcset=&quot;/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/8ee9c/time-siling%26Suspense.jpg 148w,
-/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/ebbe7/time-siling%26Suspense.jpg 295w,
-/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/c739e/time-siling%26Suspense.jpg 590w,
-/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/5413e/time-siling%26Suspense.jpg 885w,
-/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/4efde/time-siling%26Suspense.jpg 1180w,
-/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/4b75a/time-siling%26Suspense.jpg 2396w&quot;
+        src=&quot;/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/88218/time-siling%26Suspense.jpg&quot;
+        srcset=&quot;/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/7237a/time-siling%26Suspense.jpg 148w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/0cfdf/time-siling%26Suspense.jpg 295w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/88218/time-siling%26Suspense.jpg 590w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/77d57/time-siling%26Suspense.jpg 885w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/5a917/time-siling%26Suspense.jpg 1180w,
+/blog/home/static/b30d4f0bf7bbe9e2f7dc551f9aa93927/bb74c/time-siling%26Suspense.jpg 2396w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -2152,7 +2170,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/6f424/time-slicing.jpg&quot;
+    href=&quot;/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/0afc6/time-slicing.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2165,14 +2183,15 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;time slicing&quot;
         title=&quot;time slicing&quot;
-        src=&quot;/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/c739e/time-slicing.jpg&quot;
-        srcset=&quot;/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/8ee9c/time-slicing.jpg 148w,
-/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/ebbe7/time-slicing.jpg 295w,
-/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/c739e/time-slicing.jpg 590w,
-/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/5413e/time-slicing.jpg 885w,
-/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/4efde/time-slicing.jpg 1180w,
-/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/6f424/time-slicing.jpg 2320w&quot;
+        src=&quot;/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/88218/time-slicing.jpg&quot;
+        srcset=&quot;/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/7237a/time-slicing.jpg 148w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/0cfdf/time-slicing.jpg 295w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/88218/time-slicing.jpg 590w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/77d57/time-slicing.jpg 885w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/5a917/time-slicing.jpg 1180w,
+/blog/home/static/0d48751c4f5a0fa99cb5c1a6d6509b5e/0afc6/time-slicing.jpg 2320w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -2190,7 +2209,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/54bcf733f10b5424f81ea02787485d7f/8814d/Suspense.png&quot;
+    href=&quot;/blog/home/static/54bcf733f10b5424f81ea02787485d7f/33f29/Suspense.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2203,11 +2222,12 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Suspense&quot;
         title=&quot;Suspense&quot;
-        src=&quot;/blog/home/static/54bcf733f10b5424f81ea02787485d7f/8814d/Suspense.png&quot;
-        srcset=&quot;/blog/home/static/54bcf733f10b5424f81ea02787485d7f/cf440/Suspense.png 148w,
-/blog/home/static/54bcf733f10b5424f81ea02787485d7f/d2d38/Suspense.png 295w,
-/blog/home/static/54bcf733f10b5424f81ea02787485d7f/8814d/Suspense.png 565w&quot;
+        src=&quot;/blog/home/static/54bcf733f10b5424f81ea02787485d7f/33f29/Suspense.png&quot;
+        srcset=&quot;/blog/home/static/54bcf733f10b5424f81ea02787485d7f/00d96/Suspense.png 148w,
+/blog/home/static/54bcf733f10b5424f81ea02787485d7f/0b23c/Suspense.png 295w,
+/blog/home/static/54bcf733f10b5424f81ea02787485d7f/33f29/Suspense.png 565w&quot;
         sizes=&quot;(max-width: 565px) 100vw, 565px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -2388,7 +2408,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/6c315/2019newyear.jpg&quot;
+    href=&quot;/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/e7068/2019newyear.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2401,14 +2421,15 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;2019newyear&quot;
         title=&quot;2019newyear&quot;
-        src=&quot;/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/c739e/2019newyear.jpg&quot;
-        srcset=&quot;/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/8ee9c/2019newyear.jpg 148w,
-/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/ebbe7/2019newyear.jpg 295w,
-/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/c739e/2019newyear.jpg 590w,
-/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/5413e/2019newyear.jpg 885w,
-/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/4efde/2019newyear.jpg 1180w,
-/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/6c315/2019newyear.jpg 1280w&quot;
+        src=&quot;/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/88218/2019newyear.jpg&quot;
+        srcset=&quot;/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/7237a/2019newyear.jpg 148w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/0cfdf/2019newyear.jpg 295w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/88218/2019newyear.jpg 590w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/77d57/2019newyear.jpg 885w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/5a917/2019newyear.jpg 1180w,
+/blog/home/static/4d97a13bb8db302af58ff084ef59f3f3/e7068/2019newyear.jpg 1280w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -2617,7 +2638,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/3541eb188f04f12b0db10b0277a96fec/82472/redux-flow.jpg&quot;
+    href=&quot;/blog/home/static/3541eb188f04f12b0db10b0277a96fec/73963/redux-flow.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2630,12 +2651,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Redux数据流&quot;
         title=&quot;Redux数据流&quot;
-        src=&quot;/blog/home/static/3541eb188f04f12b0db10b0277a96fec/c739e/redux-flow.jpg&quot;
-        srcset=&quot;/blog/home/static/3541eb188f04f12b0db10b0277a96fec/8ee9c/redux-flow.jpg 148w,
-/blog/home/static/3541eb188f04f12b0db10b0277a96fec/ebbe7/redux-flow.jpg 295w,
-/blog/home/static/3541eb188f04f12b0db10b0277a96fec/c739e/redux-flow.jpg 590w,
-/blog/home/static/3541eb188f04f12b0db10b0277a96fec/82472/redux-flow.jpg 600w&quot;
+        src=&quot;/blog/home/static/3541eb188f04f12b0db10b0277a96fec/88218/redux-flow.jpg&quot;
+        srcset=&quot;/blog/home/static/3541eb188f04f12b0db10b0277a96fec/7237a/redux-flow.jpg 148w,
+/blog/home/static/3541eb188f04f12b0db10b0277a96fec/0cfdf/redux-flow.jpg 295w,
+/blog/home/static/3541eb188f04f12b0db10b0277a96fec/88218/redux-flow.jpg 590w,
+/blog/home/static/3541eb188f04f12b0db10b0277a96fec/73963/redux-flow.jpg 600w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -2668,7 +2690,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/94e4f2e622f913ca13df75ed383421a9/4dacb/redux-middleware-enhancer.png&quot;
+    href=&quot;/blog/home/static/94e4f2e622f913ca13df75ed383421a9/125af/redux-middleware-enhancer.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -2681,12 +2703,13 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Redux中间件增强器示意图&quot;
         title=&quot;Redux中间件增强器示意图&quot;
-        src=&quot;/blog/home/static/94e4f2e622f913ca13df75ed383421a9/b9e4f/redux-middleware-enhancer.png&quot;
-        srcset=&quot;/blog/home/static/94e4f2e622f913ca13df75ed383421a9/cf440/redux-middleware-enhancer.png 148w,
-/blog/home/static/94e4f2e622f913ca13df75ed383421a9/d2d38/redux-middleware-enhancer.png 295w,
-/blog/home/static/94e4f2e622f913ca13df75ed383421a9/b9e4f/redux-middleware-enhancer.png 590w,
-/blog/home/static/94e4f2e622f913ca13df75ed383421a9/4dacb/redux-middleware-enhancer.png 782w&quot;
+        src=&quot;/blog/home/static/94e4f2e622f913ca13df75ed383421a9/799d3/redux-middleware-enhancer.png&quot;
+        srcset=&quot;/blog/home/static/94e4f2e622f913ca13df75ed383421a9/00d96/redux-middleware-enhancer.png 148w,
+/blog/home/static/94e4f2e622f913ca13df75ed383421a9/0b23c/redux-middleware-enhancer.png 295w,
+/blog/home/static/94e4f2e622f913ca13df75ed383421a9/799d3/redux-middleware-enhancer.png 590w,
+/blog/home/static/94e4f2e622f913ca13df75ed383421a9/125af/redux-middleware-enhancer.png 782w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -2710,7 +2733,7 @@ FancyInput &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span 
 &lt;p&gt;有时候我们需要多个 middleware 组合在一起形成 middleware 链来增强&lt;code class=&quot;language-text&quot;&gt;store.dispatch&lt;/code&gt;，在创建 store 时候，我们需要将 middleware 链整合到 store 中，官方提供&lt;code class=&quot;language-text&quot;&gt;applyMiddleware(...middleware)&lt;/code&gt;将 middleware 链在一起。&lt;/p&gt;
 &lt;h4&gt;整合 store enhancer&lt;/h4&gt;
 &lt;p&gt;store enhancer 用于增强 store，如果我们有多个 store enhancer 时需要将多个 store enhancer 整合，这时候就会用到&lt;code class=&quot;language-text&quot;&gt;compose(...functions)&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;使用&lt;code class=&quot;language-text&quot;&gt;compose&lt;/code&gt;合并多个函数，每个函数都接受一个参数，它的返回值将作为一个参数提供给它左边的函数以此类推，最右边的函数可以接受多个参数。&lt;code class=&quot;language-text&quot;&gt;compose(funA,funB,funC)&lt;/code&gt;可以理解为&lt;code class=&quot;language-text&quot;&gt;compose(funA(funB(funC())))&lt;/code&gt;，最终返回从右到左姐收到的函数合并后的最终函数。&lt;/p&gt;
+&lt;p&gt;使用&lt;code class=&quot;language-text&quot;&gt;compose&lt;/code&gt;合并多个函数，每个函数都接受一个参数，它的返回值将作为一个参数提供给它左边的函数以此类推，最右边的函数可以接受多个参数。&lt;code class=&quot;language-text&quot;&gt;compose(funAundefinedfunBundefinedfunC)&lt;/code&gt;可以理解为&lt;code class=&quot;language-text&quot;&gt;compose(funA(funB(funC())))&lt;/code&gt;，最终返回从右到左姐收到的函数合并后的最终函数。&lt;/p&gt;
 &lt;h4&gt;创建 Store&lt;/h4&gt;
 &lt;p&gt;redux 通过&lt;code class=&quot;language-text&quot;&gt;createStore&lt;/code&gt;创建一个 Redux store 来以存放应用中所有的 &lt;code class=&quot;language-text&quot;&gt;state&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;createStore&lt;/code&gt;的参数形式如下：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;createStore&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;reducer&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;preloadedState&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; enhancer&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -3035,7 +3058,7 @@ ReactDOM&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;fetchPosts&lt;/code&gt;返回了一个函数，而普通的 Action Creator 默认返回一个对象。&lt;/li&gt;
 &lt;li&gt;返回的函数的参数是&lt;code class=&quot;language-text&quot;&gt;dispatch&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;getState&lt;/code&gt;这两个 Redux 方法，普通的 Action Creator 的参数是 Action 的内容。&lt;/li&gt;
 &lt;li&gt;在返回的函数之中，先发出一个 &lt;code class=&quot;language-text&quot;&gt;store.dispatch({type: SET_DEMO_DATA.PENDING})&lt;/code&gt;，表示异步操作开始。&lt;/li&gt;
-&lt;li&gt;异步操作结束之后，再发出一个 &lt;code class=&quot;language-text&quot;&gt;store.dispatch({ type: SET_DEMO_DATA.SUCCESS, payload: response })&lt;/code&gt;，表示操作结束。&lt;/li&gt;
+&lt;li&gt;异步操作结束之后，再发出一个 &lt;code class=&quot;language-text&quot;&gt;store.dispatch({ type: SET_DEMO_DATA.SUCCESSundefined payload: response })&lt;/code&gt;，表示操作结束。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;但是有一个问题，&lt;code class=&quot;language-text&quot;&gt;store.dispatch&lt;/code&gt;正常情况下，只能发送对象，而我们要发送函数，为了让&lt;code class=&quot;language-text&quot;&gt;store.dispatch&lt;/code&gt;可以发送函数，我们使用中间件——redux-thunk。&lt;/p&gt;
 &lt;p&gt;引入 redux-thunk 很简单，只需要在创建 store 的时候使用&lt;code class=&quot;language-text&quot;&gt;applyMiddleware(thunk)&lt;/code&gt;引入即可。&lt;/p&gt;
@@ -3330,7 +3353,7 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
 &lt;p&gt;ES2016添加了两个小的特性来说明标准化过程：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;数组&lt;code class=&quot;language-text&quot;&gt;includes()&lt;/code&gt;方法，用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回&lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;，否则返回&lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;a ** b&lt;/code&gt;指数运算符，它与 &lt;code class=&quot;language-text&quot;&gt;Math.pow(a, b)&lt;/code&gt;相同。&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;a ** b&lt;/code&gt;指数运算符，它与 &lt;code class=&quot;language-text&quot;&gt;Math.pow(aundefined b)&lt;/code&gt;相同。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;ES2017&lt;/h2&gt;
 &lt;p&gt;ES2017提供了更多的新特性：&lt;/p&gt;
@@ -3810,7 +3833,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/626f2d306f09f8cc1dd26da477561263/afa7a/ultra1.jpg&quot;
+    href=&quot;/blog/home/static/626f2d306f09f8cc1dd26da477561263/6557e/ultra1.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3823,11 +3846,12 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Ultra China海报&quot;
         title=&quot;Ultra China海报&quot;
-        src=&quot;/blog/home/static/626f2d306f09f8cc1dd26da477561263/afa7a/ultra1.jpg&quot;
-        srcset=&quot;/blog/home/static/626f2d306f09f8cc1dd26da477561263/8ee9c/ultra1.jpg 148w,
-/blog/home/static/626f2d306f09f8cc1dd26da477561263/ebbe7/ultra1.jpg 295w,
-/blog/home/static/626f2d306f09f8cc1dd26da477561263/afa7a/ultra1.jpg 359w&quot;
+        src=&quot;/blog/home/static/626f2d306f09f8cc1dd26da477561263/6557e/ultra1.jpg&quot;
+        srcset=&quot;/blog/home/static/626f2d306f09f8cc1dd26da477561263/7237a/ultra1.jpg 148w,
+/blog/home/static/626f2d306f09f8cc1dd26da477561263/0cfdf/ultra1.jpg 295w,
+/blog/home/static/626f2d306f09f8cc1dd26da477561263/6557e/ultra1.jpg 359w&quot;
         sizes=&quot;(max-width: 359px) 100vw, 359px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -3839,7 +3863,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/d1d34/raver.jpg&quot;
+    href=&quot;/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/1a160/raver.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3852,14 +3876,15 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;全国的raver赶往上海&quot;
         title=&quot;全国的raver赶往上海&quot;
-        src=&quot;/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/c739e/raver.jpg&quot;
-        srcset=&quot;/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/8ee9c/raver.jpg 148w,
-/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/ebbe7/raver.jpg 295w,
-/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/c739e/raver.jpg 590w,
-/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/5413e/raver.jpg 885w,
-/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/4efde/raver.jpg 1180w,
-/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/d1d34/raver.jpg 1476w&quot;
+        src=&quot;/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/88218/raver.jpg&quot;
+        srcset=&quot;/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/7237a/raver.jpg 148w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/0cfdf/raver.jpg 295w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/88218/raver.jpg 590w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/77d57/raver.jpg 885w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/5a917/raver.jpg 1180w,
+/blog/home/static/562a5eac3aad58ca1d7164e465941bfd/1a160/raver.jpg 1476w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -3872,7 +3897,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/28aae89460583d1904f363be58bdf760/fb329/ultra2.jpg&quot;
+    href=&quot;/blog/home/static/28aae89460583d1904f363be58bdf760/b89a9/ultra2.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3885,14 +3910,15 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra1&quot;
         title=&quot;ultra1&quot;
-        src=&quot;/blog/home/static/28aae89460583d1904f363be58bdf760/c739e/ultra2.jpg&quot;
-        srcset=&quot;/blog/home/static/28aae89460583d1904f363be58bdf760/8ee9c/ultra2.jpg 148w,
-/blog/home/static/28aae89460583d1904f363be58bdf760/ebbe7/ultra2.jpg 295w,
-/blog/home/static/28aae89460583d1904f363be58bdf760/c739e/ultra2.jpg 590w,
-/blog/home/static/28aae89460583d1904f363be58bdf760/5413e/ultra2.jpg 885w,
-/blog/home/static/28aae89460583d1904f363be58bdf760/4efde/ultra2.jpg 1180w,
-/blog/home/static/28aae89460583d1904f363be58bdf760/fb329/ultra2.jpg 1920w&quot;
+        src=&quot;/blog/home/static/28aae89460583d1904f363be58bdf760/88218/ultra2.jpg&quot;
+        srcset=&quot;/blog/home/static/28aae89460583d1904f363be58bdf760/7237a/ultra2.jpg 148w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/0cfdf/ultra2.jpg 295w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/88218/ultra2.jpg 590w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/77d57/ultra2.jpg 885w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/5a917/ultra2.jpg 1180w,
+/blog/home/static/28aae89460583d1904f363be58bdf760/b89a9/ultra2.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -3903,7 +3929,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/fb329/ultra3.jpg&quot;
+    href=&quot;/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/b89a9/ultra3.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3916,14 +3942,15 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra2&quot;
         title=&quot;ultra2&quot;
-        src=&quot;/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/c739e/ultra3.jpg&quot;
-        srcset=&quot;/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/8ee9c/ultra3.jpg 148w,
-/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/ebbe7/ultra3.jpg 295w,
-/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/c739e/ultra3.jpg 590w,
-/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/5413e/ultra3.jpg 885w,
-/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/4efde/ultra3.jpg 1180w,
-/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/fb329/ultra3.jpg 1920w&quot;
+        src=&quot;/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/88218/ultra3.jpg&quot;
+        srcset=&quot;/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/7237a/ultra3.jpg 148w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/0cfdf/ultra3.jpg 295w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/88218/ultra3.jpg 590w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/77d57/ultra3.jpg 885w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/5a917/ultra3.jpg 1180w,
+/blog/home/static/d6d98e20500c8eb6e6639757b5f0f2dd/b89a9/ultra3.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -3934,7 +3961,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/fb329/ultra4.jpg&quot;
+    href=&quot;/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/b89a9/ultra4.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3947,14 +3974,15 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra3&quot;
         title=&quot;ultra3&quot;
-        src=&quot;/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/c739e/ultra4.jpg&quot;
-        srcset=&quot;/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/8ee9c/ultra4.jpg 148w,
-/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/ebbe7/ultra4.jpg 295w,
-/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/c739e/ultra4.jpg 590w,
-/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/5413e/ultra4.jpg 885w,
-/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/4efde/ultra4.jpg 1180w,
-/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/fb329/ultra4.jpg 1920w&quot;
+        src=&quot;/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/88218/ultra4.jpg&quot;
+        srcset=&quot;/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/7237a/ultra4.jpg 148w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/0cfdf/ultra4.jpg 295w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/88218/ultra4.jpg 590w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/77d57/ultra4.jpg 885w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/5a917/ultra4.jpg 1180w,
+/blog/home/static/ae2320c0bd7b39782d7d4021aab682ae/b89a9/ultra4.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -3965,7 +3993,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/72866faf0061ec69bccec0f9da274a12/fb329/ultra5.jpg&quot;
+    href=&quot;/blog/home/static/72866faf0061ec69bccec0f9da274a12/b89a9/ultra5.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -3978,14 +4006,15 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra4&quot;
         title=&quot;ultra4&quot;
-        src=&quot;/blog/home/static/72866faf0061ec69bccec0f9da274a12/c739e/ultra5.jpg&quot;
-        srcset=&quot;/blog/home/static/72866faf0061ec69bccec0f9da274a12/8ee9c/ultra5.jpg 148w,
-/blog/home/static/72866faf0061ec69bccec0f9da274a12/ebbe7/ultra5.jpg 295w,
-/blog/home/static/72866faf0061ec69bccec0f9da274a12/c739e/ultra5.jpg 590w,
-/blog/home/static/72866faf0061ec69bccec0f9da274a12/5413e/ultra5.jpg 885w,
-/blog/home/static/72866faf0061ec69bccec0f9da274a12/4efde/ultra5.jpg 1180w,
-/blog/home/static/72866faf0061ec69bccec0f9da274a12/fb329/ultra5.jpg 1920w&quot;
+        src=&quot;/blog/home/static/72866faf0061ec69bccec0f9da274a12/88218/ultra5.jpg&quot;
+        srcset=&quot;/blog/home/static/72866faf0061ec69bccec0f9da274a12/7237a/ultra5.jpg 148w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/0cfdf/ultra5.jpg 295w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/88218/ultra5.jpg 590w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/77d57/ultra5.jpg 885w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/5a917/ultra5.jpg 1180w,
+/blog/home/static/72866faf0061ec69bccec0f9da274a12/b89a9/ultra5.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -3996,7 +4025,7 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/fb329/ultra6.jpg&quot;
+    href=&quot;/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/b89a9/ultra6.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -4009,14 +4038,15 @@ buttonElement&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;outer
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;ultra5&quot;
         title=&quot;ultra5&quot;
-        src=&quot;/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/c739e/ultra6.jpg&quot;
-        srcset=&quot;/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/8ee9c/ultra6.jpg 148w,
-/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/ebbe7/ultra6.jpg 295w,
-/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/c739e/ultra6.jpg 590w,
-/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/5413e/ultra6.jpg 885w,
-/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/4efde/ultra6.jpg 1180w,
-/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/fb329/ultra6.jpg 1920w&quot;
+        src=&quot;/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/88218/ultra6.jpg&quot;
+        srcset=&quot;/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/7237a/ultra6.jpg 148w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/0cfdf/ultra6.jpg 295w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/88218/ultra6.jpg 590w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/77d57/ultra6.jpg 885w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/5a917/ultra6.jpg 1180w,
+/blog/home/static/1965ce9a19a1fdfd1a91f09328183578/b89a9/ultra6.jpg 1920w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -4103,7 +4133,7 @@ window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/57ea0/webview_debug.jpg&quot;
+    href=&quot;/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/b02a4/webview_debug.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -4116,14 +4146,15 @@ window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;webview_debug&quot;
         title=&quot;webview_debug&quot;
-        src=&quot;/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/c739e/webview_debug.jpg&quot;
-        srcset=&quot;/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/8ee9c/webview_debug.jpg 148w,
-/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/ebbe7/webview_debug.jpg 295w,
-/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/c739e/webview_debug.jpg 590w,
-/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/5413e/webview_debug.jpg 885w,
-/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/4efde/webview_debug.jpg 1180w,
-/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/57ea0/webview_debug.jpg 1243w&quot;
+        src=&quot;/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/88218/webview_debug.jpg&quot;
+        srcset=&quot;/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/7237a/webview_debug.jpg 148w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/0cfdf/webview_debug.jpg 295w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/88218/webview_debug.jpg 590w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/77d57/webview_debug.jpg 885w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/5a917/webview_debug.jpg 1180w,
+/blog/home/static/04485499f7a5acf74b2b510cecacbfaa/b02a4/webview_debug.jpg 1243w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -4135,7 +4166,7 @@ window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/4564e539e951e9430a2989dd65e4c007/32860/debug.jpg&quot;
+    href=&quot;/blog/home/static/4564e539e951e9430a2989dd65e4c007/dbd2f/debug.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -4148,14 +4179,15 @@ window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;debug&quot;
         title=&quot;debug&quot;
-        src=&quot;/blog/home/static/4564e539e951e9430a2989dd65e4c007/c739e/debug.jpg&quot;
-        srcset=&quot;/blog/home/static/4564e539e951e9430a2989dd65e4c007/8ee9c/debug.jpg 148w,
-/blog/home/static/4564e539e951e9430a2989dd65e4c007/ebbe7/debug.jpg 295w,
-/blog/home/static/4564e539e951e9430a2989dd65e4c007/c739e/debug.jpg 590w,
-/blog/home/static/4564e539e951e9430a2989dd65e4c007/5413e/debug.jpg 885w,
-/blog/home/static/4564e539e951e9430a2989dd65e4c007/4efde/debug.jpg 1180w,
-/blog/home/static/4564e539e951e9430a2989dd65e4c007/32860/debug.jpg 2011w&quot;
+        src=&quot;/blog/home/static/4564e539e951e9430a2989dd65e4c007/88218/debug.jpg&quot;
+        srcset=&quot;/blog/home/static/4564e539e951e9430a2989dd65e4c007/7237a/debug.jpg 148w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/0cfdf/debug.jpg 295w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/88218/debug.jpg 590w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/77d57/debug.jpg 885w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/5a917/debug.jpg 1180w,
+/blog/home/static/4564e539e951e9430a2989dd65e4c007/dbd2f/debug.jpg 2011w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -4413,12 +4445,12 @@ window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
 &lt;/ul&gt;
 &lt;h3&gt;body&lt;/h3&gt;
 &lt;p&gt;body 部分是对本次 commit 的描述，可以分成多行，例如：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;More detailed explanatory text, if necessary.  Wrap it to 
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;More detailed explanatory textundefined if necessary.  Wrap it to 
 about 72 characters or so. 
 
 Further paragraphs come after blank lines.
 
-- Bullet points are okay, too
+- Bullet points are okayundefined too
 - Use a hanging indent&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;有两个注意点:&lt;/p&gt;
 &lt;ol&gt;
@@ -4436,13 +4468,13 @@ Further paragraphs come after blank lines.
     Before:
 
     scope: {
-      myAttr: &amp;#39;attribute&amp;#39;,
+      myAttr: &amp;#39;attribute&amp;#39;undefined
     }
 
     After:
 
     scope: {
-      myAttr: &amp;#39;@&amp;#39;,
+      myAttr: &amp;#39;@&amp;#39;undefined
     }
 
     The removed `inject` wasn&amp;#39;t generaly useful for directives so there should be no code using it.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -4451,7 +4483,7 @@ Further paragraphs come after blank lines.
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;//关闭一个
 Closes #1
 //关闭多个
-Closes #2, #3, #4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+Closes #2undefined #3undefined #4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;revert&lt;/h3&gt;
 &lt;p&gt;还有一种特殊情况，如果当前 commit 用于撤销以前的 commit，必须以revert:开头，后面跟着被撤销 commit 的 header&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;revert: refactor(compiler): introduce `TestBed.deprecatedOverrideProvider` (#19558)
@@ -4462,7 +4494,7 @@ This reverts commit 667ecc1654a317a13331b17617d973392f415f02.&lt;/code&gt;&lt;/p
 &lt;h3&gt;Example&lt;/h3&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;refactor(compiler): introduce `TestBed.deprecatedOverrideProvider` (#19558)
 
-This allows use to fix `TestBed.overrideProvider` to keep imported `NgModule`s eager,
+This allows use to fix `TestBed.overrideProvider` to keep imported `NgModule`s eagerundefined
 while allowing our users to still keep the old semantics until they have fixed their
 tests.
 
@@ -4511,7 +4543,7 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w&lt;/code&gt;&lt;/pre&gt;&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/bff7b/react_redux.jpg&quot;
+    href=&quot;/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/a820d/react_redux.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -4524,13 +4556,14 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w&lt;/code&gt;&lt;/pre&gt;&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;react_redux&quot;
         title=&quot;react_redux&quot;
-        src=&quot;/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/c739e/react_redux.jpg&quot;
-        srcset=&quot;/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/8ee9c/react_redux.jpg 148w,
-/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/ebbe7/react_redux.jpg 295w,
-/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/c739e/react_redux.jpg 590w,
-/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/5413e/react_redux.jpg 885w,
-/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/bff7b/react_redux.jpg 1167w&quot;
+        src=&quot;/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/88218/react_redux.jpg&quot;
+        srcset=&quot;/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/7237a/react_redux.jpg 148w,
+/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/0cfdf/react_redux.jpg 295w,
+/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/88218/react_redux.jpg 590w,
+/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/77d57/react_redux.jpg 885w,
+/blog/home/static/068c07109355a7f473dd786a2ebb8ed7/a820d/react_redux.jpg 1167w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -4643,13 +4676,13 @@ Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
 &lt;h2&gt;ListView&lt;/h2&gt;
 &lt;p&gt;对于&lt;code class=&quot;language-text&quot;&gt;ListView&lt;/code&gt;最重要的两个属性，一个是数据源（dataSource），再一个就是列表项渲染（renderRow）。&lt;code class=&quot;language-text&quot;&gt;ListView&lt;/code&gt;可以根据不同的数据结构对应的生成普通长列表和分组长列表。&lt;/p&gt;
 &lt;h3&gt;普通长列表&lt;/h3&gt;
-&lt;p&gt;普通长列表使用&lt;code class=&quot;language-text&quot;&gt;cloneWithRows(dataBlob, rowIdentities)&lt;/code&gt;创建datasource，在项目中&lt;code class=&quot;language-text&quot;&gt;dataBlob&lt;/code&gt;的数据结构如下：&lt;/p&gt;
+&lt;p&gt;普通长列表使用&lt;code class=&quot;language-text&quot;&gt;cloneWithRows(dataBlobundefined rowIdentities)&lt;/code&gt;创建datasource，在项目中&lt;code class=&quot;language-text&quot;&gt;dataBlob&lt;/code&gt;的数据结构如下：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
     &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Mark&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
     &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;在使用&lt;code class=&quot;language-text&quot;&gt;renderRow(rowData, sectionID, rowID, highlightRow)&lt;/code&gt;渲染列表项的时候，&lt;code class=&quot;language-text&quot;&gt;rowData&lt;/code&gt;就是数组中每一个对象。&lt;/p&gt;
+&lt;p&gt;在使用&lt;code class=&quot;language-text&quot;&gt;renderRow(rowDataundefined sectionIDundefined rowIDundefined highlightRow)&lt;/code&gt;渲染列表项的时候，&lt;code class=&quot;language-text&quot;&gt;rowData&lt;/code&gt;就是数组中每一个对象。&lt;/p&gt;
 &lt;h3&gt;分组长列表&lt;/h3&gt;
 &lt;p&gt;在项目中，遇到分组长列表，由于RN版本为0.44，所以有&lt;code class=&quot;language-text&quot;&gt;ListView&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;SectionList&lt;/code&gt;两种选择方案，最终我选择了&lt;code class=&quot;language-text&quot;&gt;SectionList&lt;/code&gt;，因为我发现&lt;code class=&quot;language-text&quot;&gt;ListView&lt;/code&gt;的&lt;code class=&quot;language-text&quot;&gt;section&lt;/code&gt;只能是一个简单的字符串，不能是一个对象（这里说实话我也不知道对不对，若不对，请指正并说明如何使用&lt;code class=&quot;language-text&quot;&gt;ListView&lt;/code&gt;实现&lt;code class=&quot;language-text&quot;&gt;section&lt;/code&gt;是一个对象）。&lt;/p&gt;
 &lt;p&gt;这里我要吐槽一下RN的文档，真的是有些地方写的太简单，比如在&lt;code class=&quot;language-text&quot;&gt;ListView&lt;/code&gt;这里写到使用&lt;code class=&quot;language-text&quot;&gt;cloneWithRowsAndSections&lt;/code&gt;的使用，只是简单的说跟&lt;code class=&quot;language-text&quot;&gt;cloneWithRows&lt;/code&gt;差不多，而接受的数据结构也就简单的说明有三种：&lt;/p&gt;
@@ -4677,7 +4710,7 @@ Object&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
     &lt;span class=&quot;token string&quot;&gt;&apos;id3&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;row5&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;row6&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;cloneWithRowsAndSections&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dataSource&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;dataSoure1生成的sectionHeader是数组的下标，而第二个第三个分别是对应的&lt;code class=&quot;language-text&quot;&gt;key&lt;/code&gt;，在项目中我的sectionHeader是一个对象，类似于&lt;code class=&quot;language-text&quot;&gt;{headerName:&amp;#39;&amp;#39;,headerContent:&amp;#39;&amp;#39;}&lt;/code&gt;，所以无法使用。&lt;/p&gt;
+&lt;p&gt;dataSoure1生成的sectionHeader是数组的下标，而第二个第三个分别是对应的&lt;code class=&quot;language-text&quot;&gt;key&lt;/code&gt;，在项目中我的sectionHeader是一个对象，类似于&lt;code class=&quot;language-text&quot;&gt;{headerName:&amp;#39;&amp;#39;undefinedheaderContent:&amp;#39;&amp;#39;}&lt;/code&gt;，所以无法使用。&lt;/p&gt;
 &lt;h2&gt;SectionList分组长列表&lt;/h2&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;SectionList&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;FlatList&lt;/code&gt;一样是新增的高性能长列表，在文档中关于&lt;code class=&quot;language-text&quot;&gt;SectionList&lt;/code&gt;接受的数据结构描述如下：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;SectionList
@@ -4897,8 +4930,8 @@ map&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=
 &lt;h2&gt;初始化页面&lt;/h2&gt;
 &lt;p&gt;根据不同的总页数以及分页块最多有多少个，初始化为两种。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;总页数少于分页块最多数时候，此时分页很简单，就是&lt;code class=&quot;language-text&quot;&gt;1,2,3,4,5,6&lt;/code&gt;这类的，此时只需要根据点击的分页块显示出对应的数据即可。&lt;/li&gt;
-&lt;li&gt;总页数多于分页快儿最多数的时候，此时候分页形式为&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1,2,3,4,5,6,7...11 &amp;gt;&lt;/code&gt;，此时还需要根据不同的当前页数，变换分页的形式。&lt;/li&gt;
+&lt;li&gt;总页数少于分页块最多数时候，此时分页很简单，就是&lt;code class=&quot;language-text&quot;&gt;1undefined2undefined3undefined4undefined5undefined6&lt;/code&gt;这类的，此时只需要根据点击的分页块显示出对应的数据即可。&lt;/li&gt;
+&lt;li&gt;总页数多于分页快儿最多数的时候，此时候分页形式为&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1undefined2undefined3undefined4undefined5undefined6undefined7...11 &amp;gt;&lt;/code&gt;，此时还需要根据不同的当前页数，变换分页的形式。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;所以初始化页面的代码如下：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;initDraw&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
@@ -4918,12 +4951,12 @@ map&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;根据当前页生成不同的html&lt;/h2&gt;
-&lt;p&gt;这里的&lt;code class=&quot;language-text&quot;&gt;draw()&lt;/code&gt;用于根据不同的当前页生成&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1,2,3,4,5,6,7...11 &amp;gt;，&amp;lt; 1...5,6,7,8,9,10,11 &amp;gt;，&amp;lt; 1...4,5,6,7,8...11 &amp;gt;&lt;/code&gt;这三种形式的分页。&lt;/p&gt;
+&lt;p&gt;这里的&lt;code class=&quot;language-text&quot;&gt;draw()&lt;/code&gt;用于根据不同的当前页生成&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1undefined2undefined3undefined4undefined5undefined6undefined7...11 &amp;gt;，&amp;lt; 1...5undefined6undefined7undefined8undefined9undefined10undefined11 &amp;gt;，&amp;lt; 1...4undefined5undefined6undefined7undefined8...11 &amp;gt;&lt;/code&gt;这三种形式的分页。&lt;/p&gt;
 &lt;p&gt;这里需要判断三种分页展示形式的变换临界点(项目中当前页前后分别有前后两页)&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;如果当前页往前三页的分页与第一页的距离为1，则展示为&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1,2,3,4,5,6,7...11 &amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;如果当前页往后三页的分页与最后一页的距离位1，则展示为&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1...5,6,7,8,9,10,11 &amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;除以上两种情况外的情况展示为&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1...4,5,6,7,8...11 &amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;如果当前页往前三页的分页与第一页的距离为1，则展示为&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1undefined2undefined3undefined4undefined5undefined6undefined7...11 &amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;如果当前页往后三页的分页与最后一页的距离位1，则展示为&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1...5undefined6undefined7undefined8undefined9undefined10undefined11 &amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;除以上两种情况外的情况展示为&lt;code class=&quot;language-text&quot;&gt;&amp;lt; 1...4undefined5undefined6undefined7undefined8...11 &amp;gt;&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;pagenaviBox&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;dataPage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token function&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;&amp;lt;a&gt;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;addClass&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;prev disabled&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;attr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;href&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;javascript:;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;html&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;&amp;lt;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;appendTo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;pagenaviBox&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -5199,7 +5232,7 @@ highlight = &lt;span class=&quot;token function&quot;&gt;hexo-config&lt;/span&gt
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;css&lt;/code&gt;：载入css文件&lt;/li&gt;
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;js&lt;/code&gt;：载入js文件&lt;/li&gt;
 &lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;data_xml&lt;/code&gt;：插入 XML 格式的日期&lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;paginator&lt;/code&gt;：生成分页，其中可以插入配置，partial一样，例如改变上一页下一页的文字，可以配置&lt;code class=&quot;language-text&quot;&gt;{ prev_text: &amp;#39;« 上一页&amp;#39;, next_text: &amp;#39;下一页 »&amp;#39;}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;paginator&lt;/code&gt;：生成分页，其中可以插入配置，partial一样，例如改变上一页下一页的文字，可以配置&lt;code class=&quot;language-text&quot;&gt;{ prev_text: &amp;#39;« 上一页&amp;#39;undefined next_text: &amp;#39;下一页 »&amp;#39;}&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;关于&lt;code class=&quot;language-text&quot;&gt;partical&lt;/code&gt;需要注意几点&lt;/p&gt;
 &lt;ol&gt;
@@ -5247,7 +5280,7 @@ highlight = &lt;span class=&quot;token function&quot;&gt;hexo-config&lt;/span&gt
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/e9f7e4e06b028182decd25aff96f7393/9e7e8/webpack.jpg&quot;
+    href=&quot;/blog/home/static/e9f7e4e06b028182decd25aff96f7393/79d42/webpack.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -5260,14 +5293,15 @@ highlight = &lt;span class=&quot;token function&quot;&gt;hexo-config&lt;/span&gt
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;webpack&quot;
         title=&quot;webpack&quot;
-        src=&quot;/blog/home/static/e9f7e4e06b028182decd25aff96f7393/c739e/webpack.jpg&quot;
-        srcset=&quot;/blog/home/static/e9f7e4e06b028182decd25aff96f7393/8ee9c/webpack.jpg 148w,
-/blog/home/static/e9f7e4e06b028182decd25aff96f7393/ebbe7/webpack.jpg 295w,
-/blog/home/static/e9f7e4e06b028182decd25aff96f7393/c739e/webpack.jpg 590w,
-/blog/home/static/e9f7e4e06b028182decd25aff96f7393/5413e/webpack.jpg 885w,
-/blog/home/static/e9f7e4e06b028182decd25aff96f7393/4efde/webpack.jpg 1180w,
-/blog/home/static/e9f7e4e06b028182decd25aff96f7393/9e7e8/webpack.jpg 2450w&quot;
+        src=&quot;/blog/home/static/e9f7e4e06b028182decd25aff96f7393/88218/webpack.jpg&quot;
+        srcset=&quot;/blog/home/static/e9f7e4e06b028182decd25aff96f7393/7237a/webpack.jpg 148w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/0cfdf/webpack.jpg 295w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/88218/webpack.jpg 590w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/77d57/webpack.jpg 885w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/5a917/webpack.jpg 1180w,
+/blog/home/static/e9f7e4e06b028182decd25aff96f7393/79d42/webpack.jpg 2450w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -5468,7 +5502,7 @@ plugins&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span c
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/cad07/vue.jpg&quot;
+    href=&quot;/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/7eb62/vue.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -5481,12 +5515,13 @@ plugins&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span c
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;vue&quot;
         title=&quot;vue&quot;
-        src=&quot;/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/c739e/vue.jpg&quot;
-        srcset=&quot;/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/8ee9c/vue.jpg 148w,
-/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/ebbe7/vue.jpg 295w,
-/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/c739e/vue.jpg 590w,
-/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/cad07/vue.jpg 720w&quot;
+        src=&quot;/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/88218/vue.jpg&quot;
+        srcset=&quot;/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/7237a/vue.jpg 148w,
+/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/0cfdf/vue.jpg 295w,
+/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/88218/vue.jpg 590w,
+/blog/home/static/fa5405c2b5847a96e4b9a0603b30eab0/7eb62/vue.jpg 720w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -5764,7 +5799,7 @@ $commenting&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;spa
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/a296c/newyear.jpg&quot;
+    href=&quot;/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/f67cc/newyear.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -5777,12 +5812,13 @@ $commenting&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;spa
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;newyear&quot;
         title=&quot;newyear&quot;
-        src=&quot;/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/c739e/newyear.jpg&quot;
-        srcset=&quot;/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/8ee9c/newyear.jpg 148w,
-/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/ebbe7/newyear.jpg 295w,
-/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/c739e/newyear.jpg 590w,
-/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/a296c/newyear.jpg 800w&quot;
+        src=&quot;/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/88218/newyear.jpg&quot;
+        srcset=&quot;/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/7237a/newyear.jpg 148w,
+/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/0cfdf/newyear.jpg 295w,
+/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/88218/newyear.jpg 590w,
+/blog/home/static/5ff3c2bb2fc030e858da77954aa07cc7/f67cc/newyear.jpg 800w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -5836,7 +5872,7 @@ $commenting&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;spa
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/54bc5/promise-states.png&quot;
+    href=&quot;/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/a79a1/promise-states.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -5849,17 +5885,18 @@ $commenting&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;spa
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;图１&quot;
         title=&quot;图１&quot;
-        src=&quot;/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/54bc5/promise-states.png&quot;
-        srcset=&quot;/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/cf440/promise-states.png 148w,
-/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/d2d38/promise-states.png 295w,
-/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/54bc5/promise-states.png 318w&quot;
+        src=&quot;/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/a79a1/promise-states.png&quot;
+        srcset=&quot;/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/00d96/promise-states.png 148w,
+/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/0b23c/promise-states.png 295w,
+/blog/home/static/cd511b42ee4e7eea942b1a0459438dbb/a79a1/promise-states.png 318w&quot;
         sizes=&quot;(max-width: 318px) 100vw, 318px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;在Chrome中输出&lt;code class=&quot;language-text&quot;&gt;resolve&lt;/code&gt;可以得到&lt;code class=&quot;language-text&quot;&gt;Promise {[[PromiseStatus]]: &amp;quot;pending&amp;quot;, [[PromiseValue]]: undefined}&lt;/code&gt;，可以看出&lt;code class=&quot;language-text&quot;&gt;[[PromiseStatus]]&lt;/code&gt;中存储的就是Promise的状态，但是并没有公开访问&lt;code class=&quot;language-text&quot;&gt;[[PromiseStatus]]&lt;/code&gt;的用户API，所以暂时还无法查询其内部状态。&lt;/li&gt;
+&lt;li&gt;在Chrome中输出&lt;code class=&quot;language-text&quot;&gt;resolve&lt;/code&gt;可以得到&lt;code class=&quot;language-text&quot;&gt;Promise {[[PromiseStatus]]: &amp;quot;pending&amp;quot;undefined [[PromiseValue]]: undefined}&lt;/code&gt;，可以看出&lt;code class=&quot;language-text&quot;&gt;[[PromiseStatus]]&lt;/code&gt;中存储的就是Promise的状态，但是并没有公开访问&lt;code class=&quot;language-text&quot;&gt;[[PromiseStatus]]&lt;/code&gt;的用户API，所以暂时还无法查询其内部状态。&lt;/li&gt;
 &lt;li&gt;Promise中的&lt;code class=&quot;language-text&quot;&gt;then&lt;/code&gt;的回调只会被调用一次，因为Promise的状态只会从Pending变为Fulfilled或者Rejected，不可逆。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2&gt;Promise的使用&lt;/h2&gt;
@@ -5878,7 +5915,7 @@ $commenting&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;spa
 &lt;span class=&quot;token comment&quot;&gt;//use Promise&amp;amp;then&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;asyncFun&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token comment&quot;&gt;/*function*/&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token comment&quot;&gt;/*function*/&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;reslove&lt;/code&gt;方法的参数就是要传给回调函数的参数，即&lt;code class=&quot;language-text&quot;&gt;resolve&lt;/code&gt;将运行得到的结果传出来，而&lt;code class=&quot;language-text&quot;&gt;then&lt;/code&gt;接受该参数给回调继续执行后面的，如果这个&lt;code class=&quot;language-text&quot;&gt;then&lt;/code&gt;的中的函数还会返回Promise，则会重复执行该步骤直到结束。&lt;/p&gt;
-&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;reject&lt;/code&gt;方法的参数一般是包含了reject原因的Error对象。&lt;code class=&quot;language-text&quot;&gt;reject&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;resolve&lt;/code&gt;一样，也会将自己的参数传出去，接收该参数的是&lt;code class=&quot;language-text&quot;&gt;then&lt;/code&gt;的第二个fun或者是&lt;code class=&quot;language-text&quot;&gt;catch&lt;/code&gt;。其实&lt;code class=&quot;language-text&quot;&gt;.catch&lt;/code&gt;只是&lt;code class=&quot;language-text&quot;&gt;Promise.then(onFulfilled,onRejected)&lt;/code&gt;的别名而已。&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;reject&lt;/code&gt;方法的参数一般是包含了reject原因的Error对象。&lt;code class=&quot;language-text&quot;&gt;reject&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;resolve&lt;/code&gt;一样，也会将自己的参数传出去，接收该参数的是&lt;code class=&quot;language-text&quot;&gt;then&lt;/code&gt;的第二个fun或者是&lt;code class=&quot;language-text&quot;&gt;catch&lt;/code&gt;。其实&lt;code class=&quot;language-text&quot;&gt;.catch&lt;/code&gt;只是&lt;code class=&quot;language-text&quot;&gt;Promise.then(onFulfilledundefinedonRejected)&lt;/code&gt;的别名而已。&lt;/p&gt;
 &lt;h2&gt;快捷创建Promise&lt;/h2&gt;
 &lt;p&gt;一般情况下我们会使用&lt;code class=&quot;language-text&quot;&gt;new Promise&lt;/code&gt;来创建prmise对象，除此之外我们也可以使用&lt;code class=&quot;language-text&quot;&gt;Promise.reslove&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;Promise.reject&lt;/code&gt;来直接创建，例如&lt;code class=&quot;language-text&quot;&gt;Promise.resolve(42)&lt;/code&gt;可以认为是以下代码的语法糖&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;reslove&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
@@ -5909,7 +5946,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 &lt;li&gt;对异步回调函数进行同步调用，还可能导致栈溢出或者异常处理错乱等问题&lt;/li&gt;
 &lt;li&gt;如果想在将来的某个时刻调用异步回调，可以使用&lt;code class=&quot;language-text&quot;&gt;setTimeout&lt;/code&gt;等异步API&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;所以以上代码应该使用&lt;code class=&quot;language-text&quot;&gt;setTimeout(fn, 0)&lt;/code&gt;进行调用。&lt;/p&gt;
+&lt;p&gt;所以以上代码应该使用&lt;code class=&quot;language-text&quot;&gt;setTimeout(fnundefined 0)&lt;/code&gt;进行调用。&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;onReady&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;fn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; readyState &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;readyState&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;readyState &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;interactive&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; readyState &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;complete&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
@@ -6038,7 +6075,7 @@ Promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
 &lt;li&gt;如果使用&lt;code class=&quot;language-text&quot;&gt;Promise.resolve()&lt;/code&gt;启动Promise，则像例1中那样在需要传递的参数前面加&lt;code class=&quot;language-text&quot;&gt;return&lt;/code&gt;即可。&lt;/li&gt;
 &lt;li&gt;如果是利用Promise包装了任务，则把想要传递给下一个task的参数传入&lt;code class=&quot;language-text&quot;&gt;resolve()&lt;/code&gt;即可。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;特别说明：如果需要&lt;code class=&quot;language-text&quot;&gt;resolve()&lt;/code&gt;往后传递多个参数，不能直接写&lt;code class=&quot;language-text&quot;&gt;resolve(a1,a2,a3)&lt;/code&gt;，这样只能拿到第一个要传的参数，需要以数组或对象去传递&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;特别说明：如果需要&lt;code class=&quot;language-text&quot;&gt;resolve()&lt;/code&gt;往后传递多个参数，不能直接写&lt;code class=&quot;language-text&quot;&gt;resolve(a1undefineda2undefineda3)&lt;/code&gt;，这样只能拿到第一个要传的参数，需要以数组或对象去传递&lt;/strong&gt;&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; obj &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;a1&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;a1&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;a2&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;a2&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;a3&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;a3&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;obj&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;//or&lt;/span&gt;
@@ -6052,7 +6089,7 @@ Promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/f3c67538af6a564dff665020c5887442/a82ee/then_catch.png&quot;
+    href=&quot;/blog/home/static/f3c67538af6a564dff665020c5887442/9dd9c/then_catch.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6065,12 +6102,13 @@ Promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;图２&quot;
         title=&quot;图２&quot;
-        src=&quot;/blog/home/static/f3c67538af6a564dff665020c5887442/b9e4f/then_catch.png&quot;
-        srcset=&quot;/blog/home/static/f3c67538af6a564dff665020c5887442/cf440/then_catch.png 148w,
-/blog/home/static/f3c67538af6a564dff665020c5887442/d2d38/then_catch.png 295w,
-/blog/home/static/f3c67538af6a564dff665020c5887442/b9e4f/then_catch.png 590w,
-/blog/home/static/f3c67538af6a564dff665020c5887442/a82ee/then_catch.png 696w&quot;
+        src=&quot;/blog/home/static/f3c67538af6a564dff665020c5887442/799d3/then_catch.png&quot;
+        srcset=&quot;/blog/home/static/f3c67538af6a564dff665020c5887442/00d96/then_catch.png 148w,
+/blog/home/static/f3c67538af6a564dff665020c5887442/0b23c/then_catch.png 295w,
+/blog/home/static/f3c67538af6a564dff665020c5887442/799d3/then_catch.png 590w,
+/blog/home/static/f3c67538af6a564dff665020c5887442/9dd9c/then_catch.png 696w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -6103,7 +6141,7 @@ aPromise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
 &lt;p&gt;由于每次调用&lt;code class=&quot;language-text&quot;&gt;then&lt;/code&gt;方法都会返回一个新的Promise，所以导致最终输出100而不是100 * 2 * 2。&lt;/p&gt;
 &lt;h2&gt;Promise.all()的使用&lt;/h2&gt;
 &lt;p&gt;有时候需要多个彼此没有关联的多个异步任务全部执行完成后再执行后面的操作，这时候就需要用到&lt;code class=&quot;language-text&quot;&gt;Promise.all()&lt;/code&gt;，它接收一个Promise的对象的数组作为参数，当这个数组里的所有Promise对象全部变成resolve或者reject的时候，它才会去调用后面的&lt;code class=&quot;language-text&quot;&gt;.then()&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;这里需要说明一点，两个彼此无关的异步操作会同时执行，每个Promise的结果（即每个返回的Promise的resolve或reject时传递的参数）和传递给&lt;code class=&quot;language-text&quot;&gt;Promise.all&lt;/code&gt;的Promise数组的顺序一致。也就是说，假设有两个异步操作TaskA和TaskB，如果传入顺序为&lt;code class=&quot;language-text&quot;&gt;Promise.all([TaskA,TaskB])&lt;/code&gt;，则执行完成后传给&lt;code class=&quot;language-text&quot;&gt;.then&lt;/code&gt;的顺序为[TaskA,TaskB]。&lt;/p&gt;
+&lt;p&gt;这里需要说明一点，两个彼此无关的异步操作会同时执行，每个Promise的结果（即每个返回的Promise的resolve或reject时传递的参数）和传递给&lt;code class=&quot;language-text&quot;&gt;Promise.all&lt;/code&gt;的Promise数组的顺序一致。也就是说，假设有两个异步操作TaskA和TaskB，如果传入顺序为&lt;code class=&quot;language-text&quot;&gt;Promise.all([TaskAundefinedTaskB])&lt;/code&gt;，则执行完成后传给&lt;code class=&quot;language-text&quot;&gt;.then&lt;/code&gt;的顺序为[TaskA,TaskB]。&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;setTime&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token function&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;time&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;time&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
@@ -6177,7 +6215,7 @@ this is taskB
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/f9f84810c2e7383f763b9173681f9c88/30cfa/github.png&quot;
+    href=&quot;/blog/home/static/f9f84810c2e7383f763b9173681f9c88/3a850/github.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6190,12 +6228,13 @@ this is taskB
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/f9f84810c2e7383f763b9173681f9c88/b9e4f/github.png&quot;
-        srcset=&quot;/blog/home/static/f9f84810c2e7383f763b9173681f9c88/cf440/github.png 148w,
-/blog/home/static/f9f84810c2e7383f763b9173681f9c88/d2d38/github.png 295w,
-/blog/home/static/f9f84810c2e7383f763b9173681f9c88/b9e4f/github.png 590w,
-/blog/home/static/f9f84810c2e7383f763b9173681f9c88/30cfa/github.png 748w&quot;
+        src=&quot;/blog/home/static/f9f84810c2e7383f763b9173681f9c88/799d3/github.png&quot;
+        srcset=&quot;/blog/home/static/f9f84810c2e7383f763b9173681f9c88/00d96/github.png 148w,
+/blog/home/static/f9f84810c2e7383f763b9173681f9c88/0b23c/github.png 295w,
+/blog/home/static/f9f84810c2e7383f763b9173681f9c88/799d3/github.png 590w,
+/blog/home/static/f9f84810c2e7383f763b9173681f9c88/3a850/github.png 748w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -6949,7 +6988,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/f583d/string%26Array.png&quot;
+    href=&quot;/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/0dabb/string%26Array.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6962,14 +7001,15 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/b9e4f/string%26Array.png&quot;
-        srcset=&quot;/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/cf440/string%26Array.png 148w,
-/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/d2d38/string%26Array.png 295w,
-/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/b9e4f/string%26Array.png 590w,
-/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/f9b6a/string%26Array.png 885w,
-/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/2d849/string%26Array.png 1180w,
-/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/f583d/string%26Array.png 2352w&quot;
+        src=&quot;/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/799d3/string%26Array.png&quot;
+        srcset=&quot;/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/00d96/string%26Array.png 148w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/0b23c/string%26Array.png 295w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/799d3/string%26Array.png 590w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/2a3d6/string%26Array.png 885w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/ae92f/string%26Array.png 1180w,
+/blog/home/static/327400b931ec32ecf240ba8c83e27bb9/0dabb/string%26Array.png 2352w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -6984,7 +7024,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/bd128/offset_table.png&quot;
+    href=&quot;/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/7c981/offset_table.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -6997,13 +7037,14 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/b9e4f/offset_table.png&quot;
-        srcset=&quot;/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/cf440/offset_table.png 148w,
-/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/d2d38/offset_table.png 295w,
-/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/b9e4f/offset_table.png 590w,
-/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/f9b6a/offset_table.png 885w,
-/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/bd128/offset_table.png 942w&quot;
+        src=&quot;/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/799d3/offset_table.png&quot;
+        srcset=&quot;/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/00d96/offset_table.png 148w,
+/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/0b23c/offset_table.png 295w,
+/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/799d3/offset_table.png 590w,
+/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/2a3d6/offset_table.png 885w,
+/blog/home/static/b8cea7adfbc3e662190f03377879ffc3/7c981/offset_table.png 942w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -7015,7 +7056,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/4a705a961a82c8193ab277a6519714cf/ac127/offset.png&quot;
+    href=&quot;/blog/home/static/4a705a961a82c8193ab277a6519714cf/f793d/offset.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7028,12 +7069,13 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/4a705a961a82c8193ab277a6519714cf/b9e4f/offset.png&quot;
-        srcset=&quot;/blog/home/static/4a705a961a82c8193ab277a6519714cf/cf440/offset.png 148w,
-/blog/home/static/4a705a961a82c8193ab277a6519714cf/d2d38/offset.png 295w,
-/blog/home/static/4a705a961a82c8193ab277a6519714cf/b9e4f/offset.png 590w,
-/blog/home/static/4a705a961a82c8193ab277a6519714cf/ac127/offset.png 816w&quot;
+        src=&quot;/blog/home/static/4a705a961a82c8193ab277a6519714cf/799d3/offset.png&quot;
+        srcset=&quot;/blog/home/static/4a705a961a82c8193ab277a6519714cf/00d96/offset.png 148w,
+/blog/home/static/4a705a961a82c8193ab277a6519714cf/0b23c/offset.png 295w,
+/blog/home/static/4a705a961a82c8193ab277a6519714cf/799d3/offset.png 590w,
+/blog/home/static/4a705a961a82c8193ab277a6519714cf/f793d/offset.png 816w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -7046,7 +7088,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/10016/client_table.png&quot;
+    href=&quot;/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/0de96/client_table.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7059,13 +7101,14 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/b9e4f/client_table.png&quot;
-        srcset=&quot;/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/cf440/client_table.png 148w,
-/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/d2d38/client_table.png 295w,
-/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/b9e4f/client_table.png 590w,
-/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/f9b6a/client_table.png 885w,
-/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/10016/client_table.png 939w&quot;
+        src=&quot;/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/799d3/client_table.png&quot;
+        srcset=&quot;/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/00d96/client_table.png 148w,
+/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/0b23c/client_table.png 295w,
+/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/799d3/client_table.png 590w,
+/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/2a3d6/client_table.png 885w,
+/blog/home/static/ca2a47e4e2976c2855163f0d6850e9f8/0de96/client_table.png 939w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -7076,7 +7119,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/3010402370455b3ff800d07493a4af5d/db64a/client.png&quot;
+    href=&quot;/blog/home/static/3010402370455b3ff800d07493a4af5d/6ed53/client.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7089,12 +7132,13 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/3010402370455b3ff800d07493a4af5d/b9e4f/client.png&quot;
-        srcset=&quot;/blog/home/static/3010402370455b3ff800d07493a4af5d/cf440/client.png 148w,
-/blog/home/static/3010402370455b3ff800d07493a4af5d/d2d38/client.png 295w,
-/blog/home/static/3010402370455b3ff800d07493a4af5d/b9e4f/client.png 590w,
-/blog/home/static/3010402370455b3ff800d07493a4af5d/db64a/client.png 760w&quot;
+        src=&quot;/blog/home/static/3010402370455b3ff800d07493a4af5d/799d3/client.png&quot;
+        srcset=&quot;/blog/home/static/3010402370455b3ff800d07493a4af5d/00d96/client.png 148w,
+/blog/home/static/3010402370455b3ff800d07493a4af5d/0b23c/client.png 295w,
+/blog/home/static/3010402370455b3ff800d07493a4af5d/799d3/client.png 590w,
+/blog/home/static/3010402370455b3ff800d07493a4af5d/6ed53/client.png 760w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -7108,7 +7152,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/e0b52f068584f2dd8dd149783740fafd/bd128/scroll_table.png&quot;
+    href=&quot;/blog/home/static/e0b52f068584f2dd8dd149783740fafd/7c981/scroll_table.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7121,13 +7165,14 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/e0b52f068584f2dd8dd149783740fafd/b9e4f/scroll_table.png&quot;
-        srcset=&quot;/blog/home/static/e0b52f068584f2dd8dd149783740fafd/cf440/scroll_table.png 148w,
-/blog/home/static/e0b52f068584f2dd8dd149783740fafd/d2d38/scroll_table.png 295w,
-/blog/home/static/e0b52f068584f2dd8dd149783740fafd/b9e4f/scroll_table.png 590w,
-/blog/home/static/e0b52f068584f2dd8dd149783740fafd/f9b6a/scroll_table.png 885w,
-/blog/home/static/e0b52f068584f2dd8dd149783740fafd/bd128/scroll_table.png 942w&quot;
+        src=&quot;/blog/home/static/e0b52f068584f2dd8dd149783740fafd/799d3/scroll_table.png&quot;
+        srcset=&quot;/blog/home/static/e0b52f068584f2dd8dd149783740fafd/00d96/scroll_table.png 148w,
+/blog/home/static/e0b52f068584f2dd8dd149783740fafd/0b23c/scroll_table.png 295w,
+/blog/home/static/e0b52f068584f2dd8dd149783740fafd/799d3/scroll_table.png 590w,
+/blog/home/static/e0b52f068584f2dd8dd149783740fafd/2a3d6/scroll_table.png 885w,
+/blog/home/static/e0b52f068584f2dd8dd149783740fafd/7c981/scroll_table.png 942w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -7139,7 +7184,7 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/de00b/scroll.png&quot;
+    href=&quot;/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/8024e/scroll.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -7152,13 +7197,14 @@ console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cl
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/b9e4f/scroll.png&quot;
-        srcset=&quot;/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/cf440/scroll.png 148w,
-/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/d2d38/scroll.png 295w,
-/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/b9e4f/scroll.png 590w,
-/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/f9b6a/scroll.png 885w,
-/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/de00b/scroll.png 1104w&quot;
+        src=&quot;/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/799d3/scroll.png&quot;
+        srcset=&quot;/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/00d96/scroll.png 148w,
+/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/0b23c/scroll.png 295w,
+/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/799d3/scroll.png 590w,
+/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/2a3d6/scroll.png 885w,
+/blog/home/static/7958c58174a608ed2cbd97d165a4ff28/8024e/scroll.png 1104w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -7521,10 +7567,10 @@ vm&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;b &lt;span class
  
 data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;b &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;// `data.b` 不是响应的&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;不过，有办法在实例创建之后添加属性并且让它是响应的。对于Vue实例，可以使用&lt;code class=&quot;language-text&quot;&gt;$set(key,value)&lt;/code&gt;实例方法：&lt;/p&gt;
+&lt;p&gt;不过，有办法在实例创建之后添加属性并且让它是响应的。对于Vue实例，可以使用&lt;code class=&quot;language-text&quot;&gt;$set(keyundefinedvalue)&lt;/code&gt;实例方法：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;vm&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;$&lt;span class=&quot;token keyword&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;b&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;// `vm.b` 和 `data.b` 现在是响应的&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;对于普通数据对象，可以使用全局方法&lt;code class=&quot;language-text&quot;&gt;Vue.set(object, key, value)&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;对于普通数据对象，可以使用全局方法&lt;code class=&quot;language-text&quot;&gt;Vue.set(objectundefined keyundefined value)&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;Vue&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;c&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;// `vm.c` 和 `data.c` 现在是响应的&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;有时你想向已有对象上添加一些属性，例如使用 &lt;code class=&quot;language-text&quot;&gt;Object.assign()&lt;/code&gt; 或 &lt;code class=&quot;language-text&quot;&gt;_.extend()&lt;/code&gt; 添加属性。但是，添加到对象上的新属性不会触发更新。这时可以创建一个新的对象，包含原对象的属性和新的属性：&lt;/p&gt;
@@ -7559,7 +7605,7 @@ data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;b &lt;span cla
         &lt;span class=&quot;token property&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;20px&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;token property&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;0&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;0&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;其中动画在定的时候要注意上下对应，上面有什么，下面有什么，都要变化的，如果有不变化的，应该抽离出去，作为公共css样式，在上面的css中，如果我只写&lt;code class=&quot;language-text&quot;&gt;transform: translate(-50%,-50%);&lt;/code&gt;而不写下面的&lt;code class=&quot;language-text&quot;&gt;transform: translate(0,0);&lt;/code&gt;则会导致上面的&lt;code class=&quot;language-text&quot;&gt;transform: translate(-50%,-50%);&lt;/code&gt;被添加到下面，认为这个是不变的。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[六月总结]]></title><description><![CDATA[不知不觉中，六月已经过去，七月悄悄到来，写这篇文章，总结六月，并给七月做一些计划。在未来，每个月都会做一次总结，无论得失，都记录下来，记录自己的成长。 六月结束，2016年也已过去一半。六月收获很多，无论是工作还是生活。在2015年年底的时候我曾经计划，在201…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2016-summarizeJune/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2016-summarizeJune/</guid><pubDate>Thu, 30 Jun 2016 00:03:50 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;其中动画在定的时候要注意上下对应，上面有什么，下面有什么，都要变化的，如果有不变化的，应该抽离出去，作为公共css样式，在上面的css中，如果我只写&lt;code class=&quot;language-text&quot;&gt;transform: translate(-50%undefined-50%);&lt;/code&gt;而不写下面的&lt;code class=&quot;language-text&quot;&gt;transform: translate(0undefined0);&lt;/code&gt;则会导致上面的&lt;code class=&quot;language-text&quot;&gt;transform: translate(-50%undefined-50%);&lt;/code&gt;被添加到下面，认为这个是不变的。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[六月总结]]></title><description><![CDATA[不知不觉中，六月已经过去，七月悄悄到来，写这篇文章，总结六月，并给七月做一些计划。在未来，每个月都会做一次总结，无论得失，都记录下来，记录自己的成长。 六月结束，2016年也已过去一半。六月收获很多，无论是工作还是生活。在2015年年底的时候我曾经计划，在201…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2016-summarizeJune/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2016-summarizeJune/</guid><pubDate>Thu, 30 Jun 2016 00:03:50 GMT</pubDate><content:encoded>&lt;blockquote&gt;
 &lt;p&gt;不知不觉中，六月已经过去，七月悄悄到来，写这篇文章，总结六月，并给七月做一些计划。在未来，每个月都会做一次总结，无论得失，都记录下来，记录自己的成长。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;六月结束，2016年也已过去一半。六月收获很多，无论是工作还是生活。在2015年年底的时候我曾经计划，在2016年要学习新的编程上的技术，每天跑步，学吉他，多读书。在六月，我终于全部开始做了。&lt;/p&gt;
@@ -8047,14 +8093,15 @@ module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;webpack官方解释图&quot;
         title=&quot;webpack官方解释图&quot;
-        src=&quot;/blog/home/static/689ad4abdab59e7b4942a9400c45658b/c739e/what-is-webpack.jpg&quot;
-        srcset=&quot;/blog/home/static/689ad4abdab59e7b4942a9400c45658b/8ee9c/what-is-webpack.jpg 148w,
-/blog/home/static/689ad4abdab59e7b4942a9400c45658b/ebbe7/what-is-webpack.jpg 295w,
-/blog/home/static/689ad4abdab59e7b4942a9400c45658b/c739e/what-is-webpack.jpg 590w,
-/blog/home/static/689ad4abdab59e7b4942a9400c45658b/5413e/what-is-webpack.jpg 885w,
-/blog/home/static/689ad4abdab59e7b4942a9400c45658b/4efde/what-is-webpack.jpg 1180w,
-/blog/home/static/689ad4abdab59e7b4942a9400c45658b/faa2b/what-is-webpack.jpg 2598w&quot;
+        src=&quot;/blog/home/static/689ad4abdab59e7b4942a9400c45658b/88218/what-is-webpack.jpg&quot;
+        srcset=&quot;/blog/home/static/689ad4abdab59e7b4942a9400c45658b/7237a/what-is-webpack.jpg 148w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/0cfdf/what-is-webpack.jpg 295w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/88218/what-is-webpack.jpg 590w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/77d57/what-is-webpack.jpg 885w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/5a917/what-is-webpack.jpg 1180w,
+/blog/home/static/689ad4abdab59e7b4942a9400c45658b/c1cb7/what-is-webpack.jpg 2598w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
     &lt;/span&gt;
@@ -8167,7 +8214,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/364a4/3.png&quot;
+    href=&quot;/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/f415f/3.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8180,12 +8227,13 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/b9e4f/3.png&quot;
-        srcset=&quot;/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/cf440/3.png 148w,
-/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/d2d38/3.png 295w,
-/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/b9e4f/3.png 590w,
-/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/364a4/3.png 793w&quot;
+        src=&quot;/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/799d3/3.png&quot;
+        srcset=&quot;/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/00d96/3.png 148w,
+/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/0b23c/3.png 295w,
+/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/799d3/3.png 590w,
+/blog/home/static/78ebdd908ca642173dbd9b992bbb9931/f415f/3.png 793w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -8202,7 +8250,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/72ccf448e925d323a3c086afe1e53784/44457/4.png&quot;
+    href=&quot;/blog/home/static/72ccf448e925d323a3c086afe1e53784/aaed1/4.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8215,12 +8263,13 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/72ccf448e925d323a3c086afe1e53784/b9e4f/4.png&quot;
-        srcset=&quot;/blog/home/static/72ccf448e925d323a3c086afe1e53784/cf440/4.png 148w,
-/blog/home/static/72ccf448e925d323a3c086afe1e53784/d2d38/4.png 295w,
-/blog/home/static/72ccf448e925d323a3c086afe1e53784/b9e4f/4.png 590w,
-/blog/home/static/72ccf448e925d323a3c086afe1e53784/44457/4.png 787w&quot;
+        src=&quot;/blog/home/static/72ccf448e925d323a3c086afe1e53784/799d3/4.png&quot;
+        srcset=&quot;/blog/home/static/72ccf448e925d323a3c086afe1e53784/00d96/4.png 148w,
+/blog/home/static/72ccf448e925d323a3c086afe1e53784/0b23c/4.png 295w,
+/blog/home/static/72ccf448e925d323a3c086afe1e53784/799d3/4.png 590w,
+/blog/home/static/72ccf448e925d323a3c086afe1e53784/aaed1/4.png 787w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -8248,7 +8297,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/8f8c6/2.png&quot;
+    href=&quot;/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/34b33/2.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8261,11 +8310,12 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/8f8c6/2.png&quot;
-        srcset=&quot;/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/cf440/2.png 148w,
-/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/d2d38/2.png 295w,
-/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/8f8c6/2.png 360w&quot;
+        src=&quot;/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/34b33/2.png&quot;
+        srcset=&quot;/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/00d96/2.png 148w,
+/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/0b23c/2.png 295w,
+/blog/home/static/d55a383b83e3351b29ac897f128ffe3c/34b33/2.png 360w&quot;
         sizes=&quot;(max-width: 360px) 100vw, 360px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -8278,7 +8328,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/55a8db889d1b537c7435fb2c420986e6/f00c5/5.png&quot;
+    href=&quot;/blog/home/static/55a8db889d1b537c7435fb2c420986e6/7eea3/5.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8291,11 +8341,12 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/55a8db889d1b537c7435fb2c420986e6/f00c5/5.png&quot;
-        srcset=&quot;/blog/home/static/55a8db889d1b537c7435fb2c420986e6/cf440/5.png 148w,
-/blog/home/static/55a8db889d1b537c7435fb2c420986e6/d2d38/5.png 295w,
-/blog/home/static/55a8db889d1b537c7435fb2c420986e6/f00c5/5.png 323w&quot;
+        src=&quot;/blog/home/static/55a8db889d1b537c7435fb2c420986e6/7eea3/5.png&quot;
+        srcset=&quot;/blog/home/static/55a8db889d1b537c7435fb2c420986e6/00d96/5.png 148w,
+/blog/home/static/55a8db889d1b537c7435fb2c420986e6/0b23c/5.png 295w,
+/blog/home/static/55a8db889d1b537c7435fb2c420986e6/7eea3/5.png 323w&quot;
         sizes=&quot;(max-width: 323px) 100vw, 323px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -8315,7 +8366,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/5606820f6601d7f303c5d42b45f24d11/d8c54/1.png&quot;
+    href=&quot;/blog/home/static/5606820f6601d7f303c5d42b45f24d11/d7d56/1.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8328,12 +8379,13 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）&lt;/p&
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/5606820f6601d7f303c5d42b45f24d11/b9e4f/1.png&quot;
-        srcset=&quot;/blog/home/static/5606820f6601d7f303c5d42b45f24d11/cf440/1.png 148w,
-/blog/home/static/5606820f6601d7f303c5d42b45f24d11/d2d38/1.png 295w,
-/blog/home/static/5606820f6601d7f303c5d42b45f24d11/b9e4f/1.png 590w,
-/blog/home/static/5606820f6601d7f303c5d42b45f24d11/d8c54/1.png 794w&quot;
+        src=&quot;/blog/home/static/5606820f6601d7f303c5d42b45f24d11/799d3/1.png&quot;
+        srcset=&quot;/blog/home/static/5606820f6601d7f303c5d42b45f24d11/00d96/1.png 148w,
+/blog/home/static/5606820f6601d7f303c5d42b45f24d11/0b23c/1.png 295w,
+/blog/home/static/5606820f6601d7f303c5d42b45f24d11/799d3/1.png 590w,
+/blog/home/static/5606820f6601d7f303c5d42b45f24d11/d7d56/1.png 794w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -8422,7 +8474,7 @@ a.大小不固定的图片垂直居中&lt;/p&gt;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/cd90887f29fd52f67145e160bcb2297f/ef000/center.png&quot;
+    href=&quot;/blog/home/static/cd90887f29fd52f67145e160bcb2297f/38818/center.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8435,11 +8487,12 @@ a.大小不固定的图片垂直居中&lt;/p&gt;
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/cd90887f29fd52f67145e160bcb2297f/ef000/center.png&quot;
-        srcset=&quot;/blog/home/static/cd90887f29fd52f67145e160bcb2297f/cf440/center.png 148w,
-/blog/home/static/cd90887f29fd52f67145e160bcb2297f/d2d38/center.png 295w,
-/blog/home/static/cd90887f29fd52f67145e160bcb2297f/ef000/center.png 498w&quot;
+        src=&quot;/blog/home/static/cd90887f29fd52f67145e160bcb2297f/38818/center.png&quot;
+        srcset=&quot;/blog/home/static/cd90887f29fd52f67145e160bcb2297f/00d96/center.png 148w,
+/blog/home/static/cd90887f29fd52f67145e160bcb2297f/0b23c/center.png 295w,
+/blog/home/static/cd90887f29fd52f67145e160bcb2297f/38818/center.png 498w&quot;
         sizes=&quot;(max-width: 498px) 100vw, 498px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -8573,7 +8626,7 @@ gulp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/06151b6d368e92899deeded27388759b/e3e30/text-algin-last.png&quot;
+    href=&quot;/blog/home/static/06151b6d368e92899deeded27388759b/54a4f/text-algin-last.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8586,14 +8639,15 @@ gulp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/06151b6d368e92899deeded27388759b/b9e4f/text-algin-last.png&quot;
-        srcset=&quot;/blog/home/static/06151b6d368e92899deeded27388759b/cf440/text-algin-last.png 148w,
-/blog/home/static/06151b6d368e92899deeded27388759b/d2d38/text-algin-last.png 295w,
-/blog/home/static/06151b6d368e92899deeded27388759b/b9e4f/text-algin-last.png 590w,
-/blog/home/static/06151b6d368e92899deeded27388759b/f9b6a/text-algin-last.png 885w,
-/blog/home/static/06151b6d368e92899deeded27388759b/2d849/text-algin-last.png 1180w,
-/blog/home/static/06151b6d368e92899deeded27388759b/e3e30/text-algin-last.png 1271w&quot;
+        src=&quot;/blog/home/static/06151b6d368e92899deeded27388759b/799d3/text-algin-last.png&quot;
+        srcset=&quot;/blog/home/static/06151b6d368e92899deeded27388759b/00d96/text-algin-last.png 148w,
+/blog/home/static/06151b6d368e92899deeded27388759b/0b23c/text-algin-last.png 295w,
+/blog/home/static/06151b6d368e92899deeded27388759b/799d3/text-algin-last.png 590w,
+/blog/home/static/06151b6d368e92899deeded27388759b/2a3d6/text-algin-last.png 885w,
+/blog/home/static/06151b6d368e92899deeded27388759b/ae92f/text-algin-last.png 1180w,
+/blog/home/static/06151b6d368e92899deeded27388759b/54a4f/text-algin-last.png 1271w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -8653,7 +8707,7 @@ gulp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/60c138fa02aec824a67a86a80a28247d/12e65/result.jpg&quot;
+    href=&quot;/blog/home/static/60c138fa02aec824a67a86a80a28247d/45941/result.jpg&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -8666,11 +8720,12 @@ gulp&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;icon&quot;
         title=&quot;icon&quot;
-        src=&quot;/blog/home/static/60c138fa02aec824a67a86a80a28247d/12e65/result.jpg&quot;
-        srcset=&quot;/blog/home/static/60c138fa02aec824a67a86a80a28247d/8ee9c/result.jpg 148w,
-/blog/home/static/60c138fa02aec824a67a86a80a28247d/ebbe7/result.jpg 295w,
-/blog/home/static/60c138fa02aec824a67a86a80a28247d/12e65/result.jpg 454w&quot;
+        src=&quot;/blog/home/static/60c138fa02aec824a67a86a80a28247d/45941/result.jpg&quot;
+        srcset=&quot;/blog/home/static/60c138fa02aec824a67a86a80a28247d/7237a/result.jpg 148w,
+/blog/home/static/60c138fa02aec824a67a86a80a28247d/0cfdf/result.jpg 295w,
+/blog/home/static/60c138fa02aec824a67a86a80a28247d/45941/result.jpg 454w&quot;
         sizes=&quot;(max-width: 454px) 100vw, 454px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -9001,7 +9056,7 @@ uploader&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/blog/home/static/effeca3ab4c791595d872ce5686d860c/ad9ce/canshu.png&quot;
+    href=&quot;/blog/home/static/effeca3ab4c791595d872ce5686d860c/573ad/canshu.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -9014,12 +9069,13 @@ uploader&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;mahua&quot;
         title=&quot;mahua&quot;
-        src=&quot;/blog/home/static/effeca3ab4c791595d872ce5686d860c/b9e4f/canshu.png&quot;
-        srcset=&quot;/blog/home/static/effeca3ab4c791595d872ce5686d860c/cf440/canshu.png 148w,
-/blog/home/static/effeca3ab4c791595d872ce5686d860c/d2d38/canshu.png 295w,
-/blog/home/static/effeca3ab4c791595d872ce5686d860c/b9e4f/canshu.png 590w,
-/blog/home/static/effeca3ab4c791595d872ce5686d860c/ad9ce/canshu.png 704w&quot;
+        src=&quot;/blog/home/static/effeca3ab4c791595d872ce5686d860c/799d3/canshu.png&quot;
+        srcset=&quot;/blog/home/static/effeca3ab4c791595d872ce5686d860c/00d96/canshu.png 148w,
+/blog/home/static/effeca3ab4c791595d872ce5686d860c/0b23c/canshu.png 295w,
+/blog/home/static/effeca3ab4c791595d872ce5686d860c/799d3/canshu.png 590w,
+/blog/home/static/effeca3ab4c791595d872ce5686d860c/573ad/canshu.png 704w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
       /&gt;
   &lt;/a&gt;
@@ -9027,7 +9083,7 @@ uploader&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span c
 &lt;h3&gt;2.toDataURL()&lt;/h3&gt;
 &lt;p&gt;toDataURL()方法回传含有图像和参数设置特定格式的dataURLs，回传的图像解析度为96dpi。同样通过toDataURL()可以方便的将图片转换为base64编码，但是这里需要注意两点：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;如果canvas的高度或者宽度为0，则回传的字符串为&lt;code class=&quot;language-text&quot;&gt;data:,&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;如果canvas的高度或者宽度为0，则回传的字符串为&lt;code class=&quot;language-text&quot;&gt;data:undefined&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;如果要求图像类型并非image/png，但是回传的类型却是data:image/png，表示要求的图像类型并不支持。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;表达式如下：&lt;/p&gt;
