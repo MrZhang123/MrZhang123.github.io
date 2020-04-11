@@ -42,11 +42,11 @@ class BlogIndex extends React.Component {
             </div>
           )
         })}
-        <ul
+        <div
           style={{
             display: 'flex',
             flexWrap: 'wrap',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
             alignItems: 'center',
             listStyle: 'none',
             padding: 0,
@@ -58,10 +58,10 @@ class BlogIndex extends React.Component {
               rel="prev"
               style={{boxShadow: '0 0'}}
             >
-              ← Previous
+              ← Prev
             </Link>
-          ) : <span>← Previous</span>}
-          {Array.from({ length: numPages }, (_, i) => (
+          ) : <span>← Prev</span>}
+          {/* {Array.from({ length: numPages }, (_, i) => (
             <li
               key={`pagination-number${i + 1}`}
               style={{
@@ -81,7 +81,10 @@ class BlogIndex extends React.Component {
                 {i + 1}
               </Link>
             </li>
-          ))}
+          ))} */}
+          <span style={{margin: '0 20px'}}>
+            {`Current：${currentPage}`}
+          </span>
           {!isLast ? (
             <Link
               to={nextPage}
@@ -91,7 +94,10 @@ class BlogIndex extends React.Component {
               Next →
             </Link>
           ) : <span>Next →</span>}
-        </ul>
+          <span style={{marginLeft: 20}}>
+            {`Total：${numPages}`}
+          </span>
+        </div>
       </Layout>
     )
   }
