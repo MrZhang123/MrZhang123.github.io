@@ -31,9 +31,9 @@ function Bio() {
               }}
             />
             <p>
-              Written by <strong>{author}</strong> who lives and works in Beijing.
+              Written by <strong>{author}</strong> who works in Beijing.
               <br/>
-              Web Developer & Designer
+              Web Developer & Designer, Cross-border learners.
             </p>
           </div>
         )
