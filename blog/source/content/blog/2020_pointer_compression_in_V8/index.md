@@ -26,6 +26,7 @@ V8的堆包含大量的项目（items），例如浮点值（floating point valu
 
 ## V8中的标记值
 
+在V8中JavaScript的值表示为一个对象（object），
 
 
 ```
