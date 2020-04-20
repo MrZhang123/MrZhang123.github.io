@@ -20,4 +20,16 @@ categories: "翻译,JavaScript"
 
 指针压缩是改进V8内存占用的多项工作之一。想法很简单：我们可以存储一些“基”地址的32位偏移量而不是存储64位指针。如此简单的想法，在V8中这种压缩可以给我们带来多少收益？
 
-V8的堆包含大量的项目（items），例如浮点值（floating point values），字符串字符（string characters），解析器字节码（interpreter bytecode）和标记值（tagged values）。在检查
+V8的堆包含大量的项目（items），例如浮点值（floating point values），字符串字符（string characters），解析器字节码（interpreter bytecode）和标记值（tagged values）。在检查堆时，我们发现在现实使用网站中，这些标记值占了V8堆的70%！
+
+下面我们具体看看这些标记值是什么。
+
+## V8中的标记值
+
+
+
+```
+                        |----- 32 bits -----|
+Pointer:                |_____address_____w1|
+Smi:                    |___int31_value____0|
+```
