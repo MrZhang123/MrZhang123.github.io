@@ -26,7 +26,28 @@ V8的堆包含大量的项目（items），例如浮点值（floating point valu
 
 ## V8中的标记值
 
-在V8中JavaScript的值表示为一个对象（object），
+在V8中JavaScript的的对象，数组，数字或者字符串都都用对象表示，分配在V8堆上。这使得我们可以用一个指向对象的指针表示任何值。
+
+许多JavaScript程序都会对整数进行计算，例如在循环中增加索引。为了避免每次整数递增的时候重新分配一个新的number对象，V8使用著名的[指针标记技术(pointer tagging)](https://en.wikipedia.org/wiki/Tagged_pointer)在V8的堆指针中存储附加的或替代的数据。（V8 uses the well-known pointer tagging technique to store additional or alternative data in V8 heap pointers.）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ```
