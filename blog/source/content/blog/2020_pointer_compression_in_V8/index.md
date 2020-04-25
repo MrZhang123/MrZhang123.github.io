@@ -15,8 +15,7 @@ categories: "翻译,JavaScript"
 
 在实施改进之前，我们需要知道我们目前的状况以正确的评估如何改进。为了测量当前的内存和性能，我们使用一组可以代表目前流行站点的[页面](https://v8.dev/blog/optimizing-v8-memory)。数据显示在桌面端Chrome[渲染进程](https://www.chromium.org/developers/design-documents/multi-process-architecture)内存占用中V8贡献了60%的占用，平均为40%。
 
-<!---在Chrome渲染进程内存占用中V8的内存消耗百分比-->
-![OKR流程图1](./img/memory-chrome.svg)
+![在Chrome渲染进程内存占用中V8的内存消耗百分比](./img/memory-chrome.svg)
 
 指针压缩是改进V8内存占用的多项工作之一。想法很简单：我们可以存储一些“基”地址的32位偏移量而不是存储64位指针。如此简单的想法，在V8中这种压缩可以给我们带来多少收益？
 
@@ -30,28 +29,150 @@ V8的堆包含大量的项目（items），例如浮点值（floating point valu
 
 许多JavaScript程序都会对整数进行计算，例如在循环中增加索引。为了避免每次整数递增的时候重新分配一个新的number对象，V8使用著名的[指针标记技术(pointer tagging)](https://en.wikipedia.org/wiki/Tagged_pointer)在V8的堆指针中存储附加的或替代的数据。（V8 uses the well-known pointer tagging technique to store additional or alternative data in V8 heap pointers.）
 
-标签位（tag bits）有双重作用：（they signal either strong/weak pointers to objects located in V8 heap, or a small integer）。
+标签位（tag bits）有双重作用：它用信号指示位于V8堆中的对象的强弱指针或一个小整数（they signal either strong/weak pointers to objects located in V8 heap, or a small integer）。因此，整数能够直接存储在标记值中，而需要为其分配额外的存储空间。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+V8按字对齐地址将对象分配在堆上，这使得它可以使用2（或3，取决于机器字大小）最低有效位进行标记。在32位架构中，V8使用最低有效位去区分Smis和堆对象指针。堆对象指针使用第二最低有效位去区分强引用和弱引用：
 
 ```
                         |----- 32 bits -----|
 Pointer:                |_____address_____w1|
 Smi:                    |___int31_value____0|
 ```
+
+这里的 *w* 用来区分强指针和弱指针。
+
+*注意：*一个Smi只能携带一个31bit有效载荷（payload），包括符号位。对于指针，我们有30bit用来作为堆对象地址有效载荷（payload）。由于字对齐，分配粒度为4个字节，这给了我们4GB的寻址空间。
+
+在64位架构中，V8的值看起来像这样：
+
+```
+            |----- 32 bits -----|----- 32 bits -----|
+Pointer:    |________________address______________w1|
+Smi:        |____int32_value____|0000000000000000000|
+```
+不同于32位架构，在64位架构中V8可以将32位用于Smi值有效载荷（payload）。以下各节将讨论32位Smis对指针压缩的影响。
+
+## 压缩标记值（tagged values）和新的堆布局
+
+使用指针压缩，我们的目标是以某种方式在64位架构中将两种标记值转换为32位。我们通过以下方式将指针调整位32位：
+
+* 确保所有V8对象在4GB范围内分配
+* 将指针表示位在这个范围的偏移量
+
+这样严格的限制是非常不幸的，但是Chrome中的V8即使在64位架构上也已经将堆限制到2GB或4GB大小（具体限制到多少取决于设备）。其他V8嵌入程序，例如Node.js可能需要更大的堆。**如果我们强加最大4GB的限制，就会让那些嵌入V8的程序无法使用指针压缩。**
+
+现在的问题是如何更新堆布局才能让32位指针唯一标识V8对象。
+
+### 简单的堆区布局（Trivial heap layout）
+
+简单的压缩方案是在前4GB的地址空间分配对象。
+
+![简单的堆区布局](./img/heap-layout-0.svg)
+
+但是很可惜V8不能这样做，因为Chrome的渲染进程可能需要在同一渲染器进程中创建多个V8的实例，例如对于Web/Service Workers。除此之外，用这个方案会导致所有的V8实例竞争相同的4GB地址空间从而导致所有的V8实例都受到4GB内存的限制。
+
+### 堆区布局，v1
+
+如果我们将V8堆（heap）放在一个连续的4GB地址空间的其他地方，那么一个从base开始的无符号32位偏移量将唯一标识一个指针。（If we arrange V8’s heap in a contiguous 4-GB region of address space somewhere else, then an unsigned 32-bit offset from the base uniquely identifies the pointer.）
+
+![堆区布局，开始base对齐](./img/heap-layout-1.svg)
+
+如果我们确保base是4GB对齐（4-GB-aligned）则所有指针的高位32bits都是相同的。
+
+```
+            |----- 32 bits -----|----- 32 bits -----|
+Pointer:    |________base_______|______offset_____w1|
+```
+
+通过将Smi的有效负载（payload）限制为31位并将其放在低32位，我们还可以压缩Smis。基本上，使它类似于32位架构中的Smis。
+
+```
+         |----- 32 bits -----|----- 32 bits -----|
+Smi:     |sssssssssssssssssss|____int31_value___0|
+```
+
+这里 *s* 是Smi有效负载的符号值。如果再有一个[符号扩展](https://zh.wikipedia.org/wiki/%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%85%85)的表示，我们就可以仅用64位字的一位算数位移来压缩和解压Smis。
+
+现在，我们可以看到指针和Smis的上半字（upper half-word）完全由下半字定义。这样，我们就可以在内存中仅存储下半部分，从而将存储标记值的内存减少一半。
+
+```
+                    |----- 32 bits -----|----- 32 bits -----|
+Compressed pointer:                     |______offset_____w1|
+Compressed Smi:                         |____int31_value___0|
+```
+
+假设base是4GB对齐的，则压缩就仅仅是截断：
+
+```cpp
+uint64_t uncompressed_tagged;
+uint32_t compressed_tagged = uint32_t(uncompressed_tagged);
+```
+
+但是解压代码要复杂一些。我们需要区分符号扩展（sign-extending）Smi和零扩展（zero-extending）指针，以及是否要添加base。
+
+```cpp
+uint32_t compressed_tagged;
+
+uint64_t uncompressed_tagged;
+if (compressed_tagged & 1) {
+  // pointer case
+  uncompressed_tagged = base + uint64_t(compressed_tagged);
+} else {
+  // Smi case
+  uncompressed_tagged = int64_t(compressed_tagged);
+}
+```
+
+尝试改变压缩方案来简化解压代码。
+
+### 堆区布局，v2
+
+如果将base放在4GB的中间而不是开头，就可以将压缩值视为从base开始的一个有符号32位偏移量。注意，整个保留不再是4GB对齐（4-GB-aligned），但是base依然是对齐的。
+
+![堆区布局，中间base对齐](./img/heap-layout-2.svg)
+
+在这个新的布局中，压缩代码和堆区布局v1是相同的.
+
+然而解压代码变得更好。现在对Smi和指针来说，扩展符号是相同的，唯一的分支在于如果是指针，需要添加base。（Sign-extension is now common for both Smi and pointer cases and the only branch is on whether to add the base in the pointer case.）
+
+```cpp
+int32_t compressed_tagged;
+
+// Common code for both pointer and Smi cases
+int64_t uncompressed_tagged = int64_t(compressed_tagged);
+if (uncompressed_tagged & 1) {
+  // pointer case
+  uncompressed_tagged += base;
+}
+```
+
+代码中分支的性能取决于CPU中的[分支预测单元](https://zh.wikipedia.org/zh-cn/%E5%88%86%E6%94%AF%E9%A0%90%E6%B8%AC%E5%99%A8)。如果我们以无分支的方式执行解压，我们可以得到更好的性能。通过一个小的魔术，我们可以写出一个无分支版本的代码：
+
+```cpp
+int32_t compressed_tagged;
+
+// Same code for both pointer and Smi cases
+int64_t sign_extended_tagged = int64_t(compressed_tagged);
+int64_t selector_mask = -(sign_extended_tagged & 1);
+// Mask is 0 in case of Smi or all 1s in case of pointer
+int64_t uncompressed_tagged =
+    sign_extended_tagged + (base & selector_mask);
+```
+
+然后，我们决定从无分支实现开始。
+
+## 性能演化
+
+### 初始性能
+
+我们使用[Octane](https://v8.dev/blog/retiring-octane#the-genesis-of-octane)测试性能，Octane是我们过去使用的性能基准测试。尽管我们在日常工作中不再专注于改进最高性能（improving peak performance），但我们也不希望降低最高性能，特别是一些像指针这样对性能敏感的东西（particularly for something as performance-sensitive as all pointers. ）。Octane依然是完成这个任务的好的基准测试。
+
+图形显示了Octane在指针压缩实施时在x64架构上的得分。在图中，越高越好。红色的线是现有的未压缩指针的x64版本，绿色的线是指针压缩的版本。
+
+![Octane第一轮改进](./img/perf-octane-1.svg)
+
+在第一个方案中，我们的回归差约为35%。
+
+### Bump（1），+7%
+
+首先我们通过比较无分支解压和有一个分支解压的来验证“无分支会更快”的假设。
