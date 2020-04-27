@@ -63,19 +63,19 @@ Smi:        |____int32_value____|0000000000000000000|
 
 现在的问题是如何更新堆布局才能让32位指针唯一标识V8对象。
 
-### 简单的堆区布局（Trivial heap layout）
+### 简单的堆内存布局（Trivial heap layout）
 
 简单的压缩方案是在前4GB的地址空间分配对象。
 
-![简单的堆区布局](./img/heap-layout-0.svg)
+![简单的堆内存布局](./img/heap-layout-0.svg)
 
 但是很可惜V8不能这样做，因为Chrome的渲染进程可能需要在同一渲染器进程中创建多个V8的实例，例如对于Web/Service Workers。除此之外，用这个方案会导致所有的V8实例竞争相同的4GB地址空间从而导致所有的V8实例都受到4GB内存的限制。
 
-### 堆区布局，v1
+### 堆内存布局，v1
 
 如果我们将V8堆（heap）放在一个连续的4GB地址空间的其他地方，那么一个从base开始的无符号32位偏移量将唯一标识一个指针。（If we arrange V8’s heap in a contiguous 4-GB region of address space somewhere else, then an unsigned 32-bit offset from the base uniquely identifies the pointer.）
 
-![堆区布局，开始base对齐](./img/heap-layout-1.svg)
+![堆内存布局，开始base对齐](./img/heap-layout-1.svg)
 
 如果我们确保base是4GB对齐（4-GB-aligned）则所有指针的高位32bits都是相同的。
 
@@ -125,13 +125,13 @@ if (compressed_tagged & 1) {
 
 尝试改变压缩方案来简化解压代码。
 
-### 堆区布局，v2
+### 堆内存布局，v2
 
 如果将base放在4GB的中间而不是开头，就可以将压缩值视为从base开始的一个有符号32位偏移量。注意，整个保留不再是4GB对齐（4-GB-aligned），但是base依然是对齐的。
 
-![堆区布局，中间base对齐](./img/heap-layout-2.svg)
+![堆内存布局，中间base对齐](./img/heap-layout-2.svg)
 
-在这个新的布局中，压缩代码和堆区布局v1是相同的.
+在这个新的布局中，压缩代码和堆内存布局v1是相同的.
 
 然而解压代码变得更好。现在对Smi和指针来说，扩展符号是相同的，唯一的分支在于如果是指针，需要添加base。（Sign-extension is now common for both Smi and pointer cases and the only branch is on whether to add the base in the pointer case.）
 
@@ -167,12 +167,71 @@ int64_t uncompressed_tagged =
 
 我们使用[Octane](https://v8.dev/blog/retiring-octane#the-genesis-of-octane)测试性能，Octane是我们过去使用的性能基准测试。尽管我们在日常工作中不再专注于改进最高性能（improving peak performance），但我们也不希望降低最高性能，特别是一些像指针这样对性能敏感的东西（particularly for something as performance-sensitive as all pointers. ）。Octane依然是完成这个任务的好的基准测试。
 
-图形显示了Octane在指针压缩实施时在x64架构上的得分。在图中，越高越好。红色的线是现有的未压缩指针的x64版本，绿色的线是指针压缩的版本。
+图形显示了Octane在指针压缩实施时在x64架构上的得分。在图中，越高越好。红色的线是未压缩指针的x64构建，绿色的线是指针压缩的版本。
 
 ![Octane第一轮改进](./img/perf-octane-1.svg)
 
 在第一个方案中，我们的回归差约为35%。
 
-### Bump（1），+7%
+### Bump(1), +7%
 
-首先我们通过比较无分支解压和有一个分支解压的来验证“无分支会更快”的假设。
+首先我们通过比较无分支解压和有一个分支解压的验证了“无分支会更快”的假设。我们的假设是错误的，在x64上有分支版本的速度提高了7%。这是非常大的不同！
+
+下面看一下x64汇编
+
+![x64汇编](./img/code1.png)
+
+r13是base值的专用寄存器。注意，无分支代码在这里更多且需要的寄存器也更多。
+
+在Arm64，我们观察到相同的现象——在强大的CPU上，有分支版本明显更快（尽管这两种情况的代码大小是一样的）。
+
+![Arm64汇编](./img/code2.jpeg)
+
+在低端Arm64设备上我们发现在任一方向上几乎没什么性能差异。
+
+我们的收获是：在现代CPU中分支预测器非常的好，代码的大小（code size）（尤其是执行路径的长度）对性能影响更大。
+
+### Bump(2), +2%
+
+[TurboFan](https://v8.dev/docs/turbofan)是V8的优化编译器，围绕“Sea of Nodes”概念构建。简单来说就是每一个操作在graph中用一个Node表示（更详细的解释可以查看[这篇博客](https://v8.dev/blog/turbofan-jit)。这些节点有各种依赖，包括数据流和控制流。
+
+有两个对指针压缩至关重要的操作：加载和存储，因为它们将V8堆内存和其余管道（pipeline）连起来。如果我们每次从堆内存加载压缩值的时候都解压，并且在存储之前对其压缩，那么管道（pipeline）就可以像在全指针模式（full-pointer mode）下工作了。因此我们在节点图中添加了新的显式操作——压缩和解压。
+
+在某些情况下解压是不必要的，例如，如果一个压缩值仅仅是从某个位置被加载然后存储到新的位置。
+
+为了优化不必要的操作，我们在TurboFan中实施了一个新的“消除解压”阶段。它的工作就是消除直接压缩后的解压。由于这些节点可能不会直接相连，因此它会尝试通过graph传播解压，以期遇到压缩问题并消除。这给使我们的Octane的值提高了2%。
+
+### Bump(3), +2%
+
+在查看生成代码时，我们注意到解压一个刚刚被加载的值会导致代码的冗长：
+
+```cpp
+movl rax, <mem>   // load
+movlsxlq rax, rax // sign extend
+```
+
+Once we fixed that to sign extend the value loaded from memory directly:
+
+```cpp
+movlsxlq rax, <mem>
+```
+
+我们得到了另外2%的改善。
+
+### Bump(4), +11%
+
+TurboFan优化阶段通过在graph上使用模式匹配工作：一旦一个sub-garph与一个特定模式匹配，就会被替换为语义上等效（但是更好）的sub-graph或指令（instruction）。
+
+如果尝试匹配不成功，则并不会有明确的失败提示。在graph中显式的压缩 / 解压操作的存在导致之前尝试匹配成功的不再成功，从而导致优化失败且没有提示。（The presence of explicit Decompress/Compress operations in the graph caused previously successful pattern matching attempts to no longer succeed, resulting in optimizations silently failing.）
+
+“中断”优化的其中一个例子是[分配预配置（allocation preternuring）](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43823.pdf)。一旦我们更新匹配模式（pattern matching）使其能够匹配到新的压缩 / 解压 node，我们就可以得到另外11%的改进。
+
+![Octane的第二轮改进](./img/perf-octane-2.svg)
+
+### Bump(5), +0.5%
+
+在TurboFan中使用解压去除（Decompression Elimination）我们学到了很多。显式的解压 / 压缩node方法具有以下特性：
+
+优点：
+
+* 很明显此类操作允许我们通过优化不必要的解压
