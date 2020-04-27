@@ -222,7 +222,7 @@ movlsxlq rax, <mem>
 
 TurboFan优化阶段通过在graph上使用模式匹配工作：一旦一个sub-garph与一个特定模式匹配，就会被替换为语义上等效（但是更好）的sub-graph或指令（instruction）。
 
-如果尝试匹配不成功，则并不会有明确的失败提示。在graph中显式的压缩 / 解压操作的存在导致之前尝试匹配成功的不再成功，从而导致优化失败且没有提示。（The presence of explicit Decompress/Compress operations in the graph caused previously successful pattern matching attempts to no longer succeed, resulting in optimizations silently failing.）
+尝试匹配不成功并不会有明确的失败提示。在graph中显式的压缩 / 解压操作的存在导致之前尝试匹配成功的不再成功，从而导致优化失败且没有提示。（The presence of explicit Decompress/Compress operations in the graph caused previously successful pattern matching attempts to no longer succeed, resulting in optimizations silently failing.）
 
 “中断”优化的其中一个例子是[分配预配置（allocation preternuring）](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43823.pdf)。一旦我们更新匹配模式（pattern matching）使其能够匹配到新的压缩 / 解压 node，我们就可以得到另外11%的改进。
 
@@ -234,4 +234,16 @@ TurboFan优化阶段通过在graph上使用模式匹配工作：一旦一个sub-
 
 优点：
 
-* 很明显此类操作允许我们通过优化不必要的解压
+* 很明显我们通过对sub-graphs的规范模式匹配可以优化不必要的解压。
+
+但是，随着我们进一步的优化，我们发现缺点：
+
+* 新的内部值的表示可能会导致转换操作变的难以管理。除了现有的表示集（tagged Smi, [tagged pointer](https://en.wikipedia.org/wiki/Tagged_pointer), tagged any, word8, word16, word32, float32, float64, simd128），我们还有压缩指针，压缩Smi，压缩任何值（压缩值可以是指针或Smi）。
+
+* 现有的基于graph的模式匹配（pattern-matching）的优化并没有生效，这导致了一些地方的回退（regressions）。虽然我们找到并修复其中的问题，但TurboFan的复杂性仍在不断增加。
+
+* 寄存器分配器（register allocator）对graph中的node数量越来越不满意，并且经常生成错误的代码。（The register allocator was increasingly unhappy about the amount of nodes in the graph, and quite often generated bad code.）
+
+* 较大的node graph会减缓TurboFan优化阶段，并增加编译期间的内存消耗。
+
+我们决定回退一步，考虑在TurboFan中实现一种更简单的指针压缩方式。新的方法是删除压缩指针 / Smi / 任何表示，然后让所有显式的压缩 / 解压 node 隐藏在存储和加载中
