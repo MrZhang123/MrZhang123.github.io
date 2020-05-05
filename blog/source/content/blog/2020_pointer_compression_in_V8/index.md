@@ -246,4 +246,30 @@ TurboFan优化阶段通过在graph上使用模式匹配工作：一旦一个sub-
 
 * 较大的node graph会减缓TurboFan优化阶段，并增加编译期间的内存消耗。
 
-我们决定回退一步，考虑在TurboFan中实现一种更简单的指针压缩方式。新的方法是删除压缩指针 / Smi / 任何表示，然后让所有显式的压缩 / 解压 node 隐藏在存储和加载中
+我们决定回退一步，考虑在TurboFan中实现一种更简单的指针压缩方式。新的方法是删除压缩指针 / Smi / 任何表示，然后让所有显式的压缩 / 解压 node 隐藏在存储和加载中，并假设我们始终在加载之前压缩，在存储之前解压。
+
+我们还在TurboFan中添加新的阶段，该阶段将替代“解压消除（Decompression Elimination”。这个新的阶段能够识别我们什么时候实际上不需要压缩或解压并相应地更新“加载和存储”。这种方法显著降低了TurboFan中指针压缩的复杂性并且提高了生成代码的质量。
+
+新的操作和初始时候一样有效，并且又提高了0.5%的性能。
+
+### Bump(6), +2.5%
+
+我们已经接近平均性能，但是依然还有差距。我们必须有更新的想法。其中一个想法是：如果我们确保任何处理Smi值的代码都不“看”上面的32位，结果会怎么样？
+
+让我们记住解压实现：
+
+```cpp
+// Old decompression implementation
+int64_t uncompressed_tagged = int64_t(compressed_tagged);
+if (uncompressed_tagged & 1) {
+  // pointer case
+  uncompressed_tagged += base;
+}
+```
+
+如果忽略一个Smi的高32位就可以假定它是undefined。然后，我们就可以避免在指针和Smi之前的特殊case并且可以在解压的时候无条件的添加base，即使是对Smis也可以！我们称这个方法为“Smi-corrupting”。
+
+```cpp
+// New decompression implementation
+int64_t uncompressed_tagged = base + int64_t(compressed_tagged);ughjky89
+```
