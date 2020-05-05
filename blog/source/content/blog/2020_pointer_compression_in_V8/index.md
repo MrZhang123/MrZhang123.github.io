@@ -271,5 +271,5 @@ if (uncompressed_tagged & 1) {
 
 ```cpp
 // New decompression implementation
-int64_t uncompressed_tagged = base + int64_t(compressed_tagged);ughjky89
+int64_t uncompressed_tagged = base + int64_t(compressed_tagged);
 ```
