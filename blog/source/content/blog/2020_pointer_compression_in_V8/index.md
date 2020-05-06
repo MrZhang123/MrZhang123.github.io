@@ -273,3 +273,5 @@ if (uncompressed_tagged & 1) {
 // New decompression implementation
 int64_t uncompressed_tagged = base + int64_t(compressed_tagged);
 ```
+
+由于我们不再关心Smi的符号扩展（sign extending），因此这个改变允许我们返回堆内存布局v1。这是一个指向4GB预留的开始的位置。（This is the one with the base pointing to the beginning of the 4GB reservation.）
