@@ -254,9 +254,9 @@ TurboFan优化阶段通过在graph上使用模式匹配工作：一旦一个sub-
 
 ### Bump(6), +2.5%
 
-我们已经接近平均性能，但是依然还有差距。我们必须有更新的想法。其中一个想法是：如果我们确保任何处理Smi值的代码都不“看”上面的32位，结果会怎么样？
+我们已经接近平均性能，但是依然还有差距。我们必须有更好的想法。其中一个想法是：如果我们确保任何处理Smi值的代码都不“看”高32位，结果会怎么样？
 
-让我们记住解压实现：
+之前的解压实现：
 
 ```cpp
 // Old decompression implementation
@@ -267,11 +267,75 @@ if (uncompressed_tagged & 1) {
 }
 ```
 
-如果忽略一个Smi的高32位就可以假定它是undefined。然后，我们就可以避免在指针和Smi之前的特殊case并且可以在解压的时候无条件的添加base，即使是对Smis也可以！我们称这个方法为“Smi-corrupting”。
+如果我们忽略一个Smi的高32位就可以假定它是`undefined`。然后，我们就可以避免指针和Smi之间的特殊case并且可以在解压的时候无条件的添加base，即使是对Smis也可以！我们称这个方法为“Smi-corrupting”。
 
 ```cpp
 // New decompression implementation
 int64_t uncompressed_tagged = base + int64_t(compressed_tagged);
 ```
 
-由于我们不再关心Smi的符号扩展（sign extending），因此这个改变允许我们返回堆内存布局v1。这是一个指向4GB预留的开始的位置。（This is the one with the base pointing to the beginning of the 4GB reservation.）
+由于我们不关注Smi的符号扩展（sign extending），因此这个改变允许我们回到堆内存布局v1。这是一个base指向4GB预留空间的开始位置。（This is the one with the base pointing to the beginning of the 4GB reservation.）
+
+![Heap layout, base aligned to start](./img/heap-layout-3.svg)
+
+就解压代码而言，这个改变将符号扩展（sign-extension）变为零扩展（zero-extension），这也同样简单。（In terms of the decompression code, it changes a sign-extension operation to a zero-extension, which is just as cheap.）但是，这简化了运行时（C++）方面的工作。例如，例如地址空间区域保留代码（the address space region reservation code）（查看[一些细节实现](https://v8.dev/blog/pointer-compression#some-implementation-details)部分）。
+
+这是用于比较的汇编：
+
+![](./img/code3.jpeg)
+
+因此我们更改V8中所有的Smi使用（Smi-using）代码块为新的压缩方案，这给我们另外2.5%的性能提升。
+
+### 剩余差距（Remaining gap）
+
+剩余的性能差距可以用对64位构建的两个优化来解释，这些优化由于与指针压缩不兼容而禁用。
+
+![Octane的最后一轮改进](./img/perf-octane-3.svg)
+
+#### 32-bit Smi优化(7), -1%
+
+我们回顾一下，Smis在64位架构全指针模式中看起来是这样：
+
+```cpp
+        |----- 32 bits -----|----- 32 bits -----|
+Smi:    |____int32_value____|0000000000000000000|
+```
+
+32-bit Smi有如下好处：
+
+* 它可以有更大的整数范围且不需要封装成整数对象
+* 这样的形式可以在读 / 写时直接访问32位值（such a shape provides direct access to the 32-bit value when reading/writing.）
+
+由于使用指针压缩后会具有区分指针和Smis的bit导致在32-bit压缩指针中没有空间，所以导致该优化无法使用。如果我们在64-bit版本中禁用32-bit smis，将会看到Octane值下降1%。
+
+#### Double field unboxing (8), -3%
+
+这种优化尝试在某些假设下尝试直接将浮点值存储在对象的字段中。这样做的目的是减少数字对象分配的数量，这比单独用Smis减少的更多。
+
+想象一下下面这段代码：
+
+```js
+function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
+const p = new Point(3.1, 5.3);
+```
+
+一般来说，对象p在内存中的样子如下：
+
+![对象p在内存中的形式](./img/heap-point-1.svg)
+
+关于更多存储中的隐藏类，属性和元素可以[阅读此文](https://v8.dev/blog/fast-properties)
+
+在64位架构中，double值和指针的大小相同。所以**如果我们假设指针字段总是包含number值**，我们可以存储直接在对象字段存储它们。
+
+![](./img/heap-point-2.svg)
+
+如果某个字段导致假设不成立，例如执行下面这段代码：
+
+```js
+const q = new Point(2, 'ab');
+```
+
+y属性的number值必须封装存储（store boxed instead）。另外，如果
