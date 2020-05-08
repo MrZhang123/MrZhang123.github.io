@@ -338,4 +338,4 @@ const p = new Point(3.1, 5.3);
 const q = new Point(2, 'ab');
 ```
 
-y属性的number值必须封装存储（store boxed instead）。另外，如果
+y属性的number值必须封装存储（store boxed instead）。另外，如果某处的优化的代码依赖此假设，则该优化必须舍弃，不再被使用。进行这些“字段类型”归纳的原因是为了尽量减少通过同一构造函数创建的对象的形状数量，反过来这对于拥有稳定的性能是很必要的。
