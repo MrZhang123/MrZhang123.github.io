@@ -1,9 +1,9 @@
 ---
 title: 「译」V8中的指针压缩
 date: 2020-04-23 17:08:00
-tags: 翻译,JavaScript
+tags: 翻译,V8
 comments: true
-categories: "翻译,JavaScript"
+categories: "翻译,V8"
 ---
 
 原文链接：https://v8.dev/blog/pointer-compression
@@ -359,3 +359,98 @@ y属性的number值必须装箱存储（store boxed instead）。另外，如果
 
 ## 一些优化细节
 
+为了简化将指针压缩整合到现有代码中，我们决定在每次加载values的时候解压并且在每次存储的时候压缩它们。因此只是改变标志值的存储格式，而执行格式保持不变。
+
+### Native代码端
+
+为了在解压的时候生成有效的代码，必须保证始终提供base值。幸运的是V8已经有一个专用的寄存器指向一个“根表（roots table）”，该表包含JavaScript和V8对象的引用，这些对象必须始终可用（例如：`undefined`，`null`，`true`，`false`等）。（ Luckily V8 already had a dedicated register always pointing to a “roots table” containing references to JavaScript and V8-internal objects which must be always available ）该寄存器被称为“根寄存器”，它用来生成更小的，[可以共享的内部代码](https://v8.dev/blog/embedded-builtins)。
+
+所以，我们将根表放在V8堆保留区，因此根寄存器可以同时有两种用途：
+
+* 作为根指针
+* 解压的时候作为base值
+
+### C++ 端
+
+V8运行时通过C++类访问在V8堆区的对象，从而提供对堆中存储的数据的便捷访问。请注意，V8对象类似于[POD](https://en.wikipedia.org/wiki/Passive_data_structure)的结构而不是C++对象。helper “view”类仅仅包含一个带有相应标记值的`uintptr_t`字段。由于view类是字大小的（word-size），因此我们可以将它按值传递，开销为零（这样感谢现代C++编译器）。
+
+这里是一个helper类的伪代码：
+
+```cpp
+// Hidden class
+class Map {
+  ...
+  inline DescriptorArray instance_descriptors() const;
+  ...
+  // The actual tagged pointer value stored in the Map view object.
+  cosnt uintptr_t ptr_;
+}
+
+DescriptorArray Map::instance_descriptors() const {
+  uintptr_t field_address = FieldAddress(ptr_, kInstanceDescriptorsOffset);
+
+  uintptr_t da = *reinterpret_cast<uintptr_t*>(field_address);
+  return DescriptorArray(da);
+}
+```
+为了尽量减少首次运行指针压缩版本的所需的更改次数，我们将解压必须的base值的计算集成到getter中。
+
+```cpp
+inline uintptr_t GetBaseForPointerCompression(uintptr_t address) {
+  // Round address down to 4 GB
+  const uintptr_t kBaseAlignment = 1 << 32;
+  return address & -kBaseAlignment;
+}
+
+DescriptorArray Map::instance_descriptors() const {
+  uintptr_t field_address = FieldAddress(ptr_, kInstanceDescriptorsOffset);
+
+  uint32_t compressed_da = *reinterpret_cast<uint32_t*>(field_address);
+
+  uintptr_t base = GetBaseForPointerCompression(ptr_);
+  uintptr_t da = base + compressed_da;
+  return DescriptorArray(da);
+}
+```
+
+性能测量结果证实，在每次加载的时候计算base值会影响性能。原因在于C++编译器不知道对于V8堆区的任何地址调用`GetBaseForPointerCompression()`的结果是相同的，因此编译器无法合并base值的计算。鉴于代码包含多个指令和一个64位常量，这将导致代码显著膨胀。
+
+为了处理这个问题，我们重用V8实例指针作为解压时用的base（记住，V8实例数据在堆区布局中）。该指针通常在运行时函数中可用，所以我们通过要求一个V8实例指针简化getters代码，它恢复回归（and it recovered the regressions）：
+
+```cpp
+DescriptorArray Map::instance_descriptors(const Isolate* isolate) const {
+  uintptr_t field_address =
+      FieldAddress(ptr_, kInstanceDescriptorsOffset);
+
+  uint32_t compressed_da = *reinterpret_cast<uint32_t*>(field_address);
+
+  // No rounding is needed since the Isolate pointer is already the base.
+  uintptr_t base = reinterpret_cast<uintptr_t>(isolate);
+  uintptr_t da = DecompressTagged(base, compressed_value);
+  return DescriptorArray(da);
+}
+```
+
+## 结果
+
+让我们来看看指针压缩的最后结果！对于这些结果，我们使用与本问开头介绍的相同的浏览器测试。提醒一下，他们正在浏览我们发现代表真实世界网站使用情况的用户故事。
+
+在他们中，我们发现指针压缩减少43%的V8堆区大小！反过来，它减少桌面端Chrome渲染进程20%的内存占用。
+
+![在Windows 10中的内存节省](./img/v8-heap-memory.svg)
+
+另一个重要的事情是，不是每一个网站都有相同的改进。例如，在没有使用指针压缩的时候Facebook使用V8堆区内存比纽约时报要多，但是使用该优化后，使用堆内存情况变得相反。这个不同可以通过以下事实解释：某些网站具有比其他网站更多的标记值（Tagged values）。
+
+除了这些内存改进，我们还看到了实际性能的改进。在真实网站上，我们使用更少的CPU和GC time！
+
+![在CPU和GC time上的改进](./img/performance-improvements.svg)
+
+## 结论
+
+到达这里的旅程虽然没有花香，但是值得度过。[300+的提交](https://github.com/v8/v8/search?o=desc&q=repo%3Av8%2Fv8+%22%5Bptr-compr%5D%22&s=committer-date&type=Commits)后，指针压缩让V8拥有64位应用的性能，同时拥有32位的内存占用。
+
+我们一直期待着性能的改进，并在我们的pipeline中完成以下相关任务：
+
+* 改进生成汇编代码的质量。我们知道在某些情况下我们能够生成更少的代码来提高性能。
+* 解决相关的性能下降，包括一个机制，该机制以指针压缩友好的方式再次对doble字段拆箱。
+* 探索支持8～16G范围内更大堆的想法。
