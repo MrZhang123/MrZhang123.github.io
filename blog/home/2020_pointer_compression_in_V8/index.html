@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><style id="typography.js">html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}article,aside,details,figcaption,figure,footer,header,main,menu,nav,section,summary{display:block}audio,canvas,progress,video{display:inline-block}audio:not([controls]){display:none;height:0}progress{vertical-align:baseline}[hidden],template{display:none}a{background-color:transparent;-webkit-text-decoration-skip:objects}a:active,a:hover{outline-width:0}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:inherit;font-weight:bolder}dfn{font-style:italic}h1{font-size:2em;margin:.67em 0}mark{background-color:#ff0;color:#000}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}svg:not(:root){overflow:hidden}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}figure{margin:1em 40px}hr{box-sizing:content-box;height:0;overflow:visible}button,input,optgroup,select,textarea{font:inherit;margin:0}optgroup{font-weight:700}button,input{overflow:visible}button,select{text-transform:none}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-cancel-button,[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-input-placeholder{color:inherit;opacity:.54}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}html{font:100%/1.75 'Merriweather','Georgia',serif;box-sizing:border-box;overflow-y:scroll;}*{box-sizing:inherit;}*:before{box-sizing:inherit;}*:after{box-sizing:inherit;}body{color:hsla(0,0%,0%,0.9);font-family:'Merriweather','Georgia',serif;font-weight:400;word-wrap:break-word;font-kerning:normal;-moz-font-feature-settings:"kern", "liga", "clig", "calt";-ms-font-feature-settings:"kern", "liga", "clig", "calt";-webkit-font-feature-settings:"kern", "liga", "clig", "calt";font-feature-settings:"kern", "liga", "clig", "calt";}img{max-width:100%;margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}h1{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:Montserrat,sans-serif;font-weight:900;text-rendering:optimizeLegibility;font-size:2.5rem;line-height:1.1;}h2{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.73286rem;line-height:1.1;}h3{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1.4427rem;line-height:1.1;}h4{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:1rem;line-height:1.1;letter-spacing:0.140625em;text-transform:uppercase;}h5{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.83255rem;line-height:1.1;}h6{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;color:inherit;font-family:'Merriweather','Georgia',serif;font-weight:900;text-rendering:optimizeLegibility;font-size:0.75966rem;line-height:1.1;font-style:italic;}hgroup{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}ul{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;list-style:disc;}ol{margin-left:1.75rem;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;list-style-position:outside;list-style-image:none;}dl{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}dd{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}p{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}figure{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}pre{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:0.85rem;line-height:1.75rem;}table{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1rem;line-height:1.75rem;border-collapse:collapse;width:100%;}fieldset{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}blockquote{margin-left:-1.75rem;margin-right:1.75rem;margin-top:0;padding-bottom:0;padding-left:1.42188rem;padding-right:0;padding-top:0;margin-bottom:1.75rem;font-size:1.20112rem;line-height:1.75rem;color:hsla(0,0%,0%,0.59);font-style:italic;border-left:0.32813rem solid hsla(0,0%,0%,0.9);}form{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}noscript{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}iframe{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}hr{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:calc(1.75rem - 1px);background:hsla(0,0%,0%,0.2);border:none;height:1px;}address{margin-left:0;margin-right:0;margin-top:0;padding-bottom:0;padding-left:0;padding-right:0;padding-top:0;margin-bottom:1.75rem;}b{font-weight:700;}strong{font-weight:700;}dt{font-weight:700;}th{font-weight:700;}li{margin-bottom:calc(1.75rem / 2);}ol li{padding-left:0;}ul li{padding-left:0;}li > ol{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}li > ul{margin-left:1.75rem;margin-bottom:calc(1.75rem / 2);margin-top:calc(1.75rem / 2);}blockquote *:last-child{margin-bottom:0;}li *:last-child{margin-bottom:0;}p *:last-child{margin-bottom:0;}li > p{margin-bottom:calc(1.75rem / 2);}code{font-size:0.85rem;line-height:1.75rem;}kbd{font-size:0.85rem;line-height:1.75rem;}samp{font-size:0.85rem;line-height:1.75rem;}abbr{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}acronym{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;}abbr[title]{border-bottom:1px dotted hsla(0,0%,0%,0.5);cursor:help;text-decoration:none;}thead{text-align:left;}td,th{text-align:left;border-bottom:1px solid hsla(0,0%,0%,0.12);font-feature-settings:"tnum";-moz-font-feature-settings:"tnum";-ms-font-feature-settings:"tnum";-webkit-font-feature-settings:"tnum";padding-left:1.16667rem;padding-right:1.16667rem;padding-top:0.875rem;padding-bottom:calc(0.875rem - 1px);}th:first-child,td:first-child{padding-left:0;}th:last-child,td:last-child{padding-right:0;}blockquote > :last-child{margin-bottom:0;}blockquote cite{font-size:1rem;line-height:1.75rem;color:hsla(0,0%,0%,0.9);font-weight:400;}blockquote cite:before{content:"— ";}ul,ol{margin-left:0;}@media only screen and (max-width:480px){ul,ol{margin-left:1.75rem;}blockquote{margin-left:-1.3125rem;margin-right:0;padding-left:0.98438rem;}}h1,h2,h3,h4,h5,h6{margin-top:3.5rem;}a{box-shadow:0 1px 0 0 currentColor;color:#007acc;text-decoration:none;}a:hover,a:active{box-shadow:none;}mark,ins{background:#007acc;color:white;padding:0.10938rem 0.21875rem;text-decoration:none;}a.gatsby-resp-image-link{box-shadow:none;}</style><style data-href="/blog/home/styles.09dcd3305fedb1de6539.css">@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:100;src:local("Montserrat Thin "),local("Montserrat-Thin"),url(/blog/home/static/montserrat-latin-100-191cc9f50f3b76b9617cb383f19acb7d.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-100-370318464551d5f25b0f0a78f374faac.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:100;src:local("Montserrat Thin italic"),local("Montserrat-Thinitalic"),url(/blog/home/static/montserrat-latin-100italic-bdeaeb79db315697bd173a55b097dc18.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-100italic-ecf7d49386e8f265878e735db34a7c4b.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:200;src:local("Montserrat Extra Light "),local("Montserrat-Extra Light"),url(/blog/home/static/montserrat-latin-200-85d5ef9db7f2dc6979172a4a3b2c57cb.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-200-1fc98e126a3d152549240e6244d7e669.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:200;src:local("Montserrat Extra Light italic"),local("Montserrat-Extra Lightitalic"),url(/blog/home/static/montserrat-latin-200italic-49095760a498d024fe1a85a078850df9.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-200italic-fe46cf8b9462c820457d3bf537e4057f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:300;src:local("Montserrat Light "),local("Montserrat-Light"),url(/blog/home/static/montserrat-latin-300-7c3daf12b706645b5d3710f863a4da04.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-300-8dc95fab9cf98d02ca8d76e97d3dff60.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:300;src:local("Montserrat Light italic"),local("Montserrat-Lightitalic"),url(/blog/home/static/montserrat-latin-300italic-f20b178ca2024a5eac8e42e6649db86c.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-300italic-3fe16939288856e8e828fa2661bf2354.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:400;src:local("Montserrat Regular "),local("Montserrat-Regular"),url(/blog/home/static/montserrat-latin-400-bc3aa95dca08f5fee5291e34959c27bc.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-400-8102c4838f9e3d08dad644290a9cb701.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:400;src:local("Montserrat Regular italic"),local("Montserrat-Regularitalic"),url(/blog/home/static/montserrat-latin-400italic-5cad650422a7184467af5a4d17b264c4.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-400italic-d191f22af3bb50902b99ac577f81a322.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:500;src:local("Montserrat Medium "),local("Montserrat-Medium"),url(/blog/home/static/montserrat-latin-500-92d16e458625f4d2c8940f6bdca0ff09.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-500-8b763220218ffc11c57c84ddb80e7b26.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:500;src:local("Montserrat Medium italic"),local("Montserrat-Mediumitalic"),url(/blog/home/static/montserrat-latin-500italic-47bfcca6b69d6a9acca7a8bff17193e2.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-500italic-72c01f753c3940c0b9cb6bf2389caddf.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:600;src:local("Montserrat SemiBold "),local("Montserrat-SemiBold"),url(/blog/home/static/montserrat-latin-600-6fb1b5623e528e27c18658fecf5ee0ee.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-600-7c839d15a6f54e7025ba8c0c4b333e8f.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:600;src:local("Montserrat SemiBold italic"),local("Montserrat-SemiBolditalic"),url(/blog/home/static/montserrat-latin-600italic-60789af1c9338ed1a9546722ec54b4f7.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-600italic-f3d4de8d0afb19e777c79032ce828e3d.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:700;src:local("Montserrat Bold "),local("Montserrat-Bold"),url(/blog/home/static/montserrat-latin-700-39d93cf678c740f9f6b2b1cfde34bee3.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-700-80f10bd382f0df1cd650fec59f3c9394.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:700;src:local("Montserrat Bold italic"),local("Montserrat-Bolditalic"),url(/blog/home/static/montserrat-latin-700italic-ba136d97b14e82284dd595e257f11c47.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-700italic-8c98142b425630821139c24bd1698700.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold "),local("Montserrat-ExtraBold"),url(/blog/home/static/montserrat-latin-800-b7018be9ed6cd94da8b6675b3a468c3b.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-800-9a9befcf50d64f9d2d19d8b1d1984add.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:800;src:local("Montserrat ExtraBold italic"),local("Montserrat-ExtraBolditalic"),url(/blog/home/static/montserrat-latin-800italic-540ffdd223d1a9ad3d4e678e1a23372e.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-800italic-897086f99f4e1f45e6b1e9368527d0bc.woff) format("woff")}@font-face{font-family:Montserrat;font-style:normal;font-display:swap;font-weight:900;src:local("Montserrat Black "),local("Montserrat-Black"),url(/blog/home/static/montserrat-latin-900-58cd789700850375b834e8b6776002eb.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-900-26d42c9428780e545a540bbb50c84bce.woff) format("woff")}@font-face{font-family:Montserrat;font-style:italic;font-display:swap;font-weight:900;src:local("Montserrat Black italic"),local("Montserrat-Blackitalic"),url(/blog/home/static/montserrat-latin-900italic-451157bc8861fe54f523b3669a3def71.woff2) format("woff2"),url(/blog/home/static/montserrat-latin-900italic-a8ec4957e1c24f5793305763ad9845b3.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:300;src:local("Merriweather Light "),local("Merriweather-Light"),url(/blog/home/static/merriweather-latin-300-b1158cfcd4aacb9d8fb61625e37af46a.woff2) format("woff2"),url(/blog/home/static/merriweather-latin-300-cc7de05e166e90320d7d896e0f72a19d.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:300;src:local("Merriweather Light italic"),local("Merriweather-Lightitalic"),url(/blog/home/static/merriweather-latin-300italic-8fe52a48089d6ebe46db0b8e7cc66263.woff2) format("woff2"),url(/blog/home/static/merriweather-latin-300italic-e1331f5397c2a673f9d3765138debdb5.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:400;src:local("Merriweather Regular "),local("Merriweather-Regular"),url(/blog/home/static/merriweather-latin-400-8276fdb72ae8f4714d4e6eba704cc39f.woff2) format("woff2"),url(/blog/home/static/merriweather-latin-400-69f09800f4f6479d06e44eba837df872.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:400;src:local("Merriweather Regular italic"),local("Merriweather-Regularitalic"),url(/blog/home/static/merriweather-latin-400italic-3a9be9ea9f7aa4af6de7307df21d9fc0.woff2) format("woff2"),url(/blog/home/static/merriweather-latin-400italic-d76079ed7541a433a54f79316de086e9.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:700;src:local("Merriweather Bold "),local("Merriweather-Bold"),url(/blog/home/static/merriweather-latin-700-fa534be7ffa380e39a7f6e03bf9a5e03.woff2) format("woff2"),url(/blog/home/static/merriweather-latin-700-ba56ea84b8084b7ff9677f50d3cd81bd.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:700;src:local("Merriweather Bold italic"),local("Merriweather-Bolditalic"),url(/blog/home/static/merriweather-latin-700italic-1ef5edaaa20ae53ea50399884c5e48c6.woff2) format("woff2"),url(/blog/home/static/merriweather-latin-700italic-534bc9e7ce93c73d73426e46acd78092.woff) format("woff")}@font-face{font-family:Merriweather;font-style:normal;font-display:swap;font-weight:900;src:local("Merriweather Black "),local("Merriweather-Black"),url(/blog/home/static/merriweather-latin-900-7528fb70e8a4a82c7305e72ff43ac25f.woff2) format("woff2"),url(/blog/home/static/merriweather-latin-900-3799b6e2f5ed3fcccf9d7a708d7419fa.woff) format("woff")}@font-face{font-family:Merriweather;font-style:italic;font-display:swap;font-weight:900;src:local("Merriweather Black italic"),local("Merriweather-Blackitalic"),url(/blog/home/static/merriweather-latin-900italic-e1b4d2aaa78e12ad84aaf8a56321e4c2.woff2) format("woff2"),url(/blog/home/static/merriweather-latin-900italic-2ae22f731b3424e8dbb4b37f7ca6e708.woff) format("woff")}code[class*=language-],pre[class*=language-]{color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}code[class*=language-]::selection,code[class*=language-] ::selection,pre[class*=language-]::selection,pre[class*=language-] ::selection{background:#073642}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto;border-radius:.3em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:#fdf6e3}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.token.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{color:#657b83;background:#eee8d5}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}</style><meta name="generator" content="Gatsby 2.20.17"/><link rel="alternate" type="application/rss+xml" href="/blog/home/rss.xml"/><link rel="icon" href="/blog/home/icons/icon-48x48.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="manifest" href="/blog/home/manifest.webmanifest"/><meta name="theme-color" content="#663399"/><link rel="apple-touch-icon" sizes="48x48" href="/blog/home/icons/icon-48x48.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="72x72" href="/blog/home/icons/icon-72x72.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="96x96" href="/blog/home/icons/icon-96x96.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="144x144" href="/blog/home/icons/icon-144x144.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="192x192" href="/blog/home/icons/icon-192x192.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="256x256" href="/blog/home/icons/icon-256x256.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="384x384" href="/blog/home/icons/icon-384x384.png?v=edf3d310d67f8284a562bc3a58c3e761"/><link rel="apple-touch-icon" sizes="512x512" href="/blog/home/icons/icon-512x512.png?v=edf3d310d67f8284a562bc3a58c3e761"/><title data-react-helmet="true">「译」V8中的指针压缩 | Mark Zhang Blog</title><meta data-react-helmet="true" name="description" content="原文链接：https://v8.dev/blog/pointer-compression 内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。 时间回到2014年，那时Chrome从32位切换到64位。这个变化带给了Chrome…"/><meta data-react-helmet="true" property="og:title" content="「译」V8中的指针压缩"/><meta data-react-helmet="true" property="og:description" content="原文链接：https://v8.dev/blog/pointer-compression 内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。 时间回到2014年，那时Chrome从32位切换到64位。这个变化带给了Chrome…"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:creator" content="Mark Zhang"/><meta data-react-helmet="true" name="twitter:title" content="「译」V8中的指针压缩"/><meta data-react-helmet="true" name="twitter:description" content="原文链接：https://v8.dev/blog/pointer-compression 内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。 时间回到2014年，那时Chrome从32位切换到64位。这个变化带给了Chrome…"/><link as="script" rel="preload" href="/blog/home/webpack-runtime-df92590fafbe6337522b.js"/><link as="script" rel="preload" href="/blog/home/framework-70c4ad045413a7d4a0cc.js"/><link as="script" rel="preload" href="/blog/home/styles-d63bba2ea17e7ed05dbf.js"/><link as="script" rel="preload" href="/blog/home/app-e3b98220430e8eedb58f.js"/><link as="script" rel="preload" href="/blog/home/4e12209f87c7eca01f5df3fbf007e262bacf2aef-8a458d294b29a52772f3.js"/><link as="script" rel="preload" href="/blog/home/cfb862b899ac329b376ed7eb74e7dfecbb9fb7a6-e00f1ece3b23d6e46141.js"/><link as="script" rel="preload" href="/blog/home/component---src-templates-blog-post-js-879dde53765f1a436ac5.js"/><link as="fetch" rel="preload" href="/blog/home/page-data/2020_pointer_compression_in_V8/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/blog/home/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div style="margin-left:auto;margin-right:auto;max-width:42rem;padding:2.625rem 1.3125rem"><h3 style="font-family:Montserrat, sans-serif;margin-top:0"><a style="box-shadow:none;text-decoration:none;color:inherit" href="/blog/home/">Mark Zhang Blog</a></h3><h1>「译」V8中的指针压缩</h1><p style="font-size:0.83255rem;line-height:1.75rem;display:block;margin-bottom:1.75rem;margin-top:-1.75rem">April 23, 2020</p><div><p>原文链接：<a href="https://v8.dev/blog/pointer-compression">https://v8.dev/blog/pointer-compression</a></p>
+<p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p>
+<p>时间回到2014年，那时Chrome从32位切换到64位。这个变化带给了Chrome更好的<a href="https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html">安全性、稳定性和性能</a>，但同时也带来了更多内存的消耗，因为之前每个指针占用4个字节而现在占用是8个字节。我们面临在V8中尽可能减少这种多出来4个字节开销的挑战。</p>
+<p>在实施改进之前，我们需要知道我们目前的状况，从而正确的评估如何改进。为了测量当前的内存和性能，我们使用一组可以代表目前流行站点的<a href="https://v8.dev/blog/optimizing-v8-memory">页面</a>。数据显示在桌面端Chrome<a href="https://www.chromium.org/developers/design-documents/multi-process-architecture">渲染进程</a>内存占用中V8占用了60%，平均为40%。</p>
+<p><img src="/blog/home/a1848c4508d05adad5d926fbace6b967/memory-chrome.svg" alt="在Chrome渲染进程内存占用中V8的内存消耗百分比"></p>
+<p>指针压缩是改进V8内存占用的多项工作之一。想法很简单：我们可以存储一些“基”地址的32位偏移量而不是存储64位指针。这样一个简单的想法，我们可以从V8中的这种压缩获得多少收益？</p>
+<p>V8的堆区包含大量的项目（items），例如浮点值（floating point values），字符串字符（string characters），解析器字节码（interpreter bytecode）和标记值（tagged values）。在检查堆区时，我们发现在现实使用的网站中，这些标记值占了V8堆区的70%！</p>
+<p>下面我们具体看看这些标记值是什么。</p>
+<h2>V8中的标记值</h2>
+<p>在V8中JavaScript的对象，数组，数字或者字符串都用对象表示，分配在V8堆区。这使得我们可以用一个指向对象的指针表示任何值。</p>
+<p>许多JavaScript程序都会对整数进行计算，例如在循环中增加索引。为了避免每次整数递增时重新分配一个新的number对象，V8使用著名的<a href="https://en.wikipedia.org/wiki/Tagged_pointer">指针标记技术(pointer tagging)</a>在V8的堆指针中存储其他或替代数据。</p>
+<p>标记位（tag bits）有双重作用：用于指示位于V8堆中对象的强/弱指针或一个小整数的信号。因此，整数能够直接存储在标记值中，而不必为其分配额外的存储空间。</p>
+<p>V8在堆中按字对齐的地址分配对象，这使得它可以使用2（或3，取决于机器字大小）最低有效位进行标记。在32位架构中，V8使用最低有效位去区分Smis和堆对象指针。对于堆指针，它使用第二个最低有效位去区分强引用和弱引用：</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">                        |----- 32 bits -----|
+Pointer:                |_____address_____w1|
+Smi:                    |___int31_value____0|</code></pre></div>
+<p>这里的 <em>w</em> 用来区分强指针和弱指针。</p>
+<p><em>注意：</em>一个Smi值只能携带一个31bit有效载荷（payload），包括符号位。对于指针，我们有30bit用来作为堆对象地址有效载荷（payload）。由于字对齐，分配粒度为4个字节，这给了我们4GB的寻址空间。</p>
+<p>在64位架构中，V8的值看起来像这样：</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">            |----- 32 bits -----|----- 32 bits -----|
+Pointer:    |________________address______________w1|
+Smi:        |____int32_value____|0000000000000000000|</code></pre></div>
+<p>不同于32位架构，在64位架构中V8可以将32位用于Smi值有效载荷（payload）。以下各节将讨论32位Smis对指针压缩的影响。</p>
+<h2>压缩标记值（tagged values）和新的堆布局</h2>
+<p>使用指针压缩，我们的目标是以某种方式在64位架构中将两种标记值转换为32位。我们通过以下方式将指针调整位32位：</p>
+<ul>
+<li>确保所有V8对象分配在4GB范围内</li>
+<li>将指针表示为这个范围内的偏移量</li>
+</ul>
+<p>这样严格的限制是非常不幸的，但是Chrome中的V8已经将堆限制到2GB或4GB大小（具体限制到多少取决于设备），即使在64位架构上也是如此。其他V8嵌入程序，例如Node.js可能需要更大的堆。<strong>如果我们添加最大4GB的限制，就会让这些嵌入V8的程序无法使用指针压缩。</strong></p>
+<p>现在的问题是如何更新堆布局才能让32位指针唯一标识V8对象。</p>
+<h3>简单的堆内存布局（Trivial heap layout）</h3>
+<p>简单的压缩方案是在前4GB的地址空间分配对象。</p>
+<p><img src="/blog/home/46db72cf281c6fba49f884e3de136e58/heap-layout-0.svg" alt="简单的堆内存布局"></p>
+<p>但是很可惜V8不能这样做，因为Chrome的渲染进程可能需要在同一渲染器进程中创建多个V8的实例，例如对于Web/Service Workers。除此之外，用这个方案会导致所有的V8实例竞争相同的4GB地址空间从而导致所有的V8实例都受到4GB内存的限制。</p>
+<h3>堆内存布局，v1</h3>
+<p>如果我们将V8堆（heap）放在其他地方的连续4GB地址空间，那么一个从base开始的无符号32位偏移量将唯一标识一个指针。</p>
+<p><img src="/blog/home/2698dbb04aac8200c57d63c352f485d2/heap-layout-1.svg" alt="堆内存布局，开始base对齐"></p>
+<p>如果我们确保base是4GB对齐（4-GB-aligned），则所有指针的高位32位都相同。</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">            |----- 32 bits -----|----- 32 bits -----|
+Pointer:    |________base_______|______offset_____w1|</code></pre></div>
+<p>通过将Smi的有效载荷（payload）限制为31位并将其放在低32位，我们还可以压缩Smis。基本上，使它和在32位架构中类似。</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">         |----- 32 bits -----|----- 32 bits -----|
+Smi:     |sssssssssssssssssss|____int31_value___0|</code></pre></div>
+<p>这里 <em>s</em> 是Smi有效载荷的符号值。如果再有使用<a href="https://zh.wikipedia.org/wiki/%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%85%85">符号扩展</a>表示，我们就可以仅用64位字的一位算数移位来压缩和解压Smis。</p>
+<p>现在，我们可以看到指针和Smis的上半字（upper half-word）完全由下半字定义。这样，我们就可以只将后者存储在内存中，从而将存储标记值所需的内存减少一半。</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">                    |----- 32 bits -----|----- 32 bits -----|
+Compressed pointer:                     |______offset_____w1|
+Compressed Smi:                         |____int31_value___0|</code></pre></div>
+<p>假设base是4GB对齐的，则压缩就是截断：</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp"><span class="token keyword">uint64_t</span> uncompressed_tagged<span class="token punctuation">;</span>
+<span class="token keyword">uint32_t</span> compressed_tagged <span class="token operator">=</span> <span class="token keyword">uint32_t</span><span class="token punctuation">(</span>uncompressed_tagged<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>但是解压代码要复杂一些。我们需要区分符号扩展（sign-extending）Smi和零扩展（zero-extending）指针，以及是否要添加base。</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp"><span class="token keyword">uint32_t</span> compressed_tagged<span class="token punctuation">;</span>
+
+<span class="token keyword">uint64_t</span> uncompressed_tagged<span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>compressed_tagged <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// pointer case</span>
+  uncompressed_tagged <span class="token operator">=</span> base <span class="token operator">+</span> <span class="token keyword">uint64_t</span><span class="token punctuation">(</span>compressed_tagged<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Smi case</span>
+  uncompressed_tagged <span class="token operator">=</span> <span class="token keyword">int64_t</span><span class="token punctuation">(</span>compressed_tagged<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>尝试改变压缩方案来简化解压代码。</p>
+<h3>堆内存布局，v2</h3>
+<p>如果将base不是放在4GB的开头，而是中间，就可以将压缩值视为从base开始的一个有符号32位偏移量。注意，整个保留不再是4GB对齐（4-GB-aligned），但是base依然是对齐的。</p>
+<p><img src="/blog/home/fabaeb5f846fef70974d4781af69c882/heap-layout-2.svg" alt="堆内存布局，中间base对齐"></p>
+<p>在这个新的布局中，压缩代码和上面堆内存布局v1中的相同。</p>
+<p>然而解压代码变得更好了。现在对Smi和指针来说，符号扩展是相同的，唯一的分支在于如果是指针，需要添加base。</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp"><span class="token keyword">int32_t</span> compressed_tagged<span class="token punctuation">;</span>
+
+<span class="token comment">// Common code for both pointer and Smi cases</span>
+<span class="token keyword">int64_t</span> uncompressed_tagged <span class="token operator">=</span> <span class="token keyword">int64_t</span><span class="token punctuation">(</span>compressed_tagged<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>uncompressed_tagged <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// pointer case</span>
+  uncompressed_tagged <span class="token operator">+=</span> base<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>代码中分支的性能取决于CPU中的<a href="https://zh.wikipedia.org/zh-cn/%E5%88%86%E6%94%AF%E9%A0%90%E6%B8%AC%E5%99%A8">分支预测单元</a>。如果我们以无分支的方式执行解压，我们可以得到更好的性能。通过少量魔术，我们可以写出一个无分支版本的代码：</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp"><span class="token keyword">int32_t</span> compressed_tagged<span class="token punctuation">;</span>
+
+<span class="token comment">// Same code for both pointer and Smi cases</span>
+<span class="token keyword">int64_t</span> sign_extended_tagged <span class="token operator">=</span> <span class="token keyword">int64_t</span><span class="token punctuation">(</span>compressed_tagged<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int64_t</span> selector_mask <span class="token operator">=</span> <span class="token operator">-</span><span class="token punctuation">(</span>sign_extended_tagged <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Mask is 0 in case of Smi or all 1s in case of pointer</span>
+<span class="token keyword">int64_t</span> uncompressed_tagged <span class="token operator">=</span>
+    sign_extended_tagged <span class="token operator">+</span> <span class="token punctuation">(</span>base <span class="token operator">&amp;</span> selector_mask<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>然后，我们决定从无分支实现开始。</p>
+<h2>性能演化</h2>
+<h3>初始性能</h3>
+<p>我们使用<a href="https://v8.dev/blog/retiring-octane#the-genesis-of-octane">Octane</a>测试性能，Octane是我们过去使用的性能基准测试。尽管我们在日常工作中不再专注于提高性能峰值（improving peak performance），但我们也不希望降低它，特别是一些像指针这样对性能敏感的东西。Octane依然是完成这个任务的好的基准测试。</p>
+<p>图形显示了在使用指针压缩时Octane在x64架构上的得分。在图中，线越高越好。红色的线是未压缩指针的x64构建，绿色的线是指针压缩的版本。</p>
+<p><img src="/blog/home/08fdcc06a895959df0f4a745b1fa952d/perf-octane-1.svg" alt="Octane第一轮改进"></p>
+<p>在第一个方案中，我们的回归差约为35%。</p>
+<h3>Bump(1), +7%</h3>
+<p>首先我们通过比较无分支解压和有分支解压，验证了“无分支会更快”的假设。事实证明，我们的假设是错误的，在x64上，有分支版本的速度提高了7%。这是非常大的不同！</p>
+<p>下面看一下x64汇编</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/home/static/abd6b4d510f927e99505d72353666226/47218/code1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 58.78378378378378%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACLklEQVQoz2WS627TQBCF/QMqocRO7MT3OL7Gl/ieREGN8gylhDRISJWQEIjyngkC2rzSYWeLq6r8ONrZPTPfzMgWirsziu9nlD/OmNz+gnJzhLg7IvryB+XdA9Jv95APPzE6nKAcjpA+nDDYn5B8vWd1D3A//4bE7pRjfjpCsKp3sKorLi2/gt3ewGoPcJc3CN8eEKw/Qi2uYVQ75u0f/WbP/D337GYHNb+GVrzHlNUI4ptXGPQuIPVeY9i/wDx2UecRymyKInMQuhZUuQdDlZCGDhZlzL06M5AEJvSxBH3UZxLh2ioEw7QwlBXIyoidI+R5gSTNsF7PURceDMOAphugvCCMUNctsnkG37NhmTpU5uk6AxsmXM+H4LouhsMhZFnm53zOQHWJtonhTEwG1KFpGisykGcJVm2JMHQRJwFrYvzzdC5iCaIoctBgMODK85zBajQMWLL1LMvEeDzmwIhNFfsmhxj6Y6Pnmk6nEChQVZWL4lkUcQU+myIOMJnYME0TjuPAsm2Wo/O7ZVn/KQgCCHEcgzSbzfhZ1zUuLzdYLBZstRCdn2UZGuZtt1ssl0tErGnnkdI05bWC7/ucTCJAd3YxFZJoKptN6Hkef6cBujyKuy2EzWaDqqpAYCqkTk3TYLVaoSgKfk+S5MknryxL/kYin6anRgQWXk5DX5katG3LkwlEouRuLcp5vhnFxKAPKnSP3aq0FoG7BgRRFOVJ/X4fkiTxP+Ol6J/9C70dX8kR2j1UAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="x64汇编"
+        title="x64汇编"
+        src="/blog/home/static/abd6b4d510f927e99505d72353666226/fcda8/code1.png"
+        srcset="/blog/home/static/abd6b4d510f927e99505d72353666226/12f09/code1.png 148w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/e4a3f/code1.png 295w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/fcda8/code1.png 590w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/efc66/code1.png 885w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/c83ae/code1.png 1180w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/47218/code1.png 1344w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>r13是base值的专用寄存器。注意，无分支代码在这里代码量更多且需要的寄存器也更多。</p>
+<p>在Arm64，我们观察到相同的现象——在强大的CPU上，有分支版本明显更快（尽管这两种情况的代码大小是一样的）。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/home/static/2b623bcf989dc0347513278cf0afedd8/12406/code2.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIBAwX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAAByZVLHKw//8QAGBAAAwEBAAAAAAAAAAAAAAAAAAIRASD/2gAIAQEAAQUCrF0rcf/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/AYj/xAAWEQADAAAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8BrKz/xAAWEAEBAQAAAAAAAAAAAAAAAAAxACD/2gAIAQEABj8CZnH/xAAaEAACAwEBAAAAAAAAAAAAAAAAAREhkTFR/9oACAEBAAE/IVNbaXdaP2E2NtMln//aAAwDAQACAAMAAAAQNN//xAAWEQADAAAAAAAAAAAAAAAAAAAAEVH/2gAIAQMBAT8QSCQ//8QAFREBAQAAAAAAAAAAAAAAAAAAAGH/2gAIAQIBAT8Qss//xAAaEAEBAQADAQAAAAAAAAAAAAABABEhMaFh/9oACAEBAAE/ENzSHUNyr6tT7trls5Bvtf/Z'); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="Arm64汇编"
+        title="Arm64汇编"
+        src="/blog/home/static/2b623bcf989dc0347513278cf0afedd8/1c72d/code2.jpg"
+        srcset="/blog/home/static/2b623bcf989dc0347513278cf0afedd8/a80bd/code2.jpg 148w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/1c91a/code2.jpg 295w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/1c72d/code2.jpg 590w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/a8a14/code2.jpg 885w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/fbd2c/code2.jpg 1180w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/12406/code2.jpg 1348w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>在低端Arm64设备上我们发现在任一方向上几乎没什么性能差异。</p>
+<p>我们的收获是：在现代CPU中分支预测器非常的好，代码的大小（code size）（尤其是执行路径的长度）对性能影响更大。</p>
+<h3>Bump(2), +2%</h3>
+<p><a href="https://v8.dev/docs/turbofan">TurboFan</a>是V8的优化编译器，围绕“Sea of Nodes”概念构建。简单来说就是每一个操作在graph中用一个Node表示（更详细的解释可以查看<a href="https://v8.dev/blog/turbofan-jit">这篇博客</a>。这些节点有各种依赖，包括数据流和控制流。</p>
+<p>有两个对指针压缩至关重要的操作：加载和存储，因为它们将V8堆内存和管道（pipeline）的其余部分连起来。如果我们每次从堆内存加载压缩值的时候都解压，并且在存储之前对其压缩，那么管道（pipeline）就可以像在全指针模式（full-pointer mode）下工作了。因此我们在节点图中添加了新的显式操作——压缩和解压。</p>
+<p>在某些情况下解压是不需要的，例如，如果一个压缩值仅仅是从某个位置被加载然后存储到新的位置。</p>
+<p>为了优化不必要的操作，我们在TurboFan中实施了一个新的“消除解压”阶段。它的工作就是消除直接压缩后的解压。由于这些节点可能不会直接相连，因此它会尝试通过graph传播解压，以期遇到压缩问题并消除。这给使我们的Octane的值提高了2%。</p>
+<h3>Bump(3), +2%</h3>
+<p>在查看生成代码时，我们注意到解压一个刚刚被加载的值会导致代码的冗长：</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp">movl rax<span class="token punctuation">,</span> <span class="token operator">&lt;</span>mem<span class="token operator">></span>   <span class="token comment">// load</span>
+movlsxlq rax<span class="token punctuation">,</span> rax <span class="token comment">// sign extend</span></code></pre></div>
+<p>一旦我们修复了标志扩展的问题，value就可以直接从内存中加载。</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp">movlsxlq rax<span class="token punctuation">,</span> <span class="token operator">&lt;</span>mem<span class="token operator">></span></code></pre></div>
+<p>我们得到了另外2%的改善。</p>
+<h3>Bump(4), +11%</h3>
+<p>TurboFan优化阶段通过在graph上使用模式匹配工作：一旦一个sub-garph与一个特定模式匹配，就会被替换为语义上等效（但是更好）的sub-graph或指令（instruction）。</p>
+<p>尝试匹配不成功并不会有明确的失败提示。在graph中显式的压缩/解压操作导致之前成功的模式匹配尝试失败，从而导致优化失败且没有提示。</p>
+<p>“中断”优化的其中一个例子是<a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43823.pdf">分配预配置（allocation preternuring）</a>。一旦我们更新匹配模式（pattern matching）使其能够匹配到新的压缩 / 解压 node，我们就可以得到另外11%的改进。</p>
+<p><img src="/blog/home/74ce1face67b4457821dcf1ae15affe3/perf-octane-2.svg" alt="Octane的第二轮改进"></p>
+<h3>Bump(5), +0.5%</h3>
+<p>在TurboFan中使用解压去除（Decompression Elimination）我们学到了很多。显式的解压 / 压缩node方法具有以下特性：</p>
+<p>优点：</p>
+<ul>
+<li>很明显我们通过对sub-graphs的规范模式匹配可以优化不必要的解压。</li>
+</ul>
+<p>但是，随着我们进一步的实施，我们发现缺点：</p>
+<ul>
+<li>新的内部值的表示可能会导致转换操作变的难以管理。除了现有的表示集（tagged Smi, <a href="https://en.wikipedia.org/wiki/Tagged_pointer">tagged pointer</a>, tagged any, word8, word16, word32, float32, float64, simd128），我们还有压缩指针，压缩Smi，压缩任何值（压缩值可以是指针或Smi）。</li>
+<li>现有的基于graph的模式匹配（pattern-matching）的优化并没有生效，这导致了一些地方的回退（regressions）。尽管我们找到并修复其中的问题，但TurboFan的复杂性仍在不断增加。</li>
+<li>寄存器分配器（register allocator）对graph中的node数量越来越不满意，并且经常生成错误的代码。</li>
+<li>较大的node graph会减缓TurboFan优化阶段，并增加编译期间的内存消耗。</li>
+</ul>
+<p>我们决定回退一步，考虑在TurboFan中实现一种更简单的指针压缩方式。新的方法是删除压缩指针/Smi/任何表示，然后让所有显式的压缩/解压 node 隐藏在存储和加载中，并假设我们始终在加载之前压缩，在存储之前解压。</p>
+<p>我们还在TurboFan中添加新的阶段，该阶段将替代“解压消除（Decompression Elimination”。这个新的阶段能够识别我们什么时候不需要压缩或解压并相应地更新“加载和存储”。这种方法显著降低了TurboFan中指针压缩的复杂性，提高了生成代码的质量。</p>
+<p>新的操作和初始时候一样有效，并且又提高了0.5%的性能。</p>
+<h3>Bump(6), +2.5%</h3>
+<p>我们已经接近平均性能，但是依然有差距。我们必须有更好的想法。其中一个想法是：如果我们确保任何处理Smi值的代码都不处理高32位，结果会怎么样？</p>
+<p>之前的解压实现：</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp"><span class="token comment">// Old decompression implementation</span>
+<span class="token keyword">int64_t</span> uncompressed_tagged <span class="token operator">=</span> <span class="token keyword">int64_t</span><span class="token punctuation">(</span>compressed_tagged<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>uncompressed_tagged <span class="token operator">&amp;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// pointer case</span>
+  uncompressed_tagged <span class="token operator">+=</span> base<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>如果我们忽略一个Smi的高32位就可以假定它是<code class="language-text">undefined</code>。这样，我们就可以避免指针和Smi之间的特殊case，并且可以在解压的时候无条件的添加base，即使是对Smis也可以！我们称这个方法为“Smi-corrupting”。</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp"><span class="token comment">// New decompression implementation</span>
+<span class="token keyword">int64_t</span> uncompressed_tagged <span class="token operator">=</span> base <span class="token operator">+</span> <span class="token keyword">int64_t</span><span class="token punctuation">(</span>compressed_tagged<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>由于我们不关注Smi的符号扩展（sign extending），因此这个改变允许我们回到堆内存布局v1。这是一个base指向4GB预留空间的开始位置。</p>
+<p><img src="/blog/home/2698dbb04aac8200c57d63c352f485d2/heap-layout-3.svg" alt="Heap layout, base aligned to start"></p>
+<p>就解压代码而言，这个改变将符号扩展（sign-extension）变为零扩展（zero-extension），这也同样简单。但是这简化了运行时（C++）端的工作。例如，例如地址空间区域保留代码（查看<a href="https://v8.dev/blog/pointer-compression#some-implementation-details">一些细节实现</a>部分）。</p>
+<p>这是用于比较的汇编：</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/blog/home/static/c6fe744940679354fc213543f4b12309/49c24/code3.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 42.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAJABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAclLYQf/xAAYEAACAwAAAAAAAAAAAAAAAAAAEQECEP/aAAgBAQABBQJ2HYc5Gf/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/AYj/xAAWEQADAAAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8BrKz/xAAWEAEBAQAAAAAAAAAAAAAAAAAxACD/2gAIAQEABj8CZnH/xAAaEAACAgMAAAAAAAAAAAAAAAAAARBBITGR/9oACAEBAAE/IVc3TNDLTLCP/9oADAMBAAIAAwAAABAk3//EABYRAAMAAAAAAAAAAAAAAAAAAAARUf/aAAgBAwEBPxBIJD//xAAVEQEBAAAAAAAAAAAAAAAAAAAAYf/aAAgBAgEBPxCyz//EABsQAAMAAgMAAAAAAAAAAAAAAAABESExcaGx/9oACAEBAAE/ELHe1pMKx03vLLt17ydI8DQ//9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="code3"
+        title="code3"
+        src="/blog/home/static/c6fe744940679354fc213543f4b12309/1c72d/code3.jpg"
+        srcset="/blog/home/static/c6fe744940679354fc213543f4b12309/a80bd/code3.jpg 148w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/1c91a/code3.jpg 295w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/1c72d/code3.jpg 590w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/a8a14/code3.jpg 885w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/fbd2c/code3.jpg 1180w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/49c24/code3.jpg 1528w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>因此我们更将8中所有的使用Smi的代码块调整为新的压缩方案，这给我们另外2.5%的性能提升。</p>
+<h3>剩余差距（Remaining gap）</h3>
+<p>剩余的性能差距可以用对64位构建的两个优化来解释，这些优化由于与指针压缩不兼容而禁用。</p>
+<p><img src="/blog/home/e1a003499052535291c3d7750419e16c/perf-octane-3.svg" alt="Octane的最后一轮改进"></p>
+<h4>32-bit Smi优化(7), -1%</h4>
+<p>我们回顾一下，Smis在64位架构全指针模式中看起来是这样：</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp">        <span class="token operator">|</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> <span class="token number">32</span> bits <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span><span class="token operator">|</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span> <span class="token number">32</span> bits <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-</span><span class="token operator">|</span>
+Smi<span class="token operator">:</span>    <span class="token operator">|</span>____int32_value____<span class="token operator">|</span><span class="token number">0000000000000000000</span><span class="token operator">|</span></code></pre></div>
+<p>32-bit Smi有如下好处：</p>
+<ul>
+<li>它可以有更大的整数范围且不需要封装成整数对象</li>
+<li>这样的形式可以在读/写时直接访问32位值</li>
+</ul>
+<p>由于使用指针压缩后会具有区分指针和Smis的bit，导致在32-bit压缩指针中没有空间，所以导致该优化无法使用。如果我们在64-bit版本中禁用32-bit smis，将会看到Octane值下降1%。</p>
+<h4>双精度字段拆箱（双精度 field unboxing） (8), -3%</h4>
+<blockquote>
+<p>译者注：装箱（boxing）是指编译器自动将基本数据类型值转换成对应的包装类的对象，拆箱（unboxing）则是反过来。</p>
+</blockquote>
+<p>在某些假设下，这种优化尝试直接将浮点值存储在对象的字段中。这样做的目的是减少数字对象分配的数量，这比单独用Smis减少的更多。</p>
+<p>想象一下下面这段代码：</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">Point</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">=</span> x<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">=</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Point</span><span class="token punctuation">(</span><span class="token number">3.1</span><span class="token punctuation">,</span> <span class="token number">5.3</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>一般来说，对象p在内存中的样子如下：</p>
+<p><img src="/blog/home/ecd725d2fda60706581ee6a3084cd0b7/heap-point-1.svg" alt="对象p在内存中的形式"></p>
+<p>关于更多存储中的隐藏类，属性和元素可以<a href="https://v8.dev/blog/fast-properties">阅读此文</a></p>
+<p>在64位架构中，双精度值和指针的大小相同。所以<strong>如果我们假设Point字段总是包含number值</strong>，则可以将它们直接存储在对象中。</p>
+<p><img src="/blog/home/5004270e2dd4d1d5a9fcd6fb373bcdc3/heap-point-2.svg"></p>
+<p>如果某个字段导致假设不成立，例如执行下面这段代码：</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> q <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Point</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'ab'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p>y属性的number值必须装箱存储（store boxed instead）。另外，如果某处的优化的代码依赖此假设，则该优化必须舍弃。进行这些“字段类型”泛化的原因是为了尽量减少通过同一构造函数创建的对象的Shapes（译者注：在 JavaScript 程序中，多个对象具有相同的key，JS引擎会将这些key单独存储在一个地方，从而优化存储，具体可以查看<a href="https://hijiangtao.github.io/2018/06/17/Shapes-ICs/">[译] JavaScript 引擎基础：Shapes 和 Inline Caches</a>）数量，反过来这对于具有稳定的性能是很必要的。</p>
+<p><img src="/blog/home/1fcd4df97c791b664f9cddc147878ed7/heap-point-3.svg" alt="对象p和q在内存中的形式"></p>
+<p>如果应用该优化，双精度字段拆箱给我们如下好处：</p>
+<ul>
+<li>通过对象指针提供对浮点数据的直接访问，避免通过number对象进行额外的取消引用操作。</li>
+<li>允许我们对紧凑循环（tight loops）生成更小更快的优化代码从而可以做大量的双精度字段访问。（例如在数字运算应用程序中）</li>
+</ul>
+<p>启用指针压缩后，双精度值不再适合压缩字段。然而，在未来我们可能为指针压缩适配该优化。</p>
+<p>注意，即使没有双精度字段拆箱优化（以与指针压缩兼容的方式），也可以通过将数据存储在Float64 TypedArrays，甚至是使用<a href="https://webassembly.github.io/spec/core/">Wasm</a>重写要求高吞吐量的数字运算代码。</p>
+<h4>更多的优化（9），1%</h4>
+<p>最后，对TurboFan中的解压消除优化进行微调又得到另外1%的性能提升。</p>
+<h2>一些优化细节</h2>
+<p>为了简化将指针压缩整合到现有代码中，我们决定在每次加载values的时候解压并且在每次存储的时压缩它们。因此只是改变标志值的存储格式，而执行格式保持不变。</p>
+<h3>Native代码端</h3>
+<p>为了在解压的时候生成有效的代码，必须保证始终提供base值。幸运的是V8已经有一个专用的寄存器指向一个“根表（roots table）”，该表包含JavaScript和V8内部对象的引用，这些对象必须始终可用（例如：<code class="language-text">undefined</code>，<code class="language-text">null</code>，<code class="language-text">true</code>，<code class="language-text">false</code>等）。该寄存器被称为“根寄存器”，它用来生成较小的，<a href="https://v8.dev/blog/embedded-builtins">可以共享的内部代码</a>。</p>
+<p>所以，我们将根表放在V8堆保留区，根寄存器可以同时有两种用途：</p>
+<ul>
+<li>作为根指针</li>
+<li>作为解压的的base值</li>
+</ul>
+<h3>C++ 端</h3>
+<p>V8运行时通过C++类访问在V8堆区的对象，从而提供对堆中存储的数据的便捷访问。请注意，V8对象比C++对象更类似于<a href="https://en.wikipedia.org/wiki/Passive_data_structure">POD</a>的结构。助手（helper）“view”类仅仅包含一个带有相应标记值的<code class="language-text">uintptr_t</code>字段。由于view类是字大小的（word-size），因此我们可以将它按值传递，开销为零（这样感谢现代C++编译器）。</p>
+<p>这里是一个helper类的伪代码：</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp"><span class="token comment">// Hidden class</span>
+<span class="token keyword">class</span> <span class="token class-name">Map</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  <span class="token keyword">inline</span> DescriptorArray <span class="token function">instance_descriptors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span><span class="token punctuation">;</span>
+  <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+  <span class="token comment">// The actual tagged pointer value stored in the Map view object.</span>
+  cosnt uintptr_t ptr_<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+DescriptorArray Map<span class="token operator">::</span><span class="token function">instance_descriptors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+  uintptr_t field_address <span class="token operator">=</span> <span class="token function">FieldAddress</span><span class="token punctuation">(</span>ptr_<span class="token punctuation">,</span> kInstanceDescriptorsOffset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  uintptr_t da <span class="token operator">=</span> <span class="token operator">*</span><span class="token keyword">reinterpret_cast</span><span class="token operator">&lt;</span>uintptr_t<span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>field_address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token function">DescriptorArray</span><span class="token punctuation">(</span>da<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>为了尽量减少首次运行指针压缩版本的所需的更改次数，我们将解压必须的base值的计算集成到getter中。</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp"><span class="token keyword">inline</span> uintptr_t <span class="token function">GetBaseForPointerCompression</span><span class="token punctuation">(</span>uintptr_t address<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Round address down to 4 GB</span>
+  <span class="token keyword">const</span> uintptr_t kBaseAlignment <span class="token operator">=</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token number">32</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> address <span class="token operator">&amp;</span> <span class="token operator">-</span>kBaseAlignment<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+DescriptorArray Map<span class="token operator">::</span><span class="token function">instance_descriptors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+  uintptr_t field_address <span class="token operator">=</span> <span class="token function">FieldAddress</span><span class="token punctuation">(</span>ptr_<span class="token punctuation">,</span> kInstanceDescriptorsOffset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">uint32_t</span> compressed_da <span class="token operator">=</span> <span class="token operator">*</span><span class="token keyword">reinterpret_cast</span><span class="token operator">&lt;</span><span class="token keyword">uint32_t</span><span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>field_address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  uintptr_t base <span class="token operator">=</span> <span class="token function">GetBaseForPointerCompression</span><span class="token punctuation">(</span>ptr_<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  uintptr_t da <span class="token operator">=</span> base <span class="token operator">+</span> compressed_da<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token function">DescriptorArray</span><span class="token punctuation">(</span>da<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>性能测量结果证实，在每次加载的时候计算base值会影响性能。原因在于C++编译器不知道，对于V8堆区的任何地址调用<code class="language-text">GetBaseForPointerCompression()</code>的结果是相同的，因此编译器无法合并base值的计算。鉴于代码包含多个指令和一个64位常量，这将导致代码显著膨胀。</p>
+<p>为了处理这个问题，我们重用V8实例指针作为解压时用的base（记住，V8实例数据在堆区布局中）。该指针通常在运行时函数中可用，所以我们通过要求使用V8实例指针简化getters代码，并恢复来了性能：</p>
+<div class="gatsby-highlight" data-language="cpp"><pre class="language-cpp"><code class="language-cpp">DescriptorArray Map<span class="token operator">::</span><span class="token function">instance_descriptors</span><span class="token punctuation">(</span><span class="token keyword">const</span> Isolate<span class="token operator">*</span> isolate<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+  uintptr_t field_address <span class="token operator">=</span>
+      <span class="token function">FieldAddress</span><span class="token punctuation">(</span>ptr_<span class="token punctuation">,</span> kInstanceDescriptorsOffset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">uint32_t</span> compressed_da <span class="token operator">=</span> <span class="token operator">*</span><span class="token keyword">reinterpret_cast</span><span class="token operator">&lt;</span><span class="token keyword">uint32_t</span><span class="token operator">*</span><span class="token operator">></span><span class="token punctuation">(</span>field_address<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// No rounding is needed since the Isolate pointer is already the base.</span>
+  uintptr_t base <span class="token operator">=</span> <span class="token keyword">reinterpret_cast</span><span class="token operator">&lt;</span>uintptr_t<span class="token operator">></span><span class="token punctuation">(</span>isolate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  uintptr_t da <span class="token operator">=</span> <span class="token function">DecompressTagged</span><span class="token punctuation">(</span>base<span class="token punctuation">,</span> compressed_value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token function">DescriptorArray</span><span class="token punctuation">(</span>da<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h2>结果</h2>
+<p>让我们来看看指针压缩的最后结果！对于这些结果，我们使用与本文开头介绍的相同的网站测试。提醒一下，他们代表用户在真实世界网站使用情况。</p>
+<p>我们发现指针压缩将V8堆区大小减少43%！反过来，它减少桌面端Chrome渲染进程20%的内存占用。</p>
+<p><img src="/blog/home/e2e759806c9d348b438ff5c63ad1ef14/v8-heap-memory.svg" alt="在Windows 10中的内存节省"></p>
+<p>另一个重要的事情是，不是每一个网站都有相同的改进。例如，在没有使用指针压缩的时候Facebook使用V8堆区内存比纽约时报要多，但是使用该优化后，使用堆内存情况变得相反。这个不同可以通过以下事实解释：某些网站具有比其他网站更多的标记值（Tagged values）。</p>
+<p>除了这些内存改进，我们还看到了实际性能的改进。在真实网站上，我们使用更少的CPU和垃圾回收时间！</p>
+<p><img src="/blog/home/3122cf2441e95e2314d46143d0225c81/performance-improvements.svg" alt="在CPU和GC time上的改进"></p>
+<h2>结论</h2>
+<p>这一路上尽管没有鸟语花香，但是值得度过。<a href="https://github.com/v8/v8/search?o=desc&#x26;q=repo%3Av8%2Fv8+%22%5Bptr-compr%5D%22&#x26;s=committer-date&#x26;type=Commits">300+的提交</a>后，指针压缩让V8拥有64位应用的性能，同时拥有32位的内存占用。</p>
+<p>我们一直期待着性能的改进，并在流程中完成以下相关任务：</p>
+<ul>
+<li>改进生成汇编代码的质量。我们知道在某些情况下我们能够生成更少的代码来提高性能。</li>
+<li>解决相关的性能下降，包括一个机制，该机制以指针压缩友好的方式再次对doble字段拆箱。</li>
+<li>探索支持8～16G范围内更大堆的想法。</li>
+</ul></div><hr style="margin-bottom:1.75rem"/><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img aria-hidden="true" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAFwABAQEBAAAAAAAAAAAAAAAAAAQCBf/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/9oADAMBAAIQAxAAAAHszWSS3CxkNA//xAAaEAEBAAIDAAAAAAAAAAAAAAACAQMQABES/9oACAEBAAEFAsqpBuY3jPowyrXU1//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8BH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8BH//EAB0QAAECBwAAAAAAAAAAAAAAAAEAEQIQEiAhMVH/2gAIAQEABj8CeHaFeRJkBy3/xAAaEAEBAAMBAQAAAAAAAAAAAAABEQAQYTHR/9oACAEBAAE/IW4egMUoVjzVCplIt638tf/aAAwDAQACAAMAAAAQ6888/8QAFhEBAQEAAAAAAAAAAAAAAAAAEQEg/9oACAEDAQE/EIGP/8QAFhEAAwAAAAAAAAAAAAAAAAAAAREg/9oACAECAQE/EC4//8QAHhABAQABAwUAAAAAAAAAAAAAAREhABAxQVFhgfD/2gAIAQEAAT8QAAugWKzTmGyJaZcHfbJCskZk408SjRePvGyUR66zLOQ9Db//2Q==" alt="Mark Zhang" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><source srcset="/blog/home/static/4cce71f32712bbb9e7481b9696ae37c9/99438/profile-pic.jpg 1x,
+/blog/home/static/4cce71f32712bbb9e7481b9696ae37c9/aba1d/profile-pic.jpg 1.5x,
+/blog/home/static/4cce71f32712bbb9e7481b9696ae37c9/b315d/profile-pic.jpg 2x" /><img loading="lazy" width="50" height="50" srcset="/blog/home/static/4cce71f32712bbb9e7481b9696ae37c9/99438/profile-pic.jpg 1x,
+/blog/home/static/4cce71f32712bbb9e7481b9696ae37c9/aba1d/profile-pic.jpg 1.5x,
+/blog/home/static/4cce71f32712bbb9e7481b9696ae37c9/b315d/profile-pic.jpg 2x" src="/blog/home/static/4cce71f32712bbb9e7481b9696ae37c9/99438/profile-pic.jpg" alt="Mark Zhang" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>Written by <strong>Mark Zhang</strong> who works in Beijing.<br/>Web Developer &amp; Designer, Cross-border learners.</p></div><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/blog/home/2020-blance-sheet/">← <!-- -->学习读财报之资产负债表</a></li><li></li></ul><footer>© <!-- -->2020<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/2020_pointer_compression_in_V8/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-e3b98220430e8eedb58f.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-23abb08d1c9eec214834.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-879dde53765f1a436ac5.js"],"component---src-templates-blog-index-js":["/component---src-templates-blog-index-js-02177385ebb77c7d3613.js"],"component---src-pages-404-js":["/component---src-pages-404-js-e00989f083c371337bd6.js"]};/*]]>*/</script><script src="/blog/home/component---src-templates-blog-post-js-879dde53765f1a436ac5.js" async=""></script><script src="/blog/home/cfb862b899ac329b376ed7eb74e7dfecbb9fb7a6-e00f1ece3b23d6e46141.js" async=""></script><script src="/blog/home/4e12209f87c7eca01f5df3fbf007e262bacf2aef-8a458d294b29a52772f3.js" async=""></script><script src="/blog/home/app-e3b98220430e8eedb58f.js" async=""></script><script src="/blog/home/styles-d63bba2ea17e7ed05dbf.js" async=""></script><script src="/blog/home/framework-70c4ad045413a7d4a0cc.js" async=""></script><script src="/blog/home/webpack-runtime-df92590fafbe6337522b.js" async=""></script></body></html>

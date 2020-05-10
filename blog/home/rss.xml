@@ -1,4 +1,497 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 11 Apr 2020 03:41:48 GMT</lastBuildDate><item><title><![CDATA[vim的搜索与替换]]></title><description><![CDATA[在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-vimSearch/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-vimSearch/</guid><pubDate>Sun, 15 Mar 2020 16:15:00 GMT</pubDate><content:encoded>&lt;p&gt;在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 10 May 2020 02:15:06 GMT</lastBuildDate><item><title><![CDATA[「译」V8中的指针压缩]]></title><description><![CDATA[原文链接：https://v8.dev/blog/pointer-compression 内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。 时间回到2014年，那时Chrome从32位切换到6…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020_pointer_compression_in_V8/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020_pointer_compression_in_V8/</guid><pubDate>Thu, 23 Apr 2020 17:08:00 GMT</pubDate><content:encoded>&lt;p&gt;原文链接：&lt;a href=&quot;https://v8.dev/blog/pointer-compression&quot;&gt;https://v8.dev/blog/pointer-compression&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。&lt;/p&gt;
+&lt;p&gt;时间回到2014年，那时Chrome从32位切换到64位。这个变化带给了Chrome更好的&lt;a href=&quot;https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html&quot;&gt;安全性、稳定性和性能&lt;/a&gt;，但同时也带来了更多内存的消耗，因为之前每个指针占用4个字节而现在占用是8个字节。我们面临在V8中尽可能减少这种多出来4个字节开销的挑战。&lt;/p&gt;
+&lt;p&gt;在实施改进之前，我们需要知道我们目前的状况，从而正确的评估如何改进。为了测量当前的内存和性能，我们使用一组可以代表目前流行站点的&lt;a href=&quot;https://v8.dev/blog/optimizing-v8-memory&quot;&gt;页面&lt;/a&gt;。数据显示在桌面端Chrome&lt;a href=&quot;https://www.chromium.org/developers/design-documents/multi-process-architecture&quot;&gt;渲染进程&lt;/a&gt;内存占用中V8占用了60%，平均为40%。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/a1848c4508d05adad5d926fbace6b967/memory-chrome.svg&quot; alt=&quot;在Chrome渲染进程内存占用中V8的内存消耗百分比&quot;&gt;&lt;/p&gt;
+&lt;p&gt;指针压缩是改进V8内存占用的多项工作之一。想法很简单：我们可以存储一些“基”地址的32位偏移量而不是存储64位指针。这样一个简单的想法，我们可以从V8中的这种压缩获得多少收益？&lt;/p&gt;
+&lt;p&gt;V8的堆区包含大量的项目（items），例如浮点值（floating point values），字符串字符（string characters），解析器字节码（interpreter bytecode）和标记值（tagged values）。在检查堆区时，我们发现在现实使用的网站中，这些标记值占了V8堆区的70%！&lt;/p&gt;
+&lt;p&gt;下面我们具体看看这些标记值是什么。&lt;/p&gt;
+&lt;h2&gt;V8中的标记值&lt;/h2&gt;
+&lt;p&gt;在V8中JavaScript的对象，数组，数字或者字符串都用对象表示，分配在V8堆区。这使得我们可以用一个指向对象的指针表示任何值。&lt;/p&gt;
+&lt;p&gt;许多JavaScript程序都会对整数进行计算，例如在循环中增加索引。为了避免每次整数递增时重新分配一个新的number对象，V8使用著名的&lt;a href=&quot;https://en.wikipedia.org/wiki/Tagged_pointer&quot;&gt;指针标记技术(pointer tagging)&lt;/a&gt;在V8的堆指针中存储其他或替代数据。&lt;/p&gt;
+&lt;p&gt;标记位（tag bits）有双重作用：用于指示位于V8堆中对象的强/弱指针或一个小整数的信号。因此，整数能够直接存储在标记值中，而不必为其分配额外的存储空间。&lt;/p&gt;
+&lt;p&gt;V8在堆中按字对齐的地址分配对象，这使得它可以使用2（或3，取决于机器字大小）最低有效位进行标记。在32位架构中，V8使用最低有效位去区分Smis和堆对象指针。对于堆指针，它使用第二个最低有效位去区分强引用和弱引用：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;                        |----- 32 bits -----|
+Pointer:                |_____address_____w1|
+Smi:                    |___int31_value____0|&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里的 &lt;em&gt;w&lt;/em&gt; 用来区分强指针和弱指针。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注意：&lt;/em&gt;一个Smi值只能携带一个31bit有效载荷（payload），包括符号位。对于指针，我们有30bit用来作为堆对象地址有效载荷（payload）。由于字对齐，分配粒度为4个字节，这给了我们4GB的寻址空间。&lt;/p&gt;
+&lt;p&gt;在64位架构中，V8的值看起来像这样：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;            |----- 32 bits -----|----- 32 bits -----|
+Pointer:    |________________address______________w1|
+Smi:        |____int32_value____|0000000000000000000|&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;不同于32位架构，在64位架构中V8可以将32位用于Smi值有效载荷（payload）。以下各节将讨论32位Smis对指针压缩的影响。&lt;/p&gt;
+&lt;h2&gt;压缩标记值（tagged values）和新的堆布局&lt;/h2&gt;
+&lt;p&gt;使用指针压缩，我们的目标是以某种方式在64位架构中将两种标记值转换为32位。我们通过以下方式将指针调整位32位：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;确保所有V8对象分配在4GB范围内&lt;/li&gt;
+&lt;li&gt;将指针表示为这个范围内的偏移量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这样严格的限制是非常不幸的，但是Chrome中的V8已经将堆限制到2GB或4GB大小（具体限制到多少取决于设备），即使在64位架构上也是如此。其他V8嵌入程序，例如Node.js可能需要更大的堆。&lt;strong&gt;如果我们添加最大4GB的限制，就会让这些嵌入V8的程序无法使用指针压缩。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;现在的问题是如何更新堆布局才能让32位指针唯一标识V8对象。&lt;/p&gt;
+&lt;h3&gt;简单的堆内存布局（Trivial heap layout）&lt;/h3&gt;
+&lt;p&gt;简单的压缩方案是在前4GB的地址空间分配对象。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/46db72cf281c6fba49f884e3de136e58/heap-layout-0.svg&quot; alt=&quot;简单的堆内存布局&quot;&gt;&lt;/p&gt;
+&lt;p&gt;但是很可惜V8不能这样做，因为Chrome的渲染进程可能需要在同一渲染器进程中创建多个V8的实例，例如对于Web/Service Workers。除此之外，用这个方案会导致所有的V8实例竞争相同的4GB地址空间从而导致所有的V8实例都受到4GB内存的限制。&lt;/p&gt;
+&lt;h3&gt;堆内存布局，v1&lt;/h3&gt;
+&lt;p&gt;如果我们将V8堆（heap）放在其他地方的连续4GB地址空间，那么一个从base开始的无符号32位偏移量将唯一标识一个指针。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/2698dbb04aac8200c57d63c352f485d2/heap-layout-1.svg&quot; alt=&quot;堆内存布局，开始base对齐&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果我们确保base是4GB对齐（4-GB-aligned），则所有指针的高位32位都相同。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;            |----- 32 bits -----|----- 32 bits -----|
+Pointer:    |________base_______|______offset_____w1|&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过将Smi的有效载荷（payload）限制为31位并将其放在低32位，我们还可以压缩Smis。基本上，使它和在32位架构中类似。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;         |----- 32 bits -----|----- 32 bits -----|
+Smi:     |sssssssssssssssssss|____int31_value___0|&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这里 &lt;em&gt;s&lt;/em&gt; 是Smi有效载荷的符号值。如果再有使用&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%85%85&quot;&gt;符号扩展&lt;/a&gt;表示，我们就可以仅用64位字的一位算数移位来压缩和解压Smis。&lt;/p&gt;
+&lt;p&gt;现在，我们可以看到指针和Smis的上半字（upper half-word）完全由下半字定义。这样，我们就可以只将后者存储在内存中，从而将存储标记值所需的内存减少一半。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;                    |----- 32 bits -----|----- 32 bits -----|
+Compressed pointer:                     |______offset_____w1|
+Compressed Smi:                         |____int31_value___0|&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;假设base是4GB对齐的，则压缩就是截断：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;uint64_t&lt;/span&gt; uncompressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;uint32_t&lt;/span&gt; compressed_tagged &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;uint32_t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;uncompressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;但是解压代码要复杂一些。我们需要区分符号扩展（sign-extending）Smi和零扩展（zero-extending）指针，以及是否要添加base。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;uint32_t&lt;/span&gt; compressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;uint64_t&lt;/span&gt; uncompressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;compressed_tagged &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// pointer case&lt;/span&gt;
+  uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; base &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;uint64_t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;compressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// Smi case&lt;/span&gt;
+  uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;compressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;尝试改变压缩方案来简化解压代码。&lt;/p&gt;
+&lt;h3&gt;堆内存布局，v2&lt;/h3&gt;
+&lt;p&gt;如果将base不是放在4GB的开头，而是中间，就可以将压缩值视为从base开始的一个有符号32位偏移量。注意，整个保留不再是4GB对齐（4-GB-aligned），但是base依然是对齐的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/fabaeb5f846fef70974d4781af69c882/heap-layout-2.svg&quot; alt=&quot;堆内存布局，中间base对齐&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在这个新的布局中，压缩代码和上面堆内存布局v1中的相同。&lt;/p&gt;
+&lt;p&gt;然而解压代码变得更好了。现在对Smi和指针来说，符号扩展是相同的，唯一的分支在于如果是指针，需要添加base。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;int32_t&lt;/span&gt; compressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Common code for both pointer and Smi cases&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt; uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;compressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// pointer case&lt;/span&gt;
+  uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; base&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;代码中分支的性能取决于CPU中的&lt;a href=&quot;https://zh.wikipedia.org/zh-cn/%E5%88%86%E6%94%AF%E9%A0%90%E6%B8%AC%E5%99%A8&quot;&gt;分支预测单元&lt;/a&gt;。如果我们以无分支的方式执行解压，我们可以得到更好的性能。通过少量魔术，我们可以写出一个无分支版本的代码：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;int32_t&lt;/span&gt; compressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// Same code for both pointer and Smi cases&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt; sign_extended_tagged &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;compressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt; selector_mask &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;sign_extended_tagged &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// Mask is 0 in case of Smi or all 1s in case of pointer&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt; uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+    sign_extended_tagged &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;base &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; selector_mask&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后，我们决定从无分支实现开始。&lt;/p&gt;
+&lt;h2&gt;性能演化&lt;/h2&gt;
+&lt;h3&gt;初始性能&lt;/h3&gt;
+&lt;p&gt;我们使用&lt;a href=&quot;https://v8.dev/blog/retiring-octane#the-genesis-of-octane&quot;&gt;Octane&lt;/a&gt;测试性能，Octane是我们过去使用的性能基准测试。尽管我们在日常工作中不再专注于提高性能峰值（improving peak performance），但我们也不希望降低它，特别是一些像指针这样对性能敏感的东西。Octane依然是完成这个任务的好的基准测试。&lt;/p&gt;
+&lt;p&gt;图形显示了在使用指针压缩时Octane在x64架构上的得分。在图中，线越高越好。红色的线是未压缩指针的x64构建，绿色的线是指针压缩的版本。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/08fdcc06a895959df0f4a745b1fa952d/perf-octane-1.svg&quot; alt=&quot;Octane第一轮改进&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在第一个方案中，我们的回归差约为35%。&lt;/p&gt;
+&lt;h3&gt;Bump(1), +7%&lt;/h3&gt;
+&lt;p&gt;首先我们通过比较无分支解压和有分支解压，验证了“无分支会更快”的假设。事实证明，我们的假设是错误的，在x64上，有分支版本的速度提高了7%。这是非常大的不同！&lt;/p&gt;
+&lt;p&gt;下面看一下x64汇编&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/home/static/abd6b4d510f927e99505d72353666226/47218/code1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 58.78378378378378%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAABYlAAAWJQFJUiTwAAACLklEQVQoz2WS627TQBCF/QMqocRO7MT3OL7Gl/ieREGN8gylhDRISJWQEIjyngkC2rzSYWeLq6r8ONrZPTPfzMgWirsziu9nlD/OmNz+gnJzhLg7IvryB+XdA9Jv95APPzE6nKAcjpA+nDDYn5B8vWd1D3A//4bE7pRjfjpCsKp3sKorLi2/gt3ewGoPcJc3CN8eEKw/Qi2uYVQ75u0f/WbP/D337GYHNb+GVrzHlNUI4ptXGPQuIPVeY9i/wDx2UecRymyKInMQuhZUuQdDlZCGDhZlzL06M5AEJvSxBH3UZxLh2ioEw7QwlBXIyoidI+R5gSTNsF7PURceDMOAphugvCCMUNctsnkG37NhmTpU5uk6AxsmXM+H4LouhsMhZFnm53zOQHWJtonhTEwG1KFpGisykGcJVm2JMHQRJwFrYvzzdC5iCaIoctBgMODK85zBajQMWLL1LMvEeDzmwIhNFfsmhxj6Y6Pnmk6nEChQVZWL4lkUcQU+myIOMJnYME0TjuPAsm2Wo/O7ZVn/KQgCCHEcgzSbzfhZ1zUuLzdYLBZstRCdn2UZGuZtt1ssl0tErGnnkdI05bWC7/ucTCJAd3YxFZJoKptN6Hkef6cBujyKuy2EzWaDqqpAYCqkTk3TYLVaoSgKfk+S5MknryxL/kYin6anRgQWXk5DX5katG3LkwlEouRuLcp5vhnFxKAPKnSP3aq0FoG7BgRRFOVJ/X4fkiTxP+Ol6J/9C70dX8kR2j1UAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;x64汇编&quot;
+        title=&quot;x64汇编&quot;
+        src=&quot;/blog/home/static/abd6b4d510f927e99505d72353666226/fcda8/code1.png&quot;
+        srcset=&quot;/blog/home/static/abd6b4d510f927e99505d72353666226/12f09/code1.png 148w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/e4a3f/code1.png 295w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/fcda8/code1.png 590w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/efc66/code1.png 885w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/c83ae/code1.png 1180w,
+/blog/home/static/abd6b4d510f927e99505d72353666226/47218/code1.png 1344w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;r13是base值的专用寄存器。注意，无分支代码在这里代码量更多且需要的寄存器也更多。&lt;/p&gt;
+&lt;p&gt;在Arm64，我们观察到相同的现象——在强大的CPU上，有分支版本明显更快（尽管这两种情况的代码大小是一样的）。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/home/static/2b623bcf989dc0347513278cf0afedd8/12406/code2.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 54.72972972972974%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAALABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAIBAwX/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/aAAwDAQACEAMQAAAByZVLHKw//8QAGBAAAwEBAAAAAAAAAAAAAAAAAAIRASD/2gAIAQEAAQUCrF0rcf/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/AYj/xAAWEQADAAAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8BrKz/xAAWEAEBAQAAAAAAAAAAAAAAAAAxACD/2gAIAQEABj8CZnH/xAAaEAACAwEBAAAAAAAAAAAAAAAAAREhkTFR/9oACAEBAAE/IVNbaXdaP2E2NtMln//aAAwDAQACAAMAAAAQNN//xAAWEQADAAAAAAAAAAAAAAAAAAAAEVH/2gAIAQMBAT8QSCQ//8QAFREBAQAAAAAAAAAAAAAAAAAAAGH/2gAIAQIBAT8Qss//xAAaEAEBAQADAQAAAAAAAAAAAAABABEhMaFh/9oACAEBAAE/ENzSHUNyr6tT7trls5Bvtf/Z&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Arm64汇编&quot;
+        title=&quot;Arm64汇编&quot;
+        src=&quot;/blog/home/static/2b623bcf989dc0347513278cf0afedd8/1c72d/code2.jpg&quot;
+        srcset=&quot;/blog/home/static/2b623bcf989dc0347513278cf0afedd8/a80bd/code2.jpg 148w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/1c91a/code2.jpg 295w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/1c72d/code2.jpg 590w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/a8a14/code2.jpg 885w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/fbd2c/code2.jpg 1180w,
+/blog/home/static/2b623bcf989dc0347513278cf0afedd8/12406/code2.jpg 1348w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;在低端Arm64设备上我们发现在任一方向上几乎没什么性能差异。&lt;/p&gt;
+&lt;p&gt;我们的收获是：在现代CPU中分支预测器非常的好，代码的大小（code size）（尤其是执行路径的长度）对性能影响更大。&lt;/p&gt;
+&lt;h3&gt;Bump(2), +2%&lt;/h3&gt;
+&lt;p&gt;&lt;a href=&quot;https://v8.dev/docs/turbofan&quot;&gt;TurboFan&lt;/a&gt;是V8的优化编译器，围绕“Sea of Nodes”概念构建。简单来说就是每一个操作在graph中用一个Node表示（更详细的解释可以查看&lt;a href=&quot;https://v8.dev/blog/turbofan-jit&quot;&gt;这篇博客&lt;/a&gt;。这些节点有各种依赖，包括数据流和控制流。&lt;/p&gt;
+&lt;p&gt;有两个对指针压缩至关重要的操作：加载和存储，因为它们将V8堆内存和管道（pipeline）的其余部分连起来。如果我们每次从堆内存加载压缩值的时候都解压，并且在存储之前对其压缩，那么管道（pipeline）就可以像在全指针模式（full-pointer mode）下工作了。因此我们在节点图中添加了新的显式操作——压缩和解压。&lt;/p&gt;
+&lt;p&gt;在某些情况下解压是不需要的，例如，如果一个压缩值仅仅是从某个位置被加载然后存储到新的位置。&lt;/p&gt;
+&lt;p&gt;为了优化不必要的操作，我们在TurboFan中实施了一个新的“消除解压”阶段。它的工作就是消除直接压缩后的解压。由于这些节点可能不会直接相连，因此它会尝试通过graph传播解压，以期遇到压缩问题并消除。这给使我们的Octane的值提高了2%。&lt;/p&gt;
+&lt;h3&gt;Bump(3), +2%&lt;/h3&gt;
+&lt;p&gt;在查看生成代码时，我们注意到解压一个刚刚被加载的值会导致代码的冗长：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;movl rax&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;mem&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;   &lt;span class=&quot;token comment&quot;&gt;// load&lt;/span&gt;
+movlsxlq rax&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; rax &lt;span class=&quot;token comment&quot;&gt;// sign extend&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;一旦我们修复了标志扩展的问题，value就可以直接从内存中加载。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;movlsxlq rax&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;mem&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;我们得到了另外2%的改善。&lt;/p&gt;
+&lt;h3&gt;Bump(4), +11%&lt;/h3&gt;
+&lt;p&gt;TurboFan优化阶段通过在graph上使用模式匹配工作：一旦一个sub-garph与一个特定模式匹配，就会被替换为语义上等效（但是更好）的sub-graph或指令（instruction）。&lt;/p&gt;
+&lt;p&gt;尝试匹配不成功并不会有明确的失败提示。在graph中显式的压缩/解压操作导致之前成功的模式匹配尝试失败，从而导致优化失败且没有提示。&lt;/p&gt;
+&lt;p&gt;“中断”优化的其中一个例子是&lt;a href=&quot;https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43823.pdf&quot;&gt;分配预配置（allocation preternuring）&lt;/a&gt;。一旦我们更新匹配模式（pattern matching）使其能够匹配到新的压缩 / 解压 node，我们就可以得到另外11%的改进。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/74ce1face67b4457821dcf1ae15affe3/perf-octane-2.svg&quot; alt=&quot;Octane的第二轮改进&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;Bump(5), +0.5%&lt;/h3&gt;
+&lt;p&gt;在TurboFan中使用解压去除（Decompression Elimination）我们学到了很多。显式的解压 / 压缩node方法具有以下特性：&lt;/p&gt;
+&lt;p&gt;优点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;很明显我们通过对sub-graphs的规范模式匹配可以优化不必要的解压。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但是，随着我们进一步的实施，我们发现缺点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;新的内部值的表示可能会导致转换操作变的难以管理。除了现有的表示集（tagged Smi, &lt;a href=&quot;https://en.wikipedia.org/wiki/Tagged_pointer&quot;&gt;tagged pointer&lt;/a&gt;, tagged any, word8, word16, word32, float32, float64, simd128），我们还有压缩指针，压缩Smi，压缩任何值（压缩值可以是指针或Smi）。&lt;/li&gt;
+&lt;li&gt;现有的基于graph的模式匹配（pattern-matching）的优化并没有生效，这导致了一些地方的回退（regressions）。尽管我们找到并修复其中的问题，但TurboFan的复杂性仍在不断增加。&lt;/li&gt;
+&lt;li&gt;寄存器分配器（register allocator）对graph中的node数量越来越不满意，并且经常生成错误的代码。&lt;/li&gt;
+&lt;li&gt;较大的node graph会减缓TurboFan优化阶段，并增加编译期间的内存消耗。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;我们决定回退一步，考虑在TurboFan中实现一种更简单的指针压缩方式。新的方法是删除压缩指针/Smi/任何表示，然后让所有显式的压缩/解压 node 隐藏在存储和加载中，并假设我们始终在加载之前压缩，在存储之前解压。&lt;/p&gt;
+&lt;p&gt;我们还在TurboFan中添加新的阶段，该阶段将替代“解压消除（Decompression Elimination”。这个新的阶段能够识别我们什么时候不需要压缩或解压并相应地更新“加载和存储”。这种方法显著降低了TurboFan中指针压缩的复杂性，提高了生成代码的质量。&lt;/p&gt;
+&lt;p&gt;新的操作和初始时候一样有效，并且又提高了0.5%的性能。&lt;/p&gt;
+&lt;h3&gt;Bump(6), +2.5%&lt;/h3&gt;
+&lt;p&gt;我们已经接近平均性能，但是依然有差距。我们必须有更好的想法。其中一个想法是：如果我们确保任何处理Smi值的代码都不处理高32位，结果会怎么样？&lt;/p&gt;
+&lt;p&gt;之前的解压实现：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Old decompression implementation&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt; uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;compressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// pointer case&lt;/span&gt;
+  uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;+=&lt;/span&gt; base&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果我们忽略一个Smi的高32位就可以假定它是&lt;code class=&quot;language-text&quot;&gt;undefined&lt;/code&gt;。这样，我们就可以避免指针和Smi之间的特殊case，并且可以在解压的时候无条件的添加base，即使是对Smis也可以！我们称这个方法为“Smi-corrupting”。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// New decompression implementation&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt; uncompressed_tagged &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; base &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;int64_t&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;compressed_tagged&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;由于我们不关注Smi的符号扩展（sign extending），因此这个改变允许我们回到堆内存布局v1。这是一个base指向4GB预留空间的开始位置。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/2698dbb04aac8200c57d63c352f485d2/heap-layout-3.svg&quot; alt=&quot;Heap layout, base aligned to start&quot;&gt;&lt;/p&gt;
+&lt;p&gt;就解压代码而言，这个改变将符号扩展（sign-extension）变为零扩展（zero-extension），这也同样简单。但是这简化了运行时（C++）端的工作。例如，例如地址空间区域保留代码（查看&lt;a href=&quot;https://v8.dev/blog/pointer-compression#some-implementation-details&quot;&gt;一些细节实现&lt;/a&gt;部分）。&lt;/p&gt;
+&lt;p&gt;这是用于比较的汇编：&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/home/static/c6fe744940679354fc213543f4b12309/49c24/code3.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 42.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAJABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAH/2gAMAwEAAhADEAAAAclLYQf/xAAYEAACAwAAAAAAAAAAAAAAAAAAEQECEP/aAAgBAQABBQJ2HYc5Gf/EABURAQEAAAAAAAAAAAAAAAAAAAAR/9oACAEDAQE/AYj/xAAWEQADAAAAAAAAAAAAAAAAAAAAARH/2gAIAQIBAT8BrKz/xAAWEAEBAQAAAAAAAAAAAAAAAAAxACD/2gAIAQEABj8CZnH/xAAaEAACAgMAAAAAAAAAAAAAAAAAARBBITGR/9oACAEBAAE/IVc3TNDLTLCP/9oADAMBAAIAAwAAABAk3//EABYRAAMAAAAAAAAAAAAAAAAAAAARUf/aAAgBAwEBPxBIJD//xAAVEQEBAAAAAAAAAAAAAAAAAAAAYf/aAAgBAgEBPxCyz//EABsQAAMAAgMAAAAAAAAAAAAAAAABESExcaGx/9oACAEBAAE/ELHe1pMKx03vLLt17ydI8DQ//9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;code3&quot;
+        title=&quot;code3&quot;
+        src=&quot;/blog/home/static/c6fe744940679354fc213543f4b12309/1c72d/code3.jpg&quot;
+        srcset=&quot;/blog/home/static/c6fe744940679354fc213543f4b12309/a80bd/code3.jpg 148w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/1c91a/code3.jpg 295w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/1c72d/code3.jpg 590w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/a8a14/code3.jpg 885w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/fbd2c/code3.jpg 1180w,
+/blog/home/static/c6fe744940679354fc213543f4b12309/49c24/code3.jpg 1528w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;因此我们更将8中所有的使用Smi的代码块调整为新的压缩方案，这给我们另外2.5%的性能提升。&lt;/p&gt;
+&lt;h3&gt;剩余差距（Remaining gap）&lt;/h3&gt;
+&lt;p&gt;剩余的性能差距可以用对64位构建的两个优化来解释，这些优化由于与指针压缩不兼容而禁用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/e1a003499052535291c3d7750419e16c/perf-octane-3.svg&quot; alt=&quot;Octane的最后一轮改进&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;32-bit Smi优化(7), -1%&lt;/h4&gt;
+&lt;p&gt;我们回顾一下，Smis在64位架构全指针模式中看起来是这样：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;        &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;32&lt;/span&gt; bits &lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;32&lt;/span&gt; bits &lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+Smi&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;    &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;____int32_value____&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0000000000000000000&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;32-bit Smi有如下好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;它可以有更大的整数范围且不需要封装成整数对象&lt;/li&gt;
+&lt;li&gt;这样的形式可以在读/写时直接访问32位值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;由于使用指针压缩后会具有区分指针和Smis的bit，导致在32-bit压缩指针中没有空间，所以导致该优化无法使用。如果我们在64-bit版本中禁用32-bit smis，将会看到Octane值下降1%。&lt;/p&gt;
+&lt;h4&gt;双精度字段拆箱（双精度 field unboxing） (8), -3%&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;译者注：装箱（boxing）是指编译器自动将基本数据类型值转换成对应的包装类的对象，拆箱（unboxing）则是反过来。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在某些假设下，这种优化尝试直接将浮点值存储在对象的字段中。这样做的目的是减少数字对象分配的数量，这比单独用Smis减少的更多。&lt;/p&gt;
+&lt;p&gt;想象一下下面这段代码：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Point&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;x&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; y&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;x &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; x&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;y &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; y&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; p &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Point&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5.3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;一般来说，对象p在内存中的样子如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/ecd725d2fda60706581ee6a3084cd0b7/heap-point-1.svg&quot; alt=&quot;对象p在内存中的形式&quot;&gt;&lt;/p&gt;
+&lt;p&gt;关于更多存储中的隐藏类，属性和元素可以&lt;a href=&quot;https://v8.dev/blog/fast-properties&quot;&gt;阅读此文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;在64位架构中，双精度值和指针的大小相同。所以&lt;strong&gt;如果我们假设Point字段总是包含number值&lt;/strong&gt;，则可以将它们直接存储在对象中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/5004270e2dd4d1d5a9fcd6fb373bcdc3/heap-point-2.svg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果某个字段导致假设不成立，例如执行下面这段代码：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; q &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Point&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;ab&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;y属性的number值必须装箱存储（store boxed instead）。另外，如果某处的优化的代码依赖此假设，则该优化必须舍弃。进行这些“字段类型”泛化的原因是为了尽量减少通过同一构造函数创建的对象的Shapes（译者注：在 JavaScript 程序中，多个对象具有相同的key，JS引擎会将这些key单独存储在一个地方，从而优化存储，具体可以查看&lt;a href=&quot;https://hijiangtao.github.io/2018/06/17/Shapes-ICs/&quot;&gt;[译] JavaScript 引擎基础：Shapes 和 Inline Caches&lt;/a&gt;）数量，反过来这对于具有稳定的性能是很必要的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/1fcd4df97c791b664f9cddc147878ed7/heap-point-3.svg&quot; alt=&quot;对象p和q在内存中的形式&quot;&gt;&lt;/p&gt;
+&lt;p&gt;如果应用该优化，双精度字段拆箱给我们如下好处：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过对象指针提供对浮点数据的直接访问，避免通过number对象进行额外的取消引用操作。&lt;/li&gt;
+&lt;li&gt;允许我们对紧凑循环（tight loops）生成更小更快的优化代码从而可以做大量的双精度字段访问。（例如在数字运算应用程序中）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;启用指针压缩后，双精度值不再适合压缩字段。然而，在未来我们可能为指针压缩适配该优化。&lt;/p&gt;
+&lt;p&gt;注意，即使没有双精度字段拆箱优化（以与指针压缩兼容的方式），也可以通过将数据存储在Float64 TypedArrays，甚至是使用&lt;a href=&quot;https://webassembly.github.io/spec/core/&quot;&gt;Wasm&lt;/a&gt;重写要求高吞吐量的数字运算代码。&lt;/p&gt;
+&lt;h4&gt;更多的优化（9），1%&lt;/h4&gt;
+&lt;p&gt;最后，对TurboFan中的解压消除优化进行微调又得到另外1%的性能提升。&lt;/p&gt;
+&lt;h2&gt;一些优化细节&lt;/h2&gt;
+&lt;p&gt;为了简化将指针压缩整合到现有代码中，我们决定在每次加载values的时候解压并且在每次存储的时压缩它们。因此只是改变标志值的存储格式，而执行格式保持不变。&lt;/p&gt;
+&lt;h3&gt;Native代码端&lt;/h3&gt;
+&lt;p&gt;为了在解压的时候生成有效的代码，必须保证始终提供base值。幸运的是V8已经有一个专用的寄存器指向一个“根表（roots table）”，该表包含JavaScript和V8内部对象的引用，这些对象必须始终可用（例如：&lt;code class=&quot;language-text&quot;&gt;undefined&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;null&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;true&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;false&lt;/code&gt;等）。该寄存器被称为“根寄存器”，它用来生成较小的，&lt;a href=&quot;https://v8.dev/blog/embedded-builtins&quot;&gt;可以共享的内部代码&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;所以，我们将根表放在V8堆保留区，根寄存器可以同时有两种用途：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;作为根指针&lt;/li&gt;
+&lt;li&gt;作为解压的的base值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;C++ 端&lt;/h3&gt;
+&lt;p&gt;V8运行时通过C++类访问在V8堆区的对象，从而提供对堆中存储的数据的便捷访问。请注意，V8对象比C++对象更类似于&lt;a href=&quot;https://en.wikipedia.org/wiki/Passive_data_structure&quot;&gt;POD&lt;/a&gt;的结构。助手（helper）“view”类仅仅包含一个带有相应标记值的&lt;code class=&quot;language-text&quot;&gt;uintptr_t&lt;/code&gt;字段。由于view类是字大小的（word-size），因此我们可以将它按值传递，开销为零（这样感谢现代C++编译器）。&lt;/p&gt;
+&lt;p&gt;这里是一个helper类的伪代码：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Hidden class&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Map&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;inline&lt;/span&gt; DescriptorArray &lt;span class=&quot;token function&quot;&gt;instance_descriptors&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// The actual tagged pointer value stored in the Map view object.&lt;/span&gt;
+  cosnt uintptr_t ptr_&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+DescriptorArray Map&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;instance_descriptors&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  uintptr_t field_address &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FieldAddress&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ptr_&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; kInstanceDescriptorsOffset&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  uintptr_t da &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;reinterpret_cast&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;uintptr_t&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;field_address&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;DescriptorArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;da&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;为了尽量减少首次运行指针压缩版本的所需的更改次数，我们将解压必须的base值的计算集成到getter中。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;inline&lt;/span&gt; uintptr_t &lt;span class=&quot;token function&quot;&gt;GetBaseForPointerCompression&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;uintptr_t address&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// Round address down to 4 GB&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; uintptr_t kBaseAlignment &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; address &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;kBaseAlignment&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+DescriptorArray Map&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;instance_descriptors&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  uintptr_t field_address &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FieldAddress&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ptr_&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; kInstanceDescriptorsOffset&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token keyword&quot;&gt;uint32_t&lt;/span&gt; compressed_da &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;reinterpret_cast&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;uint32_t&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;field_address&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  uintptr_t base &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;GetBaseForPointerCompression&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ptr_&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  uintptr_t da &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; base &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; compressed_da&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;DescriptorArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;da&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;性能测量结果证实，在每次加载的时候计算base值会影响性能。原因在于C++编译器不知道，对于V8堆区的任何地址调用&lt;code class=&quot;language-text&quot;&gt;GetBaseForPointerCompression()&lt;/code&gt;的结果是相同的，因此编译器无法合并base值的计算。鉴于代码包含多个指令和一个64位常量，这将导致代码显著膨胀。&lt;/p&gt;
+&lt;p&gt;为了处理这个问题，我们重用V8实例指针作为解压时用的base（记住，V8实例数据在堆区布局中）。该指针通常在运行时函数中可用，所以我们通过要求使用V8实例指针简化getters代码，并恢复来了性能：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;cpp&quot;&gt;&lt;pre class=&quot;language-cpp&quot;&gt;&lt;code class=&quot;language-cpp&quot;&gt;DescriptorArray Map&lt;span class=&quot;token operator&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;instance_descriptors&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; Isolate&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; isolate&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  uintptr_t field_address &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;
+      &lt;span class=&quot;token function&quot;&gt;FieldAddress&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ptr_&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; kInstanceDescriptorsOffset&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token keyword&quot;&gt;uint32_t&lt;/span&gt; compressed_da &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;reinterpret_cast&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;uint32_t&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;field_address&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;// No rounding is needed since the Isolate pointer is already the base.&lt;/span&gt;
+  uintptr_t base &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;reinterpret_cast&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;uintptr_t&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;isolate&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  uintptr_t da &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;DecompressTagged&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;base&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; compressed_value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;DescriptorArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;da&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;结果&lt;/h2&gt;
+&lt;p&gt;让我们来看看指针压缩的最后结果！对于这些结果，我们使用与本文开头介绍的相同的网站测试。提醒一下，他们代表用户在真实世界网站使用情况。&lt;/p&gt;
+&lt;p&gt;我们发现指针压缩将V8堆区大小减少43%！反过来，它减少桌面端Chrome渲染进程20%的内存占用。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/e2e759806c9d348b438ff5c63ad1ef14/v8-heap-memory.svg&quot; alt=&quot;在Windows 10中的内存节省&quot;&gt;&lt;/p&gt;
+&lt;p&gt;另一个重要的事情是，不是每一个网站都有相同的改进。例如，在没有使用指针压缩的时候Facebook使用V8堆区内存比纽约时报要多，但是使用该优化后，使用堆内存情况变得相反。这个不同可以通过以下事实解释：某些网站具有比其他网站更多的标记值（Tagged values）。&lt;/p&gt;
+&lt;p&gt;除了这些内存改进，我们还看到了实际性能的改进。在真实网站上，我们使用更少的CPU和垃圾回收时间！&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/blog/home/3122cf2441e95e2314d46143d0225c81/performance-improvements.svg&quot; alt=&quot;在CPU和GC time上的改进&quot;&gt;&lt;/p&gt;
+&lt;h2&gt;结论&lt;/h2&gt;
+&lt;p&gt;这一路上尽管没有鸟语花香，但是值得度过。&lt;a href=&quot;https://github.com/v8/v8/search?o=desc&amp;#x26;q=repo%3Av8%2Fv8+%22%5Bptr-compr%5D%22&amp;#x26;s=committer-date&amp;#x26;type=Commits&quot;&gt;300+的提交&lt;/a&gt;后，指针压缩让V8拥有64位应用的性能，同时拥有32位的内存占用。&lt;/p&gt;
+&lt;p&gt;我们一直期待着性能的改进，并在流程中完成以下相关任务：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;改进生成汇编代码的质量。我们知道在某些情况下我们能够生成更少的代码来提高性能。&lt;/li&gt;
+&lt;li&gt;解决相关的性能下降，包括一个机制，该机制以指针压缩友好的方式再次对doble字段拆箱。&lt;/li&gt;
+&lt;li&gt;探索支持8～16G范围内更大堆的想法。&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[学习读财报之资产负债表]]></title><description><![CDATA[…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-blance-sheet/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-blance-sheet/</guid><pubDate>Sun, 12 Apr 2020 20:15:00 GMT</pubDate><content:encoded>&lt;blockquote&gt;
+&lt;p&gt;分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的&lt;a href=&quot;https://book.douban.com/subject/25926542/&quot;&gt;《一本书读懂财务报表》&lt;/a&gt;，加深对书中概念的理解。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;从会计的角度看企业一直都在做的只有三件事：经营、投资和融资。要想创办一个企业首先需要我们手里有钱，然后用手里的钱去买设备，租办公地，招人，开始生产，销售等等，而在现代社会，卖掉商品并不意味着能马上拿到钱，很多时候只是拿到一个收款权利。那么如何确定我们当初的投资是赚钱了还是赔钱呢？这时候就需要一个统计，看我们当初投资的钱变成了什么，它们现在价值如何，是保持原有的价值还是贬值了呢？这个统计，就是&lt;strong&gt;资产负债表&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2&gt;资产负债表的构成&lt;/h2&gt;
+&lt;p&gt;一张完整的资产负债表如下：&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/home/static/f3f9322ccd70fa781a4bda870e4a63a2/5c744/blance_sheet_new.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 76.35135135135135%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAABYlAAAWJQFJUiTwAAABkUlEQVQ4y32UbauCQBCF/f//5fapbyEFElkhZNe4cXvHIsVerKi01LmegbXN1juwuNjs45mZs2m73Y7CMKTlckmXy4XSNKU4jgmxWq34PeJ8PnPedDqlzWbD75CXZRmNx2MCJ8vfaa1WiyzL4gT8CKBYcvxOJvRVq/FBRJIkH3nYaz853XEcVieAcjL2CN/3+cP7/b44LOeJpfV6PTIMoyijCjifz6nRaJDruv8Doe5wOLyVoQJ6nkeDwYBmsxnd73euRgnsdDoElcfj8VVyKUmAsZ7PJz8rgUEQcLnoYVUpOBxFEV2v10Jd1Yc1lNHv9/mAmHQiQUXJ+Giz2WTbqIZXAE3T5OkBCF/h+Xg8KJUshNhut6TrejFlboFKoT0csm0wxcViwet2u72pEMBut8tmF21QKgQAyVU9EQpxSya5uev1OrXbbWUeA2WXyxMt2wY3ZDQascFPp1Mx7Q+gsMMbsLRHwNDoNdohQglUyU5KahEwNO49wPijgIWUQ0krTKy6KVD4nQ/Qtm1y12tlD/8A4z6FDGvtkDkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;OKR Demo 3&quot;
+        title=&quot;OKR Demo 3&quot;
+        src=&quot;/blog/home/static/f3f9322ccd70fa781a4bda870e4a63a2/fcda8/blance_sheet_new.png&quot;
+        srcset=&quot;/blog/home/static/f3f9322ccd70fa781a4bda870e4a63a2/12f09/blance_sheet_new.png 148w,
+/blog/home/static/f3f9322ccd70fa781a4bda870e4a63a2/e4a3f/blance_sheet_new.png 295w,
+/blog/home/static/f3f9322ccd70fa781a4bda870e4a63a2/fcda8/blance_sheet_new.png 590w,
+/blog/home/static/f3f9322ccd70fa781a4bda870e4a63a2/efc66/blance_sheet_new.png 885w,
+/blog/home/static/f3f9322ccd70fa781a4bda870e4a63a2/c83ae/blance_sheet_new.png 1180w,
+/blog/home/static/f3f9322ccd70fa781a4bda870e4a63a2/5c744/blance_sheet_new.png 1206w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;备注：具体的资产负债表可能会包含更多的项目&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;可以看到资产负债表主要分左右两部分，即左边的资产和右边的负债、所有者（股东）权益。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;注：&lt;/strong&gt;不同的上市地方（例如在港交所和纳斯达克）所披露的财报中的名词可能不同，但是含义相同，具体在实际中对应即可。&lt;/p&gt;
+&lt;h2&gt;资产&lt;/h2&gt;
+&lt;p&gt;资产按流动性分为&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;流动资产（Current Assets）：指企业可以在一年或者超过一年的&lt;strong&gt;一个营业周期内&lt;/strong&gt;变现或运用的资产。&lt;/li&gt;
+&lt;li&gt;非流动资产（Non-current Assets）：流动资产以外的资产。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;它们的差异点在于能否在一个循环之内将自己变为现金。&lt;/p&gt;
+&lt;h3&gt;流动资产&lt;/h3&gt;
+&lt;p&gt;资产负债表中的项目按照它们各自&lt;strong&gt;转换成现金的速度&lt;/strong&gt;（流动性），从上到下依次是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;货币资金（Cash）：包括&lt;strong&gt;库存现金&lt;/strong&gt;、&lt;strong&gt;银行存款&lt;/strong&gt;和&lt;strong&gt;其他货币资金&lt;/strong&gt;三种。&lt;/li&gt;
+&lt;li&gt;应收账款（Accounts Receivable）：核算企业因销售商品、提供劳务等&lt;strong&gt;经营活动&lt;/strong&gt;应收取的款项。&lt;/li&gt;
+&lt;li&gt;其他应收账款（Other Receivables）：企业除存出保证金（如租房时交付的未来将退回的保证金、押金等）、买入反售金融资产、应收票据、应收账款、预付账款、应收利息、&lt;a href=&quot;https://baike.baidu.com/item/%E5%BA%94%E6%94%B6%E4%BB%A3%E4%BD%8D%E8%BF%BD%E5%81%BF%E6%AC%BE/3711721&quot;&gt;应收代位追偿款&lt;/a&gt;、&lt;a href=&quot;https://baike.baidu.com/item/%E5%BA%94%E6%94%B6%E5%88%86%E4%BF%9D%E8%B4%A6%E6%AC%BE&quot;&gt;应收分保账款&lt;/a&gt;、应收分保合同准备金、长期应收款等以外的其他各种应收及暂收款项。&lt;/li&gt;
+&lt;li&gt;预付账款（Prepaid Accounts）：企业按照合同规定预付的款项。&lt;/li&gt;
+&lt;li&gt;存货（Inventory）：企业在日常生活中持有以备出收的产成品或商品、处在生产过程中的在产品、在生产过程或提供劳务过程中耗用的材料和物料等。&lt;/li&gt;
+&lt;li&gt;待摊费用（Prepaid expenses）：&lt;strong&gt;已支出&lt;/strong&gt;但应有&lt;strong&gt;本期和以后各期分别负担&lt;/strong&gt;的各项费用。&lt;/li&gt;
+&lt;li&gt;其他流动资产：除以上流动资产外的其他流动资产。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;资产和费用之间有一个很大的共同之处就是都得&lt;strong&gt;花钱&lt;/strong&gt;。但是区别在于：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;资产可以换来一个对&lt;strong&gt;将来有用的东西&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;费用的钱，花完就完了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里重点说一下待摊费用。待摊费用的定义是：&lt;strong&gt;已支出&lt;/strong&gt;但应有&lt;strong&gt;本期和以后各期分别负担&lt;/strong&gt;的各项费用，该费用包括&lt;a href=&quot;https://baike.baidu.com/item/%E4%BD%8E%E5%80%BC%E6%98%93%E8%80%97%E5%93%81%E6%91%8A%E9%94%80/10097022&quot;&gt;低值易耗品摊销&lt;/a&gt;、一次支出数额较大的财产保险费、排污费、技术转让费、广告费、固定资产经常修理费、预付租入固定资产的租金等。&lt;/p&gt;
+&lt;p&gt;从定义可以看出，该费用的本质其实就是&lt;strong&gt;提前交钱（变成资产），然后在后期享受服务（变为费用）&lt;/strong&gt;。例如公司花6万买入一批可以使用6个月的办公用品。初始买入后，是公司的一笔资产，随着时间的流逝，办公用品被使用，变成一笔费用，这就是待摊费用。&lt;/p&gt;
+&lt;h3&gt;非流动资产&lt;/h3&gt;
+&lt;p&gt;非流动资产包含以下几个项目：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;长期投资（long-term Investments）：指不满足短期投资条件的投资。即&lt;strong&gt;在一年或长于一年的经营周期内不准备转换为现金的投资&lt;/strong&gt;。长期投资按性质分为股票、债券和其他长期投资。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;固定资产（Fixed Assets）是指同时具有以下特征的&lt;strong&gt;有形资产&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;为生产商品、提供劳务出租或经营管理而持有的；&lt;/li&gt;
+&lt;li&gt;使用寿命超过一个&lt;a href=&quot;https://baike.baidu.com/item/%E4%BC%9A%E8%AE%A1%E5%B9%B4%E5%BA%A6/7931699?fr=aladdin&quot;&gt;会计年度&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;无形资产（Intangible Assets and Other Assets）：指企业拥有或控制的&lt;strong&gt;没有实物形态的可辨认非货币性资产&lt;/strong&gt;。包括专利权、非专利技术、商标权、土地使用权（中国特有）等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;关于非流动资产需要注意几点：&lt;/p&gt;
+&lt;p&gt;在使用过程中，固定资产会逐渐损耗，它的价值也会随着损耗逐渐降低。描述固定资产的损耗的量就是折旧。&lt;strong&gt;固定资产的折旧（Depreciation）&lt;/strong&gt;是指在一定时期内为弥补固定资产损耗按照规定的固定资产折旧率提取的固定资产折旧，或按国民经济核算统一规定的折旧率虚拟计算的固定资产折旧。&lt;/p&gt;
+&lt;p&gt;在无形资产中，有一项中国特有的，即土地使用权。因为在中国企业或个人&lt;strong&gt;没有土地所有权，只有土地使用权，所以该项是无形资产&lt;/strong&gt;。而在其他国家，企业和个人&lt;strong&gt;有土地所有权，这时土地就成为了固定资产&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3&gt;资产计价&lt;/h3&gt;
+&lt;p&gt;当我们确认一个资产的价值时，默认会想到使用当前该资产的现有价格作为它的价值，但是这样会有一个问题，如何找到当前资产现在的价格？因为很可能你持有的这个资产现在已经不再在市场上售卖，即使在市场上有售卖，价格也可能不客观（大家的报价无法达成一致），所以无法确定其准确的价值。为了准确描述资产的价值，我们用当时购买该资产的价格作为该资产的价值。这就是&lt;strong&gt;历史成本&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;历史成本/原始成本/实际成本（Historical Cost）：资产在其取得时为它所支付的现金或现金等价物的金额。负债在正常经营活动中为交换而收到的或为偿付将要支付的现金或现金等价物的金额。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;按照以上定义，历史成本包含两层含义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;只有花了的钱采能记在账上。&lt;/li&gt;
+&lt;li&gt;在历史成本计价体系下，增加资产价值的唯一途径是发生一个新的交易。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;那有没有这样一种资产，虽然已经买了很久，但是只要当前提出报价大家都一致认同的资产呢？答案是有的，例如股票这样的金融资产，房地产，因为金融市场非常活跃，所以它的资产价格很容易达到共识。&lt;/p&gt;
+&lt;p&gt;与历史成本相对的，用当前市场价格来计价的，被称为&lt;strong&gt;公允价值&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;公允价值/公允市价/公允价格（Fair Value）：熟悉市场情况的买卖双方在公平交易的条件下和自愿的情况下所确定的价格，或无关联的双方在公平交易的条件下一项资产可以被买卖或者一项负债可以被清偿的成交价格。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;负债&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;负债（Liability）：由于过去的交易或事项所引起的公司、企业的现有债务，这种债务需要企业在将来以转移资产或提供劳务加以清偿，从而引起未来经济利益的流出。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;流动负债&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;一年内或者超过一年的一个经营周期内&lt;/strong&gt;需要偿还的债务合计，包含以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;短期借款（Short-term Borrowing）：企业用来维持正常的生产经营所需的资金或为抵偿某项债务而向银行或其他金融机构等外单位借入的，&lt;strong&gt;还款期限在一年以下或者一年的一个经营周期内&lt;/strong&gt;的各种借款。&lt;/li&gt;
+&lt;li&gt;应付账款（Accounts Payable）：企业因购买材料、物资和接受劳务供应等而应该付给供货单位的账款。&lt;/li&gt;
+&lt;li&gt;其他应付账款（Other Payables）：企业除应付票据、应付账款、应付工资、应付利润以外的应付、暂收其他单位或个人的款项。&lt;/li&gt;
+&lt;li&gt;预收账款（Deposit Received）：买卖双方协议商定，由购货方预先支付一部分货款给供应方而发生的一种负债。&lt;/li&gt;
+&lt;li&gt;其他流动负债：为了简化资产负债表，将一些项目合并在一起，统称为“其他”。包括应付工资，应交税金等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;非流动负债&lt;/h3&gt;
+&lt;p&gt;偿还期在&lt;strong&gt;一年或超过一年的一个营业周期以上&lt;/strong&gt;的债务，包含以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;长期借款（Long-term Loans Payable）：：企业从银行或其他金融机构借入的期限在一年以上（不含一年）的借款。&lt;/li&gt;
+&lt;li&gt;应付债券（Bond Payable）：企业为筹集资金而对外发行的期限在一年以上的长期借款性质的书面证明，约定在一定期限内还本付息的一种书面承诺。&lt;/li&gt;
+&lt;li&gt;长期应付款（Long-term Payable）：企业除了长期借款和应付债券以外的&lt;strong&gt;长期负债&lt;/strong&gt;。包括应付引进设备款、应付融资租入固定资产的租赁费等。&lt;/li&gt;
+&lt;li&gt;其他非流动负债：除长期借款、应付债券等项目以外的其他非流动负债。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;股东权益&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;股东权益（Shareholder‘s Equity）：公司总资产中扣除债务所余下的那部分，也称净资产。股东权益反应了公司的自有资本。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;股东权益包含以下几个部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;股本（Capital Stock）：股东在公司中所占的权益，多用于指股票。&lt;/li&gt;
+&lt;li&gt;资本公积（Addition Paid-in Capital）：企业收到的投资者的&lt;strong&gt;超出其在企业注册资本所占份额&lt;/strong&gt;，以及直接记入所有者权益的利得和损失等。资本公积包括资本溢价（股本溢价）和直接记入所有者权益的利得和损失等。&lt;/li&gt;
+&lt;li&gt;盈余公积（Surplus Zeserve）：企业按照规定从净利润中提取的各种积累资金。中国的公司法规定，一个公司有了盈利之后，必须留存至少&lt;strong&gt;10%&lt;/strong&gt;作为盈余公积。该项目为中国特有，&lt;strong&gt;其他国家没有这个规定&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;未分配利润（Retained Earnings）：企业未作分配的利润。它在以后年度可继续进行分配，&lt;strong&gt;在未进行分配之前，属于所有者权益的组成部分&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在资产负债表中实收资本/股本。区别在于实收资本对应&lt;strong&gt;有限责任公司&lt;/strong&gt;而股本对应&lt;strong&gt;股份有限公司&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;盈余公积是法律不允许分配的利润，而分配利润是企业不想分配的利润。&lt;/p&gt;
+&lt;h2&gt;总结&lt;/h2&gt;
+&lt;p&gt;总的来说，资产负债表左边是说钱被用来做什么了，右边是说企业的钱是从哪儿来的。很显然进来的钱和用掉的钱在金额上必须相等，这就意味着资产负债表的左边的资产与右边的负债和股东权益之和相等。即&lt;strong&gt;资产 = 负债 + 股东权益&lt;/strong&gt;，这就是所谓的“会计恒等式”。也就是说&lt;strong&gt;股东权益 = 资产 - 负债&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;资产负债表是一个&lt;strong&gt;时间点&lt;/strong&gt;的概念，它提供了截止日期那天，公司的财务状况。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[vim的搜索与替换]]></title><description><![CDATA[在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-vimSearch/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-vimSearch/</guid><pubDate>Sun, 15 Mar 2020 16:15:00 GMT</pubDate><content:encoded>&lt;p&gt;在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。&lt;/p&gt;
 &lt;h1&gt;利用vim自带搜索&lt;/h1&gt;
 &lt;p&gt;对于搜索当前打开文件，vim自带搜索功能足以应对，在Normal modal下键入&lt;code class=&quot;language-text&quot;&gt;/&lt;/code&gt;，即可进入搜索模式，此时输入想要搜索的单词然后回车，即可完成搜索，光标会跳到当前搜索到的第一个匹配的单词。按下&lt;code class=&quot;language-text&quot;&gt;n&lt;/code&gt;，光标跳到下一个匹配的单词，按下&lt;code class=&quot;language-text&quot;&gt;N&lt;/code&gt;（&lt;code class=&quot;language-text&quot;&gt;shift+n&lt;/code&gt;）光标会跳到上一个匹配的单词。&lt;/p&gt;
 &lt;p&gt;除了在Normal modal下可以键入&lt;code class=&quot;language-text&quot;&gt;/&lt;/code&gt;开始搜索外，还可以键入以下符号开始搜索：&lt;/p&gt;
@@ -1824,32 +2317,7 @@ assert&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span cla
 &lt;li&gt;class私有属性（private class fields）&lt;/li&gt;
 &lt;li&gt;静态私有属性（private static fields）&lt;/li&gt;
 &lt;li&gt;实例私有属性（private instance fields）&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Two Sum]]></title><description><![CDATA[题目 给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。 你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。 Example： 难度：Easy 思路 题目要求在数组中寻找两个数A和B，相加等于一个特定的数traget，返回A和B…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2019-leetCode-twoSum/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2019-leetCode-twoSum/</guid><pubDate>Tue, 16 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;题目&lt;/h3&gt;
-&lt;p&gt;给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。&lt;/p&gt;
-&lt;p&gt;你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。&lt;/p&gt;
-&lt;p&gt;Example：&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;Given nums &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; target &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-
-Because nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;难度：Easy&lt;/strong&gt;&lt;/p&gt;
-&lt;h3&gt;思路&lt;/h3&gt;
-&lt;p&gt;题目要求在数组中寻找两个数A和B，相加等于一个特定的数traget，返回A和B的索引，&lt;strong&gt;我们可以用给定的数traget减去A，看B是否存在于数组中即可&lt;/strong&gt;。&lt;/p&gt;
-&lt;h3&gt;代码实现&lt;/h3&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;twoSum&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;nums&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; target&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; result &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; target &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; key &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;indexOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;key &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; key&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; key&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Roman To Int]]></title><description><![CDATA[题目 罗马数字使用七个不同的符号表示：，，，，，和。 例如，罗马数字表示2，就是将两个1加在一起。12被写作。27被写作，就是++。 罗马数字通常从左到右，从最大到最小。然而，数字4不是。而是。因为1写到5前面得到4，相同的原理，9被表示成。这里有…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2019-leetCode-romanToInt/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2019-leetCode-romanToInt/</guid><pubDate>Tue, 16 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;题目&lt;/h3&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[Roman To Int]]></title><description><![CDATA[题目 罗马数字使用七个不同的符号表示：，，，，，和。 例如，罗马数字表示2，就是将两个1加在一起。12被写作。27被写作，就是++。 罗马数字通常从左到右，从最大到最小。然而，数字4不是。而是。因为1写到5前面得到4，相同的原理，9被表示成。这里有…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2019-leetCode-romanToInt/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2019-leetCode-romanToInt/</guid><pubDate>Tue, 16 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;题目&lt;/h3&gt;
 &lt;p&gt;罗马数字使用七个不同的符号表示：&lt;code class=&quot;language-text&quot;&gt;I&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;V&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;X&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;L&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;C&lt;/code&gt;，&lt;code class=&quot;language-text&quot;&gt;D&lt;/code&gt;和&lt;code class=&quot;language-text&quot;&gt;M&lt;/code&gt;。&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Symbol     Value
 I          1
@@ -1941,6 +2409,31 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.&lt;/code&gt;&lt;/pre&gt;&lt
     &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
     console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; result&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Two Sum]]></title><description><![CDATA[题目 给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。 你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。 Example： 难度：Easy 思路 题目要求在数组中寻找两个数A和B，相加等于一个特定的数traget，返回A和B…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2019-leetCode-twoSum/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2019-leetCode-twoSum/</guid><pubDate>Tue, 16 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;题目&lt;/h3&gt;
+&lt;p&gt;给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。&lt;/p&gt;
+&lt;p&gt;你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。&lt;/p&gt;
+&lt;p&gt;Example：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;Given nums &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; target &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+
+Because nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;7&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;难度：Easy&lt;/strong&gt;&lt;/p&gt;
+&lt;h3&gt;思路&lt;/h3&gt;
+&lt;p&gt;题目要求在数组中寻找两个数A和B，相加等于一个特定的数traget，返回A和B的索引，&lt;strong&gt;我们可以用给定的数traget减去A，看B是否存在于数组中即可&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3&gt;代码实现&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;twoSum&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;nums&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; target&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; result &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; target &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; key &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;indexOf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;result&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;key &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;!==&lt;/span&gt; key&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; key&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[【译】稳定的Array.prototype.sort]]></title><description><![CDATA[原文链接：https://v8.dev/features/stable-sort#support 假设你有一系列的狗狗，每个狗狗有名字和评分。（如果这个例子看起来很奇怪，你应该知道有一个专门针对这个的Twitter…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2019-stableSort/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2019-stableSort/</guid><pubDate>Mon, 08 Jul 2019 23:10:00 GMT</pubDate><content:encoded>&lt;p&gt;原文链接：&lt;a href=&quot;https://v8.dev/features/stable-sort#support&quot;&gt;https://v8.dev/features/stable-sort#support&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;假设你有一系列的狗狗，每个狗狗有名字和评分。（如果这个例子看起来很奇怪，你应该知道有一个专门针对这个的Twitter账户…别问为什么！）&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// Note:按字母顺序进行预排序&lt;/span&gt;
