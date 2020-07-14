@@ -1,4 +1,262 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 10 May 2020 05:37:24 GMT</lastBuildDate><item><title><![CDATA[「译」V8中的指针压缩]]></title><description><![CDATA[原文链接：https://v8.dev/blog/pointer-compression 内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。 时间回到2014年，那时Chrome从32位切换到6…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020_pointer_compression_in_V8/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020_pointer_compression_in_V8/</guid><pubDate>Thu, 23 Apr 2020 17:08:00 GMT</pubDate><content:encoded>&lt;p&gt;原文链接：&lt;a href=&quot;https://v8.dev/blog/pointer-compression&quot;&gt;https://v8.dev/blog/pointer-compression&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Mark Zhang Blog]]></title><description><![CDATA[记录点滴]]></description><link>https://gatsby-starter-blog-demo.netlify.com</link><generator>GatsbyJS</generator><lastBuildDate>Tue, 14 Jul 2020 01:18:23 GMT</lastBuildDate><item><title><![CDATA[基础排序]]></title><description><![CDATA[选择排序 首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。 命题A：对于长度为N…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020-basicSort/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020-basicSort/</guid><pubDate>Tue, 14 Jul 2020 09:08:00 GMT</pubDate><content:encoded>&lt;h2&gt;选择排序&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;命题A&lt;/strong&gt;：对于长度为N的数组，选择排序需要大约$N^2 / 2$次比较和N次交换&lt;/p&gt;
+&lt;h3&gt;特性&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;运行时间和输入无关&lt;/li&gt;
+&lt;li&gt;数据移动是最少的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;代码实现&lt;/h3&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/home/static/3e62ea81fa74361b478750148fc95eba/ce0a7/selectSort.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 75.67567567567568%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAIAAABr+ngCAAAACXBIWXMAAAsSAAALEgHS3X78AAABpklEQVQoz32T2W7qQBBE5///hd1gsM1ix5cLygMSIg/ESIBYhNiEwGwB4hymhUTkJPXQqp7p6u6RyyqTyWSzWdu2c7lcoVCAQ6rVaqPR+P+Eer3+LwaFzDTNfD5fKpUMwyCaGjQyHigWi47jvMSgms2mZVmMqtVqRNd1qRNia5TLZVJKX78DoZrP51EULZfL6XS6Xq8Xi0Wv14NcLpcPjUjj8wm3242T7XarVquViPf7/Waz4SIMw9PpFD4QxYCeuNvtFDLY9XplGsNZ5Hw+M1DaE+FsERffJ4uYIsZOJpN+v49+NBrNZjN6DYdD0uPx+LOYR0ouC4/H48FgQDwcDlyzm4z9682szWQa8VrW5glUkErdr29ut9tvGu8a3W6XGAQBsdVqkQYacitETjqdjvI8z9KQr8pHxie4ggiH4BY8I1fCOaQeIyjf98mxJE5KpVJiT4i04JATIspKpZJOp0mpR4zwLsZbtCFiJircJ3gPUIbJfA0hd2/jeJbh92BgMpkUM8vfwpxEIiHrOBosT3d+BAzL36JQsiGn8jwAlwdTJ7sIieMLSa3uW7RcIT0AAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;select-sort&quot;
+        title=&quot;select-sort&quot;
+        src=&quot;/blog/home/static/3e62ea81fa74361b478750148fc95eba/fcda8/selectSort.png&quot;
+        srcset=&quot;/blog/home/static/3e62ea81fa74361b478750148fc95eba/12f09/selectSort.png 148w,
+/blog/home/static/3e62ea81fa74361b478750148fc95eba/e4a3f/selectSort.png 295w,
+/blog/home/static/3e62ea81fa74361b478750148fc95eba/fcda8/selectSort.png 590w,
+/blog/home/static/3e62ea81fa74361b478750148fc95eba/efc66/selectSort.png 885w,
+/blog/home/static/3e62ea81fa74361b478750148fc95eba/c83ae/selectSort.png 1180w,
+/blog/home/static/3e62ea81fa74361b478750148fc95eba/ce0a7/selectSort.png 1590w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;无论原数组排序是如何的，该排序方式总是需要平方时间&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;SelectSort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	arrLength &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arrLength&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		min &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; i
+		&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arrLength&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;min&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+				min &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; j
+			&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;token comment&quot;&gt;// exchange&lt;/span&gt;
+		arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;min&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;min&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; arr
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;exchange&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; b&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; temp &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+  arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+  arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; temp
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;selectSort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; arrLength &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length
+  &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arrLength&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; min &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; i
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arrLength&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;min&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        min &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; j
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;exchange&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; i&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; min&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;插入排序&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;指针 i 用于遍历整个数组，指针 j 用于将右边部分数组依此跟前一个元素进行比较，如果比前一个元素小，就将元素与前一个元素交换，直到遍历完成整个数组。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;与选择排序一样，当前索引左边的所有元素都是有序的，但是它的最终位置还不确定。和选择排序不同的是，&lt;strong&gt;插入排序所需的时间取决于输入中元素的初始顺序&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;命题B&lt;/strong&gt;：对于随机排列的长度为N且主键不重复的数组，平均情况下插入排序需要 ～$N^2 / 4$ 次比较及 ~ $N^2 / 4$ 次交换，最坏情况下插入排序需要 ～$N^2 / 2$ 次比较及 ~ $N^2 / 2$ 次交换，最好情况下需要 N-1 次比较和 0 次交换。&lt;/p&gt;
+&lt;h3&gt;代码实现&lt;/h3&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;InsertSort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	arrLength &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arrLength&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; j&lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;	&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; arr
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;部分有序&lt;/h3&gt;
+&lt;p&gt;如果数组中倒置的数量小于数组大小的某个倍数，那么我们说这个数组是部分有序的。以下是几种经典的部分有序数组：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数组中每个元素距离它的最终位置都不远&lt;/li&gt;
+&lt;li&gt;一个有序的大数组接一个小数组&lt;/li&gt;
+&lt;li&gt;数组中只有几个元素位置不正确&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;对于部分有序的数组，插入排序执行是线性的&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;逆序对：逆序对是数组中乱序的关键对，例如下面的数组&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 逆序对&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; 四个逆序对&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;事实上，当倒置数量很少时，插入排序可能比我们所知道任何基础排序算法都要快。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;命题C&lt;/strong&gt;：插入排序需要的交换操作和数组中倒置的数量相同，需要的比较次数大于等于倒置的数量，小于等于倒置的数量加上数组的大小再减一。&lt;/p&gt;
+&lt;p&gt;如果逆序对是线性的（部分有序数组），插入排序对这样的数组排序的时间是线性的。总的来说，插入排序对于部分有序的数组十分高效，也很适合小规模数组。&lt;/p&gt;
+&lt;h2&gt;希尔排序（Shell sort）&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;前面的排序每次都移动一个位置，导致效率要低一些，所以希尔排序将数组每次移动若干位置，这种操作叫做对数组进行h-排序。希尔排序的思想是使数组中任意间隔为h的元素都是有序的。这样的数组被成为“h有序数组”。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;h-排序包含h个不同的交叉的“有序子列”，通过递减h值的h-排序实现一种排序方法，对h-排序使用“插入排序”，之前每次获取新的项往回走一个，现在往回走h个。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这里选择插入排序而不是选择排序的原因是插入排序对部分有序数组的排序是线性的&lt;/strong&gt;，而选择排序无论是什么顺序，时间都是平方级别的&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/home/static/5848912c05ce1af9498fc61da156aa21/229ad/shell.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 31.08108108108108%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAIAAABM9SnKAAAACXBIWXMAAAsSAAALEgHS3X78AAAA4UlEQVQY0zVPC7KDIAz0/oesT2o7alWEQAD5ddFXJiSbMMtuun16r+/XRwyLEOtrBJ6HYe4fsxg+z+cyjrMQU/839T2TqrWUkkrNV6SuXsdbE89Q22P+veXWNlBavXAqZ8r/0cgouURrlFaSzGGs2uW6bYsxClgeG9EBjOygYDUyWWWZas0dmLnGEB34bLR3xpA69pVJB8yo0TAMnpkJEVNo/mpqyrjgI4fTaYiQAoethhFnybNhS+Dj69OzY4K4D1zvnS9lfBPRYwU4lPt6u1By03IDACQtwXRGu7bgftv+AssNWTzvKpy/AAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;shell&quot;
+        title=&quot;shell&quot;
+        src=&quot;/blog/home/static/5848912c05ce1af9498fc61da156aa21/fcda8/shell.png&quot;
+        srcset=&quot;/blog/home/static/5848912c05ce1af9498fc61da156aa21/12f09/shell.png 148w,
+/blog/home/static/5848912c05ce1af9498fc61da156aa21/e4a3f/shell.png 295w,
+/blog/home/static/5848912c05ce1af9498fc61da156aa21/fcda8/shell.png 590w,
+/blog/home/static/5848912c05ce1af9498fc61da156aa21/efc66/shell.png 885w,
+/blog/home/static/5848912c05ce1af9498fc61da156aa21/c83ae/shell.png 1180w,
+/blog/home/static/5848912c05ce1af9498fc61da156aa21/229ad/shell.png 1356w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;希尔排序中，增量的取值&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2n-1：1，3，5，7…&lt;/li&gt;
+&lt;li&gt;3n+1：1，4，13，40…&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;代码实现&lt;/h3&gt;
+&lt;p&gt;实现方式，增量取3n+1&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/home/static/8a1d6f1c53dc7a9633f252be9f4b2f82/cc418/shellSort.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 62.16216216216216%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAIAAADtbgqsAAAACXBIWXMAAAsSAAALEgHS3X78AAABwElEQVQoz11Si66iMBDl/3/rKriA8hSkvDExt/IoTwHd6J7WG3OzJ80wnXaGOXMquY7j2A6saZqe5yUCaZqKb/wfwjDE0TzPNwHJdV1Zlg/7vaqqBwE4O2Wna5phmL7vn34B1YMgWJblJ5kQgn8axsG27T/Kbq/ruIFujq57PHq/c5GGWiQM13WdlwVLKsuya7sszSi9Aoyxrut6rL4fhgEW25ajw7Yuq5iEbd1U37Staqk4F0maWKZFSHg6+UmcgikYZ2ma53mWZW/+MNgWRRFFYcdaVjfTNEo4i6LIth3LsjA2X7SH2SCOq+fz+WOBOI5IEGBc4zhO0yShodfrBfYtY8OA0A3DHMcBcXDDbO73+7qsfwXm6ZanSccYeh6HQWqa5vl8Ph4PZKJJcEaVpq45WU6VoVDf9W95UAtdYFTLuiAiXS4XJHxTCodSilq1AK8iwAQQh3+lNAqjtmpqesUwJfEWuIEYcZyg8HswuQB6+fhAGJDAP3VV01xLzhnjgc4QFrpCatPgvikACfCEjIPBL9gORPY+OgsWPHkn8PW12W5lRVY0VVMUZbPZaqoOCbDVdV1oSfgjIQSU8Vsk/wMSIHzQrcCysgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;shell-short&quot;
+        title=&quot;shell-short&quot;
+        src=&quot;/blog/home/static/8a1d6f1c53dc7a9633f252be9f4b2f82/fcda8/shellSort.png&quot;
+        srcset=&quot;/blog/home/static/8a1d6f1c53dc7a9633f252be9f4b2f82/12f09/shellSort.png 148w,
+/blog/home/static/8a1d6f1c53dc7a9633f252be9f4b2f82/e4a3f/shellSort.png 295w,
+/blog/home/static/8a1d6f1c53dc7a9633f252be9f4b2f82/fcda8/shellSort.png 590w,
+/blog/home/static/8a1d6f1c53dc7a9633f252be9f4b2f82/efc66/shellSort.png 885w,
+/blog/home/static/8a1d6f1c53dc7a9633f252be9f4b2f82/c83ae/shellSort.png 1180w,
+/blog/home/static/8a1d6f1c53dc7a9633f252be9f4b2f82/cc418/shellSort.png 1992w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ShellSort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	N &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	h &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; h &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; N&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		h &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;h &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; h &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; h&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; N&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; i&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; h &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;h&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;-=&lt;/span&gt; h &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+				arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;h&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;h&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+			&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+		h &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; h &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; arr
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;&lt;pre class=&quot;language-jsx&quot;&gt;&lt;code class=&quot;language-jsx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;exchange&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; b&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; temp &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+  arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+  arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; temp
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;shellSort&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length
+  &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; h &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;h &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    h &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;h &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;h &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; h&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; i&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; h &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; arr&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; h&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;-=&lt;/span&gt; h&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;exchange&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arr&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; j&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; j &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; h&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    h &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;parseInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;h &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; arr
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;已知在最坏情况下该算法的比较次数和N^(3/2)成正比&lt;/p&gt;
+&lt;p&gt;性质E：使用递增序列1，4，13，40，121，364…（即$3*h+1$）的希尔排序所需的比较次数不会超过N的若干倍乘以递增序列的长度。&lt;/p&gt;
+&lt;h1&gt;洗牌算法（Shuffling）&lt;/h1&gt;
+&lt;p&gt;要点：指针 i 遍历整个数组，将数组分为左右两个部分，从右边已经乱序的数组中随机找到元素 a[r] ，将 a[i] 与 a[r] 交换，i++&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/blog/home/static/ebc474cd3f6f36968944f89969b6579a/016a8/Shuffling.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 45.94594594594595%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAAsSAAALEgHS3X78AAABbElEQVQoz2WRCW+CQBCF+f8/xR5Wg7c1TZoqiOBRrTee8UBAEbZc7tJnaWyTJl9edmd4M8Msl+aTxXK+XCkUSlk+m3pIJjK5dEMR/1Nv1KAsurAojOGE+pvSkhCF3pCb9VtEVkRcgSQLDVm8OX/M98lEoZxD53wxU3rO54o8xgGPT3cpPolg5aUkSrWq8Co1hOhv56k6Go77/UF3NP6YTIftjtLpNmeLyXI1g6rz8Xw5Bev1YrFUkaUs+DX7vkspXaxme22jGxoUhBfPdizXcyi9RFHEGINQRgfDHqVBFFH0h3Kfrn2hvkMszyfwwHC2j9bZjEE8CF0E0cf3SPe95fsEhyuuwyGB2kHgqbOxbux32gblt7u1eTpo+tY4HlAU5fCNS85tRSL2yTIO9sk8mzpnHg/IGaYGdH2HaW1ycn3H8whsAKMBjGATqzfoMBbiF74npxx2eF2jLNzeIwavGhOfoaJUhWL+686uhF+heNsvzodnPgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Shuffling&quot;
+        title=&quot;Shuffling&quot;
+        src=&quot;/blog/home/static/ebc474cd3f6f36968944f89969b6579a/fcda8/Shuffling.png&quot;
+        srcset=&quot;/blog/home/static/ebc474cd3f6f36968944f89969b6579a/12f09/Shuffling.png 148w,
+/blog/home/static/ebc474cd3f6f36968944f89969b6579a/e4a3f/Shuffling.png 295w,
+/blog/home/static/ebc474cd3f6f36968944f89969b6579a/fcda8/Shuffling.png 590w,
+/blog/home/static/ebc474cd3f6f36968944f89969b6579a/efc66/Shuffling.png 885w,
+/blog/home/static/ebc474cd3f6f36968944f89969b6579a/c83ae/Shuffling.png 1180w,
+/blog/home/static/ebc474cd3f6f36968944f89969b6579a/016a8/Shuffling.png 1576w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[「译」V8中的指针压缩]]></title><description><![CDATA[原文链接：https://v8.dev/blog/pointer-compression 内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。 时间回到2014年，那时Chrome从32位切换到6…]]></description><link>https://gatsby-starter-blog-demo.netlify.com/2020_pointer_compression_in_V8/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com/2020_pointer_compression_in_V8/</guid><pubDate>Thu, 23 Apr 2020 17:08:00 GMT</pubDate><content:encoded>&lt;p&gt;原文链接：&lt;a href=&quot;https://v8.dev/blog/pointer-compression&quot;&gt;https://v8.dev/blog/pointer-compression&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。&lt;/p&gt;
 &lt;p&gt;时间回到2014年，那时Chrome从32位切换到64位。这个变化带给了Chrome更好的&lt;a href=&quot;https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html&quot;&gt;安全性、稳定性和性能&lt;/a&gt;，但同时也带来了更多内存的消耗，因为之前每个指针占用4个字节而现在占用是8个字节。我们面临在V8中尽可能减少这种多出来4个字节开销的挑战。&lt;/p&gt;
 &lt;p&gt;在实施改进之前，我们需要知道我们目前的状况，从而正确的评估如何改进。为了测量当前的内存和性能，我们使用一组可以代表目前流行站点的&lt;a href=&quot;https://v8.dev/blog/optimizing-v8-memory&quot;&gt;页面&lt;/a&gt;。数据显示在桌面端Chrome&lt;a href=&quot;https://www.chromium.org/developers/design-documents/multi-process-architecture&quot;&gt;渲染进程&lt;/a&gt;内存占用中V8占用了60%，平均为40%。&lt;/p&gt;

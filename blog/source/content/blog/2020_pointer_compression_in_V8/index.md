@@ -429,7 +429,6 @@ DescriptorArray Map::instance_descriptors(const Isolate* isolate) const {
   return DescriptorArray(da);
 }
 ```
-
 ## 结果
 
 让我们来看看指针压缩的最后结果！对于这些结果，我们使用与本文开头介绍的相同的网站测试。提醒一下，他们代表用户在真实世界网站使用情况。
