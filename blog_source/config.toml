@@ -271,3 +271,5 @@ series = "series"
     [params.page.share]
       enable = true
       Twitter = true
+    [params.page.comment]
+      enable = true
