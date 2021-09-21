@@ -1,405 +1,466 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>React使用小记 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="
-最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题
-">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"React使用小记",
-      "item":"/posts/2017-reactsum/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2017-reactsum/"
-    },
-    "headline": "React使用小记 | 博客","datePublished": "2017-08-13T22:57:48+00:00",
-    "dateModified": "2017-08-13T22:57:48+00:00",
-    "wordCount":  225 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cblockquote\u003e\n\u003cp\u003e最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题\u003c\/p\u003e\n\u003c\/blockquote\u003e"
-}
-</script><meta property="og:title" content="React使用小记 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2017-reactsum/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">React使用小记 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="React使用小记" />
 <meta property="og:description" content="
 最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题
 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2017-reactsum/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-08-13T22:57:48+00:00" />
+<meta property="article:modified_time" content="2017-08-13T22:57:48+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="React使用小记"/>
+<meta name="twitter:description" content="
+最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题
+"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2017-08-13T22:57:48&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2017-08-13T22:57:48&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="React" />
-
-
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2017-reactsum/" /><link rel="prev" href="http://example.org/posts/2017-reactnativelist/" /><link rel="next" href="http://example.org/posts/2017-gitcommint/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "React使用小记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2017-reactsum\/"
+        },"genre": "posts","keywords": "React","wordcount":  1802 ,
+        "url": "http:\/\/example.org\/posts\/2017-reactsum\/","datePublished": "2017-08-13T22:57:48+00:00","dateModified": "2017-08-13T22:57:48+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">React使用小记</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2017-08-13</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react/" class="hover:text-eureka">React</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <blockquote>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">React使用小记</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-08-13">2017-08-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-08-13">2017-08-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1802 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#setstate是异步的">setState是异步的</a></li>
+    <li><a href="#对redux中action变量命名的理解">对redux中action变量命名的理解</a>
+      <ul>
+        <li><a href="#propsparams">props.params</a></li>
+        <li><a href="#query">query</a></li>
+        <li><a href="#state">state</a></li>
+      </ul>
+    </li>
+    <li><a href="#objectassign的使用">Object.assign()的使用</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
 <p>最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题</p>
 </blockquote>
 <h2 id="setstate是异步的">setState是异步的</h2>
 <p>在react中，<code>setState</code>是非常常见的，有时候想要在<code>setState</code>之后再执行某些操作，可能会这样写：</p>
-<pre><code class="language-js">this.setState({xxState})
-if(this.state.xxState){ ... }
-</code></pre>
-<p>当执行时候发现，<code>this.state.xxState</code>并没有被改变，原因在于<code>setState</code>是异步的，而js执行代码的顺序是<code>同步 =&gt; 异步 =&gt; 回调</code>，所以会先执行if的语句，如果想要在设置完<code>state</code>之后再执行后面的语句，代码如下：</p>
-<pre><code class="language-js">this.setState({xxState},()=&gt;{
-  if(this.state.xxState){
-    ...
-  }
-})
-</code></pre>
-<h2 id="对redux中action变量命名的理解">对redux中action变量命名的理解</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">xxState</span><span class="p">})</span>
+<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">xxState</span><span class="p">){</span> <span class="p">...</span> <span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当执行时候发现，<code>this.state.xxState</code>并没有被改变，原因在于<code>setState</code>是异步的，而js执行代码的顺序是<code>同步 =&gt; 异步 =&gt; 回调</code>，所以会先执行if的语句，如果想要在设置完<code>state</code>之后再执行后面的语句，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">xxState</span><span class="p">},()=&gt;{</span>
+  <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">xxState</span><span class="p">){</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="对redux中action变量命名的理解">对redux中action变量命名的理解</h2>
 <p>在redux中有<code>action</code>，<code>reducer</code>和<code>store</code>，我们在写的时候分别写在三个文件夹中，每个模块对应一个<code>action</code>，<code>reducer</code>，但是最终在运行应用的时候会组和在一起，将所有的<code>action</code>合并成一个文件，通过action去找到对应模块的<code>reducer</code>，从而找到正确的方法。</p>
 <p>如果把redux比做一本书的话，<code>action</code>是一本书的目录，而<code>reducer</code>则相当于书的每一章的内容，书的目录是不能重复的，否则会导致在寻找内容的时候出现找到两处对应的内容，这在redux中是不允许的。如下图所示：</p>
-<p><img src="./react_redux.jpg" alt="react_redux"></p>
+<p><img
+        class="lazyload"
+        data-src="./react_redux.jpg"
+        data-srcset="./react_redux.jpg, ./react_redux.jpg 1.5x, ./react_redux.jpg 2x"
+        data-sizes="auto"
+        alt="./react_redux.jpg"
+        title="react_redux"
+    /></p>
 <p>所以<span style="color:red">action中的常量名在整个项目中是不能重复的</span>，否则会在执行当前模块的reducer时候同时执行其他模块的<code>reducer</code>，导致数据的混乱。</p>
 <p>##使用react router进行页面传值</p>
 <p>首先说明一下，router的跳页方式有两种，一种是直接写<code>Link</code>，另一种是使用<code>hashHistory.push</code>：</p>
-<pre><code class="language-js">import { Router,Route,hashHistory} from 'react-router'
-&lt;Link to=&quot;/a/b&quot;&gt;链接&lt;/Link&gt;
-//or
-clickFun(){
-  hashHistory.push(&quot;/a/b&quot;)
-}
-&lt;div onClick={()=&gt;this.clickFun()}&gt;&lt;/div&gt;
-</code></pre>
-<p>有时候需要在跳页的时候给下一个页面传递数据，使用react router有三种方式可以实现该需求：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span><span class="nx">Route</span><span class="p">,</span><span class="nx">hashHistory</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router&#39;</span>
+<span class="o">&lt;</span><span class="nx">Link</span> <span class="nx">to</span><span class="o">=</span><span class="s2">&#34;/a/b&#34;</span><span class="o">&gt;</span><span class="nx">链接</span><span class="o">&lt;</span><span class="err">/Link&gt;</span>
+<span class="c1">//or
+</span><span class="c1"></span><span class="nx">clickFun</span><span class="p">(){</span>
+  <span class="nx">hashHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;/a/b&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">clickFun</span><span class="p">()}</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>有时候需要在跳页的时候给下一个页面传递数据，使用react router有三种方式可以实现该需求：</p>
 <h3 id="propsparams">props.params</h3>
 <p>我们可以给<code>&lt;Route&gt;</code>指定一个<code>path</code>，然后指定通配符可以携带参数到指定的<code>path</code>：</p>
-<pre><code class="language-js">import { Router,Route,hashHistory} from 'react-router'
-class App extends React.Component {
-  render() {
-    return (
-        &lt;Router history={hashHistory}&gt;
-            &lt;Route path='/a/:params' component={UserPage}&gt;&lt;/Route&gt;
-        &lt;/Router&gt;
-    )
-  }
-}
-//取值
-export default class UserPage extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    render(){
-        return(&lt;div&gt;this.props.params.name&lt;/div&gt;)
-    }
-}
-</code></pre>
-<p>上面的方法可以传递一个或多个值，但是每个值的类型都是字符串，没法传递一个对象,如果传递的话可以将json对象转换为字符串，然后传递过去，传递过去之后再将json字符串转换为对象将数据取出来。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span><span class="nx">Route</span><span class="p">,</span><span class="nx">hashHistory</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router&#39;</span>
+<span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">Router</span> <span class="nx">history</span><span class="o">=</span><span class="p">{</span><span class="nx">hashHistory</span><span class="p">}</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">&#39;/a/:params&#39;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="err">/Route&gt;</span>
+        <span class="o">&lt;</span><span class="err">/Router&gt;</span>
+    <span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">//取值
+</span><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">UserPage</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
+        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">render</span><span class="p">(){</span>
+        <span class="k">return</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">name</span><span class="o">&lt;</span><span class="err">/div&gt;)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的方法可以传递一个或多个值，但是每个值的类型都是字符串，没法传递一个对象,如果传递的话可以将json对象转换为字符串，然后传递过去，传递过去之后再将json字符串转换为对象将数据取出来。</p>
 <h3 id="query">query</h3>
 <p>使用<code>query</code>可以像get方式一样显示传递数据</p>
-<pre><code class="language-js">let data = {a:3,b:'b',c:36};
-let path = {
-  pathname:'/user',
-  query:data,
-}
-&lt;Link to={path}&gt;跳转&lt;/Link&gt;
-//or
-hashHistory.push(path)
-//取值
-const {a,b,c} = this.props.location.query
-</code></pre>
-<h3 id="state">state</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">b</span><span class="o">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="nx">c</span><span class="o">:</span><span class="mi">36</span><span class="p">};</span>
+<span class="kd">let</span> <span class="nx">path</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">pathname</span><span class="o">:</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span>
+  <span class="nx">query</span><span class="o">:</span><span class="nx">data</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="nx">Link</span> <span class="nx">to</span><span class="o">=</span><span class="p">{</span><span class="nx">path</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">跳转</span><span class="o">&lt;</span><span class="err">/Link&gt;</span>
+<span class="c1">//or
+</span><span class="c1"></span><span class="nx">hashHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+<span class="c1">//取值
+</span><span class="c1"></span><span class="kr">const</span> <span class="p">{</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">query</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="state">state</h3>
 <p><code>state</code>传递数据方式类似于<code>post</code>，使用方式与<code>query</code>类似，取值的时候使用<code>this.props.location.state</code></p>
 <h2 id="objectassign的使用">Object.assign()的使用</h2>
 <p>在reducer中，使用<code>Object.assign</code>将新的<code>state</code>与默认的<code>state</code>进行合并</p>
-<pre><code class="language-js">const initState = {
-  ajaxState:false,
-  orderData: {
-    current_page: 0,
-    per_page_count: 0,
-    total_count:0,
-    total_page:0,
-    data_list: [],
-  }
-}
-export default (state = initState , action) =&gt; {
-  const {type , ajaxState , orderData = {}} = action;
-  switch(type){
-    case ORDERDATA:
-      return Object.assign({},state,{orderData})
-  }
-}
-</code></pre>
-<p>这里<code>initState</code>相当于一个默认值，拿到新的state时候就将原有的覆盖掉。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">initState</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">ajaxState</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
+  <span class="nx">orderData</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">current_page</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">per_page_count</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nx">total_count</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nx">total_page</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nx">data_list</span><span class="o">:</span> <span class="p">[],</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initState</span> <span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span><span class="nx">type</span> <span class="p">,</span> <span class="nx">ajaxState</span> <span class="p">,</span> <span class="nx">orderData</span> <span class="o">=</span> <span class="p">{}}</span> <span class="o">=</span> <span class="nx">action</span><span class="p">;</span>
+  <span class="k">switch</span><span class="p">(</span><span class="nx">type</span><span class="p">){</span>
+    <span class="k">case</span> <span class="nx">ORDERDATA</span><span class="o">:</span>
+      <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">state</span><span class="p">,{</span><span class="nx">orderData</span><span class="p">})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里<code>initState</code>相当于一个默认值，拿到新的state时候就将原有的覆盖掉。</p>
 <p>但是在做项目时候遇到一个问题，如果传递部分数据（比如<code>orderData</code>只传递传递了<code>current_page</code>和<code>per_page_count</code>），没有传递的希望保持默认，这样使用<code>Object.assign</code>合并会导致合并的结果中未传递的部分直接丢失。</p>
 <p><code>Object.assign</code>在合并对象的时候，可以合并简单对象的元素，但是如果对象中在嵌套对象，则子对象不会合并而会直接覆盖，代码如下：</p>
-<pre><code class="language-js">const obj = {
-  a:1,
-  b:2
-}
-const init = {
-  name:'',
-  obj:{
-    a:'',
-    b:'',
-    c:'',
-  }
-}
-Object.assign({},init,obj) 
-/*结果
-[object Object] {
-  obj: [object Object] {
-    a: 1,
-    b: 2,
-  },
-  name: &quot;&quot;
-}
-*/
-</code></pre>
-<p>所以，如果要让不传递的数据使用默认值，就需要在<code>reducer</code>开始拿到传递到的数据时候，将没有传递过来的数据加到传过来的数据上，就需要使用两次<code>Object.assign</code>，分别对子对象和对象进行</p>
-<pre><code class="language-js">export default (state = initState , action) =&gt; {
-  const {type , ajaxState , orderData = {}} = action;
-  //将没有传递过来的数据的默认值加到传过来的state中
-  const defaultOrderData = Object.assign({},initState.orderData,{orderData})
-  switch(type){
-    case ORDERDATA:
-      return Object.assign({},state,{orderData:defaultOrderData})
-  }
-}
-</code></pre>
-<p>这样就可以实现传递部分数据，不传递的使用默认值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">a</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
+  <span class="nx">b</span><span class="o">:</span><span class="mi">2</span>
+<span class="p">}</span>
+<span class="kr">const</span> <span class="nx">init</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+  <span class="nx">obj</span><span class="o">:</span><span class="p">{</span>
+    <span class="nx">a</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="nx">b</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="nx">c</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">init</span><span class="p">,</span><span class="nx">obj</span><span class="p">)</span> 
+<span class="cm">/*结果
+</span><span class="cm">[object Object] {
+</span><span class="cm">  obj: [object Object] {
+</span><span class="cm">    a: 1,
+</span><span class="cm">    b: 2,
+</span><span class="cm">  },
+</span><span class="cm">  name: &#34;&#34;
+</span><span class="cm">}
+</span><span class="cm">*/</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>所以，如果要让不传递的数据使用默认值，就需要在<code>reducer</code>开始拿到传递到的数据时候，将没有传递过来的数据加到传过来的数据上，就需要使用两次<code>Object.assign</code>，分别对子对象和对象进行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initState</span> <span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span><span class="nx">type</span> <span class="p">,</span> <span class="nx">ajaxState</span> <span class="p">,</span> <span class="nx">orderData</span> <span class="o">=</span> <span class="p">{}}</span> <span class="o">=</span> <span class="nx">action</span><span class="p">;</span>
+  <span class="c1">//将没有传递过来的数据的默认值加到传过来的state中
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">defaultOrderData</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">initState</span><span class="p">.</span><span class="nx">orderData</span><span class="p">,{</span><span class="nx">orderData</span><span class="p">})</span>
+  <span class="k">switch</span><span class="p">(</span><span class="nx">type</span><span class="p">){</span>
+    <span class="k">case</span> <span class="nx">ORDERDATA</span><span class="o">:</span>
+      <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">state</span><span class="p">,{</span><span class="nx">orderData</span><span class="o">:</span><span class="nx">defaultOrderData</span><span class="p">})</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样就可以实现传递部分数据，不传递的使用默认值</p>
 <p>从该例子中可以看出，在reducer中，尽量不要使用嵌套对象，因为每嵌套一层，就需要<code>Object.assign</code>一次</p>
-<p>以上就是最近做react项目的一些总结…</p>
+<p>以上就是最近做react项目的一些总结…</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2017-08-13</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/react/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#React</a>
-    
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2017-reactsum/" data-title="React使用小记" data-hashtags="React"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2017-reactnativelist/" class="prev" rel="prev" title="RN长列表--ListView &amp;&amp; SectionList"><i class="fas fa-angle-left fa-fw"></i>RN长列表--ListView &amp;&amp; SectionList</a>
+            <a href="/posts/2017-gitcommint/" class="next" rel="next" title="Git Commint规范">Git Commint规范<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-        
-        
-        
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
 
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2017-gitcommint/" class="block">Git Commint规范</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2017-reactnativelist/" class="block">RN长列表--ListView &amp;&amp; SectionList</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
-
-      </div>
-    </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

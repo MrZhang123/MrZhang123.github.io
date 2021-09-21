@@ -1,266 +1,261 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>如何写一个自己的hexo主题 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="
-好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章写一个自己的Hexo主题和该文中提到的作者自己写的主题hexo-showonne的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——hexo-theme-icarus进行了修正。
-">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"如何写一个自己的hexo主题",
-      "item":"/posts/2017-hexotheme/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2017-hexotheme/"
-    },
-    "headline": "如何写一个自己的hexo主题 | 博客","datePublished": "2017-04-01T20:57:48+00:00",
-    "dateModified": "2017-04-01T20:57:48+00:00",
-    "wordCount":  207 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cblockquote\u003e\n\u003cp\u003e好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章\u003ca href=\u0022https:\/\/segmentfault.com\/a\/1190000006057336%5D\u0022\u003e写一个自己的Hexo主题\u003c\/a\u003e和该文中提到的作者自己写的主题\u003ca href=\u0022https:\/\/github.com\/showonne\/hexo-showonne\u0022\u003ehexo-showonne\u003c\/a\u003e的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——\u003ca href=\u0022https:\/\/github.com\/ppoffice\/hexo-theme-icarus\u0022\u003ehexo-theme-icarus\u003c\/a\u003e进行了修正。\u003c\/p\u003e\n\u003c\/blockquote\u003e"
-}
-</script><meta property="og:title" content="如何写一个自己的hexo主题 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2017-hexotheme/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">如何写一个自己的hexo主题 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="如何写一个自己的hexo主题" />
 <meta property="og:description" content="
 好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章写一个自己的Hexo主题和该文中提到的作者自己写的主题hexo-showonne的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——hexo-theme-icarus进行了修正。
 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2017-hexotheme/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-04-01T20:57:48+00:00" />
+<meta property="article:modified_time" content="2017-04-01T20:57:48+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="如何写一个自己的hexo主题"/>
+<meta name="twitter:description" content="
+好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章写一个自己的Hexo主题和该文中提到的作者自己写的主题hexo-showonne的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——hexo-theme-icarus进行了修正。
+"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2017-04-01T20:57:48&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2017-04-01T20:57:48&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="Blog" />
-
-
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2017-hexotheme/" /><link rel="prev" href="http://example.org/posts/2017-gitreset/" /><link rel="next" href="http://example.org/posts/2017-cssbem/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "如何写一个自己的hexo主题",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2017-hexotheme\/"
+        },"genre": "posts","keywords": "Blog","wordcount":  2397 ,
+        "url": "http:\/\/example.org\/posts\/2017-hexotheme\/","datePublished": "2017-04-01T20:57:48+00:00","dateModified": "2017-04-01T20:57:48+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">如何写一个自己的hexo主题</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2017-04-01</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>1分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/blog/" class="hover:text-eureka">Blog</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <blockquote>
-<p>好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章<a href="https://segmentfault.com/a/1190000006057336%5D">写一个自己的Hexo主题</a>和该文中提到的作者自己写的主题<a href="https://github.com/showonne/hexo-showonne">hexo-showonne</a>的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——<a href="https://github.com/ppoffice/hexo-theme-icarus">hexo-theme-icarus</a>进行了修正。</p>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何写一个自己的hexo主题</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/blog/"><i class="far fa-folder fa-fw"></i>Blog</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-04-01">2017-04-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-04-01">2017-04-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2397 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#搭建项目">搭建项目</a></li>
+    <li><a href="#布局">布局</a>
+      <ul>
+        <li><a href="#布局文件layoutejs">布局文件layout.ejs</a></li>
+        <li><a href="#其他模版">其他模版</a></li>
+      </ul>
+    </li>
+    <li><a href="#变量">变量</a></li>
+    <li><a href="#辅助函数">辅助函数</a></li>
+    <li><a href="#其他">其他</a>
+      <ul>
+        <li><a href="#评论">评论</a></li>
+        <li><a href="#代码高亮">代码高亮</a></li>
+      </ul>
+    </li>
+    <li><a href="#最后">最后</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章<a href="https://segmentfault.com/a/1190000006057336]" target="_blank" rel="noopener noreffer">写一个自己的Hexo主题</a>和该文中提到的作者自己写的主题<a href="https://github.com/showonne/hexo-showonne" target="_blank" rel="noopener noreffer">hexo-showonne</a>的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——<a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener noreffer">hexo-theme-icarus</a>进行了修正。</p>
 </blockquote>
 <p>我的博客就是用的我写的主题，博客地址：https://mrzhang123.github.io/</p>
 <p>项目地址：https://github.com/MrZhang123/hexo-theme-SpecLumn</p>
 <h2 id="搭建项目">搭建项目</h2>
 <p>参考大多数的hexo主题的目录结构不难发现，大部分都会有layout、source以及配置文件_config.yml，所以具体目录如下：</p>
-<pre><code class="language-sh">├── _config.yml      #主题的配置文件
-├── layout          #布局模版文件夹 
-│   ├── comment     #评论相关模版
-│   ├── common      #公共的模版
-│   │   └── post    #post页相关模版
-│   └── plugin      #插件
-├── source          #主题的css和js
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">├── _config.yml      <span class="c1">#主题的配置文件</span>
+├── layout          <span class="c1">#布局模版文件夹 </span>
+│   ├── comment     <span class="c1">#评论相关模版</span>
+│   ├── common      <span class="c1">#公共的模版</span>
+│   │   └── post    <span class="c1">#post页相关模版</span>
+│   └── plugin      <span class="c1">#插件</span>
+├── <span class="nb">source</span>          <span class="c1">#主题的css和js</span>
 │   └── css
-│       └── images  #主题中用到的图片
-└── source_src      #scss所在的文件夹
+│       └── images  <span class="c1">#主题中用到的图片</span>
+└── source_src      <span class="c1">#scss所在的文件夹</span>
     └── scss
         ├── code-style
         └── markdown-style
-</code></pre>
-<p>项目基于gulp搭建，hexo默认使用stylus，但是我使用的scss，然后生成css，但是在项目过程中发现一个问题（同时明白为什么hexo默认使用stylus,可以直接识别styl文件），hexo提供了<code>hexo-config</code>方法，可以读取<code>_config.yml</code>中的配置。所以如果想要在<code>_config.yml</code>中动态设置代码的高亮主题，可以在stylus中写如下代码：</p>
-<pre><code class="language-css">/*
-一个三元表达式设置默认主题
-然后在index.styl中设置引入的表达式
-*/
-highlight = hexo-config(&quot;customize.highlight&quot;) || &quot;tomorrow&quot;
+</code></pre></td></tr></table>
+</div>
+</div><p>项目基于gulp搭建，hexo默认使用stylus，但是我使用的scss，然后生成css，但是在项目过程中发现一个问题（同时明白为什么hexo默认使用stylus,可以直接识别styl文件），hexo提供了<code>hexo-config</code>方法，可以读取<code>_config.yml</code>中的配置。所以如果想要在<code>_config.yml</code>中动态设置代码的高亮主题，可以在stylus中写如下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="c">/*
+</span><span class="c">一个三元表达式设置默认主题
+</span><span class="c">然后在index.styl中设置引入的表达式
+</span><span class="c">*/</span>
+<span class="nt">highlight</span> <span class="o">=</span> <span class="nt">hexo-config</span><span class="o">(</span><span class="s2">&#34;customize.highlight&#34;</span><span class="o">)</span> <span class="o">||</span> <span class="s2">&#34;tomorrow&#34;</span>
 
-@import &quot;highlight/&quot; + highlight
-</code></pre>
-<p>但是我在项目中使用的是gulp-sass编译成的css文件，无法实现根据_config.yml动态的引入文件，所以准备下次改的时候直接换stylus（虽然hexo可以通过装插件识别scss，但是自己测试并未成功）。</p>
+<span class="p">@</span><span class="k">import</span> <span class="s2">&#34;highlight/&#34;</span> <span class="o">+</span> <span class="nt">highlight</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是我在项目中使用的是gulp-sass编译成的css文件，无法实现根据_config.yml动态的引入文件，所以准备下次改的时候直接换stylus（虽然hexo可以通过装插件识别scss，但是自己测试并未成功）。</p>
 <h2 id="布局">布局</h2>
 <h3 id="布局文件layoutejs">布局文件layout.ejs</h3>
 <p>在layout文件夹下，布局被写在layout.ejs中，由于hexo支持<strong>模块儿化布局</strong>，使用hexo提供的局部函数<code>partial</code>载入其他模版文件，配合ejs的语法，布局文件layout.ejs：</p>
-<pre><code class="language-js">&lt;%- partial('common/head') %&gt;
-&lt;div class=&quot;content&quot;&gt;
-    &lt;%- partial('common/header') %&gt;
-    &lt;div class=&quot;main&quot;&gt;
-        &lt;%- body %&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;%- partial('common/footer') %&gt;
-&lt;%- partial('common/foot') %&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<p>hexo默认使用ejs语法，但是可以通过安装插件使用Haml和Jade（Jade以前看过，并不喜欢缩进的写法，所以在开发工程中也没用使用同样使用缩进语法的stylus）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;common/head&#39;</span><span class="p">)</span> <span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;content&#34;</span><span class="o">&gt;</span>
+    <span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;common/header&#39;</span><span class="p">)</span> <span class="o">%&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;main&#34;</span><span class="o">&gt;</span>
+        <span class="o">&lt;%-</span> <span class="nx">body</span> <span class="o">%&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="o">&lt;</span><span class="err">/div&gt;</span>
+<span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;common/footer&#39;</span><span class="p">)</span> <span class="o">%&gt;</span>
+<span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;common/foot&#39;</span><span class="p">)</span> <span class="o">%&gt;</span>
+<span class="o">&lt;</span><span class="err">/body&gt;</span>
+<span class="o">&lt;</span><span class="err">/html&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>hexo默认使用ejs语法，但是可以通过安装插件使用Haml和Jade（Jade以前看过，并不喜欢缩进的写法，所以在开发工程中也没用使用同样使用缩进语法的stylus）。</p>
 <p>项目中直接使用了ejs，所以这里简要列一下ejs中tag的使用：</p>
 <ul>
 <li><code>&lt;%</code>' 脚本标签，用于控制流程，不会输出</li>
@@ -310,7 +305,7 @@ highlight = hexo-config(&quot;customize.highlight&quot;) || &quot;tomorrow&quot;
 </table>
 <p>在我的主题中只有主页index.ejs，文章页post.ejs。</p>
 <h2 id="变量">变量</h2>
-<p>模版中获取文章，调用配置项等会使用到变量，hexo提供了很多变量供我们使用（<a href="https://hexo.io/zh-cn/docs/variables.html">hexo提供的变量</a>），其中比较重要的有：</p>
+<p>模版中获取文章，调用配置项等会使用到变量，hexo提供了很多变量供我们使用（<a href="https://hexo.io/zh-cn/docs/variables.html" target="_blank" rel="noopener noreffer">hexo提供的变量</a>），其中比较重要的有：</p>
 <ul>
 <li><code>page</code>：针对该页面的内容以及 front-matter 所设定的变量</li>
 <li><code>config</code>：网站配置（hexo的_config.yml）</li>
@@ -329,7 +324,7 @@ highlight = hexo-config(&quot;customize.highlight&quot;) || &quot;tomorrow&quot;
 </ul>
 <p>以上均获取的是hexo生成的markdown文件中的配置。</p>
 <h2 id="辅助函数">辅助函数</h2>
-<p>在hexo中同样提供了很多<a href="https://hexo.io/zh-cn/docs/helpers.html">辅助函数</a>方便在博客主题中使用，但是同样很多都用不着，常用的有：</p>
+<p>在hexo中同样提供了很多<a href="https://hexo.io/zh-cn/docs/helpers.html" target="_blank" rel="noopener noreffer">辅助函数</a>方便在博客主题中使用，但是同样很多都用不着，常用的有：</p>
 <ul>
 <li><code>url_for</code>：输出路径</li>
 <li><code>partial</code>：载入其他模版文件</li>
@@ -342,87 +337,86 @@ highlight = hexo-config(&quot;customize.highlight&quot;) || &quot;tomorrow&quot;
 <ol>
 <li>它可以添变量，在被引用文件直接可以饮用，例如：</li>
 </ol>
-<pre><code class="language-js">/*引用*/
-&lt;%- partial('plugin/scripts', { isHead: true }) %&gt;
-/*被引用文件判断*/
-&lt;% if (typeof(isHead) !== 'undefined' &amp;&amp; isHead) { %&gt;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*引用*/</span>
+<span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;plugin/scripts&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">isHead</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span> <span class="o">%&gt;</span>
+<span class="cm">/*被引用文件判断*/</span>
+<span class="o">&lt;%</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">isHead</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">isHead</span><span class="p">)</span> <span class="p">{</span> <span class="o">%&gt;</span>
 
-&lt;% } %&gt;
-</code></pre>
-<ol start="2">
+<span class="o">&lt;%</span> <span class="p">}</span> <span class="o">%&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
 <li>可以添加class名字</li>
 </ol>
-<pre><code class="language-js">&lt;%- partial('post/date', { class_name: 'article-date', date_format: null }) %&gt;
-</code></pre>
-<h2 id="其他">其他</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;post/date&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">class_name</span><span class="o">:</span> <span class="s1">&#39;article-date&#39;</span><span class="p">,</span> <span class="nx">date_format</span><span class="o">:</span> <span class="kc">null</span> <span class="p">})</span> <span class="o">%&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="其他">其他</h2>
 <h3 id="评论">评论</h3>
-<p>hexo中添加评论只需要在ejs中添加相应的<code>script</code>标签插入代码即可，以前的时候用多说，现在多说要关闭了，准备换个，但是找来找去没找到一个比较适合的，同事介绍有一个叫来必力的还不错，试用确实觉得可以，可以替代多说，所以推荐一下。<a href="https://livere.com/">官方网站</a>。</p>
+<p>hexo中添加评论只需要在ejs中添加相应的<code>script</code>标签插入代码即可，以前的时候用多说，现在多说要关闭了，准备换个，但是找来找去没找到一个比较适合的，同事介绍有一个叫来必力的还不错，试用确实觉得可以，可以替代多说，所以推荐一下。<a href="https://livere.com/" target="_blank" rel="noopener noreffer">官方网站</a>。</p>
 <h3 id="代码高亮">代码高亮</h3>
 <p>代码高亮其实就是引入一段css的代码，为了实现可以通过配置文件动态引入，就需要配合<code>hexo-config</code>，前面已经提到过，这里不再重复。</p>
 <h2 id="最后">最后</h2>
 <p>最后写一点自己的想法，说实话，hexo的官方文档，实在是烂的没话可说，跟webpack1的文档不相上下，估计连作者自己都不一定看得懂，所以要想自己写一个主题的同学们还是在github参考一下写的比较好的主题的源码吧。</p>
 <p>另外，当前这个版本功能相对简单一点儿而且在后期的修改过程中发现用scss确实不如直接用stylus方便一些，所以准备在以后改用stylus。</p>
 <h2 id="参考">参考</h2>
-<p><a href="https://github.com/ppoffice/hexo-theme-icarus">hexo-theme-icarus</a>
-<a href="https://segmentfault.com/a/1190000006057336">写一个自己的Hexo主题</a>
-<a href="https://github.com/showonne/hexo-showonne">hexo-showonne</a></p>
+<p><a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener noreffer">hexo-theme-icarus</a>
+<a href="https://segmentfault.com/a/1190000006057336" target="_blank" rel="noopener noreffer">写一个自己的Hexo主题</a>
+<a href="https://github.com/showonne/hexo-showonne" target="_blank" rel="noopener noreffer">hexo-showonne</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2017-04-01</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/blog/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Blog</a>
-    
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2017-hexotheme/" data-title="如何写一个自己的hexo主题" data-hashtags="Blog"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/blog/">Blog</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2017-gitreset/" class="prev" rel="prev" title="使用git回退远程库代码"><i class="fas fa-angle-left fa-fw"></i>使用git回退远程库代码</a>
+            <a href="/posts/2017-cssbem/" class="next" rel="next" title="理解CSS命名规范--BEM">理解CSS命名规范--BEM<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-        
-        
-        
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
 
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2017-cssbem/" class="block">理解CSS命名规范--BEM</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2017-gitreset/" class="block">使用git回退远程库代码</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
-
-      </div>
-    </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

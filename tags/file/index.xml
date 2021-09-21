@@ -1,31 +1,21 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>file on 博客</title>
-    <link>/tags/file/</link>
-    <description>Recent content in file on 博客</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
-</copyright>
-    <lastBuildDate>Thu, 14 Apr 2016 23:10:58 +0000</lastBuildDate><atom:link href="/tags/file/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>文件上传（二）---新XMLHttpRequest实现带进度条文件上传</title>
-      <link>/posts/2016-fileupload2/</link>
-      <pubDate>Thu, 14 Apr 2016 23:10:58 +0000</pubDate>
-      
-      <guid>/posts/2016-fileupload2/</guid>
-      <description>&lt;p&gt;前几天搞得那个文件上传，最近工作不太忙，又开始完善。这次主要添加了文件上传的进度部分，主要用到的则是XMLHttpRequest2的progress，由于我读的是《javascript高级程序设计》（第三版），这里我遇到一个关于progeress事件的坑，后面详细解答。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>文件上传（一）---H5 file API，canvas</title>
-      <link>/posts/2016-fileupload/</link>
-      <pubDate>Thu, 31 Mar 2016 23:35:12 +0000</pubDate>
-      
-      <guid>/posts/2016-fileupload/</guid>
-      <description>&lt;p&gt;最近公司让调研关于webUploader的图片上传中能否压缩，能否实现图片的格式转换，如果能如何实现，经过调研，这个插件可以实现文件的压缩，但是不能实现图片的格式转换，同时在调研过程中，知道了很多新的东西，H5 file API，canvas，等等，所以有了自己写一个文件上传来熟悉这些东西，所以有了本篇文章。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>file - 标签 - 跨界Coder</title>
+        <link>http://example.org/tags/file/</link>
+        <description>file - 标签 - 跨界Coder</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 14 Apr 2016 23:10:58 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/file/" rel="self" type="application/rss+xml" /><item>
+    <title>文件上传（二）---新XMLHttpRequest实现带进度条文件上传</title>
+    <link>http://example.org/posts/2016-fileupload2/</link>
+    <pubDate>Thu, 14 Apr 2016 23:10:58 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2016-fileupload2/</guid>
+    <description><![CDATA[<p>前几天搞得那个文件上传，最近工作不太忙，又开始完善。这次主要添加了文件上传的进度部分，主要用到的则是XMLHttpRequest2的progress，由于我读的是《javascript高级程序设计》（第三版），这里我遇到一个关于progeress事件的坑，后面详细解答。</p>]]></description>
+</item><item>
+    <title>文件上传（一）---H5 file API，canvas</title>
+    <link>http://example.org/posts/2016-fileupload/</link>
+    <pubDate>Thu, 31 Mar 2016 23:35:12 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2016-fileupload/</guid>
+    <description><![CDATA[<p>最近公司让调研关于webUploader的图片上传中能否压缩，能否实现图片的格式转换，如果能如何实现，经过调研，这个插件可以实现文件的压缩，但是不能实现图片的格式转换，同时在调研过程中，知道了很多新的东西，H5 file API，canvas，等等，所以有了自己写一个文件上传来熟悉这些东西，所以有了本篇文章。</p>]]></description>
+</item></channel>
 </rss>

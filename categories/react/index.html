@@ -1,560 +1,149 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>React | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"Categories",
-      "item":"/categories/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"React",
-      "item":"/categories/react/"}]
-}
-</script>
-
-
-
-
-<script type="application/ld+json">
-{
-    "@context":"https://schema.org",
-    "@type":"ItemList",
-    "itemListElement":[{
-            "@type":"ListItem",
-            "position":  1 ,
-            "name": "【译】10个React组件的戒律",
-            "description": "\u003cp\u003e原文链接：\u003ca href=\"https://dev.to/selbekk/the-10-component-commandments-2a7f\"\u003eThe 10 Component Commandments\u003c/a\u003e\u003c/p\u003e\n\u003cp\u003e创建被很多人用的组件是很难的。如果那些\u003ccode\u003eprops\u003c/code\u003e作为公共API，你需要非常谨慎的考虑哪些\u003ccode\u003eprops\u003c/code\u003e是可以接收的。\u003c/p\u003e\n\u003cp\u003e这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。\u003c/p\u003e",
-            "url": "/posts/2019-componentstips/"
-        },{
-            "@type":"ListItem",
-            "position":  2 ,
-            "name": "简述 React Hooks 特征和使用方式",
-            "description": "\u003cblockquote\u003e\n\u003cp\u003e学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结\u003c/p\u003e\n\u003c/blockquote\u003e",
-            "url": "/posts/2019-reacthooks/"
-        },{
-            "@type":"ListItem",
-            "position":  3 ,
-            "name": "React 新特性总结",
-            "description": "\u003cblockquote\u003e\n\u003cp\u003e自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。\u003c/p\u003e\n\u003c/blockquote\u003e",
-            "url": "/posts/2019-reactnews/"
-        },{
-            "@type":"ListItem",
-            "position":  4 ,
-            "name": "「译」如何使用React生命周期方法",
-            "description": "\u003cblockquote\u003e\n\u003cp\u003e原文链接：\u003ca href=\"https://www.andreasreiterer.at/reactjs-lifecycle-methods/\"\u003eHow to use React Lifecycle Methods\u003c/a\u003e\u003c/p\u003e\n\u003c/blockquote\u003e",
-            "url": "/posts/2018-reactlifecycle/"
-        },{
-            "@type":"ListItem",
-            "position":  5 ,
-            "name": "从零开始搭建React应用（二）——React应用架构",
-            "description": "\u003cp\u003e上一篇文章——\u003ca href=\"https://juejin.im/post/5af6857651882542682e4843\"\u003e从零开始搭建 React 应用（一）——基础搭建\u003c/a\u003e讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。\u003c/p\u003e",
-            "url": "/posts/2018-reactproject2/"
-        },{
-            "@type":"ListItem",
-            "position":  6 ,
-            "name": "从零开始搭建React应用（一）——基础搭建",
-            "description": "\u003cp\u003e项目链接：\u003ca href=\"https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack\"\u003ehttps://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack\u003c/a\u003e\u003c/p\u003e",
-            "url": "/posts/2018-reactproject1/"
-        },{
-            "@type":"ListItem",
-            "position":  7 ,
-            "name": "CSS Modules在React中的应用",
-            "description": "\u003cp\u003e由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理\u003c/p\u003e",
-            "url": "/posts/2018-reactcssmodules/"
-        },{
-            "@type":"ListItem",
-            "position":  8 ,
-            "name": "React使用小记",
-            "description": "\u003cblockquote\u003e\n\u003cp\u003e最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题\u003c/p\u003e\n\u003c/blockquote\u003e",
-            "url": "/posts/2017-reactsum/"
-        }
-    ]
-}
-</script><meta property="og:title" content="React | 博客" />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">React - 分类 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="React" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="website" />
+<meta property="og:url" content="http://example.org/categories/react/" /><meta property="og:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="React"/>
+<meta name="twitter:description" content=""/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta property="og:url" content="/categories/react/" />
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/categories/react/" /><link rel="alternate" href="/categories/react/index.xml" type="application/rss+xml" title="跨界Coder">
+    <link rel="feed" href="/categories/react/index.xml" type="application/rss+xml" title="跨界Coder"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript></head>
 
-
-
-
-
-
-
-
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="og:updated_time" content="2019-07-07T15:43:00&#43;00:00" />
-
-
-
-<meta property="article:section" content="categories" />
-
-
-<link rel="alternate" type="application/rss+xml" href="/categories/react/index.xml" title="博客" />
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
-    }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-<article class="mx-6 my-8">
-    <h1 class="font-bold text-3xl text-primary-text">React</h1>
-    
-</article>
-<div class="bg-secondary-bg rounded px-6">
-    <div class="overflow-hidden divide-y">
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="/posts/2019-componentstips/" class="font-bold text-xl hover:text-eureka">【译】10个React组件的戒律</a>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-<div class="content">
-  原文链接：The 10 Component Commandments
-创建被很多人用的组件是很难的。如果那些props作为公共API，你需要非常谨慎的考虑哪些props是可以接收的。
-这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。
+<main class="main">
+            <div class="container"><div class="page archive"><h2 class="single-title animate__animated animate__pulse animate__faster"><i class="far fa-folder-open fa-fw"></i>&nbsp;React</h2><h3 class="group-title">2019</h3><article class="archive-item">
+                        <a href="/posts/2019-componentstips/" class="archive-item-link">【译】10个React组件的戒律</a>
+                        <span class="archive-item-date">07-07</span>
+                    </article><article class="archive-item">
+                        <a href="/posts/2019-reacthooks/" class="archive-item-link">简述 React Hooks 特征和使用方式</a>
+                        <span class="archive-item-date">03-24</span>
+                    </article><article class="archive-item">
+                        <a href="/posts/2019-reactnews/" class="archive-item-link">React 新特性总结</a>
+                        <span class="archive-item-date">01-16</span>
+                    </article><h3 class="group-title">2018</h3><article class="archive-item">
+                        <a href="/posts/2018-reactlifecycle/" class="archive-item-link">「译」如何使用React生命周期方法</a>
+                        <span class="archive-item-date">07-28</span>
+                    </article><article class="archive-item">
+                        <a href="/posts/2018-reactproject2/" class="archive-item-link">从零开始搭建React应用（二）——React应用架构</a>
+                        <span class="archive-item-date">07-18</span>
+                    </article><article class="archive-item">
+                        <a href="/posts/2018-reactproject1/" class="archive-item-link">从零开始搭建React应用（一）——基础搭建</a>
+                        <span class="archive-item-date">07-18</span>
+                    </article><article class="archive-item">
+                        <a href="/posts/2018-reactcssmodules/" class="archive-item-link">CSS Modules在React中的应用</a>
+                        <span class="archive-item-date">04-13</span>
+                    </article><h3 class="group-title">2017</h3><article class="archive-item">
+                        <a href="/posts/2017-reactsum/" class="archive-item-link">React使用小记</a>
+                        <span class="archive-item-date">08-13</span>
+                    </article></div></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
 
-</div>
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2019-07-07</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react/" class="hover:text-eureka">React</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="/posts/2019-reacthooks/" class="font-bold text-xl hover:text-eureka">简述 React Hooks 特征和使用方式</a>
-</div>
-<div class="content">
-   学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结
-
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2019-03-24</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react/" class="hover:text-eureka">React</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="/posts/2019-reactnews/" class="font-bold text-xl hover:text-eureka">React 新特性总结</a>
-</div>
-<div class="content">
-   自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。
-
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2019-01-16</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>5分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react/" class="hover:text-eureka">React</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="/posts/2018-reactlifecycle/" class="font-bold text-xl hover:text-eureka">「译」如何使用React生命周期方法</a>
-</div>
-<div class="content">
-   原文链接：How to use React Lifecycle Methods
-
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2018-07-28</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>1分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react/" class="hover:text-eureka">React</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="/posts/2018-reactproject2/" class="font-bold text-xl hover:text-eureka">从零开始搭建React应用（二）——React应用架构</a>
-</div>
-<div class="content">
-  上一篇文章——从零开始搭建 React 应用（一）——基础搭建讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。
-
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2018-07-18</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>7分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react/" class="hover:text-eureka">React</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="/posts/2018-reactproject1/" class="font-bold text-xl hover:text-eureka">从零开始搭建React应用（一）——基础搭建</a>
-</div>
-<div class="content">
-  项目链接：https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack
-
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2018-07-18</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>3分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react/" class="hover:text-eureka">React</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="/posts/2018-reactcssmodules/" class="font-bold text-xl hover:text-eureka">CSS Modules在React中的应用</a>
-</div>
-<div class="content">
-  由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理
-
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2018-04-13</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react/" class="hover:text-eureka">React</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="/posts/2017-reactsum/" class="font-bold text-xl hover:text-eureka">React使用小记</a>
-</div>
-<div class="content">
-   最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题
-
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2017-08-13</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react/" class="hover:text-eureka">React</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-</div>
-
-
-</div>
-
-
-      </div>
-    </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

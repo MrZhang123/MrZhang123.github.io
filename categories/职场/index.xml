@@ -1,25 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>职场 on 博客</title>
-    <link>/categories/%E8%81%8C%E5%9C%BA/</link>
-    <description>Recent content in 职场 on 博客</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
-</copyright>
-    <lastBuildDate>Thu, 27 Feb 2020 22:30:00 +0000</lastBuildDate><atom:link href="/categories/%E8%81%8C%E5%9C%BA/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>解析OKR</title>
-      <link>/posts/2020_okr/</link>
-      <pubDate>Thu, 27 Feb 2020 22:30:00 +0000</pubDate>
-      
-      <guid>/posts/2020_okr/</guid>
-      <description>&lt;pre&gt;&lt;code&gt;尽管很多人都很努力地工作，但是他们却没能取得什么成就感。
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>职场 - 分类 - 跨界Coder</title>
+        <link>http://example.org/categories/%E8%81%8C%E5%9C%BA/</link>
+        <description>职场 - 分类 - 跨界Coder</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 27 Feb 2020 22:30:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/%E8%81%8C%E5%9C%BA/" rel="self" type="application/rss+xml" /><item>
+    <title>解析OKR</title>
+    <link>http://example.org/posts/2020_okr/</link>
+    <pubDate>Thu, 27 Feb 2020 22:30:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2020_okr/</guid>
+    <description><![CDATA[<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">尽管很多人都很努力地工作，但是他们却没能取得什么成就感。
                                                 ----安迪·格鲁夫
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书&lt;a href=&#34;https://book.douban.com/subject/30144978/&#34;&gt;《见识》&lt;/a&gt;中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了&lt;a href=&#34;https://book.douban.com/subject/30396635/&#34;&gt;《这就是OKR》&lt;/a&gt;之后的一些总结以及自己对OKR的理解。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+</code></pre></td></tr></table>
+</div>
+</div><p>第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书<a href="https://book.douban.com/subject/30144978/" target="_blank" rel="noopener noreffer">《见识》</a>中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了<a href="https://book.douban.com/subject/30396635/" target="_blank" rel="noopener noreffer">《这就是OKR》</a>之后的一些总结以及自己对OKR的理解。</p>]]></description>
+</item></channel>
 </rss>

@@ -1,89 +1,11 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>记一次vim性能优化 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="关键点
-
-vim -u NONE -N可以不加载vim配置和插件打开vim
-vim --startuptime vim.log可以生成vim启动的log
-使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载
-设置foldmethod=syntax会导致vim插入模式下卡顿
-">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"记一次vim性能优化",
-      "item":"/posts/2019-vimperformance/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2019-vimperformance/"
-    },
-    "headline": "记一次vim性能优化 | 博客","datePublished": "2019-09-01T16:15:00+00:00",
-    "dateModified": "2019-09-01T16:15:00+00:00",
-    "wordCount":  72 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003ch3 id=\u0022关键点\u0022\u003e关键点\u003c\/h3\u003e\n\u003cul\u003e\n\u003cli\u003e\u003ccode\u003evim -u NONE -N\u003c\/code\u003e可以不加载vim配置和插件打开vim\u003c\/li\u003e\n\u003cli\u003e\u003ccode\u003evim --startuptime vim.log\u003c\/code\u003e可以生成vim启动的log\u003c\/li\u003e\n\u003cli\u003e使用\u003ccode\u003evim-plug\u003c\/code\u003e插件管理工具，给插件配置\u003ccode\u003efor\u003c\/code\u003e or \u003ccode\u003eon\u003c\/code\u003e可以实现插件懒加载\u003c\/li\u003e\n\u003cli\u003e设置\u003ccode\u003efoldmethod=syntax\u003c\/code\u003e会导致vim插入模式下卡顿\u003c\/li\u003e\n\u003c\/ul\u003e"
-}
-</script><meta property="og:title" content="记一次vim性能优化 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2019-vimperformance/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">记一次vim性能优化 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="记一次vim性能优化" />
 <meta property="og:description" content="关键点
 
 vim -u NONE -N可以不加载vim配置和插件打开vim
@@ -91,145 +13,169 @@ vim --startuptime vim.log可以生成vim启动的log
 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载
 设置foldmethod=syntax会导致vim插入模式下卡顿
 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2019-vimperformance/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-09-01T16:15:00+00:00" />
+<meta property="article:modified_time" content="2019-09-01T16:15:00+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="记一次vim性能优化"/>
+<meta name="twitter:description" content="关键点
 
+vim -u NONE -N可以不加载vim配置和插件打开vim
+vim --startuptime vim.log可以生成vim启动的log
+使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载
+设置foldmethod=syntax会导致vim插入模式下卡顿
+"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2019-09-01T16:15:00&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2019-09-01T16:15:00&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="Vim" />
-
-
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2019-vimperformance/" /><link rel="prev" href="http://example.org/posts/2019-debtcrisisoverview/" /><link rel="next" href="http://example.org/posts/2019-optional-chaining/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "记一次vim性能优化",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2019-vimperformance\/"
+        },"genre": "posts","keywords": "Vim","wordcount":  1412 ,
+        "url": "http:\/\/example.org\/posts\/2019-vimperformance\/","datePublished": "2019-09-01T16:15:00+00:00","dateModified": "2019-09-01T16:15:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">记一次vim性能优化</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2019-09-01</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>1分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/vim/" class="hover:text-eureka">Vim</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <h3 id="关键点">关键点</h3>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">记一次vim性能优化</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vim/"><i class="far fa-folder fa-fw"></i>Vim</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-09-01">2019-09-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-09-01">2019-09-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1412 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关键点">关键点</a></li>
+        <li><a href="#vim启动优化">vim启动优化</a></li>
+        <li><a href="#vim输入性能优化">vim输入性能优化</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="关键点">关键点</h3>
 <ul>
 <li><code>vim -u NONE -N</code>可以不加载vim配置和插件打开vim</li>
 <li><code>vim --startuptime vim.log</code>可以生成vim启动的log</li>
 <li>使用<code>vim-plug</code>插件管理工具，给插件配置<code>for</code> or <code>on</code>可以实现插件懒加载</li>
 <li>设置<code>foldmethod=syntax</code>会导致vim插入模式下卡顿</li>
 </ul>
-<p><img src="./img/vim.jpg" alt="vim"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/vim.jpg"
+        data-srcset="./img/vim.jpg, ./img/vim.jpg 1.5x, ./img/vim.jpg 2x"
+        data-sizes="auto"
+        alt="./img/vim.jpg"
+        title="vim"
+    /></p>
 <blockquote>
 <p>用vim已经一年了，之前虽然知道vim会有性能问题，但是之前从来没遇到过，也许也遇到过？貌似把问题推给电脑了，因为印象中，电脑用一天，内存占用会达到80%以上，那时候，vim也会卡，所以一直是想办法把内存降下来。直到最近&hellip;</p>
 </blockquote>
@@ -237,85 +183,82 @@ vim --startuptime vim.log可以生成vim启动的log
 <p>一般情况下，vim的性能问题都是由于我们装插件太多导致的，本质上是因为vim不支持异步，但是现在（vim8+）支持异步了，所以很多插件都开始转向使用异步API实现自己的功能，比如大名鼎鼎的<code>YouCompleteMe</code>，不过也不是所有的插件都会做支持，毕竟vim好多年了，也许我们用的一些插件都停更好久了。</p>
 <h3 id="vim启动优化">vim启动优化</h3>
 <p>为了优化vim启动，首先可以做的一点是将<strong>插件懒加载</strong>，即用到哪个插件再加载哪个插件，通过<code>vim-plug</code>插件管理工具可以非常方便的做到，配置方式如下：</p>
-<pre><code class="language-sh">Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx', { 'for': 'javascript.jsx' }
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-</code></pre>
-<p><code>on</code>表示在某个条件下加载，例如上面的配置表示在输入命令<code>NERDTreeToggle</code>的时候加载<code>nerdtree</code>插件，<code>for</code>表示该插件针对某一类文件加载，例如<code>vim-jsx</code>插件只有在文件类型为<code>javascript.jsx</code>的时候加载。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">Plug <span class="s1">&#39;mattn/emmet-vim&#39;</span>, <span class="o">{</span> <span class="s1">&#39;for&#39;</span>: <span class="o">[</span><span class="s1">&#39;html&#39;</span>, <span class="s1">&#39;javascript.jsx&#39;</span><span class="o">]</span> <span class="o">}</span>
+Plug <span class="s1">&#39;mxw/vim-jsx&#39;</span>, <span class="o">{</span> <span class="s1">&#39;for&#39;</span>: <span class="s1">&#39;javascript.jsx&#39;</span> <span class="o">}</span>
+Plug <span class="s1">&#39;scrooloose/nerdtree&#39;</span>, <span class="o">{</span> <span class="s1">&#39;on&#39;</span>:  <span class="s1">&#39;NERDTreeToggle&#39;</span> <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><code>on</code>表示在某个条件下加载，例如上面的配置表示在输入命令<code>NERDTreeToggle</code>的时候加载<code>nerdtree</code>插件，<code>for</code>表示该插件针对某一类文件加载，例如<code>vim-jsx</code>插件只有在文件类型为<code>javascript.jsx</code>的时候加载。</p>
 <p>这样就可以让vim在启动的时候，不加载不必要的插件。</p>
 <h3 id="vim输入性能优化">vim输入性能优化</h3>
 <p>启动快了，但是输入还是很卡，所以开始寻找是哪个插件的问题。</p>
 <p>为了找到具体是哪个插件导致的卡顿，首先可以通过生成的vim.log文件查看vim启动以及使用的时候每一步的时间，具体启动方式如下：</p>
-<pre><code class="language-sh"># 启动vim并生成vim启动时候的日志
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 启动vim并生成vim启动时候的日志</span>
 $ vim --startuptime vim.log
-</code></pre>
-<p>这样就可以拿到具体vim启动时候的各个步骤的启动时间，但是查看了日志并没看看出明显的问题🤔，所以开始尝试第二种方法，逐个注销vim的插件，看哪个插件注销后，卡顿会消失。</p>
-<p>发现注释掉<code>vim-javascript</code>后，输入变得流畅，所以可以确定是这个插件导致的问题，但是这个插件是用来支持js语法的，不应该出现这么严重的性能问题啊，去GitHub vim-javascript 的 issues中搜索关于<code>performance</code>的帖子，最终找到一篇关于打开大的js文件严重卡顿的原因：<a href="https://github.com/pangloss/vim-javascript/issues/140">Very slow performance in large Js files</a>，在帖子中插件的作者回复到，<strong>出现卡顿的原因是设置了<code>foldmethod=syntax</code></strong>（该设置项本来是让vim基于语法进行折叠），作者强调给vim设置该选项本身就会导致插入时候速度变慢，具体原因以及解决方法（文中的解决方案尝试了，但是没有效果😅）可以查看：<a href="https://vim.fandom.com/wiki/Keep_folds_closed_while_inserting_text">Keep folds closed while inserting text</a>。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样就可以拿到具体vim启动时候的各个步骤的启动时间，但是查看了日志并没看看出明显的问题🤔，所以开始尝试第二种方法，逐个注销vim的插件，看哪个插件注销后，卡顿会消失。</p>
+<p>发现注释掉<code>vim-javascript</code>后，输入变得流畅，所以可以确定是这个插件导致的问题，但是这个插件是用来支持js语法的，不应该出现这么严重的性能问题啊，去GitHub vim-javascript 的 issues中搜索关于<code>performance</code>的帖子，最终找到一篇关于打开大的js文件严重卡顿的原因：<a href="https://github.com/pangloss/vim-javascript/issues/140" target="_blank" rel="noopener noreffer">Very slow performance in large Js files</a>，在帖子中插件的作者回复到，<strong>出现卡顿的原因是设置了<code>foldmethod=syntax</code></strong>（该设置项本来是让vim基于语法进行折叠），作者强调给vim设置该选项本身就会导致插入时候速度变慢，具体原因以及解决方法（文中的解决方案尝试了，但是没有效果😅）可以查看：<a href="https://vim.fandom.com/wiki/Keep_folds_closed_while_inserting_text" target="_blank" rel="noopener noreffer">Keep folds closed while inserting text</a>。</p>
 <p><strong>解决方案：</strong></p>
 <ol>
 <li>可以给foldmethod设置其他选项（manual，indent，marker）</li>
-<li>直接使用vim的一个插件——<a href="https://github.com/Konfekt/FastFold">FastFold</a>实现代码折叠</li>
+<li>直接使用vim的一个插件——<a href="https://github.com/Konfekt/FastFold" target="_blank" rel="noopener noreffer">FastFold</a>实现代码折叠</li>
 <li>去掉代码折叠设置</li>
 </ol>
 <p>总的来说就是不要在插入模式下使用<code>foldmethod=syntax</code>。</p>
-<p>基于以上优化，再打开大型文件，vim不再卡顿，又可以流畅的使用vim编写代码了😁。</p>
+<p>基于以上优化，再打开大型文件，vim不再卡顿，又可以流畅的使用vim编写代码了😁。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-09-01</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/vim/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Vim</a>
-    
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2019-vimperformance/" data-title="记一次vim性能优化" data-hashtags="Vim"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">Vim</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2019-debtcrisisoverview/" class="prev" rel="prev" title="不可不知的债务危机"><i class="fas fa-angle-left fa-fw"></i>不可不知的债务危机</a>
+            <a href="/posts/2019-optional-chaining/" class="next" rel="next" title="「译」JS新特性“可选链式调用”">「译」JS新特性“可选链式调用”<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-        
-        
-        
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
 
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2019-optional-chaining/" class="block">「译」JS新特性“可选链式调用”</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2019-debtcrisisoverview/" class="block">不可不知的债务危机</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
-
-      </div>
-    </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

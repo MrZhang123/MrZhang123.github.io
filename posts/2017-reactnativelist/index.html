@@ -1,317 +1,371 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>RN长列表--ListView &amp;&amp; SectionList | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"RN长列表--ListView \u0026\u0026 SectionList",
-      "item":"/posts/2017-reactnativelist/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2017-reactnativelist/"
-    },
-    "headline": "RN长列表--ListView \u0026\u0026 SectionList | 博客","datePublished": "2017-06-11T00:10:54+00:00",
-    "dateModified": "2017-06-11T00:10:54+00:00",
-    "wordCount":  221 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cp\u003e突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。\u003c\/p\u003e"
-}
-</script><meta property="og:title" content="RN长列表--ListView &amp;&amp; SectionList | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2017-reactnativelist/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">RN长列表--ListView &amp;&amp; SectionList - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="RN长列表--ListView &amp;&amp; SectionList" />
 <meta property="og:description" content="突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2017-reactnativelist/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-06-11T00:10:54+00:00" />
+<meta property="article:modified_time" content="2017-06-11T00:10:54+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="RN长列表--ListView &amp;&amp; SectionList"/>
+<meta name="twitter:description" content="突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2017-06-11T00:10:54&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2017-06-11T00:10:54&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="React Native" />
-
-
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2017-reactnativelist/" /><link rel="prev" href="http://example.org/posts/2017-googlemap/" /><link rel="next" href="http://example.org/posts/2017-reactsum/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "RN长列表--ListView \u0026\u0026 SectionList",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2017-reactnativelist\/"
+        },"genre": "posts","keywords": "React Native","wordcount":  2666 ,
+        "url": "http:\/\/example.org\/posts\/2017-reactnativelist\/","datePublished": "2017-06-11T00:10:54+00:00","dateModified": "2017-06-11T00:10:54+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">RN长列表--ListView &amp;&amp; SectionList</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2017-06-11</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/react-native/" class="hover:text-eureka">React Native</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <p>突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。</p>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">RN长列表--ListView &amp;&amp; SectionList</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react-native/"><i class="far fa-folder fa-fw"></i>React Native</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2666 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#listview">ListView</a>
+      <ul>
+        <li><a href="#普通长列表">普通长列表</a></li>
+        <li><a href="#分组长列表">分组长列表</a></li>
+      </ul>
+    </li>
+    <li><a href="#sectionlist分组长列表">SectionList分组长列表</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#sectionlist和flatlist需要注意几点"><code>SectionList</code>和<code>FlatList</code>需要注意几点：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#最后">最后</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。</p>
 <p>在项目中我用到的比较多的是长列表，所以这篇文章主要是记一下对RN的<code>ListView</code>和<code>SectionList</code>的一些总结。我项目中使用的RN是0.44，关于为什么不用性能更好的<code>FlatList</code>而使用老的<code>ListView</code>，是因为自己本身第一次接触RN，所以担心用不好<code>FlatList</code>而且担心会有什么bug，毕竟这个是在0.43版本才添加的。</p>
 <h2 id="listview">ListView</h2>
 <p>对于<code>ListView</code>最重要的两个属性，一个是数据源（dataSource），再一个就是列表项渲染（renderRow）。<code>ListView</code>可以根据不同的数据结构对应的生成普通长列表和分组长列表。</p>
 <h3 id="普通长列表">普通长列表</h3>
 <p>普通长列表使用<code>cloneWithRows(dataBlob, rowIdentities)</code>创建datasource，在项目中<code>dataBlob</code>的数据结构如下：</p>
-<pre><code class="language-js">[
-    {id:1},
-    {name:'Mark'},
-    ...
-]
-</code></pre>
-<p>在使用<code>renderRow(rowData, sectionID, rowID, highlightRow)</code>渲染列表项的时候，<code>rowData</code>就是数组中每一个对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">[</span>
+    <span class="p">{</span><span class="nx">id</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span>
+    <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Mark&#39;</span><span class="p">},</span>
+    <span class="p">...</span>
+<span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在使用<code>renderRow(rowData, sectionID, rowID, highlightRow)</code>渲染列表项的时候，<code>rowData</code>就是数组中每一个对象。</p>
 <h3 id="分组长列表">分组长列表</h3>
 <p>在项目中，遇到分组长列表，由于RN版本为0.44，所以有<code>ListView</code>和<code>SectionList</code>两种选择方案，最终我选择了<code>SectionList</code>，因为我发现<code>ListView</code>的<code>section</code>只能是一个简单的字符串，不能是一个对象（这里说实话我也不知道对不对，若不对，请指正并说明如何使用<code>ListView</code>实现<code>section</code>是一个对象）。</p>
 <p>这里我要吐槽一下RN的文档，真的是有些地方写的太简单，比如在<code>ListView</code>这里写到使用<code>cloneWithRowsAndSections</code>的使用，只是简单的说跟<code>cloneWithRows</code>差不多，而接受的数据结构也就简单的说明有三种：</p>
-<pre><code class="language-js">{ sectionID_1: { rowID_1: &lt;rowData1&gt;, ... }, ... }
-//or
-{ sectionID_1: [ &lt;rowData1&gt;, &lt;rowData2&gt;, ... ], ... }
-//or
-[ [ &lt;rowData1&gt;, &lt;rowData2&gt;, ... ], ... ]
-</code></pre>
-<p>但是具体这里的是些什么，我觉得没有说清楚。所以我在项目中试了下用<code>ListView</code>的<code>cloneWithRowsAndSections</code>实现带有粘性标题的列表，发现前两种<code>sectionID</code>只能是一个简单的字符串或者数字，不能是一个对象，数据结构如下：</p>
-<pre><code class="language-js">const dataSource1 = [
-    ['row1','row2'],
-    ['row3','row4'],
-    ['row5','row6'],
-];
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">{</span> <span class="nx">sectionID_1</span><span class="o">:</span> <span class="p">{</span> <span class="nx">rowID_1</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">rowData1</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span> <span class="p">...</span> <span class="p">}</span>
+<span class="c1">//or
+</span><span class="c1"></span><span class="p">{</span> <span class="nx">sectionID_1</span><span class="o">:</span> <span class="p">[</span> <span class="o">&lt;</span><span class="nx">rowData1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">rowData2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">],</span> <span class="p">...</span> <span class="p">}</span>
+<span class="c1">//or
+</span><span class="c1"></span><span class="p">[</span> <span class="p">[</span> <span class="o">&lt;</span><span class="nx">rowData1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">rowData2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">],</span> <span class="p">...</span> <span class="p">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是具体这里的是些什么，我觉得没有说清楚。所以我在项目中试了下用<code>ListView</code>的<code>cloneWithRowsAndSections</code>实现带有粘性标题的列表，发现前两种<code>sectionID</code>只能是一个简单的字符串或者数字，不能是一个对象，数据结构如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">dataSource1</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;row1&#39;</span><span class="p">,</span><span class="s1">&#39;row2&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;row3&#39;</span><span class="p">,</span><span class="s1">&#39;row4&#39;</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;row5&#39;</span><span class="p">,</span><span class="s1">&#39;row6&#39;</span><span class="p">],</span>
+<span class="p">];</span>
 
-const dataSoure2 = {
-    'id1':['row1','row2'],
-    'id2':['row3','row4'],
-    'id3':['row5','row6'],
-}
+<span class="kr">const</span> <span class="nx">dataSoure2</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;id1&#39;</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;row1&#39;</span><span class="p">,</span><span class="s1">&#39;row2&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;id2&#39;</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;row3&#39;</span><span class="p">,</span><span class="s1">&#39;row4&#39;</span><span class="p">],</span>
+    <span class="s1">&#39;id3&#39;</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;row5&#39;</span><span class="p">,</span><span class="s1">&#39;row6&#39;</span><span class="p">],</span>
+<span class="p">}</span>
 
-const dataSoure3 = {
-    'id1':{'row1','row2'},
-    'id2':{'row3','row4'},
-    'id3':{'row5','row6'},
-}
-cloneWithRowsAndSections(dataSource);
-</code></pre>
-<p>dataSoure1生成的sectionHeader是数组的下标，而第二个第三个分别是对应的<code>key</code>，在项目中我的sectionHeader是一个对象，类似于<code>{headerName:'',headerContent:''}</code>，所以无法使用。</p>
+<span class="kr">const</span> <span class="nx">dataSoure3</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;id1&#39;</span><span class="o">:</span><span class="p">{</span><span class="s1">&#39;row1&#39;</span><span class="p">,</span><span class="s1">&#39;row2&#39;</span><span class="p">},</span>
+    <span class="s1">&#39;id2&#39;</span><span class="o">:</span><span class="p">{</span><span class="s1">&#39;row3&#39;</span><span class="p">,</span><span class="s1">&#39;row4&#39;</span><span class="p">},</span>
+    <span class="s1">&#39;id3&#39;</span><span class="o">:</span><span class="p">{</span><span class="s1">&#39;row5&#39;</span><span class="p">,</span><span class="s1">&#39;row6&#39;</span><span class="p">},</span>
+<span class="p">}</span>
+<span class="nx">cloneWithRowsAndSections</span><span class="p">(</span><span class="nx">dataSource</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>dataSoure1生成的sectionHeader是数组的下标，而第二个第三个分别是对应的<code>key</code>，在项目中我的sectionHeader是一个对象，类似于<code>{headerName:'',headerContent:''}</code>，所以无法使用。</p>
 <h2 id="sectionlist分组长列表">SectionList分组长列表</h2>
 <p><code>SectionList</code>和<code>FlatList</code>一样是新增的高性能长列表，在文档中关于<code>SectionList</code>接受的数据结构描述如下：</p>
-<pre><code class="language-js">&lt;SectionList
-  renderItem={({item}) =&gt; &lt;ListItem title={item.title} /&gt;}
-  renderSectionHeader={({section}) =&gt; &lt;H1 title={section.title} /&gt;}
-  sections={[ // homogenous rendering between sections
-    {data: [...], title: ...},
-    {data: [...], title: ...},
-    {data: [...], title: ...},
-  ]}
-/&gt;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">SectionList</span>
+  <span class="nx">renderItem</span><span class="o">=</span><span class="p">{({</span><span class="nx">item</span><span class="p">})</span> <span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">ListItem</span> <span class="nx">title</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">}</span>
+  <span class="nx">renderSectionHeader</span><span class="o">=</span><span class="p">{({</span><span class="nx">section</span><span class="p">})</span> <span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">H1</span> <span class="nx">title</span><span class="o">=</span><span class="p">{</span><span class="nx">section</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">}</span>
+  <span class="nx">sections</span><span class="o">=</span><span class="p">{[</span> <span class="c1">// homogenous rendering between sections
+</span><span class="c1"></span>    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...},</span>
+    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...},</span>
+    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...},</span>
+  <span class="p">]}</span>
+<span class="err">/&gt;</span>
 
-&lt;SectionList
-  sections={[ // heterogeneous rendering between sections
-    {data: [...], title: ..., renderItem: ...},
-    {data: [...], title: ..., renderItem: ...},
-    {data: [...], title: ..., renderItem: ...},
-  ]}
-/&gt;
-</code></pre>
-<p>说实话我第一次看到这个描述的时候很懵逼，这好像并没说明data里具体的数据结构是什么样子的，<code>renderSectionHeader</code>中的数据又该如何取，在网上看了一个简单的讲解才大概知道<code>sections</code>里的数据应该怎么写，代码如下：</p>
-<pre><code class="language-js">import React , {Component} from 'react';
-import {
-    AppRegistry,
-    StyleSheet,
-    Text,
-    View,
-    SectionList
-} from 'react-native';
+<span class="o">&lt;</span><span class="nx">SectionList</span>
+  <span class="nx">sections</span><span class="o">=</span><span class="p">{[</span> <span class="c1">// heterogeneous rendering between sections
+</span><span class="c1"></span>    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...,</span> <span class="nx">renderItem</span><span class="o">:</span> <span class="p">...},</span>
+    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...,</span> <span class="nx">renderItem</span><span class="o">:</span> <span class="p">...},</span>
+    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...,</span> <span class="nx">renderItem</span><span class="o">:</span> <span class="p">...},</span>
+  <span class="p">]}</span>
+<span class="err">/&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>说实话我第一次看到这个描述的时候很懵逼，这好像并没说明data里具体的数据结构是什么样子的，<code>renderSectionHeader</code>中的数据又该如何取，在网上看了一个简单的讲解才大概知道<code>sections</code>里的数据应该怎么写，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="p">,</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span>
+    <span class="nx">AppRegistry</span><span class="p">,</span>
+    <span class="nx">StyleSheet</span><span class="p">,</span>
+    <span class="nx">Text</span><span class="p">,</span>
+    <span class="nx">View</span><span class="p">,</span>
+    <span class="nx">SectionList</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
 
-const dataSource = [
-    {data:[{name:'nader'},{name:'chris'}],key:'A'},
-    {data:[{name:'nick'},{name:'amanda'}],key:'B'}
-];
+<span class="kr">const</span> <span class="nx">dataSource</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="nx">data</span><span class="o">:</span><span class="p">[{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;nader&#39;</span><span class="p">},{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;chris&#39;</span><span class="p">}],</span><span class="nx">key</span><span class="o">:</span><span class="s1">&#39;A&#39;</span><span class="p">},</span>
+    <span class="p">{</span><span class="nx">data</span><span class="o">:</span><span class="p">[{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;nick&#39;</span><span class="p">},{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;amanda&#39;</span><span class="p">}],</span><span class="nx">key</span><span class="o">:</span><span class="s1">&#39;B&#39;</span><span class="p">}</span>
+<span class="p">];</span>
 
-export default class SectionListExample extends Component {
-    renderItem = (item) =&gt; {
-        return &lt;Text style={styles.text}&gt;{item.item.name}&lt;/Text&gt;
-    }
+<span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">SectionListExample</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+    <span class="nx">renderItem</span> <span class="o">=</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
+    <span class="p">}</span>
 
-    renderHeader = (headerItem) =&gt; {
-        return &lt;Text style={styles.header}&gt;{headerItem.section.key}&lt;/Text&gt;
-    }
+    <span class="nx">renderHeader</span> <span class="o">=</span> <span class="p">(</span><span class="nx">headerItem</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">header</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">headerItem</span><span class="p">.</span><span class="nx">section</span><span class="p">.</span><span class="nx">key</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
+    <span class="p">}</span>
 
-    render(){
-        return(
-            &lt;View style={styles.container}&gt;
-                &lt;SectionList
-                    renderItem={this.renderItem}
-                    renderSectionHeader={this.renderHeader}
-                    sections={dataSource}
-                    keyExtractor={(item)=&gt;item.name}
-                /&gt;
-            &lt;/View&gt;
-        )
-    }
-}
-</code></pre>
-<p>这里需要注意一点就是<code>renderItem</code>所用的数据<code>key</code>必须是<code>data</code>，而且<code>key</code>必须是唯一的，然后其余的数据用在<code>headerItem</code>中，这样就非常容易在<code>sectionHeader</code>中渲染出多个后台给定的数据。</p>
+    <span class="nx">render</span><span class="p">(){</span>
+        <span class="k">return</span><span class="p">(</span>
+            <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">container</span><span class="p">}</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">SectionList</span>
+                    <span class="nx">renderItem</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">renderItem</span><span class="p">}</span>
+                    <span class="nx">renderSectionHeader</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">renderHeader</span><span class="p">}</span>
+                    <span class="nx">sections</span><span class="o">=</span><span class="p">{</span><span class="nx">dataSource</span><span class="p">}</span>
+                    <span class="nx">keyExtractor</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">)=&gt;</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>
+                <span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="err">/View&gt;</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里需要注意一点就是<code>renderItem</code>所用的数据<code>key</code>必须是<code>data</code>，而且<code>key</code>必须是唯一的，然后其余的数据用在<code>headerItem</code>中，这样就非常容易在<code>sectionHeader</code>中渲染出多个后台给定的数据。</p>
 <h4 id="sectionlist和flatlist需要注意几点"><code>SectionList</code>和<code>FlatList</code>需要注意几点：</h4>
 <ul>
 <li>
@@ -330,64 +384,46 @@ export default class SectionListExample extends Component {
 <p><code>onEndReachedThreshold</code>（number）：距离最后一个列表元素多少像素时候触发<code>onEndReached</code>事件</p>
 <p><code>initialListSize</code>（number）：初始化时候渲染多少条数据，如果不写择时逐条渲染</p>
 <p><code>showsVerticalScrollIndicator</code>（bool）：默认情况下，ListView有滚动条，当设置为false的时候不显示该滚动条（继承自ScrollView）</p>
-<p><code>pageSize</code>（number，仅<code>ListView</code>有）：每次事件循环（每帧）渲染的行数，常用于分页，数据请求回来后渲染多少条，不设置则逐条渲染。</p>
+<p><code>pageSize</code>（number，仅<code>ListView</code>有）：每次事件循环（每帧）渲染的行数，常用于分页，数据请求回来后渲染多少条，不设置则逐条渲染。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2017-06-11</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/react-native/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#React Native</a>
-    
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2017-reactnativelist/" data-title="RN长列表--ListView &amp;&amp; SectionList" data-hashtags="React Native"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react-native/">React Native</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2017-googlemap/" class="prev" rel="prev" title="调用Google Map Api实现自定义Google Map"><i class="fas fa-angle-left fa-fw"></i>调用Google Map Api实现自定义Google Map</a>
+            <a href="/posts/2017-reactsum/" class="next" rel="next" title="React使用小记">React使用小记<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-        
-        
-        
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
 
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2017-reactsum/" class="block">React使用小记</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2017-googlemap/" class="block">调用Google Map Api实现自定义Google Map</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
-
-      </div>
-    </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

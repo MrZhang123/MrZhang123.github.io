@@ -1,216 +1,169 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>Gulp&#43;BroserSync实现浏览器自动刷新 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"Gulp+BroserSync实现浏览器自动刷新",
-      "item":"/posts/2016-gulpbrosersync/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2016-gulpbrosersync/"
-    },
-    "headline": "Gulp\u002bBroserSync实现浏览器自动刷新 | 博客","datePublished": "2016-05-16T22:10:39+00:00",
-    "dateModified": "2016-05-16T22:10:39+00:00",
-    "wordCount":  143 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cp\u003e在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。\u003c\/p\u003e"
-}
-</script><meta property="og:title" content="Gulp&#43;BroserSync实现浏览器自动刷新 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2016-gulpbrosersync/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Gulp&#43;BroserSync实现浏览器自动刷新 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="Gulp&#43;BroserSync实现浏览器自动刷新" />
 <meta property="og:description" content="在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2016-gulpbrosersync/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-05-16T22:10:39+00:00" />
+<meta property="article:modified_time" content="2016-05-16T22:10:39+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="Gulp&#43;BroserSync实现浏览器自动刷新"/>
+<meta name="twitter:description" content="在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2016-05-16T22:10:39&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2016-05-16T22:10:39&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="gulp" />
-
-
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2016-gulpbrosersync/" /><link rel="prev" href="http://example.org/posts/2016-textalgin/" /><link rel="next" href="http://example.org/posts/2016-verticalalign-1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Gulp+BroserSync实现浏览器自动刷新",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2016-gulpbrosersync\/"
+        },"genre": "posts","keywords": "gulp","wordcount":  1909 ,
+        "url": "http:\/\/example.org\/posts\/2016-gulpbrosersync\/","datePublished": "2016-05-16T22:10:39+00:00","dateModified": "2016-05-16T22:10:39+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">Gulp&#43;BroserSync实现浏览器自动刷新</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2016-05-16</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>1分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/" class="hover:text-eureka">前端工具</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <p>在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。</p>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Gulp&#43;BroserSync实现浏览器自动刷新</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"><i class="far fa-folder fa-fw"></i>前端工具</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-05-16">2016-05-16</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-05-16">2016-05-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1909 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#gulp">Gulp</a>
+          <ul>
+            <li><a href="#1安装gulp">1.安装gulp</a></li>
+            <li><a href="#2恢复gulp">2.恢复gulp</a></li>
+          </ul>
+        </li>
+        <li><a href="#brosersync">broserSync</a>
+          <ul>
+            <li><a href="#1安装brosersync">1.安装broserSync</a></li>
+            <li><a href="#2配置brosersync">2.配置broserSync</a>
+              <ul>
+                <li><a href="#21-代理其他服务器">2.1 代理其他服务器</a></li>
+                <li><a href="#22-启动静态服务器">2.2 启动静态服务器</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。</p>
 <p>那么gulp，broserSync是什么呢？</p>
 <h3 id="gulp">Gulp</h3>
 <p>Gulp是一个前端自动化工具，基于nodejs，和grunt差不多，但是比grunt语法更加简单，语法更加自然。在gulp的插件中，我们可以找到自动刷新，压缩图片/代码/等等各类工具，方便我们的使用，并且gulp的任务是流（pipe），即一个任务完成后，紧接的另一个任务开始进行。gulp的使用如下：</p>
@@ -218,153 +171,228 @@
 <ol>
 <li>全局安装gulp：</li>
 </ol>
-<pre><code class="language-js">$ npm install --global gulp
-</code></pre>
-<ol start="2">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">gulp</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
 <li>作为项目的开发依赖（devDependencies）安装：</li>
 </ol>
-<pre><code class="language-js">$ npm install --save-dev gulp
-</code></pre>
-<ol start="3">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">gulp</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
 <li>生成package.json</li>
 </ol>
-<pre><code class="language-js">$ npm init
-</code></pre>
-<p><font color=red>注意：</font>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">init</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><font color=red>注意：</font>
 这里官网只是写让这么安装，但是需要注意，两个安装不是第一步第二步，而是第一种方式或者第二种方式，两种方式任选其一。第一种安装方式是全局安装，即安装后，整个电脑无论哪个项目都可以使用。对应的，第二个表示安装到对应项目中，即如果在window的cmd命令行进入对应项目A的目录，则运行npm install &ndash;save-dev gulp后，安装的gulp只能在该文件夹下使用，其他文件夹下的其他文件都无法使用。
 其实不只是gulp，gulp的插件也是这样，要么全局安装，要么安装在项目中。一般情况下，gulp会全局安装，但是由于每个项目用到的gulp插件不同，所以可能需要局部安装gulp插件。
 安装完成gulp之后，会在安装gulp的文件夹下生成node_modules文件夹。此时，在与该文件夹同层创建gulpfile.js这就是用于配置gulp插件的文件。</p>
 <h4 id="2恢复gulp">2.恢复gulp</h4>
 <p>随着我们gulp插件的改变，package.json会自动变化，同时我们的配置文件gulpfile.js也会对应变化（自己手动配置）。他们可以把我们安装的gulp给备份，如果我们在电脑A中安装完我们的工具，然后换了一台电脑B，我们只需要把电脑A中package.json与gulpfile.js复制到B电脑，然后在安装完gulp后，运行</p>
-<pre><code class="language-js">$ npm install
-</code></pre>
-<p>gulp就会自动把我们在package.json中的所有gulp插件全部安装回来，非常方便。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>gulp就会自动把我们在package.json中的所有gulp插件全部安装回来，非常方便。</p>
 <h3 id="brosersync">broserSync</h3>
 <p>broserSync（以下简称bs）是一款非常优秀的自动刷新工具，本身可以独立使用，也可以配合gulp或者grunt一起使用，非常不错的一款插件。
 当你改变代码的时候，BrowserSync会重新加载页面，或者如果是css文件，会直接添加进css中，页面并不需要再次刷新。这项功能在网站是禁止刷新的时候是很有用的。假设你正在开发单页应用的第4页，刷新页面就会导致你回到开始页。BrowserSync会直接将需要修改的地方添加进CSS，就不用再点击回退。同时，BrowserSync也可以在不同浏览器之间同步点击翻页、表单操作、滚动位置。你可以在电脑和iPhone上打开不同的浏览器然后进行操作。所有设备上的链接将会随之变化，当你向下滚动页面时，所有设备上页面都会向下滚动（通常还很流畅！）。当你在表单中输入文本时，每个窗口都会有输入。当你不想要这种行为时，也可以把这个功能关闭。
 实际上bs对于gulp并不算是一种插件，因为bs并不像一个插件一样操作文件。然而，npm上的bs模块能在gulp上被直接调用。</p>
 <h4 id="1安装brosersync">1.安装broserSync</h4>
 <p>进入需要使用bs的目录，运行：</p>
-<pre><code class="language-js">$ npm install --save-dev broser-sync
-</code></pre>
-<h4 id="2配置brosersync">2.配置broserSync</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">broser</span><span class="o">-</span><span class="nx">sync</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="2配置brosersync">2.配置broserSync</h4>
 <p>bs本身可以打开本地静态服务器，也可以代理像wamp这样的服务器。</p>
 <h5 id="21-代理其他服务器">2.1 代理其他服务器</h5>
 <p>打开我们新建的gulpfile.js，配置如下：</p>
-<pre><code class="language-js">/*browserSync*/
-const gulp        = require('gulp');
-const browserSync = require('browser-sync').create();
-gulp.task(&quot;watch&quot;,function(){
-    browserSync.init({
-        /*这里的files写的是需要监控的文件的位置*/
-         files:[             
-             &quot;./Home/View/PC/**/*.html&quot;,
-             &quot;./public/group/css/*.css&quot;,
-             &quot;./public/group/js/*.js&quot;
-         ],
-         logLevel: &quot;debug&quot;,
-         logPrefix:&quot;insgeek&quot;,
-         /*这里的proxy写的是需要代理的服务器，我自己的wamp启动的是localhost:80*/
-         proxy:&quot;localhost:80&quot;,
-         ghostMode: {
-	        clicks: true,
-	        forms: true,
-	        scroll: true
-	     },
-         /*这里写的是代理后，bs在哪个端口打开*/
-         port: 81,
-         /*这里设置的是bs运行时打开的浏览器名称*/
-	     browser: &quot;chrome&quot;
-    });
-});
-</code></pre>
-<h5 id="22-启动静态服务器">2.2 启动静态服务器</h5>
-<pre><code class="language-js">const gulp = require('gulp');
-const browserSync = require('browser-sync').create();
-const reload = browserSync.reload;
-/*实时监控*/
-gulp.task(&quot;watch&quot;, function() {
-    browserSync.init({
-        files: [
-            &quot;./work/*/*.html&quot;,
-            &quot;./work/*/*.css&quot;,
-            &quot;./work/*/*.js&quot;
-        ],
-        logLevel: &quot;debug&quot;,
-        logPrefix: &quot;insgeek&quot;,
-        server: {
-            /*这里写的是html文件相对于根目录所在的文件夹*/
-            baseDir: &quot;./work/statement&quot;
-            /*这里如果不写，默认启动的是index.html，如果是其他名字，需要这里写*/
-            // index: &quot;insurance_template_statement.html&quot;
-        },
-        ghostMode: {
-            clicks: true,
-            forms: true,
-            scroll: true
-        },
-        browser: &quot;chrome&quot;
-    });
-});
-</code></pre>
-<p>完成上述配置后，可以在cmd命令行切换到工作目录，运行gulp watch启动broserSync。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*browserSync*/</span>
+<span class="kr">const</span> <span class="nx">gulp</span>        <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">browserSync</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;browser-sync&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s2">&#34;watch&#34;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">browserSync</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+        <span class="cm">/*这里的files写的是需要监控的文件的位置*/</span>
+         <span class="nx">files</span><span class="o">:</span><span class="p">[</span>             
+             <span class="s2">&#34;./Home/View/PC/**/*.html&#34;</span><span class="p">,</span>
+             <span class="s2">&#34;./public/group/css/*.css&#34;</span><span class="p">,</span>
+             <span class="s2">&#34;./public/group/js/*.js&#34;</span>
+         <span class="p">],</span>
+         <span class="nx">logLevel</span><span class="o">:</span> <span class="s2">&#34;debug&#34;</span><span class="p">,</span>
+         <span class="nx">logPrefix</span><span class="o">:</span><span class="s2">&#34;insgeek&#34;</span><span class="p">,</span>
+         <span class="cm">/*这里的proxy写的是需要代理的服务器，我自己的wamp启动的是localhost:80*/</span>
+         <span class="nx">proxy</span><span class="o">:</span><span class="s2">&#34;localhost:80&#34;</span><span class="p">,</span>
+         <span class="nx">ghostMode</span><span class="o">:</span> <span class="p">{</span>
+	        <span class="nx">clicks</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+	        <span class="nx">forms</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+	        <span class="nx">scroll</span><span class="o">:</span> <span class="kc">true</span>
+	     <span class="p">},</span>
+         <span class="cm">/*这里写的是代理后，bs在哪个端口打开*/</span>
+         <span class="nx">port</span><span class="o">:</span> <span class="mi">81</span><span class="p">,</span>
+         <span class="cm">/*这里设置的是bs运行时打开的浏览器名称*/</span>
+	     <span class="nx">browser</span><span class="o">:</span> <span class="s2">&#34;chrome&#34;</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="22-启动静态服务器">2.2 启动静态服务器</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp&#39;</span><span class="p">);</span>
+<span class="kr">const</span> <span class="nx">browserSync</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;browser-sync&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">reload</span> <span class="o">=</span> <span class="nx">browserSync</span><span class="p">.</span><span class="nx">reload</span><span class="p">;</span>
+<span class="cm">/*实时监控*/</span>
+<span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s2">&#34;watch&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">browserSync</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+        <span class="nx">files</span><span class="o">:</span> <span class="p">[</span>
+            <span class="s2">&#34;./work/*/*.html&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;./work/*/*.css&#34;</span><span class="p">,</span>
+            <span class="s2">&#34;./work/*/*.js&#34;</span>
+        <span class="p">],</span>
+        <span class="nx">logLevel</span><span class="o">:</span> <span class="s2">&#34;debug&#34;</span><span class="p">,</span>
+        <span class="nx">logPrefix</span><span class="o">:</span> <span class="s2">&#34;insgeek&#34;</span><span class="p">,</span>
+        <span class="nx">server</span><span class="o">:</span> <span class="p">{</span>
+            <span class="cm">/*这里写的是html文件相对于根目录所在的文件夹*/</span>
+            <span class="nx">baseDir</span><span class="o">:</span> <span class="s2">&#34;./work/statement&#34;</span>
+            <span class="cm">/*这里如果不写，默认启动的是index.html，如果是其他名字，需要这里写*/</span>
+            <span class="c1">// index: &#34;insurance_template_statement.html&#34;
+</span><span class="c1"></span>        <span class="p">},</span>
+        <span class="nx">ghostMode</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">clicks</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">forms</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nx">scroll</span><span class="o">:</span> <span class="kc">true</span>
+        <span class="p">},</span>
+        <span class="nx">browser</span><span class="o">:</span> <span class="s2">&#34;chrome&#34;</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>完成上述配置后，可以在cmd命令行切换到工作目录，运行gulp watch启动broserSync。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2016-05-16</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/gulp/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#gulp</a>
-    
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2016-gulpbrosersync/" data-title="Gulp&#43;BroserSync实现浏览器自动刷新" data-hashtags="gulp"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/gulp/">gulp</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2016-textalgin/" class="prev" rel="prev" title="text-algin:justify实现文本两端对齐"><i class="fas fa-angle-left fa-fw"></i>text-algin:justify实现文本两端对齐</a>
+            <a href="/posts/2016-verticalalign-1/" class="next" rel="next" title="慕课网---深入理解vertical-align总结">慕课网---深入理解vertical-align总结<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-        
-        
-        
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
 
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2016-verticalalign-1/" class="block">慕课网---深入理解vertical-align总结</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2016-textalgin/" class="block">text-algin:justify实现文本两端对齐</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
-
-      </div>
-    </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

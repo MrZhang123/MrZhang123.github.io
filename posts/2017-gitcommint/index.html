@@ -1,295 +1,322 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>Git Commint规范 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="
-之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。
-">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"Git Commint规范",
-      "item":"/posts/2017-gitcommint/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2017-gitcommint/"
-    },
-    "headline": "Git Commint规范 | 博客","datePublished": "2017-10-18T22:11:36+00:00",
-    "dateModified": "2017-10-18T22:11:36+00:00",
-    "wordCount":  408 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cblockquote\u003e\n\u003cp\u003e之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。\u003c\/p\u003e\n\u003c\/blockquote\u003e"
-}
-</script><meta property="og:title" content="Git Commint规范 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2017-gitcommint/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Git Commint规范 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="Git Commint规范" />
 <meta property="og:description" content="
 之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。
 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2017-gitcommint/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-10-18T22:11:36+00:00" />
+<meta property="article:modified_time" content="2017-10-18T22:11:36+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="Git Commint规范"/>
+<meta name="twitter:description" content="
+之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。
+"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2017-10-18T22:11:36&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2017-10-18T22:11:36&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="Git" />
-
-
-
-
-
-<meta property="og:see_also" content="/posts/2017-gitreset/" />
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2017-gitcommint/" /><link rel="prev" href="http://example.org/posts/2017-reactsum/" /><link rel="next" href="http://example.org/posts/2017-reactdom/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Git Commint规范",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2017-gitcommint\/"
+        },"genre": "posts","keywords": "Git","wordcount":  1893 ,
+        "url": "http:\/\/example.org\/posts\/2017-gitcommint\/","datePublished": "2017-10-18T22:11:36+00:00","dateModified": "2017-10-18T22:11:36+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">Git Commint规范</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2017-10-18</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/git/" class="hover:text-eureka">Git</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <blockquote>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git Commint规范</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>Git</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1893 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#配置检测git-commit是否合法">配置检测git commit是否合法</a></li>
+    <li><a href="#commit-message-的格式">Commit message 的格式</a>
+      <ul>
+        <li><a href="#header">header</a>
+          <ul>
+            <li><a href="#type">type</a></li>
+            <li><a href="#scope">scope</a></li>
+            <li><a href="#subject">subject</a></li>
+          </ul>
+        </li>
+        <li><a href="#body">body</a></li>
+        <li><a href="#footer">footer</a>
+          <ul>
+            <li><a href="#不兼容变动">不兼容变动</a></li>
+            <li><a href="#关闭issue">关闭Issue</a></li>
+          </ul>
+        </li>
+        <li><a href="#revert">revert</a></li>
+        <li><a href="#example">Example</a></li>
+      </ul>
+    </li>
+    <li><a href="#生成change-log">生成change log</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
 <p>之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。</p>
 </blockquote>
 <h2 id="配置检测git-commit是否合法">配置检测git commit是否合法</h2>
-<pre><code class="language-sh">npm install --save-dev @commitlint/cli husky
-</code></pre>
-<p>新建<code>commitlint.config.js</code>配置git提交规范（这里使用的是angular的提交规范）</p>
-<pre><code class="language-js">module.exports = {
-  rules: {
-    'body-leading-blank': [1, 'always'], //body开始于空白行
-    'body-tense': [1, 'always', ['present-imperative']], 
-    'footer-leading-blank': [1, 'always'], //footer开始于空白行
-    'footer-tense': [1, 'always', ['present-imperative']],
-    'header-max-length': [2, 'always', 72],
-    'scope-case': [2, 'always', 'lowerCase'], //scope小写
-    'subject-empty': [2, 'never'], //subjec不t为空
-    'subject-full-stop': [2, 'never', '.'], //subject结尾不加'.'
-    'subject-tense': [1, 'always', ['present-imperative']], //以动词开头，使用第一人称现在时，比如change，而不是changed或changes
-    'type-case': [2, 'always', 'lowerCase'], //type小写
-    'type-empty': [2, 'never'], //type不为空
-    'type-enum': [
-      2,
-      'always',
-      [
-        'build',
-        'chore',      //构建过程或辅助工具的变动
-        'docs',       //文档（documentation）
-        'feat',       //新功能（feature）
-        'fix',        //修补bug
-        'perf',
-        'refactor',   //重构（即不是新增功能，也不是修改bug的代码变动）
-        'revert',
-        'style',      //格式（不影响代码运行的变动）
-        'test',       //增加测试
-      ],
-    ], //type关键字必须是其中之一
-  },
-};
-</code></pre>
-<p>配置husky</p>
-<pre><code class="language-json">{
-  &quot;scripts&quot;: {
-    &quot;commitmsg&quot;: &quot;commitlint -e&quot;
-  }
-}
-</code></pre>
-<p>配置完成之后，提交所写的commit如果不符合规范，则无法进行下一步操作</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">npm install --save-dev @commitlint/cli husky
+</code></pre></td></tr></table>
+</div>
+</div><p>新建<code>commitlint.config.js</code>配置git提交规范（这里使用的是angular的提交规范）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s1">&#39;body-leading-blank&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">],</span> <span class="c1">//body开始于空白行
+</span><span class="c1"></span>    <span class="s1">&#39;body-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span> 
+    <span class="s1">&#39;footer-leading-blank&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">],</span> <span class="c1">//footer开始于空白行
+</span><span class="c1"></span>    <span class="s1">&#39;footer-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span>
+    <span class="s1">&#39;header-max-length&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="mi">72</span><span class="p">],</span>
+    <span class="s1">&#39;scope-case&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="s1">&#39;lowerCase&#39;</span><span class="p">],</span> <span class="c1">//scope小写
+</span><span class="c1"></span>    <span class="s1">&#39;subject-empty&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">],</span> <span class="c1">//subjec不t为空
+</span><span class="c1"></span>    <span class="s1">&#39;subject-full-stop&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="c1">//subject结尾不加&#39;.&#39;
+</span><span class="c1"></span>    <span class="s1">&#39;subject-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span> <span class="c1">//以动词开头，使用第一人称现在时，比如change，而不是changed或changes
+</span><span class="c1"></span>    <span class="s1">&#39;type-case&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="s1">&#39;lowerCase&#39;</span><span class="p">],</span> <span class="c1">//type小写
+</span><span class="c1"></span>    <span class="s1">&#39;type-empty&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">],</span> <span class="c1">//type不为空
+</span><span class="c1"></span>    <span class="s1">&#39;type-enum&#39;</span><span class="o">:</span> <span class="p">[</span>
+      <span class="mi">2</span><span class="p">,</span>
+      <span class="s1">&#39;always&#39;</span><span class="p">,</span>
+      <span class="p">[</span>
+        <span class="s1">&#39;build&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;chore&#39;</span><span class="p">,</span>      <span class="c1">//构建过程或辅助工具的变动
+</span><span class="c1"></span>        <span class="s1">&#39;docs&#39;</span><span class="p">,</span>       <span class="c1">//文档（documentation）
+</span><span class="c1"></span>        <span class="s1">&#39;feat&#39;</span><span class="p">,</span>       <span class="c1">//新功能（feature）
+</span><span class="c1"></span>        <span class="s1">&#39;fix&#39;</span><span class="p">,</span>        <span class="c1">//修补bug
+</span><span class="c1"></span>        <span class="s1">&#39;perf&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;refactor&#39;</span><span class="p">,</span>   <span class="c1">//重构（即不是新增功能，也不是修改bug的代码变动）
+</span><span class="c1"></span>        <span class="s1">&#39;revert&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;style&#39;</span><span class="p">,</span>      <span class="c1">//格式（不影响代码运行的变动）
+</span><span class="c1"></span>        <span class="s1">&#39;test&#39;</span><span class="p">,</span>       <span class="c1">//增加测试
+</span><span class="c1"></span>      <span class="p">],</span>
+    <span class="p">],</span> <span class="c1">//type关键字必须是其中之一
+</span><span class="c1"></span>  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>配置husky</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;commitmsg&#34;</span><span class="p">:</span> <span class="s2">&#34;commitlint -e&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>配置完成之后，提交所写的commit如果不符合规范，则无法进行下一步操作</p>
 <h2 id="commit-message-的格式">Commit message 的格式</h2>
 <p>每次提交，Commit message 都包括三个部分：Header，Body 和 Footer</p>
-<pre><code class="language-xml">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;type&gt;</span>(<span class="nt">&lt;scope&gt;</span>): <span class="nt">&lt;subject&gt;</span>
 // 空一行
-&lt;body&gt;
+<span class="nt">&lt;body&gt;</span>
 // 空一行
-&lt;footer&gt;
-</code></pre>
-<p>Header是必需的，Body和Footer可以省略</p>
+<span class="nt">&lt;footer&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Header是必需的，Body和Footer可以省略</p>
 <h3 id="header">header</h3>
 <p>Header部分只有一行，包括三个字段：type（必需）、scope（可选）和subject（必需）</p>
 <h4 id="type">type</h4>
 <p>该字段用于说明commit的类型，被指定在上面的<code>type-enum</code>中</p>
-<pre><code class="language-js">'build',
-'chore',      //构建过程或辅助工具的变动
-'docs',       //文档（documentation）
-'feat',       //新功能（feature）
-'fix',        //修补bug
-'perf',
-'refactor',   //重构（即不是新增功能，也不是修改bug的代码变动）
-'revert',
-'style',      //格式（不影响代码运行的变动）
-'test',       //增加测试
-</code></pre>
-<p>如果type为feat和fix，则该 commit 将肯定出现在 Change log 之中。其他情况建议是不要放入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="s1">&#39;build&#39;</span><span class="p">,</span>
+<span class="s1">&#39;chore&#39;</span><span class="p">,</span>      <span class="c1">//构建过程或辅助工具的变动
+</span><span class="c1"></span><span class="s1">&#39;docs&#39;</span><span class="p">,</span>       <span class="c1">//文档（documentation）
+</span><span class="c1"></span><span class="s1">&#39;feat&#39;</span><span class="p">,</span>       <span class="c1">//新功能（feature）
+</span><span class="c1"></span><span class="s1">&#39;fix&#39;</span><span class="p">,</span>        <span class="c1">//修补bug
+</span><span class="c1"></span><span class="s1">&#39;perf&#39;</span><span class="p">,</span>
+<span class="s1">&#39;refactor&#39;</span><span class="p">,</span>   <span class="c1">//重构（即不是新增功能，也不是修改bug的代码变动）
+</span><span class="c1"></span><span class="s1">&#39;revert&#39;</span><span class="p">,</span>
+<span class="s1">&#39;style&#39;</span><span class="p">,</span>      <span class="c1">//格式（不影响代码运行的变动）
+</span><span class="c1"></span><span class="s1">&#39;test&#39;</span><span class="p">,</span>       <span class="c1">//增加测试
+</span></code></pre></td></tr></table>
+</div>
+</div><p>如果type为feat和fix，则该 commit 将肯定出现在 Change log 之中。其他情况建议是不要放入</p>
 <h4 id="scope">scope</h4>
 <p>用于说明commit的影响范围</p>
 <h4 id="subject">subject</h4>
@@ -302,15 +329,27 @@
 </ul>
 <h3 id="body">body</h3>
 <p>body 部分是对本次 commit 的描述，可以分成多行，例如：</p>
-<pre><code class="language-sh">More detailed explanatory text, if necessary.  Wrap it to 
-about 72 characters or so. 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">More detailed explanatory text, <span class="k">if</span> necessary.  Wrap it to 
+about <span class="m">72</span> characters or so. 
 
 Further paragraphs come after blank lines.
 
 - Bullet points are okay, too
 - Use a hanging indent
-</code></pre>
-<p>有两个注意点:</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>有两个注意点:</p>
 <ol>
 <li>
 <p>使用第一人称现在时，比如使用change而不是changed或changes</p>
@@ -323,143 +362,204 @@ Further paragraphs come after blank lines.
 <p>footer只用于以下两种情况：</p>
 <h4 id="不兼容变动">不兼容变动</h4>
 <p>如果当前代码与上一个版本不兼容，则 Footer 部分以BREAKING CHANGE开头，后面是对变动的描述、以及变动理由和迁移方法</p>
-<pre><code class="language-sh">BREAKING CHANGE: isolate scope bindings definition has changed.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">BREAKING CHANGE: isolate scope bindings definition has changed.
 
     To migrate the code follow the example below:
 
     Before:
 
-    scope: {
-      myAttr: 'attribute',
-    }
+    scope: <span class="o">{</span>
+      myAttr: <span class="s1">&#39;attribute&#39;</span>,
+    <span class="o">}</span>
 
     After:
 
-    scope: {
-      myAttr: '@',
-    }
+    scope: <span class="o">{</span>
+      myAttr: <span class="s1">&#39;@&#39;</span>,
+    <span class="o">}</span>
 
-    The removed `inject` wasn't generaly useful for directives so there should be no code using it.
-</code></pre>
-<h4 id="关闭issue">关闭Issue</h4>
+    The removed <span class="sb">`</span>inject<span class="sb">`</span> wasn<span class="err">&#39;</span>t generaly useful <span class="k">for</span> directives so there should be no code using it.
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="关闭issue">关闭Issue</h4>
 <p>如果当前 commit 针对某个issue，那么可以在 footer 部分关闭这个 issue</p>
-<pre><code class="language-sh">//关闭一个
-Closes #1
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">//关闭一个
+Closes <span class="c1">#1</span>
 //关闭多个
-Closes #2, #3, #4
-</code></pre>
-<h3 id="revert">revert</h3>
+Closes <span class="c1">#2, #3, #4</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="revert">revert</h3>
 <p>还有一种特殊情况，如果当前 commit 用于撤销以前的 commit，必须以revert:开头，后面跟着被撤销 commit 的 header</p>
-<pre><code class="language-sh">revert: refactor(compiler): introduce `TestBed.deprecatedOverrideProvider` (#19558)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">revert: refactor<span class="o">(</span>compiler<span class="o">)</span>: introduce <span class="sb">`</span>TestBed.deprecatedOverrideProvider<span class="sb">`</span> <span class="o">(</span><span class="c1">#19558)</span>
 
 This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
-</code></pre>
-<p>Body部分的格式是固定的，必须写成<code>This reverts commit &lt;hash&gt;.</code>，其中的hash是被撤销 commit 的 SHA 标识符</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>Body部分的格式是固定的，必须写成<code>This reverts commit &lt;hash&gt;.</code>，其中的hash是被撤销 commit 的 SHA 标识符</p>
 <p>如果当前 commit 与被撤销的 commit，在同一个发布（release）里面，那么它们都不会出现在 Change log 里面。如果两者在不同的发布，那么当前 commit，会出现在 Change log 的Reverts小标题下面。</p>
 <h3 id="example">Example</h3>
-<pre><code class="language-sh">refactor(compiler): introduce `TestBed.deprecatedOverrideProvider` (#19558)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">refactor<span class="o">(</span>compiler<span class="o">)</span>: introduce <span class="sb">`</span>TestBed.deprecatedOverrideProvider<span class="sb">`</span> <span class="o">(</span><span class="c1">#19558)</span>
 
-This allows use to fix `TestBed.overrideProvider` to keep imported `NgModule`s eager,
-while allowing our users to still keep the old semantics until they have fixed their
+This allows use to fix <span class="sb">`</span>TestBed.overrideProvider<span class="sb">`</span> to keep imported <span class="sb">`</span>NgModule<span class="sb">`</span>s eager,
+<span class="k">while</span> allowing our users to still keep the old semantics <span class="k">until</span> they have fixed their
 tests.
 
-PR Close #19558
-</code></pre>
-<h2 id="生成change-log">生成change log</h2>
+PR Close <span class="c1">#19558</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="生成change-log">生成change log</h2>
 <p>如果你的所有 Commit 都符合 Angular 格式，那么发布新版本时， Change log 就可以用脚本自动生成。</p>
 <p>生成的文档包括以下三个部分。</p>
-<pre><code class="language-sh">New features
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">New features
 Bug fixes
 Breaking changes.
-</code></pre>
-<p>每个部分都会罗列相关的 commit ，并且有指向这些 commit 的链接。当然，生成的文档允许手动修改，所以发布前，你还可以添加其他内容。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>每个部分都会罗列相关的 commit ，并且有指向这些 commit 的链接。当然，生成的文档允许手动修改，所以发布前，你还可以添加其他内容。</p>
 <p>conventional-changelog 就是生成 Change log 的工具，运行下面的命令即可。</p>
-<pre><code class="language-sh">$ npm install -g conventional-changelog
-$ cd my-project
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ npm install -g conventional-changelog
+$ <span class="nb">cd</span> my-project
 $ conventional-changelog -p angular -i CHANGELOG.md -w
-</code></pre>
-<p>上面命令不会覆盖以前的 Change log，只会在CHANGELOG.md的头部加上自从上次发布以来的变动。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面命令不会覆盖以前的 Change log，只会在CHANGELOG.md的头部加上自从上次发布以来的变动。</p>
 <p>如果你想生成所有发布的 Change log，要改为运行下面的命令。</p>
-<pre><code class="language-sh">$ conventional-changelog -p angular -i CHANGELOG.md -w -r 0
-</code></pre>
-<p>为了方便使用，可以将其写入package.json的scripts字段。</p>
-<pre><code class="language-json">{
-  &quot;scripts&quot;: {
-    &quot;changelog&quot;: &quot;conventional-changelog -p angular -i CHANGELOG.md -w -r 0&quot;
-  }
-}
-</code></pre>
-<p>以后，直接运行下面的命令即可。</p>
-<pre><code class="language-sh">$ npm run changelog
-</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ conventional-changelog -p angular -i CHANGELOG.md -w -r <span class="m">0</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>为了方便使用，可以将其写入package.json的scripts字段。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;changelog&#34;</span><span class="p">:</span> <span class="s2">&#34;conventional-changelog -p angular -i CHANGELOG.md -w -r 0&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以后，直接运行下面的命令即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ npm run changelog
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2017-10-18</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/git/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Git</a>
-    
-</div>
-        
-        
-        
-
-
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2017-reactdom/" class="block">小记：React操作真实DOM实现动态吸底部</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2017-reactsum/" class="block">React使用小记</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
-        <h2 class="text-lg font-semibold mb-4">相关</h2>
-        <div class="content">
-            
-            <a href="/posts/2017-gitreset/">使用git回退远程库代码</a>
-            <br />
-            
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2017-gitcommint/" data-title="Git Commint规范" data-hashtags="Git"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
         </div>
     </div>
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
 
-      </div>
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">Git</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
     </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+
+    <div class="post-nav"><a href="/posts/2017-reactsum/" class="prev" rel="prev" title="React使用小记"><i class="fas fa-angle-left fa-fw"></i>React使用小记</a>
+            <a href="/posts/2017-reactdom/" class="next" rel="next" title="小记：React操作真实DOM实现动态吸底部">小记：React操作真实DOM实现动态吸底部<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

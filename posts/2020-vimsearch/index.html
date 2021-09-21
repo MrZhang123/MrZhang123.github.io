@@ -1,220 +1,150 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>vim的搜索与替换 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"vim的搜索与替换",
-      "item":"/posts/2020-vimsearch/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2020-vimsearch/"
-    },
-    "headline": "vim的搜索与替换 | 博客","datePublished": "2020-03-15T16:15:00+00:00",
-    "dateModified": "2020-03-15T16:15:00+00:00",
-    "wordCount":  194 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cp\u003e在使用编辑器的过程中，我们会经常使用到搜索 \/ 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 \/ 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。\u003c\/p\u003e"
-}
-</script><meta property="og:title" content="vim的搜索与替换 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2020-vimsearch/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">vim的搜索与替换 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="vim的搜索与替换" />
 <meta property="og:description" content="在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2020-vimsearch/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-03-15T16:15:00+00:00" />
+<meta property="article:modified_time" content="2020-03-15T16:15:00+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="vim的搜索与替换"/>
+<meta name="twitter:description" content="在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2020-03-15T16:15:00&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2020-03-15T16:15:00&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="Vim" />
-
-
-
-
-
-<meta property="og:see_also" content="/posts/2019-vimperformance/" />
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2020-vimsearch/" /><link rel="prev" href="http://example.org/posts/2020_okr/" /><link rel="next" href="http://example.org/posts/2020-blance-sheet/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "vim的搜索与替换",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2020-vimsearch\/"
+        },"genre": "posts","keywords": "Vim","wordcount":  2325 ,
+        "url": "http:\/\/example.org\/posts\/2020-vimsearch\/","datePublished": "2020-03-15T16:15:00+00:00","dateModified": "2020-03-15T16:15:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">vim的搜索与替换</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2020-03-15</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>1分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/vim/" class="hover:text-eureka">Vim</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">vim的搜索与替换</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vim/"><i class="far fa-folder fa-fw"></i>Vim</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-03-15">2020-03-15</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-03-15">2020-03-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2325 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#高亮搜索结果">高亮搜索结果</a></li>
+    <li><a href="#搜索大小写敏感">搜索大小写敏感</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p>
 <h1 id="利用vim自带搜索">利用vim自带搜索</h1>
 <p>对于搜索当前打开文件，vim自带搜索功能足以应对，在Normal modal下键入<code>/</code>，即可进入搜索模式，此时输入想要搜索的单词然后回车，即可完成搜索，光标会跳到当前搜索到的第一个匹配的单词。按下<code>n</code>，光标跳到下一个匹配的单词，按下<code>N</code>（<code>shift+n</code>）光标会跳到上一个匹配的单词。</p>
 <p>除了在Normal modal下可以键入<code>/</code>开始搜索外，还可以键入以下符号开始搜索：</p>
@@ -227,25 +157,48 @@
 <p>此外vim搜索还支持正则，例如输入<code>/se$</code>表示搜索以<code>se</code>结尾的单词，输入<code>/^se</code>表示搜索以<code>se</code>开头的单词</p>
 <h2 id="高亮搜索结果">高亮搜索结果</h2>
 <p>默认情况下，搜索的结果不会高亮，只是光标会跳到搜索到的单词，如果想要高亮搜索结果，可以在Normal modal下输入<code>:set hlsearch</code>，或者在<code>.vimrc</code>文件中设置：</p>
-<pre><code class="language-sh">&quot; search result heighligh, when enter `:noh` in command line , clean heightlight
-set hlsearch
-</code></pre>
-<p>这样设置后，在搜索完成后，所有的匹配文本都会高亮，想要取消搜索结果的高亮可以在Normal modal下输入<code>:nohlsearch</code>或其简写<code>:noh</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="s2">&#34; search result heighligh, when enter `:noh` in command line , clean heightlight
+</span><span class="s2">set hlsearch
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这样设置后，在搜索完成后，所有的匹配文本都会高亮，想要取消搜索结果的高亮可以在Normal modal下输入<code>:nohlsearch</code>或其简写<code>:noh</code></p>
 <h2 id="搜索大小写敏感">搜索大小写敏感</h2>
 <p>在使用vim的搜索默认是大小写不敏感的，如果想要让vim搜索做到<strong>大小写敏感</strong>，可以在输入想要搜索的单词后面添加<code>\C</code>，对应的如果使用<code>\c</code>，则表示搜索大小写不敏感。</p>
 <p>或者直接在<code>.vimrc</code>中添加设置：</p>
-<pre><code class="language-sh">&quot; 开启大小写不敏感（默认值）
-set ignorecase
-
-&quot; 开启智能推测
-set smartcase
-</code></pre>
-<p>开启智能推测后，如果输入的文本带有大写字母，vim会认为你当前搜索是区分大小写的，否则不区分大小写。即开启后，如果输入<code>:Set</code>，则只能搜索到<code>Set</code>，但是如果输入<code>:set</code>，则可以搜索到<code>set</code>和<code>Set</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="s2">&#34; 开启大小写不敏感（默认值）
+</span><span class="s2">set ignorecase
+</span><span class="s2">
+</span><span class="s2">&#34;</span> 开启智能推测
+<span class="nb">set</span> smartcase
+</code></pre></td></tr></table>
+</div>
+</div><p>开启智能推测后，如果输入的文本带有大写字母，vim会认为你当前搜索是区分大小写的，否则不区分大小写。即开启后，如果输入<code>:Set</code>，则只能搜索到<code>Set</code>，但是如果输入<code>:set</code>，则可以搜索到<code>set</code>和<code>Set</code>。</p>
 <h1 id="vim中的替换">vim中的替换</h1>
 <p>对于替换当前打开文件中的文本，vim提供如下语法：</p>
-<pre><code class="language-sh">:{作用范围}s/{目标字符}/{替换的字符}/{替换标志}
-</code></pre>
-<p>作用范围：用于指定替换的范围，<code>1,3</code>表示替换第一行至第三行，<code>1,$</code>表示替换第一行到最后一行，也可以直接用<code>%</code>表示。
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">:<span class="o">{</span>作用范围<span class="o">}</span>s/<span class="o">{</span>目标字符<span class="o">}</span>/<span class="o">{</span>替换的字符<span class="o">}</span>/<span class="o">{</span>替换标志<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>作用范围：用于指定替换的范围，<code>1,3</code>表示替换第一行至第三行，<code>1,$</code>表示替换第一行到最后一行，也可以直接用<code>%</code>表示。
 替换标志（可以组合使用）：</p>
 <ul>
 <li>c: confirm，每次替换前都会询问</li>
@@ -255,7 +208,14 @@ set smartcase
 </ul>
 <p>具体的用法可以查看下图（摘自Reddit）：</p>
 <!--vim替换的图示-->
-<p><img src="./img/vim1.jpg" alt="vim搜索和替换命令"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/vim1.jpg"
+        data-srcset="./img/vim1.jpg, ./img/vim1.jpg 1.5x, ./img/vim1.jpg 2x"
+        data-sizes="auto"
+        alt="./img/vim1.jpg"
+        title="vim搜索和替换命令"
+    /></p>
 <ul>
 <li>
 <p><code>:%s/remember/me/n</code>命令不会替换任何东西。 只是告诉我们如果我们运行命令，受影响的行数。实际操作过程中，在vim中运行该命令，显示<code>89 matches on 89 lines</code></p>
@@ -266,41 +226,78 @@ set smartcase
 </ul>
 <h1 id="利用插件在vim中搜索">利用插件在vim中搜索</h1>
 <p>有时候需要在整个项目中搜索文件或者文本，这类操作借助插件更方便一些。</p>
-<p>说起vim中搜索文件，就一定会想到大名鼎鼎的<a href="https://github.com/kien/ctrlp.vims">ctrlp.vim</a>，但该插件早已不再维护（最近一次提交是在2015年11月30日），那是否还有其他替代插件呢？答案是有的，可以使用<a href="https://github.com/junegunn/fzf.vim">fzf.vim</a>。fzf.vim支持文件搜索，全局文本搜索，buffer搜索，git log搜索等，这里只介绍最常用的全局文本搜索和文件搜索。</p>
-<p>首先使用<a href="https://github.com/junegunn/vim-plug">vim-plug</a>安装插件：</p>
-<pre><code class="language-sh">Plug 'junegunn/fzf', { 'do': { -&gt; fzf#install() } }
-Plug 'junegunn/fzf.vim'
-</code></pre>
-<p>从以上安装可以看到要想使用fzf.vim，需要首先安装<a href="https://github.com/junegunn/fzf">fzf</a>。</p>
+<p>说起vim中搜索文件，就一定会想到大名鼎鼎的<a href="https://github.com/kien/ctrlp.vims" target="_blank" rel="noopener noreffer">ctrlp.vim</a>，但该插件早已不再维护（最近一次提交是在2015年11月30日），那是否还有其他替代插件呢？答案是有的，可以使用<a href="https://github.com/junegunn/fzf.vim" target="_blank" rel="noopener noreffer">fzf.vim</a>。fzf.vim支持文件搜索，全局文本搜索，buffer搜索，git log搜索等，这里只介绍最常用的全局文本搜索和文件搜索。</p>
+<p>首先使用<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener noreffer">vim-plug</a>安装插件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">Plug <span class="s1">&#39;junegunn/fzf&#39;</span>, <span class="o">{</span> <span class="s1">&#39;do&#39;</span>: <span class="o">{</span> -&gt; fzf#install<span class="o">()</span> <span class="o">}</span> <span class="o">}</span>
+Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>从以上安装可以看到要想使用fzf.vim，需要首先安装<a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener noreffer">fzf</a>。</p>
 <p>fzf是一款golang编写的命令行模糊查找器，支持文件，命令等的模糊搜索。强烈建议使用，对于经常使用终端的同学来说太方便了。</p>
 <hr>
 <p>备注：</p>
 <p>如果要安装fzf，在macOS直接：<code>brew install fzf</code>即可。如果通过<code>brew</code>安装过fzf，则vim-plug的配置如下：</p>
-<pre><code class="language-sh">Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-</code></pre>
-<hr>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">Plug <span class="s1">&#39;/usr/local/opt/fzf&#39;</span>
+Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><hr>
 <p>安装完成后在<code>.vimrc</code>中添加如下配置：</p>
-<pre><code class="language-sh">&quot; fzf
-&quot; fzf use rg search config
-let g:fzf_layout = { 'down': '~70%' }
-command! -bang -nargs=* Rg
-      \ call fzf#vim#grep(
-      \   &quot;rg --column --line-number --no-heading --color=always --smart-case &quot;
-      \   .(len(&lt;q-args&gt;) &gt; 0 ? &lt;q-args&gt;: '&quot;&quot;'),
-      \   1,
-      \   &lt;bang&gt;0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-      \   : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
-      \   &lt;bang&gt;0)
-command! -bang -nargs=? -complete=dir Files
-  \ call fzf#vim#files(&lt;q-args&gt;, fzf#vim#with_preview(), &lt;bang&gt;0)
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="s2">&#34; fzf
+</span><span class="s2">&#34;</span> fzf use rg search config
+<span class="nb">let</span> g:fzf_layout <span class="o">=</span> <span class="o">{</span> <span class="s1">&#39;down&#39;</span>: <span class="s1">&#39;~70%&#39;</span> <span class="o">}</span>
+command! -bang -nargs<span class="o">=</span>* Rg
+      <span class="se">\ </span>call fzf#vim#grep<span class="o">(</span>
+      <span class="se">\ </span>  <span class="s2">&#34;rg --column --line-number --no-heading --color=always --smart-case &#34;</span>
+      <span class="se">\ </span>  .<span class="o">(</span>len<span class="o">(</span>&lt;q-args&gt;<span class="o">)</span> &gt; <span class="m">0</span> ? &lt;q-args&gt;: <span class="s1">&#39;&#34;&#34;&#39;</span><span class="o">)</span>,
+      <span class="se">\ </span>  1,
+      <span class="se">\ </span>  &lt;bang&gt;0 ? fzf#vim#with_preview<span class="o">({</span><span class="s1">&#39;options&#39;</span>: <span class="s1">&#39;--delimiter : --nth 4..&#39;</span><span class="o">}</span>, <span class="s1">&#39;up:60%&#39;</span><span class="o">)</span>
+      <span class="se">\ </span>  : fzf#vim#with_preview<span class="o">({</span><span class="s1">&#39;options&#39;</span>: <span class="s1">&#39;--delimiter : --nth 4..&#39;</span><span class="o">}</span>, <span class="s1">&#39;right:50%:hidden&#39;</span>, <span class="s1">&#39;?&#39;</span><span class="o">)</span>,
+      <span class="se">\ </span>  &lt;bang&gt;0<span class="o">)</span>
+command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>dir Files
+  <span class="se">\ </span>call fzf#vim#files<span class="o">(</span>&lt;q-args&gt;, fzf#vim#with_preview<span class="o">()</span>, &lt;bang&gt;0<span class="o">)</span>
 
-&quot; fzf vim
-nnoremap  &lt;silent&gt; &lt;Leader&gt;rg :Rg&lt;CR&gt;
-nnoremap &lt;leader&gt;b :Buffers&lt;CR&gt;
-nnoremap &lt;C-p&gt; :Files&lt;CR&gt;
-</code></pre>
-<p>关于fzf.vim的配置有几点说明：</p>
+<span class="s2">&#34; fzf vim
+</span><span class="s2">nnoremap  &lt;silent&gt; &lt;Leader&gt;rg :Rg&lt;CR&gt;
+</span><span class="s2">nnoremap &lt;leader&gt;b :Buffers&lt;CR&gt;
+</span><span class="s2">nnoremap &lt;C-p&gt; :Files&lt;CR&gt;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>关于fzf.vim的配置有几点说明：</p>
 <ul>
 <li><code>fzf_layout</code>用于设置调用fzf搜索的窗口位置以及大小，可以设置<code>left</code>、<code>right</code>、<code>down</code>、<code>up</code>。</li>
 <li>fzf.vim内置<code>fzf#vim#grep</code>函数，支持调用第三方搜索，接收参数：<code>fzf#vim#grep(command, [has_column bool], [spec dict], [fullscreen bool])</code>
@@ -311,78 +308,49 @@ nnoremap &lt;C-p&gt; :Files&lt;CR&gt;
 <li><code>fullscreen</code>：是否全屏，<code>&lt;bang&gt;0</code>是vim script，在vim命令中如果输入<code>!</code>则<code>&lt;bang&gt;0</code>转换成1，否则为0；</li>
 </ul>
 </li>
-<li>这里使用了<a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>（因为据说vscode内的搜索就是基于这个做的，所以选择这个）作为fzf中默认的搜索。<code>fzf#vim#with_preview</code>用于配置展示预览窗口。配置好后在vim中输入<code>:Rg</code>就可以启动在整个项目搜索文本，<code>:Files</code>在整个项目中搜索文件。</li>
+<li>这里使用了<a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener noreffer">ripgrep</a>（因为据说vscode内的搜索就是基于这个做的，所以选择这个）作为fzf中默认的搜索。<code>fzf#vim#with_preview</code>用于配置展示预览窗口。配置好后在vim中输入<code>:Rg</code>就可以启动在整个项目搜索文本，<code>:Files</code>在整个项目中搜索文件。</li>
 <li>在使用fzf.vim搜索文本和文件的过程中需要注意一点，<strong>搜索是基于你当前打开文件所在的文件夹去搜索</strong>。所以如果要在整个项目中搜索，就需要在项目根目录下打开一个文件进行搜索。这也类似于在vscode中，如果想搜索项目中特定文件夹中的文本，需要选择当前想要选择的文件夹。</li>
 </ul>
-<p>以上配置就可以满足我们日常开发中的搜索/替换文本，搜索文件等常用功能了。</p>
+<p>以上配置就可以满足我们日常开发中的搜索/替换文本，搜索文件等常用功能了。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-03-15</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/vim/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Vim</a>
-    
-</div>
-        
-        
-        
-
-
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2020-blance-sheet/" class="block">学习读财报之资产负债表</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2020_okr/" class="block">解析OKR</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
-        <h2 class="text-lg font-semibold mb-4">相关</h2>
-        <div class="content">
-            
-            <a href="/posts/2019-vimperformance/">记一次vim性能优化</a>
-            <br />
-            
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2020-vimsearch/" data-title="vim的搜索与替换" data-hashtags="Vim"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
         </div>
     </div>
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
 
-      </div>
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">Vim</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
     </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+
+    <div class="post-nav"><a href="/posts/2020_okr/" class="prev" rel="prev" title="解析OKR"><i class="fas fa-angle-left fa-fw"></i>解析OKR</a>
+            <a href="/posts/2020-blance-sheet/" class="next" rel="next" title="学习读财报之资产负债表">学习读财报之资产负债表<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

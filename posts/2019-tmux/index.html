@@ -1,245 +1,222 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>终端复用神器Tmux | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="
-记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。
-">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"终端复用神器Tmux",
-      "item":"/posts/2019-tmux/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2019-tmux/"
-    },
-    "headline": "终端复用神器Tmux | 博客","datePublished": "2019-06-23T14:32:00+00:00",
-    "dateModified": "2019-06-23T14:32:00+00:00",
-    "wordCount":  440 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cblockquote\u003e\n\u003cp\u003e记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。\u003c\/p\u003e\n\u003c\/blockquote\u003e"
-}
-</script><meta property="og:title" content="终端复用神器Tmux | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2019-tmux/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">终端复用神器Tmux - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="终端复用神器Tmux" />
 <meta property="og:description" content="
 记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。
 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2019-tmux/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-06-23T14:32:00+00:00" />
+<meta property="article:modified_time" content="2019-06-23T14:32:00+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="终端复用神器Tmux"/>
+<meta name="twitter:description" content="
+记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。
+"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2019-06-23T14:32:00&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2019-06-23T14:32:00&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="Linux" />
-
-
-
-
-
-<meta property="og:see_also" content="/posts/2016-linuxstudy/" />
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2019-tmux/" /><link rel="prev" href="http://example.org/posts/2019-axiosparams/" /><link rel="next" href="http://example.org/posts/2019-componentstips/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "终端复用神器Tmux",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2019-tmux\/"
+        },"genre": "posts","keywords": "Linux","wordcount":  3370 ,
+        "url": "http:\/\/example.org\/posts\/2019-tmux\/","datePublished": "2019-06-23T14:32:00+00:00","dateModified": "2019-06-23T14:32:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">终端复用神器Tmux</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2019-06-23</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>3分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/linux/" class="hover:text-eureka">Linux</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <blockquote>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">终端复用神器Tmux</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3370 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#session">session</a>
+          <ul>
+            <li><a href="#新建">新建</a></li>
+            <li><a href="#断开">断开</a></li>
+            <li><a href="#恢复">恢复</a></li>
+            <li><a href="#关闭">关闭</a></li>
+            <li><a href="#查看">查看</a></li>
+          </ul>
+        </li>
+        <li><a href="#tmux基础配置">tmux基础配置</a>
+          <ul>
+            <li><a href="#配置tmux前缀">配置tmux前缀</a></li>
+            <li><a href="#分屏">分屏</a></li>
+            <li><a href="#切换pane">切换pane</a></li>
+            <li><a href="#开启鼠标支持">开启鼠标支持</a></li>
+            <li><a href="#调整pane">调整pane</a></li>
+          </ul>
+        </li>
+        <li><a href="#附">附</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
 <p>记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。</p>
 </blockquote>
-<p>在用tmux之前一直都是用的<a href="https://www.iterm2.com/">iterm2</a>（在mac上很好用的终端）原生的新开tab和分屏，其实也还好，界面看起来就像这样：</p>
+<p>在用tmux之前一直都是用的<a href="https://www.iterm2.com/" target="_blank" rel="noopener noreffer">iterm2</a>（在mac上很好用的终端）原生的新开tab和分屏，其实也还好，界面看起来就像这样：</p>
 <!--item2原生分屏图片-->
-<p><img src="./img/iterm2.png" alt="item2原生分屏图片"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/iterm2.png"
+        data-srcset="./img/iterm2.png, ./img/iterm2.png 1.5x, ./img/iterm2.png 2x"
+        data-sizes="auto"
+        alt="./img/iterm2.png"
+        title="item2原生分屏图片"
+    /></p>
 <p>但是分屏很多之后，可以看到很多状态栏，并不是很美观，对比tmux的分屏，看起来就要hack很多，tmux的分屏界面如下：</p>
 <!--tmux分屏图片-->
-<p><img src="./img/tmux.png" alt="tmux分屏图片"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/tmux.png"
+        data-srcset="./img/tmux.png, ./img/tmux.png 1.5x, ./img/tmux.png 2x"
+        data-sizes="auto"
+        alt="./img/tmux.png"
+        title="tmux分屏图片"
+    /></p>
 <p>正是基于这个原因，开始学着始使用tmux。</p>
 <h3 id="安装">安装</h3>
 <blockquote>
 <p>tmux的仓库：https://github.com/tmux/tmux</p>
 </blockquote>
 <p>首先安装tmux：</p>
-<pre><code class="language-sh"># mac安装
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># mac安装</span>
 brew install tmux
 
-# linux 安装
+<span class="c1"># linux 安装</span>
 sudo apt-get install tmux
-</code></pre>
-<p>开始学习tmux之前首先要明确几个概念：</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>开始学习tmux之前首先要明确几个概念：</p>
 <ul>
 <li>session：概括一个任务，是一组window的集合，在任务开始前创建一个session，与此任务相关的状态都会保存在session中，通过重新连接session可以方便的继续未完成的任务。session最大的最用就是持久的保存工作状态</li>
 <li>window：tmux中的window其实就是我们常说的tab，在chrome中，新开一个tab就会新建一个页面，tmux也类似</li>
@@ -247,25 +224,53 @@ sudo apt-get install tmux
 </ul>
 <p>简单来说就是：session包含window，window包含pane</p>
 <!--tmux名词标注-->
-<p><img src="./img/tmux-name.png" alt="tmux名词标注"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/tmux-name.png"
+        data-srcset="./img/tmux-name.png, ./img/tmux-name.png 1.5x, ./img/tmux-name.png 2x"
+        data-sizes="auto"
+        alt="./img/tmux-name.png"
+        title="tmux名词标注"
+    /></p>
 <h3 id="session">session</h3>
 <h4 id="新建">新建</h4>
 <p>安装完成后，在终端直接输入<code>tmux</code>即可进入tmux。进入之后可以看到session的名字是0，这是因为我们直接输入<code>tmux</code>会创建一个无名的会话，如果想要新建session的时候给session命名，可以使用以下命令：</p>
-<pre><code class="language-sh">tmux new -s your-session-name
-</code></pre>
-<h4 id="断开">断开</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">tmux new -s your-session-name
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="断开">断开</h4>
 <p>如果想要断开当前session可以使用</p>
-<pre><code class="language-sh">tmux detach # 断开当前会话
-</code></pre>
-<p>或者使用快捷键<code>[prefix]+d</code>，其中<code>prefx</code>默认为<code>ctrl+b</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">tmux detach <span class="c1"># 断开当前会话</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>或者使用快捷键<code>[prefix]+d</code>，其中<code>prefx</code>默认为<code>ctrl+b</code></p>
 <h4 id="恢复">恢复</h4>
 <p>退出session之后，想要恢复之前工作的区域，直接在终端输入：</p>
-<pre><code class="language-sh">tmux attach-session -t your-session-name
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">tmux attach-session -t your-session-name
 
-# 可以简写
+<span class="c1"># 可以简写</span>
 tmux a -t your-session-name
-</code></pre>
-<p>其中<code>session-name</code>是可选的，如果不输入，默认进入第一个会话。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>其中<code>session-name</code>是可选的，如果不输入，默认进入第一个会话。</p>
 <h4 id="关闭">关闭</h4>
 <p>使用完成后，要关闭，可以使用<code>tmux kill</code>命令，<code>kill</code>有以下四种：</p>
 <ul>
@@ -274,64 +279,141 @@ tmux a -t your-session-name
 <li><code>kill-window</code></li>
 <li><code>kill-pane</code></li>
 </ul>
-<pre><code class="language-sh"># 关闭session
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 关闭session</span>
 tmux kill-session -t your-session-name
-# 关闭所有
+<span class="c1"># 关闭所有</span>
 tmux kill-server
-</code></pre>
-<h4 id="查看">查看</h4>
-<pre><code class="language-sh">tmux list-session
-# 简写
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="查看">查看</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">tmux list-session
+<span class="c1"># 简写</span>
 tmux ls
-</code></pre>
-<p>或者使用快捷键<code>prefix+s</code>查看所有session，<code>prefix+w</code>查看所有window。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>或者使用快捷键<code>prefix+s</code>查看所有session，<code>prefix+w</code>查看所有window。</p>
 <!--tmux展示所有session和window的图-->
-<p><img src="./img/tmux-showall.png" alt="tmux展示所有session和window的图"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/tmux-showall.png"
+        data-srcset="./img/tmux-showall.png, ./img/tmux-showall.png 1.5x, ./img/tmux-showall.png 2x"
+        data-sizes="auto"
+        alt="./img/tmux-showall.png"
+        title="tmux展示所有session和window的图"
+    /></p>
 <h3 id="tmux基础配置">tmux基础配置</h3>
 <p>tmux的配置在<code>~/.tmux.conf</code>文件中，如果没有该文件，可以先新建配置文件。</p>
 <h4 id="配置tmux前缀">配置tmux前缀</h4>
 <p>前面介绍session使用的时候，提到过一些快捷键，可以看到都是<code>prefix+xxx</code>的形式，这里的<code>prefix</code>是tmux的前缀键，默认为<code>ctrl+b</code>，只有按下<code>prefix</code>，才会激活tmux，然后再按其他键进行tmux操作，这样做的一个好处是可以有效的避免和其他应用快捷键的冲突。</p>
 <p>但是如果经常用tmux，就会发现<code>ctrl</code>和<code>b</code>这两个键按的不是很舒服，我们是否可以修改一个更加舒服的前缀键呢？当然是可以的，只需要在tmux的配置文件中解绑原有的<code>prefix</code>并修改成我们自定义的即可。配置如下：</p>
-<pre><code class="language-sh">set -g prefix C-a
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">set</span> -g prefix C-a
 
-# 解绑原有的prefix
+<span class="c1"># 解绑原有的prefix</span>
 unbind C-b
-bind C-a send-prefix
-</code></pre>
-<p>配置完成后，需要重启tmux，或者按下<code>ctrl+b</code>，然后输入<code>:</code>进入命令模式，输入：</p>
-<pre><code class="language-sh">source-file ~/.tmux.conf
-</code></pre>
-<p>或者我们给让配置生效添加快捷键：</p>
-<pre><code class="language-sh">bind r source-file $HOME/.tmux.conf \; display-message 'Config reloaded'
-</code></pre>
-<p>这样，直接输入<code>prefix+r</code>就可以让配置生效。</p>
+<span class="nb">bind</span> C-a send-prefix
+</code></pre></td></tr></table>
+</div>
+</div><p>配置完成后，需要重启tmux，或者按下<code>ctrl+b</code>，然后输入<code>:</code>进入命令模式，输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">source-file ~/.tmux.conf
+</code></pre></td></tr></table>
+</div>
+</div><p>或者我们给让配置生效添加快捷键：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">bind</span> r source-file <span class="nv">$HOME</span>/.tmux.conf <span class="se">\;</span> display-message <span class="s1">&#39;Config reloaded&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样，直接输入<code>prefix+r</code>就可以让配置生效。</p>
 <h4 id="分屏">分屏</h4>
 <p>在tmux中，水平和竖直分屏默认快捷键为<code>prefix+&quot;</code> 和 <code>prefix+%</code>，这两个键可以说很少用而且不容易按到，我们可以自定义自己习惯的快捷键，对于对vim熟悉的用户，可以将其设置为跟vim一样的快捷键：</p>
-<pre><code class="language-sh">bind C-h splitw -v -c '#{pane_current_path}'
-bind C-v splitw -h -c '#{pane_current_path}'
-</code></pre>
-<p>这里的<code>splitw</code>其实是<code>split-window</code>的缩写，<code>-c '#{pane_current_path}'</code>表示在打开新pane的时候，默认进入当前目录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">bind</span> C-h splitw -v -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
+<span class="nb">bind</span> C-v splitw -h -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里的<code>splitw</code>其实是<code>split-window</code>的缩写，<code>-c '#{pane_current_path}'</code>表示在打开新pane的时候，默认进入当前目录。</p>
 <h4 id="切换pane">切换pane</h4>
 <p>在iterm2中，切换标签的快捷键是<code>commond+option+方向键</code>或<code>commond+[</code>或<code>commond+]</code>，相应的在tmux中，切换pane默认快捷为<code>prefix+方向键</code>但是方向键本身和<code>ctrl</code>离的太远，操作不方便，同样的我们可以设置自己喜欢的快捷键，例如设置跟vim一样的快捷键（这里多说一句，其实在vim中最常用的控制方向的键就是hjkl，如果习惯使用vim，可以设置tmux与之相同快捷键）。</p>
-<pre><code class="language-sh">bind h select-pane -L # up
-bind j select-pane -D # down
-bind k select-pane -U # left
-bind l select-pane -R # right
-</code></pre>
-<h4 id="开启鼠标支持">开启鼠标支持</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">bind</span> h <span class="k">select</span>-pane -L <span class="c1"># up</span>
+<span class="nb">bind</span> j <span class="k">select</span>-pane -D <span class="c1"># down</span>
+<span class="nb">bind</span> k <span class="k">select</span>-pane -U <span class="c1"># left</span>
+<span class="nb">bind</span> l <span class="k">select</span>-pane -R <span class="c1"># right</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="开启鼠标支持">开启鼠标支持</h4>
 <p>在刚上手tmux的时候，总觉得各种命令很麻烦，而且不好记，如果支持鼠标就更好了，其实想要支持鼠标，只需要在配置文件中开启即可：</p>
-<pre><code class="language-sh">set-option -g mouse on
-</code></pre>
-<p>开启鼠标之后，切换pane可以直接点击激活，调整分屏大小可以直接拖拽实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">set-option -g mouse on
+</code></pre></td></tr></table>
+</div>
+</div><p>开启鼠标之后，切换pane可以直接点击激活，调整分屏大小可以直接拖拽实现。</p>
 <p><strong>当然了，既然使用了tmux，目的就不只是界面好看而已，而是要提高效率，所以尽量少用鼠标😏</strong></p>
 <h4 id="调整pane">调整pane</h4>
 <p>如果想要使用快捷键调节pane大小，同样可以设置快捷键实现：</p>
-<pre><code class="language-sh">bind H resize-pane -L 10 # 向左扩展10
-bind L resize-pane -R 10 # 向右扩展10
-bind K resize-pane -U 5  # 向上扩展5
-bind J resize-pane -D 5  # 向下扩展5
-</code></pre>
-<p>这样通过<code>prefix+HJKL</code>实现pane的扩展</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">bind</span> H resize-pane -L <span class="m">10</span> <span class="c1"># 向左扩展10</span>
+<span class="nb">bind</span> L resize-pane -R <span class="m">10</span> <span class="c1"># 向右扩展10</span>
+<span class="nb">bind</span> K resize-pane -U <span class="m">5</span>  <span class="c1"># 向上扩展5</span>
+<span class="nb">bind</span> J resize-pane -D <span class="m">5</span>  <span class="c1"># 向下扩展5</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样通过<code>prefix+HJKL</code>实现pane的扩展</p>
 <h3 id="附">附</h3>
 <table>
 <thead>
@@ -749,79 +831,50 @@ bind J resize-pane -D 5  # 向下扩展5
 </table>
 <h3 id="参考">参考</h3>
 <ul>
-<li><a href="http://louiszhai.github.io/2017/09/30/tmux/#Tmux%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4">Tmux使用手册</a></li>
-<li><a href="https://cnbin.github.io/blog/2015/06/20/iterm2-kuai-jie-jian-da-quan/">iTerm2 快捷键大全</a></li>
-<li><a href="https://gist.github.com/MohamedAlaa/2961058">tmux shortcuts &amp; cheatsheet</a></li>
-<li><a href="https://gist.github.com/andreyvit/2921703">tmux cheat sheet</a></li>
-</ul>
+<li><a href="http://louiszhai.github.io/2017/09/30/tmux/#Tmux%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4" target="_blank" rel="noopener noreffer">Tmux使用手册</a></li>
+<li><a href="https://cnbin.github.io/blog/2015/06/20/iterm2-kuai-jie-jian-da-quan/" target="_blank" rel="noopener noreffer">iTerm2 快捷键大全</a></li>
+<li><a href="https://gist.github.com/MohamedAlaa/2961058" target="_blank" rel="noopener noreffer">tmux shortcuts &amp; cheatsheet</a></li>
+<li><a href="https://gist.github.com/andreyvit/2921703" target="_blank" rel="noopener noreffer">tmux cheat sheet</a></li>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-06-23</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/linux/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Linux</a>
-    
-</div>
-        
-        
-        
-
-
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2019-componentstips/" class="block">【译】10个React组件的戒律</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2019-axiosparams/" class="block">使用Axios请求时如何传递数组？</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
-        <h2 class="text-lg font-semibold mb-4">相关</h2>
-        <div class="content">
-            
-            <a href="/posts/2016-linuxstudy/">Linux日常使用总结</a>
-            <br />
-            
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2019-tmux/" data-title="终端复用神器Tmux" data-hashtags="Linux"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
         </div>
     </div>
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
 
-      </div>
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
     </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+
+    <div class="post-nav"><a href="/posts/2019-axiosparams/" class="prev" rel="prev" title="使用Axios请求时如何传递数组？"><i class="fas fa-angle-left fa-fw"></i>使用Axios请求时如何传递数组？</a>
+            <a href="/posts/2019-componentstips/" class="next" rel="next" title="【译】10个React组件的戒律">【译】10个React组件的戒律<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

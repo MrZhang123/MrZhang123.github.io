@@ -1,34 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>leetCode on 博客</title>
-    <link>/tags/leetcode/</link>
-    <description>Recent content in leetCode on 博客</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
-</copyright>
-    <lastBuildDate>Tue, 16 Jul 2019 00:00:00 +0000</lastBuildDate><atom:link href="/tags/leetcode/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Roman To Int</title>
-      <link>/posts/2019-leetcode-romantoint/</link>
-      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/2019-leetcode-romantoint/</guid>
-      <description>&lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
-&lt;p&gt;罗马数字使用七个不同的符号表示：&lt;code&gt;I&lt;/code&gt;，&lt;code&gt;V&lt;/code&gt;，&lt;code&gt;X&lt;/code&gt;，&lt;code&gt;L&lt;/code&gt;，&lt;code&gt;C&lt;/code&gt;，&lt;code&gt;D&lt;/code&gt;和&lt;code&gt;M&lt;/code&gt;。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Two Sum</title>
-      <link>/posts/2019-leetcode-twosum/</link>
-      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/2019-leetcode-twosum/</guid>
-      <description>&lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
-&lt;p&gt;给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。&lt;/p&gt;
-&lt;p&gt;你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>leetCode - 标签 - 跨界Coder</title>
+        <link>http://example.org/tags/leetcode/</link>
+        <description>leetCode - 标签 - 跨界Coder</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 16 Jul 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/leetcode/" rel="self" type="application/rss+xml" /><item>
+    <title>Roman To Int</title>
+    <link>http://example.org/posts/2019-leetcode-romantoint/</link>
+    <pubDate>Tue, 16 Jul 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2019-leetcode-romantoint/</guid>
+    <description><![CDATA[<h3 id="题目">题目</h3>
+<p>罗马数字使用七个不同的符号表示：<code>I</code>，<code>V</code>，<code>X</code>，<code>L</code>，<code>C</code>，<code>D</code>和<code>M</code>。</p>]]></description>
+</item><item>
+    <title>Two Sum</title>
+    <link>http://example.org/posts/2019-leetcode-twosum/</link>
+    <pubDate>Tue, 16 Jul 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2019-leetcode-twosum/</guid>
+    <description><![CDATA[<h3 id="题目">题目</h3>
+<p>给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。</p>
+<p>你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。</p>]]></description>
+</item></channel>
 </rss>

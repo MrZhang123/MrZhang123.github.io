@@ -1,3 +1,273 @@
-baseURL = 'http://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = "http://example.org/"
+# [en, zh-cn, fr, ...] 设置默认的语言
+defaultContentLanguage = "zh-cn"
+# 网站语言, 仅在这里 CN 大写
+languageCode = "zh-CN"
+# 是否包括中日韩文字
+hasCJKLanguage = true
+# 更改使用 Hugo 构建网站时使用的默认主题
+theme = "DoIt"
+# 网站名称
+title = "跨界Coder"
+# 网站描述
+description = "跨界Coder Blog"
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+    pre = ""
+    # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+    post = ""
+    name = "文章"
+    url = "/posts/"
+    # 当你将鼠标悬停在此菜单链接上时, 将显示的标题
+    title = ""
+    weight = 1
+  [[menu.main]]
+    identifier = "tags"
+    pre = ""
+    post = ""
+    name = "标签"
+    url = "/tags/"
+    title = ""
+    weight = 2
+  [[menu.main]]
+    identifier = "categories"
+    pre = ""
+    post = ""
+    name = "分类"
+    url = "/categories/"
+    title = ""
+    weight = 3
+
+# Hugo 解析文档的配置
+[markup]
+  # 语法高亮设置
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+    # false 是必要的设置
+    # (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
+  # Goldmark 是 Hugo 0.60 以来的默认 Markdown 解析库
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      # 是否在文档中直接使用 HTML 标签
+      unsafe = true
+  # 目录设置
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+# 作者配置
+[author]
+  name = "跨界Coder"
+  email = ""
+  link = ""
+  
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+# 用于分类的设置
+[taxonomies]
+author = "authors"
+category = "categories"
+tag = "tags"
+series = "series"
+
+[params]
+  # DoIt 主题版本
+  version = "0.2.X"
+  # 网站关键词
+  keywords = ["blog", "Hugo", "跨界Coder"]
+  # DoIt 更改 | 0.2.11 网站默认主题样式 ("light", "dark", "black", "auto")
+  defaultTheme = "auto"
+  # DoIt 新增 | 0.2.0 日期格式
+  dateFormat = "2006-01-02"
+  # 网站图片, 用于 Open Graph 和 Twitter Cards
+  images = ["/logo.png"]
+  # DoIt 新增 | 0.2.0 搜索配置
+  [params.search]
+    enable = true
+    # 搜索引擎的类型 ("lunr", "algolia", "fuse")
+    type = "fuse"
+    # 文章内容最长索引长度
+    contentLength = 4000
+    # 搜索框的占位提示语
+    placeholder = "请输入关键词进行搜索"
+    # DoIt 新增 | 0.2.1 最大结果数目
+    maxResultLength = 10
+    # DoIt 新增 | 0.2.3 结果内容片段长度
+    snippetLength = 50
+    # DoIt 新增 | 0.2.1 搜索结果中高亮部分的 HTML 标签
+    highlightTag = "em"
+    # DoIt 新增 | 0.2.4 是否在搜索索引中使用基于 baseURL 的绝对路径
+    absoluteURL = false
+    [params.search.fuse]
+      # DoIt 新增 | 0.2.12 https://fusejs.io/api/options.html
+      isCaseSensitive = false
+      minMatchCharLength = 2
+      findAllMatches = false
+      location = 0
+      threshold = 0.3
+      distance = 100
+      ignoreLocation = false
+      useExtendedSearch = false
+      ignoreFieldNorm = false
+    # 页面头部导航栏配置
+    [params.header]
+      # 桌面端导航栏模式 ("fixed", "normal", "auto")
+      desktopMode = "fixed"
+      # 移动端导航栏模式 ("fixed", "normal", "auto")
+      mobileMode = "auto"
+      # DoIt 新增 | 0.2.11 主题切换模式
+      # 主题切换模式 ("switch", "select")
+      themeChangeMode = "select"
+      # DoIt 新增 | 0.2.0 页面头部导航栏标题配置
+      [params.header.title]
+        # LOGO 的 URL
+        logo = ""
+        # 标题名称
+        name = "跨界Coder's Blog"
+        # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+        pre = ""
+        # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+        post = ""
+        # DoIt 新增 | 0.2.5 是否为标题显示打字机动画
+        typeit = true
+      # 页面底部信息配置
+  [params.footer]
+    enable = true
+    # DoIt 新增 | 0.2.0 自定义内容 (支持 HTML 格式)
+    custom = ''
+    # DoIt 新增 | 0.2.0 是否显示 Hugo 和主题信息
+    hugo = true
+    # DoIt 新增 | 0.2.0 是否显示版权信息
+    copyright = true
+    # DoIt 新增 | 0.2.0 是否显示作者
+    author = true
+    # 网站创立年份
+    since = 2021
+    # ICP 备案信息, 仅在中国使用 (支持 HTML 格式)
+    icp = ""
+    # 许可协议信息 (支持 HTML 格式)
+    license = '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+
+  # DoIt 新增 | 0.2.0 Section (所有文章) 页面配置
+  [params.section]
+    # section 页面每页显示文章数量
+    paginate = 20
+    # 日期格式 (月和日)
+    dateFormat = "01-02"
+    # RSS 文章数目
+    rss = 10
+
+  # DoIt 新增 | 0.2.0 List (目录或标签) 页面配置
+  [params.list]
+    # list 页面每页显示文章数量
+    paginate = 20
+    # 日期格式 (月和日)
+    dateFormat = "01-02"
+    # RSS 文章数目
+    rss = 10
+  # 主页配置
+  [params.home]
+    # DoIt 新增 | 0.2.0 RSS 文章数目
+    rss = 10
+    # 主页个人信息
+    [params.home.profile]
+      enable = true
+      # 主页显示头像的 URL
+      # 将你的头像文件放置于 static 或者 assets 目录下
+      # 文件路径是相对于 static 或者 assets 目录的
+      avatarURL = "/images/avatar.webp"
+      # DoIt 更改 | 0.2.7 主页显示的网站标题 (支持 HTML 格式)
+      title = ""
+      # 主页显示的网站副标题
+      subtitle = "未来一定属于那些能够自律且肯付出心血的人"
+      # 是否为副标题显示打字机动画
+      typeit = true
+      # 是否显示社交账号
+      social = true
+    # 主页文章列表
+    [params.home.posts]
+      enable = true
+      # 主页每页显示文章数量
+      paginate = 6
+  # 作者的社交信息设置
+  [params.social]
+    GitHub = "MrZhang123"
+    Zhihu = "zhang-yi-20-38"
+    RSS = true
+  # DoIt 更改 | 0.2.0 文章页面配置
+  [params.page]
+    # 是否使用 lightgallery
+    lightgallery = false
+    # DoIt 新增 | 0.2.0 是否使用 ruby 扩展语法
+    ruby = true
+    # DoIt 新增 | 0.2.0 是否使用 fraction 扩展语法
+    fraction = true
+    # DoIt 新增 | 0.2.0 是否使用 fontawesome 扩展语法
+    fontawesome = true
+    # 是否在文章页面显示原始 Markdown 文档链接
+    linkToMarkdown = true
+    # DoIt 新增 | 0.2.4 是否在 RSS 中显示全文内容
+    rssFullText = false
+    # DoIt 新增 | 0.2.11 页面样式 ("normal", "wide")
+    pageStyle = "wide"
+    # DoIt 新增 | 0.2.0 目录配置
+    [params.page.toc]
+      # 是否使用目录
+      enable = true
+      # DoIt 新增 | 0.2.9 是否保持使用文章前面的静态目录
+      keepStatic = false
+      # 是否使侧边目录自动折叠展开
+      auto = false
+    # DoIt 新增 | 0.2.0 代码配置
+    [params.page.code]
+      # 是否显示代码块的复制按钮
+      copy = true
+      # 默认展开显示的代码行数
+      maxShownLines = 10
+    # DoIt 更改 | 0.2.0 KaTeX 数学公式
+    [params.page.math]
+      enable = true
+      # 默认块定界符是 $$ ... $$ 和 \\[ ... \\]
+      blockLeftDelimiter = ""
+      blockRightDelimiter = ""
+      # 默认行内定界符是 $ ... $ 和 \\( ... \\)
+      inlineLeftDelimiter = ""
+      inlineRightDelimiter = ""
+      # KaTeX 插件 copy_tex
+      copyTex = true
+      # KaTeX 插件 mhchem
+      mhchem = true
+    # DoIt 新增 | 0.2.0 Mapbox GL JS 配置
+    [params.page.mapbox]
+      # Mapbox GL JS 的 access token
+      accessToken = ""
+      # 浅色主题的地图样式
+      lightStyle = "mapbox://styles/mapbox/light-v9"
+      # 深色主题的地图样式
+      darkStyle = "mapbox://styles/mapbox/dark-v9"
+      # 是否添加 NavigationControl
+      navigation = true
+      # 是否添加 GeolocateControl
+      geolocate = true
+      # 是否添加 ScaleControl
+      scale = true
+      # 是否添加 FullscreenControl
+      fullscreen = true
+    # DoIt 更改 | 0.2.0 文章页面的分享信息设置
+    [params.page.share]
+      enable = true
+      Twitter = true

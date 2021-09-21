@@ -1,240 +1,206 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>Javascript中字符串方法总结 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="字符方法
-chartAt()与charCodeAt()
-参数：基于0的字符位置
-**chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"Javascript中字符串方法总结",
-      "item":"/posts/2016-jsstring/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2016-jsstring/"
-    },
-    "headline": "Javascript中字符串方法总结 | 博客","datePublished": "2016-08-14T16:48:34+00:00",
-    "dateModified": "2016-08-14T16:48:34+00:00",
-    "wordCount":  412 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003ch2 id=\u0022字符方法\u0022\u003e字符方法\u003c\/h2\u003e\n\u003ch3 id=\u0022chartat与charcodeat\u0022\u003echartAt()与charCodeAt()\u003c\/h3\u003e\n\u003cp\u003e参数：\u003cem\u003e基于\u003cstrong\u003e0的字符位置\u003c\/strong\u003e\u003c\/em\u003e\u003c\/p\u003e\n\u003cp\u003e**chartAt()\u003cstrong\u003e以单字符字符串的形式返回给定位置的那个字符。而\u003c\/strong\u003echarCodeAt()**返回的是字符编码。\u003c\/p\u003e"
-}
-</script><meta property="og:title" content="Javascript中字符串方法总结 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2016-jsstring/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Javascript中字符串方法总结 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="Javascript中字符串方法总结" />
 <meta property="og:description" content="字符方法
 chartAt()与charCodeAt()
 参数：基于0的字符位置
 **chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2016-jsstring/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-08-14T16:48:34+00:00" />
+<meta property="article:modified_time" content="2016-08-14T16:48:34+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="Javascript中字符串方法总结"/>
+<meta name="twitter:description" content="字符方法
+chartAt()与charCodeAt()
+参数：基于0的字符位置
+**chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2016-08-14T16:48:34&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2016-08-14T16:48:34&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="Javascript" />
-
-
-
-
-
-<meta property="og:see_also" content="/posts/2016-jsposition/" />
-
-<meta property="og:see_also" content="/posts/2016-jsarray/" />
-
-<meta property="og:see_also" content="/posts/2016-es6practice/" />
-
-<meta property="og:see_also" content="/posts/2016-canvas/" />
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2016-jsstring/" /><link rel="prev" href="http://example.org/posts/2016-jsposition/" /><link rel="next" href="http://example.org/posts/2016-flipcards/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Javascript中字符串方法总结",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2016-jsstring\/"
+        },"genre": "posts","keywords": "Javascript","wordcount":  2575 ,
+        "url": "http:\/\/example.org\/posts\/2016-jsstring\/","datePublished": "2016-08-14T16:48:34+00:00","dateModified": "2016-08-14T16:48:34+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">Javascript中字符串方法总结</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2016-08-14</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <h2 id="字符方法">字符方法</h2>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Javascript中字符串方法总结</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2575 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#字符方法">字符方法</a>
+      <ul>
+        <li><a href="#chartat与charcodeat">chartAt()与charCodeAt()</a></li>
+      </ul>
+    </li>
+    <li><a href="#字符串操作方法">字符串操作方法</a>
+      <ul>
+        <li><a href="#concat数组中也有该方法">concat()(数组中也有该方法)</a></li>
+        <li><a href="#substring与slice数组中也有此方法">substring()与slice()(数组中也有此方法)</a></li>
+        <li><a href="#substr">substr()</a></li>
+        <li><a href="#repeates6新增">repeat()（ES6新增）</a></li>
+      </ul>
+    </li>
+    <li><a href="#字符串位置方法">字符串位置方法</a>
+      <ul>
+        <li><a href="#indexof和lastindexof数组中也有该方法">indexOf()和lastIndexOf()(数组中也有该方法)</a></li>
+        <li><a href="#es6新增includesstartswithendswith"><strong>ES6新增</strong>includes()、startsWith()、endsWith()</a></li>
+      </ul>
+    </li>
+    <li><a href="#去空格--trim">去空格&ndash;trim()</a></li>
+    <li><a href="#字符串大小写转换">字符串大小写转换</a>
+      <ul>
+        <li><a href="#tolowercasetolocalelowercasetouppercase和-tolocaleuppercase">toLowerCase()、toLocaleLowerCase()、toUpperCase()和 toLocaleUpperCase()</a></li>
+      </ul>
+    </li>
+    <li><a href="#字符串的模式匹配方法">字符串的模式匹配方法</a>
+      <ul>
+        <li><a href="#match">match()</a></li>
+        <li><a href="#search">search()</a></li>
+        <li><a href="#replace">replace()</a></li>
+        <li><a href="#split">split()</a></li>
+      </ul>
+    </li>
+    <li><a href="#localecompare">localeCompare()</a></li>
+    <li><a href="#fromcharcode">fromCharCode()</a></li>
+    <li><a href="#另附js中string和array方法的总结图">另附js中String和Array方法的总结图：</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="字符方法">字符方法</h2>
 <h3 id="chartat与charcodeat">chartAt()与charCodeAt()</h3>
 <p>参数：<em>基于<strong>0的字符位置</strong></em></p>
 <p>**chartAt()<strong>以单字符字符串的形式返回给定位置的那个字符。而</strong>charCodeAt()**返回的是字符编码。</p>
-<pre><code class="language-js">var stringValue = 'hello world';
-/*chartAt()*/
-console.log(stringValue.chartAt(1));    // 'e'
-</code></pre>
-<h2 id="字符串操作方法">字符串操作方法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
+<span class="cm">/*chartAt()*/</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">chartAt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>    <span class="c1">// &#39;e&#39;
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字符串操作方法">字符串操作方法</h2>
 <h3 id="concat数组中也有该方法">concat()(数组中也有该方法)</h3>
 <p>参数：<em>一个或多个字符串</em></p>
 <p>将一个会多个字符串拼接起来，当然更常用的是使用 “+” 进行拼接</p>
@@ -249,19 +215,35 @@ console.log(stringValue.chartAt(1));    // 'e'
 <p>作用：将原字符串重复n次</p>
 <p>如果传入负数，则报错，传入小数和<code>NaN</code>等同于传入0</p>
 <p><strong>substring，slice，substr，repeat均返回子字符串，不会修改原来的字符串</strong></p>
-<pre><code class="language-js">var stringValue = &quot;hello world&quot;; 
-alert(stringValue.slice(3));          //&quot;lo world&quot; 
-alert(stringValue.substring(3));      //&quot;lo world&quot; 
-alert(stringValue.substr(3));         //&quot;lo world&quot; 
-alert(stringValue.slice(3, 7));       //&quot;lo w&quot; 
-alert(stringValue.substring(3,7));    //&quot;lo w&quot; 
-alert(stringValue.substr(3, 7));      //&quot;lo worl&quot; 
-/*repeat()*/
-var a = 'he';
-var b = a.repeat(3);
-console.log(`${a}---${b}`); /		  //&quot;he---hehehe&quot;
-</code></pre>
-<p>当给这三个方法传入负值的时候，三个的表现不同：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;hello world&#34;</span><span class="p">;</span> 
+<span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>          <span class="c1">//&#34;lo world&#34; 
+</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>      <span class="c1">//&#34;lo world&#34; 
+</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>         <span class="c1">//&#34;lo world&#34; 
+</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>       <span class="c1">//&#34;lo w&#34; 
+</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>    <span class="c1">//&#34;lo w&#34; 
+</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>      <span class="c1">//&#34;lo worl&#34; 
+</span><span class="c1"></span><span class="cm">/*repeat()*/</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;he&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb">---</span><span class="si">${</span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="sr">/		  /</span><span class="o">/</span><span class="s2">&#34;he---hehehe&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当给这三个方法传入负值的时候，三个的表现不同：</p>
 <ul>
 <li>slice()会将传入的负值与字符串的长度相加</li>
 <li>substr()会将<strong>第一个</strong>位置的<strong>负值</strong>参数加上字符串长度后转为正数，而<strong>第二个</strong>位置的<strong>负值</strong>将转化为0</li>
@@ -272,91 +254,175 @@ console.log(`${a}---${b}`); /		  //&quot;he---hehehe&quot;
 <h3 id="indexof和lastindexof数组中也有该方法">indexOf()和lastIndexOf()(数组中也有该方法)</h3>
 <p>参数：<em>要搜索的子字符串</em>，<em>开始搜索的位置（可选）</em></p>
 <p>搜索给定的子字符串，如果找到则返回位置，否则返回-1</p>
-<pre><code class="language-js">var stringValue = &quot;hello world&quot;; 
-alert(stringValue.indexOf(&quot;o&quot;));             //4 
-alert(stringValue.lastIndexOf(&quot;o&quot;));         //7 
-</code></pre>
-<p>这两个方法在搜索到第一个匹配的子字符串后就停止运行，所以如果想找到字符串中所有的
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;hello world&#34;</span><span class="p">;</span> 
+<span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;o&#34;</span><span class="p">));</span>             <span class="c1">//4 
+</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s2">&#34;o&#34;</span><span class="p">));</span>         <span class="c1">//7 
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这两个方法在搜索到第一个匹配的子字符串后就停止运行，所以如果想找到字符串中所有的
 子字符串出现的位置，可以循环调用<code>indexOf</code>或<code>lastIndexOf</code>。</p>
-<pre><code class="language-js">var stringValue = &quot;Lorem ipsum dolor sit amet, consectetur adipisicing elit&quot;; 
-var positions = new Array(); 
-var pos = stringValue.indexOf(&quot;e&quot;); 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;Lorem ipsum dolor sit amet, consectetur adipisicing elit&#34;</span><span class="p">;</span> 
+<span class="kd">var</span> <span class="nx">positions</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span> 
+<span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">);</span> 
  
-while(pos &gt; -1){ 
-    positions.push(pos); 
-    pos = stringValue.indexOf(&quot;e&quot;, pos + 1); 
-} 
+<span class="k">while</span><span class="p">(</span><span class="nx">pos</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span> 
+    <span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span> 
+    <span class="nx">pos</span> <span class="o">=</span> <span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="nx">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> 
+<span class="p">}</span> 
      
-alert(positions);    //&quot;3,24,32,35,52&quot;
-</code></pre>
-<h3 id="es6新增includesstartswithendswith"><strong>ES6新增</strong>includes()、startsWith()、endsWith()</h3>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">positions</span><span class="p">);</span>    <span class="c1">//&#34;3,24,32,35,52&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="es6新增includesstartswithendswith"><strong>ES6新增</strong>includes()、startsWith()、endsWith()</h3>
 <ul>
 <li>includes()：返回布尔值，表示是否找到了参数字符串</li>
 <li>startsWith()：返回布尔值，表示参数字符串是否在源字符串的头部</li>
 <li>endsWith()：返回布尔值，表示参数字符串是否在源字符串的尾部</li>
 </ul>
 <p>这三个方法的参数与<code>indexOf()</code>，<code>lastIndexOf()</code>一样</p>
-<pre><code class="language-js">var s = 'Hello world';
-s.startsWith('world',6);	// true
-s.endsWith('Hello',5);		// true
-s.includes('Hello',6);		//false
-</code></pre>
-<p><strong>注意：</strong>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+<span class="nx">s</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>	<span class="c1">// true
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>		<span class="c1">// true
+</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>		<span class="c1">//false
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：</strong>
 使用第2个参数n时，<code>endsWith</code>的行为与其他两个方法有所不同。它针对<strong>前面</strong>n个字符，而其他两个方法针对从第n个位置开始直到字符串结束的字符。</p>
 <h2 id="去空格--trim">去空格&ndash;trim()</h2>
 <p>ES5中新增<code>trim()</code>方法用于去除字符串的左右空格，<strong>该方法会创建一个字符串的副本，不会改变原有的字符串</strong>，此外，Firefox 3.5+、Safari 5+
 和 Chrome 8+还支持非标准的 trimLeft()和 trimRight()方法，分别用于删除字符串开头和末尾的
 空格。</p>
 <p>其实去空格可以使用正则去匹配的去掉，这里写一个去空格函数</p>
-<pre><code class="language-js">/*trim	去掉空白
-str要处理的字符串		
-[type] 	类型：l 去除左边的空白	r去除右边空白	b去掉两边的空白		a去除所有空白*/
-function trim (str,type) {
-	var type=type||&quot;b&quot;;
-	if(type==&quot;b&quot;){
-		return str.replace(/^\s*|\s*$/g,&quot;&quot;);
-	}else if(type==&quot;l&quot;){
-		return str.replace(/^\s*/g,&quot;&quot;);
-	}else if(type==&quot;r&quot;){
-		return str.replace(/\s*$/g,&quot;&quot;);
-	}else if(type==&quot;a&quot;){
-		return str.replace(/\s*/g,&quot;&quot;);
-	}
-}
-</code></pre>
-<h2 id="字符串大小写转换">字符串大小写转换</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*trim	去掉空白
+</span><span class="cm">str要处理的字符串		
+</span><span class="cm">[type] 	类型：l 去除左边的空白	r去除右边空白	b去掉两边的空白		a去除所有空白*/</span>
+<span class="kd">function</span> <span class="nx">trim</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">type</span><span class="o">=</span><span class="nx">type</span><span class="o">||</span><span class="s2">&#34;b&#34;</span><span class="p">;</span>
+	<span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;b&#34;</span><span class="p">){</span>
+		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\s*|\s*$/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;l&#34;</span><span class="p">){</span>
+		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\s*/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;r&#34;</span><span class="p">){</span>
+		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s*$/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;a&#34;</span><span class="p">){</span>
+		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s*/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="字符串大小写转换">字符串大小写转换</h2>
 <h3 id="tolowercasetolocalelowercasetouppercase和-tolocaleuppercase">toLowerCase()、toLocaleLowerCase()、toUpperCase()和 toLocaleUpperCase()</h3>
 <h2 id="字符串的模式匹配方法">字符串的模式匹配方法</h2>
 <h3 id="match">match()</h3>
 <p>参数：<em>一个正则表达式或RegExp对象</em></p>
 <p>返回一个数组。在字符串上调用这个方法本质上与调用RegExp的exec()方法相同。</p>
-<pre><code class="language-js">var text = &quot;cat, bat, sat, fat&quot;;  
-var pattern = /.at/; 
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;cat, bat, sat, fat&#34;</span><span class="p">;</span>  
+<span class="kd">var</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/.at/</span><span class="p">;</span> 
  
-//与 pattern.exec(text)相同 
-var matches = text.match(pattern);         
-alert(matches.index);             //0 
-alert(matches[0]);                 //&quot;cat&quot; 
-alert(pattern.lastIndex);          //0 
-</code></pre>
-<h3 id="search">search()</h3>
+<span class="c1">//与 pattern.exec(text)相同 
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">matches</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">);</span>         
+<span class="nx">alert</span><span class="p">(</span><span class="nx">matches</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>             <span class="c1">//0 
+</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>                 <span class="c1">//&#34;cat&#34; 
+</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">);</span>          <span class="c1">//0 
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="search">search()</h3>
 <p>参数：<em>一个正则表达式或RegExp对象</em></p>
 <p>返回字符串中第一个匹配项的索引，如果没有找到，则返回-1</p>
-<pre><code class="language-js">var text = &quot;cat, bat, sat, fat&quot;;  
-var pos = text.search(/at/); 
-alert(pos);   //1 
-</code></pre>
-<h3 id="replace">replace()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;cat, bat, sat, fat&#34;</span><span class="p">;</span>  
+<span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/at/</span><span class="p">);</span> 
+<span class="nx">alert</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span>   <span class="c1">//1 
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="replace">replace()</h3>
 <p>参数：<em>一个RegExp对象或者一个字符串（这个字符串不会被转换成正则表达式）</em>，<em>一个字符串或一个函数</em></p>
 <p>利用<code>replace()</code>进行替换的时候，如果传入的是字符串，则只会替换第一个子字符串，要想替换所有的子字符串，则需要传入一个正则表达式，而且要指定全局（g）标志</p>
-<pre><code class="language-js">var text = 'cat , bat , sat , fat';
-var result = text.replace('at','ond');
-console.log(result); // =&gt;'cont , bat , sat , fat'
-
-result = text.replace(/at/g,'ond');
-console.log(result); //=&gt;'cont , bont , sont , font'
-</code></pre>
-<p>该方法并不改变调用它的字符串本身，只是返回一个新的替换后的字符串。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;cat , bat , sat , fat&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;at&#39;</span><span class="p">,</span><span class="s1">&#39;ond&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">// =&gt;&#39;cont , bat , sat , fat&#39;
+</span><span class="c1"></span>
+<span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/at/g</span><span class="p">,</span><span class="s1">&#39;ond&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">//=&gt;&#39;cont , bont , sont , font&#39;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>该方法并不改变调用它的字符串本身，只是返回一个新的替换后的字符串。</p>
 <p><strong>当第二个参数为函数时</strong>函数的返回值作为替换字符串。与第二个参数是字符串一样，如果第一个参数是正则表达式，并且全局匹配，则这个函数的方法将被多次调用，每次匹配都会被调用。</p>
 <p>该函数的参数：</p>
 <ul>
@@ -365,34 +431,66 @@ console.log(result); //=&gt;'cont , bont , sont , font'
 <li>offset：匹配到的子字符串在原字符串中的偏移量。（比如，如果原字符串是“abcd”，匹配到的子字符串时“bc”，那么这个参数是1）</li>
 <li>被匹配的原字符串</li>
 </ul>
-<pre><code class="language-js">function replacer(match , p1 , p2 , p3 , offset , string){
-	// p1 is nondigits, p2 digits, and p3 non-alphanumerics
-    console.log(`${match}
-				 ${p1}
-				 ${p2}
-				 ${p3}
-				 ${offset}
-				 ${string}`); 
-	/* =&gt; abc12345#$*%
-         abc
-         12345
-         #$*%
-         0
-         abc12345#$*%&quot;	*/		 
-    console.log([p1, p2, p3].join(' - ')); // =&gt; &quot;abc - 12345 - #$*%&quot;
-    return [p1, p2, p3].join(' - ');
-}
-var newString = 'abc12345#$*%'.replace(/([^\d]*)(\d*)([^\w]*)/, replacer); // =&gt;&quot;abc - 12345 - #$*%&quot;
-</code></pre>
-<h3 id="split">split()</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">replacer</span><span class="p">(</span><span class="nx">match</span> <span class="p">,</span> <span class="nx">p1</span> <span class="p">,</span> <span class="nx">p2</span> <span class="p">,</span> <span class="nx">p3</span> <span class="p">,</span> <span class="nx">offset</span> <span class="p">,</span> <span class="nx">string</span><span class="p">){</span>
+	<span class="c1">// p1 is nondigits, p2 digits, and p3 non-alphanumerics
+</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">match</span><span class="si">}</span><span class="sb">
+</span><span class="sb">				 </span><span class="si">${</span><span class="nx">p1</span><span class="si">}</span><span class="sb">
+</span><span class="sb">				 </span><span class="si">${</span><span class="nx">p2</span><span class="si">}</span><span class="sb">
+</span><span class="sb">				 </span><span class="si">${</span><span class="nx">p3</span><span class="si">}</span><span class="sb">
+</span><span class="sb">				 </span><span class="si">${</span><span class="nx">offset</span><span class="si">}</span><span class="sb">
+</span><span class="sb">				 </span><span class="si">${</span><span class="nx">string</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> 
+	<span class="cm">/* =&gt; abc12345#$*%
+</span><span class="cm">         abc
+</span><span class="cm">         12345
+</span><span class="cm">         #$*%
+</span><span class="cm">         0
+</span><span class="cm">         abc12345#$*%&#34;	*/</span>		 
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; - &#39;</span><span class="p">));</span> <span class="c1">// =&gt; &#34;abc - 12345 - #$*%&#34;
+</span><span class="c1"></span>    <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; - &#39;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">newString</span> <span class="o">=</span> <span class="s1">&#39;abc12345#$*%&#39;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^\d]*)(\d*)([^\w]*)/</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">);</span> <span class="c1">// =&gt;&#34;abc - 12345 - #$*%&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id="split">split()</h3>
 <p>参数：<em>用于分隔字符串的分隔符</em>，<em>数字（可选，用于指定数组的大小）</em></p>
 <p>作用：基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个<strong>数组</strong>中，分隔符可以是字符串，也可以是RegExp对象</p>
-<pre><code class="language-js">var color = 'red,blue,yellow,black';
-var color1 = color.split(',');		// =&gt;['red','blue','yellow','black']
-var color2 = color.split(',',2);	// =&gt;['red','blue']
-var color3 = color.split(/[^\,]+/); // =&gt;[&quot;&quot;, &quot;,&quot;, &quot;,&quot;, &quot;,&quot;, &quot;&quot;] 
-</code></pre>
-<p>最后一个调用<code>split</code>的时候，出现了前后的两个空白，是因为通过正则表达式指定的分隔符出现在了字符串的开头和结尾。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red,blue,yellow,black&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">color1</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">);</span>		<span class="c1">// =&gt;[&#39;red&#39;,&#39;blue&#39;,&#39;yellow&#39;,&#39;black&#39;]
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">color2</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>	<span class="c1">// =&gt;[&#39;red&#39;,&#39;blue&#39;]
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">color3</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/[^\,]+/</span><span class="p">);</span> <span class="c1">// =&gt;[&#34;&#34;, &#34;,&#34;, &#34;,&#34;, &#34;,&#34;, &#34;&#34;] 
+</span></code></pre></td></tr></table>
+</div>
+</div><p>最后一个调用<code>split</code>的时候，出现了前后的两个空白，是因为通过正则表达式指定的分隔符出现在了字符串的开头和结尾。</p>
 <h2 id="localecompare">localeCompare()</h2>
 <p>这个方法用于比较两个字符串，并返回下列值中的一个：</p>
 <ul>
@@ -404,105 +502,101 @@ var color3 = color.split(/[^\,]+/); // =&gt;[&quot;&quot;, &quot;,&quot;, &quot;
 <p>String构造函数的一个静态方法</p>
 <p>参数：<em>一个或多个字符串编码</em></p>
 <p>作用：将接收到的一个或多个字符串编码<strong>转换</strong>成一个字符串，这个方法与实例方法<code>charCodeAt()</code>执行<strong>相反</strong>的操作。</p>
-<pre><code class="language-js">/*fromCharCode*/
-String.fromCharCode(104,101,108,108,111);	// =&gt;hello
-/*charCodeAt*/
-let s = 'hello';
-for(let i=0;i&lt;s.length;i++){
-  console.log(`${s[i]}----${s[i].charCodeAt()}`);
-}
-/*
-&quot;h----104&quot;
-&quot;e----101&quot;
-&quot;l----108&quot;
-&quot;l----108&quot;
-&quot;o----111&quot;
-*/
-</code></pre>
-<p>最后写一个字符串与数组方法应用的一个例子，熟悉它们方法的话很简单，不熟悉就会觉得有点儿乱。</p>
-<pre><code class="language-js">let s = 'hello';
-let news = s.split('').reverse().join('');
-console.log(news); // =&gt; &quot;olleh&quot;
-</code></pre>
-<h2 id="另附js中string和array方法的总结图">另附js中String和Array方法的总结图：</h2>
-<p><img src="./string&amp;Array.png" alt="icon"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*fromCharCode*/</span>
+<span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="mi">104</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">108</span><span class="p">,</span><span class="mi">108</span><span class="p">,</span><span class="mi">111</span><span class="p">);</span>	<span class="c1">// =&gt;hello
+</span><span class="c1"></span><span class="cm">/*charCodeAt*/</span>
+<span class="kd">let</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="si">}</span><span class="sb">----</span><span class="si">${</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">charCodeAt</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="cm">/*
+</span><span class="cm">&#34;h----104&#34;
+</span><span class="cm">&#34;e----101&#34;
+</span><span class="cm">&#34;l----108&#34;
+</span><span class="cm">&#34;l----108&#34;
+</span><span class="cm">&#34;o----111&#34;
+</span><span class="cm">*/</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最后写一个字符串与数组方法应用的一个例子，熟悉它们方法的话很简单，不熟悉就会觉得有点儿乱。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">news</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">news</span><span class="p">);</span> <span class="c1">// =&gt; &#34;olleh&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="另附js中string和array方法的总结图">另附js中String和Array方法的总结图：</h2>
+<p><img
+        class="lazyload"
+        data-src="./string&amp;Array.png"
+        data-srcset="./string&amp;Array.png, ./string&amp;Array.png 1.5x, ./string&amp;Array.png 2x"
+        data-sizes="auto"
+        alt="./string&amp;Array.png"
+        title="icon"
+    /></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2016-08-14</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/javascript/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Javascript</a>
-    
-</div>
-        
-        
-        
-
-
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2016-flipcards/" class="block">CSS3实现翻转卡牌效果</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2016-jsposition/" class="block">JS中的位置与大小</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
-        <h2 class="text-lg font-semibold mb-4">相关</h2>
-        <div class="content">
-            
-            <a href="/posts/2016-jsposition/">JS中的位置与大小</a>
-            <br />
-            
-            <a href="/posts/2016-jsarray/">Javascript中Array方法的总结</a>
-            <br />
-            
-            <a href="/posts/2016-es6practice/">初探ES6——轮播图实践总结</a>
-            <br />
-            
-            <a href="/posts/2016-canvas/">H5 Canvas实现图片格式的转换</a>
-            <br />
-            
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2016-jsstring/" data-title="Javascript中字符串方法总结" data-hashtags="Javascript"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
         </div>
     </div>
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
 
-      </div>
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
     </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+
+    <div class="post-nav"><a href="/posts/2016-jsposition/" class="prev" rel="prev" title="JS中的位置与大小"><i class="fas fa-angle-left fa-fw"></i>JS中的位置与大小</a>
+            <a href="/posts/2016-flipcards/" class="next" rel="next" title="CSS3实现翻转卡牌效果">CSS3实现翻转卡牌效果<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

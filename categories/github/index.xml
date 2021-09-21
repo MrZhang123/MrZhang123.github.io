@@ -1,24 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>github on 博客</title>
-    <link>/categories/github/</link>
-    <description>Recent content in github on 博客</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
-</copyright>
-    <lastBuildDate>Sun, 13 Nov 2016 10:54:26 +0000</lastBuildDate><atom:link href="/categories/github/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Git连接Github总结</title>
-      <link>/posts/2016-gitgithub/</link>
-      <pubDate>Sun, 13 Nov 2016 10:54:26 +0000</pubDate>
-      
-      <guid>/posts/2016-gitgithub/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;好长时间不写东西了， 因为换了工作，所以在忙着熟悉公司的项目代码，所以没什么时间搞自己的东西，回想了一下，在计划中要总结一下关于如何使用终端的git连接github，所以写一下这个。&lt;/p&gt;
-&lt;/blockquote&gt;</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>github - 分类 - 跨界Coder</title>
+        <link>http://example.org/categories/github/</link>
+        <description>github - 分类 - 跨界Coder</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 13 Nov 2016 10:54:26 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/github/" rel="self" type="application/rss+xml" /><item>
+    <title>Git连接Github总结</title>
+    <link>http://example.org/posts/2016-gitgithub/</link>
+    <pubDate>Sun, 13 Nov 2016 10:54:26 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2016-gitgithub/</guid>
+    <description><![CDATA[<blockquote>
+<p>好长时间不写东西了， 因为换了工作，所以在忙着熟悉公司的项目代码，所以没什么时间搞自己的东西，回想了一下，在计划中要总结一下关于如何使用终端的git连接github，所以写一下这个。</p>
+</blockquote>]]></description>
+</item></channel>
 </rss>

@@ -1,220 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Categories on 博客</title>
-    <link>/categories/</link>
-    <description>Recent content in Categories on 博客</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
-</copyright>
-    <lastBuildDate>Tue, 14 Jul 2020 09:08:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>算法</title>
-      <link>/categories/%E7%AE%97%E6%B3%95/</link>
-      <pubDate>Tue, 14 Jul 2020 09:08:00 +0000</pubDate>
-      
-      <guid>/categories/%E7%AE%97%E6%B3%95/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>themes</title>
-      <link>/categories/themes/</link>
-      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/themes/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Javascript</title>
-      <link>/categories/javascript/</link>
-      <pubDate>Thu, 23 Apr 2020 17:08:00 +0000</pubDate>
-      
-      <guid>/categories/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>财报</title>
-      <link>/categories/%E8%B4%A2%E6%8A%A5/</link>
-      <pubDate>Sun, 12 Apr 2020 20:15:00 +0000</pubDate>
-      
-      <guid>/categories/%E8%B4%A2%E6%8A%A5/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>金融</title>
-      <link>/categories/%E9%87%91%E8%9E%8D/</link>
-      <pubDate>Sun, 12 Apr 2020 20:15:00 +0000</pubDate>
-      
-      <guid>/categories/%E9%87%91%E8%9E%8D/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Vim</title>
-      <link>/categories/vim/</link>
-      <pubDate>Sun, 15 Mar 2020 16:15:00 +0000</pubDate>
-      
-      <guid>/categories/vim/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>职场</title>
-      <link>/categories/%E8%81%8C%E5%9C%BA/</link>
-      <pubDate>Thu, 27 Feb 2020 22:30:00 +0000</pubDate>
-      
-      <guid>/categories/%E8%81%8C%E5%9C%BA/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>读书笔记</title>
-      <link>/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Sun, 23 Feb 2020 17:08:00 +0000</pubDate>
-      
-      <guid>/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>年终总结</title>
-      <link>/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Tue, 31 Dec 2019 02:00:25 +0000</pubDate>
-      
-      <guid>/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>leetCode</title>
-      <link>/categories/leetcode/</link>
-      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/leetcode/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>React</title>
-      <link>/categories/react/</link>
-      <pubDate>Sun, 07 Jul 2019 15:43:00 +0000</pubDate>
-      
-      <guid>/categories/react/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>/categories/linux/</link>
-      <pubDate>Sun, 23 Jun 2019 14:32:00 +0000</pubDate>
-      
-      <guid>/categories/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Webpack</title>
-      <link>/categories/webpack/</link>
-      <pubDate>Sat, 12 May 2018 12:26:43 +0000</pubDate>
-      
-      <guid>/categories/webpack/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>总结</title>
-      <link>/categories/%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Sun, 14 Jan 2018 20:22:59 +0000</pubDate>
-      
-      <guid>/categories/%E6%80%BB%E7%BB%93/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>React Native</title>
-      <link>/categories/react-native/</link>
-      <pubDate>Wed, 20 Dec 2017 19:24:07 +0000</pubDate>
-      
-      <guid>/categories/react-native/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Git</title>
-      <link>/categories/git/</link>
-      <pubDate>Wed, 18 Oct 2017 22:11:36 +0000</pubDate>
-      
-      <guid>/categories/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CSS</title>
-      <link>/categories/css/</link>
-      <pubDate>Wed, 05 Apr 2017 20:57:48 +0000</pubDate>
-      
-      <guid>/categories/css/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Blog</title>
-      <link>/categories/blog/</link>
-      <pubDate>Sat, 01 Apr 2017 20:57:48 +0000</pubDate>
-      
-      <guid>/categories/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Vue</title>
-      <link>/categories/vue/</link>
-      <pubDate>Tue, 07 Feb 2017 21:41:02 +0000</pubDate>
-      
-      <guid>/categories/vue/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>github</title>
-      <link>/categories/github/</link>
-      <pubDate>Sun, 13 Nov 2016 10:54:26 +0000</pubDate>
-      
-      <guid>/categories/github/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>感悟</title>
-      <link>/categories/%E6%84%9F%E6%82%9F/</link>
-      <pubDate>Sat, 24 Sep 2016 09:41:09 +0000</pubDate>
-      
-      <guid>/categories/%E6%84%9F%E6%82%9F/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>前端工具</title>
-      <link>/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Wed, 07 Sep 2016 23:25:06 +0000</pubDate>
-      
-      <guid>/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>HTML</title>
-      <link>/categories/html/</link>
-      <pubDate>Sat, 26 Mar 2016 10:20:56 +0000</pubDate>
-      
-      <guid>/categories/html/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - 分类 - 跨界Coder</title>
+        <link>http://example.org/categories/</link>
+        <description>Categories - 分类 - 跨界Coder</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 14 Jul 2020 09:08:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>算法</title>
+    <link>http://example.org/categories/%E7%AE%97%E6%B3%95/</link>
+    <pubDate>Tue, 14 Jul 2020 09:08:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/%E7%AE%97%E6%B3%95/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Javascript</title>
+    <link>http://example.org/categories/javascript/</link>
+    <pubDate>Thu, 23 Apr 2020 17:08:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/javascript/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>财报</title>
+    <link>http://example.org/categories/%E8%B4%A2%E6%8A%A5/</link>
+    <pubDate>Sun, 12 Apr 2020 20:15:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/%E8%B4%A2%E6%8A%A5/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>金融</title>
+    <link>http://example.org/categories/%E9%87%91%E8%9E%8D/</link>
+    <pubDate>Sun, 12 Apr 2020 20:15:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/%E9%87%91%E8%9E%8D/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>Vim</title>
+    <link>http://example.org/categories/vim/</link>
+    <pubDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/vim/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>职场</title>
+    <link>http://example.org/categories/%E8%81%8C%E5%9C%BA/</link>
+    <pubDate>Thu, 27 Feb 2020 22:30:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/%E8%81%8C%E5%9C%BA/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>读书笔记</title>
+    <link>http://example.org/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sun, 23 Feb 2020 17:08:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>年终总结</title>
+    <link>http://example.org/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
+    <pubDate>Tue, 31 Dec 2019 02:00:25 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>leetCode</title>
+    <link>http://example.org/categories/leetcode/</link>
+    <pubDate>Tue, 16 Jul 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/leetcode/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>React</title>
+    <link>http://example.org/categories/react/</link>
+    <pubDate>Sun, 07 Jul 2019 15:43:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/categories/react/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
 </rss>

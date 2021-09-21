@@ -1,234 +1,155 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>iframe跨域POST提交 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="
-以前在面试的时候经常遇到问关于跨域的事儿，所以自己对跨域有一定的概念性了解，知道什么是跨域以及解决跨域的方法，但是具体实际从来没有操作过，直到最近在公司项目中，遇到了一个需要使iframe跨域进行POST提交的实际案例，我才明白具体如何使用iframe进行跨域操作。
-">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"iframe跨域POST提交",
-      "item":"/posts/2017-iframepost/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2017-iframepost/"
-    },
-    "headline": "iframe跨域POST提交 | 博客","datePublished": "2017-01-06T23:07:16+00:00",
-    "dateModified": "2017-01-06T23:07:16+00:00",
-    "wordCount":  181 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cblockquote\u003e\n\u003cp\u003e以前在面试的时候经常遇到问关于跨域的事儿，所以自己对跨域有一定的概念性了解，知道什么是跨域以及解决跨域的方法，但是具体实际从来没有操作过，直到最近在公司项目中，遇到了一个需要使iframe跨域进行POST提交的实际案例，我才明白具体如何使用iframe进行跨域操作。\u003c\/p\u003e\n\u003c\/blockquote\u003e"
-}
-</script><meta property="og:title" content="iframe跨域POST提交 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2017-iframepost/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">iframe跨域POST提交 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="iframe跨域POST提交" />
 <meta property="og:description" content="
 以前在面试的时候经常遇到问关于跨域的事儿，所以自己对跨域有一定的概念性了解，知道什么是跨域以及解决跨域的方法，但是具体实际从来没有操作过，直到最近在公司项目中，遇到了一个需要使iframe跨域进行POST提交的实际案例，我才明白具体如何使用iframe进行跨域操作。
 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2017-iframepost/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-01-06T23:07:16+00:00" />
+<meta property="article:modified_time" content="2017-01-06T23:07:16+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="iframe跨域POST提交"/>
+<meta name="twitter:description" content="
+以前在面试的时候经常遇到问关于跨域的事儿，所以自己对跨域有一定的概念性了解，知道什么是跨域以及解决跨域的方法，但是具体实际从来没有操作过，直到最近在公司项目中，遇到了一个需要使iframe跨域进行POST提交的实际案例，我才明白具体如何使用iframe进行跨域操作。
+"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2017-01-06T23:07:16&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2017-01-06T23:07:16&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="Javascript" />
-
-
-
-
-
-<meta property="og:see_also" content="/posts/2016-promise/" />
-
-<meta property="og:see_also" content="/posts/2016-jsstring/" />
-
-<meta property="og:see_also" content="/posts/2016-jsposition/" />
-
-<meta property="og:see_also" content="/posts/2016-jsarray/" />
-
-<meta property="og:see_also" content="/posts/2016-es6practice/" />
-
-<meta property="og:see_also" content="/posts/2016-canvas/" />
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2017-iframepost/" /><link rel="prev" href="http://example.org/posts/2016-2017newyear/" /><link rel="next" href="http://example.org/posts/2017-vue/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "iframe跨域POST提交",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2017-iframepost\/"
+        },"genre": "posts","keywords": "Javascript","wordcount":  990 ,
+        "url": "http:\/\/example.org\/posts\/2017-iframepost\/","datePublished": "2017-01-06T23:07:16+00:00","dateModified": "2017-01-06T23:07:16+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">iframe跨域POST提交</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2017-01-06</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>1分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <blockquote>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">iframe跨域POST提交</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-01-06">2017-01-06</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-01-06">2017-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 990 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#源">源</a></li>
+    <li><a href="#iframe跨域post无刷新提交">iframe跨域POST无刷新提交</a></li>
+    <li><a href="#附实现代码">附实现代码</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
 <p>以前在面试的时候经常遇到问关于跨域的事儿，所以自己对跨域有一定的概念性了解，知道什么是跨域以及解决跨域的方法，但是具体实际从来没有操作过，直到最近在公司项目中，遇到了一个需要使iframe跨域进行POST提交的实际案例，我才明白具体如何使用iframe进行跨域操作。</p>
 </blockquote>
 <p>说到跨域，就不得不提起浏览器的同源策略。</p>
@@ -245,144 +166,167 @@
 <li>为了拿到返回回来的<code>data</code>，需要使用一个函数，函数名后台已经告知。</li>
 </ul>
 <h2 id="附实现代码">附实现代码</h2>
-<pre><code class="language-html">&lt;form action=&quot;You POST Link&quot; method=&quot;post&quot; target=&quot;target&quot; id=&quot;J_commenting&quot;&gt;
-    &lt;select name=&quot;category&quot; class=&quot;select J_filter&quot; id=&quot;J_typeFilter&quot;&gt;
-        &lt;option value=&quot;0&quot; selected=&quot;selected&quot;&gt;Select Category&lt;/option&gt;
-        &lt;option value=&quot;1&quot;&gt;Life&lt;/option&gt;
-        &lt;option value=&quot;2&quot;&gt;People&lt;/option&gt;
-        &lt;option value=&quot;3&quot;&gt;Landscape&lt;/option&gt;
-        &lt;option value=&quot;4&quot;&gt;Tech&lt;/option&gt;
-        &lt;option value=&quot;5&quot;&gt;Others&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;input name=&quot;title&quot; type=&quot;text&quot; class=&quot;misstion-title J_misstion-title&quot;&gt;
-    &lt;textarea name=&quot;desc&quot; class=&quot;misstion-description J_description&quot; maxlength=&quot;200&quot;&gt;&lt;/textarea&gt;
-    &lt;button class=&quot;button J_button&quot; type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
-&lt;/form&gt;
-&lt;iframe name=&quot;target&quot; style=&quot;display:none;&quot;&gt;&lt;/iframe&gt;
-</code></pre>
-<pre><code class="language-js">var $button = $('.J_button');
-var $commenting = $('#J_commenting');
-var $filter = $('.J_filter');
-var $misstionTitle = $('.J_misstion-title');
-var $description = $('.J_description');
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;You POST Link&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;post&#34;</span> <span class="na">target</span><span class="o">=</span><span class="s">&#34;target&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;J_commenting&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">select</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;category&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;select J_filter&#34;</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;J_typeFilter&#34;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;0&#34;</span> <span class="na">selected</span><span class="o">=</span><span class="s">&#34;selected&#34;</span><span class="p">&gt;</span>Select Category<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;1&#34;</span><span class="p">&gt;</span>Life<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;2&#34;</span><span class="p">&gt;</span>People<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;3&#34;</span><span class="p">&gt;</span>Landscape<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;4&#34;</span><span class="p">&gt;</span>Tech<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&#34;5&#34;</span><span class="p">&gt;</span>Others<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;title&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;misstion-title J_misstion-title&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">textarea</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;desc&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;misstion-description J_description&#34;</span> <span class="na">maxlength</span><span class="o">=</span><span class="s">&#34;200&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">textarea</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;button J_button&#34;</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;submit&#34;</span><span class="p">&gt;</span>Submit<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;target&#34;</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;display:none;&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">$button</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.J_button&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">$commenting</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#J_commenting&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">$filter</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.J_filter&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">$misstionTitle</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.J_misstion-title&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">$description</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;.J_description&#39;</span><span class="p">);</span>
 
 
-$button.on('click', function () {
-    var filterValue = $filter.val();
-    var misstionTitleValue = $misstionTitle.val();
-    var descriptionValue = $description.val();
-    if (filterValue === '0' || misstionTitleValue === '' || descriptionValue === '') {
-        alert('Check if you filled out all the fields required');
-    } else {
-        $commenting.submit();
-    }
-});
+<span class="nx">$button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">filterValue</span> <span class="o">=</span> <span class="nx">$filter</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">misstionTitleValue</span> <span class="o">=</span> <span class="nx">$misstionTitle</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">descriptionValue</span> <span class="o">=</span> <span class="nx">$description</span><span class="p">.</span><span class="nx">val</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">filterValue</span> <span class="o">===</span> <span class="s1">&#39;0&#39;</span> <span class="o">||</span> <span class="nx">misstionTitleValue</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span> <span class="o">||</span> <span class="nx">descriptionValue</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;Check if you filled out all the fields required&#39;</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">$commenting</span><span class="p">.</span><span class="nx">submit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
 
-$commenting.on('submit', function () {
-    document.domain = 'aa.com';
-    window.addData = function (data) {
-        var dataCode = data.code;
-        var dataMsg = data.message;
-        if (dataCode === 0) {
-            alert('submit success!');
-        } else {
-            alert('submit failed!');
-        }
-    }
-});
-</code></pre>
-<p>点击提交后，后台返回的数据：</p>
-<pre><code class="language-js">document.domain = &quot;aa.com&quot;;
-var data = {&quot;code&quot;:-2,&quot;info&quot;:&quot;please login first&quot;,&quot;message&quot;:&quot;please login first&quot;}; 
-if( typeof(parent.window['addData']) == &quot;function&quot;){
-    parent.window['addData'](data);
-}else if( typeof(window.top['addData']) == &quot;function&quot;){
-    window.top['addData'](data);
-}
-</code></pre>
+<span class="nx">$commenting</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">domain</span> <span class="o">=</span> <span class="s1">&#39;aa.com&#39;</span><span class="p">;</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">addData</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">dataCode</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">code</span><span class="p">;</span>
+        <span class="kd">var</span> <span class="nx">dataMsg</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">message</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">dataCode</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;submit success!&#39;</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;submit failed!&#39;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>点击提交后，后台返回的数据：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nb">document</span><span class="p">.</span><span class="nx">domain</span> <span class="o">=</span> <span class="s2">&#34;aa.com&#34;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;code&#34;</span><span class="o">:-</span><span class="mi">2</span><span class="p">,</span><span class="s2">&#34;info&#34;</span><span class="o">:</span><span class="s2">&#34;please login first&#34;</span><span class="p">,</span><span class="s2">&#34;message&#34;</span><span class="o">:</span><span class="s2">&#34;please login first&#34;</span><span class="p">};</span> 
+<span class="k">if</span><span class="p">(</span> <span class="k">typeof</span><span class="p">(</span><span class="nx">parent</span><span class="p">.</span><span class="nb">window</span><span class="p">[</span><span class="s1">&#39;addData&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&#34;function&#34;</span><span class="p">){</span>
+    <span class="nx">parent</span><span class="p">.</span><span class="nb">window</span><span class="p">[</span><span class="s1">&#39;addData&#39;</span><span class="p">](</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="k">typeof</span><span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">top</span><span class="p">[</span><span class="s1">&#39;addData&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="s2">&#34;function&#34;</span><span class="p">){</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">top</span><span class="p">[</span><span class="s1">&#39;addData&#39;</span><span class="p">](</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2017-01-06</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/javascript/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Javascript</a>
-    
-</div>
-        
-        
-        
-
-
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2017-vue/" class="block">Vue2.x踩坑与总结</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2016-2017newyear/" class="block">再见，2016；你好，2017</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
-        <h2 class="text-lg font-semibold mb-4">相关</h2>
-        <div class="content">
-            
-            <a href="/posts/2016-promise/">Promise－－优雅解决回调嵌套</a>
-            <br />
-            
-            <a href="/posts/2016-jsstring/">Javascript中字符串方法总结</a>
-            <br />
-            
-            <a href="/posts/2016-jsposition/">JS中的位置与大小</a>
-            <br />
-            
-            <a href="/posts/2016-jsarray/">Javascript中Array方法的总结</a>
-            <br />
-            
-            <a href="/posts/2016-es6practice/">初探ES6——轮播图实践总结</a>
-            <br />
-            
-            <a href="/posts/2016-canvas/">H5 Canvas实现图片格式的转换</a>
-            <br />
-            
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2017-iframepost/" data-title="iframe跨域POST提交" data-hashtags="Javascript"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
         </div>
     </div>
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
 
-      </div>
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
     </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+
+    <div class="post-nav"><a href="/posts/2016-2017newyear/" class="prev" rel="prev" title="再见，2016；你好，2017"><i class="fas fa-angle-left fa-fw"></i>再见，2016；你好，2017</a>
+            <a href="/posts/2017-vue/" class="next" rel="next" title="Vue2.x踩坑与总结">Vue2.x踩坑与总结<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

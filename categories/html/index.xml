@@ -1,22 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>HTML on 博客</title>
-    <link>/categories/html/</link>
-    <description>Recent content in HTML on 博客</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
-</copyright>
-    <lastBuildDate>Sat, 26 Mar 2016 10:20:56 +0000</lastBuildDate><atom:link href="/categories/html/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>H5焦点管理---tabindex与document.activeElement</title>
-      <link>/posts/2016-activeelement/</link>
-      <pubDate>Sat, 26 Mar 2016 10:20:56 +0000</pubDate>
-      
-      <guid>/posts/2016-activeelement/</guid>
-      <description>&lt;p&gt;周四下午测试人员提出BUG，说我写的那个类支付宝密码框在按下Tab键时候无法像原生的form表单中的input那样被激活，当时的第一反应是，我的密码框原本就是用div模拟的，怎么可能想form表单一样在Tab键时候激活呢。但是当我打开支付宝官网，按下tab键后，密码框可以被激活，这激起了我的好奇心，也就有了后来对tabindex和document.activeElement的发现。废话不多说，进入正题。&lt;/p&gt;</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>HTML - 分类 - 跨界Coder</title>
+        <link>http://example.org/categories/html/</link>
+        <description>HTML - 分类 - 跨界Coder</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 26 Mar 2016 10:20:56 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/html/" rel="self" type="application/rss+xml" /><item>
+    <title>H5焦点管理---tabindex与document.activeElement</title>
+    <link>http://example.org/posts/2016-activeelement/</link>
+    <pubDate>Sat, 26 Mar 2016 10:20:56 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2016-activeelement/</guid>
+    <description><![CDATA[<p>周四下午测试人员提出BUG，说我写的那个类支付宝密码框在按下Tab键时候无法像原生的form表单中的input那样被激活，当时的第一反应是，我的密码框原本就是用div模拟的，怎么可能想form表单一样在Tab键时候激活呢。但是当我打开支付宝官网，按下tab键后，密码框可以被激活，这激起了我的好奇心，也就有了后来对tabindex和document.activeElement的发现。废话不多说，进入正题。</p>]]></description>
+</item></channel>
 </rss>

@@ -1,256 +1,231 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>「译」V8中的指针压缩 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="原文链接：https://v8.dev/blog/pointer-compression
-内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"「译」V8中的指针压缩",
-      "item":"/posts/2020_pointer_compression_in_v8/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2020_pointer_compression_in_v8/"
-    },
-    "headline": "「译」V8中的指针压缩 | 博客","datePublished": "2020-04-23T17:08:00+00:00",
-    "dateModified": "2020-04-23T17:08:00+00:00",
-    "wordCount":  573 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cp\u003e原文链接：https:\/\/v8.dev\/blog\/pointer-compression\u003c\/p\u003e\n\u003cp\u003e内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。\u003c\/p\u003e"
-}
-</script><meta property="og:title" content="「译」V8中的指针压缩 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2020_pointer_compression_in_v8/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">「译」V8中的指针压缩 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="「译」V8中的指针压缩" />
 <meta property="og:description" content="原文链接：https://v8.dev/blog/pointer-compression
 内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2020_pointer_compression_in_v8/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-04-23T17:08:00+00:00" />
+<meta property="article:modified_time" content="2020-04-23T17:08:00+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="「译」V8中的指针压缩"/>
+<meta name="twitter:description" content="原文链接：https://v8.dev/blog/pointer-compression
+内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2020-04-23T17:08:00&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2020-04-23T17:08:00&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="Javascript" />
-
-
-
-
-
-<meta property="og:see_also" content="/posts/2019-axiosparams/" />
-
-<meta property="og:see_also" content="/posts/2018-es2018/" />
-
-<meta property="og:see_also" content="/posts/2017-jsdecode/" />
-
-<meta property="og:see_also" content="/posts/2017-reactdom/" />
-
-<meta property="og:see_also" content="/posts/2017-googlemap/" />
-
-<meta property="og:see_also" content="/posts/2017-pagination/" />
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2020_pointer_compression_in_v8/" /><link rel="prev" href="http://example.org/posts/2020-blance-sheet/" /><link rel="next" href="http://example.org/posts/2020-basicsort/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "「译」V8中的指针压缩",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2020_pointer_compression_in_v8\/"
+        },"genre": "posts","keywords": "Javascript","wordcount":  7541 ,
+        "url": "http:\/\/example.org\/posts\/2020_pointer_compression_in_v8\/","datePublished": "2020-04-23T17:08:00+00:00","dateModified": "2020-04-23T17:08:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">「译」V8中的指针压缩</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2020-04-23</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>3分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <p>原文链接：https://v8.dev/blog/pointer-compression</p>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">「译」V8中的指针压缩</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-23">2020-04-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-04-23">2020-04-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7541 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 16 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#v8中的标记值">V8中的标记值</a></li>
+    <li><a href="#压缩标记值tagged-values和新的堆布局">压缩标记值（tagged values）和新的堆布局</a>
+      <ul>
+        <li><a href="#简单的堆内存布局trivial-heap-layout">简单的堆内存布局（Trivial heap layout）</a></li>
+        <li><a href="#堆内存布局v1">堆内存布局，v1</a></li>
+        <li><a href="#堆内存布局v2">堆内存布局，v2</a></li>
+      </ul>
+    </li>
+    <li><a href="#性能演化">性能演化</a>
+      <ul>
+        <li><a href="#初始性能">初始性能</a></li>
+        <li><a href="#bump1-7">Bump(1), +7%</a></li>
+        <li><a href="#bump2-2">Bump(2), +2%</a></li>
+        <li><a href="#bump3-2">Bump(3), +2%</a></li>
+        <li><a href="#bump4-11">Bump(4), +11%</a></li>
+        <li><a href="#bump5-05">Bump(5), +0.5%</a></li>
+        <li><a href="#bump6-25">Bump(6), +2.5%</a></li>
+        <li><a href="#剩余差距remaining-gap">剩余差距（Remaining gap）</a>
+          <ul>
+            <li><a href="#32-bit-smi优化7--1">32-bit Smi优化(7), -1%</a></li>
+            <li><a href="#双精度字段拆箱双精度-field-unboxing-8--3">双精度字段拆箱（双精度 field unboxing） (8), -3%</a></li>
+            <li><a href="#更多的优化91">更多的优化（9），1%</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#一些优化细节">一些优化细节</a>
+      <ul>
+        <li><a href="#native代码端">Native代码端</a></li>
+        <li><a href="#c-端">C++ 端</a></li>
+      </ul>
+    </li>
+    <li><a href="#结果">结果</a></li>
+    <li><a href="#结论">结论</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>原文链接：https://v8.dev/blog/pointer-compression</p>
 <p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p>
-<p>时间回到2014年，那时Chrome从32位切换到64位。这个变化带给了Chrome更好的<a href="https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html">安全性、稳定性和性能</a>，但同时也带来了更多内存的消耗，因为之前每个指针占用4个字节而现在占用是8个字节。我们面临在V8中尽可能减少这种多出来4个字节开销的挑战。</p>
-<p>在实施改进之前，我们需要知道我们目前的状况，从而正确的评估如何改进。为了测量当前的内存和性能，我们使用一组可以代表目前流行站点的<a href="https://v8.dev/blog/optimizing-v8-memory">页面</a>。数据显示在桌面端Chrome<a href="https://www.chromium.org/developers/design-documents/multi-process-architecture">渲染进程</a>内存占用中V8占用了60%，平均为40%。</p>
-<p><img src="./img/memory-chrome.svg" alt="在Chrome渲染进程内存占用中V8的内存消耗百分比"></p>
+<p>时间回到2014年，那时Chrome从32位切换到64位。这个变化带给了Chrome更好的<a href="https://blog.chromium.org/2014/08/64-bits-of-awesome-64-bit-windows_26.html" target="_blank" rel="noopener noreffer">安全性、稳定性和性能</a>，但同时也带来了更多内存的消耗，因为之前每个指针占用4个字节而现在占用是8个字节。我们面临在V8中尽可能减少这种多出来4个字节开销的挑战。</p>
+<p>在实施改进之前，我们需要知道我们目前的状况，从而正确的评估如何改进。为了测量当前的内存和性能，我们使用一组可以代表目前流行站点的<a href="https://v8.dev/blog/optimizing-v8-memory" target="_blank" rel="noopener noreffer">页面</a>。数据显示在桌面端Chrome<a href="https://www.chromium.org/developers/design-documents/multi-process-architecture" target="_blank" rel="noopener noreffer">渲染进程</a>内存占用中V8占用了60%，平均为40%。</p>
+<p><img
+        class="lazyload"
+        data-src="./img/memory-chrome.svg"
+        data-srcset="./img/memory-chrome.svg, ./img/memory-chrome.svg 1.5x, ./img/memory-chrome.svg 2x"
+        data-sizes="auto"
+        alt="./img/memory-chrome.svg"
+        title="在Chrome渲染进程内存占用中V8的内存消耗百分比"
+    /></p>
 <p>指针压缩是改进V8内存占用的多项工作之一。想法很简单：我们可以存储一些“基”地址的32位偏移量而不是存储64位指针。这样一个简单的想法，我们可以从V8中的这种压缩获得多少收益？</p>
 <p>V8的堆区包含大量的项目（items），例如浮点值（floating point values），字符串字符（string characters），解析器字节码（interpreter bytecode）和标记值（tagged values）。在检查堆区时，我们发现在现实使用的网站中，这些标记值占了V8堆区的70%！</p>
 <p>下面我们具体看看这些标记值是什么。</p>
 <h2 id="v8中的标记值">V8中的标记值</h2>
 <p>在V8中JavaScript的对象，数组，数字或者字符串都用对象表示，分配在V8堆区。这使得我们可以用一个指向对象的指针表示任何值。</p>
-<p>许多JavaScript程序都会对整数进行计算，例如在循环中增加索引。为了避免每次整数递增时重新分配一个新的number对象，V8使用著名的<a href="https://en.wikipedia.org/wiki/Tagged_pointer">指针标记技术(pointer tagging)</a>在V8的堆指针中存储其他或替代数据。</p>
+<p>许多JavaScript程序都会对整数进行计算，例如在循环中增加索引。为了避免每次整数递增时重新分配一个新的number对象，V8使用著名的<a href="https://en.wikipedia.org/wiki/Tagged_pointer" target="_blank" rel="noopener noreffer">指针标记技术(pointer tagging)</a>在V8的堆指针中存储其他或替代数据。</p>
 <p>标记位（tag bits）有双重作用：用于指示位于V8堆中对象的强/弱指针或一个小整数的信号。因此，整数能够直接存储在标记值中，而不必为其分配额外的存储空间。</p>
 <p>V8在堆中按字对齐的地址分配对象，这使得它可以使用2（或3，取决于机器字大小）最低有效位进行标记。在32位架构中，V8使用最低有效位去区分Smis和堆对象指针。对于堆指针，它使用第二个最低有效位去区分强引用和弱引用：</p>
-<pre><code>                        |----- 32 bits -----|
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">                        |----- 32 bits -----|
 Pointer:                |_____address_____w1|
 Smi:                    |___int31_value____0|
-</code></pre>
-<p>这里的 <em>w</em> 用来区分强指针和弱指针。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里的 <em>w</em> 用来区分强指针和弱指针。</p>
 <p>*注意：*一个Smi值只能携带一个31bit有效载荷（payload），包括符号位。对于指针，我们有30bit用来作为堆对象地址有效载荷（payload）。由于字对齐，分配粒度为4个字节，这给了我们4GB的寻址空间。</p>
 <p>在64位架构中，V8的值看起来像这样：</p>
-<pre><code>            |----- 32 bits -----|----- 32 bits -----|
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">            |----- 32 bits -----|----- 32 bits -----|
 Pointer:    |________________address______________w1|
 Smi:        |____int32_value____|0000000000000000000|
-</code></pre>
-<p>不同于32位架构，在64位架构中V8可以将32位用于Smi值有效载荷（payload）。以下各节将讨论32位Smis对指针压缩的影响。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>不同于32位架构，在64位架构中V8可以将32位用于Smi值有效载荷（payload）。以下各节将讨论32位Smis对指针压缩的影响。</p>
 <h2 id="压缩标记值tagged-values和新的堆布局">压缩标记值（tagged values）和新的堆布局</h2>
 <p>使用指针压缩，我们的目标是以某种方式在64位架构中将两种标记值转换为32位。我们通过以下方式将指针调整为32位：</p>
 <ul>
@@ -261,101 +236,233 @@ Smi:        |____int32_value____|0000000000000000000|
 <p>现在的问题是如何更新堆布局才能让32位指针唯一标识V8对象。</p>
 <h3 id="简单的堆内存布局trivial-heap-layout">简单的堆内存布局（Trivial heap layout）</h3>
 <p>简单的压缩方案是在前4GB的地址空间分配对象。</p>
-<p><img src="./img/heap-layout-0.svg" alt="简单的堆内存布局"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/heap-layout-0.svg"
+        data-srcset="./img/heap-layout-0.svg, ./img/heap-layout-0.svg 1.5x, ./img/heap-layout-0.svg 2x"
+        data-sizes="auto"
+        alt="./img/heap-layout-0.svg"
+        title="简单的堆内存布局"
+    /></p>
 <p>但是很可惜V8不能这样做，因为Chrome的渲染进程可能需要在同一渲染器进程中创建多个V8的实例，例如对于Web/Service Workers。除此之外，用这个方案会导致所有的V8实例竞争相同的4GB地址空间从而导致所有的V8实例都受到4GB内存的限制。</p>
 <h3 id="堆内存布局v1">堆内存布局，v1</h3>
 <p>如果我们将V8堆（heap）放在其他地方的连续4GB地址空间，那么一个从base开始的无符号32位偏移量将唯一标识一个指针。</p>
-<p><img src="./img/heap-layout-1.svg" alt="堆内存布局，开始base对齐"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/heap-layout-1.svg"
+        data-srcset="./img/heap-layout-1.svg, ./img/heap-layout-1.svg 1.5x, ./img/heap-layout-1.svg 2x"
+        data-sizes="auto"
+        alt="./img/heap-layout-1.svg"
+        title="堆内存布局，开始base对齐"
+    /></p>
 <p>如果我们确保base是4GB对齐（4-GB-aligned），则所有指针的高位32位都相同。</p>
-<pre><code>            |----- 32 bits -----|----- 32 bits -----|
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">            |----- 32 bits -----|----- 32 bits -----|
 Pointer:    |________base_______|______offset_____w1|
-</code></pre>
-<p>通过将Smi的有效载荷（payload）限制为31位并将其放在低32位，我们还可以压缩Smis。基本上，使它和在32位架构中类似。</p>
-<pre><code>         |----- 32 bits -----|----- 32 bits -----|
+</code></pre></td></tr></table>
+</div>
+</div><p>通过将Smi的有效载荷（payload）限制为31位并将其放在低32位，我们还可以压缩Smis。基本上，使它和在32位架构中类似。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">         |----- 32 bits -----|----- 32 bits -----|
 Smi:     |sssssssssssssssssss|____int31_value___0|
-</code></pre>
-<p>这里 <em>s</em> 是Smi有效载荷的符号值。如果再有使用<a href="https://zh.wikipedia.org/wiki/%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%85%85">符号扩展</a>表示，我们就可以仅用64位字的一位算数移位来压缩和解压Smis。</p>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里 <em>s</em> 是Smi有效载荷的符号值。如果再有使用<a href="https://zh.wikipedia.org/wiki/%E7%AC%A6%E5%8F%B7%E6%89%A9%E5%85%85" target="_blank" rel="noopener noreffer">符号扩展</a>表示，我们就可以仅用64位字的一位算数移位来压缩和解压Smis。</p>
 <p>现在，我们可以看到指针和Smis的上半字（upper half-word）完全由下半字定义。这样，我们就可以只将后者存储在内存中，从而将存储标记值所需的内存减少一半。</p>
-<pre><code>                    |----- 32 bits -----|----- 32 bits -----|
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">                    |----- 32 bits -----|----- 32 bits -----|
 Compressed pointer:                     |______offset_____w1|
 Compressed Smi:                         |____int31_value___0|
-</code></pre>
-<p>假设base是4GB对齐的，则压缩就是截断：</p>
-<pre><code class="language-cpp">uint64_t uncompressed_tagged;
-uint32_t compressed_tagged = uint32_t(uncompressed_tagged);
-</code></pre>
-<p>但是解压代码要复杂一些。我们需要区分符号扩展（sign-extending）Smi和零扩展（zero-extending）指针，以及是否要添加base。</p>
-<pre><code class="language-cpp">uint32_t compressed_tagged;
+</code></pre></td></tr></table>
+</div>
+</div><p>假设base是4GB对齐的，则压缩就是截断：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">uint64_t</span> <span class="n">uncompressed_tagged</span><span class="p">;</span>
+<span class="kt">uint32_t</span> <span class="n">compressed_tagged</span> <span class="o">=</span> <span class="kt">uint32_t</span><span class="p">(</span><span class="n">uncompressed_tagged</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是解压代码要复杂一些。我们需要区分符号扩展（sign-extending）Smi和零扩展（zero-extending）指针，以及是否要添加base。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">uint32_t</span> <span class="n">compressed_tagged</span><span class="p">;</span>
 
-uint64_t uncompressed_tagged;
-if (compressed_tagged &amp; 1) {
-  // pointer case
-  uncompressed_tagged = base + uint64_t(compressed_tagged);
-} else {
-  // Smi case
-  uncompressed_tagged = int64_t(compressed_tagged);
-}
-</code></pre>
-<p>尝试改变压缩方案来简化解压代码。</p>
+<span class="kt">uint64_t</span> <span class="n">uncompressed_tagged</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">compressed_tagged</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// pointer case
+</span><span class="c1"></span>  <span class="n">uncompressed_tagged</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="kt">uint64_t</span><span class="p">(</span><span class="n">compressed_tagged</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// Smi case
+</span><span class="c1"></span>  <span class="n">uncompressed_tagged</span> <span class="o">=</span> <span class="kt">int64_t</span><span class="p">(</span><span class="n">compressed_tagged</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>尝试改变压缩方案来简化解压代码。</p>
 <h3 id="堆内存布局v2">堆内存布局，v2</h3>
 <p>如果将base不是放在4GB的开头，而是中间，就可以将压缩值视为从base开始的一个有符号32位偏移量。注意，整个保留不再是4GB对齐（4-GB-aligned），但是base依然是对齐的。</p>
-<p><img src="./img/heap-layout-2.svg" alt="堆内存布局，中间base对齐"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/heap-layout-2.svg"
+        data-srcset="./img/heap-layout-2.svg, ./img/heap-layout-2.svg 1.5x, ./img/heap-layout-2.svg 2x"
+        data-sizes="auto"
+        alt="./img/heap-layout-2.svg"
+        title="堆内存布局，中间base对齐"
+    /></p>
 <p>在这个新的布局中，压缩代码和上面堆内存布局v1中的相同。</p>
 <p>然而解压代码变得更好了。现在对Smi和指针来说，符号扩展是相同的，唯一的分支在于如果是指针，需要添加base。</p>
-<pre><code class="language-cpp">int32_t compressed_tagged;
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int32_t</span> <span class="n">compressed_tagged</span><span class="p">;</span>
 
-// Common code for both pointer and Smi cases
-int64_t uncompressed_tagged = int64_t(compressed_tagged);
-if (uncompressed_tagged &amp; 1) {
-  // pointer case
-  uncompressed_tagged += base;
-}
-</code></pre>
-<p>代码中分支的性能取决于CPU中的<a href="https://zh.wikipedia.org/zh-cn/%E5%88%86%E6%94%AF%E9%A0%90%E6%B8%AC%E5%99%A8">分支预测单元</a>。如果我们以无分支的方式执行解压，我们可以得到更好的性能。通过少量魔术，我们可以写出一个无分支版本的代码：</p>
-<pre><code class="language-cpp">int32_t compressed_tagged;
+<span class="c1">// Common code for both pointer and Smi cases
+</span><span class="c1"></span><span class="kt">int64_t</span> <span class="n">uncompressed_tagged</span> <span class="o">=</span> <span class="kt">int64_t</span><span class="p">(</span><span class="n">compressed_tagged</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">uncompressed_tagged</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// pointer case
+</span><span class="c1"></span>  <span class="n">uncompressed_tagged</span> <span class="o">+=</span> <span class="n">base</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>代码中分支的性能取决于CPU中的<a href="https://zh.wikipedia.org/zh-cn/%E5%88%86%E6%94%AF%E9%A0%90%E6%B8%AC%E5%99%A8" target="_blank" rel="noopener noreffer">分支预测单元</a>。如果我们以无分支的方式执行解压，我们可以得到更好的性能。通过少量魔术，我们可以写出一个无分支版本的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kt">int32_t</span> <span class="n">compressed_tagged</span><span class="p">;</span>
 
-// Same code for both pointer and Smi cases
-int64_t sign_extended_tagged = int64_t(compressed_tagged);
-int64_t selector_mask = -(sign_extended_tagged &amp; 1);
-// Mask is 0 in case of Smi or all 1s in case of pointer
-int64_t uncompressed_tagged =
-    sign_extended_tagged + (base &amp; selector_mask);
-</code></pre>
-<p>然后，我们决定从无分支实现开始。</p>
+<span class="c1">// Same code for both pointer and Smi cases
+</span><span class="c1"></span><span class="kt">int64_t</span> <span class="n">sign_extended_tagged</span> <span class="o">=</span> <span class="kt">int64_t</span><span class="p">(</span><span class="n">compressed_tagged</span><span class="p">);</span>
+<span class="kt">int64_t</span> <span class="n">selector_mask</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">sign_extended_tagged</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">);</span>
+<span class="c1">// Mask is 0 in case of Smi or all 1s in case of pointer
+</span><span class="c1"></span><span class="kt">int64_t</span> <span class="n">uncompressed_tagged</span> <span class="o">=</span>
+    <span class="n">sign_extended_tagged</span> <span class="o">+</span> <span class="p">(</span><span class="n">base</span> <span class="o">&amp;</span> <span class="n">selector_mask</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后，我们决定从无分支实现开始。</p>
 <h2 id="性能演化">性能演化</h2>
 <h3 id="初始性能">初始性能</h3>
-<p>我们使用<a href="https://v8.dev/blog/retiring-octane#the-genesis-of-octane">Octane</a>测试性能，Octane是我们过去使用的性能基准测试。尽管我们在日常工作中不再专注于提高性能峰值（improving peak performance），但我们也不希望降低它，特别是一些像指针这样对性能敏感的东西。Octane依然是完成这个任务的好的基准测试。</p>
+<p>我们使用<a href="https://v8.dev/blog/retiring-octane#the-genesis-of-octane" target="_blank" rel="noopener noreffer">Octane</a>测试性能，Octane是我们过去使用的性能基准测试。尽管我们在日常工作中不再专注于提高性能峰值（improving peak performance），但我们也不希望降低它，特别是一些像指针这样对性能敏感的东西。Octane依然是完成这个任务的好的基准测试。</p>
 <p>图形显示了在使用指针压缩时Octane在x64架构上的得分。在图中，线越高越好。红色的线是未压缩指针的x64构建，绿色的线是指针压缩的版本。</p>
-<p><img src="./img/perf-octane-1.svg" alt="Octane第一轮改进"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/perf-octane-1.svg"
+        data-srcset="./img/perf-octane-1.svg, ./img/perf-octane-1.svg 1.5x, ./img/perf-octane-1.svg 2x"
+        data-sizes="auto"
+        alt="./img/perf-octane-1.svg"
+        title="Octane第一轮改进"
+    /></p>
 <p>在第一个方案中，我们的回归差约为35%。</p>
 <h3 id="bump1-7">Bump(1), +7%</h3>
 <p>首先我们通过比较无分支解压和有分支解压，验证了“无分支会更快”的假设。事实证明，我们的假设是错误的，在x64上，有分支版本的速度提高了7%。这是非常大的不同！</p>
 <p>下面看一下x64汇编</p>
-<p><img src="./img/code1.png" alt="x64汇编"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/code1.png"
+        data-srcset="./img/code1.png, ./img/code1.png 1.5x, ./img/code1.png 2x"
+        data-sizes="auto"
+        alt="./img/code1.png"
+        title="x64汇编"
+    /></p>
 <p>r13是base值的专用寄存器。注意，无分支代码在这里代码量更多且需要的寄存器也更多。</p>
 <p>在Arm64，我们观察到相同的现象——在强大的CPU上，有分支版本明显更快（尽管这两种情况的代码大小是一样的）。</p>
-<p><img src="./img/code2.jpeg" alt="Arm64汇编"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/code2.jpeg"
+        data-srcset="./img/code2.jpeg, ./img/code2.jpeg 1.5x, ./img/code2.jpeg 2x"
+        data-sizes="auto"
+        alt="./img/code2.jpeg"
+        title="Arm64汇编"
+    /></p>
 <p>在低端Arm64设备上我们发现在任一方向上几乎没什么性能差异。</p>
 <p>我们的收获是：在现代CPU中分支预测器非常的好，代码的大小（code size）（尤其是执行路径的长度）对性能影响更大。</p>
 <h3 id="bump2-2">Bump(2), +2%</h3>
-<p><a href="https://v8.dev/docs/turbofan">TurboFan</a>是V8的优化编译器，围绕“Sea of Nodes”概念构建。简单来说就是每一个操作在graph中用一个Node表示（更详细的解释可以查看<a href="https://v8.dev/blog/turbofan-jit">这篇博客</a>。这些节点有各种依赖，包括数据流和控制流。</p>
+<p><a href="https://v8.dev/docs/turbofan" target="_blank" rel="noopener noreffer">TurboFan</a>是V8的优化编译器，围绕“Sea of Nodes”概念构建。简单来说就是每一个操作在graph中用一个Node表示（更详细的解释可以查看<a href="https://v8.dev/blog/turbofan-jit" target="_blank" rel="noopener noreffer">这篇博客</a>。这些节点有各种依赖，包括数据流和控制流。</p>
 <p>有两个对指针压缩至关重要的操作：加载和存储，因为它们将V8堆内存和管道（pipeline）的其余部分连起来。如果我们每次从堆内存加载压缩值的时候都解压，并且在存储之前对其压缩，那么管道（pipeline）就可以像在全指针模式（full-pointer mode）下工作了。因此我们在节点图中添加了新的显式操作——压缩和解压。</p>
 <p>在某些情况下解压是不需要的，例如，如果一个压缩值仅仅是从某个位置被加载然后存储到新的位置。</p>
 <p>为了优化不必要的操作，我们在TurboFan中实施了一个新的“消除解压”阶段。它的工作就是消除直接压缩后的解压。由于这些节点可能不会直接相连，因此它会尝试通过graph传播解压，以期遇到压缩问题并消除。这使我们的Octane的值提高了2%。</p>
 <h3 id="bump3-2">Bump(3), +2%</h3>
 <p>在查看生成代码时，我们注意到解压一个刚刚被加载的值会导致代码的冗长：</p>
-<pre><code class="language-cpp">movl rax, &lt;mem&gt;   // load
-movlsxlq rax, rax // sign extend
-</code></pre>
-<p>一旦我们修复了标志扩展的问题，value就可以直接从内存中加载。</p>
-<pre><code class="language-cpp">movlsxlq rax, &lt;mem&gt;
-</code></pre>
-<p>我们得到了另外2%的改善。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">movl</span> <span class="n">rax</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">mem</span><span class="o">&gt;</span>   <span class="c1">// load
+</span><span class="c1"></span><span class="n">movlsxlq</span> <span class="n">rax</span><span class="p">,</span> <span class="n">rax</span> <span class="c1">// sign extend
+</span></code></pre></td></tr></table>
+</div>
+</div><p>一旦我们修复了标志扩展的问题，value就可以直接从内存中加载。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">movlsxlq</span> <span class="n">rax</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">mem</span><span class="o">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们得到了另外2%的改善。</p>
 <h3 id="bump4-11">Bump(4), +11%</h3>
 <p>TurboFan优化阶段通过在graph上使用模式匹配工作：一旦一个sub-garph与一个特定模式匹配，就会被替换为语义上等效（但是更好）的sub-graph或指令（instruction）。</p>
 <p>尝试匹配不成功并不会有明确的失败提示。在graph中显式的压缩/解压操作导致之前成功的模式匹配尝试失败，从而导致优化失败且没有提示。</p>
-<p>“中断”优化的其中一个例子是<a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43823.pdf">分配预配置（allocation preternuring）</a>。一旦我们更新匹配模式（pattern matching）使其能够匹配到新的压缩 / 解压 node，我们就可以得到另外11%的改进。</p>
-<p><img src="./img/perf-octane-2.svg" alt="Octane的第二轮改进"></p>
+<p>“中断”优化的其中一个例子是<a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43823.pdf" target="_blank" rel="noopener noreffer">分配预配置（allocation preternuring）</a>。一旦我们更新匹配模式（pattern matching）使其能够匹配到新的压缩 / 解压 node，我们就可以得到另外11%的改进。</p>
+<p><img
+        class="lazyload"
+        data-src="./img/perf-octane-2.svg"
+        data-srcset="./img/perf-octane-2.svg, ./img/perf-octane-2.svg 1.5x, ./img/perf-octane-2.svg 2x"
+        data-sizes="auto"
+        alt="./img/perf-octane-2.svg"
+        title="Octane的第二轮改进"
+    /></p>
 <h3 id="bump5-05">Bump(5), +0.5%</h3>
 <p>在TurboFan中使用解压去除（Decompression Elimination）我们学到了很多。显式的解压 / 压缩node方法具有以下特性：</p>
 <p>优点：</p>
@@ -365,7 +472,7 @@ movlsxlq rax, rax // sign extend
 <p>但是，随着我们进一步的实施，我们发现缺点：</p>
 <ul>
 <li>
-<p>新的内部值的表示可能会导致转换操作变的难以管理。除了现有的表示集（tagged Smi, <a href="https://en.wikipedia.org/wiki/Tagged_pointer">tagged pointer</a>, tagged any, word8, word16, word32, float32, float64, simd128），我们还有压缩指针，压缩Smi，压缩任何值（压缩值可以是指针或Smi）。</p>
+<p>新的内部值的表示可能会导致转换操作变的难以管理。除了现有的表示集（tagged Smi, <a href="https://en.wikipedia.org/wiki/Tagged_pointer" target="_blank" rel="noopener noreffer">tagged pointer</a>, tagged any, word8, word16, word32, float32, float64, simd128），我们还有压缩指针，压缩Smi，压缩任何值（压缩值可以是指针或Smi）。</p>
 </li>
 <li>
 <p>现有的基于graph的模式匹配（pattern-matching）的优化并没有生效，这导致了一些地方的回退（regressions）。尽管我们找到并修复其中的问题，但TurboFan的复杂性仍在不断增加。</p>
@@ -383,32 +490,78 @@ movlsxlq rax, rax // sign extend
 <h3 id="bump6-25">Bump(6), +2.5%</h3>
 <p>我们已经接近平均性能，但是依然有差距。我们必须有更好的想法。其中一个想法是：如果我们确保任何处理Smi值的代码都不处理高32位，结果会怎么样？</p>
 <p>之前的解压实现：</p>
-<pre><code class="language-cpp">// Old decompression implementation
-int64_t uncompressed_tagged = int64_t(compressed_tagged);
-if (uncompressed_tagged &amp; 1) {
-  // pointer case
-  uncompressed_tagged += base;
-}
-</code></pre>
-<p>如果我们忽略一个Smi的高32位就可以假定它是<code>undefined</code>。这样，我们就可以避免指针和Smi之间的特殊case，并且可以在解压的时候无条件的添加base，即使是对Smis也可以！我们称这个方法为“Smi-corrupting”。</p>
-<pre><code class="language-cpp">// New decompression implementation
-int64_t uncompressed_tagged = base + int64_t(compressed_tagged);
-</code></pre>
-<p>由于我们不关注Smi的符号扩展（sign extending），因此这个改变允许我们回到堆内存布局v1。这是一个base指向4GB预留空间的开始位置。</p>
-<p><img src="./img/heap-layout-3.svg" alt="Heap layout, base aligned to start"></p>
-<p>就解压代码而言，这个改变将符号扩展（sign-extension）变为零扩展（zero-extension），这也同样简单。但是这简化了运行时（C++）端的工作。例如，例如地址空间区域保留代码（查看<a href="https://v8.dev/blog/pointer-compression#some-implementation-details">一些细节实现</a>部分）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Old decompression implementation
+</span><span class="c1"></span><span class="kt">int64_t</span> <span class="n">uncompressed_tagged</span> <span class="o">=</span> <span class="kt">int64_t</span><span class="p">(</span><span class="n">compressed_tagged</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">uncompressed_tagged</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// pointer case
+</span><span class="c1"></span>  <span class="n">uncompressed_tagged</span> <span class="o">+=</span> <span class="n">base</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果我们忽略一个Smi的高32位就可以假定它是<code>undefined</code>。这样，我们就可以避免指针和Smi之间的特殊case，并且可以在解压的时候无条件的添加base，即使是对Smis也可以！我们称这个方法为“Smi-corrupting”。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// New decompression implementation
+</span><span class="c1"></span><span class="kt">int64_t</span> <span class="n">uncompressed_tagged</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="kt">int64_t</span><span class="p">(</span><span class="n">compressed_tagged</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>由于我们不关注Smi的符号扩展（sign extending），因此这个改变允许我们回到堆内存布局v1。这是一个base指向4GB预留空间的开始位置。</p>
+<p><img
+        class="lazyload"
+        data-src="./img/heap-layout-3.svg"
+        data-srcset="./img/heap-layout-3.svg, ./img/heap-layout-3.svg 1.5x, ./img/heap-layout-3.svg 2x"
+        data-sizes="auto"
+        alt="./img/heap-layout-3.svg"
+        title="Heap layout, base aligned to start"
+    /></p>
+<p>就解压代码而言，这个改变将符号扩展（sign-extension）变为零扩展（zero-extension），这也同样简单。但是这简化了运行时（C++）端的工作。例如，例如地址空间区域保留代码（查看<a href="https://v8.dev/blog/pointer-compression#some-implementation-details" target="_blank" rel="noopener noreffer">一些细节实现</a>部分）。</p>
 <p>这是用于比较的汇编：</p>
-<p><img src="./img/code3.jpeg" alt=""></p>
+<p><img
+        class="lazyload"
+        data-src="./img/code3.jpeg"
+        data-srcset="./img/code3.jpeg, ./img/code3.jpeg 1.5x, ./img/code3.jpeg 2x"
+        data-sizes="auto"
+        alt="./img/code3.jpeg"
+        title="./img/code3.jpeg"
+    /></p>
 <p>因此我们更将8中所有的使用Smi的代码块调整为新的压缩方案，这给我们另外2.5%的性能提升。</p>
 <h3 id="剩余差距remaining-gap">剩余差距（Remaining gap）</h3>
 <p>剩余的性能差距可以用对64位构建的两个优化来解释，这些优化由于与指针压缩不兼容而禁用。</p>
-<p><img src="./img/perf-octane-3.svg" alt="Octane的最后一轮改进"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/perf-octane-3.svg"
+        data-srcset="./img/perf-octane-3.svg, ./img/perf-octane-3.svg 1.5x, ./img/perf-octane-3.svg 2x"
+        data-sizes="auto"
+        alt="./img/perf-octane-3.svg"
+        title="Octane的最后一轮改进"
+    /></p>
 <h4 id="32-bit-smi优化7--1">32-bit Smi优化(7), -1%</h4>
 <p>我们回顾一下，Smis在64位架构全指针模式中看起来是这样：</p>
-<pre><code class="language-cpp">        |----- 32 bits -----|----- 32 bits -----|
-Smi:    |____int32_value____|0000000000000000000|
-</code></pre>
-<p>32-bit Smi有如下好处：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp">        <span class="o">|-----</span> <span class="mi">32</span> <span class="n">bits</span> <span class="o">-----|-----</span> <span class="mi">32</span> <span class="n">bits</span> <span class="o">-----|</span>
+<span class="nl">Smi</span><span class="p">:</span>    <span class="o">|</span><span class="n">____int32_value____</span><span class="o">|</span><span class="mo">0000000000000000000</span><span class="o">|</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>32-bit Smi有如下好处：</p>
 <ul>
 <li>它可以有更大的整数范围且不需要封装成整数对象</li>
 <li>这样的形式可以在读/写时直接访问32位值</li>
@@ -420,188 +573,251 @@ Smi:    |____int32_value____|0000000000000000000|
 </blockquote>
 <p>在某些假设下，这种优化尝试直接将浮点值存储在对象的字段中。这样做的目的是减少数字对象分配的数量，这比单独用Smis减少的更多。</p>
 <p>想象一下下面这段代码：</p>
-<pre><code class="language-js">function Point(x, y) {
-  this.x = x;
-  this.y = y;
-}
-const p = new Point(3.1, 5.3);
-</code></pre>
-<p>一般来说，对象p在内存中的样子如下：</p>
-<p><img src="./img/heap-point-1.svg" alt="对象p在内存中的形式"></p>
-<p>关于更多存储中的隐藏类，属性和元素可以<a href="https://v8.dev/blog/fast-properties">阅读此文</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">Point</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kr">const</span> <span class="nx">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mf">3.1</span><span class="p">,</span> <span class="mf">5.3</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>一般来说，对象p在内存中的样子如下：</p>
+<p><img
+        class="lazyload"
+        data-src="./img/heap-point-1.svg"
+        data-srcset="./img/heap-point-1.svg, ./img/heap-point-1.svg 1.5x, ./img/heap-point-1.svg 2x"
+        data-sizes="auto"
+        alt="./img/heap-point-1.svg"
+        title="对象p在内存中的形式"
+    /></p>
+<p>关于更多存储中的隐藏类，属性和元素可以<a href="https://v8.dev/blog/fast-properties" target="_blank" rel="noopener noreffer">阅读此文</a></p>
 <p>在64位架构中，双精度值和指针的大小相同。所以<strong>如果我们假设Point字段总是包含number值</strong>，则可以将它们直接存储在对象中。</p>
-<p><img src="./img/heap-point-2.svg" alt=""></p>
+<p><img
+        class="lazyload"
+        data-src="./img/heap-point-2.svg"
+        data-srcset="./img/heap-point-2.svg, ./img/heap-point-2.svg 1.5x, ./img/heap-point-2.svg 2x"
+        data-sizes="auto"
+        alt="./img/heap-point-2.svg"
+        title="./img/heap-point-2.svg"
+    /></p>
 <p>如果某个字段导致假设不成立，例如执行下面这段代码：</p>
-<pre><code class="language-js">const q = new Point(2, 'ab');
-</code></pre>
-<p>y属性的number值必须装箱存储（store boxed instead）。另外，如果某处的优化的代码依赖此假设，则该优化必须舍弃。进行这些“字段类型”泛化的原因是为了尽量减少通过同一构造函数创建的对象的Shapes（译者注：在 JavaScript 程序中，多个对象具有相同的key，JS引擎会将这些key单独存储在一个地方，从而优化存储，具体可以查看<a href="https://hijiangtao.github.io/2018/06/17/Shapes-ICs/">[译] JavaScript 引擎基础：Shapes 和 Inline Caches</a>）数量，反过来这对于具有稳定的性能是很必要的。</p>
-<p><img src="./img/heap-point-3.svg" alt="对象p和q在内存中的形式"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;ab&#39;</span><span class="p">);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>y属性的number值必须装箱存储（store boxed instead）。另外，如果某处的优化的代码依赖此假设，则该优化必须舍弃。进行这些“字段类型”泛化的原因是为了尽量减少通过同一构造函数创建的对象的Shapes（译者注：在 JavaScript 程序中，多个对象具有相同的key，JS引擎会将这些key单独存储在一个地方，从而优化存储，具体可以查看<a href="https://hijiangtao.github.io/2018/06/17/Shapes-ICs/" target="_blank" rel="noopener noreffer">[译] JavaScript 引擎基础：Shapes 和 Inline Caches</a>）数量，反过来这对于具有稳定的性能是很必要的。</p>
+<p><img
+        class="lazyload"
+        data-src="./img/heap-point-3.svg"
+        data-srcset="./img/heap-point-3.svg, ./img/heap-point-3.svg 1.5x, ./img/heap-point-3.svg 2x"
+        data-sizes="auto"
+        alt="./img/heap-point-3.svg"
+        title="对象p和q在内存中的形式"
+    /></p>
 <p>如果应用该优化，双精度字段拆箱给我们如下好处：</p>
 <ul>
 <li>通过对象指针提供对浮点数据的直接访问，避免通过number对象进行额外的取消引用操作。</li>
 <li>允许我们对紧凑循环（tight loops）生成更小更快的优化代码从而可以做大量的双精度字段访问。（例如在数字运算应用程序中）</li>
 </ul>
 <p>启用指针压缩后，双精度值不再适合压缩字段。然而，在未来我们可能为指针压缩适配该优化。</p>
-<p>注意，即使没有双精度字段拆箱优化（以与指针压缩兼容的方式），也可以通过将数据存储在Float64 TypedArrays，甚至是使用<a href="https://webassembly.github.io/spec/core/">Wasm</a>重写要求高吞吐量的数字运算代码。</p>
+<p>注意，即使没有双精度字段拆箱优化（以与指针压缩兼容的方式），也可以通过将数据存储在Float64 TypedArrays，甚至是使用<a href="https://webassembly.github.io/spec/core/" target="_blank" rel="noopener noreffer">Wasm</a>重写要求高吞吐量的数字运算代码。</p>
 <h4 id="更多的优化91">更多的优化（9），1%</h4>
 <p>最后，对TurboFan中的解压消除优化进行微调又得到另外1%的性能提升。</p>
 <h2 id="一些优化细节">一些优化细节</h2>
 <p>为了简化将指针压缩整合到现有代码中，我们决定在每次加载values的时候解压并且在每次存储的时压缩它们。因此只是改变标志值的存储格式，而执行格式保持不变。</p>
 <h3 id="native代码端">Native代码端</h3>
-<p>为了在解压的时候生成有效的代码，必须保证始终提供base值。幸运的是V8已经有一个专用的寄存器指向一个“根表（roots table）”，该表包含JavaScript和V8内部对象的引用，这些对象必须始终可用（例如：<code>undefined</code>，<code>null</code>，<code>true</code>，<code>false</code>等）。该寄存器被称为“根寄存器”，它用来生成较小的，<a href="https://v8.dev/blog/embedded-builtins">可以共享的内部代码</a>。</p>
+<p>为了在解压的时候生成有效的代码，必须保证始终提供base值。幸运的是V8已经有一个专用的寄存器指向一个“根表（roots table）”，该表包含JavaScript和V8内部对象的引用，这些对象必须始终可用（例如：<code>undefined</code>，<code>null</code>，<code>true</code>，<code>false</code>等）。该寄存器被称为“根寄存器”，它用来生成较小的，<a href="https://v8.dev/blog/embedded-builtins" target="_blank" rel="noopener noreffer">可以共享的内部代码</a>。</p>
 <p>所以，我们将根表放在V8堆保留区，根寄存器可以同时有两种用途：</p>
 <ul>
 <li>作为根指针</li>
 <li>作为解压的base值</li>
 </ul>
 <h3 id="c-端">C++ 端</h3>
-<p>V8运行时通过C++类访问在V8堆区的对象，从而提供对堆中存储的数据的便捷访问。请注意，V8对象比C++对象更类似于<a href="https://en.wikipedia.org/wiki/Passive_data_structure">POD</a>的结构。助手（helper）“view”类仅仅包含一个带有相应标记值的<code>uintptr_t</code>字段。由于view类是字大小的（word-size），因此我们可以将它按值传递，开销为零（这样感谢现代C++编译器）。</p>
+<p>V8运行时通过C++类访问在V8堆区的对象，从而提供对堆中存储的数据的便捷访问。请注意，V8对象比C++对象更类似于<a href="https://en.wikipedia.org/wiki/Passive_data_structure" target="_blank" rel="noopener noreffer">POD</a>的结构。助手（helper）“view”类仅仅包含一个带有相应标记值的<code>uintptr_t</code>字段。由于view类是字大小的（word-size），因此我们可以将它按值传递，开销为零（这样感谢现代C++编译器）。</p>
 <p>这里是一个helper类的伪代码：</p>
-<pre><code class="language-cpp">// Hidden class
-class Map {
-  ...
-  inline DescriptorArray instance_descriptors() const;
-  ...
-  // The actual tagged pointer value stored in the Map view object.
-  cosnt uintptr_t ptr_;
-}
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="c1">// Hidden class
+</span><span class="c1"></span><span class="k">class</span> <span class="nc">Map</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="kr">inline</span> <span class="n">DescriptorArray</span> <span class="n">instance_descriptors</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="p">...</span>
+  <span class="c1">// The actual tagged pointer value stored in the Map view object.
+</span><span class="c1"></span>  <span class="n">cosnt</span> <span class="n">uintptr_t</span> <span class="n">ptr_</span><span class="p">;</span>
+<span class="p">}</span>
 
-DescriptorArray Map::instance_descriptors() const {
-  uintptr_t field_address = FieldAddress(ptr_, kInstanceDescriptorsOffset);
+<span class="n">DescriptorArray</span> <span class="n">Map</span><span class="o">::</span><span class="n">instance_descriptors</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">uintptr_t</span> <span class="n">field_address</span> <span class="o">=</span> <span class="n">FieldAddress</span><span class="p">(</span><span class="n">ptr_</span><span class="p">,</span> <span class="n">kInstanceDescriptorsOffset</span><span class="p">);</span>
 
-  uintptr_t da = *reinterpret_cast&lt;uintptr_t*&gt;(field_address);
-  return DescriptorArray(da);
-}
-</code></pre>
-<p>为了尽量减少首次运行指针压缩版本的所需的更改次数，我们将解压必须的base值的计算集成到getter中。</p>
-<pre><code class="language-cpp">inline uintptr_t GetBaseForPointerCompression(uintptr_t address) {
-  // Round address down to 4 GB
-  const uintptr_t kBaseAlignment = 1 &lt;&lt; 32;
-  return address &amp; -kBaseAlignment;
-}
+  <span class="n">uintptr_t</span> <span class="n">da</span> <span class="o">=</span> <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">uintptr_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">field_address</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nf">DescriptorArray</span><span class="p">(</span><span class="n">da</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>为了尽量减少首次运行指针压缩版本的所需的更改次数，我们将解压必须的base值的计算集成到getter中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="kr">inline</span> <span class="n">uintptr_t</span> <span class="nf">GetBaseForPointerCompression</span><span class="p">(</span><span class="n">uintptr_t</span> <span class="n">address</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// Round address down to 4 GB
+</span><span class="c1"></span>  <span class="k">const</span> <span class="n">uintptr_t</span> <span class="n">kBaseAlignment</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">32</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">address</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">kBaseAlignment</span><span class="p">;</span>
+<span class="p">}</span>
 
-DescriptorArray Map::instance_descriptors() const {
-  uintptr_t field_address = FieldAddress(ptr_, kInstanceDescriptorsOffset);
+<span class="n">DescriptorArray</span> <span class="n">Map</span><span class="o">::</span><span class="n">instance_descriptors</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">uintptr_t</span> <span class="n">field_address</span> <span class="o">=</span> <span class="n">FieldAddress</span><span class="p">(</span><span class="n">ptr_</span><span class="p">,</span> <span class="n">kInstanceDescriptorsOffset</span><span class="p">);</span>
 
-  uint32_t compressed_da = *reinterpret_cast&lt;uint32_t*&gt;(field_address);
+  <span class="kt">uint32_t</span> <span class="n">compressed_da</span> <span class="o">=</span> <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">field_address</span><span class="p">);</span>
 
-  uintptr_t base = GetBaseForPointerCompression(ptr_);
-  uintptr_t da = base + compressed_da;
-  return DescriptorArray(da);
-}
-</code></pre>
-<p>性能测量结果证实，在每次加载的时候计算base值会影响性能。原因在于C++编译器不知道，对于V8堆区的任何地址调用<code>GetBaseForPointerCompression()</code>的结果是相同的，因此编译器无法合并base值的计算。鉴于代码包含多个指令和一个64位常量，这将导致代码显著膨胀。</p>
+  <span class="n">uintptr_t</span> <span class="n">base</span> <span class="o">=</span> <span class="n">GetBaseForPointerCompression</span><span class="p">(</span><span class="n">ptr_</span><span class="p">);</span>
+  <span class="n">uintptr_t</span> <span class="n">da</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">compressed_da</span><span class="p">;</span>
+  <span class="k">return</span> <span class="nf">DescriptorArray</span><span class="p">(</span><span class="n">da</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>性能测量结果证实，在每次加载的时候计算base值会影响性能。原因在于C++编译器不知道，对于V8堆区的任何地址调用<code>GetBaseForPointerCompression()</code>的结果是相同的，因此编译器无法合并base值的计算。鉴于代码包含多个指令和一个64位常量，这将导致代码显著膨胀。</p>
 <p>为了处理这个问题，我们重用V8实例指针作为解压时用的base（记住，V8实例数据在堆区布局中）。该指针通常在运行时函数中可用，所以我们通过要求使用V8实例指针简化getters代码，并恢复来了性能：</p>
-<pre><code class="language-cpp">DescriptorArray Map::instance_descriptors(const Isolate* isolate) const {
-  uintptr_t field_address =
-      FieldAddress(ptr_, kInstanceDescriptorsOffset);
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="n">DescriptorArray</span> <span class="n">Map</span><span class="o">::</span><span class="n">instance_descriptors</span><span class="p">(</span><span class="k">const</span> <span class="n">Isolate</span><span class="o">*</span> <span class="n">isolate</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span>
+  <span class="n">uintptr_t</span> <span class="n">field_address</span> <span class="o">=</span>
+      <span class="n">FieldAddress</span><span class="p">(</span><span class="n">ptr_</span><span class="p">,</span> <span class="n">kInstanceDescriptorsOffset</span><span class="p">);</span>
 
-  uint32_t compressed_da = *reinterpret_cast&lt;uint32_t*&gt;(field_address);
+  <span class="kt">uint32_t</span> <span class="n">compressed_da</span> <span class="o">=</span> <span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">uint32_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">field_address</span><span class="p">);</span>
 
-  // No rounding is needed since the Isolate pointer is already the base.
-  uintptr_t base = reinterpret_cast&lt;uintptr_t&gt;(isolate);
-  uintptr_t da = DecompressTagged(base, compressed_value);
-  return DescriptorArray(da);
-}
-</code></pre>
-<h2 id="结果">结果</h2>
+  <span class="c1">// No rounding is needed since the Isolate pointer is already the base.
+</span><span class="c1"></span>  <span class="n">uintptr_t</span> <span class="n">base</span> <span class="o">=</span> <span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="n">uintptr_t</span><span class="o">&gt;</span><span class="p">(</span><span class="n">isolate</span><span class="p">);</span>
+  <span class="n">uintptr_t</span> <span class="n">da</span> <span class="o">=</span> <span class="n">DecompressTagged</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">compressed_value</span><span class="p">);</span>
+  <span class="k">return</span> <span class="nf">DescriptorArray</span><span class="p">(</span><span class="n">da</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="结果">结果</h2>
 <p>让我们来看看指针压缩的最后结果！对于这些结果，我们使用与本文开头介绍的相同的网站测试。提醒一下，他们代表用户在真实世界网站使用情况。</p>
 <p>我们发现指针压缩将V8堆区大小减少43%！反过来，它减少桌面端Chrome渲染进程20%的内存占用。</p>
-<p><img src="./img/v8-heap-memory.svg" alt="在Windows 10中的内存节省"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/v8-heap-memory.svg"
+        data-srcset="./img/v8-heap-memory.svg, ./img/v8-heap-memory.svg 1.5x, ./img/v8-heap-memory.svg 2x"
+        data-sizes="auto"
+        alt="./img/v8-heap-memory.svg"
+        title="在Windows 10中的内存节省"
+    /></p>
 <p>另一个重要的事情是，不是每一个网站都有相同的改进。例如，在没有使用指针压缩的时候Facebook使用V8堆区内存比纽约时报要多，但是使用该优化后，使用堆内存情况变得相反。这个不同可以通过以下事实解释：某些网站具有比其他网站更多的标记值（Tagged values）。</p>
 <p>除了这些内存改进，我们还看到了实际性能的改进。在真实网站上，我们使用更少的CPU和垃圾回收时间！</p>
-<p><img src="./img/performance-improvements.svg" alt="在CPU和GC time上的改进"></p>
+<p><img
+        class="lazyload"
+        data-src="./img/performance-improvements.svg"
+        data-srcset="./img/performance-improvements.svg, ./img/performance-improvements.svg 1.5x, ./img/performance-improvements.svg 2x"
+        data-sizes="auto"
+        alt="./img/performance-improvements.svg"
+        title="在CPU和GC time上的改进"
+    /></p>
 <h2 id="结论">结论</h2>
-<p>这一路上尽管没有鸟语花香，但是值得度过。<a href="https://github.com/v8/v8/search?o=desc&amp;q=repo%3Av8%2Fv8+%22%5Bptr-compr%5D%22&amp;s=committer-date&amp;type=Commits">300+的提交</a>后，指针压缩让V8拥有64位应用的性能，同时拥有32位的内存占用。</p>
+<p>这一路上尽管没有鸟语花香，但是值得度过。<a href="https://github.com/v8/v8/search?o=desc&amp;q=repo%3Av8%2Fv8&#43;%22%5Bptr-compr%5D%22&amp;s=committer-date&amp;type=Commits" target="_blank" rel="noopener noreffer">300+的提交</a>后，指针压缩让V8拥有64位应用的性能，同时拥有32位的内存占用。</p>
 <p>我们一直期待着性能的改进，并在流程中完成以下相关任务：</p>
 <ul>
 <li>改进生成汇编代码的质量。我们知道在某些情况下我们能够生成更少的代码来提高性能。</li>
 <li>解决相关的性能下降，包括一个机制，该机制以指针压缩友好的方式再次对doble字段拆箱。</li>
 <li>探索支持8～16G范围内更大堆的想法。</li>
-</ul>
+</ul></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-04-23</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/javascript/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Javascript</a>
-    
-</div>
-        
-        
-        
-
-
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2020-basicsort/" class="block">基础排序</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2020-blance-sheet/" class="block">学习读财报之资产负债表</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
-        <h2 class="text-lg font-semibold mb-4">相关</h2>
-        <div class="content">
-            
-            <a href="/posts/2019-axiosparams/">使用Axios请求时如何传递数组？</a>
-            <br />
-            
-            <a href="/posts/2018-es2018/">ES2018（ES9）的新特性</a>
-            <br />
-            
-            <a href="/posts/2017-jsdecode/">JS转换转义字符</a>
-            <br />
-            
-            <a href="/posts/2017-reactdom/">小记：React操作真实DOM实现动态吸底部</a>
-            <br />
-            
-            <a href="/posts/2017-googlemap/">调用Google Map Api实现自定义Google Map</a>
-            <br />
-            
-            <a href="/posts/2017-pagination/">写一个简单的分页插件</a>
-            <br />
-            
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2020_pointer_compression_in_v8/" data-title="「译」V8中的指针压缩" data-hashtags="Javascript"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
         </div>
     </div>
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
 
-      </div>
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
     </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+
+    <div class="post-nav"><a href="/posts/2020-blance-sheet/" class="prev" rel="prev" title="学习读财报之资产负债表"><i class="fas fa-angle-left fa-fw"></i>学习读财报之资产负债表</a>
+            <a href="/posts/2020-basicsort/" class="next" rel="next" title="基础排序">基础排序<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

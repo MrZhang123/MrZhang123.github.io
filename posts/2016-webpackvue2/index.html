@@ -1,303 +1,340 @@
 <!DOCTYPE html>
-<html lang='zh' ><meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<html lang="zh-CN">
 
-
-<title>利用webpack和vue实现组件化 | 博客</title>
-
-<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
-<link rel="stylesheet" href="/css/eureka.min.css">
-<script defer src="/js/eureka.min.js"></script>
-
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload"
-  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
-  as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
-   media="print"
-  onload="this.media='all';this.onload=null" crossorigin>
-<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
-   crossorigin></script>
-
-<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
-   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
-
-
-
-
-
-
-
-
-
-<meta name="description"
-  content="
-上一篇webpack&#43;vue起步我们实现了用webpack打包vue的最基本用法，这篇我们将利用webpack&#43;vue实现组件化
-">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [{
-      "@type": "ListItem",
-      "position": 1 ,
-      "name":"文章",
-      "item":"/posts/"},{
-      "@type": "ListItem",
-      "position": 2 ,
-      "name":"利用webpack和vue实现组件化",
-      "item":"/posts/2016-webpackvue2/"}]
-}
-</script>
-
-
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "/posts/2016-webpackvue2/"
-    },
-    "headline": "利用webpack和vue实现组件化 | 博客","datePublished": "2016-06-02T00:48:31+00:00",
-    "dateModified": "2016-06-02T00:48:31+00:00",
-    "wordCount":  303 ,
-    "publisher": {
-        "@type": "Person",
-        "name": "博客",
-        },
-    "description": "\u003cblockquote\u003e\n\u003cp\u003e上一篇\u003ca href=\u0022https:\/\/segmentfault.com\/a\/1190000005614864\u0022\u003ewebpack\u002bvue起步\u003c\/a\u003e我们实现了用webpack打包vue的最基本用法，这篇我们将利用webpack\u002bvue实现组件化\u003c\/p\u003e\n\u003c\/blockquote\u003e"
-}
-</script><meta property="og:title" content="利用webpack和vue实现组件化 | 博客" />
-<meta property="og:type" content="article" />
-
-
-
-<meta property="og:url" content="/posts/2016-webpackvue2/" />
-
-
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">利用webpack和vue实现组件化 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="利用webpack和vue实现组件化" />
 <meta property="og:description" content="
 上一篇webpack&#43;vue起步我们实现了用webpack打包vue的最基本用法，这篇我们将利用webpack&#43;vue实现组件化
 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/2016-webpackvue2/" /><meta property="og:image" content="http://example.org/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-06-02T00:48:31+00:00" />
+<meta property="article:modified_time" content="2016-06-02T00:48:31+00:00" />
 
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="http://example.org/logo.png"/>
 
+<meta name="twitter:title" content="利用webpack和vue实现组件化"/>
+<meta name="twitter:description" content="
+上一篇webpack&#43;vue起步我们实现了用webpack打包vue的最基本用法，这篇我们将利用webpack&#43;vue实现组件化
+"/>
+<meta name="application-name" content="跨界Coder">
+<meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-
-<meta property="og:locale" content="zh" />
-
-
-
-
-<meta property="og:site_name" content="博客" />
-
-
-
-
-
-
-<meta property="article:published_time" content="2016-06-02T00:48:31&#43;00:00" />
-
-
-<meta property="article:modified_time" content="2016-06-02T00:48:31&#43;00:00" />
-
-
-
-<meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="Vue" />
-
-
-
-
-
-<meta property="og:see_also" content="/posts/2016-webpackvue1/" />
-
-
-
-<body class="flex flex-col min-h-screen">
-  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
-    <div class="w-full max-w-screen-xl mx-auto"><script>
-    let storageColorScheme = localStorage.getItem("lightDarkMode")
-    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
-        document.getElementsByTagName('html')[0].classList.add('dark')
+<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="http://example.org/posts/2016-webpackvue2/" /><link rel="prev" href="http://example.org/posts/2016-webpackvue1/" /><link rel="next" href="http://example.org/posts/2016-vue1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "利用webpack和vue实现组件化",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/example.org\/posts\/2016-webpackvue2\/"
+        },"genre": "posts","keywords": "Vue","wordcount":  1856 ,
+        "url": "http:\/\/example.org\/posts\/2016-webpackvue2\/","datePublished": "2016-06-02T00:48:31+00:00","dateModified": "2016-06-02T00:48:31+00:00","publisher": {
+            "@type": "Organization",
+            "name": "跨界Coder"},"author": {
+                "@type": "Person",
+                "name": "跨界Coder"
+            },"description": ""
     }
-</script>
-<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
-    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
-    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
-        <i class="fas fa-bars"></i>
-    </button>
+    </script></head>
 
-    <div id="target"
-        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
-        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
         </div>
-
-        <div class="flex">
-            <div class="relative pt-4 md:pt-0">
-                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
-                    <i class="fas fa-adjust"></i>
-                </div>
-                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
-                </div>
-                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
-                    id='lightDarkOptions'>
-                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
-                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
-                </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
             </div>
         </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
     </div>
-
-    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
-    </div>
-
-</nav>
-<script>
-    
-    let element = document.getElementById('lightDarkMode')
-    if (storageColorScheme == null || storageColorScheme == 'Auto') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
-        })
-    } else if (storageColorScheme == "Light") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'sun')
-        element.firstElementChild.classList.add('fa-sun')
-    } else if (storageColorScheme == "Dark") {
-        element.firstElementChild.classList.remove('fa-adjust')
-        element.firstElementChild.setAttribute("data-icon", 'moon')
-        element.firstElementChild.classList.add('fa-moon')
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        getcolorscheme();
-        switchBurger();
-    });
-</script>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
 </div>
-  </header>
-  <main class="flex-grow pt-16">
-    <div class="pl-scrollbar">
-      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-
-
-<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">利用webpack和vue实现组件化</h1>
-        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2016-06-02</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2分钟阅读时长</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="/categories/vue/" class="hover:text-eureka">Vue</a>
-        
-    </div>
-    
-
-    
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
 </div>
-        
-        
-        
-
-        <div class="content">
-            <blockquote>
-<p>上一篇<a href="https://segmentfault.com/a/1190000005614864">webpack+vue起步</a>我们实现了用webpack打包vue的最基本用法，这篇我们将利用webpack+vue实现组件化</p>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">利用webpack和vue实现组件化</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vue/"><i class="far fa-folder fa-fw"></i>Vue</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-06-02">2016-06-02</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-06-02">2016-06-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1856 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#建立vue组件">建立vue组件</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#export命令"><code>export</code>命令</a></li>
+            <li><a href="#import命令"><code>import</code>命令</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#webpack的hot-reload">webpack的hot-reload</a>
+      <ul>
+        <li><a href="#hot-reload的基础---webpack-dev-server">hot-reload的基础&mdash;webpack-dev-server</a>
+          <ul>
+            <li><a href="#iframe模式">iframe模式</a></li>
+            <li><a href="#inline模式">inline模式</a></li>
+          </ul>
+        </li>
+        <li><a href="#这里有一个问题需要说明下"><strong>这里有一个问题需要说明下</strong></a></li>
+      </ul>
+    </li>
+    <li><a href="#附">附：</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>上一篇<a href="https://segmentfault.com/a/1190000005614864" target="_blank" rel="noopener noreffer">webpack+vue起步</a>我们实现了用webpack打包vue的最基本用法，这篇我们将利用webpack+vue实现组件化</p>
 </blockquote>
 <p>在vue中实现组件化用到了vue特有的文件格式.vue，在每一个.vue文件就是一个组件，在组件中我们将html，css，js全部写入，然后在webpack中配置vue-loader就可以了。</p>
 <h2 id="建立vue组件">建立vue组件</h2>
 <p>在src目录下建立<code>components</code>文件夹，并在其中建立app.vue文件，这样我们项目的目录结构如下：</p>
-<pre><code class="language-js">|--dist             //webpack打包后生成的文件夹
-|   |--build.js
-|--node_modules     //项目的依赖所在的文件夹
-|--src              //文件入口
-|   |--components   //组件存放文件夹
-|       |--app.vue  //组件
-|   |--main.js      //主js文件
-|--index.html       //主html文件
-|--package.json
-|--webpack.config.js //webpack配置文件       
-</code></pre>
-<p>首先在index.hmtl中写入代码：</p>
-<pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Vue example&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;app&gt;&lt;/app&gt;
-    &lt;script src=&quot;dist/build.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<p>在编辑器中打开app.vue文件，写入如下代码：</p>
-<pre><code class="language-html">&lt;template&gt;
-&lt;div class=&quot;message&quot;&gt;{{msg}}&lt;/div&gt;    
-&lt;/template&gt;
-&lt;script&gt;
-export default {
-  data () {
-    return {
-      msg: 'Hello from vue-loader'
-    }
-  }
-}
-&lt;/script&gt;
-&lt;style&gt;
-.message{
-    color:red;
-    font-size:36px;
-    font-weight:blod;
-}
-&lt;/style&gt;
-</code></pre>
-<p>在main.js中写入：</p>
-<pre><code class="language-js">import Vue from 'vue'
-import App from './components/app.vue'
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="o">|--</span><span class="nx">dist</span>             <span class="c1">//webpack打包后生成的文件夹
+</span><span class="c1"></span><span class="o">|</span>   <span class="o">|--</span><span class="nx">build</span><span class="p">.</span><span class="nx">js</span>
+<span class="o">|--</span><span class="nx">node_modules</span>     <span class="c1">//项目的依赖所在的文件夹
+</span><span class="c1"></span><span class="o">|--</span><span class="nx">src</span>              <span class="c1">//文件入口
+</span><span class="c1"></span><span class="o">|</span>   <span class="o">|--</span><span class="nx">components</span>   <span class="c1">//组件存放文件夹
+</span><span class="c1"></span><span class="o">|</span>       <span class="o">|--</span><span class="nx">app</span><span class="p">.</span><span class="nx">vue</span>  <span class="c1">//组件
+</span><span class="c1"></span><span class="o">|</span>   <span class="o">|--</span><span class="nx">main</span><span class="p">.</span><span class="nx">js</span>      <span class="c1">//主js文件
+</span><span class="c1"></span><span class="o">|--</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span>       <span class="c1">//主html文件
+</span><span class="c1"></span><span class="o">|--</span><span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
+<span class="o">|--</span><span class="nx">webpack</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">js</span> <span class="c1">//webpack配置文件       
+</span></code></pre></td></tr></table>
+</div>
+</div><p>首先在index.hmtl中写入代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Vue example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">app</span><span class="p">&gt;&lt;/</span><span class="nt">app</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;dist/build.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在编辑器中打开app.vue文件，写入如下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">template</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;message&#34;</span><span class="p">&gt;</span>{{msg}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>    
+<span class="p">&lt;/</span><span class="nt">template</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">data</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">msg</span><span class="o">:</span> <span class="s1">&#39;Hello from vue-loader&#39;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">.</span><span class="nc">message</span><span class="p">{</span>
+    <span class="k">color</span><span class="p">:</span><span class="kc">red</span><span class="p">;</span>
+    <span class="k">font-size</span><span class="p">:</span><span class="mi">36</span><span class="kt">px</span><span class="p">;</span>
+    <span class="k">font-weight</span><span class="p">:</span><span class="n">blod</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在main.js中写入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+<span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./components/app.vue&#39;</span>
 
-new Vue({
-  el: 'body',
-  components:{App}
-});
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;body&#39;</span><span class="p">,</span>
+  <span class="nx">components</span><span class="o">:</span><span class="p">{</span><span class="nx">App</span><span class="p">}</span>
+<span class="p">});</span>
 
-</code></pre>
-<p>这样运行命令webpack就可以看到效果了
+</code></pre></td></tr></table>
+</div>
+</div><p>这样运行命令webpack就可以看到效果了
 这里用到了ES6的模块儿&mdash;<code>import</code>，<code>export</code></p>
 <h4 id="export命令"><code>export</code>命令</h4>
 <p><code>export</code>命令用于规定模块的对外接口。一个模块就是一个独立文件。该文件内的所有变量外部都无法获取。如果希望外部能够读取模块内部的某个变量，就必须使用<code>export</code>关键字对外暴露出该变量。例如：</p>
-<pre><code class="language-js">//export.js
-export var firstName = 'Michael';
-export var lastName = 'Jackson';
-export var year = 1958;
-</code></pre>
-<p>这样就可以对外输出三个变量。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//export.js
+</span><span class="c1"></span><span class="kr">export</span> <span class="kd">var</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="s1">&#39;Michael&#39;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kd">var</span> <span class="nx">lastName</span> <span class="o">=</span> <span class="s1">&#39;Jackson&#39;</span><span class="p">;</span>
+<span class="kr">export</span> <span class="kd">var</span> <span class="nx">year</span> <span class="o">=</span> <span class="mi">1958</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样就可以对外输出三个变量。</p>
 <h4 id="import命令"><code>import</code>命令</h4>
 <p>使用<code>export</code>对外暴露了接口后，其他js文件通过<code>import</code>命令加载这个模块文件。上面暴露的三个变量在另一个js文件中引入如下：</p>
-<pre><code class="language-js">//import.js
-import {firstName,lastName,year} from './export';
-function setName(element){
-    element.textContent = firstName + ' ' + lastName;
-}
-</code></pre>
-<h2 id="webpack的hot-reload">webpack的hot-reload</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//import.js
+</span><span class="c1"></span><span class="kr">import</span> <span class="p">{</span><span class="nx">firstName</span><span class="p">,</span><span class="nx">lastName</span><span class="p">,</span><span class="nx">year</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./export&#39;</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">setName</span><span class="p">(</span><span class="nx">element</span><span class="p">){</span>
+    <span class="nx">element</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">firstName</span> <span class="o">+</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="nx">lastName</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="webpack的hot-reload">webpack的hot-reload</h2>
 <p>前端自动刷新现在已经很常见了，即改变页面后，浏览器自动刷新，但是这个功能在我们做单页面应用时候会很不好用，所以，webpack支持hot-reload(热替换)，当我们修改模块时候不会页面不会刷新，会直接在页面中生效。</p>
 <h3 id="hot-reload的基础---webpack-dev-server">hot-reload的基础&mdash;webpack-dev-server</h3>
 <p>webpack-dev-server支持两种模式的自动刷新页面：</p>
@@ -307,174 +344,251 @@ function setName(element){
 </ul>
 <h4 id="iframe模式">iframe模式</h4>
 <p>使用iframe模式无需额外的配置，在dos下输入命令</p>
-<pre><code class="language-php">$ webpack-dev-server
-</code></pre>
-<p>在浏览器中输入 <a href="http://loacalhost:8080/webpack-dev-server/index.html">http://loacalhost:8080/webpack-dev-server/index.html</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="err">$</span> <span class="nx">webpack</span><span class="o">-</span><span class="nx">dev</span><span class="o">-</span><span class="nx">server</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在浏览器中输入 <a href="http://loacalhost:8080/webpack-dev-server/index.html" target="_blank" rel="noopener noreffer">http://loacalhost:8080/webpack-dev-server/index.html</a></p>
 <h4 id="inline模式">inline模式</h4>
 <p>在dos下输入命令</p>
-<pre><code class="language-php">$ webpack-dev-server --inline --hot
-</code></pre>
-<p>启动服务器，在浏览器中打开 <a href="http://loacalhost:8080">http://loacalhost:8080</a> 就可以看到我们的页面，此时修改app.vue中的css，以及html中的文字，都可以看到在浏览器中立马呈现。
-关于webpack-dev-server的详细说明，可以参考<a href="https://webpack.github.io/docs/webpack-dev-server.html">官方文档</a>或者<a href="http://www.jianshu.com/p/941bfaf13be1">博客WEBPACK DEV SERVER</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="err">$</span> <span class="nx">webpack</span><span class="o">-</span><span class="nx">dev</span><span class="o">-</span><span class="nx">server</span> <span class="o">--</span><span class="nx">inline</span> <span class="o">--</span><span class="nx">hot</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>启动服务器，在浏览器中打开 <a href="http://loacalhost:8080" target="_blank" rel="noopener noreffer">http://loacalhost:8080</a> 就可以看到我们的页面，此时修改app.vue中的css，以及html中的文字，都可以看到在浏览器中立马呈现。
+关于webpack-dev-server的详细说明，可以参考<a href="https://webpack.github.io/docs/webpack-dev-server.html" target="_blank" rel="noopener noreffer">官方文档</a>或者<a href="http://www.jianshu.com/p/941bfaf13be1" target="_blank" rel="noopener noreffer">博客WEBPACK DEV SERVER</a>。</p>
 <h3 id="这里有一个问题需要说明下"><strong>这里有一个问题需要说明下</strong></h3>
-<p>在很多文章中都说，修改app.vue文件中<code>script</code>标签中的msg文字，会在浏览器中立即呈现效果，但是事实上我在做demo的时候并没有出现这个效果，Google了很多，找到了答案，尤大说：“data是初始值，但热更新的时候会保留当前状态”，<a href="https://forum.vuejs.org/topic/915/vue-webpack%E7%83%AD%E4%BB%A3%E7%A0%81%E6%9B%BF%E6%8D%A2%E4%BF%AE%E6%94%B9script%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9%E9%A1%B5%E9%9D%A2%E4%B8%8D%E8%83%BD%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0/5">原问题及答案链接</a>。</p>
+<p>在很多文章中都说，修改app.vue文件中<code>script</code>标签中的msg文字，会在浏览器中立即呈现效果，但是事实上我在做demo的时候并没有出现这个效果，Google了很多，找到了答案，尤大说：“data是初始值，但热更新的时候会保留当前状态”，<a href="https://forum.vuejs.org/topic/915/vue-webpack%E7%83%AD%E4%BB%A3%E7%A0%81%E6%9B%BF%E6%8D%A2%E4%BF%AE%E6%94%B9script%E4%B8%AD%E7%9A%84%E5%86%85%E5%AE%B9%E9%A1%B5%E9%9D%A2%E4%B8%8D%E8%83%BD%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0/5" target="_blank" rel="noopener noreffer">原问题及答案链接</a>。</p>
 <p>至此，关于webpack+vue的基本结束，虽然简单，但是由于在这个过程中也遇到一些坑，所以总结下，关于对vue的研究，这才只是个开始&hellip;</p>
 <h2 id="附">附：</h2>
 <p>我的webpack配置文件：</p>
-<pre><code class="language-js">var path = require('path');
-module.exports = {
-  entry: './src/main.js',
-  output: {
-    path: './dist',
-    publicPath:'dist/',
-    filename: 'build.js'
-  },
-  //配置自动刷新,如果打开会使浏览器刷新而不是热替换
-  /*devServer: {
-    historyApiFallback: true,
-    hot: false,
-    inline: true,
-    grogress: true
-  },*/
-  module: {
-    loaders: [
-      //转化ES6语法
-      {
-        test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/
-      },
-      //解析.vue文件
-      {
-        test:/\.vue$/,
-        loader:'vue'
-      },
-      //图片转化，小于8K自动转化为base64的编码
-      {
-        test: /\.(png|jpg|gif)$/,
-        loader:'url-loader?limit=8192'
-      }
-    ]
-  },
-  vue:{
-    loaders:{
-      js:'babel'
-    }
-  },
-  resolve: {
-        // require时省略的扩展名，如：require('app') 不需要app.js
-        extensions: ['', '.js', '.vue'],
-        // 别名，可以直接使用别名来代表设定的路径以及其他
-        alias: {
-            filter: path.join(__dirname, './src/filters'),
-            components: path.join(__dirname, './src/components')
-        }
-    }    
-}
-</code></pre>
-<p>package.json文件：</p>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;webpackvue&quot;,
-  &quot;version&quot;: &quot;1.0.0&quot;,
-  &quot;description&quot;: &quot;&quot;,
-  &quot;main&quot;: &quot;vue.js&quot;,
-  &quot;scripts&quot;: {
-    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
-  },
-  &quot;author&quot;: &quot;&quot;,
-  &quot;license&quot;: &quot;ISC&quot;,
-  &quot;devDependencies&quot;: {
-    &quot;babel-core&quot;: &quot;^6.9.1&quot;,
-    &quot;babel-loader&quot;: &quot;^6.2.4&quot;,
-    &quot;babel-plugin-transform-runtime&quot;: &quot;^6.9.0&quot;,
-    &quot;babel-preset-es2015&quot;: &quot;^6.9.0&quot;,
-    &quot;babel-preset-stage-0&quot;: &quot;^6.5.0&quot;,
-    &quot;babel-runtime&quot;: &quot;^6.9.2&quot;,
-    &quot;css-loader&quot;: &quot;^0.23.1&quot;,
-    &quot;file-loader&quot;: &quot;^0.8.5&quot;,
-    &quot;style-loader&quot;: &quot;^0.13.1&quot;,
-    &quot;url-loader&quot;: &quot;^0.5.7&quot;,
-    &quot;vue&quot;:&quot;^1.0.24&quot;,
-    &quot;vue-router&quot;:&quot;^0.7.13&quot;,
-    &quot;vue-hot-reload-api&quot;: &quot;^1.3.2&quot;,
-    &quot;vue-html-loader&quot;: &quot;^1.2.2&quot;,
-    &quot;vue-loader&quot;: &quot;^8.5.2&quot;,
-    &quot;vue-style-loader&quot;: &quot;^1.0.0&quot;,
-    &quot;webpack&quot;: &quot;^1.13.1&quot;,
-    &quot;webpack-dev-server&quot;: &quot;^1.14.1&quot;,
-    &quot;webpack-merge&quot;: &quot;^0.13.0&quot;
-  }
-}
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/main.js&#39;</span><span class="p">,</span>
+  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;./dist&#39;</span><span class="p">,</span>
+    <span class="nx">publicPath</span><span class="o">:</span><span class="s1">&#39;dist/&#39;</span><span class="p">,</span>
+    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;build.js&#39;</span>
+  <span class="p">},</span>
+  <span class="c1">//配置自动刷新,如果打开会使浏览器刷新而不是热替换
+</span><span class="c1"></span>  <span class="cm">/*devServer: {
+</span><span class="cm">    historyApiFallback: true,
+</span><span class="cm">    hot: false,
+</span><span class="cm">    inline: true,
+</span><span class="cm">    grogress: true
+</span><span class="cm">  },*/</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+      <span class="c1">//转化ES6语法
+</span><span class="c1"></span>      <span class="p">{</span>
+        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>
+        <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel&#39;</span><span class="p">,</span>
+        <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span>
+      <span class="p">},</span>
+      <span class="c1">//解析.vue文件
+</span><span class="c1"></span>      <span class="p">{</span>
+        <span class="nx">test</span><span class="o">:</span><span class="sr">/\.vue$/</span><span class="p">,</span>
+        <span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;vue&#39;</span>
+      <span class="p">},</span>
+      <span class="c1">//图片转化，小于8K自动转化为base64的编码
+</span><span class="c1"></span>      <span class="p">{</span>
+        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.(png|jpg|gif)$/</span><span class="p">,</span>
+        <span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;url-loader?limit=8192&#39;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nx">vue</span><span class="o">:</span><span class="p">{</span>
+    <span class="nx">loaders</span><span class="o">:</span><span class="p">{</span>
+      <span class="nx">js</span><span class="o">:</span><span class="s1">&#39;babel&#39;</span>
+    <span class="p">}</span>
+  <span class="p">},</span>
+  <span class="nx">resolve</span><span class="o">:</span> <span class="p">{</span>
+        <span class="c1">// require时省略的扩展名，如：require(&#39;app&#39;) 不需要app.js
+</span><span class="c1"></span>        <span class="nx">extensions</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;.js&#39;</span><span class="p">,</span> <span class="s1">&#39;.vue&#39;</span><span class="p">],</span>
+        <span class="c1">// 别名，可以直接使用别名来代表设定的路径以及其他
+</span><span class="c1"></span>        <span class="nx">alias</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">filter</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="mi">__</span><span class="nx">dirname</span><span class="p">,</span> <span class="s1">&#39;./src/filters&#39;</span><span class="p">),</span>
+            <span class="nx">components</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="mi">__</span><span class="nx">dirname</span><span class="p">,</span> <span class="s1">&#39;./src/components&#39;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>    
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>package.json文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;webpackvue&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;main&#34;</span><span class="p">:</span> <span class="s2">&#34;vue.js&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;test&#34;</span><span class="p">:</span> <span class="s2">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;author&#34;</span><span class="p">:</span> <span class="s2">&#34;&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;license&#34;</span><span class="p">:</span> <span class="s2">&#34;ISC&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;devDependencies&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;babel-core&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.9.1&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;babel-loader&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.2.4&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;babel-plugin-transform-runtime&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.9.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;babel-preset-es2015&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.9.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;babel-preset-stage-0&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.5.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;babel-runtime&#34;</span><span class="p">:</span> <span class="s2">&#34;^6.9.2&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;css-loader&#34;</span><span class="p">:</span> <span class="s2">&#34;^0.23.1&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;file-loader&#34;</span><span class="p">:</span> <span class="s2">&#34;^0.8.5&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;style-loader&#34;</span><span class="p">:</span> <span class="s2">&#34;^0.13.1&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;url-loader&#34;</span><span class="p">:</span> <span class="s2">&#34;^0.5.7&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;vue&#34;</span><span class="p">:</span><span class="s2">&#34;^1.0.24&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;vue-router&#34;</span><span class="p">:</span><span class="s2">&#34;^0.7.13&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;vue-hot-reload-api&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.3.2&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;vue-html-loader&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.2.2&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;vue-loader&#34;</span><span class="p">:</span> <span class="s2">&#34;^8.5.2&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;vue-style-loader&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.0.0&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;webpack&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.13.1&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;webpack-dev-server&#34;</span><span class="p">:</span> <span class="s2">&#34;^1.14.1&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;webpack-merge&#34;</span><span class="p">:</span> <span class="s2">&#34;^0.13.0&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-</code></pre>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2016-06-02</span>
+            </div>
+            <div class="post-info-license"></div>
         </div>
-        
-        <div class="my-4">
-    
-    <a href="/tags/vue/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Vue</a>
-    
-</div>
-        
-        
-        
-
-
-        
-        
-        
-        
-<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
-    <div>
-        
-        <span class="block font-bold">上一页</span>
-        <a href="/posts/2016-vue1/" class="block">基于Vue的简单的单页面应用</a>
-        
-    </div>
-    <div class="md:text-right mt-4 md:mt-0">
-        
-        <span class="block font-bold">下一页</span>
-        <a href="/posts/2016-webpackvue1/" class="block">webpack与vue起步</a>
-        
-    </div>
-</div>
-
-        
-
-
-
-    </div>
-    
-
-    
-    
-    <div
-        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
-        <h2 class="text-lg font-semibold mb-4">相关</h2>
-        <div class="content">
-            
-            <a href="/posts/2016-webpackvue1/">webpack与vue起步</a>
-            <br />
-            
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="#" onclick="return false;" title="分享到 Twitter" data-sharer="twitter" data-url="http://example.org/posts/2016-webpackvue2/" data-title="利用webpack和vue实现组件化" data-hashtags="Vue"><i class="fab fa-twitter fa-fw"></i></a></span>
+            </div>
         </div>
     </div>
-    
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', ()=>{
-        hljs.initHighlightingOnLoad();
-    })
-</script>
 
-      </div>
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vue/">Vue</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
     </div>
-    
-  </main>
-  <footer class="pl-scrollbar">
-    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
-    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
- &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
-</div></div>
-  </footer>
+
+    <div class="post-nav"><a href="/posts/2016-webpackvue1/" class="prev" rel="prev" title="webpack与vue起步"><i class="fas fa-angle-left fa-fw"></i>webpack与vue起步</a>
+            <a href="/posts/2016-vue1/" class="next" rel="next" title="基于Vue的简单的单页面应用">基于Vue的简单的单页面应用<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"sharerjs":true,"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

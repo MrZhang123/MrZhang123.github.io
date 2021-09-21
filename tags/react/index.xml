@@ -1,95 +1,73 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>React on 博客</title>
-    <link>/tags/react/</link>
-    <description>Recent content in React on 博客</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh</language>
-    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
-</copyright>
-    <lastBuildDate>Sun, 07 Jul 2019 15:43:00 +0000</lastBuildDate><atom:link href="/tags/react/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>【译】10个React组件的戒律</title>
-      <link>/posts/2019-componentstips/</link>
-      <pubDate>Sun, 07 Jul 2019 15:43:00 +0000</pubDate>
-      
-      <guid>/posts/2019-componentstips/</guid>
-      <description>&lt;p&gt;原文链接：&lt;a href=&#34;https://dev.to/selbekk/the-10-component-commandments-2a7f&#34;&gt;The 10 Component Commandments&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;创建被很多人用的组件是很难的。如果那些&lt;code&gt;props&lt;/code&gt;作为公共API，你需要非常谨慎的考虑哪些&lt;code&gt;props&lt;/code&gt;是可以接收的。&lt;/p&gt;
-&lt;p&gt;这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>简述 React Hooks 特征和使用方式</title>
-      <link>/posts/2019-reacthooks/</link>
-      <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/2019-reacthooks/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结&lt;/p&gt;
-&lt;/blockquote&gt;</description>
-    </item>
-    
-    <item>
-      <title>React 新特性总结</title>
-      <link>/posts/2019-reactnews/</link>
-      <pubDate>Wed, 16 Jan 2019 22:58:11 +0000</pubDate>
-      
-      <guid>/posts/2019-reactnews/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。&lt;/p&gt;
-&lt;/blockquote&gt;</description>
-    </item>
-    
-    <item>
-      <title>「译」如何使用React生命周期方法</title>
-      <link>/posts/2018-reactlifecycle/</link>
-      <pubDate>Sat, 28 Jul 2018 13:39:28 +0000</pubDate>
-      
-      <guid>/posts/2018-reactlifecycle/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;原文链接：&lt;a href=&#34;https://www.andreasreiterer.at/reactjs-lifecycle-methods/&#34;&gt;How to use React Lifecycle Methods&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description>
-    </item>
-    
-    <item>
-      <title>从零开始搭建React应用（二）——React应用架构</title>
-      <link>/posts/2018-reactproject2/</link>
-      <pubDate>Wed, 18 Jul 2018 10:28:51 +0000</pubDate>
-      
-      <guid>/posts/2018-reactproject2/</guid>
-      <description>&lt;p&gt;上一篇文章——&lt;a href=&#34;https://juejin.im/post/5af6857651882542682e4843&#34;&gt;从零开始搭建 React 应用（一）——基础搭建&lt;/a&gt;讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>从零开始搭建React应用（一）——基础搭建</title>
-      <link>/posts/2018-reactproject1/</link>
-      <pubDate>Wed, 18 Jul 2018 10:26:46 +0000</pubDate>
-      
-      <guid>/posts/2018-reactproject1/</guid>
-      <description>&lt;p&gt;项目链接：&lt;a href=&#34;https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack&#34;&gt;https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>CSS Modules在React中的应用</title>
-      <link>/posts/2018-reactcssmodules/</link>
-      <pubDate>Fri, 13 Apr 2018 14:32:17 +0000</pubDate>
-      
-      <guid>/posts/2018-reactcssmodules/</guid>
-      <description>&lt;p&gt;由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>React使用小记</title>
-      <link>/posts/2017-reactsum/</link>
-      <pubDate>Sun, 13 Aug 2017 22:57:48 +0000</pubDate>
-      
-      <guid>/posts/2017-reactsum/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题&lt;/p&gt;
-&lt;/blockquote&gt;</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>React - 标签 - 跨界Coder</title>
+        <link>http://example.org/tags/react/</link>
+        <description>React - 标签 - 跨界Coder</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 07 Jul 2019 15:43:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/react/" rel="self" type="application/rss+xml" /><item>
+    <title>【译】10个React组件的戒律</title>
+    <link>http://example.org/posts/2019-componentstips/</link>
+    <pubDate>Sun, 07 Jul 2019 15:43:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2019-componentstips/</guid>
+    <description><![CDATA[<p>原文链接：<a href="https://dev.to/selbekk/the-10-component-commandments-2a7f" target="_blank" rel="noopener noreffer">The 10 Component Commandments</a></p>
+<p>创建被很多人用的组件是很难的。如果那些<code>props</code>作为公共API，你需要非常谨慎的考虑哪些<code>props</code>是可以接收的。</p>
+<p>这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。</p>]]></description>
+</item><item>
+    <title>简述 React Hooks 特征和使用方式</title>
+    <link>http://example.org/posts/2019-reacthooks/</link>
+    <pubDate>Sun, 24 Mar 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2019-reacthooks/</guid>
+    <description><![CDATA[<blockquote>
+<p>学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结</p>
+</blockquote>]]></description>
+</item><item>
+    <title>React 新特性总结</title>
+    <link>http://example.org/posts/2019-reactnews/</link>
+    <pubDate>Wed, 16 Jan 2019 22:58:11 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2019-reactnews/</guid>
+    <description><![CDATA[<blockquote>
+<p>自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。</p>
+</blockquote>]]></description>
+</item><item>
+    <title>「译」如何使用React生命周期方法</title>
+    <link>http://example.org/posts/2018-reactlifecycle/</link>
+    <pubDate>Sat, 28 Jul 2018 13:39:28 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2018-reactlifecycle/</guid>
+    <description><![CDATA[<blockquote>
+<p>原文链接：<a href="https://www.andreasreiterer.at/reactjs-lifecycle-methods/" target="_blank" rel="noopener noreffer">How to use React Lifecycle Methods</a></p>
+</blockquote>]]></description>
+</item><item>
+    <title>从零开始搭建React应用（二）——React应用架构</title>
+    <link>http://example.org/posts/2018-reactproject2/</link>
+    <pubDate>Wed, 18 Jul 2018 10:28:51 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2018-reactproject2/</guid>
+    <description><![CDATA[<p>上一篇文章——<a href="https://juejin.im/post/5af6857651882542682e4843" target="_blank" rel="noopener noreffer">从零开始搭建 React 应用（一）——基础搭建</a>讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。</p>]]></description>
+</item><item>
+    <title>从零开始搭建React应用（一）——基础搭建</title>
+    <link>http://example.org/posts/2018-reactproject1/</link>
+    <pubDate>Wed, 18 Jul 2018 10:26:46 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2018-reactproject1/</guid>
+    <description><![CDATA[<p>项目链接：<a href="https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack" target="_blank" rel="noopener noreffer">https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack</a></p>]]></description>
+</item><item>
+    <title>CSS Modules在React中的应用</title>
+    <link>http://example.org/posts/2018-reactcssmodules/</link>
+    <pubDate>Fri, 13 Apr 2018 14:32:17 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2018-reactcssmodules/</guid>
+    <description><![CDATA[<p>由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理</p>]]></description>
+</item><item>
+    <title>React使用小记</title>
+    <link>http://example.org/posts/2017-reactsum/</link>
+    <pubDate>Sun, 13 Aug 2017 22:57:48 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2017-reactsum/</guid>
+    <description><![CDATA[<blockquote>
+<p>最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题</p>
+</blockquote>]]></description>
+</item></channel>
 </rss>
