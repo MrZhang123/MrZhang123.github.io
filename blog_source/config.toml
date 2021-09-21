@@ -202,7 +202,7 @@ series = "series"
     [params.home.posts]
       enable = true
       # 主页每页显示文章数量
-      paginate = 6
+      paginate = 10
   # 作者的社交信息设置
   [params.social]
     GitHub = "MrZhang123"
@@ -272,4 +272,4 @@ series = "series"
       enable = true
       Twitter = true
     [params.page.comment]
-      enable = true
+      enable = false
