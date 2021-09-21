@@ -18,8 +18,9 @@
     <pubDate>Tue, 07 Feb 2017 22:41:09 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
     </author><guid>http://example.org/posts/2017-webpack/</guid>
-    <description><![CDATA[<p></p>
-<blockquote>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/webpack.jpg" referrerpolicy="no-referrer">
+            </div><blockquote>
 <p>本篇为在学习Vue2.x的时候使用Webpack2.x的踩坑与总结，关于Vue2.x的踩坑与总结，<a href="http://mrzhang123.github.io/2017/02/07/vue2/" target="_blank" rel="noopener noreffer">点击链接</a></p>
 </blockquote>]]></description>
 </item><item>

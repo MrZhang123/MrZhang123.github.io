@@ -6,8 +6,8 @@ tags:
 categories:
   - Webpack
 draft: false
+featuredImage: webpack.jpg
 ---
-![](./webpack.jpg)
 > 本篇为在学习Vue2.x的时候使用Webpack2.x的踩坑与总结，关于Vue2.x的踩坑与总结，[点击链接](http://mrzhang123.github.io/2017/02/07/vue2/)
 
 <!--more-->

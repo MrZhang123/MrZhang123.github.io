@@ -9,8 +9,9 @@
     <pubDate>Tue, 07 Feb 2017 21:41:02 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
     </author><guid>http://example.org/posts/2017-vue/</guid>
-    <description><![CDATA[<p></p>
-<blockquote>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/vue.jpg" referrerpolicy="no-referrer">
+            </div><blockquote>
 <p>年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，<a href="http://mrzhang123.github.io/2017/02/07/webpack2/" target="_blank" rel="noopener noreffer">点击链接</a>。</p>
 </blockquote>]]></description>
 </item><item>

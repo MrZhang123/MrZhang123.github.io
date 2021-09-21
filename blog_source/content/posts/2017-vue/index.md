@@ -6,8 +6,8 @@ tags:
 categories:
   - Vue
 draft: false
+featuredImage: vue.jpg
 ---
-![](./vue.jpg)
 > 年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，[点击链接](http://mrzhang123.github.io/2017/02/07/webpack2/)。
 
 <!--more-->
