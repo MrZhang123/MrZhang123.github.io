@@ -2,13 +2,16 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://example.org/categories/</loc><lastmod>2020-07-14T09:08:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/posts/</loc><lastmod>2020-07-14T09:08:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/tags/</loc><lastmod>2020-07-14T09:08:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/categories/</loc><lastmod>2020-12-31T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/posts/</loc><lastmod>2020-12-31T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/tags/</loc><lastmod>2020-12-31T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/posts/2020-2021newyear/</loc><lastmod>2020-12-31T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</loc><lastmod>2020-12-31T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</loc><lastmod>2020-12-31T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>http://example.org/</loc><lastmod>2020-12-31T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/2020-basicsort/</loc><lastmod>2020-07-14T09:08:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/%E7%AE%97%E6%B3%95/</loc><lastmod>2020-07-14T09:08:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/categories/%E7%AE%97%E6%B3%95/</loc><lastmod>2020-07-14T09:08:00&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/</loc><lastmod>2020-07-14T09:08:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/tags/javascript/</loc><lastmod>2020-04-23T17:08:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/categories/javascript/</loc><lastmod>2020-04-23T17:08:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/2020_pointer_compression_in_v8/</loc><lastmod>2020-04-23T17:08:00&#43;00:00</lastmod></url><url>
@@ -27,8 +30,6 @@
             <loc>http://example.org/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc><lastmod>2020-02-23T17:08:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</loc><lastmod>2020-02-23T17:08:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/2019-2020newyear/</loc><lastmod>2019-12-31T02:00:25&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</loc><lastmod>2019-12-31T02:00:25&#43;00:00</lastmod></url><url>
-            <loc>http://example.org/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</loc><lastmod>2019-12-31T02:00:25&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/2019-optional-chaining/</loc><lastmod>2019-09-03T00:00:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/2019-vimperformance/</loc><lastmod>2019-09-01T16:15:00&#43;00:00</lastmod></url><url>
             <loc>http://example.org/posts/2019-debtcrisisoverview/</loc><lastmod>2019-08-07T23:43:00&#43;00:00</lastmod></url><url>
