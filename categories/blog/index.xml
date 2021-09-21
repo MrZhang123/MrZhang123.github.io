@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on 博客</title>
+    <link>/categories/blog/</link>
+    <description>Recent content in Blog on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Sat, 01 Apr 2017 20:57:48 +0000</lastBuildDate><atom:link href="/categories/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何写一个自己的hexo主题</title>
+      <link>/posts/2017-hexotheme/</link>
+      <pubDate>Sat, 01 Apr 2017 20:57:48 +0000</pubDate>
+      
+      <guid>/posts/2017-hexotheme/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章&lt;a href=&#34;https://segmentfault.com/a/1190000006057336%5D&#34;&gt;写一个自己的Hexo主题&lt;/a&gt;和该文中提到的作者自己写的主题&lt;a href=&#34;https://github.com/showonne/hexo-showonne&#34;&gt;hexo-showonne&lt;/a&gt;的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——&lt;a href=&#34;https://github.com/ppoffice/hexo-theme-icarus&#34;&gt;hexo-theme-icarus&lt;/a&gt;进行了修正。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

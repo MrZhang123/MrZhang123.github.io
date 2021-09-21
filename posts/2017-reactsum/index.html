@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>React使用小记 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="
+最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题
+">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"React使用小记",
+      "item":"/posts/2017-reactsum/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2017-reactsum/"
+    },
+    "headline": "React使用小记 | 博客","datePublished": "2017-08-13T22:57:48+00:00",
+    "dateModified": "2017-08-13T22:57:48+00:00",
+    "wordCount":  225 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cblockquote\u003e\n\u003cp\u003e最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题\u003c\/p\u003e\n\u003c\/blockquote\u003e"
+}
+</script><meta property="og:title" content="React使用小记 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2017-reactsum/" />
+
+
+
+
+<meta property="og:description" content="
+最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题
+" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2017-08-13T22:57:48&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2017-08-13T22:57:48&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="React" />
+
+
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">React使用小记</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-08-13</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react/" class="hover:text-eureka">React</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <blockquote>
+<p>最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题</p>
+</blockquote>
+<h2 id="setstate是异步的">setState是异步的</h2>
+<p>在react中，<code>setState</code>是非常常见的，有时候想要在<code>setState</code>之后再执行某些操作，可能会这样写：</p>
+<pre><code class="language-js">this.setState({xxState})
+if(this.state.xxState){ ... }
+</code></pre>
+<p>当执行时候发现，<code>this.state.xxState</code>并没有被改变，原因在于<code>setState</code>是异步的，而js执行代码的顺序是<code>同步 =&gt; 异步 =&gt; 回调</code>，所以会先执行if的语句，如果想要在设置完<code>state</code>之后再执行后面的语句，代码如下：</p>
+<pre><code class="language-js">this.setState({xxState},()=&gt;{
+  if(this.state.xxState){
+    ...
+  }
+})
+</code></pre>
+<h2 id="对redux中action变量命名的理解">对redux中action变量命名的理解</h2>
+<p>在redux中有<code>action</code>，<code>reducer</code>和<code>store</code>，我们在写的时候分别写在三个文件夹中，每个模块对应一个<code>action</code>，<code>reducer</code>，但是最终在运行应用的时候会组和在一起，将所有的<code>action</code>合并成一个文件，通过action去找到对应模块的<code>reducer</code>，从而找到正确的方法。</p>
+<p>如果把redux比做一本书的话，<code>action</code>是一本书的目录，而<code>reducer</code>则相当于书的每一章的内容，书的目录是不能重复的，否则会导致在寻找内容的时候出现找到两处对应的内容，这在redux中是不允许的。如下图所示：</p>
+<p><img src="./react_redux.jpg" alt="react_redux"></p>
+<p>所以<span style="color:red">action中的常量名在整个项目中是不能重复的</span>，否则会在执行当前模块的reducer时候同时执行其他模块的<code>reducer</code>，导致数据的混乱。</p>
+<p>##使用react router进行页面传值</p>
+<p>首先说明一下，router的跳页方式有两种，一种是直接写<code>Link</code>，另一种是使用<code>hashHistory.push</code>：</p>
+<pre><code class="language-js">import { Router,Route,hashHistory} from 'react-router'
+&lt;Link to=&quot;/a/b&quot;&gt;链接&lt;/Link&gt;
+//or
+clickFun(){
+  hashHistory.push(&quot;/a/b&quot;)
+}
+&lt;div onClick={()=&gt;this.clickFun()}&gt;&lt;/div&gt;
+</code></pre>
+<p>有时候需要在跳页的时候给下一个页面传递数据，使用react router有三种方式可以实现该需求：</p>
+<h3 id="propsparams">props.params</h3>
+<p>我们可以给<code>&lt;Route&gt;</code>指定一个<code>path</code>，然后指定通配符可以携带参数到指定的<code>path</code>：</p>
+<pre><code class="language-js">import { Router,Route,hashHistory} from 'react-router'
+class App extends React.Component {
+  render() {
+    return (
+        &lt;Router history={hashHistory}&gt;
+            &lt;Route path='/a/:params' component={UserPage}&gt;&lt;/Route&gt;
+        &lt;/Router&gt;
+    )
+  }
+}
+//取值
+export default class UserPage extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        return(&lt;div&gt;this.props.params.name&lt;/div&gt;)
+    }
+}
+</code></pre>
+<p>上面的方法可以传递一个或多个值，但是每个值的类型都是字符串，没法传递一个对象,如果传递的话可以将json对象转换为字符串，然后传递过去，传递过去之后再将json字符串转换为对象将数据取出来。</p>
+<h3 id="query">query</h3>
+<p>使用<code>query</code>可以像get方式一样显示传递数据</p>
+<pre><code class="language-js">let data = {a:3,b:'b',c:36};
+let path = {
+  pathname:'/user',
+  query:data,
+}
+&lt;Link to={path}&gt;跳转&lt;/Link&gt;
+//or
+hashHistory.push(path)
+//取值
+const {a,b,c} = this.props.location.query
+</code></pre>
+<h3 id="state">state</h3>
+<p><code>state</code>传递数据方式类似于<code>post</code>，使用方式与<code>query</code>类似，取值的时候使用<code>this.props.location.state</code></p>
+<h2 id="objectassign的使用">Object.assign()的使用</h2>
+<p>在reducer中，使用<code>Object.assign</code>将新的<code>state</code>与默认的<code>state</code>进行合并</p>
+<pre><code class="language-js">const initState = {
+  ajaxState:false,
+  orderData: {
+    current_page: 0,
+    per_page_count: 0,
+    total_count:0,
+    total_page:0,
+    data_list: [],
+  }
+}
+export default (state = initState , action) =&gt; {
+  const {type , ajaxState , orderData = {}} = action;
+  switch(type){
+    case ORDERDATA:
+      return Object.assign({},state,{orderData})
+  }
+}
+</code></pre>
+<p>这里<code>initState</code>相当于一个默认值，拿到新的state时候就将原有的覆盖掉。</p>
+<p>但是在做项目时候遇到一个问题，如果传递部分数据（比如<code>orderData</code>只传递传递了<code>current_page</code>和<code>per_page_count</code>），没有传递的希望保持默认，这样使用<code>Object.assign</code>合并会导致合并的结果中未传递的部分直接丢失。</p>
+<p><code>Object.assign</code>在合并对象的时候，可以合并简单对象的元素，但是如果对象中在嵌套对象，则子对象不会合并而会直接覆盖，代码如下：</p>
+<pre><code class="language-js">const obj = {
+  a:1,
+  b:2
+}
+const init = {
+  name:'',
+  obj:{
+    a:'',
+    b:'',
+    c:'',
+  }
+}
+Object.assign({},init,obj) 
+/*结果
+[object Object] {
+  obj: [object Object] {
+    a: 1,
+    b: 2,
+  },
+  name: &quot;&quot;
+}
+*/
+</code></pre>
+<p>所以，如果要让不传递的数据使用默认值，就需要在<code>reducer</code>开始拿到传递到的数据时候，将没有传递过来的数据加到传过来的数据上，就需要使用两次<code>Object.assign</code>，分别对子对象和对象进行</p>
+<pre><code class="language-js">export default (state = initState , action) =&gt; {
+  const {type , ajaxState , orderData = {}} = action;
+  //将没有传递过来的数据的默认值加到传过来的state中
+  const defaultOrderData = Object.assign({},initState.orderData,{orderData})
+  switch(type){
+    case ORDERDATA:
+      return Object.assign({},state,{orderData:defaultOrderData})
+  }
+}
+</code></pre>
+<p>这样就可以实现传递部分数据，不传递的使用默认值</p>
+<p>从该例子中可以看出，在reducer中，尽量不要使用嵌套对象，因为每嵌套一层，就需要<code>Object.assign</code>一次</p>
+<p>以上就是最近做react项目的一些总结…</p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/react/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#React</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2017-gitcommint/" class="block">Git Commint规范</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2017-reactnativelist/" class="block">RN长列表--ListView &amp;&amp; SectionList</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

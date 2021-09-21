@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="">
+
+
+
+<meta property="og:title" content="博客" />
+<meta property="og:type" content="website" />
+
+
+
+<meta property="og:url" content="/" />
+
+
+
+
+
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="og:updated_time" content="2020-07-14T09:08:00&#43;00:00" />
+
+
+
+<meta property="article:section" content="" />
+
+
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="博客" />
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+<div class="pl-scrollbar">
+  <style type="text/css">
+    .widget + .widget {
+      margin-top: 1rem;
+    }
+    .widget-title {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .widget-list li {
+      font-size: 0.9rem;
+    }
+    .bg-cover img {
+      opacity: 1;
+      transition: all 0.5s ease-in-out;
+    }
+    .bg-cover img.dark {
+      opacity: 0;
+      height: 0;
+    }
+    .dark .bg-cover img.day {
+      opacity: 0;
+      height: 0;
+    }
+    .dark .bg-cover img.dark {
+      opacity: 1;
+      height: auto;
+    }
+  </style>
+  <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+    <div class="max-w-screen-xl mx-auto" style="padding-top: 3rem">
+      <div class="bg-local bg-cover">
+        <img class="day" src="/banner/light.png" />
+        <img class="dark" src="/banner/dark.png" />
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+      <div class="col-span-2 sidebar">
+        <div class="widget bg-secondary-bg rounded p-6">
+          <h2 class="widget-title">最新文章</h2>
+          <ul class="widget-list">
+            <li>
+              <a href="/posts/2020-basicsort/" class="nav-link">基础排序</a>
+            </li>
+            <li>
+              <a href="/posts/2020_pointer_compression_in_v8/" class="nav-link">「译」V8中的指针压缩</a>
+            </li>
+            <li>
+              <a href="/posts/2020-blance-sheet/" class="nav-link">学习读财报之资产负债表</a>
+            </li>
+            <li>
+              <a href="/posts/2020-vimsearch/" class="nav-link">vim的搜索与替换</a>
+            </li>
+            <li>
+              <a href="/posts/2020_okr/" class="nav-link">解析OKR</a>
+            </li>
+          </ul>
+        </div>
+        
+        
+      </div>
+      <div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2020-basicsort/" class="font-bold text-xl hover:text-eureka">基础排序</a>
+</div>
+<div class="content">
+  选择排序  首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-07-14</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E7%AE%97%E6%B3%95/" class="hover:text-eureka">算法</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2020_pointer_compression_in_v8/" class="font-bold text-xl hover:text-eureka">「译」V8中的指针压缩</a>
+</div>
+<div class="content">
+  原文链接：https://v8.dev/blog/pointer-compression
+内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-04-23</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2020-blance-sheet/" class="font-bold text-xl hover:text-eureka">学习读财报之资产负债表</a>
+</div>
+<div class="content">
+   分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的《一本书读懂财务报表》，加深对书中概念的理解。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-04-12</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E9%87%91%E8%9E%8D/" class="hover:text-eureka">金融</a>
+        
+        
+        <span>, </span>
+        <a href="/categories/%E8%B4%A2%E6%8A%A5/" class="hover:text-eureka">财报</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2020-vimsearch/" class="font-bold text-xl hover:text-eureka">vim的搜索与替换</a>
+</div>
+<div class="content">
+  在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-03-15</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/vim/" class="hover:text-eureka">Vim</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2020_okr/" class="font-bold text-xl hover:text-eureka">解析OKR</a>
+</div>
+<div class="content">
+  尽管很多人都很努力地工作，但是他们却没能取得什么成就感。 ----安迪·格鲁夫  第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书《见识》中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了《这就是OKR》之后的一些总结以及自己对OKR的理解。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-02-27</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E8%81%8C%E5%9C%BA/" class="hover:text-eureka">职场</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2020_this_is_okr/" class="font-bold text-xl hover:text-eureka">《这就是OKR》读书笔记</a>
+</div>
+<div class="content">
+  尽管很多人都很努力地工作，但是他们却没能取得什么成就感。 ----安迪 格鲁夫 
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-02-23</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="hover:text-eureka">读书笔记</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2019-2020newyear/" class="font-bold text-xl hover:text-eureka">再见2019，你好2020</a>
+</div>
+<div class="content">
+   不知不觉又到年底了，临近年底大家都忙着总结2019年发生的大事儿，比如前端2019年发生了哪些大事儿，投资界2019年发生了哪些事情让大家惊讶，DJ们也忙着制作并推出 Year Mix 2019。我从2016年开始，在每年的年底都会写一篇年底总结文章，回头看看这一年对我来说重要的事情，这一年我又学到了哪些，有哪些成长，今年也不例外…
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-12-31</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="hover:text-eureka">年终总结</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2019-optional-chaining/" class="font-bold text-xl hover:text-eureka">「译」JS新特性“可选链式调用”</a>
+</div>
+<div class="content">
+  在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现null或undefined（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的if声明或者复制属性访问链的长的if条件：
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-09-03</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2019-vimperformance/" class="font-bold text-xl hover:text-eureka">记一次vim性能优化</a>
+</div>
+<div class="content">
+  关键点  vim -u NONE -N可以不加载vim配置和插件打开vim vim --startuptime vim.log可以生成vim启动的log 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载 设置foldmethod=syntax会导致vim插入模式下卡顿 
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-09-01</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/vim/" class="hover:text-eureka">Vim</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2019-debtcrisisoverview/" class="font-bold text-xl hover:text-eureka">不可不知的债务危机</a>
+</div>
+<div class="content">
+   在17年年底，因为数字货币的一轮暴涨，开始关注金融，开始关注股票，基金，学习一些跟金融知识，本文是我自写文章以来第一篇关于金融的文章，是我在阅读瑞达里欧《债务危机》的一些摘要和理解。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-08-07</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E9%87%91%E8%9E%8D/" class="hover:text-eureka">金融</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+        </div>
+        
+    <ul class="pagination pagination-default">
+      <li class="page-item disabled">
+        <a href="#" aria-disabled="true" aria-label="First" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a href="#" aria-disabled="true" aria-label="Previous" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item active">
+        <a href="#" aria-current="page" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/page/7/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

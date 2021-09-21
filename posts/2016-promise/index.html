@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>Promise－－优雅解决回调嵌套 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="
+最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。
+">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Promise－－优雅解决回调嵌套",
+      "item":"/posts/2016-promise/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2016-promise/"
+    },
+    "headline": "Promise－－优雅解决回调嵌套 | 博客","datePublished": "2016-12-13T22:34:16+00:00",
+    "dateModified": "2016-12-13T22:34:16+00:00",
+    "wordCount":  497 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cblockquote\u003e\n\u003cp\u003e最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。\u003c\/p\u003e\n\u003c\/blockquote\u003e"
+}
+</script><meta property="og:title" content="Promise－－优雅解决回调嵌套 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2016-promise/" />
+
+
+
+
+<meta property="og:description" content="
+最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。
+" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2016-12-13T22:34:16&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2016-12-13T22:34:16&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="Javascript" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2016-jsstring/" />
+
+<meta property="og:see_also" content="/posts/2016-jsposition/" />
+
+<meta property="og:see_also" content="/posts/2016-jsarray/" />
+
+<meta property="og:see_also" content="/posts/2016-es6practice/" />
+
+<meta property="og:see_also" content="/posts/2016-canvas/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">Promise－－优雅解决回调嵌套</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-12-13</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <blockquote>
+<p>最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。</p>
+</blockquote>
+<h2 id="promise状态的理解">Promise状态的理解</h2>
+<p>用<code>new Promise</code>实例化的Promise对象有三个状态：</p>
+<ul>
+<li>“has-resolution” - Fulfilled</li>
+</ul>
+<ul>
+<li>reslove(成功时)，调用<code>onFulfilled</code></li>
+</ul>
+<ul>
+<li>&ldquo;has-rejection&rdquo; - Rejected</li>
+</ul>
+<ul>
+<li>reject(失败时)。调用<code>Rejected</code></li>
+</ul>
+<ul>
+<li>&ldquo;unresolve&rdquo; - Pending</li>
+</ul>
+<ul>
+<li>既不是resolve也不是reject状态，也就是Promise刚刚被创建后的初始化状态。</li>
+</ul>
+<p><img src="./img/promise-states.png" alt="图１"></p>
+<ol>
+<li>
+<p>在Chrome中输出<code>resolve</code>可以得到<code>Promise {[[PromiseStatus]]: &quot;pending&quot;, [[PromiseValue]]: undefined}</code>，可以看出<code>[[PromiseStatus]]</code>中存储的就是Promise的状态，但是并没有公开访问<code>[[PromiseStatus]]</code>的用户API，所以暂时还无法查询其内部状态。</p>
+</li>
+<li>
+<p>Promise中的<code>then</code>的回调只会被调用一次，因为Promise的状态只会从Pending变为Fulfilled或者Rejected，不可逆。</p>
+</li>
+</ol>
+<h2 id="promise的使用">Promise的使用</h2>
+<p>在使用Promise实现有序执行异步的基本格式如下：</p>
+<pre><code class="language-js">//defined Promise async function
+function asyncFun(){
+    return new Promise((reslove,reject)=&gt;{
+        if(reslove){
+            reslove(/*reslove parameter*/);
+        }else{
+            reject(new Error(/*Error*/));
+        }
+    })
+}
+
+//use Promise&amp;then
+asyncFun().then(/*function*/).then(/*function*/)...
+</code></pre>
+<p><code>reslove</code>方法的参数就是要传给回调函数的参数，即<code>resolve</code>将运行得到的结果传出来，而<code>then</code>接受该参数给回调继续执行后面的，如果这个<code>then</code>的中的函数还会返回Promise，则会重复执行该步骤直到结束。</p>
+<p><code>reject</code>方法的参数一般是包含了reject原因的Error对象。<code>reject</code>和<code>resolve</code>一样，也会将自己的参数传出去，接收该参数的是<code>then</code>的第二个fun或者是<code>catch</code>。其实<code>.catch</code>只是<code>Promise.then(onFulfilled,onRejected)</code>的别名而已。</p>
+<h2 id="快捷创建promise">快捷创建Promise</h2>
+<p>一般情况下我们会使用<code>new Promise</code>来创建prmise对象，除此之外我们也可以使用<code>Promise.reslove</code>和<code>Promise.reject</code>来直接创建，例如<code>Promise.resolve(42)</code>可以认为是以下代码的语法糖</p>
+<pre><code class="language-js">new Promise((reslove)=&gt;{
+    reslove(42);
+});
+</code></pre>
+<p>这段代码可以让这个Promise对象立即进入resolve状态，并将42传递给后面then里所指定的<code>onFulfilled</code>函数。此外<code>Promise.resolve</code>还有一个作用，就是将非Promise对象转换为Promise对象。</p>
+<p><code>Promise.reject(value)</code>与之类似。</p>
+<h2 id="promisethen异步调用带来的思考">Promise.then()异步调用带来的思考</h2>
+<pre><code class="language-js">var promise = new Promise(function (resolve){
+    console.log(&quot;inner promise&quot;); // 1
+    resolve(42);
+});
+promise.then(function(value){
+    console.log(value); // 3
+});
+console.log(&quot;outer promise&quot;); // 2
+
+/*输出：
+&quot;inner promise&quot;
+&quot;outer promise&quot;
+42
+*/
+</code></pre>
+<p>从以上的这段代码我们可以看出<code>Promise.then()</code>是异步调用的，这也是Promise设计上规定的，其原因在于<strong>同步调用和异步调用同时存在会导致混乱</strong>。</p>
+<p>以上那段代码如果在<strong>调用onReady之前DOM已经载入的话</strong>，对回调函数进行<strong>同步</strong>调用，如果在<strong>调用onReady之前DOM还没有载入的话</strong>，通过注册<code>DOMContentLoader</code>事件监听器来对回调进行<strong>异步</strong>调用。这会导致该代码在源文件中不同位置输出不同的结果，关于这个现象，有如下几点：</p>
+<ul>
+<li>绝对不能对异步函数（即使在数据已经就绪）进行同步调用</li>
+<li>如果对异步回调函数进行同步调用，处理顺序可能会与预期不符，带来意外的结果</li>
+<li>对异步回调函数进行同步调用，还可能导致栈溢出或者异常处理错乱等问题</li>
+<li>如果想在将来的某个时刻调用异步回调，可以使用<code>setTimeout</code>等异步API</li>
+</ul>
+<p>所以以上代码应该使用<code> setTimeout(fn, 0)</code>进行调用。</p>
+<pre><code class="language-js">function onReady(fn) {
+    var readyState = document.readyState;
+    if (readyState === 'interactive' || readyState === 'complete') {
+        setTimeout(fn, 0);
+    } else {
+        window.addEventListener('DOMContentLoaded', fn);
+    }
+}
+onReady(function () {
+    console.log('DOM fully loaded and parsed');
+});
+console.log('==Starting==');
+</code></pre>
+<p>所以在Promise中<code>then</code>是异步的。</p>
+<h2 id="promise链式调用">Promise链式调用</h2>
+<h4 id="各个task相互独立">各个Task相互独立</h4>
+<p>如果想实现Promise的链式调用，要求每次链式调用都返回Promise。所以每个异步执行都需要使用Promise包装，这里有一个<font color='red'><strong>误区：</strong></font>每个<code>then</code>，<code>catch</code>会返回也会反回一个新的Promise，但是<strong>这仅仅实现了链式调用</strong>，如果不将异步操作用Promise进行包装，依然不行。下面的例子就是<font color='red'><strong>错误的</strong></font>。</p>
+<pre><code class="language-js">function pro1(){
+    return new Promise((reslove,reject)=&gt;{
+        if(reslove){
+            setTimeout(()=&gt;{console.log(1000)},1000);
+            reslove();
+        }
+    })
+}
+
+function pro2(){
+    setTimeout(()=&gt;{console.log(2000)},2000);
+}
+
+function pro3(){
+    setTimeout(()=&gt;{console.log(3000)},3000);
+}
+
+pro1().then(pro2).then(pro3);
+
+function pro1(){
+    setTimeout(()=&gt;{console.log(1000)},1000);
+}
+
+Promise.resolve().then(pro1).then(pro2).then(pro3);
+</code></pre>
+<p>上面的写法有两处错误：</p>
+<ol>
+<li>
+<p>虽然在第一个函数返回了一个Promise，但是由于后面的异步操作并没有被Promise包装，所以并不会起任何作用，<strong>正确的做法是每一个异步操作都要被Promise包装</strong></p>
+</li>
+<li>
+<p><code>resolve()</code>调用的时机不对，<code>resolve</code>需要在异步操作执行完成后调用，所以需要写在异步操作内部，如果像上面那样写在异步操作外面，则不会起作用。</p>
+</li>
+</ol>
+<p>所以正确写法如下：</p>
+<pre><code class="language-js">//直接返回Promise
+function pro1(){
+    return new Promise((resolve,reject)=&gt;{
+        setTimeout(()=&gt;{console.log(1000);resolve();},1000);
+        
+    })
+}
+function pro2(){
+    return new Promise((resolve,reject)=&gt;{
+        setTimeout(()=&gt;{console.log(5000);resolve();},5000);
+        
+    });
+}
+function pro3(){
+    return new Promise((resolve,reject)=&gt;{
+        setTimeout(()=&gt;{console.log(500);resolve();},500);
+    })
+}
+pro1().then(pro2).then(pro3);
+
+//or使用Promise.reslove()
+
+function pro1(cb){setTimeout(()=&gt;{console.log(1000);cb()},1000)};
+function pro2(cb){setTimeout(()=&gt;{console.log(3000);cb()},3000)};
+function pro3(cb){setTimeout(()=&gt;{console.log(500);cb()},500)};
+
+
+Promise.resolve()
+       .then(()=&gt;new Promise(resolve=&gt;pro1(resolve)))
+       .then(()=&gt;new Promise(resolve=&gt;pro2(resolve)))
+       .then(()=&gt;new Promise(resolve=&gt;pro3(resolve)));
+</code></pre>
+<h4 id="各个task需要参数的传递">各个Task需要参数的传递</h4>
+<p>在Promise的链式调用中，有可能各个task之间存在相互依赖，例如TaskA想给TaskB传递一个参数，像下面这样：</p>
+<pre><code class="language-js">/*例1.使用Promise.resolve()启动*/
+let task1 = (value1)=&gt;value1+1;
+let task2 = (value2)=&gt;value2+2;
+let task3 = (value3)=&gt;{console.log(value3+3)};
+
+Promise.resolve(1).then(task1).then(task2).then(task3);//console =&gt; 7
+
+
+/*例2.普通的返回一个Promise*/
+function task1(value1){
+  return new Promise((resolve,reject)=&gt;{
+    if(resolve){
+      resolve(value1+1);
+    }else{
+      throw new Error(&quot;throw Error @ task1&quot;);
+    }
+  });
+}
+
+function task2(value2){
+  return new Promise((resolve,reject)=&gt;{
+    if(resolve){
+      resolve(value2+2);
+    }else{
+      throw new Error(&quot;throw Error @ task1&quot;);
+    }
+  });
+}
+function task3(value3){
+  return new Promise((resolve,reject)=&gt;{
+    if(resolve){
+      console.log(value3+3);
+    }else{
+      throw new Error(&quot;throw Error @ task1&quot;);
+    }
+  });
+}
+
+task1(1).then(task2).then(task3);//console =&gt; 7
+</code></pre>
+<p>关于<code>reslove</code>与<code>reject</code>有以下两点说明：</p>
+<ul>
+<li>
+<p><code>reslove</code>函数的作用是将Promise对象的状态从“未完成”变为“成功”（即从Pending变为Resolved），在异步操作成功时调用，并将<strong>异步操作的结果作为参数传递出去</strong>；</p>
+</li>
+<li>
+<p><code>reject</code>函数的作用是将Promise对象状态从“未完成”变为“失败”（即从Pending变为Rejected），在异步操作失败时候调用，并将<strong>异步操作报出的错误作为参数传递出去</strong>；</p>
+</li>
+</ul>
+<p>所以从上面的例子和它们的用法可以看出，如果想要传递给后面task有两种方法：</p>
+<ul>
+<li>
+<p>如果使用<code>Promise.resolve()</code>启动Promise，则像例1中那样在需要传递的参数前面加<code>return</code>即可。</p>
+</li>
+<li>
+<p>如果是利用Promise包装了任务，则把想要传递给下一个task的参数传入<code>resolve()</code>即可。</p>
+</li>
+</ul>
+<p><strong>特别说明：如果需要<code>resolve()</code>往后传递多个参数，不能直接写<code>resolve(a1,a2,a3)</code>，这样只能拿到第一个要传的参数，需要以数组或对象去传递</strong></p>
+<pre><code class="language-js">let obj = {a1:a1,a2:a2,a3:a3};
+resolve(obj)
+//or
+let arr =[a1,a2,a3];
+resolve(arr);
+</code></pre>
+<h2 id="then与catch返回新的promise"><code>then</code>与<code>catch</code>返回新的Promise</h2>
+<p>在Promise中无论是<code>then</code>还是<code>catch</code>方法，都会返回返回一个新的Promise对象。</p>
+<p><img src="./img/then_catch.png" alt="图２"></p>
+<pre><code class="language-js">var aPromise = new Promise(function (resolve) {
+    resolve(100);
+});
+var thenPromise = aPromise.then(function (value) {
+    console.log(value);
+});
+var catchPromise = thenPromise.catch(function (error) {
+    console.error(error);
+});
+console.log(aPromise !== thenPromise); // =&gt; true
+console.log(thenPromise !== catchPromise);// =&gt; true
+</code></pre>
+<p>所以像下面这样将链式调用分开写是不成功的</p>
+<pre><code class="language-js">// 1: 对同一个promise对象同时调用 `then` 方法
+var aPromise = new Promise(function (resolve) {
+    resolve(100);
+});
+aPromise.then(function (value) {
+    return value * 2;
+});
+aPromise.then(function (value) {
+    return value * 2;
+});
+aPromise.then(function (value) {
+    console.log(&quot;1: &quot; + value); // =&gt; 100
+});
+</code></pre>
+<p>由于每次调用<code>then</code>方法都会返回一个新的Promise，所以导致最终输出100而不是100 * 2 * 2。</p>
+<h2 id="promiseall的使用">Promise.all()的使用</h2>
+<p>有时候需要多个彼此没有关联的多个异步任务全部执行完成后再执行后面的操作，这时候就需要用到<code>Promise.all()</code>，它接收一个Promise的对象的数组作为参数，当这个数组里的所有Promise对象全部变成resolve或者reject的时候，它才会去调用后面的<code>.then()</code>。</p>
+<p>这里需要说明一点，两个彼此无关的异步操作会同时执行，每个Promise的结果（即每个返回的Promise的resolve或reject时传递的参数）和传递给<code>Promise.all</code>的Promise数组的顺序一致。也就是说，假设有两个异步操作TaskA和TaskB，如果传入顺序为<code>Promise.all([TaskA,TaskB])</code>，则执行完成后传给<code>.then</code>的顺序为[TaskA,TaskB]。</p>
+<pre><code class="language-js">function setTime(time){
+  return new Promise((resolve)=&gt;{
+    setTimeout(()=&gt;resolve(time),time);
+  })
+}
+
+let startTime = Date.now();
+
+Promise.all([setTime(1),setTime(100),setTime(200)])
+       .then((value)=&gt;{
+         console.log(value);    //[1,100,200]
+         console.log(Date.now() - startTime); //203
+       });
+</code></pre>
+<p>从上面函数的输出值可以看出<code>Promise.all()</code>里的异步操作是同时执行的而且传给<code>.then()</code>的顺序和<code>Promise.all()</code>里的顺序一样。最终执行时间约为200ms，为什么不是200ms，这里涉及到关于<code>setTimeout</code>的精准问题，不在这里讨论。</p>
+<h2 id="promiserace的使用">Promise.race()的使用</h2>
+<p><code>Promise.rance()</code>的用法与<code>Promise.all()</code>类似，不同的地方在于<code>Promise.all()</code>是在接收到的所有Promise都变为FulFilled或者Rejected状态之后才会继续进行后面的处理，而<code>Promise.rance()</code>只要有一个Promise对象进入FullFilled或者Rejected状态，就会继续进行后续处理。这相当于<code>Promise.rance()</code>进行“且”运算而<code>Promise.rance()</code>进行<code>或</code>运算。但是这里有一点需要注意一下：</p>
+<pre><code class="language-js">var taskA = new Promise(function (resolve) {
+        setTimeout(function () {
+            console.log('this is taskA');
+            resolve('this is taskA');
+        }, 4);
+    });
+var taskB = new Promise(function (resolve) {
+        setTimeout(function () {
+            console.log('this is taskB');
+            resolve('this is taskB');
+        }, 1000);
+    });
+
+Promise.race([winnerPromise, loserPromise]).then(function (value) {
+    console.log(value);
+});
+
+/*
+输出结果：
+this is taskA
+this is taskA
+this is taskB
+*/
+</code></pre>
+<p>从这里可以看出，在第一个Promise变为FulFiled状态运行then里的回调后，后面的Promise并没有停止运行，而是接续执行。也就是说， <code>Promise.race</code> 在第一个promise对象变为Fulfilled之后，并不会取消其他promise对象的执行。</p>
+<h2 id="promise的reject和异步操作error的理解">Promise的reject和异步操作error的理解</h2>
+<pre><code class="language-js">function ReadEveryFiles(file){
+    return new Promise((resolve,reject)=&gt;{
+        if(resolve){
+            fs.readFile(`${__dirname}/jQuery/${file}`,(err,data)=&gt;{
+                if(err){
+                    console.log(err);
+                }else{
+                    let obj = {data:data,file:file};
+                    resolve(obj);
+                }
+            });
+        }else{
+            //promise reject error
+        }
+    });
+}
+</code></pre>
+<p>这里的readFile的error和Promise的reject不一样，一个是readFile过程中导致的错误，而另一个是Promise做处理的时候导致的错误，可以这样理解，假设读取文件成功了，但是Promise还需要讲这个异步操作得到的数据拿到处理，在Promise做这些操作的时候可能出错。</p>
+<h2 id="写在最后">写在最后</h2>
+<p>这几天开始用Promise写了一些东西，发现其实如果用Promise，会使得代码量加大，因为每一个异步都要被Promise封装，但是这样换来的却是更加容易的维护，所以还是值得的，当代码写完后，我们很容易就能看出代码的执行过程，相对于原来用嵌套去写要直观许多，而如果想要解决Promise的代码量过大的问题，我们可以使用Generator函数，另外，在ES7标准中推出了更加牛的异步解决方案<strong>Async/Await</strong>，关于它们，我将会在随后继续深入。</p>
+<h2 id="参考">参考</h2>
+<p><a href="http://liubin.org/promises-book/#introduction">JavaScript Promise迷你书（中文版）</a>
+<a href="http://es6.ruanyifeng.com/#docs/promise">ECMAScript 6 入门&mdash;Promise对象</a></p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/javascript/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Javascript</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2016-2017newyear/" class="block">再见，2016；你好，2017</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2016-gitgithub/" class="block">Git连接Github总结</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2016-jsstring/">Javascript中字符串方法总结</a>
+            <br />
+            
+            <a href="/posts/2016-jsposition/">JS中的位置与大小</a>
+            <br />
+            
+            <a href="/posts/2016-jsarray/">Javascript中Array方法的总结</a>
+            <br />
+            
+            <a href="/posts/2016-es6practice/">初探ES6——轮播图实践总结</a>
+            <br />
+            
+            <a href="/posts/2016-canvas/">H5 Canvas实现图片格式的转换</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

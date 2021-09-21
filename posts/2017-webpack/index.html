@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>Webpack2.x踩坑与总结 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="
+
+本篇为在学习Vue2.x的时候使用Webpack2.x的踩坑与总结，关于Vue2.x的踩坑与总结，点击链接
+">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Webpack2.x踩坑与总结",
+      "item":"/posts/2017-webpack/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2017-webpack/"
+    },
+    "headline": "Webpack2.x踩坑与总结 | 博客","datePublished": "2017-02-07T22:41:09+00:00",
+    "dateModified": "2017-02-07T22:41:09+00:00",
+    "wordCount":  365 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cp\u003e\u003cimg src=\u0022.\/webpack.jpg\u0022 alt=\u0022\u0022\u003e\u003c\/p\u003e\n\u003cblockquote\u003e\n\u003cp\u003e本篇为在学习Vue2.x的时候使用Webpack2.x的踩坑与总结，关于Vue2.x的踩坑与总结，\u003ca href=\u0022http:\/\/mrzhang123.github.io\/2017\/02\/07\/vue2\/\u0022\u003e点击链接\u003c\/a\u003e\u003c\/p\u003e\n\u003c\/blockquote\u003e"
+}
+</script><meta property="og:title" content="Webpack2.x踩坑与总结 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2017-webpack/" />
+
+
+
+
+<meta property="og:description" content="
+
+本篇为在学习Vue2.x的时候使用Webpack2.x的踩坑与总结，关于Vue2.x的踩坑与总结，点击链接
+" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2017-02-07T22:41:09&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2017-02-07T22:41:09&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="Webpack" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2016-webpack1/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">Webpack2.x踩坑与总结</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-02-07</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/webpack/" class="hover:text-eureka">Webpack</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <p><img src="./webpack.jpg" alt=""></p>
+<blockquote>
+<p>本篇为在学习Vue2.x的时候使用Webpack2.x的踩坑与总结，关于Vue2.x的踩坑与总结，<a href="http://mrzhang123.github.io/2017/02/07/vue2/">点击链接</a></p>
+</blockquote>
+<p>项目地址：<a href="https://github.com/MrZhang123/Vue_project/tree/master/vue2.x">https://github.com/MrZhang123/Vue_project/tree/master/vue2.x</a></p>
+<h1 id="本地安装npm包后如何在命令行运行">本地安装npm包后如何在命令行运行</h1>
+<p>在npm安装包的时候，如果使用全局安装，即<code>npm install &lt;packageName&gt; -g</code>，则在安装完成后可以在终端运行作为命令去运行，但是如果是本地安装的包<code>npm install --save-dev &lt;packageName&gt;</code>，则无法这样直接运行。那么如何运行本地安装的包呢？首先进入项目目录（即package.json所在目录），然后使用以下命令即可运行：</p>
+<pre><code class="language-shell">
+$ node_modules/.bin/&lt;packageName&gt;
+
+</code></pre>
+<p>除了可以这样在命令行运行外，还可以在文件中运行</p>
+<pre><code class="language-js">
+//index.js
+
+let webpack = require('webpack');
+
+webpack();
+
+</code></pre>
+<pre><code class="language-shell">
+$ node index.js
+
+</code></pre>
+<h1 id="webpack1x升级2x">webpack1.x升级2.x</h1>
+<h2 id="1moduleloaders改成了modulerules">1.<code>module.loaders</code>改成了<code>module.rules</code></h2>
+<p>旧的<code>loaders</code>被新的<code>rules</code>取代，后者允许配置<code>loader</code>以及其他更多项。</p>
+<pre><code class="language-js">  module: {
+-   loaders: [
++   rules: [
+      {
+        test: /\.css$/,
+-       loaders: [
++       use: [
+          {
+            loader: &quot;style-loader&quot;
+          },
+          {
+            loader: &quot;css-loader&quot;,
+-           query: {
++           options: {
+              modules: true
+            }
+        ]
+      },
+      {
+        test: /\.jsx$/,
+        loader: &quot;babel-loader&quot;, // Do not use &quot;use&quot; here
+        options: {
+          // ...
+        }
+      }
+    ]
+  }
+</code></pre>
+<p>以上写法中，<code>Rule.loader</code>是<code>Rule.use: [ { loader } ]</code>的简写。</p>
+<h2 id="2链式调用loaders">2.链式调用loaders</h2>
+<p>在webpack1.x中loaders可以链式调用，在2.x中依旧有该特性，使用<code>rule.use</code>配置项，<code>use</code>中设置一个loaders的数组而在1.x中使用<code>!</code>连接各个loader，旧版写法只有在使用旧的<code>module.loaders</code>时有效。</p>
+<pre><code class="language-js">  module: {
+-   loaders: {
++   rules: {
+      test: /\.less$/,
+-     loader: &quot;style-loader!css-loader!less-loader&quot;
++     use: [
++       &quot;style-loader&quot;,
++       &quot;css-loader&quot;,
++       &quot;less-loader&quot;
++     ]
+    }
+  }
+</code></pre>
+<h2 id="3取消在模块中自动添加-loader后缀">3.取消在模块中自动添加<code>-loader</code>后缀</h2>
+<p>webpack2.x中不再添加<code>-loader</code></p>
+<pre><code class="language-js">  module: {
+    rules: [
+      {
+        use: [
+-         &quot;style&quot;,
++         &quot;style-loader&quot;,
+-         &quot;css&quot;,
++         &quot;css-loader&quot;,
+-         &quot;less&quot;,
++         &quot;less-loader&quot;,
+        ]
+      }
+    ]
+  }
+</code></pre>
+<p>根据官方说法，做出这样更改的原因是省略<code>-loader</code>会对新手造成误解，所以去掉这个功能，如果想打开这个旧的功能，可以配置<code>resolveLoader.moduleExtensions</code>，但是并不推荐这么做，具体参阅<a href="https://github.com/webpack/webpack/issues/2986">issues#2986</a></p>
+<pre><code class="language-js">+ resolveLoader: {
++   moduleExtensions: [&quot;-loader&quot;]
++ }
+</code></pre>
+<h2 id="4使用options配置loader">4.使用options配置loader</h2>
+<p>在webpack1.x中可以通过webpack.config.js的自定义属性来配置loader，这在webpack2.x中无法执行</p>
+<pre><code class="language-js">module.exports = { 
+  ...
+  module: { 
+    use: [{ 
+      test: /\.tsx?$/,
+      loader: 'ts-loader'
+    }]
+  },
+  // does not work with webpack 2
+  ts: { transpileOnly: false } 
+}
+//webpack2 use options
+module.exports = { 
+  ...
+  module: { 
+    use: [{ 
+      test: /\.tsx?$/,
+      loader: 'ts-loader'
+      options:  { transpileOnly: false }
+    }]
+  }
+}
+</code></pre>
+<h1 id="webpack插件的使用">webpack插件的使用</h1>
+<h2 id="webpack-dev-server1x升级2x">webpack-dev-server1.x升级2.x</h2>
+<p>1.在CLI使用的时候，&ndash;inline默认开启，无需在输入命令时添加</p>
+<p>2.删除contentBase用proxy代替</p>
+<p>3.减少控制台无用输出，在1.x中，当我们停掉服务器后，控制台会一直输出错误信息，但是在2.x中只会输出<code>[WDS] Disconnected!</code></p>
+<h2 id="extract-text-webpack-plugin">extract-text-webpack-plugin</h2>
+<p>在使用webpack将vue_spa打包后，并不会出现css，因为css被打包入build.js，如果从vue组件中抽离出css，需要安装插件<strong>extract-text-webpack-plugin</strong>，在使用的时候需要配合v2版本的才可以使用（如果使用了webpack2，则对应的插件版本都需要用v2版本）。具体配置如下：</p>
+<pre><code class="language-js">module:{
+  rules:[
+    {
+      test: /\.vue$/,
+      loader: 'vue',
+      options: {
+        loaders:{
+          css: extractTextPlugin.extract({
+            loader: 'css-loader',
+            fallbackLoader: 'vue-style-loader'
+          })
+        }
+      }
+    }
+  ]
+},
+plugins: [
+  new webpack.HotModuleReplacementPlugin(),
+  new extractTextPlugin({
+    filename:'/style.css',
+    allChunks:true
+  })
+],
+</code></pre>
+<p>在options中：</p>
+<p>options.loader: string | object | loader[]  (必填项) 这里的 loader(s) 用于将资源转换为css导出模块</p>
+<p>options.fallbackLoader: string | object | loader[] 当css没有被导出的时候这里的 loader(s) 会被使用 （即当在plugins模块中设置allChunks:false的时候）</p>
+<p>在plugins中：</p>
+<p>filename：可以设置被导出的css文件的路径以及名字</p>
+<p>allChunks：从所有附加块中提取（默认情况下，它只从初始块中提取）</p>
+<h2 id="html-webpack-plugin">html-webpack-plugin</h2>
+<pre><code class="language-js">plugins: [
+  new htmlWwebpackPlugin({
+    filename: 'assets/admin.html'
+  }),
+]
+</code></pre>
+<p>title：用于生成文档的document</p>
+<p>filename：要注入的html文件，默认为index.html。可以自定义（例如：assets/admin.html）</p>
+<p>inject：
+true | ‘head’ | ‘body’ | false
+将资源注入所给的template或templateContent，当设置为 true 或者 ‘body’，所有的资源会被注入到body底部。而head则会将js放到headelement</p>
+<p>favicon: 在输出的html中添加favicon</p>
+<p>hash: true | false 如果为true，则将一个唯一的webpack编译散列附加到所有包含的脚本和CSS文件。这对缓存清除很有用。</p>
+<p>cache: true | false 如果为true（默认），尝试仅在更改后才发出文件。</p>
+<h2 id="是否要更换preset">是否要更换preset？</h2>
+<p>webpack2.x默认支持es6的模块，所以在编译时候没有必要将它们先转换为CommonJS模块再处理，所以在github中出现了babel-preset-es2015-webpack，但是这个模块我在使用的时候出现了<code>Cannot remove 'babel-plugin-transform-es2015-modules-commonjs' from the plugin list.</code>的问题，根据babel-preset-es2015-webpack中的叙述以及<a href="https://github.com/gajus/babel-preset-es2015-webpack/issues/14">issues#14</a>可知，babel-preset-es2015已经支持不转换模块中的<code>import</code>和<code>export</code>，只需要设置<code>.babelrc</code></p>
+<pre><code class="language-json">{
+    &quot;presets&quot;: [
+        [
+            &quot;es2015&quot;,
+            {
+                &quot;modules&quot;: false
+            }
+        ]
+    ]
+}
+</code></pre>
+<h2 id="使用commonschunkplugin将第三方库单独打包">使用CommonsChunkPlugin将第三方库单独打包</h2>
+<p>很多情况下我们会引入第三方库，但是默认情况下，webpack会将第三方库与我们自己写的js一起打包进生成文件中，为了让第三方库与我们自己写的js分开，webpack2.x内置一个插件CommonsChunkPlugin，它可以让webpack在打包的时候将我们自己写的js与第三方库分开，具体用法如下：</p>
+<pre><code class="language-js">entry:{
+  app: './src/main.js',
+  vendor: [
+    'lodash',
+    'axios',
+    'vue',
+    'vue-router'
+  ]
+},
+output: {
+  path: path.resolve(__dirname + '/dist'),
+  publicPath: '/dist',
+  filename: '[name].js'
+},
+plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name:'vendor'
+    })
+]
+</code></pre>
+<p>这里需要注意一点，这里在在输出的时候需要使用<code>filename: '[name].js'</code>，否则会报错。</p>
+<h1 id="参考">参考：</h1>
+<p><a href="http://www.zcfy.cc/article/migrating-from-v1-to-v2-2378.html">从 webpack v1 迁移到 webpack v2</a></p>
+<p><a href="https://medium.com/webpack/whats-new-in-webpack-dev-server-2-0-a66848c3679#.b8ftvlujv">What’s new in webpack dev server 2.0</a></p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/webpack/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Webpack</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2017-gitreset/" class="block">使用git回退远程库代码</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2017-vue/" class="block">Vue2.x踩坑与总结</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2016-webpack1/">Webpack初探</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

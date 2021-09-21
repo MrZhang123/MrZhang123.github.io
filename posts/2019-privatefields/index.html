@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>「译」ES 草案：class私有属性 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="
+原文链接：https://2ality.com/2019/07/private-class-fields.html
+
+class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：
+
+公有class属性
+私有class属性
+">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"「译」ES 草案：class私有属性",
+      "item":"/posts/2019-privatefields/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2019-privatefields/"
+    },
+    "headline": "「译」ES 草案：class私有属性 | 博客","datePublished": "2019-07-21T00:00:00+00:00",
+    "dateModified": "2019-07-21T00:00:00+00:00",
+    "wordCount":  526 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cblockquote\u003e\n\u003cp\u003e原文链接：https:\/\/2ality.com\/2019\/07\/private-class-fields.html\u003c\/p\u003e\n\u003c\/blockquote\u003e\n\u003cp\u003eclass属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：\u003c\/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003ca href=\u0022https:\/\/2ality.com\/2019\/07\/public-class-fields.html\u0022\u003e公有class属性\u003c\/a\u003e\u003c\/li\u003e\n\u003cli\u003e私有class属性\u003c\/li\u003e\n\u003c\/ol\u003e"
+}
+</script><meta property="og:title" content="「译」ES 草案：class私有属性 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2019-privatefields/" />
+
+
+
+
+<meta property="og:description" content="
+原文链接：https://2ality.com/2019/07/private-class-fields.html
+
+class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：
+
+公有class属性
+私有class属性
+" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2019-07-21T00:00:00&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2019-07-21T00:00:00&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="JavaScript" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2019-stablesort/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">「译」ES 草案：class私有属性</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-07-21</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <blockquote>
+<p>原文链接：https://2ality.com/2019/07/private-class-fields.html</p>
+</blockquote>
+<p>class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：</p>
+<ol>
+<li><a href="https://2ality.com/2019/07/public-class-fields.html">公有class属性</a></li>
+<li>私有class属性</li>
+</ol>
+<p>在这篇文章中，我们看看<em>私有属性</em>，在类和实例中的一种新的私有插槽。这个功能是ES草案<a href="https://github.com/tc39/proposal-class-fields">“JavaScript类属性声明”</a>的一部分。</p>
+<h2 id="1概览">1.概览</h2>
+<p>Private fields是一种与属性不同的新的数据插槽。它们只能在它们声明的class body内直接访问。</p>
+<h3 id="11-静态私有属性">1.1 静态私有属性</h3>
+<pre><code class="language-js">class MyClass {
+  // 声明并初始化静态私有属性
+  static #privateStaticField = 1;
+  static getPrivateStaticField() {
+    return MyClass.#privateStaticField; // (A)
+  }
+}
+assert.throws(
+  () =&gt; eval('MyClass.#privateStaticField'),
+  {
+    name: 'SyntaxError',
+    message: 'Undefined private field undefined:' +
+      ' must be declared in an enclosing class',
+  }
+);
+assert.equal(MyClass.getPrivateStaticField(), 1);
+</code></pre>
+<p>小窍门：永远不要用<code>this</code>来访问一个静态私有属性，直接使用类名访问即可（就像A行那样）。为什么会在本文后面解释。</p>
+<h3 id="12-实例私有属性">1.2 实例私有属性</h3>
+<p>使用带有初始值的私有属性（等号后面跟值）。</p>
+<pre><code class="language-js">class MyClass {
+  // 声明并初始化
+  #privateInstanceField = 2;
+  getPrivateInstanceField() {
+    return this.#privateInstanceField;
+  }
+}
+assert.throws(
+  () =&gt; eval('new MyClass().#privateInstanceField'),
+  {
+    name: 'SyntaxError',
+    message: 'Undefined private field undefined:' +
+      ' must be declared in an enclosing class',
+  }
+);
+assert.equal(new MyClass().getPrivateInstanceField(), 2);
+</code></pre>
+<p>使用未初始化的实例私有属性：</p>
+<pre><code class="language-js">class DataStore {
+  #data; // 必须声明
+  constructor(data) {
+    this.#data = data;
+  }
+  getData() {
+    return this.#data;
+  }
+}
+assert.deepEqual(
+  Reflect.ownKeys(new DataStore()),
+  []);
+</code></pre>
+<h2 id="2-从下划线到实例私有属性">2. 从下划线到实例私有属性</h2>
+<p>在JavaScript中保持数据私有的公共约定是使用带有下划线的属性名。在这个部分，我们从使用这个约定的代码开始，然后更改它，到使用实例私有属性。</p>
+<h3 id="21-从下划线开始">2.1 从下划线开始</h3>
+<pre><code class="language-js">class Countdown {
+  constructor(counter, action) {
+    this._counter = counter; // private
+    this._action = action; // private
+  }
+  dec() {
+    if (this._counter &lt; 1) return;
+    this._counter--;
+    if (this._counter === 0) {
+      this._action();
+    }
+  }
+}
+// 变量并非真正的私有
+assert.deepEqual(
+  Reflect.ownKeys(new Countdown(5, () =&gt; {})),
+  ['_counter', '_action']);
+</code></pre>
+<p>这个约定并没有给我们任何保护；它仅仅建议使用这个类的用户：不要使用这些属性，它们是私有的。</p>
+<h3 id="22-切换到实例私有属性">2.2 切换到实例私有属性</h3>
+<p>我们可以用实例私有属性代替下划线：</p>
+<ol>
+<li>我们用哈希符<code>#</code>替换每一个下划线<code>_</code>。</li>
+<li>我们在类的顶部声明所有的私有属性。</li>
+</ol>
+<pre><code class="language-js">class Countdown {
+  #counter;
+  #action;
+
+  constructor(counter, action) {
+    this.#counter = counter;
+    this.#action = action;
+  }
+  dec() {
+    if (this.#counter &lt; 1) return;
+    this.#counter--;
+    if (this.#counter === 0) {
+      this.#action();
+    }
+  }
+}
+// The data is now private:
+assert.deepEqual(
+  Reflect.ownKeys(new Countdown(5, () =&gt; {})),
+  []);
+</code></pre>
+<h2 id="3-类主体内的所有代码都可以访问私有属性">3. 类主体内的所有代码都可以访问私有属性</h2>
+<p>例如，实例方法可以访问静态私有属性：</p>
+<pre><code class="language-js">class MyClass {
+  static #privateStaticField = 1;
+  getPrivateFieldOfClass(theClass) {
+    return theClass.#privateStaticField;
+  }
+}
+assert.equal(
+  new MyClass().getPrivateFieldOfClass(MyClass), 1);
+</code></pre>
+<p>一个静态方法可以访问实例私有属性：</p>
+<pre><code class="language-js">class MyClass {
+  #privateInstanceField = 2;
+  static getPrivateFieldOfInstance(theInstance) {
+    return theInstance.#privateInstanceField;
+  }
+}
+assert.equal(
+  MyClass.getPrivateFieldOfInstance(new MyClass()), 2);
+</code></pre>
+<h2 id="4高级">4.（高级）</h2>
+<p>剩余部分是关于类的私有属性的高级用法</p>
+<h2 id="5-深入理解私有属性">5. 深入理解私有属性</h2>
+<p>在规范中，私有属性通过附加到对象上的数据结构进行管理。私有属性的大致处理过程如下：</p>
+<pre><code class="language-js">{
+  // Private names
+  const _counter = {
+    __Description__: 'counter',
+    __Kind__: 'field',
+  };
+  const _action = {
+    __Description__: 'action',
+    __Kind__: 'field',
+  };
+
+  class Object {
+    // Maps private names to values
+    __PrivateFieldValues__ = new Map();
+  }
+
+  class Countdown {
+    constructor(counter, action) {
+      this.__PrivateFieldValues__.set(_counter, counter);
+      this.__PrivateFieldValues__.set(_action, action);
+    }
+    dec() {
+      if (this.__PrivateFieldValues__.get(_counter) &lt; 1) return;
+      this.__PrivateFieldValues__.set(
+        _counter, this.__PrivateFieldValues__.get(_counter) - 1);
+      
+      if (this.__PrivateFieldValues__.get(_counter) === 0) {
+        this.__PrivateFieldValues__.get(_action)();
+      }
+    }
+  }
+}
+</code></pre>
+<p>这里有两点很重要：</p>
+<ul>
+<li><em>私有名称</em>是唯一的key。它们只能在class内访问。</li>
+<li><em>私有属性的值</em>是一个<strong>私有名称(key)=&gt;值(value)的字典</strong>。每个拥有私有属性的实例都有这样一个字典。只能通过私有变量的key访问其value。</li>
+</ul>
+<p>意义：</p>
+<ul>
+<li>在类<code>Countdown</code>中，只能访问存储在<code>.#counter</code> 和 <code>#action</code> 的私有数据——因为在这个类中你只有这两个私有变量。</li>
+<li>私有属性不能被子类访问。</li>
+</ul>
+<h2 id="6-陷阱使用this访问私有静态属性">6. 陷阱：使用<code>this</code>访问私有静态属性</h2>
+<p><strong>你可以使用<code>this</code>访问公有静态属性，但是你不应该使用它访问私有静态属性。</strong></p>
+<h3 id="61-this和静态公有变量">6.1 <code>this</code>和静态公有变量</h3>
+<pre><code class="language-js">class SuperClass {
+  static publicData = 1;
+  
+  static getPublicViaThis() {
+    return this.publicData;
+  }
+}
+class SubClass extends SuperClass {
+}
+</code></pre>
+<p>公有静态属性（Public static fields）是属性。如果我们用一个方法调用：</p>
+<pre><code class="language-js">assert.equal(SuperClass.getPublicViaThis(), 1);
+</code></pre>
+<p><code>this</code>指向<code>SuperClass</code>，一切都按照我们预想的那样工作。我们也可以通过子类调用<code>.getPublicViaThis()</code>。</p>
+<pre><code class="language-js">assert.equal(SubClass.getPublicViaThis(), 1);
+</code></pre>
+<p><code>SubClass</code>继承了<code>.getPublicViaThis()</code>方法，<code>this</code>指向<code>SubClass</code>，代码依旧可以运用，因为<code>SubClass</code>也继承了<code>.publicData</code>。</p>
+<p>（注：在这种情况下设置<code>.publicData</code>会在<code>SubClass</code>上创建新的属性，这个属性不会覆盖在<code>SuperClass</code>上定义的属性）</p>
+<h3 id="62-this和私有静态属性">6.2 <code>this</code>和私有静态属性</h3>
+<p>考虑这段代码：</p>
+<pre><code class="language-js">class SuperClass {
+  static #privateData = 2;
+  static getPrivateViaThis() {
+    return this.#privateData;
+  }
+  static getPrivateViaClassName() {
+    return SuperClass.#privateData;
+  }
+}
+class SubClass extends SuperClass {
+}
+</code></pre>
+<p>通过<code>SuperClass</code>可以调用<code>.getPrivateViaThis()</code>，因为<code>this</code>指向<code>SuperClass</code>：</p>
+<pre><code class="language-js">assert.equal(SuperClass.getPrivateViaThis(), 2);
+</code></pre>
+<p>然而，通过<code>SubClass</code>无法调用<code>.getPrivateViaThis()</code>，因为此时<code>this</code>指向<code>SubClass</code>，而<code>SubClass</code>没有私有静态变量<code>.#privateData</code>：</p>
+<pre><code class="language-js">assert.throws(
+  () =&gt; SubClass.getPrivateViaThis(),
+  {
+    name: 'TypeError',
+    message: 'Read of private field #privateData from' +
+      ' an object which did not contain the field',
+  }
+);
+</code></pre>
+<p>解决办法是直接通过<code>SuperClass</code>访问<code>.#privateData</code>，就像<code>SuperClass</code>中的<code>getPrivateViaClassName</code>方法。</p>
+<pre><code class="language-js">assert.equal(SubClass.getPrivateViaClassName(), 2);
+</code></pre>
+<h2 id="7-友好和被保护的隐私">7. “友好”和“被保护的”隐私</h2>
+<p>有时候我们想要某些实体成为某一类的“朋友”。这个朋友应该可以访问calss的私有数据（译者注：这里其实就是想控制哪些可以访问私有属性，哪些不可以）。在以下代码中，函数<code>getCounter()</code>是类<code>Countdown</code>的朋友。我们通过使用<code>WeakMaps</code>生成私有数据，这样<code>Countdown</code>就允许朋友们访问该数据。</p>
+<pre><code class="language-js">const _counter = new WeakMap();
+const _action = new WeakMap();
+
+class Countdown {
+  constructor(counter, action) {
+    _counter.set(this, counter);
+    _action.set(this, action);
+  }
+  dec() {
+    let counter = _counter.get(this);
+    if (counter &lt; 1) return;
+    counter--;
+    _counter.set(this, counter);
+    if (counter === 0) {
+      _action.get(this)();
+    }
+  }
+}
+function getCounter(countdown) {
+  return counter.get(countdown);
+}
+</code></pre>
+<p>这样就很容易控制哪些可以访问私有数据：如果它们可以使用<code>_counter</code>和<code>_action</code>，它们就可以访问私有数据。如果我们将前面的代码片段放到一个模块中，那么数据在整个模块中是私有的。</p>
+<p>有关此技术的更多信息，可以查看Sect的“<a href="https://exploringjs.com/impatient-js/ch_weakmaps.html#private-data-in-weakmaps">使用<code>WeakMaps</code>保持私有数据</a>”。这同样适用于在superclass和subclass之间共享私有数据（“被保护”的可见度）。</p>
+<h2 id="8-faq">8. FAQ</h2>
+<h3 id="81-为什么是为什么不通过private属性声明私有属性">8.1 为什么是<code>#</code>？为什么不通过<code>private</code>属性声明私有属性？</h3>
+<p>原则上，私有属性应该用如下方式声明：</p>
+<pre><code class="language-js">class MyClass {
+  private value;
+  compare(other) {
+    return this.value === other.value;
+  }
+}
+</code></pre>
+<p>但是我们不能在整个class内的任何地方使用属性名值——它们总是被解释为私有变量。</p>
+<p>静态类型语言，例如TypeScript在这方面具有更多的灵活性：它们在编译的时候就知道是否是MyClass的一个实例并且可以是否将<code>.value</code>作为一个私有变量对待。</p>
+<h2 id="key-word">key word</h2>
+<ul>
+<li>class私有属性（private class fields）</li>
+<li>静态私有属性（private static fields）</li>
+<li>实例私有属性（private instance fields）</li>
+</ul>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/javascript/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Javascript</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2019-debtcrisisoverview/" class="block">不可不知的债务危机</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2019-leetcode-romantoint/" class="block">Roman To Int</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2019-stablesort/">【译】稳定的Array.prototype.sort</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

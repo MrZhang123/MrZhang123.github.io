@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>算法 on 博客</title>
+    <link>/categories/%E7%AE%97%E6%B3%95/</link>
+    <description>Recent content in 算法 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Tue, 14 Jul 2020 09:08:00 +0000</lastBuildDate><atom:link href="/categories/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基础排序</title>
+      <link>/posts/2020-basicsort/</link>
+      <pubDate>Tue, 14 Jul 2020 09:08:00 +0000</pubDate>
+      
+      <guid>/posts/2020-basicsort/</guid>
+      <description>&lt;h2 id=&#34;选择排序&#34;&gt;选择排序&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

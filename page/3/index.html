@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="">
+
+
+
+<meta property="og:title" content="博客" />
+<meta property="og:type" content="website" />
+
+
+
+<meta property="og:url" content="/" />
+
+
+
+
+
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="og:updated_time" content="2020-07-14T09:08:00&#43;00:00" />
+
+
+
+<meta property="article:section" content="" />
+
+
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="博客" />
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+<div class="pl-scrollbar">
+  <style type="text/css">
+    .widget + .widget {
+      margin-top: 1rem;
+    }
+    .widget-title {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .widget-list li {
+      font-size: 0.9rem;
+    }
+    .bg-cover img {
+      opacity: 1;
+      transition: all 0.5s ease-in-out;
+    }
+    .bg-cover img.dark {
+      opacity: 0;
+      height: 0;
+    }
+    .dark .bg-cover img.day {
+      opacity: 0;
+      height: 0;
+    }
+    .dark .bg-cover img.dark {
+      opacity: 1;
+      height: auto;
+    }
+  </style>
+  <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+    <div class="max-w-screen-xl mx-auto" style="padding-top: 3rem">
+      <div class="bg-local bg-cover">
+        <img class="day" src="/banner/light.png" />
+        <img class="dark" src="/banner/dark.png" />
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+      <div class="col-span-2 sidebar">
+        <div class="widget bg-secondary-bg rounded p-6">
+          <h2 class="widget-title">最新文章</h2>
+          <ul class="widget-list">
+            <li>
+              <a href="/posts/2020-basicsort/" class="nav-link">基础排序</a>
+            </li>
+            <li>
+              <a href="/posts/2020_pointer_compression_in_v8/" class="nav-link">「译」V8中的指针压缩</a>
+            </li>
+            <li>
+              <a href="/posts/2020-blance-sheet/" class="nav-link">学习读财报之资产负债表</a>
+            </li>
+            <li>
+              <a href="/posts/2020-vimsearch/" class="nav-link">vim的搜索与替换</a>
+            </li>
+            <li>
+              <a href="/posts/2020_okr/" class="nav-link">解析OKR</a>
+            </li>
+          </ul>
+        </div>
+        
+        
+      </div>
+      <div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2018-reactlifecycle/" class="font-bold text-xl hover:text-eureka">「译」如何使用React生命周期方法</a>
+</div>
+<div class="content">
+   原文链接：How to use React Lifecycle Methods
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-07-28</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react/" class="hover:text-eureka">React</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2018-reactproject2/" class="font-bold text-xl hover:text-eureka">从零开始搭建React应用（二）——React应用架构</a>
+</div>
+<div class="content">
+  上一篇文章——从零开始搭建 React 应用（一）——基础搭建讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-07-18</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>7分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react/" class="hover:text-eureka">React</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2018-reactproject1/" class="font-bold text-xl hover:text-eureka">从零开始搭建React应用（一）——基础搭建</a>
+</div>
+<div class="content">
+  项目链接：https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-07-18</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react/" class="hover:text-eureka">React</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2018-es2018/" class="font-bold text-xl hover:text-eureka">ES2018（ES9）的新特性</a>
+</div>
+<div class="content">
+  原文链接：https://www.sitepoint.com/es2018-whats-new/
+在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-06-20</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2018-webpackpublicpath/" class="font-bold text-xl hover:text-eureka">Webpack中publicPath详解</a>
+</div>
+<div class="content">
+   最近自己在搭建一个基于webpack的react项目，遇到关于output.publicPath和webpack-dev-server中publicPath的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-05-12</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/webpack/" class="hover:text-eureka">Webpack</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2018-reactcssmodules/" class="font-bold text-xl hover:text-eureka">CSS Modules在React中的应用</a>
+</div>
+<div class="content">
+  由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-04-13</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react/" class="hover:text-eureka">React</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2018-maf/" class="font-bold text-xl hover:text-eureka">MAF项目总结</a>
+</div>
+<div class="content">
+   做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-01-14</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E6%80%BB%E7%BB%93/" class="hover:text-eureka">总结</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2017-2018newyear/" class="font-bold text-xl hover:text-eureka">再见2017，你好2018</a>
+</div>
+<div class="content">
+   不知不觉中，2017年已经走到尾声，2018年马上要到来了，回想这一年，无论是工作还是生活都发生了很多变化，如果用一个字来总结2017，那么这个字就是“变”,这些事情让我有了更多的想法，这也让我对2018年有了期待。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-12-31</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="hover:text-eureka">年终总结</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2017-rnwebview/" class="font-bold text-xl hover:text-eureka">RN Webview与Web的通信与调试</a>
+</div>
+<div class="content">
+   React Native Version:0.51
+ RN 在 0.37 版本中加入了WebView功能，所以想要在使用WebView,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用JSON.stringify和JSON.parse就可以
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-12-20</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react-native/" class="hover:text-eureka">React Native</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2017-jsdecode/" class="font-bold text-xl hover:text-eureka">JS转换转义字符</a>
+</div>
+<div class="content">
+   这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-11-25</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+        </div>
+        
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/page/2/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item active">
+        <a href="#" aria-current="page" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/4/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/page/7/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

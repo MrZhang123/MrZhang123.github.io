@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>React 新特性总结 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="
+自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。
+">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"React 新特性总结",
+      "item":"/posts/2019-reactnews/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2019-reactnews/"
+    },
+    "headline": "React 新特性总结 | 博客","datePublished": "2019-01-16T22:58:11+00:00",
+    "dateModified": "2019-01-16T22:58:11+00:00",
+    "wordCount":  922 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cblockquote\u003e\n\u003cp\u003e自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。\u003c\/p\u003e\n\u003c\/blockquote\u003e"
+}
+</script><meta property="og:title" content="React 新特性总结 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2019-reactnews/" />
+
+
+
+
+<meta property="og:description" content="
+自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。
+" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2019-01-16T22:58:11&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2019-01-16T22:58:11&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="React" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2018-reactlifecycle/" />
+
+<meta property="og:see_also" content="/posts/2018-reactproject2/" />
+
+<meta property="og:see_also" content="/posts/2018-reactproject1/" />
+
+<meta property="og:see_also" content="/posts/2018-reactcssmodules/" />
+
+<meta property="og:see_also" content="/posts/2017-reactsum/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">React 新特性总结</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-01-16</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>5分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react/" class="hover:text-eureka">React</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <blockquote>
+<p>自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。</p>
+</blockquote>
+<h3 id="react-fiber">React Fiber</h3>
+<!-- React Fiber调度（Scheduling）——本质上是Virtual Stack Frama，在React v16中发布，随后react time silice(async render)会随着v17发布，则是基于fiber的实现 -->
+<p>React Fiber 的的重要特性是增量渲染：将渲染事务（work）分块并分布到多个帧去完成。</p>
+<p>React Fiber 是 React 16 的重大更新之一，随着 React 大版本发布，旨在提高 React 的性能。基于 React Fiber，React 可以实现更多的性能上的优化。那么什么是 Fiber ？如何理解 React Fiber？</p>
+<p>想要理解 Fiber，首先要理解几个概念。</p>
+<h4 id="协调算法">协调算法</h4>
+<p>React 的核心思想是当状态发生变化时让整个应用重新渲染，但是如果每次更新都重新渲染整个 app 会极度的浪费性能，为了将变化及时的反应到 view 层，同时保持高性能，React 使用了经过优化的 diff 算法，这就是协调算法的一部分。</p>
+<p>协调算法基于“虚拟 DOM”实现（但是其实这个描述并不准确，因为 DOM 这个概念只是在浏览器中有，所以这里称为“虚拟树”更加准确）,当渲染一个 app 时，首先生成节点树保存在内存中，然后再渲染出来，当 app 更新时，会产生新的树，新旧树对比，找到需要更新的节点将其更新并渲染。</p>
+<h4 id="协调器">协调器</h4>
+<p>协调算法将虚拟树的变化找到，渲染器将变化渲染出来，React 的渲染器有 React Dom，React Native 等，其中 React Native 将树渲染到原生 iOS 和 Android 视图，所以 React 协调算法是被渲染器共用的。</p>
+<p>为了让不同的渲染器共享他们之间的代码。我们将 React 的这一部分称为“协调者”。当一个更新（例如<code>setState()</code>）被安排，协调器调用在树上组件上的<code>render()</code>，安装，更新，卸载它们。</p>
+<h4 id="调度scheduling">调度（Scheduling）</h4>
+<ul>
+<li>调度（Scheduling）——确定什么时候做什么事的过程</li>
+<li>事务（work）——必须进行的计算，通常是更新的结果（通常是<code>setState</code>引起的）</li>
+</ul>
+<p>React v16 之前的协调器（堆栈协调器，参见<a href="https://reactjs.org/docs/codebase-overview.html#reconcilers">Codebase Overview——Reconcilers</a>）只是按照顺序执行，但是如果在用户界面中，每个更新都立即执行，会导致掉帧，降低用户体验。事实上不同类型的更新具有不同的优先级，如果能人为的干预执行顺序，按照优先级来进行调度，则性能就可以大大提高。</p>
+<p>基于该想法，React 团队开始构思如何控制执行顺序——React Fiber 诞生。</p>
+<h4 id="如何理解-fiber">如何理解 Fiber</h4>
+<p>我们知道，函数有调用栈，当一个函数执行时，栈上面会添加新的堆栈结构，这个堆栈结构代表了函数执行的事务。而 React app 在执行的时候，类似于调用一个函数。</p>
+<p>但是在处理该用户界面时，如果有太多的事务同时执行，可能会导致卡顿。可能还有一些事务是不需要的，因为它可能被最近的更新取代了。</p>
+<p><img src="./img/react-fiber-old.jpeg" alt=""></p>
+<!--React旧的事件执行图-->
+<p>在最新的浏览器和 RN 实现了两个 API：</p>
+<ul>
+<li><code>requestIdleCallback</code>会在浏览器空闲时一次调用函数，这就可以让开发者在主事件循环中执行后台或低优先级的任务，而不会对像对象动画和用户交互这样的会延迟触发且关键的事情产生影响。</li>
+<li><code>requestAnimationFrame</code>告诉浏览器希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画。</li>
+</ul>
+<p>这两个函数可以让开发者操纵优先级，但是如果想要使用这些 API，就需要将渲染事务分解为增量单元的方法，如果只是依赖调用栈，调用栈将会一直执行下去，直到空。</p>
+<p>假如可以中断调用栈，让 React 在需要更新界面的时候，及时更新界面，那么用户交互将不会再卡顿，这就是 React Fiber 的目的，React Fiber 为 React 组件实现了堆栈结构，让 React 可以在需要的时候，中断调用栈，转向更新界面或者其他，从而保证用户交互的顺畅，提高 React app 的性能。</p>
+<p>所以 React Fiber 其实就是 <strong>虚拟的堆栈结构（virtual stack frame）。</strong></p>
+<p>使用 React Fiber 后 React 的调用情况</p>
+<p><img src="./img/react-fiber-new.jpeg" alt=""></p>
+<!--React Fiber调用情况图-->
+<p>React 将更新分为两个时期：render/reconciliation 和 commit</p>
+<h5 id="renderreconciliation">render/reconciliation</h5>
+<p>该阶段是可打断的，React 在 workingProgressTree 上复用 current 上的 Fiber 数据结构来一步步构建新的 tree。</p>
+<p><img src="./img/Fiber-2.png" alt=""></p>
+<!-- React workingProgress图 -->
+<p>React 16 之前在该阶段执行的生命周期：</p>
+<ul>
+<li><code>componentWillMount</code></li>
+<li><code>componentWillReceiveProps</code></li>
+<li><code>shouldComponentUpdate</code></li>
+<li><code>componentWillUpdate</code></li>
+</ul>
+<h5 id="commit">commit</h5>
+<p>第二个阶段是 commit 阶段，在该阶段 React 将<strong>所有的变更一次性更新到 DOM 上</strong>，是不可被打断的。</p>
+<p>React 16 之前在该阶段执行的生命周期：</p>
+<ul>
+<li><code>componentDidMount</code></li>
+<li><code>componentDidUpdate</code></li>
+<li><code>componentWillUnmount</code></li>
+</ul>
+<p>在<code>commit</code>阶段，React 是可以做异步处理的，因为并不会出现像 DOM 更新这样的副作用，但是在<code>render/reconciliation</code>阶段执行的生命周期开发者可能会将更新 DOM 或者<code>setState</code>的代码放到这些生命周期中，而如果该阶段执行过程被打断，React 并不会从上一次执行中断的地方接着执行，而是会重新开始执行，这样假如 React 进行异步更新，可能会带来意想不到的后果，<strong>所以在<code>render/reconciliation</code>阶段的钩子都不应该操作 DOM，也不要去<code>setState</code>，而在 commit 阶段则没有这个限制。</strong>
+为了强制开发者这样做，React 官方在 React v16.3 发布的时候将生命周期做了更改，而原有的生命周期加了<code>UNSAFE</code>前缀，这些生命周期将在 React v17 中彻底移除，开发者应该尽快切换。</p>
+<h3 id="react-v163-新的生命周期">React v16.3 新的生命周期</h3>
+<p>React v16.3 之前，生命周期如下图：</p>
+<p><img src="./img/old-lifecycle.png" alt=""></p>
+<!-- React 15生命周期图 -->
+<p>更新 React v16.3 后生命周期的变化</p>
+<h4 id="mount">Mount</h4>
+<ul>
+<li><em>constructor()</em></li>
+<li><em><del>componentWillMount()</del></em></li>
+<li><em>render()</em></li>
+<li><em>componentDidMount()</em></li>
+</ul>
+<h4 id="update">Update</h4>
+<ul>
+<li><em><del>componentWillReceiveProps()</del> / static getDerivedStateFromProps()</em></li>
+<li><em>shouldComponentUpdate()</em></li>
+<li><em><del>componentWillUpdate()</del> / getSnapshotBeforeUpdate()</em></li>
+<li><em>render()</em></li>
+<li><em>componentDidUpdate()</em></li>
+</ul>
+<h4 id="unmount">Unmount</h4>
+<ul>
+<li><em>componentWillUnmount()</em></li>
+</ul>
+<p>可以看到，生命周期更新后，原先在<code>render/reconciliation</code>的生命周期，除了<code>shouldComponentUpdate</code>，其他都被移除，用新的生命周期替代，前面讲到，在这个阶段，开发者可能会在生命周期中执行带有附作用的代码，从而由于该阶段的被打断而带来意想不到的后果，<code>shouldComponentUpdate</code>因不会有副作用的代码而得到保留</p>
+<p>React v16.3 之后生命周期变成了下图这样：</p>
+<p><img src="./img/react16.3-lifecycle.png" alt=""></p>
+<!-- React 16.3生命周期图 -->
+<p>React v16.3 到 v16.4，生命周期<code>getDerivedStateFromProps</code>触发的时机有一个变化，这是需要注意的一点。在 v16.3 中，只有父组件<code>setState</code>或者<code>forceUpdate</code>才会触发<code>getDerivedStateFromProps</code>，组件自己<code>setState</code>或者<code>forceUpdate</code>不会触发，很明显，这会造成意想不到的结果，<a href="https://jsfiddle.net/0yne6jzp/">具体可以查看 Fiddle Demo</a>。所以 React 在发布 v16.4 后，修复了这个问题，无论是父组件还是自身，都可以触发<code>getDerivedStateFromProps</code>。关于更详细的描述可以查看 Dan 在 React issue<a href="https://github.com/facebook/react/issues/12898#issuecomment-392117539">#12898</a>的回答。</p>
+<p>所以 React v16.4 的生命周期变成了如下：</p>
+<p><img src="./img/react16.4-lifecycle.png" alt=""></p>
+<!-- React 16.4生命周期图 -->
+<h4 id="新生命周期的使用">新生命周期的使用</h4>
+<h5 id="static-getderivedstatefromprops">static getDerivedStateFromProps()</h5>
+<pre><code class="language-js">static getDerivedStateFromProps(props, state)
+</code></pre>
+<p>该方法是一个静态方法用以替代<code>componentWillReceiveProps</code>，该方法返回一个新的对象，之后它会帮助开发者<code>setState</code>。由于它是一个静态方法，所以在该方法内拿不到实例，也就是说不能在该方法内调用实例方法或者<code>setState</code>。这样就保证了开发者不会将有副作用的代码写在这个生命周期中。</p>
+<p><code>getDerivedStateFromProps</code>在<code>render</code>方法之前调用，该方法应该返回一个更新 state 的对象或者不更新返回<code>null</code>，使用方式如下：</p>
+<pre><code class="language-js">static getDerivedStateFromProps(nextProps, prevState) {
+  if (xxxxx) {
+    return {
+      ...prevState,
+      loading: nextProps.loading,
+    };
+  }
+  return null;
+}
+</code></pre>
+<h5 id="getsnapshotbeforeupdate">getSnapshotBeforeUpdate()</h5>
+<pre><code class="language-js">getSnapshotBeforeUpdate(prevProps, prevState);
+</code></pre>
+<p>该方法在<code>render</code>之后执行，而执行时 DOM 元素还没有被更新，可以有机会获取 DOM 信息，计算得到一个<code>snapshot</code>，这个<code>snapshot</code>会作为<code>componentDidUpdate</code>的第三个参数传入。</p>
+<pre><code class="language-js">getSnapshotBeforeUpdate(prevProps, prevState) {
+  if (prevProps.list.length &lt; this.props.list.length) {
+    const list = this.listRef.current;
+    return list.scrollHeight - list.scrollTop;
+  }
+  return null;
+}
+
+componentDidUpdate(prevProps, prevState, snapshot) {
+  if (snapshot !== null) {
+    const list = this.listRef.current;
+    list.scrollTop = list.scrollHeight - snapshot;
+  }
+}
+</code></pre>
+<h5 id="componentdidcatch">componentDidCatch()</h5>
+<pre><code class="language-javascript">componentDidCatch(error, info);
+</code></pre>
+<p>当一个子组件抛出错误时候调用该生命周期，它接受两个参数：</p>
+<ol>
+<li><code>error</code>抛出的错误</li>
+<li><code>info</code>是带有<code>componentStack</code>key 的一个对象，该对象包含哪个组件引发错误的信息</li>
+</ol>
+<p><code>componentDidCatch()</code>在<code>commit</code>阶段被调用，因此是允许包含有副作用的代码的，使用方式如下：</p>
+<pre><code class="language-js">class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    logComponentStackToMyService(info.componentStack);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return &lt;h1&gt;Something went wrong.&lt;/h1&gt;;
+    }
+
+    return this.props.children;
+  }
+}
+</code></pre>
+<h3 id="time-slicing-和-suspense">Time Slicing 和 Suspense</h3>
+<p>Time Slicing 和 Suspense 是 Dan 在 JSConf Iceland 2018 为大家展示的未来 React 将加入的一些特性，预计在 React v17 中发布，具体演讲可以查看——<a href="https://www.bilibili.com/video/av26248565?from=search&amp;seid=3831330787181301576">Dan Abramov- Beyond React 16 - JSConf Iceland 2018</a>。</p>
+<p>这两个特性分别从<strong>CPU 和 IO</strong>来解决 React 的性能问题。</p>
+<p><img src="./img/time-siling&amp;Suspense.jpeg" alt=""></p>
+<!-- CPU & IO图 -->
+<h4 id="time-slicing">Time Slicing</h4>
+<p>前面讲到 React Fiber 让 React 可以在 UI 渲染中更快的响应，但是同时带来了跟踪 UI 变化的挑战，这就是 Time Slicing 的用武之地。</p>
+<p><img src="./img/time-slicing.jpeg" alt=""></p>
+<!-- CPU demo desc图 -->
+<p>Time Slicing 其实就是异步渲染，试想如果是同步渲染，在性能较差的 CPU 的设备上渲染会慢，用户会明显感知到卡顿。</p>
+<p>通过 Time Slicing，React 可以在空闲回调期间将子组件的更新计算查分为块儿，并将渲染分散到多个帧上。这就让 React 可以在性能差的 CPU 设备上依旧保持流畅的渲染。而这一切对开发者而已是透明的。</p>
+<h4 id="suspense">Suspense</h4>
+<p>在 Suspense 之前，我们一直用 Redux+Saga 等解决网络 IO 的问题，Suspense 的出现意味着 React 本身将提供该问题的解决问题。</p>
+<p>Suspense 将 React 的异步 IO 提升到一个新的高度。有了 Suspense 功能，React 可以暂停任何 state 更新直到数据就绪，这就让 React 可以和 REST APIs 或 GraphQL 等这些异步 IO 运算配合的更好。</p>
+<p>Suspense 在 React v16.6 已经发布，可以使用<code>React.lazy()</code>和<code>&lt;React.Suspense&gt;</code>延迟加载组件，但是在 Fetch 数据的时候还无法使用<code>&lt;React.Suspense&gt;</code>，原因如下：</p>
+<p><img src="./img/Suspense.png" alt=""></p>
+<!-- Dan回答React开发者为什么Suspense没有响应fech api的截图 -->
+<p>事实上想要用 Suspense 实现暂停 state 更新直到数据就绪需要使用一个叫<a href="https://github.com/facebook/react/tree/master/packages/react-cache">react-cache</a>的库。</p>
+<h5 id="react-cache">react-cache</h5>
+<blockquote>
+<p>react-cache 目前处于开发阶段，API 很有可能会发生变化，官方不建议将其用于生产环境</p>
+</blockquote>
+<p>react-cache 是一个非常小的库，API 和用法如下：</p>
+<h6 id="unstable_createresource"><code>unstable_createResource</code></h6>
+<p>创建一个<code>resource</code>，返回一个 promise</p>
+<h5 id="resourcereadkey"><code>resource.read(key)</code></h5>
+<p><code>resource</code>会检查 key 和 cache</p>
+<p>如果 cache 没有数据，会执行以下操作：</p>
+<ul>
+<li>调用回调函数获取数据</li>
+<li>抛出 promise</li>
+<li>当 promise resolves，根据 key 将响应的数据存储在 cache 中</li>
+<li>重复该过程</li>
+</ul>
+<p>如果 cache 中成功读取到数据</p>
+<ul>
+<li>将缓存值同步读取到 render 函数中</li>
+</ul>
+<pre><code class="language-js">function fetchUserProfileJSON(id) {
+  return makeFakeAPICall(`/${id}/details`, userProfileJSON[id]);
+}
+const UserDetailsResource = unstable_createResource(fetchUserProfileJSON);
+const user = UserDetailsResource.read(id);
+return &lt;div&gt; {user} &lt;/div&gt;;
+</code></pre>
+<p>Suspense 配合 react-cache 实现暂停 state 更新，直到数据就绪：</p>
+<pre><code class="language-js">function fetchUserProfileJSON(id) {
+  return makeFakeAPICall(`/${id}/details`, userProfileJSON[id]);
+}
+const UserDetailsResource = unstable_createResource(fetchUserProfileJSON);
+const user = UserDetailsResource.read(id);
+return (
+  &lt;Suspense maxDuration={1000} fallback={&lt;Spinner size=&quot;medium&quot; /&gt;}&gt;
+    &lt;div&gt; {user} &lt;/div&gt;;
+  &lt;/Suspense&gt;
+);
+</code></pre>
+<p>关于更详细的用法可以<a href="https://github.com/facebook/react/tree/master/fixtures/unstable-async/suspense">查看官方提供的 Suspense Demo</a>。</p>
+<h3 id="react-hooks">React Hooks</h3>
+<p>在 React Conf 2018 Dan 做了题为<a href="https://www.bilibili.com/video/av34757643?from=search&amp;seid=7808662780043111688">React Today and Tomorrow and 90% Cleaner React With Hooks</a>的演讲，介绍了 React 即将发布的又一新特性——React Hooks，目前可以在 React v16.8.0-alpha.0 体验。</p>
+<h4 id="什么是-hooks">什么是 Hooks</h4>
+<p>Hooks 是一种函数，该函数可以“钩住”React 状态和生命周期的功能，允许开发者在不写 class 的情况下使用 React。</p>
+<p>基本的 Hooks 有以下几种：</p>
+<ul>
+<li>State Hooks</li>
+<li>Effect Hooks</li>
+<li>自定义 Hooks</li>
+</ul>
+<h4 id="state-hook">State Hook</h4>
+<p>我们用 React 写一个点击按钮数字自动+1 的组件，如果使用 class，写法如下：</p>
+<pre><code class="language-js">class Example extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
+
+  render() {
+    return (
+      &lt;div&gt;
+        &lt;p&gt;You clicked {this.state.count} times&lt;/p&gt;
+        &lt;button onClick={() =&gt; this.setState({ count: this.state.count + 1 })}&gt;
+          Click me
+        &lt;/button&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+</code></pre>
+<p>如果使用 React Hooks，写法如下：</p>
+<pre><code class="language-js">import { useState } from &quot;react&quot;;
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Click me&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>这里使用的<code>useState</code>就是一个 Hooks，调用方式如下：</p>
+<pre><code class="language-js">const [state, setState] = useState(initialState);
+</code></pre>
+<p>该函数返回一对值：state，更新该 state 的函数；在初始渲染的时候，返回的 state 就是 initialState。</p>
+<h4 id="声明多个状态变量">声明多个状态变量</h4>
+<pre><code class="language-js">function ExampleWithManyStates() {
+  const [age, setAge] = useState(42);
+  const [fruit, setFruit] = useState('banana');
+  const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
+</code></pre>
+<h4 id="effect-hook">Effect Hook</h4>
+<p>Effect Hook 允许在函数组件种执行副作用（PS：副作用一般指执行数据提取，订阅或者手动改变来自 React 组件的 DOM）。它与 React 类中的<code>componentDidMount</code>、<code>componentDidUpdate</code>、和 <code>componentWillUnmount</code> 有相同的功能，但是统一为一个 API。</p>
+<p>当调用<code>useEffect</code>时，会通知 React 在刷新对 DOM 的更改后运行 effect 函数。Effect 在组件内声明，因此可以访问其 <code>props</code> 和 <code>state</code>。默认情况下，React 在每次渲染后运行 effect，包括第一次渲染。</p>
+<p>默认情况下，React 在每次渲染后运行 effect，包括第一次渲染。</p>
+<p>useEffect 还可以通过返回一个函数来指定如何清理，例如，在此组件中实现了通过 effect 订阅，并通过取消订阅来清理。</p>
+<pre><code class="language-js">import { useState, useEffect } from &quot;react&quot;;
+
+function FriendStatus(props) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline);
+  }
+
+  useEffect(() =&gt; {
+    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+
+    return () =&gt; {
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    };
+  });
+
+  if (isOnline === null) {
+    return &quot;Loading...&quot;;
+  }
+  return isOnline ? &quot;Online&quot; : &quot;Offline&quot;;
+}
+</code></pre>
+<h4 id="自定义-hooks">自定义 Hooks</h4>
+<p>自定义 Hook 允许将可重用的组件逻辑提取到函数中。</p>
+<p>前面使用<code>useEffect</code>实现了订阅和取消订阅，如果想将该逻辑重用，可以将<code>props</code>换成参数，从而实现组件逻辑的复用，调用非常方便，直接传递参数即可：</p>
+<pre><code class="language-js">// 自定义Hook
+import { useState, useEffect } from &quot;react&quot;;
+
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  function handleStatusChange(status) {
+    setIsOnline(status.isOnline);
+  }
+
+  useEffect(() =&gt; {
+    ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange);
+    return () =&gt; {
+      ChatAPI.unsubscribeFromFriendStatus(friendID, handleStatusChange);
+    };
+  });
+
+  return isOnline;
+}
+
+// 调用
+function FriendStatus(props) {
+  const isOnline = useFriendStatus(props.friend.id);
+
+  if (isOnline === null) {
+    return &quot;Loading...&quot;;
+  }
+  return isOnline ? &quot;Online&quot; : &quot;Offline&quot;;
+}
+</code></pre>
+<h4 id="为什么引入-hooks">为什么引入 Hooks</h4>
+<p>为什么要在 React 中引入 Hooks，React 官方给出了以下描述：</p>
+<blockquote>
+<p>Hooks 解决了 React 中各种看似不相关的问题，这些问题是我们在开发和维护数以万计的组件时遇到的。无论你是在学习 React，还是每天在使用它，还是选择使用具有类似组件模型的其他库，你都可能会发现这类问题。</p>
+</blockquote>
+<h3 id="总结">总结</h3>
+<p>以上总结了自 React v16.0 发布以来，React 给开发者带来的一些令人惊叹的新的特性，可以看到 React 已经开始慢慢走向一个大而全的框架，而不是像以前那样仅仅只是做 view 层，剩下的交给社区自由发展。相信在不远的未来，React 将更加的好用，性能更高。</p>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/26027085">React Fiber 是什么</a></li>
+<li><a href="https://swenyang.gitbooks.io/yapn/content/react-fiber/">React Fiber 架构</a></li>
+<li><a href="https://segmentfault.com/a/1190000017241034">「译」React Fiber 那些事: 深入解析新的协调算法</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/38030418">React v16.3 之后的组件生命周期函数</a></li>
+<li><a href="https://juejin.im/post/5b59d1c8e51d4519455846e0?utm_source=mife&amp;utm_medium=article&amp;utm_campaign=mifeweekly&amp;utm_term=tutorial">「译」 如何使用 React 生命周期方法</a></li>
+<li><a href="https://www.zhihu.com/question/268028123">如何评价 React 的新功能 Time Slice 和 Suspense？</a></li>
+<li><a href="https://blog.pusher.com/time-slice-suspense-api-react-17/">Time slice and Suspense API – What’s coming in React 17?</a></li>
+<li><a href="https://github.com/sw-yx/fresh-concurrent-react/blob/master/apis/react-cache.md#important-concepts">react-cache</a></li>
+<li><a href="https://github.com/facebook/react/blob/master/CHANGELOG.md">React Change log</a></li>
+<li><a href="https://reactjs.org/docs/hooks-intro.html">React Hooks</a></li>
+</ul>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/react/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#React</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2019-reacthooks/" class="block">简述 React Hooks 特征和使用方式</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2018-2019newyear/" class="block">再见2018，你好2019</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2018-reactlifecycle/">「译」如何使用React生命周期方法</a>
+            <br />
+            
+            <a href="/posts/2018-reactproject2/">从零开始搭建React应用（二）——React应用架构</a>
+            <br />
+            
+            <a href="/posts/2018-reactproject1/">从零开始搭建React应用（一）——基础搭建</a>
+            <br />
+            
+            <a href="/posts/2018-reactcssmodules/">CSS Modules在React中的应用</a>
+            <br />
+            
+            <a href="/posts/2017-reactsum/">React使用小记</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

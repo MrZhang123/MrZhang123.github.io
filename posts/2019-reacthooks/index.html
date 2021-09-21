@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>简述 React Hooks 特征和使用方式 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="
+学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结
+">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"简述 React Hooks 特征和使用方式",
+      "item":"/posts/2019-reacthooks/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2019-reacthooks/"
+    },
+    "headline": "简述 React Hooks 特征和使用方式 | 博客","datePublished": "2019-03-24T00:00:00+00:00",
+    "dateModified": "2019-03-24T00:00:00+00:00",
+    "wordCount":  337 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cblockquote\u003e\n\u003cp\u003e学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结\u003c\/p\u003e\n\u003c\/blockquote\u003e"
+}
+</script><meta property="og:title" content="简述 React Hooks 特征和使用方式 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2019-reacthooks/" />
+
+
+
+
+<meta property="og:description" content="
+学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结
+" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2019-03-24T00:00:00&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2019-03-24T00:00:00&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="React" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2019-reactnews/" />
+
+<meta property="og:see_also" content="/posts/2018-reactlifecycle/" />
+
+<meta property="og:see_also" content="/posts/2018-reactproject2/" />
+
+<meta property="og:see_also" content="/posts/2018-reactproject1/" />
+
+<meta property="og:see_also" content="/posts/2018-reactcssmodules/" />
+
+<meta property="og:see_also" content="/posts/2017-reactsum/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">简述 React Hooks 特征和使用方式</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-03-24</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react/" class="hover:text-eureka">React</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <blockquote>
+<p>学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结</p>
+</blockquote>
+<h3 id="basic-react-hooks">Basic React Hooks</h3>
+<h4 id="usestate">useState</h4>
+<pre><code class="language-js">const [data, setData] = useState(initData);
+</code></pre>
+<p>useState返回一个数组，数组内第一个元素是state的值，初始值为initState，利用js的结构将该数组解构赋值，如果设置多个state可以多次调用useState，但是useState也可以传入一个数组，数组内的项为多个initState，是否可以声明多个state的时候使用一个useState有待研究，后续看下项目</p>
+<h4 id="useeffect">useEffect</h4>
+<p>用于写有副作用的代码，可以实现生命周期中的<code>componentDidMount</code>，<code>componentUpdate</code>，<code>componentWillUnmount</code>。</p>
+<pre><code class="language-js">useEffect(() =&gt; {
+    effect code...
+    return () =&gt; {
+        cleanup code
+    }
+})
+</code></pre>
+<p><code>useEffect</code>可以添加回调，在effect code执行完成后执行，在<code>useEffect</code>中的代码React每次渲染，都会执行，这也意味着性能的损耗（无论是否真的需要执行，state跟之前是否一样），在class组件中可以使用<code>componentDidUpdate</code>：</p>
+<pre><code class="language-js">componentDidUpdate(prevProps, prevState) {
+if (prevState.count !== this.state.count) {
+    document.title = `You clicked ${this.state.count} times`;
+}
+</code></pre>
+<p>在hooks中可以使用<code>useEffect</code>的第二个参数</p>
+<pre><code class="language-js">useEffect(() =&gt; {
+  document.title = `You clicked ${count} times`;
+}, [count]); // Only re-run the effect if count changes
+</code></pre>
+<p>如果使用该优化，确保数组包含了来自组件的所有随着时间会变化的value，但是这样实现的是类似于<code>componentDidUpdate</code>，如果想实现<code>componentDidMount</code>和<code>componentWillUnmount</code>，需要给<code>useEffect</code>第二个参数添加空数组<code>[]</code>，这相当于告诉React当前<code>useEffect</code>中的代码不依赖任何来自<code>state</code>或<code>props</code>的值，所以不需要re-render。</p>
+<h4 id="usecontext">useContext</h4>
+<pre><code class="language-js">const value = useContext(MyContext);
+</code></pre>
+<h3 id="additional-hooks">Additional Hooks</h3>
+<h4 id="usereducer">useReducer</h4>
+<pre><code class="language-js">const [state, dispatch] = useReducer(reducer, initialArg, init);
+</code></pre>
+<p>使用demo</p>
+<pre><code class="language-js">const initialState = {count: 0};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    default:
+      throw new Error();
+  }
+}
+
+function Counter({initialState}) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  return (
+    &lt;&gt;
+      Count: {state.count}
+      &lt;button onClick={() =&gt; dispatch({type: 'increment'})}&gt;+&lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch({type: 'decrement'})}&gt;-&lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<p>React可以确保<code>dispatch</code>函数功能的稳定并且在re-render时候不会改变</p>
+<h5 id="懒初始化initstate">懒初始化initState</h5>
+<p>使用<code>useReducer</code>的第三个参数，demo如下</p>
+<pre><code class="language-js">function init(initialCount) {
+  return {count: initialCount};
+}
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return {count: state.count + 1};
+    case 'decrement':
+      return {count: state.count - 1};
+    case 'reset':
+      return init(action.payload);
+    default:
+      throw new Error();
+  }
+}
+
+function Counter({initialCount}) {
+  const [state, dispatch] = useReducer(reducer, initialCount, init);
+  return (
+    &lt;&gt;
+      Count: {state.count}
+      &lt;button
+        onClick={() =&gt; dispatch({type: 'reset', payload: initialCount})}&gt;
+
+        Reset
+      &lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch({type: 'increment'})}&gt;+&lt;/button&gt;
+      &lt;button onClick={() =&gt; dispatch({type: 'decrement'})}&gt;-&lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<h4 id="usecallback">useCallback</h4>
+<pre><code class="language-js">const memoizedCallback = useCallback(
+  () =&gt; {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+</code></pre>
+<p>返回记忆化的回调。</p>
+<p>该hooks用于实现类似于<code>shouldComponentUpdate</code>的功能。 用于防止不必要的渲染</p>
+<p><code>useCallback(fn, deps)</code>相当于<code>useMemo(() =&gt; fn, deps)</code></p>
+<h4 id="usememo">useMemo</h4>
+<pre><code class="language-js">const memoizedValue = useMemo(() =&gt; computeExpensiveValue(a, b), [a, b]);
+</code></pre>
+<p>返回一个记忆化的值。</p>
+<blockquote>
+<p>在计算机科学中，记忆化（英语：memoization而非memorization）是一种提高程序运行速度的优化技术。通过储存大计算量函数的返回值，当这个结果再次被需要时将其从缓存提取，而不用再次计算来节省计算时间。 记忆化是一种典型的时间存储平衡方案。</p>
+</blockquote>
+<p>传递“create”函数和依赖项数组。<code>useMemo</code>只会重新计算那些依赖发生变化的记忆化的值。这种优化避免了每次渲染的昂贵计算。</p>
+<p>传递给<code>useMemo</code>的函数在渲染期间运行，所以不能传递带有副作用的函数。</p>
+<p>如果没有数组提供，在每次渲染都会计算新值。</p>
+<h4 id="useref">useRef</h4>
+<pre><code class="language-js">const refContainer = useRef(initialValue);
+</code></pre>
+<p><code>useRef</code>返回值的<code>.current</code>属性就是给<code>useRef</code>传递个初始value。返回的object将可以在整个生命周期使用。</p>
+<p>使用demo</p>
+<pre><code class="language-js">function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  const onButtonClick = () =&gt; {
+    // `current` points to the mounted text input element
+    inputEl.current.focus();
+  };
+  return (
+    &lt;&gt;
+      &lt;input ref={inputEl} type=&quot;text&quot; /&gt;
+      &lt;button onClick={onButtonClick}&gt;Focus the input&lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<p><code>useRef</code>在内容变更时不会通知你，<code>.current</code>变化不会导致re-render。</p>
+<h4 id="useimperativehandle">useImperativeHandle</h4>
+<pre><code class="language-js">useImperativeHandle(ref, createHandle, [deps])
+</code></pre>
+<p><code>useImperativeHandle</code>自定义使用ref时公开给父组件的实例值，和通常一样，应该避免使用refs的命令式代码，<code>useImperativeHandle</code>应该使用<code>forwardRef</code>。</p>
+<pre><code class="language-js">function FancyInput(props, ref) {
+  const inputRef = useRef();
+  useImperativeHandle(ref, () =&gt; ({
+    focus: () =&gt; {
+      inputRef.current.focus();
+    }
+  }));
+  return &lt;input ref={inputRef} ... /&gt;;
+}
+FancyInput = forwardRef(FancyInput);
+</code></pre>
+<h4 id="uselayouteffect">useLayoutEffect</h4>
+<p>与<code>useEffect</code>相同，但是是在所有的DOM变化完成后同步触发。在浏览器绘制之前，将在<code>useLayoutEffect</code>内部计划的更新将同步刷新，该方法会组织views的更新，但是<code>useEffect</code>是异步的，所以不会阻止。</p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/react/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#React</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2019-axiosparams/" class="block">使用Axios请求时如何传递数组？</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2019-reactnews/" class="block">React 新特性总结</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2019-reactnews/">React 新特性总结</a>
+            <br />
+            
+            <a href="/posts/2018-reactlifecycle/">「译」如何使用React生命周期方法</a>
+            <br />
+            
+            <a href="/posts/2018-reactproject2/">从零开始搭建React应用（二）——React应用架构</a>
+            <br />
+            
+            <a href="/posts/2018-reactproject1/">从零开始搭建React应用（一）——基础搭建</a>
+            <br />
+            
+            <a href="/posts/2018-reactcssmodules/">CSS Modules在React中的应用</a>
+            <br />
+            
+            <a href="/posts/2017-reactsum/">React使用小记</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

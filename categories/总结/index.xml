@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>总结 on 博客</title>
+    <link>/categories/%E6%80%BB%E7%BB%93/</link>
+    <description>Recent content in 总结 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Sun, 14 Jan 2018 20:22:59 +0000</lastBuildDate><atom:link href="/categories/%E6%80%BB%E7%BB%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MAF项目总结</title>
+      <link>/posts/2018-maf/</link>
+      <pubDate>Sun, 14 Jan 2018 20:22:59 +0000</pubDate>
+      
+      <guid>/posts/2018-maf/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

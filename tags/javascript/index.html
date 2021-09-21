@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>Javascript | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Tags",
+      "item":"/tags/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Javascript",
+      "item":"/tags/javascript/"}]
+}
+</script>
+
+
+
+
+<script type="application/ld+json">
+{
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "itemListElement":[{
+            "@type":"ListItem",
+            "position":  1 ,
+            "name": "「译」V8中的指针压缩",
+            "description": "\u003cp\u003e原文链接：https://v8.dev/blog/pointer-compression\u003c/p\u003e\n\u003cp\u003e内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。\u003c/p\u003e",
+            "url": "/posts/2020_pointer_compression_in_v8/"
+        },{
+            "@type":"ListItem",
+            "position":  2 ,
+            "name": "「译」JS新特性“可选链式调用”",
+            "description": "\u003cp\u003e在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现\u003ccode\u003enull\u003c/code\u003e或\u003ccode\u003eundefined\u003c/code\u003e（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的\u003ccode\u003eif\u003c/code\u003e声明或者复制属性访问链的长的\u003ccode\u003eif\u003c/code\u003e条件：\u003c/p\u003e",
+            "url": "/posts/2019-optional-chaining/"
+        },{
+            "@type":"ListItem",
+            "position":  3 ,
+            "name": "「译」ES 草案：class私有属性",
+            "description": "\u003cblockquote\u003e\n\u003cp\u003e原文链接：https://2ality.com/2019/07/private-class-fields.html\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003eclass属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：\u003c/p\u003e\n\u003col\u003e\n\u003cli\u003e\u003ca href=\"https://2ality.com/2019/07/public-class-fields.html\"\u003e公有class属性\u003c/a\u003e\u003c/li\u003e\n\u003cli\u003e私有class属性\u003c/li\u003e\n\u003c/ol\u003e",
+            "url": "/posts/2019-privatefields/"
+        },{
+            "@type":"ListItem",
+            "position":  4 ,
+            "name": "【译】稳定的Array.prototype.sort",
+            "description": "\u003cp\u003e原文链接：https://v8.dev/features/stable-sort#support\u003c/p\u003e\n\u003cp\u003e假设你有一系列的狗狗，每个狗狗有名字和评分。（如果这个例子看起来很奇怪，你应该知道有一个专门针对这个的Twitter账户\u0026hellip;别问为什么！）\u003c/p\u003e",
+            "url": "/posts/2019-stablesort/"
+        },{
+            "@type":"ListItem",
+            "position":  5 ,
+            "name": "使用Axios请求时如何传递数组？",
+            "description": "\u003cblockquote\u003e\n\u003cp\u003e最近在项目开发中使用Axios请求，API层使用\u003cstrong\u003eNode\u003c/strong\u003e，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。\u003c/p\u003e\n\u003c/blockquote\u003e\n\u003cp\u003e在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即\u003ccode\u003ehttp://xx.xx.com?a=1\u0026amp;b=2\u003c/code\u003e这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？\u003c/p\u003e",
+            "url": "/posts/2019-axiosparams/"
+        },{
+            "@type":"ListItem",
+            "position":  6 ,
+            "name": "ES2018（ES9）的新特性",
+            "description": "\u003cp\u003e原文链接：https://www.sitepoint.com/es2018-whats-new/\u003c/p\u003e\n\u003cp\u003e在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。\u003c/p\u003e",
+            "url": "/posts/2018-es2018/"
+        },{
+            "@type":"ListItem",
+            "position":  7 ,
+            "name": "JS转换转义字符",
+            "description": "\u003cblockquote\u003e\n\u003cp\u003e这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。\u003c/p\u003e\n\u003c/blockquote\u003e",
+            "url": "/posts/2017-jsdecode/"
+        },{
+            "@type":"ListItem",
+            "position":  8 ,
+            "name": "小记：React操作真实DOM实现动态吸底部",
+            "description": "\u003cp\u003e动态吸底：开始时fixed在页面上，当页面滚动到距离底部一定距离的时fixed部分固定。\u003c/p\u003e\n\u003cp\u003e这个是需要计算页面滚动距离的，如果使用Jquery或者原生js实现是非常好实现的，但是由于使用react并不推崇操作DOM，但是如果使用virtual DOM的话是无法实现该效果的，所以还是要引入js去直接获取DOM进行操作。\u003c/p\u003e",
+            "url": "/posts/2017-reactdom/"
+        },{
+            "@type":"ListItem",
+            "position":  9 ,
+            "name": "调用Google Map Api实现自定义Google Map",
+            "description": "\u003cblockquote\u003e\n\u003cp\u003e前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。\u003c/p\u003e\n\u003c/blockquote\u003e",
+            "url": "/posts/2017-googlemap/"
+        },{
+            "@type":"ListItem",
+            "position":  10 ,
+            "name": "写一个简单的分页插件",
+            "description": "\u003cp\u003e前段时间有一个项目需要用一个前端分页，说实话之前自己从来没搞过，这次准备自己搞一下，所以先找了几篇文章看看怎么写，但是网上的文章写分页的都基本看不懂，完全不知所云，所以决定在自己搞定分页后写一下如何弄这个。\u003c/p\u003e",
+            "url": "/posts/2017-pagination/"
+        }
+    ]
+}
+</script><meta property="og:title" content="Javascript | 博客" />
+<meta property="og:type" content="website" />
+
+
+
+<meta property="og:url" content="/tags/javascript/" />
+
+
+
+
+
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="og:updated_time" content="2020-04-23T17:08:00&#43;00:00" />
+
+
+
+<meta property="article:section" content="tags" />
+
+
+<link rel="alternate" type="application/rss+xml" href="/tags/javascript/index.xml" title="博客" />
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+<article class="mx-6 my-8">
+    <h1 class="font-bold text-3xl text-primary-text">Javascript</h1>
+    
+</article>
+<div class="bg-secondary-bg rounded px-6">
+    <div class="overflow-hidden divide-y">
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2020_pointer_compression_in_v8/" class="font-bold text-xl hover:text-eureka">「译」V8中的指针压缩</a>
+</div>
+<div class="content">
+  原文链接：https://v8.dev/blog/pointer-compression
+内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-04-23</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2019-optional-chaining/" class="font-bold text-xl hover:text-eureka">「译」JS新特性“可选链式调用”</a>
+</div>
+<div class="content">
+  在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现null或undefined（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的if声明或者复制属性访问链的长的if条件：
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-09-03</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2019-privatefields/" class="font-bold text-xl hover:text-eureka">「译」ES 草案：class私有属性</a>
+</div>
+<div class="content">
+   原文链接：https://2ality.com/2019/07/private-class-fields.html
+ class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：
+ 公有class属性 私有class属性 
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-07-21</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2019-stablesort/" class="font-bold text-xl hover:text-eureka">【译】稳定的Array.prototype.sort</a>
+</div>
+<div class="content">
+  原文链接：https://v8.dev/features/stable-sort#support
+假设你有一系列的狗狗，每个狗狗有名字和评分。（如果这个例子看起来很奇怪，你应该知道有一个专门针对这个的Twitter账户…别问为什么！）
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-07-08</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2019-axiosparams/" class="font-bold text-xl hover:text-eureka">使用Axios请求时如何传递数组？</a>
+</div>
+<div class="content">
+   最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
+ 在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即http://xx.xx.com?a=1&amp;b=2这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2019-05-18</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2018-es2018/" class="font-bold text-xl hover:text-eureka">ES2018（ES9）的新特性</a>
+</div>
+<div class="content">
+  原文链接：https://www.sitepoint.com/es2018-whats-new/
+在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-06-20</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2017-jsdecode/" class="font-bold text-xl hover:text-eureka">JS转换转义字符</a>
+</div>
+<div class="content">
+   这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-11-25</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2017-reactdom/" class="font-bold text-xl hover:text-eureka">小记：React操作真实DOM实现动态吸底部</a>
+</div>
+<div class="content">
+  动态吸底：开始时fixed在页面上，当页面滚动到距离底部一定距离的时fixed部分固定。
+这个是需要计算页面滚动距离的，如果使用Jquery或者原生js实现是非常好实现的，但是由于使用react并不推崇操作DOM，但是如果使用virtual DOM的话是无法实现该效果的，所以还是要引入js去直接获取DOM进行操作。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-10-22</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2017-googlemap/" class="font-bold text-xl hover:text-eureka">调用Google Map Api实现自定义Google Map</a>
+</div>
+<div class="content">
+   前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-06-11</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2017-pagination/" class="font-bold text-xl hover:text-eureka">写一个简单的分页插件</a>
+</div>
+<div class="content">
+  前段时间有一个项目需要用一个前端分页，说实话之前自己从来没搞过，这次准备自己搞一下，所以先找了几篇文章看看怎么写，但是网上的文章写分页的都基本看不懂，完全不知所云，所以决定在自己搞定分页后写一下如何弄这个。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-05-07</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+</div>
+
+
+</div>
+
+    <ul class="pagination pagination-default">
+      <li class="page-item disabled">
+        <a href="#" aria-disabled="true" aria-label="First" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a href="#" aria-disabled="true" aria-label="Previous" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item active">
+        <a href="#" aria-current="page" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item">
+        <a href="/tags/javascript/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item">
+        <a href="/tags/javascript/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/tags/javascript/page/2/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>文章 on 博客</title>
+    <link>/posts/</link>
+    <description>Recent content in 文章 on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Tue, 14 Jul 2020 09:08:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>基础排序</title>
+      <link>/posts/2020-basicsort/</link>
+      <pubDate>Tue, 14 Jul 2020 09:08:00 +0000</pubDate>
+      
+      <guid>/posts/2020-basicsort/</guid>
+      <description>&lt;h2 id=&#34;选择排序&#34;&gt;选择排序&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>「译」V8中的指针压缩</title>
+      <link>/posts/2020_pointer_compression_in_v8/</link>
+      <pubDate>Thu, 23 Apr 2020 17:08:00 +0000</pubDate>
+      
+      <guid>/posts/2020_pointer_compression_in_v8/</guid>
+      <description>&lt;p&gt;原文链接：https://v8.dev/blog/pointer-compression&lt;/p&gt;
+&lt;p&gt;内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>学习读财报之资产负债表</title>
+      <link>/posts/2020-blance-sheet/</link>
+      <pubDate>Sun, 12 Apr 2020 20:15:00 +0000</pubDate>
+      
+      <guid>/posts/2020-blance-sheet/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的&lt;a href=&#34;https://book.douban.com/subject/25926542/&#34;&gt;《一本书读懂财务报表》&lt;/a&gt;，加深对书中概念的理解。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>vim的搜索与替换</title>
+      <link>/posts/2020-vimsearch/</link>
+      <pubDate>Sun, 15 Mar 2020 16:15:00 +0000</pubDate>
+      
+      <guid>/posts/2020-vimsearch/</guid>
+      <description>&lt;p&gt;在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解析OKR</title>
+      <link>/posts/2020_okr/</link>
+      <pubDate>Thu, 27 Feb 2020 22:30:00 +0000</pubDate>
+      
+      <guid>/posts/2020_okr/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;尽管很多人都很努力地工作，但是他们却没能取得什么成就感。
+                                                ----安迪·格鲁夫
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书&lt;a href=&#34;https://book.douban.com/subject/30144978/&#34;&gt;《见识》&lt;/a&gt;中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了&lt;a href=&#34;https://book.douban.com/subject/30396635/&#34;&gt;《这就是OKR》&lt;/a&gt;之后的一些总结以及自己对OKR的理解。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>《这就是OKR》读书笔记</title>
+      <link>/posts/2020_this_is_okr/</link>
+      <pubDate>Sun, 23 Feb 2020 17:08:00 +0000</pubDate>
+      
+      <guid>/posts/2020_this_is_okr/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;尽管很多人都很努力地工作，但是他们却没能取得什么成就感。                
+                                          ----安迪 格鲁夫
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>再见2019，你好2020</title>
+      <link>/posts/2019-2020newyear/</link>
+      <pubDate>Tue, 31 Dec 2019 02:00:25 +0000</pubDate>
+      
+      <guid>/posts/2019-2020newyear/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;./img/2020.jpeg&#34; alt=&#34;2020 new year&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不知不觉又到年底了，临近年底大家都忙着总结2019年发生的大事儿，比如前端2019年发生了哪些大事儿，投资界2019年发生了哪些事情让大家惊讶，DJ们也忙着制作并推出 Year Mix 2019。我从2016年开始，在每年的年底都会写一篇年底总结文章，回头看看这一年对我来说重要的事情，这一年我又学到了哪些，有哪些成长，今年也不例外&amp;hellip;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>「译」JS新特性“可选链式调用”</title>
+      <link>/posts/2019-optional-chaining/</link>
+      <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019-optional-chaining/</guid>
+      <description>&lt;p&gt;在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现&lt;code&gt;null&lt;/code&gt;或&lt;code&gt;undefined&lt;/code&gt;（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的&lt;code&gt;if&lt;/code&gt;声明或者复制属性访问链的长的&lt;code&gt;if&lt;/code&gt;条件：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记一次vim性能优化</title>
+      <link>/posts/2019-vimperformance/</link>
+      <pubDate>Sun, 01 Sep 2019 16:15:00 +0000</pubDate>
+      
+      <guid>/posts/2019-vimperformance/</guid>
+      <description>&lt;h3 id=&#34;关键点&#34;&gt;关键点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vim -u NONE -N&lt;/code&gt;可以不加载vim配置和插件打开vim&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vim --startuptime vim.log&lt;/code&gt;可以生成vim启动的log&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;vim-plug&lt;/code&gt;插件管理工具，给插件配置&lt;code&gt;for&lt;/code&gt; or &lt;code&gt;on&lt;/code&gt;可以实现插件懒加载&lt;/li&gt;
+&lt;li&gt;设置&lt;code&gt;foldmethod=syntax&lt;/code&gt;会导致vim插入模式下卡顿&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>不可不知的债务危机</title>
+      <link>/posts/2019-debtcrisisoverview/</link>
+      <pubDate>Wed, 07 Aug 2019 23:43:00 +0000</pubDate>
+      
+      <guid>/posts/2019-debtcrisisoverview/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;在17年年底，因为数字货币的一轮暴涨，开始关注金融，开始关注股票，基金，学习一些跟金融知识，本文是我自写文章以来第一篇关于金融的文章，是我在阅读瑞达里欧《债务危机》的一些摘要和理解。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>「译」ES 草案：class私有属性</title>
+      <link>/posts/2019-privatefields/</link>
+      <pubDate>Sun, 21 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019-privatefields/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文链接：https://2ality.com/2019/07/private-class-fields.html&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://2ality.com/2019/07/public-class-fields.html&#34;&gt;公有class属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;私有class属性&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>Roman To Int</title>
+      <link>/posts/2019-leetcode-romantoint/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019-leetcode-romantoint/</guid>
+      <description>&lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;罗马数字使用七个不同的符号表示：&lt;code&gt;I&lt;/code&gt;，&lt;code&gt;V&lt;/code&gt;，&lt;code&gt;X&lt;/code&gt;，&lt;code&gt;L&lt;/code&gt;，&lt;code&gt;C&lt;/code&gt;，&lt;code&gt;D&lt;/code&gt;和&lt;code&gt;M&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Two Sum</title>
+      <link>/posts/2019-leetcode-twosum/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019-leetcode-twosum/</guid>
+      <description>&lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;
+&lt;p&gt;给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。&lt;/p&gt;
+&lt;p&gt;你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【译】稳定的Array.prototype.sort</title>
+      <link>/posts/2019-stablesort/</link>
+      <pubDate>Mon, 08 Jul 2019 23:10:00 +0000</pubDate>
+      
+      <guid>/posts/2019-stablesort/</guid>
+      <description>&lt;p&gt;原文链接：https://v8.dev/features/stable-sort#support&lt;/p&gt;
+&lt;p&gt;假设你有一系列的狗狗，每个狗狗有名字和评分。（如果这个例子看起来很奇怪，你应该知道有一个专门针对这个的Twitter账户&amp;hellip;别问为什么！）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【译】10个React组件的戒律</title>
+      <link>/posts/2019-componentstips/</link>
+      <pubDate>Sun, 07 Jul 2019 15:43:00 +0000</pubDate>
+      
+      <guid>/posts/2019-componentstips/</guid>
+      <description>&lt;p&gt;原文链接：&lt;a href=&#34;https://dev.to/selbekk/the-10-component-commandments-2a7f&#34;&gt;The 10 Component Commandments&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;创建被很多人用的组件是很难的。如果那些&lt;code&gt;props&lt;/code&gt;作为公共API，你需要非常谨慎的考虑哪些&lt;code&gt;props&lt;/code&gt;是可以接收的。&lt;/p&gt;
+&lt;p&gt;这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>终端复用神器Tmux</title>
+      <link>/posts/2019-tmux/</link>
+      <pubDate>Sun, 23 Jun 2019 14:32:00 +0000</pubDate>
+      
+      <guid>/posts/2019-tmux/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Axios请求时如何传递数组？</title>
+      <link>/posts/2019-axiosparams/</link>
+      <pubDate>Sat, 18 May 2019 16:40:00 +0000</pubDate>
+      
+      <guid>/posts/2019-axiosparams/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近在项目开发中使用Axios请求，API层使用&lt;strong&gt;Node&lt;/strong&gt;，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即&lt;code&gt;http://xx.xx.com?a=1&amp;amp;b=2&lt;/code&gt;这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>简述 React Hooks 特征和使用方式</title>
+      <link>/posts/2019-reacthooks/</link>
+      <pubDate>Sun, 24 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019-reacthooks/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>React 新特性总结</title>
+      <link>/posts/2019-reactnews/</link>
+      <pubDate>Wed, 16 Jan 2019 22:58:11 +0000</pubDate>
+      
+      <guid>/posts/2019-reactnews/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>再见2018，你好2019</title>
+      <link>/posts/2018-2019newyear/</link>
+      <pubDate>Mon, 07 Jan 2019 00:07:25 +0000</pubDate>
+      
+      <guid>/posts/2018-2019newyear/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;./2019newyear.jpeg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;好久没写博客了，不知不觉的，就又到年底了，2018年已经过去，2019已经到来，回望2018这一年，自己又有了新的成长，新的变化，在去年写的一些计划中，自己也实践了一部分并且有所收获，还是非常开心的。这一年总体来说有这么几件大事儿吧，换了一份工作，换了一个身份，开始新的实践，有了新的认知。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>「译」如何使用React生命周期方法</title>
+      <link>/posts/2018-reactlifecycle/</link>
+      <pubDate>Sat, 28 Jul 2018 13:39:28 +0000</pubDate>
+      
+      <guid>/posts/2018-reactlifecycle/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文链接：&lt;a href=&#34;https://www.andreasreiterer.at/reactjs-lifecycle-methods/&#34;&gt;How to use React Lifecycle Methods&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>从零开始搭建React应用（二）——React应用架构</title>
+      <link>/posts/2018-reactproject2/</link>
+      <pubDate>Wed, 18 Jul 2018 10:28:51 +0000</pubDate>
+      
+      <guid>/posts/2018-reactproject2/</guid>
+      <description>&lt;p&gt;上一篇文章——&lt;a href=&#34;https://juejin.im/post/5af6857651882542682e4843&#34;&gt;从零开始搭建 React 应用（一）——基础搭建&lt;/a&gt;讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>从零开始搭建React应用（一）——基础搭建</title>
+      <link>/posts/2018-reactproject1/</link>
+      <pubDate>Wed, 18 Jul 2018 10:26:46 +0000</pubDate>
+      
+      <guid>/posts/2018-reactproject1/</guid>
+      <description>&lt;p&gt;项目链接：&lt;a href=&#34;https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack&#34;&gt;https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ES2018（ES9）的新特性</title>
+      <link>/posts/2018-es2018/</link>
+      <pubDate>Wed, 20 Jun 2018 17:39:25 +0000</pubDate>
+      
+      <guid>/posts/2018-es2018/</guid>
+      <description>&lt;p&gt;原文链接：https://www.sitepoint.com/es2018-whats-new/&lt;/p&gt;
+&lt;p&gt;在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Webpack中publicPath详解</title>
+      <link>/posts/2018-webpackpublicpath/</link>
+      <pubDate>Sat, 12 May 2018 12:26:43 +0000</pubDate>
+      
+      <guid>/posts/2018-webpackpublicpath/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近自己在搭建一个基于webpack的react项目，遇到关于&lt;code&gt;output.publicPath&lt;/code&gt;和webpack-dev-server中&lt;code&gt;publicPath&lt;/code&gt;的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>CSS Modules在React中的应用</title>
+      <link>/posts/2018-reactcssmodules/</link>
+      <pubDate>Fri, 13 Apr 2018 14:32:17 +0000</pubDate>
+      
+      <guid>/posts/2018-reactcssmodules/</guid>
+      <description>&lt;p&gt;由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MAF项目总结</title>
+      <link>/posts/2018-maf/</link>
+      <pubDate>Sun, 14 Jan 2018 20:22:59 +0000</pubDate>
+      
+      <guid>/posts/2018-maf/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>再见2017，你好2018</title>
+      <link>/posts/2017-2018newyear/</link>
+      <pubDate>Sun, 31 Dec 2017 23:14:24 +0000</pubDate>
+      
+      <guid>/posts/2017-2018newyear/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;不知不觉中，2017年已经走到尾声，2018年马上要到来了，回想这一年，无论是工作还是生活都发生了很多变化，如果用一个字来总结2017，那么这个字就是“变”,这些事情让我有了更多的想法，这也让我对2018年有了期待。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>RN Webview与Web的通信与调试</title>
+      <link>/posts/2017-rnwebview/</link>
+      <pubDate>Wed, 20 Dec 2017 19:24:07 +0000</pubDate>
+      
+      <guid>/posts/2017-rnwebview/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;React Native Version:0.51&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;RN 在 0.37 版本中加入了&lt;code&gt;WebView&lt;/code&gt;功能，所以想要在使用&lt;code&gt;WebView&lt;/code&gt;,版本必须&amp;gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用&lt;code&gt;JSON.stringify&lt;/code&gt;和&lt;code&gt;JSON.parse&lt;/code&gt;就可以&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JS转换转义字符</title>
+      <link>/posts/2017-jsdecode/</link>
+      <pubDate>Sat, 25 Nov 2017 23:03:40 +0000</pubDate>
+      
+      <guid>/posts/2017-jsdecode/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>小记：React操作真实DOM实现动态吸底部</title>
+      <link>/posts/2017-reactdom/</link>
+      <pubDate>Sun, 22 Oct 2017 17:23:11 +0000</pubDate>
+      
+      <guid>/posts/2017-reactdom/</guid>
+      <description>&lt;p&gt;动态吸底：开始时fixed在页面上，当页面滚动到距离底部一定距离的时fixed部分固定。&lt;/p&gt;
+&lt;p&gt;这个是需要计算页面滚动距离的，如果使用Jquery或者原生js实现是非常好实现的，但是由于使用react并不推崇操作DOM，但是如果使用virtual DOM的话是无法实现该效果的，所以还是要引入js去直接获取DOM进行操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git Commint规范</title>
+      <link>/posts/2017-gitcommint/</link>
+      <pubDate>Wed, 18 Oct 2017 22:11:36 +0000</pubDate>
+      
+      <guid>/posts/2017-gitcommint/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>React使用小记</title>
+      <link>/posts/2017-reactsum/</link>
+      <pubDate>Sun, 13 Aug 2017 22:57:48 +0000</pubDate>
+      
+      <guid>/posts/2017-reactsum/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近一段时间一直在使用react ／ react native结合redux做一些东西，所以总结一下在使用这些东西的时候自己遇到的一些问题&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>RN长列表--ListView &amp;&amp; SectionList</title>
+      <link>/posts/2017-reactnativelist/</link>
+      <pubDate>Sun, 11 Jun 2017 00:10:54 +0000</pubDate>
+      
+      <guid>/posts/2017-reactnativelist/</guid>
+      <description>&lt;p&gt;突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>调用Google Map Api实现自定义Google Map</title>
+      <link>/posts/2017-googlemap/</link>
+      <pubDate>Sun, 11 Jun 2017 00:10:54 +0000</pubDate>
+      
+      <guid>/posts/2017-googlemap/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>写一个简单的分页插件</title>
+      <link>/posts/2017-pagination/</link>
+      <pubDate>Sun, 07 May 2017 20:57:48 +0000</pubDate>
+      
+      <guid>/posts/2017-pagination/</guid>
+      <description>&lt;p&gt;前段时间有一个项目需要用一个前端分页，说实话之前自己从来没搞过，这次准备自己搞一下，所以先找了几篇文章看看怎么写，但是网上的文章写分页的都基本看不懂，完全不知所云，所以决定在自己搞定分页后写一下如何弄这个。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>理解CSS命名规范--BEM</title>
+      <link>/posts/2017-cssbem/</link>
+      <pubDate>Wed, 05 Apr 2017 20:57:48 +0000</pubDate>
+      
+      <guid>/posts/2017-cssbem/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近在写博客主题的时候发现一个很严重的问题，由于css的命名并不是很规范，导致自己在后期修改的时候很是头疼，有些样式需要在浏览器中打开开发者工具去找，很是无奈。所以决定在写完主题之后学习下CSS命名规范中大名鼎鼎的BEM命名规范。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>如何写一个自己的hexo主题</title>
+      <link>/posts/2017-hexotheme/</link>
+      <pubDate>Sat, 01 Apr 2017 20:57:48 +0000</pubDate>
+      
+      <guid>/posts/2017-hexotheme/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章&lt;a href=&#34;https://segmentfault.com/a/1190000006057336%5D&#34;&gt;写一个自己的Hexo主题&lt;/a&gt;和该文中提到的作者自己写的主题&lt;a href=&#34;https://github.com/showonne/hexo-showonne&#34;&gt;hexo-showonne&lt;/a&gt;的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——&lt;a href=&#34;https://github.com/ppoffice/hexo-theme-icarus&#34;&gt;hexo-theme-icarus&lt;/a&gt;进行了修正。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用git回退远程库代码</title>
+      <link>/posts/2017-gitreset/</link>
+      <pubDate>Sat, 04 Mar 2017 20:57:48 +0000</pubDate>
+      
+      <guid>/posts/2017-gitreset/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;前几天在公司合代码的时候出现了问题，需要reset回去，在同事的帮助下利用git的log进行了reset，虽然很简单，但是还是想记录一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Webpack2.x踩坑与总结</title>
+      <link>/posts/2017-webpack/</link>
+      <pubDate>Tue, 07 Feb 2017 22:41:09 +0000</pubDate>
+      
+      <guid>/posts/2017-webpack/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;./webpack.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本篇为在学习Vue2.x的时候使用Webpack2.x的踩坑与总结，关于Vue2.x的踩坑与总结，&lt;a href=&#34;http://mrzhang123.github.io/2017/02/07/vue2/&#34;&gt;点击链接&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vue2.x踩坑与总结</title>
+      <link>/posts/2017-vue/</link>
+      <pubDate>Tue, 07 Feb 2017 21:41:02 +0000</pubDate>
+      
+      <guid>/posts/2017-vue/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;./vue.jpg&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，&lt;a href=&#34;http://mrzhang123.github.io/2017/02/07/webpack2/&#34;&gt;点击链接&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>iframe跨域POST提交</title>
+      <link>/posts/2017-iframepost/</link>
+      <pubDate>Fri, 06 Jan 2017 23:07:16 +0000</pubDate>
+      
+      <guid>/posts/2017-iframepost/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;以前在面试的时候经常遇到问关于跨域的事儿，所以自己对跨域有一定的概念性了解，知道什么是跨域以及解决跨域的方法，但是具体实际从来没有操作过，直到最近在公司项目中，遇到了一个需要使iframe跨域进行POST提交的实际案例，我才明白具体如何使用iframe进行跨域操作。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>再见，2016；你好，2017</title>
+      <link>/posts/2016-2017newyear/</link>
+      <pubDate>Sat, 31 Dec 2016 23:28:51 +0000</pubDate>
+      
+      <guid>/posts/2016-2017newyear/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;./newyear.jpg&#34; alt=&#34;&#34;&gt;
+  今天是2016年12月31日，2016年的最后一天，记得那天组长让组里面每个成员做年终总结，自己想了想，真心不知道该说什么，因为其实自己来到小米的时间并不长，做的东西也不多，所以需要总结的东西很少。但是其实今年对于我个人来说，2016年是难忘的一年，发生了很多事情，值得我去回忆，去思考，但是，让我铭记的也许只有这两件：离开，开始新的生活。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Promise－－优雅解决回调嵌套</title>
+      <link>/posts/2016-promise/</link>
+      <pubDate>Tue, 13 Dec 2016 22:34:16 +0000</pubDate>
+      
+      <guid>/posts/2016-promise/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git连接Github总结</title>
+      <link>/posts/2016-gitgithub/</link>
+      <pubDate>Sun, 13 Nov 2016 10:54:26 +0000</pubDate>
+      
+      <guid>/posts/2016-gitgithub/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;好长时间不写东西了， 因为换了工作，所以在忙着熟悉公司的项目代码，所以没什么时间搞自己的东西，回想了一下，在计划中要总结一下关于如何使用终端的git连接github，所以写一下这个。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux日常使用总结</title>
+      <link>/posts/2016-linuxstudy/</link>
+      <pubDate>Sun, 02 Oct 2016 23:33:47 +0000</pubDate>
+      
+      <guid>/posts/2016-linuxstudy/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;自己一直对linux充满好奇，这次换了新的工作后，由于使用Mac OS和linux，所以国庆回来，给自己的电脑装了ubuntu来熟悉linux。在安装完成后遇到一些问题，经过谷歌都一一解决了，写这篇博文分享给大家。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>北京的这一年，写在离开的这一天</title>
+      <link>/posts/2016-thoughts/</link>
+      <pubDate>Sat, 24 Sep 2016 09:41:09 +0000</pubDate>
+      
+      <guid>/posts/2016-thoughts/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;2016年9月23日，对于我来说是一个特殊的日子，我离开了我工作一年多的公司，这是我第一家公司，我的职业之路起于这里，这里是我起飞的地方。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>基于Gulp的前端自动化工程搭建</title>
+      <link>/posts/2016-gulpuse/</link>
+      <pubDate>Wed, 07 Sep 2016 23:25:06 +0000</pubDate>
+      
+      <guid>/posts/2016-gulpuse/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;上个月月底在公司提出关于前后端分离的想法，并且开始研究关于前后端分离，前端工程化，模块化的一些东西，上周开始我准备自己开始写基于Gulp流的前端工程文件，这两天有时间，着手开始实现这个想法，但是写的过程中，遇到了一些问题，正是因为这些问题的解决让我对Gulp的流式处理有了更深的理解，写下这篇文章，分享一下这俩天我在写Gulp的时候学到的一些东西。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>CSS3实现翻转卡牌效果</title>
+      <link>/posts/2016-flipcards/</link>
+      <pubDate>Wed, 17 Aug 2016 23:35:52 +0000</pubDate>
+      
+      <guid>/posts/2016-flipcards/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;今天在工作中遇到需求，需要用CSS3写一个卡片翻转效果，这个效果看起来简单，但是还是涉及到一些不常用的CSS3中的3D转换的属性以及实现该效果的思路，所以这里总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Javascript中字符串方法总结</title>
+      <link>/posts/2016-jsstring/</link>
+      <pubDate>Sun, 14 Aug 2016 16:48:34 +0000</pubDate>
+      
+      <guid>/posts/2016-jsstring/</guid>
+      <description>&lt;h2 id=&#34;字符方法&#34;&gt;字符方法&lt;/h2&gt;
+&lt;h3 id=&#34;chartat与charcodeat&#34;&gt;chartAt()与charCodeAt()&lt;/h3&gt;
+&lt;p&gt;参数：&lt;em&gt;基于&lt;strong&gt;0的字符位置&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;**chartAt()&lt;strong&gt;以单字符字符串的形式返回给定位置的那个字符。而&lt;/strong&gt;charCodeAt()**返回的是字符编码。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JS中的位置与大小</title>
+      <link>/posts/2016-jsposition/</link>
+      <pubDate>Wed, 03 Aug 2016 00:06:31 +0000</pubDate>
+      
+      <guid>/posts/2016-jsposition/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近事儿比较多，一直没时间写东西，前几天又遇到关于获取元素大小的问题，每次遇到这类问题就翻书，比较费时间，所以总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Javascript中Array方法的总结</title>
+      <link>/posts/2016-jsarray/</link>
+      <pubDate>Wed, 03 Aug 2016 00:01:05 +0000</pubDate>
+      
+      <guid>/posts/2016-jsarray/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;在ECMAScript中最常用的类型之一就是Array类型，Array类型的方法也有很多，所以在这篇文章中，梳理一下Array类型的方法。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Vuejs的一些总结</title>
+      <link>/posts/2016-summarizevue/</link>
+      <pubDate>Thu, 14 Jul 2016 00:07:45 +0000</pubDate>
+      
+      <guid>/posts/2016-summarizevue/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近一段时间忙着工作的一些事情，同时自己也在试着把项目中的一些移动端页面试着用vuejs重写，所以没时间写文章，今天终于有空可以写一下，由于页面并没有写完，所以就将自己这几天做页面的时候遇到的一些问题总结了一下。其实很多在官网都能找到，但是我们只看官网教程不去写，很难理解到底是什么意思，这里我把我用到的列出来。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>六月总结</title>
+      <link>/posts/2016-summarizejune/</link>
+      <pubDate>Thu, 30 Jun 2016 00:03:50 +0000</pubDate>
+      
+      <guid>/posts/2016-summarizejune/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;不知不觉中，六月已经过去，七月悄悄到来，写这篇文章，总结六月，并给七月做一些计划。在未来，每个月都会做一次总结，无论得失，都记录下来，记录自己的成长。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>基于Vue的简单的单页面应用</title>
+      <link>/posts/2016-vue1/</link>
+      <pubDate>Wed, 08 Jun 2016 01:14:39 +0000</pubDate>
+      
+      <guid>/posts/2016-vue1/</guid>
+      <description>&lt;h2 id=&#34;基于vue的简单的单页面应用&#34;&gt;基于Vue的简单的单页面应用&lt;/h2&gt;
+&lt;p&gt;在对Vue和webpack有了一定了解后，我们就可以开始利用所了解的东西做一个简单的webapp了，不了解的同学可以看下我的前两篇关于vue和webpack的基本应用：
+&lt;a href=&#34;https://segmentfault.com/a/1190000005614864&#34;&gt;webpack+vue起步&lt;/a&gt;
+&lt;a href=&#34;https://segmentfault.com/a/1190000005616974&#34;&gt;利用webpack和vue实现组件化&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用webpack和vue实现组件化</title>
+      <link>/posts/2016-webpackvue2/</link>
+      <pubDate>Thu, 02 Jun 2016 00:48:31 +0000</pubDate>
+      
+      <guid>/posts/2016-webpackvue2/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;上一篇&lt;a href=&#34;https://segmentfault.com/a/1190000005614864&#34;&gt;webpack+vue起步&lt;/a&gt;我们实现了用webpack打包vue的最基本用法，这篇我们将利用webpack+vue实现组件化&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>webpack与vue起步</title>
+      <link>/posts/2016-webpackvue1/</link>
+      <pubDate>Tue, 31 May 2016 21:37:08 +0000</pubDate>
+      
+      <guid>/posts/2016-webpackvue1/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;记得第一次知道Vue.js是在勾三股四大大的微博，那时候他开始翻译vue的文档，从那时候开始到现在，看了几次vue的教程，每次都有更深的理解，因为之前并没有研究过angular等框架，所以对MVVM并不是很了解，但是经过这段时间对vuejs的一些研究，越来越懂了，这篇文章，只是对vuejs和webpack配合的非常基础的文章，我想随着我对vue的深入理解，会对组件化，模块化，MVVM有更深入的理解。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Webpack初探</title>
+      <link>/posts/2016-webpack1/</link>
+      <pubDate>Tue, 31 May 2016 21:02:20 +0000</pubDate>
+      
+      <guid>/posts/2016-webpack1/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;很早就听说webpack包管理工具，但是一直没有机会学习，这次又看到&lt;a href=&#34;http://gold.xitu.io/#/&#34;&gt;掘金&lt;/a&gt;上面有关于vue+webpack的初级文章，而且最近公司没什么事儿做，决定搞一下。在搞的过程中，虽然按照文章中写的去做，但是还是有很多问题，所以写下本文，总结下我遇到的问题以及解决办法。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>慕课网---深入理解vertical-align总结</title>
+      <link>/posts/2016-verticalalign-1/</link>
+      <pubDate>Mon, 23 May 2016 23:07:35 +0000</pubDate>
+      
+      <guid>/posts/2016-verticalalign-1/</guid>
+      <description>&lt;p&gt;看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下
+vertical-align的百分比值相对于line-height计算
+IE6/7下line-height不支持小数&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Gulp&#43;BroserSync实现浏览器自动刷新</title>
+      <link>/posts/2016-gulpbrosersync/</link>
+      <pubDate>Mon, 16 May 2016 22:10:39 +0000</pubDate>
+      
+      <guid>/posts/2016-gulpbrosersync/</guid>
+      <description>&lt;p&gt;在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>text-algin:justify实现文本两端对齐</title>
+      <link>/posts/2016-textalgin/</link>
+      <pubDate>Wed, 11 May 2016 00:25:18 +0000</pubDate>
+      
+      <guid>/posts/2016-textalgin/</guid>
+      <description>&lt;p&gt;最近在写页面的时候遇到了一个问题&amp;mdash;当行文本双端对齐，大家都知道CSS属性中有一个“text-align:justify”，但是这个属性使用的时候，要求还是挺多的，尤其是要实现单行文本双端对齐。关于两端对齐，大漠和张鑫旭的博客中都有文章讲，非常不错，推荐给大家：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用CSS3新单位rem实现响应</title>
+      <link>/posts/2016-filerem/</link>
+      <pubDate>Tue, 26 Apr 2016 22:49:25 +0000</pubDate>
+      
+      <guid>/posts/2016-filerem/</guid>
+      <description>&lt;p&gt;做移动端的响应方法有很多，但是我喜欢用 CSS3 的新单位 rem，这个单位非常好用（有个比它还好用的单位 vh，不过兼容性太差，不考虑了），根据不同屏幕，设置不同的基准值，从而实现适配各个屏幕尺寸的移动设备。慕课网有一套非常不错的讲关于 rem 的视频，这里推荐给大家&lt;a href=&#34;http://www.imooc.com/learn/494&#34;&gt;http://www.imooc.com/learn/494&lt;/a&gt;。
+rem&amp;mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实现字体的响应，与 em 不同，rem 根据根元素的 font-size 计算，所以要利用 rem 实现适配各个屏幕的大小，就需要根据不同的屏幕设置根元素不同的 font-size 的值。所以我们需要做下面的一些工作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>文件上传（二）---新XMLHttpRequest实现带进度条文件上传</title>
+      <link>/posts/2016-fileupload2/</link>
+      <pubDate>Thu, 14 Apr 2016 23:10:58 +0000</pubDate>
+      
+      <guid>/posts/2016-fileupload2/</guid>
+      <description>&lt;p&gt;前几天搞得那个文件上传，最近工作不太忙，又开始完善。这次主要添加了文件上传的进度部分，主要用到的则是XMLHttpRequest2的progress，由于我读的是《javascript高级程序设计》（第三版），这里我遇到一个关于progeress事件的坑，后面详细解答。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>初探ES6——轮播图实践总结</title>
+      <link>/posts/2016-es6practice/</link>
+      <pubDate>Mon, 11 Apr 2016 00:10:54 +0000</pubDate>
+      
+      <guid>/posts/2016-es6practice/</guid>
+      <description>&lt;p&gt;最近因为同学的一个轮播图不会写，让我萌生了用ES6写一个轮播图的想法（本人喜欢这些玩儿一些新的东西），以前就知道ES6，但是一直没有学，现在终于下决心学了，借助阮一峰老师的书&lt;a href=&#34;http://es6.ruanyifeng.com/&#34;&gt;ECMAScript 6 入门&lt;/a&gt; 和Youtube上面老外的视频学习ES6非常不错。阮一峰老师的书写的非常详细，推荐想学习的ES6的同学仔细看看。本篇文章会总结在实践中用到的ES6的知识。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>文件上传（一）---H5 file API，canvas</title>
+      <link>/posts/2016-fileupload/</link>
+      <pubDate>Thu, 31 Mar 2016 23:35:12 +0000</pubDate>
+      
+      <guid>/posts/2016-fileupload/</guid>
+      <description>&lt;p&gt;最近公司让调研关于webUploader的图片上传中能否压缩，能否实现图片的格式转换，如果能如何实现，经过调研，这个插件可以实现文件的压缩，但是不能实现图片的格式转换，同时在调研过程中，知道了很多新的东西，H5 file API，canvas，等等，所以有了自己写一个文件上传来熟悉这些东西，所以有了本篇文章。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>H5焦点管理---tabindex与document.activeElement</title>
+      <link>/posts/2016-activeelement/</link>
+      <pubDate>Sat, 26 Mar 2016 10:20:56 +0000</pubDate>
+      
+      <guid>/posts/2016-activeelement/</guid>
+      <description>&lt;p&gt;周四下午测试人员提出BUG，说我写的那个类支付宝密码框在按下Tab键时候无法像原生的form表单中的input那样被激活，当时的第一反应是，我的密码框原本就是用div模拟的，怎么可能想form表单一样在Tab键时候激活呢。但是当我打开支付宝官网，按下tab键后，密码框可以被激活，这激起了我的好奇心，也就有了后来对tabindex和document.activeElement的发现。废话不多说，进入正题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>H5 Canvas实现图片格式的转换</title>
+      <link>/posts/2016-canvas/</link>
+      <pubDate>Tue, 22 Mar 2016 23:46:18 +0000</pubDate>
+      
+      <guid>/posts/2016-canvas/</guid>
+      <description>&lt;p&gt;今天早上到公司，看到CTO要求调查关于前端如何实现图片格式转换，自己上网找了下关于canvas如何实现图片格式转换，其实还是蛮简单的，但是因为网上的教程着实写的简单，而且都一样，我也是醉了，所以写下这篇博客，以记录今天的调查结果。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

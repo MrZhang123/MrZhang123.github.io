@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on 博客</title>
+    <link>/categories/linux/</link>
+    <description>Recent content in Linux on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Sun, 23 Jun 2019 14:32:00 +0000</lastBuildDate><atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>终端复用神器Tmux</title>
+      <link>/posts/2019-tmux/</link>
+      <pubDate>Sun, 23 Jun 2019 14:32:00 +0000</pubDate>
+      
+      <guid>/posts/2019-tmux/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux日常使用总结</title>
+      <link>/posts/2016-linuxstudy/</link>
+      <pubDate>Sun, 02 Oct 2016 23:33:47 +0000</pubDate>
+      
+      <guid>/posts/2016-linuxstudy/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;自己一直对linux充满好奇，这次换了新的工作后，由于使用Mac OS和linux，所以国庆回来，给自己的电脑装了ubuntu来熟悉linux。在安装完成后遇到一些问题，经过谷歌都一一解决了，写这篇博文分享给大家。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

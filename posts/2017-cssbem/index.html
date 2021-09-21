@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>理解CSS命名规范--BEM | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="
+最近在写博客主题的时候发现一个很严重的问题，由于css的命名并不是很规范，导致自己在后期修改的时候很是头疼，有些样式需要在浏览器中打开开发者工具去找，很是无奈。所以决定在写完主题之后学习下CSS命名规范中大名鼎鼎的BEM命名规范。
+">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"理解CSS命名规范--BEM",
+      "item":"/posts/2017-cssbem/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2017-cssbem/"
+    },
+    "headline": "理解CSS命名规范--BEM | 博客","datePublished": "2017-04-05T20:57:48+00:00",
+    "dateModified": "2017-04-05T20:57:48+00:00",
+    "wordCount":  82 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cblockquote\u003e\n\u003cp\u003e最近在写博客主题的时候发现一个很严重的问题，由于css的命名并不是很规范，导致自己在后期修改的时候很是头疼，有些样式需要在浏览器中打开开发者工具去找，很是无奈。所以决定在写完主题之后学习下CSS命名规范中大名鼎鼎的BEM命名规范。\u003c\/p\u003e\n\u003c\/blockquote\u003e"
+}
+</script><meta property="og:title" content="理解CSS命名规范--BEM | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2017-cssbem/" />
+
+
+
+
+<meta property="og:description" content="
+最近在写博客主题的时候发现一个很严重的问题，由于css的命名并不是很规范，导致自己在后期修改的时候很是头疼，有些样式需要在浏览器中打开开发者工具去找，很是无奈。所以决定在写完主题之后学习下CSS命名规范中大名鼎鼎的BEM命名规范。
+" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2017-04-05T20:57:48&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2017-04-05T20:57:48&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="CSS" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2016-flipcards/" />
+
+<meta property="og:see_also" content="/posts/2016-verticalalign-1/" />
+
+<meta property="og:see_also" content="/posts/2016-textalgin/" />
+
+<meta property="og:see_also" content="/posts/2016-filerem/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">理解CSS命名规范--BEM</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-04-05</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/css/" class="hover:text-eureka">CSS</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <blockquote>
+<p>最近在写博客主题的时候发现一个很严重的问题，由于css的命名并不是很规范，导致自己在后期修改的时候很是头疼，有些样式需要在浏览器中打开开发者工具去找，很是无奈。所以决定在写完主题之后学习下CSS命名规范中大名鼎鼎的BEM命名规范。</p>
+</blockquote>
+<h3 id="什么是bem">什么是BEM</h3>
+<p>BEM其实是块（block）、元素（element）、修饰符（modifier）的缩写，利用不同的区块，功能以及样式来给元素命名。这三个部分使用<code>__</code>与<code>--</code>连接（这里用两个而不是一个是为了留下用于块儿的命名）。命名约定的模式如下：</p>
+<pre><code class="language-css">.block{}
+.block__element{}
+.block--modifier{}
+</code></pre>
+<ul>
+<li><code>block</code> 代表了更高级别的抽象或组件</li>
+<li><code>block__element</code> 代表 <code>block</code> 的后代，用于形成一个完整的 <code>block</code> 的整体</li>
+<li><code>block--modifier</code>代表 <code>block</code> 的不同状态或不同版本</li>
+</ul>
+<p><img src="./bem.jpg" alt="bem"></p>
+<p>上图很直观的反映出BEM的含义，block代表一个组，而element代表组里面的成员，而modifier，虽然在上图没有画出，但是可以知道这个则是用于描述每一个元素的具体的属性。可以看出范围在一步步缩小，使命名更加具体。</p>
+<h3 id="bem的优势">BEM的优势</h3>
+<p>BEM的关键是光凭class名字就可以让其他开发者知道某个标记用来做什么的，明白各个模块之间的关系，例如如下的命名：</p>
+<pre><code class="language-css">.nav{}
+.nav__item{}
+.nav--blue{}
+.nav--item__hand{}
+</code></pre>
+<p>这几个class名很明显能看出各个块儿的作用，顶级快儿是<code>nav</code>，它有一些元素比如<code>item</code>，<code>item</code>又有一些属性，例如<code>blue</code>，但是如果写成常规的css就会很难看得出它们的关系：</p>
+<pre><code class="language-css">.nav{}
+.item{}
+.blue{}
+</code></pre>
+<p>虽然看每一个class名知道它们代表什么，但是却看不出它们之间的关系，这样对比，很明显能看出BEM命名的优势。</p>
+<p>再看一个更具体的例子，如果写一个搜索模块，按照常规，我们会写出如下代码：</p>
+<pre><code class="language-html">&lt;form class=&quot;site-search  full&quot;&gt;
+  &lt;input type=&quot;text&quot; class=&quot;field&quot;&gt;
+  &lt;input type=&quot;Submit&quot; value =&quot;Search&quot; class=&quot;button&quot;&gt;
+&lt;/form&gt;	
+</code></pre>
+<p>但是如果时用BEM规范去写，代码如下：</p>
+<pre><code class="language-html">&lt;form class=&quot;site-search  site-search--full&quot;&gt;
+  &lt;input type=&quot;text&quot; class=&quot;site-search__field&quot;&gt;
+  &lt;input type=&quot;Submit&quot; value =&quot;Search&quot; class=&quot;site-search__button&quot;&gt;
+&lt;/form&gt;	
+</code></pre>
+<p>对比一下不难发现使用BEM可以使我们的代码可读性更高。</p>
+<h3 id="bem与scss">BEM与SCSS</h3>
+<p>现在的开发很多时候都会用到SCSS，那么如果使用SCSS的嵌套写BEM规范呢，在SCSS中可以使用<code>@at-root</code>：</p>
+<pre><code class="language-scss">.block {
+  @at-root #{&amp;}__element {
+  }
+  @at-root #{&amp;}--modifier {
+  }
+}
+</code></pre>
+<pre><code class="language-css">/*生成的css*/
+.block {
+}
+.block__element {
+}
+.block--modifier {
+}
+</code></pre>
+<p>非常的方便。</p>
+<h3 id="最后">最后</h3>
+<p>在自己的博客主题项目中，因为命名的随意导致后来再看样式的时候都需要通过开发者工具去看具体这部分是做什么的，非常难受，所以想到应该用一套规范约束一下命名，而BEM最为一个非常有用，强大的命名规范可以让我们的代码更容易阅读和理解，也更容易控制，虽然这种命名方式看起来有点儿奇怪，但是却非常有用，非常值得学习。</p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/css/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#CSS</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2017-pagination/" class="block">写一个简单的分页插件</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2017-hexotheme/" class="block">如何写一个自己的hexo主题</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2016-flipcards/">CSS3实现翻转卡牌效果</a>
+            <br />
+            
+            <a href="/posts/2016-verticalalign-1/">慕课网---深入理解vertical-align总结</a>
+            <br />
+            
+            <a href="/posts/2016-textalgin/">text-algin:justify实现文本两端对齐</a>
+            <br />
+            
+            <a href="/posts/2016-filerem/">利用CSS3新单位rem实现响应</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

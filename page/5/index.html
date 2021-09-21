@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="">
+
+
+
+<meta property="og:title" content="博客" />
+<meta property="og:type" content="website" />
+
+
+
+<meta property="og:url" content="/" />
+
+
+
+
+
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="og:updated_time" content="2020-07-14T09:08:00&#43;00:00" />
+
+
+
+<meta property="article:section" content="" />
+
+
+<link rel="alternate" type="application/rss+xml" href="/index.xml" title="博客" />
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+<div class="pl-scrollbar">
+  <style type="text/css">
+    .widget + .widget {
+      margin-top: 1rem;
+    }
+    .widget-title {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .widget-list li {
+      font-size: 0.9rem;
+    }
+    .bg-cover img {
+      opacity: 1;
+      transition: all 0.5s ease-in-out;
+    }
+    .bg-cover img.dark {
+      opacity: 0;
+      height: 0;
+    }
+    .dark .bg-cover img.day {
+      opacity: 0;
+      height: 0;
+    }
+    .dark .bg-cover img.dark {
+      opacity: 1;
+      height: auto;
+    }
+  </style>
+  <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+    <div class="max-w-screen-xl mx-auto" style="padding-top: 3rem">
+      <div class="bg-local bg-cover">
+        <img class="day" src="/banner/light.png" />
+        <img class="dark" src="/banner/dark.png" />
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+      <div class="col-span-2 sidebar">
+        <div class="widget bg-secondary-bg rounded p-6">
+          <h2 class="widget-title">最新文章</h2>
+          <ul class="widget-list">
+            <li>
+              <a href="/posts/2020-basicsort/" class="nav-link">基础排序</a>
+            </li>
+            <li>
+              <a href="/posts/2020_pointer_compression_in_v8/" class="nav-link">「译」V8中的指针压缩</a>
+            </li>
+            <li>
+              <a href="/posts/2020-blance-sheet/" class="nav-link">学习读财报之资产负债表</a>
+            </li>
+            <li>
+              <a href="/posts/2020-vimsearch/" class="nav-link">vim的搜索与替换</a>
+            </li>
+            <li>
+              <a href="/posts/2020_okr/" class="nav-link">解析OKR</a>
+            </li>
+          </ul>
+        </div>
+        
+        
+      </div>
+      <div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2017-vue/" class="font-bold text-xl hover:text-eureka">Vue2.x踩坑与总结</a>
+</div>
+<div class="content">
+   年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，点击链接。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-02-07</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/vue/" class="hover:text-eureka">Vue</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2017-iframepost/" class="font-bold text-xl hover:text-eureka">iframe跨域POST提交</a>
+</div>
+<div class="content">
+   以前在面试的时候经常遇到问关于跨域的事儿，所以自己对跨域有一定的概念性了解，知道什么是跨域以及解决跨域的方法，但是具体实际从来没有操作过，直到最近在公司项目中，遇到了一个需要使iframe跨域进行POST提交的实际案例，我才明白具体如何使用iframe进行跨域操作。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-01-06</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2016-2017newyear/" class="font-bold text-xl hover:text-eureka">再见，2016；你好，2017</a>
+</div>
+<div class="content">
+  今天是2016年12月31日，2016年的最后一天，记得那天组长让组里面每个成员做年终总结，自己想了想，真心不知道该说什么，因为其实自己来到小米的时间并不长，做的东西也不多，所以需要总结的东西很少。但是其实今年对于我个人来说，2016年是难忘的一年，发生了很多事情，值得我去回忆，去思考，但是，让我铭记的也许只有这两件：离开，开始新的生活。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-12-31</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" class="hover:text-eureka">年终总结</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2016-promise/" class="font-bold text-xl hover:text-eureka">Promise－－优雅解决回调嵌套</a>
+</div>
+<div class="content">
+   最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-12-13</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2016-gitgithub/" class="font-bold text-xl hover:text-eureka">Git连接Github总结</a>
+</div>
+<div class="content">
+   好长时间不写东西了， 因为换了工作，所以在忙着熟悉公司的项目代码，所以没什么时间搞自己的东西，回想了一下，在计划中要总结一下关于如何使用终端的git连接github，所以写一下这个。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-11-13</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/github/" class="hover:text-eureka">github</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2016-linuxstudy/" class="font-bold text-xl hover:text-eureka">Linux日常使用总结</a>
+</div>
+<div class="content">
+   自己一直对linux充满好奇，这次换了新的工作后，由于使用Mac OS和linux，所以国庆回来，给自己的电脑装了ubuntu来熟悉linux。在安装完成后遇到一些问题，经过谷歌都一一解决了，写这篇博文分享给大家。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-10-02</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/linux/" class="hover:text-eureka">Linux</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2016-thoughts/" class="font-bold text-xl hover:text-eureka">北京的这一年，写在离开的这一天</a>
+</div>
+<div class="content">
+   2016年9月23日，对于我来说是一个特殊的日子，我离开了我工作一年多的公司，这是我第一家公司，我的职业之路起于这里，这里是我起飞的地方。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-09-24</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E6%84%9F%E6%82%9F/" class="hover:text-eureka">感悟</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2016-gulpuse/" class="font-bold text-xl hover:text-eureka">基于Gulp的前端自动化工程搭建</a>
+</div>
+<div class="content">
+   上个月月底在公司提出关于前后端分离的想法，并且开始研究关于前后端分离，前端工程化，模块化的一些东西，上周开始我准备自己开始写基于Gulp流的前端工程文件，这两天有时间，着手开始实现这个想法，但是写的过程中，遇到了一些问题，正是因为这些问题的解决让我对Gulp的流式处理有了更深的理解，写下这篇文章，分享一下这俩天我在写Gulp的时候学到的一些东西。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-09-07</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/" class="hover:text-eureka">前端工具</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2016-flipcards/" class="font-bold text-xl hover:text-eureka">CSS3实现翻转卡牌效果</a>
+</div>
+<div class="content">
+   今天在工作中遇到需求，需要用CSS3写一个卡片翻转效果，这个效果看起来简单，但是还是涉及到一些不常用的CSS3中的3D转换的属性以及实现该效果的思路，所以这里总结一下。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-08-17</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/css/" class="hover:text-eureka">CSS</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+          <div class="px-2 py-6"><div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="/posts/2016-jsstring/" class="font-bold text-xl hover:text-eureka">Javascript中字符串方法总结</a>
+</div>
+<div class="content">
+  字符方法 chartAt()与charCodeAt() 参数：基于0的字符位置
+**chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。
+
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-08-14</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div></div>
+          
+        </div>
+        
+    <ul class="pagination pagination-default">
+      <li class="page-item">
+        <a href="/" aria-label="First" class="page-link" role="button"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/page/4/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/4/" aria-label="Page 4" class="page-link" role="button">4</a>
+      </li>
+      <li class="page-item active">
+        <a href="#" aria-current="page" aria-label="Page 5" class="page-link" role="button">5</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/6/" aria-label="Page 6" class="page-link" role="button">6</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/7/" aria-label="Page 7" class="page-link" role="button">7</a>
+      </li>
+      <li class="page-item">
+        <a href="/page/6/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/page/7/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

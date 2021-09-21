@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 博客</title>
+    <link>/tags/</link>
+    <description>Recent content in Tags on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Tue, 14 Jul 2020 09:08:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>算法</title>
+      <link>/tags/%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Tue, 14 Jul 2020 09:08:00 +0000</pubDate>
+      
+      <guid>/tags/%E7%AE%97%E6%B3%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>image</title>
+      <link>/tags/image/</link>
+      <pubDate>Tue, 26 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/image/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Javascript</title>
+      <link>/tags/javascript/</link>
+      <pubDate>Thu, 23 Apr 2020 17:08:00 +0000</pubDate>
+      
+      <guid>/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>财报</title>
+      <link>/tags/%E8%B4%A2%E6%8A%A5/</link>
+      <pubDate>Sun, 12 Apr 2020 20:15:00 +0000</pubDate>
+      
+      <guid>/tags/%E8%B4%A2%E6%8A%A5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>金融</title>
+      <link>/tags/%E9%87%91%E8%9E%8D/</link>
+      <pubDate>Sun, 12 Apr 2020 20:15:00 +0000</pubDate>
+      
+      <guid>/tags/%E9%87%91%E8%9E%8D/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vim</title>
+      <link>/tags/vim/</link>
+      <pubDate>Sun, 15 Mar 2020 16:15:00 +0000</pubDate>
+      
+      <guid>/tags/vim/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>职场</title>
+      <link>/tags/%E8%81%8C%E5%9C%BA/</link>
+      <pubDate>Thu, 27 Feb 2020 22:30:00 +0000</pubDate>
+      
+      <guid>/tags/%E8%81%8C%E5%9C%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>读书笔记</title>
+      <link>/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+      <pubDate>Sun, 23 Feb 2020 17:08:00 +0000</pubDate>
+      
+      <guid>/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>年终总结</title>
+      <link>/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Tue, 31 Dec 2019 02:00:25 +0000</pubDate>
+      
+      <guid>/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>leetCode</title>
+      <link>/tags/leetcode/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/leetcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React</title>
+      <link>/tags/react/</link>
+      <pubDate>Sun, 07 Jul 2019 15:43:00 +0000</pubDate>
+      
+      <guid>/tags/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>/tags/linux/</link>
+      <pubDate>Sun, 23 Jun 2019 14:32:00 +0000</pubDate>
+      
+      <guid>/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Webpack</title>
+      <link>/tags/webpack/</link>
+      <pubDate>Sat, 12 May 2018 12:26:43 +0000</pubDate>
+      
+      <guid>/tags/webpack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>总结</title>
+      <link>/tags/%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 14 Jan 2018 20:22:59 +0000</pubDate>
+      
+      <guid>/tags/%E6%80%BB%E7%BB%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>React Native</title>
+      <link>/tags/react-native/</link>
+      <pubDate>Wed, 20 Dec 2017 19:24:07 +0000</pubDate>
+      
+      <guid>/tags/react-native/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Git</title>
+      <link>/tags/git/</link>
+      <pubDate>Wed, 18 Oct 2017 22:11:36 +0000</pubDate>
+      
+      <guid>/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CSS</title>
+      <link>/tags/css/</link>
+      <pubDate>Wed, 05 Apr 2017 20:57:48 +0000</pubDate>
+      
+      <guid>/tags/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Blog</title>
+      <link>/tags/blog/</link>
+      <pubDate>Sat, 01 Apr 2017 20:57:48 +0000</pubDate>
+      
+      <guid>/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vue</title>
+      <link>/tags/vue/</link>
+      <pubDate>Tue, 07 Feb 2017 21:41:02 +0000</pubDate>
+      
+      <guid>/tags/vue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>github</title>
+      <link>/tags/github/</link>
+      <pubDate>Sun, 13 Nov 2016 10:54:26 +0000</pubDate>
+      
+      <guid>/tags/github/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>感悟</title>
+      <link>/tags/%E6%84%9F%E6%82%9F/</link>
+      <pubDate>Sat, 24 Sep 2016 09:41:09 +0000</pubDate>
+      
+      <guid>/tags/%E6%84%9F%E6%82%9F/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gulp</title>
+      <link>/tags/gulp/</link>
+      <pubDate>Wed, 07 Sep 2016 23:25:06 +0000</pubDate>
+      
+      <guid>/tags/gulp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>canvas</title>
+      <link>/tags/canvas/</link>
+      <pubDate>Thu, 14 Apr 2016 23:10:58 +0000</pubDate>
+      
+      <guid>/tags/canvas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>file</title>
+      <link>/tags/file/</link>
+      <pubDate>Thu, 14 Apr 2016 23:10:58 +0000</pubDate>
+      
+      <guid>/tags/file/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>H5</title>
+      <link>/tags/h5/</link>
+      <pubDate>Thu, 14 Apr 2016 23:10:58 +0000</pubDate>
+      
+      <guid>/tags/h5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>HTML5</title>
+      <link>/tags/html5/</link>
+      <pubDate>Sat, 26 Mar 2016 10:20:56 +0000</pubDate>
+      
+      <guid>/tags/html5/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

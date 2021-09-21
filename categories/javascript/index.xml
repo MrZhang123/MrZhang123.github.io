@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on 博客</title>
+    <link>/categories/javascript/</link>
+    <description>Recent content in Javascript on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Thu, 23 Apr 2020 17:08:00 +0000</lastBuildDate><atom:link href="/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>「译」V8中的指针压缩</title>
+      <link>/posts/2020_pointer_compression_in_v8/</link>
+      <pubDate>Thu, 23 Apr 2020 17:08:00 +0000</pubDate>
+      
+      <guid>/posts/2020_pointer_compression_in_v8/</guid>
+      <description>&lt;p&gt;原文链接：https://v8.dev/blog/pointer-compression&lt;/p&gt;
+&lt;p&gt;内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「译」JS新特性“可选链式调用”</title>
+      <link>/posts/2019-optional-chaining/</link>
+      <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019-optional-chaining/</guid>
+      <description>&lt;p&gt;在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现&lt;code&gt;null&lt;/code&gt;或&lt;code&gt;undefined&lt;/code&gt;（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的&lt;code&gt;if&lt;/code&gt;声明或者复制属性访问链的长的&lt;code&gt;if&lt;/code&gt;条件：&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>「译」ES 草案：class私有属性</title>
+      <link>/posts/2019-privatefields/</link>
+      <pubDate>Sun, 21 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/2019-privatefields/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;原文链接：https://2ality.com/2019/07/private-class-fields.html&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://2ality.com/2019/07/public-class-fields.html&#34;&gt;公有class属性&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;私有class属性&lt;/li&gt;
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>【译】稳定的Array.prototype.sort</title>
+      <link>/posts/2019-stablesort/</link>
+      <pubDate>Mon, 08 Jul 2019 23:10:00 +0000</pubDate>
+      
+      <guid>/posts/2019-stablesort/</guid>
+      <description>&lt;p&gt;原文链接：https://v8.dev/features/stable-sort#support&lt;/p&gt;
+&lt;p&gt;假设你有一系列的狗狗，每个狗狗有名字和评分。（如果这个例子看起来很奇怪，你应该知道有一个专门针对这个的Twitter账户&amp;hellip;别问为什么！）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Axios请求时如何传递数组？</title>
+      <link>/posts/2019-axiosparams/</link>
+      <pubDate>Sat, 18 May 2019 16:40:00 +0000</pubDate>
+      
+      <guid>/posts/2019-axiosparams/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近在项目开发中使用Axios请求，API层使用&lt;strong&gt;Node&lt;/strong&gt;，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即&lt;code&gt;http://xx.xx.com?a=1&amp;amp;b=2&lt;/code&gt;这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ES2018（ES9）的新特性</title>
+      <link>/posts/2018-es2018/</link>
+      <pubDate>Wed, 20 Jun 2018 17:39:25 +0000</pubDate>
+      
+      <guid>/posts/2018-es2018/</guid>
+      <description>&lt;p&gt;原文链接：https://www.sitepoint.com/es2018-whats-new/&lt;/p&gt;
+&lt;p&gt;在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JS转换转义字符</title>
+      <link>/posts/2017-jsdecode/</link>
+      <pubDate>Sat, 25 Nov 2017 23:03:40 +0000</pubDate>
+      
+      <guid>/posts/2017-jsdecode/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>小记：React操作真实DOM实现动态吸底部</title>
+      <link>/posts/2017-reactdom/</link>
+      <pubDate>Sun, 22 Oct 2017 17:23:11 +0000</pubDate>
+      
+      <guid>/posts/2017-reactdom/</guid>
+      <description>&lt;p&gt;动态吸底：开始时fixed在页面上，当页面滚动到距离底部一定距离的时fixed部分固定。&lt;/p&gt;
+&lt;p&gt;这个是需要计算页面滚动距离的，如果使用Jquery或者原生js实现是非常好实现的，但是由于使用react并不推崇操作DOM，但是如果使用virtual DOM的话是无法实现该效果的，所以还是要引入js去直接获取DOM进行操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>调用Google Map Api实现自定义Google Map</title>
+      <link>/posts/2017-googlemap/</link>
+      <pubDate>Sun, 11 Jun 2017 00:10:54 +0000</pubDate>
+      
+      <guid>/posts/2017-googlemap/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>写一个简单的分页插件</title>
+      <link>/posts/2017-pagination/</link>
+      <pubDate>Sun, 07 May 2017 20:57:48 +0000</pubDate>
+      
+      <guid>/posts/2017-pagination/</guid>
+      <description>&lt;p&gt;前段时间有一个项目需要用一个前端分页，说实话之前自己从来没搞过，这次准备自己搞一下，所以先找了几篇文章看看怎么写，但是网上的文章写分页的都基本看不懂，完全不知所云，所以决定在自己搞定分页后写一下如何弄这个。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>iframe跨域POST提交</title>
+      <link>/posts/2017-iframepost/</link>
+      <pubDate>Fri, 06 Jan 2017 23:07:16 +0000</pubDate>
+      
+      <guid>/posts/2017-iframepost/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;以前在面试的时候经常遇到问关于跨域的事儿，所以自己对跨域有一定的概念性了解，知道什么是跨域以及解决跨域的方法，但是具体实际从来没有操作过，直到最近在公司项目中，遇到了一个需要使iframe跨域进行POST提交的实际案例，我才明白具体如何使用iframe进行跨域操作。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Promise－－优雅解决回调嵌套</title>
+      <link>/posts/2016-promise/</link>
+      <pubDate>Tue, 13 Dec 2016 22:34:16 +0000</pubDate>
+      
+      <guid>/posts/2016-promise/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Javascript中字符串方法总结</title>
+      <link>/posts/2016-jsstring/</link>
+      <pubDate>Sun, 14 Aug 2016 16:48:34 +0000</pubDate>
+      
+      <guid>/posts/2016-jsstring/</guid>
+      <description>&lt;h2 id=&#34;字符方法&#34;&gt;字符方法&lt;/h2&gt;
+&lt;h3 id=&#34;chartat与charcodeat&#34;&gt;chartAt()与charCodeAt()&lt;/h3&gt;
+&lt;p&gt;参数：&lt;em&gt;基于&lt;strong&gt;0的字符位置&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;**chartAt()&lt;strong&gt;以单字符字符串的形式返回给定位置的那个字符。而&lt;/strong&gt;charCodeAt()**返回的是字符编码。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JS中的位置与大小</title>
+      <link>/posts/2016-jsposition/</link>
+      <pubDate>Wed, 03 Aug 2016 00:06:31 +0000</pubDate>
+      
+      <guid>/posts/2016-jsposition/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;最近事儿比较多，一直没时间写东西，前几天又遇到关于获取元素大小的问题，每次遇到这类问题就翻书，比较费时间，所以总结一下。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>Javascript中Array方法的总结</title>
+      <link>/posts/2016-jsarray/</link>
+      <pubDate>Wed, 03 Aug 2016 00:01:05 +0000</pubDate>
+      
+      <guid>/posts/2016-jsarray/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;在ECMAScript中最常用的类型之一就是Array类型，Array类型的方法也有很多，所以在这篇文章中，梳理一下Array类型的方法。&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+    <item>
+      <title>文件上传（二）---新XMLHttpRequest实现带进度条文件上传</title>
+      <link>/posts/2016-fileupload2/</link>
+      <pubDate>Thu, 14 Apr 2016 23:10:58 +0000</pubDate>
+      
+      <guid>/posts/2016-fileupload2/</guid>
+      <description>&lt;p&gt;前几天搞得那个文件上传，最近工作不太忙，又开始完善。这次主要添加了文件上传的进度部分，主要用到的则是XMLHttpRequest2的progress，由于我读的是《javascript高级程序设计》（第三版），这里我遇到一个关于progeress事件的坑，后面详细解答。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>初探ES6——轮播图实践总结</title>
+      <link>/posts/2016-es6practice/</link>
+      <pubDate>Mon, 11 Apr 2016 00:10:54 +0000</pubDate>
+      
+      <guid>/posts/2016-es6practice/</guid>
+      <description>&lt;p&gt;最近因为同学的一个轮播图不会写，让我萌生了用ES6写一个轮播图的想法（本人喜欢这些玩儿一些新的东西），以前就知道ES6，但是一直没有学，现在终于下决心学了，借助阮一峰老师的书&lt;a href=&#34;http://es6.ruanyifeng.com/&#34;&gt;ECMAScript 6 入门&lt;/a&gt; 和Youtube上面老外的视频学习ES6非常不错。阮一峰老师的书写的非常详细，推荐想学习的ES6的同学仔细看看。本篇文章会总结在实践中用到的ES6的知识。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>文件上传（一）---H5 file API，canvas</title>
+      <link>/posts/2016-fileupload/</link>
+      <pubDate>Thu, 31 Mar 2016 23:35:12 +0000</pubDate>
+      
+      <guid>/posts/2016-fileupload/</guid>
+      <description>&lt;p&gt;最近公司让调研关于webUploader的图片上传中能否压缩，能否实现图片的格式转换，如果能如何实现，经过调研，这个插件可以实现文件的压缩，但是不能实现图片的格式转换，同时在调研过程中，知道了很多新的东西，H5 file API，canvas，等等，所以有了自己写一个文件上传来熟悉这些东西，所以有了本篇文章。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>H5 Canvas实现图片格式的转换</title>
+      <link>/posts/2016-canvas/</link>
+      <pubDate>Tue, 22 Mar 2016 23:46:18 +0000</pubDate>
+      
+      <guid>/posts/2016-canvas/</guid>
+      <description>&lt;p&gt;今天早上到公司，看到CTO要求调查关于前端如何实现图片格式转换，自己上网找了下关于canvas如何实现图片格式转换，其实还是蛮简单的，但是因为网上的教程着实写的简单，而且都一样，我也是醉了，所以写下这篇博客，以记录今天的调查结果。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

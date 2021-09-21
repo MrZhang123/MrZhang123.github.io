@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>从零开始搭建React应用（一）——基础搭建 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="项目链接：https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"从零开始搭建React应用（一）——基础搭建",
+      "item":"/posts/2018-reactproject1/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2018-reactproject1/"
+    },
+    "headline": "从零开始搭建React应用（一）——基础搭建 | 博客","datePublished": "2018-07-18T10:26:46+00:00",
+    "dateModified": "2018-07-18T10:26:46+00:00",
+    "wordCount":  448 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cp\u003e项目链接：\u003ca href=\u0022https:\/\/github.com\/MrZhang123\/Web_Project_Build\/tree\/master\/react-webpack\u0022\u003ehttps:\/\/github.com\/MrZhang123\/Web_Project_Build\/tree\/master\/react-webpack\u003c\/a\u003e\u003c\/p\u003e"
+}
+</script><meta property="og:title" content="从零开始搭建React应用（一）——基础搭建 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2018-reactproject1/" />
+
+
+
+
+<meta property="og:description" content="项目链接：https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2018-07-18T10:26:46&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2018-07-18T10:26:46&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="React" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2018-reactcssmodules/" />
+
+<meta property="og:see_also" content="/posts/2017-reactsum/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">从零开始搭建React应用（一）——基础搭建</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-07-18</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react/" class="hover:text-eureka">React</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <p>项目链接：<a href="https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack">https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack</a></p>
+<h2 id="核心">核心</h2>
+<ul>
+<li>React:16.3.2</li>
+<li>React-dom:16.3.2</li>
+<li>Webpack:4.6.0</li>
+<li>React-router-dom:4.2.2</li>
+<li>Redux:4.0.0</li>
+<li>React-hot-loader:4.1.2</li>
+</ul>
+<h2 id="目录结构">目录结构</h2>
+<pre><code class="language-sh">├── README.md
+├── build
+│   ├── webpack.base.config.js
+│   ├── webpack.dev.config.js
+│   └── webpack.production.config.js
+├── package.json
+├── postcss.config.js
+├── src
+│   ├── App.js
+│   ├── components
+│   │   └── Loading
+│   │       └── index.js
+│   ├── index.html
+│   ├── main.js
+│   ├── redux
+│   │   ├── actions
+│   │   │   └── demo.js
+│   │   ├── middleware
+│   │   │   └── index.js
+│   │   ├── reducers
+│   │   │   ├── demo.js
+│   │   │   └── index.js
+│   │   └── store
+│   │       └── index.js
+│   ├── static
+│   │   └── css
+│   │       └── normalize.css
+│   ├── styles.scss
+│   └── views
+│       ├── Content
+│       │   ├── About
+│       │   │   └── index.js
+│       │   ├── Home
+│       │   │   └── index.js
+│       │   ├── Topics
+│       │   │   └── index.js
+│       │   └── router.js
+│       └── RouterLink
+│           └── index.js
+└── yarn.lock
+</code></pre>
+<h2 id="基础搭建">基础搭建</h2>
+<p>首先搭建一个基础的React开发环境，没有redux和react-router</p>
+<h3 id="安装必须的包">安装必须的包</h3>
+<pre><code class="language-sh"># dependencies
+yarn add react react-dom
+
+# devDependencies
+yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader babel-polyfill babel-preset-env babel-preset-react babel-preset-stage-0 cross-env css-loader file-loader jsx-loader style-loader url-loader
+</code></pre>
+<p><strong>说明</strong></p>
+<ol>
+<li>webpack4的cli(command line interface)已经移动到webpack-cli了，如果要使用CLI,你需要安装webpack-cli，具体使用可以查看<a href="https://doc.webpack-china.org/api/cli/">webpack-cli的文档</a>。</li>
+<li>由于Babel默认只转换新的JavaScript句法（syntax），而不转换新的API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign），所以如果想使用这些方法就必须使用babel-polyfill，为当前环境提供一个垫片。</li>
+</ol>
+<h3 id="配置webpack">配置webpack</h3>
+<p>在build文件夹下新建三个文件——webpack.base.config.js, webpack.dev.config.js, webpack.production.config.js，将dev和produciton里公共的部分放在base文件中。</p>
+<pre><code class="language-js">// webpack.base.config.js
+const path = require('path')
+
+module.exports = {
+  entry: {
+    main: [
+      'babel-polyfill',
+      path.resolve(__dirname, '../src/main.js')
+    ]
+  },
+  output: {
+    path: path.resolve(__dirname, '../dist'),
+    publicPath: '/',
+    filename: '[name].js',
+    chunkFilename: 'chunk/[name].[chunkhash].js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader'
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: '[name].[ext]?[hash]'
+        }
+      }
+    ]
+  },
+  resolve: {
+    modules: ['node_modules'],
+    extensions: ['.web.js', '.js', '.jsx', '.json']
+  },
+  mode: '' // webpack v4 add
+}
+</code></pre>
+<p>由于是webpack的公共配置文件，所以这里mode设置空，之后在dev和prodctuon中再分别设置。</p>
+<h4 id="webpack4的mode">webpack4的mode</h4>
+<p>在webpack v4中新增一些默认配置，通过设置<code>mode</code>是<code>development</code>和<code>production</code>（默认）来启用在开发环境和生产环境的默认配置。</p>
+<p>1.二者都有的配置</p>
+<pre><code class="language-js">//parent chunk中解决了的chunk会被删除
+optimization.removeAvailableModules:true
+//删除空的chunks
+optimization.removeEmptyChunks:true
+//合并重复的chunk
+optimization.mergeDuplicateChunks:true
+</code></pre>
+<p>2.development的默认配置</p>
+<pre><code class="language-js">//调试
+devtool:eval
+//缓存模块, 避免在未更改时重建它们。
+cache:true
+//缓存已解决的依赖项, 避免重新解析它们。
+module.unsafeCache:true
+//在 bundle 中引入「所包含模块信息」的相关注释
+output.pathinfo:true
+//在可能的情况下确定每个模块的导出,被用于其他优化或代码生成。
+optimization.providedExports:true
+//找到chunk中共享的模块,取出来生成单独的chunk
+optimization.splitChunks:true
+//为 webpack 运行时代码创建单独的chunk
+optimization.runtimeChunk:true
+//编译错误时不写入到输出
+optimization.noEmitOnErrors:true
+//给模块有意义的名称代替ids
+optimization.namedModules:true
+//给模chunk有意义的名称代替ids
+optimization.namedChunks:true
+</code></pre>
+<p>3.production的默认设置</p>
+<pre><code class="language-js">//性能相关配置
+performance:{hints:&quot;error&quot;....}
+//某些chunk的子chunk以一种方式被确定和标记,这些子chunks在加载更大的块时不必加载
+optimization.flagIncludedChunks:true
+//给经常使用的ids更短的值
+optimization.occurrenceOrder:true
+//确定每个模块下被使用的导出
+optimization.usedExports:true
+//识别package.json or rules sideEffects 标志
+optimization.sideEffects:true
+//尝试查找模块图中可以安全连接到单个模块中的段。- -
+optimization.concatenateModules:true
+//使用uglify-js压缩代码
+optimization.minimize:true
+</code></pre>
+<h4 id="配置webpackdevconfigjs">配置webpack.dev.config.js</h4>
+<pre><code class="language-js">const webpack = require('webpack')
+const config = require('./webpack.base.config.js')
+const WebpackDevServer = require('webpack-dev-server')
+const PORT = process.env.PORT || 8000 // 默认8000端口，可以通过package.json配置
+
+config.entry.main = (config.entry.main || []).concat([
+  `webpack-dev-server/client?http://localhost:${PORT}/`,
+  'webpack/hot/dev-server'
+])
+
+config.plugins = (config.plugins || []).concat([
+  new webpack.HotModuleReplacementPlugin()
+])
+
+config.mode = 'development'
+
+const compiler = webpack(config)
+
+const server = new WebpackDevServer(compiler, {
+  hot: true, // 开启wbepack HMR
+  quiet: true,
+  historyApiFallback: true,
+  filename: config.output.filename,
+  publicPath: config.output.publicPath,
+  stats: {
+    colors: true
+  }
+})
+
+server.listen(PORT, 'localhost', () =&gt; {
+  console.log(`server started at localhost:${PORT}`)
+})
+</code></pre>
+<p>关于<code>output.publicPath</code>和<code>devServer.publicPath</code>的区别可以参考我的文章：<a href="https://juejin.im/post/5ae9ae5e518825672f19b094">Webpack中publicPath详解</a></p>
+<h4 id="配置webpackproductionconfigjs">配置webpack.production.config.js</h4>
+<pre><code class="language-js">const path = require('path')
+const webpack = require('webpack')
+const config = require('./webpack.base.config')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+
+config.mode = 'production'
+
+config.plugins = (config.plugins || []).concat([
+	new CleanWebpackPlugin(['dist'], {
+    root: path.resolve(__dirname, '../')
+  }),
+  new webpack.HashedModuleIdsPlugin()
+])
+
+module.exports = config
+</code></pre>
+<h2 id="结语">结语</h2>
+<p>至此，一个简单的React开发环境就搭建完成，但是在使用后会发现一些问题，比如webpack将js和css打包在一起，我们在使用webpack的HMR时候，只要保存，页面就会刷新，页面的状态会重置等问题以及加入常用的redux和react-router，下一篇——<a href="https://juejin.im/post/5b4de4496fb9a04fc226a7af">从零开始搭建React应用（二）——React应用架构</a>将就这些问题作出解决。</p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/react/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#React</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2018-reactproject2/" class="block">从零开始搭建React应用（二）——React应用架构</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2018-es2018/" class="block">ES2018（ES9）的新特性</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2018-reactcssmodules/">CSS Modules在React中的应用</a>
+            <br />
+            
+            <a href="/posts/2017-reactsum/">React使用小记</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

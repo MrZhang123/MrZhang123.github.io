@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>调用Google Map Api实现自定义Google Map | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="
+前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。
+">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"调用Google Map Api实现自定义Google Map",
+      "item":"/posts/2017-googlemap/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2017-googlemap/"
+    },
+    "headline": "调用Google Map Api实现自定义Google Map | 博客","datePublished": "2017-06-11T00:10:54+00:00",
+    "dateModified": "2017-06-11T00:10:54+00:00",
+    "wordCount":  162 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cblockquote\u003e\n\u003cp\u003e前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。\u003c\/p\u003e\n\u003c\/blockquote\u003e"
+}
+</script><meta property="og:title" content="调用Google Map Api实现自定义Google Map | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2017-googlemap/" />
+
+
+
+
+<meta property="og:description" content="
+前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。
+" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2017-06-11T00:10:54&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2017-06-11T00:10:54&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="Javascript" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2017-pagination/" />
+
+<meta property="og:see_also" content="/posts/2017-iframepost/" />
+
+<meta property="og:see_also" content="/posts/2016-promise/" />
+
+<meta property="og:see_also" content="/posts/2016-jsstring/" />
+
+<meta property="og:see_also" content="/posts/2016-jsposition/" />
+
+<meta property="og:see_also" content="/posts/2016-jsarray/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">调用Google Map Api实现自定义Google Map</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-06-11</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <blockquote>
+<p>前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。</p>
+</blockquote>
+<h2 id="加载-google-maps-javascript-api">加载 Google Maps JavaScript API</h2>
+<p>官方指导教程中写的引入的Google Map API是异步调用的，引入方式如下：</p>
+<pre><code class="language-html">&lt;script&gt;
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
+  }
+&lt;/script&gt;
+&lt;script async defer src=&quot;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>这里需要注意一点官方提供是异步加载Google Maps JavaScript API，这样会让网站运行速率更高，<code>但是这样会有一个问题，就是在自己写的js必须与引用在引入api之前，否则会报错。</code>由于项目中js api只能在自己写的js的后面，所以只能使用同步的方式引入api js，引入方式如下：</p>
+<pre><code class="language-js">&lt;script src=&quot;https://maps.googleapis.com/maps/api/js?key=yourkey&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>这里的key是通过申请成为谷歌开发者然后获取的密钥。</p>
+<h2 id="创建地图对象">创建地图对象</h2>
+<p>地图的 JavaScript 类是 Map 类。该类的对象定义页面上的单个地图。（创建该类的多个实例–每个对象都将定义页面上的一个不同地图。）我们利用 JavaScript new 运算符来新建该类。</p>
+<pre><code class="language-js">//初次进入页面只显示首都不显示坐标，只定义地图
+const map = new google.maps.Map(document.getElementById('map'), {
+  center: capitalLatLng,
+  zoom: mapZoom,
+  maxZoom: mapMaxZoom,
+  minZoom: mapMinZoom,
+  //禁用街景地图
+  streetViewControl:false,
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
+  //控制地图类型控件的位置
+  mapTypeControlOptions: {
+    style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+    position: google.maps.ControlPosition.TOP_RIGHT
+  },
+});
+</code></pre>
+<ul>
+<li>center：设置地图初始化后中心点的位置，接受经纬度对象{lat: -25.363, lng: 131.044}</li>
+<li>zoom：地图初始化后的缩放比例</li>
+<li>mapTypeId：设置地图类型，这里设置的就是普通的街道地图</li>
+<li>mapTypeControlOptions：修改地图类型控件</li>
+</ul>
+<p>谷歌地图默认会显示缩放控件（zoomControl），地图类型控件（mapTypeControl），街景小人（streetViewControl），全屏按钮（fullscreenControl，移动设备可见），除此之外还有旋转控件（rotateControl，默认情况下，该控件是否显示取决于给定地图类型在当前的缩放级别和位置上是否存在 45° 图像），比例控件（scaleControl，默认不显示）。但是有些时候可能需要调节他们的位置或者是否显示，可以通过相应的Options去控制，例如在上面初始化中，控制地图类型控件的位置。</p>
+<h2 id="创建地图marker">创建地图marker</h2>
+<p>我们在创建好地图后需要根据坐标去在地图中标注出相应的位置（marker对象），创建方式如下：</p>
+<pre><code class="language-js">//latlngArr为所地理位置数组
+latlngArr.map((position, index) =&gt; {
+  let marker = new google.maps.Marker({
+    position,
+    zIndex: 0,
+    map
+  });
+});
+</code></pre>
+<p>其中<code>map</code>为前面所创建的地图，<code>postion</code>则为marker的坐标位置。</p>
+<h4 id="给marker添加事件">给marker添加事件</h4>
+<p>经常见到在点击marker出现弹窗，这个效果可以通过给marker添加点击事件</p>
+<pre><code class="language-js">marker.addListener('click', function (e) {
+  map.setZoom(mapMaxZoom);
+});
+</code></pre>
+<p>这里实现了一个点击设置地图放大到最大的效果，这里需要多说一句，就是在对象中的熟悉是可以通过<code>set</code>去设置的。</p>
+<h4 id="设置marker自动居中">*设置marker自动居中</h4>
+<p>当设置了多个marker在地图中后，会发现点击某个不在中心的marker后，它并不会自动居中，这一点很不友好，为了设置点击自动居中，需要添加如下代码：</p>
+<pre><code class="language-js">//map auto center
+const bounds = new google.maps.LatLngBounds();
+latlngArr.map((position, index) =&gt; {
+  let marker = new google.maps.Marker({
+    position,
+    icon: notSelect,
+    zIndex: 0,
+    map
+  });
+  bounds.extend(marker.position);
+});
+map.fitBounds(bounds);
+map.panToBounds(bounds);
+</code></pre>
+<ul>
+<li>一个<code>LatLngBounds</code>实例表示地理坐标中的矩形，包括穿过180度纵向子午线在内的矩形</li>
+<li><code>LatLngBounds</code>类下的<code>extend</code>方法用于扩展这个边界以包含给定的点（marker）</li>
+<li><code>fitBounds</code>设置视口包含给定的边界</li>
+</ul>
+<h4 id="设置地图缩放自动调整">*设置地图缩放自动调整</h4>
+<p>根据marker的分布自动调整地图缩放比例是很常见的交互，Google Map API提供了<code>panToBounds</code>方法用于根据给定的<code>LatLngBounds</code>绘制出包含最小边界的地图，所以在代码中只需要设置<code>map.panToBounds(bounds)</code>即可。</p>
+<h2 id="总结">总结</h2>
+<p>真心觉得Google的文档写的很好，而且Google Map的功能很强大，我在项目中只是使用了些简单的功能，更复杂功能请参考Google Map API：https://developers.google.com/maps/documentation/javascript/reference?csw=1</p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/javascript/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Javascript</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2017-reactnativelist/" class="block">RN长列表--ListView &amp;&amp; SectionList</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2017-pagination/" class="block">写一个简单的分页插件</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2017-pagination/">写一个简单的分页插件</a>
+            <br />
+            
+            <a href="/posts/2017-iframepost/">iframe跨域POST提交</a>
+            <br />
+            
+            <a href="/posts/2016-promise/">Promise－－优雅解决回调嵌套</a>
+            <br />
+            
+            <a href="/posts/2016-jsstring/">Javascript中字符串方法总结</a>
+            <br />
+            
+            <a href="/posts/2016-jsposition/">JS中的位置与大小</a>
+            <br />
+            
+            <a href="/posts/2016-jsarray/">Javascript中Array方法的总结</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

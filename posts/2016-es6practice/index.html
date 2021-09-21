@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>初探ES6——轮播图实践总结 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="最近因为同学的一个轮播图不会写，让我萌生了用ES6写一个轮播图的想法（本人喜欢这些玩儿一些新的东西），以前就知道ES6，但是一直没有学，现在终于下决心学了，借助阮一峰老师的书ECMAScript 6 入门 和Youtube上面老外的视频学习ES6非常不错。阮一峰老师的书写的非常详细，推荐想学习的ES6的同学仔细看看。本篇文章会总结在实践中用到的ES6的知识。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"初探ES6——轮播图实践总结",
+      "item":"/posts/2016-es6practice/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2016-es6practice/"
+    },
+    "headline": "初探ES6——轮播图实践总结 | 博客","datePublished": "2016-04-11T00:10:54+00:00",
+    "dateModified": "2016-04-11T00:10:54+00:00",
+    "wordCount":  150 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cp\u003e最近因为同学的一个轮播图不会写，让我萌生了用ES6写一个轮播图的想法（本人喜欢这些玩儿一些新的东西），以前就知道ES6，但是一直没有学，现在终于下决心学了，借助阮一峰老师的书\u003ca href=\u0022http:\/\/es6.ruanyifeng.com\/\u0022\u003eECMAScript 6 入门\u003c\/a\u003e 和Youtube上面老外的视频学习ES6非常不错。阮一峰老师的书写的非常详细，推荐想学习的ES6的同学仔细看看。本篇文章会总结在实践中用到的ES6的知识。\u003c\/p\u003e"
+}
+</script><meta property="og:title" content="初探ES6——轮播图实践总结 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2016-es6practice/" />
+
+
+
+
+<meta property="og:description" content="最近因为同学的一个轮播图不会写，让我萌生了用ES6写一个轮播图的想法（本人喜欢这些玩儿一些新的东西），以前就知道ES6，但是一直没有学，现在终于下决心学了，借助阮一峰老师的书ECMAScript 6 入门 和Youtube上面老外的视频学习ES6非常不错。阮一峰老师的书写的非常详细，推荐想学习的ES6的同学仔细看看。本篇文章会总结在实践中用到的ES6的知识。" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2016-04-11T00:10:54&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2016-04-11T00:10:54&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="Javascript" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2016-canvas/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">初探ES6——轮播图实践总结</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-04-11</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <p>最近因为同学的一个轮播图不会写，让我萌生了用ES6写一个轮播图的想法（本人喜欢这些玩儿一些新的东西），以前就知道ES6，但是一直没有学，现在终于下决心学了，借助阮一峰老师的书<a href="http://es6.ruanyifeng.com/">ECMAScript 6 入门</a> 和Youtube上面老外的视频学习ES6非常不错。阮一峰老师的书写的非常详细，推荐想学习的ES6的同学仔细看看。本篇文章会总结在实践中用到的ES6的知识。</p>
+<h2 id="模板字符串">模板字符串</h2>
+<p>这是我非常喜欢的ES6的特点之一，非常直观的反应出变量和字符串之间的关系，在ES5中，如果我们想在字符串中添加变量，需要用如下写法：</p>
+<pre><code class="language-javascript">animate(box, 'translate(-' + itemWidth * num + 'px,0)', 1000, function () {
+    box.style.transitionDuration = '';
+    box.style.transform = 'translate(-800px,0)';
+    flag = true;
+});
+</code></pre>
+<p>现在用ES6的模板字符串，可以直接把字符串和变量相结合，更加易懂。</p>
+<pre><code class="language-javascript">animate(box, `translate(-${itemWidth*num}px,0)`, 1000, function() {
+    box.style.transitionDuration = '';
+    box.style.transform = `translate(-${itemWidth*(item.length-2)}px,0)`;
+    flag = true;
+});
+</code></pre>
+<p>是不是非常直观方便，从上面的两个简单示例中可以看出，在ES6中，字符串用反引号（``）标识，这一点需要知道。
+还有一个特点，模板字符串可以输出折行的字符串，这在ES5传统字符串中是无法做到的，必须借助（\n），且不能在书写时候写入回车，但是在ES6的字符串模板中，可以直接写入回车，空格，然后在字符串输出时候直接输出，非常方便。</p>
+<pre><code class="language-javascript">let myString=`abc
+de
+ffff  
+fas`;
+console.log(myString);
+/*输出abc
+de
+ffff  
+fas*/
+</code></pre>
+<h2 id="对函数的扩展">对函数的扩展</h2>
+<h3 id="1给函数设置默认值">1.给函数设置默认值</h3>
+<p>在对函数的扩展中，添加了一项给函数设置默认值的功能，这个功能可以说是非常赞的。是否记得我们在ES5中是怎么给函数设置默认值？</p>
+<pre><code class="language-javascript">function test(a,b,c){
+    var a=a||10;
+    var a=b||15;
+    var c=c||20;
+    console.log(a+b+c);
+}
+</code></pre>
+<p>这里我们设置默认值，可以达到自己的预期效果，直到有一天，我们把a=0传入，这时候，我们这么写就不对了，对于程序来说，0就是false，所以a会取默认值10，从而达不到我们预期的效果。但是ES6为我们提供非常好的设置默认值的方式。上面的代码可以改写成下面的这样：</p>
+<pre><code class="language-javascript">function test(a=10,b=15,c=20){
+    console.log(a+b+c);
+}
+</code></pre>
+<h3 id="2箭头函数">2.箭头函数</h3>
+<p>了解Coffescript的同学应该清楚，Cofficescript的强大之处在于它的无处不在的箭头函数，写起来非常爽，现在，ES6正式引入箭头函数，让我们的程序可以得到简化，例如：</p>
+<pre><code class="language-javascript">//ES5的写法
+var test = function (a,b){
+    return a+b;
+}
+//ES6的箭头函数
+var test2 = test(a,b)=&gt;a+b;
+</code></pre>
+<p>在写轮播时候，需要鼠标移动到下面的这个小圆点在小圆点类数组对象中是第几个，从而才能让图运动到正确位置，在ES5的时候，我们需要给当前这个对象添加属性，写起来比较繁琐，写法如下：</p>
+<pre><code class="language-javascript">var liList = document.querySelectorAll('li');
+for(var i=0;i&lt;liList.length;i++){
+    liList[i].index=i;
+    liList[i].addEventListener('mouseenter',function(){
+        console.log(this.index);
+    },false);
+}
+</code></pre>
+<p>这个this.index属性就是当前的鼠标放上去的元素的索引，然后根据这个索引去得到当前的元素。但是在ES6中，我们可以直接使用箭头函数以及在数组中新引入的findIndex来找到当前的活动元素的索引，代码如下：</p>
+<pre><code class="language-javascript">let liList = document.querySelectorAll('li');
+let ArrayliList=Array.form(liList);
+for(var i=0;i&lt;liList.length;i++){
+    liList[i].index=i;
+    liList[i].addEventListener('mouseenter',function(){
+        let thisIndex = ArrayliList.findIndex((n) =&gt; n == this);
+    },false);
+}
+</code></pre>
+<p>以上代码得到的thisIndex就是当前鼠标放上去的索引，这里我对箭头函数中n这个参数的理解是，传入参数n后会遍历数组中的对象，从而找到与this相等的那个对象，然后返回它的索引，这里用到<font color='red'>Array.from()，这是一个ES6中数组中新增的方法，可以将类数组转换成数组。</font></p>
+<h2 id="es6的forof循环">ES6的for&hellip;of循环</h2>
+<p>上面的JS代码循环用了for，其实可以用ES6中的for&hellip;of循环去代替，这样写法更加简洁。是否记得JS中的for&hellip;in循环，这个循环可以循环键值对中的键，但是无法循环值，而for&hellip;of的出现正是为了弥补它的不足，for&hellip;of循环可以使用的范围包括数组、Set和Map结构、某些类似数组的对象（比如arguments对象、DOM NodeList对象）、Generator对象，以及字符串。所以我们可以利用该循环替代for循环，但是这里要注意一点<font color='red'>如果直接用for&hellip;of循环，在chrome49下会报错，官方已证实这是chrome49的BUG，将会在chrome51中修复</font>，所以我在写的时候，利用Array.from()将NodeList对象转换为数组，这样可以放心操作，代码如下：</p>
+<pre><code class="language-javascript">let liList = document.querySelectorAll('li');
+let ArrayliList=Array.form(liList);
+for(let li of liList){
+    li.addEventListener('mouseenter',function(){
+        let thisIndex = ArrayliList.findIndex((n) =&gt; n == this);
+    },false);
+}
+</code></pre>
+<p>是不是非常简洁:)
+以上就是最近几天对ES6的初探的总结，感觉仅仅只是这些就已经让我感受到ES6的魅力了，接下来，我会再做几个demo，慢慢去熟悉这个新的但是非常好玩儿的ES6。</p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/javascript/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Javascript</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2016-fileupload2/" class="block">文件上传（二）---新XMLHttpRequest实现带进度条文件上传</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2016-fileupload/" class="block">文件上传（一）---H5 file API，canvas</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2016-canvas/">H5 Canvas实现图片格式的转换</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

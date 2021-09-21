@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>RN长列表--ListView &amp;&amp; SectionList | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"RN长列表--ListView \u0026\u0026 SectionList",
+      "item":"/posts/2017-reactnativelist/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2017-reactnativelist/"
+    },
+    "headline": "RN长列表--ListView \u0026\u0026 SectionList | 博客","datePublished": "2017-06-11T00:10:54+00:00",
+    "dateModified": "2017-06-11T00:10:54+00:00",
+    "wordCount":  221 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cp\u003e突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。\u003c\/p\u003e"
+}
+</script><meta property="og:title" content="RN长列表--ListView &amp;&amp; SectionList | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2017-reactnativelist/" />
+
+
+
+
+<meta property="og:description" content="突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2017-06-11T00:10:54&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2017-06-11T00:10:54&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="React Native" />
+
+
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">RN长列表--ListView &amp;&amp; SectionList</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-06-11</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react-native/" class="hover:text-eureka">React Native</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <p>突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。</p>
+<p>在项目中我用到的比较多的是长列表，所以这篇文章主要是记一下对RN的<code>ListView</code>和<code>SectionList</code>的一些总结。我项目中使用的RN是0.44，关于为什么不用性能更好的<code>FlatList</code>而使用老的<code>ListView</code>，是因为自己本身第一次接触RN，所以担心用不好<code>FlatList</code>而且担心会有什么bug，毕竟这个是在0.43版本才添加的。</p>
+<h2 id="listview">ListView</h2>
+<p>对于<code>ListView</code>最重要的两个属性，一个是数据源（dataSource），再一个就是列表项渲染（renderRow）。<code>ListView</code>可以根据不同的数据结构对应的生成普通长列表和分组长列表。</p>
+<h3 id="普通长列表">普通长列表</h3>
+<p>普通长列表使用<code>cloneWithRows(dataBlob, rowIdentities)</code>创建datasource，在项目中<code>dataBlob</code>的数据结构如下：</p>
+<pre><code class="language-js">[
+    {id:1},
+    {name:'Mark'},
+    ...
+]
+</code></pre>
+<p>在使用<code>renderRow(rowData, sectionID, rowID, highlightRow)</code>渲染列表项的时候，<code>rowData</code>就是数组中每一个对象。</p>
+<h3 id="分组长列表">分组长列表</h3>
+<p>在项目中，遇到分组长列表，由于RN版本为0.44，所以有<code>ListView</code>和<code>SectionList</code>两种选择方案，最终我选择了<code>SectionList</code>，因为我发现<code>ListView</code>的<code>section</code>只能是一个简单的字符串，不能是一个对象（这里说实话我也不知道对不对，若不对，请指正并说明如何使用<code>ListView</code>实现<code>section</code>是一个对象）。</p>
+<p>这里我要吐槽一下RN的文档，真的是有些地方写的太简单，比如在<code>ListView</code>这里写到使用<code>cloneWithRowsAndSections</code>的使用，只是简单的说跟<code>cloneWithRows</code>差不多，而接受的数据结构也就简单的说明有三种：</p>
+<pre><code class="language-js">{ sectionID_1: { rowID_1: &lt;rowData1&gt;, ... }, ... }
+//or
+{ sectionID_1: [ &lt;rowData1&gt;, &lt;rowData2&gt;, ... ], ... }
+//or
+[ [ &lt;rowData1&gt;, &lt;rowData2&gt;, ... ], ... ]
+</code></pre>
+<p>但是具体这里的是些什么，我觉得没有说清楚。所以我在项目中试了下用<code>ListView</code>的<code>cloneWithRowsAndSections</code>实现带有粘性标题的列表，发现前两种<code>sectionID</code>只能是一个简单的字符串或者数字，不能是一个对象，数据结构如下：</p>
+<pre><code class="language-js">const dataSource1 = [
+    ['row1','row2'],
+    ['row3','row4'],
+    ['row5','row6'],
+];
+
+const dataSoure2 = {
+    'id1':['row1','row2'],
+    'id2':['row3','row4'],
+    'id3':['row5','row6'],
+}
+
+const dataSoure3 = {
+    'id1':{'row1','row2'},
+    'id2':{'row3','row4'},
+    'id3':{'row5','row6'},
+}
+cloneWithRowsAndSections(dataSource);
+</code></pre>
+<p>dataSoure1生成的sectionHeader是数组的下标，而第二个第三个分别是对应的<code>key</code>，在项目中我的sectionHeader是一个对象，类似于<code>{headerName:'',headerContent:''}</code>，所以无法使用。</p>
+<h2 id="sectionlist分组长列表">SectionList分组长列表</h2>
+<p><code>SectionList</code>和<code>FlatList</code>一样是新增的高性能长列表，在文档中关于<code>SectionList</code>接受的数据结构描述如下：</p>
+<pre><code class="language-js">&lt;SectionList
+  renderItem={({item}) =&gt; &lt;ListItem title={item.title} /&gt;}
+  renderSectionHeader={({section}) =&gt; &lt;H1 title={section.title} /&gt;}
+  sections={[ // homogenous rendering between sections
+    {data: [...], title: ...},
+    {data: [...], title: ...},
+    {data: [...], title: ...},
+  ]}
+/&gt;
+
+&lt;SectionList
+  sections={[ // heterogeneous rendering between sections
+    {data: [...], title: ..., renderItem: ...},
+    {data: [...], title: ..., renderItem: ...},
+    {data: [...], title: ..., renderItem: ...},
+  ]}
+/&gt;
+</code></pre>
+<p>说实话我第一次看到这个描述的时候很懵逼，这好像并没说明data里具体的数据结构是什么样子的，<code>renderSectionHeader</code>中的数据又该如何取，在网上看了一个简单的讲解才大概知道<code>sections</code>里的数据应该怎么写，代码如下：</p>
+<pre><code class="language-js">import React , {Component} from 'react';
+import {
+    AppRegistry,
+    StyleSheet,
+    Text,
+    View,
+    SectionList
+} from 'react-native';
+
+const dataSource = [
+    {data:[{name:'nader'},{name:'chris'}],key:'A'},
+    {data:[{name:'nick'},{name:'amanda'}],key:'B'}
+];
+
+export default class SectionListExample extends Component {
+    renderItem = (item) =&gt; {
+        return &lt;Text style={styles.text}&gt;{item.item.name}&lt;/Text&gt;
+    }
+
+    renderHeader = (headerItem) =&gt; {
+        return &lt;Text style={styles.header}&gt;{headerItem.section.key}&lt;/Text&gt;
+    }
+
+    render(){
+        return(
+            &lt;View style={styles.container}&gt;
+                &lt;SectionList
+                    renderItem={this.renderItem}
+                    renderSectionHeader={this.renderHeader}
+                    sections={dataSource}
+                    keyExtractor={(item)=&gt;item.name}
+                /&gt;
+            &lt;/View&gt;
+        )
+    }
+}
+</code></pre>
+<p>这里需要注意一点就是<code>renderItem</code>所用的数据<code>key</code>必须是<code>data</code>，而且<code>key</code>必须是唯一的，然后其余的数据用在<code>headerItem</code>中，这样就非常容易在<code>sectionHeader</code>中渲染出多个后台给定的数据。</p>
+<h4 id="sectionlist和flatlist需要注意几点"><code>SectionList</code>和<code>FlatList</code>需要注意几点：</h4>
+<ul>
+<li>
+<p>文档中提到<span style='color:red'>为了优化内存占用同时保持滑动的流畅，列表内容会在屏幕外异步绘制。这意味着如果用户滑动的速度超过渲染的速度，则会先看到空白的内容。这是为了优化不得不作出的妥协，而我们也在设法持续改进。</span>所以如果不想在滑动过快导致白屏出现，就只能使用<code>ListView</code>。</p>
+</li>
+<li>
+<p>在我的项目中设置<code>stickySectionHeadersEnabled={true}</code>的时候，粘性标题在往下滑动一会儿再滑动回去的时候，标题会消失，这不知道是我代码有问题还是本身<code>SectionList</code>的粘性标题在安卓下就有问题，不过在官方文档中写到<code>Only enabled by default on iOS because that is the platform standard there.</code>所以可能是<code>SectionList</code>粘性标题在安卓下就有问题。</p>
+</li>
+<li>
+<p><code>SectionList</code>和<code>FlatList</code>提供了一个叫<code>legacyImplementation</code>的属性，该属性如果设置为<code>true</code>则使用旧的<code>ListView</code>实现。在上述提到的两个问题中，如果将<code>SectionList</code>的<code>legacyImplementation</code>设置为<code>true</code>，则两个问题均解决。个人觉得这是官方提供的一个降级的办法，所以其实我们可以抛弃<code>ListView</code>转而使用<code>FlatList</code>和<code>SectionList</code>，如果有什么问题，让它们用旧的<code>ListView</code>实现。</p>
+</li>
+</ul>
+<h2 id="最后">最后</h2>
+<p>最后列几个长列表（<code>ListView</code>，<code>SectionList</code>，<code>FlatList</code>）的常用属性</p>
+<p><code>onEndReached</code>（function）：当列表到达底部时候触发的事件，关于这个事件需要注意一点，<span style='color:red'>当第一次渲染时，如果数据不足一屏（比如初始值是空的），这个事件也会被触发，需要自行过滤</span></p>
+<p><code>onEndReachedThreshold</code>（number）：距离最后一个列表元素多少像素时候触发<code>onEndReached</code>事件</p>
+<p><code>initialListSize</code>（number）：初始化时候渲染多少条数据，如果不写择时逐条渲染</p>
+<p><code>showsVerticalScrollIndicator</code>（bool）：默认情况下，ListView有滚动条，当设置为false的时候不显示该滚动条（继承自ScrollView）</p>
+<p><code>pageSize</code>（number，仅<code>ListView</code>有）：每次事件循环（每帧）渲染的行数，常用于分页，数据请求回来后渲染多少条，不设置则逐条渲染。</p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/react-native/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#React Native</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2017-reactsum/" class="block">React使用小记</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2017-googlemap/" class="block">调用Google Map Api实现自定义Google Map</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

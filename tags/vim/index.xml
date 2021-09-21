@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on 博客</title>
+    <link>/tags/vim/</link>
+    <description>Recent content in Vim on 博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://www.wangchucheng.com/&#34;&gt;C. Wang&lt;/a&gt; and &lt;a href=&#34;https://www.ruiqima.com/&#34;&gt;R. Ma&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Sun, 15 Mar 2020 16:15:00 +0000</lastBuildDate><atom:link href="/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>vim的搜索与替换</title>
+      <link>/posts/2020-vimsearch/</link>
+      <pubDate>Sun, 15 Mar 2020 16:15:00 +0000</pubDate>
+      
+      <guid>/posts/2020-vimsearch/</guid>
+      <description>&lt;p&gt;在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记一次vim性能优化</title>
+      <link>/posts/2019-vimperformance/</link>
+      <pubDate>Sun, 01 Sep 2019 16:15:00 +0000</pubDate>
+      
+      <guid>/posts/2019-vimperformance/</guid>
+      <description>&lt;h3 id=&#34;关键点&#34;&gt;关键点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;vim -u NONE -N&lt;/code&gt;可以不加载vim配置和插件打开vim&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;vim --startuptime vim.log&lt;/code&gt;可以生成vim启动的log&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;vim-plug&lt;/code&gt;插件管理工具，给插件配置&lt;code&gt;for&lt;/code&gt; or &lt;code&gt;on&lt;/code&gt;可以实现插件懒加载&lt;/li&gt;
+&lt;li&gt;设置&lt;code&gt;foldmethod=syntax&lt;/code&gt;会导致vim插入模式下卡顿&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

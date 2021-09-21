@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>CSS Modules在React中的应用 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"CSS Modules在React中的应用",
+      "item":"/posts/2018-reactcssmodules/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2018-reactcssmodules/"
+    },
+    "headline": "CSS Modules在React中的应用 | 博客","datePublished": "2018-04-13T14:32:17+00:00",
+    "dateModified": "2018-04-13T14:32:17+00:00",
+    "wordCount":  269 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cp\u003e由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理\u003c\/p\u003e"
+}
+</script><meta property="og:title" content="CSS Modules在React中的应用 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2018-reactcssmodules/" />
+
+
+
+
+<meta property="og:description" content="由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2018-04-13T14:32:17&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2018-04-13T14:32:17&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="React" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2017-reactsum/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">CSS Modules在React中的应用</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2018-04-13</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/react/" class="hover:text-eureka">React</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <p>由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理</p>
+<ul>
+<li>写复杂的class名，降低冲突的概率</li>
+<li>给组件最外层元素添加一个class，限制范围</li>
+</ul>
+<p>但是这样做也不一定可以保证不会冲突，而且还导致class名字太复杂，嵌套太深，可维护性差，那么是否可以将CSS也像JS那样，实现模块化呢？答案是肯定的。CSS模块化方案很多，但是主要的就三类：</p>
+<h4 id="命名约定">命名约定</h4>
+<p>比较常用的有<a href="http://mrzhang123.github.io/2017/04/05/BEM/">BEM</a>，SMACSS和OOCSS，但是存在以下问题：</p>
+<ul>
+<li>JS CSS之间依旧没有打通变量和选择器</li>
+<li>命名太复杂</li>
+</ul>
+<h4 id="css-in-js">CSS in JS</h4>
+<p>直接在JS中写CSS并内联样式，例如aphrodite，babel-plugin-css-in-js等（<a href="http://michelebertoli.github.io/css-in-js/">点击查看所有CSS in JS的解决方案</a>）但是存在以下问题：</p>
+<ul>
+<li>样式代码可能会重复出现</li>
+<li>写法上已经和传统的CSS不再相似（例如<a href="https://github.com/Khan/aphrodite">aphrodite</a>，写法类似于React Native中样式的写法）</li>
+<li>不能利用成熟的CSS预处理器（或后处理器）</li>
+</ul>
+<h4 id="使用js来管理css模块">使用JS来管理CSS模块</h4>
+<p>使用JS编译原生CSS文件，使其具有模块化，典型的就是<a href="https://github.com/css-modules/css-modules">CSS Modules</a>。只要使用到webpack，就会使用到css-loader，在webpack中稍加配置即可使用</p>
+<h3 id="使用css-modules">使用CSS Modules</h3>
+<p>配置css-loader启动css modules</p>
+<pre><code class="language-js">// webpack.config.js
+  {
+    test: /\.css$/,
+    use: ExtractTextPlugin.extract({
+      fallback: 'style-loader',
+      use: {
+        loader: 'css-loader',
+        options:{
+          modules: true,
+          minimize: true,
+          localIdentName: '[path][name]__[local]--[hash:base64:5]'
+        }
+      }
+    })
+  },
+</code></pre>
+<pre><code class="language-css">// Button.css
+.button{
+  font-size: 10px;
+}
+</code></pre>
+<pre><code class="language-js">// Button.js
+import styles from './Button.css'
+console.log(styles)
+buttonElement.outerHTML = `&lt;div class=${styles.button}&gt;Button&lt;/div&gt;`
+</code></pre>
+<p>console出来的styles如下：</p>
+<pre><code class="language-js">{
+ button:&quot;src-components-Button-index__button--1mmZb&quot;
+ large:&quot;src-components-Button-index__large--2atzR&quot;
+ normall:&quot;src-components-Button-index__normall--3prnh&quot;
+ small:&quot;src-components-Button-index__small--34Wrr&quot;
+}
+</code></pre>
+<p>通过以上配置，css loader为我们生成如上class名字，其中<code>1mmZb</code>是按照<code>[hash:base64:5]</code>生成的，大大降低了命名冲突的概率。</p>
+<p>通过这些简单的处理，CSS Modules 实现了以下几点：</p>
+<ul>
+<li>所有样式都是局部作用域的，解决了全局污染问题</li>
+<li>class 名生成规则配置灵活，可以此来压缩 class 名</li>
+<li>只需引用组件的 JS 就能搞定组件所有的 JS 和 CSS</li>
+<li>依然是熟悉的CSS，学习成本低</li>
+</ul>
+<h3 id="在react中使用css-modules">在React中使用CSS Modules</h3>
+<p>直接在className处使用css中的class名即可</p>
+<pre><code class="language-js">import React, { Component } from 'react'
+import { render } from 'react-dom'
+import styles from './index.css'
+
+class Button extends Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+    console.log(styles)
+    let buttonClass = ''
+    switch (size) {
+      case 'large':
+        buttonClass = styles.large
+        break
+
+      case 'small':
+        buttonClass = styles.small
+        break
+
+      default:
+        buttonClass = styles.normall
+        break
+    }
+    return (
+      &lt;button className={buttonClass}&gt;确定&lt;/button&gt;
+    )
+  }
+}
+
+export default Button
+</code></pre>
+<p>注</p>
+<p>1.使用CSS Modules时发现，它只支持单独的class名字，不能像我们写css的时候一级一级的写，例如：<code>.a .b .c</code>，在CSS Modules中就是一步到位<code>.c</code>。</p>
+<p>2.CSS Modules提供了compose组合方法实现样式的复用，代码如下：</p>
+<pre><code class="language-css">.font {
+ line-height: 12px;
+ font-size: 12px;
+}
+
+.title-font {
+ composes: font;
+ font-size: 24px;
+}
+</code></pre>
+<h4 id="react-css-modules">React CSS Modules</h4>
+<p>但是有一个问题，我们在写样式的时候，需要频繁使用 styles.xxx，如何能够方便的直接写入class名字呢？可以使用<a href="https://github.com/gajus/react-css-modules">React CSS Modules</a>，它以高阶函数的形式生成className</p>
+<pre><code class="language-js">import React, { Component } from 'react'
+import { render } from 'react-dom'
+import CSSModules from 'react-css-modules'
+import styles from './index.css'
+
+class Button extends Component {
+  render() {
+    return (
+      &lt;button styleName='normall'}&gt;确定&lt;/button&gt;
+    )
+  }
+}
+
+export default CSSModules(Button, styles)
+</code></pre>
+<p>可以看到，react-css-modules是运行时的依赖，而且需要在运行时获取className，性能损耗比较大，可否把获取className前置到编译阶段？答案是可以的，可以使用<a href="https://github.com/gajus/babel-plugin-react-css-modules">babel-plugin-react-css-modules</a></p>
+<h4 id="babel-plugin-react-css-modules">babel-plugin-react-css-modules</h4>
+<p>babel-plugin-react-css-modules插件可以实现用styleName属性自动加载CSS模块，通过babel插件来进行语法树解析并最终生成className，写的时候，只需要将我们原来写的className替换成styleName即可。</p>
+<pre><code class="language-js">import React, { Component } from 'react'
+import { render } from 'react-dom'
+import styles from './index.css'
+
+class Button extends Component {
+  render() {
+    return (
+      &lt;button styleName='normall'}&gt;确定&lt;/button&gt;
+    )
+  }
+}
+
+export default Button
+</code></pre>
+<p>具体配置可以查看<a href="https://github.com/gajus/babel-plugin-react-css-modules#babel-plugin-react-css-modules">文档</a></p>
+<h3 id="参考">参考</h3>
+<p><a href="https://github.com/webpack-contrib/css-loader">https://github.com/webpack-contrib/css-loader</a></p>
+<p><a href="https://juanha.github.io/2017/01/10/react-css-modules/">https://juanha.github.io/2017/01/10/react-css-modules/</a></p>
+<p><a href="http://www.alloyteam.com/2017/03/getting-started-with-css-modules-and-react-in-practice/">http://www.alloyteam.com/2017/03/getting-started-with-css-modules-and-react-in-practice/</a></p>
+<p><a href="https://github.com/camsong/blog/issues/5">https://github.com/camsong/blog/issues/5</a></p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/react/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#React</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2018-webpackpublicpath/" class="block">Webpack中publicPath详解</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2018-maf/" class="block">MAF项目总结</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2017-reactsum/">React使用小记</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

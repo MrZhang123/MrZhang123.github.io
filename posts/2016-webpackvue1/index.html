@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>webpack与vue起步 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="
+记得第一次知道Vue.js是在勾三股四大大的微博，那时候他开始翻译vue的文档，从那时候开始到现在，看了几次vue的教程，每次都有更深的理解，因为之前并没有研究过angular等框架，所以对MVVM并不是很了解，但是经过这段时间对vuejs的一些研究，越来越懂了，这篇文章，只是对vuejs和webpack配合的非常基础的文章，我想随着我对vue的深入理解，会对组件化，模块化，MVVM有更深入的理解。
+">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"webpack与vue起步",
+      "item":"/posts/2016-webpackvue1/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2016-webpackvue1/"
+    },
+    "headline": "webpack与vue起步 | 博客","datePublished": "2016-05-31T21:37:08+00:00",
+    "dateModified": "2016-05-31T21:37:08+00:00",
+    "wordCount":  184 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cblockquote\u003e\n\u003cp\u003e记得第一次知道Vue.js是在勾三股四大大的微博，那时候他开始翻译vue的文档，从那时候开始到现在，看了几次vue的教程，每次都有更深的理解，因为之前并没有研究过angular等框架，所以对MVVM并不是很了解，但是经过这段时间对vuejs的一些研究，越来越懂了，这篇文章，只是对vuejs和webpack配合的非常基础的文章，我想随着我对vue的深入理解，会对组件化，模块化，MVVM有更深入的理解。\u003c\/p\u003e\n\u003c\/blockquote\u003e"
+}
+</script><meta property="og:title" content="webpack与vue起步 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2016-webpackvue1/" />
+
+
+
+
+<meta property="og:description" content="
+记得第一次知道Vue.js是在勾三股四大大的微博，那时候他开始翻译vue的文档，从那时候开始到现在，看了几次vue的教程，每次都有更深的理解，因为之前并没有研究过angular等框架，所以对MVVM并不是很了解，但是经过这段时间对vuejs的一些研究，越来越懂了，这篇文章，只是对vuejs和webpack配合的非常基础的文章，我想随着我对vue的深入理解，会对组件化，模块化，MVVM有更深入的理解。
+" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2016-05-31T21:37:08&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2016-05-31T21:37:08&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="Vue" />
+
+
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">webpack与vue起步</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2016-05-31</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/vue/" class="hover:text-eureka">Vue</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <blockquote>
+<p>记得第一次知道Vue.js是在勾三股四大大的微博，那时候他开始翻译vue的文档，从那时候开始到现在，看了几次vue的教程，每次都有更深的理解，因为之前并没有研究过angular等框架，所以对MVVM并不是很了解，但是经过这段时间对vuejs的一些研究，越来越懂了，这篇文章，只是对vuejs和webpack配合的非常基础的文章，我想随着我对vue的深入理解，会对组件化，模块化，MVVM有更深入的理解。</p>
+</blockquote>
+<h2 id="项目的创建">项目的创建</h2>
+<p>1.新建项目文件夹，并在其中建立<code>package.json</code></p>
+<pre><code class="language-js">$ mkdir [project name]
+$ cd [project name]
+$ npm init
+</code></pre>
+<p>2.在项目目录下新建<code>index.html</code></p>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Vue example&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div&gt;{{message}}&lt;/div&gt;
+    &lt;script src=&quot;dist/build.js&quot;&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>src文件夹，并在该文件夹下建立<code>main.js</code></p>
+<pre><code class="language-javascript">import Vue from 'vue'
+new Vue({
+    el:'body',
+    data:{
+        message:'test success!'
+    }
+});
+</code></pre>
+<h2 id="设置webpack">设置webpack</h2>
+<h3 id="1安装webpackwebpack-dev-server以及相关的loaders">1.安装webpack，webpack-dev-server以及相关的loaders</h3>
+<pre><code class="language-php"># 全局安装webpack，webpack-dev-server
+$ npm install -g webpack
+$ npm install -g webpack-dev-server
+# 为项目安装其他依赖
+$ npm i webpack-merge css-loader style-loader file-loader url-loader babel-core babel-loader babel-plugin-transform-runtime babel-preset-es2015 babel-preset-stage-0 babel-runtime vue vue-loader vue-html-loader vue-style-loader vue-hot-reload-api -D
+</code></pre>
+<ul>
+<li>webpack-merge：开发环境和生产环节的webpaak配置文件的配置合并</li>
+<li>css-loader：编译写入css</li>
+<li>style-loader：把编译后的css整合进html</li>
+<li>file-loader：编译写入文件，默认情况下生成文件的文件名是文件名与MD5哈希值的组合</li>
+<li>vue：vue主程序</li>
+<li>vue-laoder：编译写入.vue文件</li>
+<li>vue-html-loader：编译vue的template部分</li>
+<li>vue-style-loader：编译vue的样式部分</li>
+<li>vue-hot-reload-api：webpack对vue实现热替换</li>
+<li>babel-core：ES2015编译核心</li>
+<li>babel-loader：编译写入ES2015文档</li>
+<li>babel-preset-es2015：ES2015语法</li>
+<li>babel-preset-stage-0：开启测试功能</li>
+<li>babel-runtime：babel执行环境</li>
+</ul>
+<h4 id="url-loader">url-loader</h4>
+<p>这里介绍下url-loader，这个loader实际上是对file-loader的封装<a href="https://github.com/webpack/url-loader">https://github.com/webpack/url-loader</a>
+比如CSS文件中有时候会这么写：</p>
+<pre><code class="language-css">.demo{
+    background-image: url('a.png');
+}
+</code></pre>
+<pre><code class="language-javascript">module:{
+    loaders:[
+        {test:/\.(png|jpg)$/,loader:'url-loader?limit=8192'}
+    ]
+}
+</code></pre>
+<p>经过以上配置，当a.png小于8K就会自动将图片转换成base64编码，如果不小于，则不会转换。
+<strong>这里顺便提一句，在module配置的时候，loader的写法：</strong></p>
+<pre><code class="language-javascript">module:{
+    loaders:[
+        {test:/\.jade$/,loader:'jade'}
+        //这里配置了让webpack识别jade的loader，其他类似，比如.vue
+        //用于css文件的loader有两种写法
+        {test:/\.css$/,loader:'style!css'}
+        {test:/\.css$/,loaders:['style','css']}
+    ]
+}
+</code></pre>
+<h3 id="2配置webpackconfigjs">2.配置<code>webpack.config.js</code></h3>
+<p>在根目录下建立webpack.config.js，配置如下：</p>
+<pre><code class="language-js">var path = require('path');
+module.exports = {
+  entry: './src/main.js',
+  //定义webpack输出的文件，我们在这里设置了
+  让打包后生成的文件放在dist文件夹下的build.js文件中
+  output: {
+    path: './dist',
+    publicPath:'dist/',
+    filename: 'build.js'
+  },
+  module: {
+    loaders: [
+      //转化ES6语法
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: /node_modules/
+      },
+      //图片转化，小于8K自动转化为base64的编码
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader:'url-loader?limit=8192'
+      }
+    ]
+  },
+  //这里用于安装babel，如果在根目录下的.babelrc配置了，这里就不写了
+  babel: {
+     presets: ['es2015','stage-0'],
+     plugins: ['transform-runtime']
+  }
+}
+</code></pre>
+<p><strong>特别说明</strong>
+如果要在.babelrc下配置babel，则需要在根目录下新建该文件，windows环境下，不能新建该txt文件然后改后缀，需要通过dos命令建立：</p>
+<pre><code class="language-php">echo&gt;.babelrc
+</code></pre>
+<p>通过该命令就可以建立babelde配置文件，用编辑器打开，修改里面的内容为：</p>
+<pre><code class="language-js">{
+  &quot;presets&quot;: [&quot;es2015&quot;, &quot;stage-0&quot;],
+  &quot;plugins&quot;: [&quot;transform-runtime&quot;]
+}
+</code></pre>
+<p>完成该配置我们在命令中运行</p>
+<pre><code class="language-js">$ webpack
+</code></pre>
+<p>打开<code>index.html</code>就可以看到浏览器中看到我们刚刚写的文字
+至此我们实现了最基本的利用webpack打包vue，下一篇将讲解<a href="https://segmentfault.com/a/1190000005616974">如何利用webpack+vue真正实现组件化</a>。</p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/vue/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Vue</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2016-webpackvue2/" class="block">利用webpack和vue实现组件化</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2016-webpack1/" class="block">Webpack初探</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

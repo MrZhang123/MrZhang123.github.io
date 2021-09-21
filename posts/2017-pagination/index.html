@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang='zh' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>写一个简单的分页插件 | 博客</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.3-dev" />
+<link rel="stylesheet" href="/css/eureka.min.css">
+<script defer src="/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+
+
+
+
+
+<meta name="description"
+  content="前段时间有一个项目需要用一个前端分页，说实话之前自己从来没搞过，这次准备自己搞一下，所以先找了几篇文章看看怎么写，但是网上的文章写分页的都基本看不懂，完全不知所云，所以决定在自己搞定分页后写一下如何弄这个。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"文章",
+      "item":"/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"写一个简单的分页插件",
+      "item":"/posts/2017-pagination/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "/posts/2017-pagination/"
+    },
+    "headline": "写一个简单的分页插件 | 博客","datePublished": "2017-05-07T20:57:48+00:00",
+    "dateModified": "2017-05-07T20:57:48+00:00",
+    "wordCount":  555 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "博客",
+        },
+    "description": "\u003cp\u003e前段时间有一个项目需要用一个前端分页，说实话之前自己从来没搞过，这次准备自己搞一下，所以先找了几篇文章看看怎么写，但是网上的文章写分页的都基本看不懂，完全不知所云，所以决定在自己搞定分页后写一下如何弄这个。\u003c\/p\u003e"
+}
+</script><meta property="og:title" content="写一个简单的分页插件 | 博客" />
+<meta property="og:type" content="article" />
+
+
+
+<meta property="og:url" content="/posts/2017-pagination/" />
+
+
+
+
+<meta property="og:description" content="前段时间有一个项目需要用一个前端分页，说实话之前自己从来没搞过，这次准备自己搞一下，所以先找了几篇文章看看怎么写，但是网上的文章写分页的都基本看不懂，完全不知所云，所以决定在自己搞定分页后写一下如何弄这个。" />
+
+
+
+
+<meta property="og:locale" content="zh" />
+
+
+
+
+<meta property="og:site_name" content="博客" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2017-05-07T20:57:48&#43;00:00" />
+
+
+<meta property="article:modified_time" content="2017-05-07T20:57:48&#43;00:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="Javascript" />
+
+
+
+
+
+<meta property="og:see_also" content="/posts/2017-iframepost/" />
+
+<meta property="og:see_also" content="/posts/2016-promise/" />
+
+<meta property="og:see_also" content="/posts/2016-jsstring/" />
+
+<meta property="og:see_also" content="/posts/2016-jsposition/" />
+
+<meta property="og:see_also" content="/posts/2016-jsarray/" />
+
+<meta property="og:see_also" content="/posts/2016-es6practice/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">博客</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-adjust"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">浅色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">深色</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">自动</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">写一个简单的分页插件</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2017-05-07</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3分钟阅读时长</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="/categories/javascript/" class="hover:text-eureka">Javascript</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <p>前段时间有一个项目需要用一个前端分页，说实话之前自己从来没搞过，这次准备自己搞一下，所以先找了几篇文章看看怎么写，但是网上的文章写分页的都基本看不懂，完全不知所云，所以决定在自己搞定分页后写一下如何弄这个。</p>
+<p>通过看网上的一些例子可以看出，分页基本上都是在html中写一个带id的元素，然后使用js动态添加的html的。</p>
+<p>首先确定以下数据</p>
+<ul>
+<li>总共的数据数——<code>totalData</code></li>
+<li>每页的要显示的数据——<code>totalData</code></li>
+<li>当超过多少页后分页中出现&hellip;——<code>minPage</code></li>
+<li>当前后都出现&hellip;后，当前页前后有几个分页块——<code>interval</code></li>
+</ul>
+<p>确定需要的html结构</p>
+<pre><code class="language-html">&lt;!--1,2,3,4,5,6,7--&gt;
+&lt;div class=&quot;xm-pagenavi&quot;&gt;
+    &lt;a class=&quot;prev disabled&quot; href=&quot;javascript:;&quot;&gt;&amp;lt;&lt;/a&gt;
+    &lt;a class=&quot;btn current&quot; href=&quot;javascript:;&quot; data-page=&quot;1&quot;&gt;1&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;2&quot;&gt;2&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;3&quot;&gt;3&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;4&quot;&gt;4&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;5&quot;&gt;5&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;6&quot;&gt;6&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;7&quot;&gt;7&lt;/a&gt;
+    &lt;a class=&quot;next&quot; href=&quot;javascript:;&quot;&gt;&amp;gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;!--&lt; 1,2,3,4,5,6,7...11 &gt;--&gt;
+&lt;div class=&quot;xm-pagenavi&quot;&gt;
+    &lt;a class=&quot;prev disabled&quot; href=&quot;javascript:;&quot;&gt;&amp;lt;&lt;/a&gt;
+    &lt;a class=&quot;btn current&quot; href=&quot;javascript:;&quot; data-page=&quot;1&quot;&gt;1&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;2&quot;&gt;2&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;3&quot;&gt;3&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;4&quot;&gt;4&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;5&quot;&gt;5&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;6&quot;&gt;6&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;7&quot;&gt;7&lt;/a&gt;
+    &lt;b class=&quot;pn-break&quot;&gt;...&lt;/b&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;100&quot;&gt;100&lt;/a
+    &gt;&lt;a class=&quot;next&quot; href=&quot;javascript:;&quot;&gt;&amp;gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;!--&lt; 1...4,5,6,7,8...11 &gt;--&gt;
+&lt;div class=&quot;xm-pagenavi&quot;&gt;
+    &lt;a class=&quot;prev&quot; href=&quot;javascript:;&quot;&gt;&amp;lt;&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;1&quot;&gt;1&lt;/a&gt;
+    &lt;b class=&quot;pn-break&quot;&gt;...&lt;/b&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;5&quot;&gt;5&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;6&quot;&gt;6&lt;/a&gt;
+    &lt;a class=&quot;btn current&quot; href=&quot;javascript:;&quot; data-page=&quot;7&quot;&gt;7&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;8&quot;&gt;8&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;9&quot;&gt;9&lt;/a&gt;
+    &lt;b class=&quot;pn-break&quot;&gt;...&lt;/b&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;100&quot;&gt;100&lt;/a&gt;
+    &lt;a class=&quot;next&quot; href=&quot;javascript:;&quot;&gt;&amp;gt;&lt;/a&gt;
+&lt;/div&gt;
+&lt;!--&lt; 1...5,6,7,8,9,10,11 &gt;--&gt;
+&lt;div class=&quot;xm-pagenavi&quot;&gt;
+    &lt;a class=&quot;prev&quot; href=&quot;javascript:;&quot;&gt;&amp;lt;&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;1&quot;&gt;1&lt;/a&gt;
+    &lt;b class=&quot;pn-break&quot;&gt;...&lt;/b&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;94&quot;&gt;94&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;95&quot;&gt;95&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;96&quot;&gt;96&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;97&quot;&gt;97&lt;/a&gt;
+    &lt;a class=&quot;btn current&quot; href=&quot;javascript:;&quot; data-page=&quot;98&quot;&gt;98&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;99&quot;&gt;99&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; href=&quot;javascript:;&quot; data-page=&quot;100&quot;&gt;100&lt;/a&gt;
+    &lt;a class=&quot;next&quot; href=&quot;javascript:;&quot;&gt;&amp;gt;&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="初始化页面">初始化页面</h2>
+<p>根据不同的总页数以及分页块最多有多少个，初始化为两种。</p>
+<ol>
+<li>
+<p>总页数少于分页块最多数时候，此时分页很简单，就是<code>1,2,3,4,5,6</code>这类的，此时只需要根据点击的分页块显示出对应的数据即可。</p>
+</li>
+<li>
+<p>总页数多于分页快儿最多数的时候，此时候分页形式为<code>&lt; 1,2,3,4,5,6,7...11 &gt;</code>，此时还需要根据不同的当前页数，变换分页的形式。</p>
+</li>
+</ol>
+<p>所以初始化页面的代码如下：</p>
+<pre><code class="language-JS">function initDraw() {
+    let $pagenaviBox = $('&lt;div&gt;').addClass('xm-pagenavi');
+    $page.append($pagenaviBox);
+    if (pageTotal &lt;= minPage) {
+        $('&lt;a&gt;').addClass('prev disabled').attr('href', 'javascript:;').html('&lt;').appendTo($pagenaviBox);
+        for (let i = 1; i &lt;= pageTotal; i++) {
+            let $btnLink = $('&lt;a&gt;').addClass('btn').attr('href', 'javascript:;').attr('data-page', i).html(i).appendTo($pagenaviBox);
+            if (i == 1) {
+                $btnLink.addClass('current');
+            }
+        }
+        $('&lt;a&gt;').addClass('next').attr('href', 'javascript:;').html('&gt;').appendTo($pagenaviBox);
+    } else {
+        draw($pagenaviBox,1);
+    }
+}
+</code></pre>
+<h2 id="根据当前页生成不同的html">根据当前页生成不同的html</h2>
+<p>这里的<code>draw()</code>用于根据不同的当前页生成<code>&lt; 1,2,3,4,5,6,7...11 &gt;，&lt; 1...5,6,7,8,9,10,11 &gt;，&lt; 1...4,5,6,7,8...11 &gt;</code>这三种形式的分页。</p>
+<p>这里需要判断三种分页展示形式的变换临界点(项目中当前页前后分别有前后两页)</p>
+<ul>
+<li>如果当前页往前三页的分页与第一页的距离为1，则展示为<code>&lt; 1,2,3,4,5,6,7...11 &gt;</code></li>
+<li>如果当前页往后三页的分页与最后一页的距离位1，则展示为<code>&lt; 1...5,6,7,8,9,10,11 &gt;</code></li>
+<li>除以上两种情况外的情况展示为<code>&lt; 1...4,5,6,7,8...11 &gt;</code></li>
+</ul>
+<pre><code class="language-js">function draw(pagenaviBox,dataPage) {
+    $('&lt;a&gt;').addClass('prev disabled').attr('href', 'javascript:;').html('&lt;').appendTo(pagenaviBox);
+    $('&lt;a&gt;').addClass('btn').attr('href', 'javascript:;').attr('data-page', 1).html(1).appendTo(pagenaviBox);
+    if (dataPage - 3 &lt;= 1 + 1) {  // &lt; 1,2,3,4,5,6,7...11 &gt;
+        for (let i = 2; i &lt;= minPage - 2; i++) {
+            let $btn = $('&lt;a&gt;').addClass('btn').attr('href', 'javascript:;').attr('data-page', i).html(i).appendTo(pagenaviBox);
+        }
+        $('&lt;b&gt;').addClass('pn-break').html('...').appendTo(pagenaviBox);
+    } else if (dataPage + 3 &gt;= pageTotal - 1) {// &lt; 1...5,6,7,8,9,10,11 &gt;
+        $('&lt;b&gt;').addClass('pn-break').html('...').appendTo(pagenaviBox);
+        for (let i = pageTotal - 6; i &lt;= pageTotal - 1; i++) {
+            $('&lt;a&gt;').addClass('btn').attr('href', 'javascript:;').attr('data-page', i).html(i).appendTo(pagenaviBox);
+        }
+    } else {// &lt; 1...4,5,6,7,8...11 &gt;
+        $('&lt;b&gt;').addClass('pn-break').html('...').appendTo(pagenaviBox);
+        for (let i = dataPage - 2; i &lt;= dataPage + 2; i++) {
+            $('&lt;a&gt;').addClass('btn').attr('href', 'javascript:;').attr('data-page', i).html(i).appendTo(pagenaviBox);
+        }
+        $('&lt;b&gt;').addClass('pn-break').html('...').appendTo(pagenaviBox);
+    }
+    $('&lt;a&gt;').addClass('btn').attr('href', 'javascript:;').attr('data-page', pageTotal).html(pageTotal).appendTo(pagenaviBox);
+    $('&lt;a&gt;').addClass('next').attr('href', 'javascript:;').html('&gt;').appendTo(pagenaviBox);
+    $('.btn').removeClass('current');
+    $('[data-page=&quot;' + dataPage + '&quot;]').addClass('current');
+}
+</code></pre>
+<h2 id="添加点击事件">添加点击事件</h2>
+<p>需要添加点击事件的有两类按钮，一类是分页按钮<code>btn</code>，一类是往前往后一页按钮<code>prev</code>，<code>next</code>按钮。</p>
+<pre><code class="language-js">function btnClick() {
+    let $pagenaviBox = $('.xm-pagenavi');
+    $pagenaviBox.on('click', function (e) {
+        let $target = $(e.target);
+        let targetClass = $target.attr('class');
+        // 根据不同的class定义不同的事件
+        if (targetClass == 'btn') {
+            let dataPage = parseInt($target.attr('data-page'));
+            if (pageTotal &lt;= minPage) {
+                //1,2,3,4,5,6,7,8,9
+                $('.btn').removeClass('current');
+                $target.addClass('current');
+            } else {
+                // 重新绘制
+                $pagenaviBox.empty();
+                draw($pagenaviBox,dataPage);
+            }
+            let $prev = $('.prev');
+            let $next = $('.next');
+            $prev.removeClass('disabled');
+            $next.removeClass('disabled');
+            if (dataPage == 1) {
+                $prev.addClass('disabled');
+            }
+            if (dataPage == pageTotal) {
+                $next.addClass('disabled');
+            }
+        }
+        if (targetClass == 'prev') {
+            let dataPage = parseInt($('.current').attr('data-page')) - 1;
+            if (pageTotal &gt; minPage) {
+                $pagenaviBox.empty();
+                draw($pagenaviBox,dataPage);
+            }else{
+                $('.btn').removeClass('current');
+                $('[data-page=&quot;' + dataPage + '&quot;]').addClass('current');
+            }       
+            let $prev = $('.prev');
+            let $next = $('.next');
+            $prev.removeClass('disabled');
+            $next.removeClass('disabled');
+            
+            if (dataPage == 1) {
+                $prev.addClass('disabled');
+            }
+            if (dataPage == pageTotal) {
+                $next.addClass('disabled');
+            }
+        }
+        if (targetClass == 'next') {
+            let dataPage = parseInt($('.current').attr('data-page')) + 1;
+            if (pageTotal &gt; minPage) {
+                $pagenaviBox.empty();
+                draw($pagenaviBox,dataPage);
+            }else{
+                $('.btn').removeClass('current');
+                $('[data-page=&quot;' + dataPage + '&quot;]').addClass('current');
+            }
+            let $prev = $('.prev');
+            let $next = $('.next');
+            $prev.removeClass('disabled');
+            $next.removeClass('disabled');
+            if (dataPage == 1) {
+                $prev.addClass('disabled');
+            }
+            if (dataPage == pageTotal) {
+                $next.addClass('disabled');
+            }
+        }
+    });
+}
+</code></pre>
+<h2 id="总结">总结</h2>
+<p>经过这三步，基本就完成了一个非常简单的分页，在我开始自己写之前参考也曾经看了一些比较好的jquery插件的源码，但是感觉并没有找到思路，反而越看越乱，所以说呢…需要写一个东西，直接上手写是最好的，边写边想即可，如果一味的希望先找到思路，想好各个步骤再写，反正对我来讲，会让我越想越混乱。</p>
+<p>最后附代码地址：https://github.com/MrZhang123/Js_Plugin/tree/master/page</p>
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="/tags/javascript/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Javascript</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">上一页</span>
+        <a href="/posts/2017-googlemap/" class="block">调用Google Map Api实现自定义Google Map</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">下一页</span>
+        <a href="/posts/2017-cssbem/" class="block">理解CSS命名规范--BEM</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">相关</h2>
+        <div class="content">
+            
+            <a href="/posts/2017-iframepost/">iframe跨域POST提交</a>
+            <br />
+            
+            <a href="/posts/2016-promise/">Promise－－优雅解决回调嵌套</a>
+            <br />
+            
+            <a href="/posts/2016-jsstring/">Javascript中字符串方法总结</a>
+            <br />
+            
+            <a href="/posts/2016-jsposition/">JS中的位置与大小</a>
+            <br />
+            
+            <a href="/posts/2016-jsarray/">Javascript中Array方法的总结</a>
+            <br />
+            
+            <a href="/posts/2016-es6practice/">初探ES6——轮播图实践总结</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://www.wangchucheng.com/">C. Wang</a> and <a href="https://www.ruiqima.com/">R. Ma</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

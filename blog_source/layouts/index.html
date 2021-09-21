@@ -1,0 +1,88 @@
+{{ define "main" }}
+<div class="pl-scrollbar">
+  <style type="text/css">
+    .widget + .widget {
+      margin-top: 1rem;
+    }
+    .widget-title {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .widget-list li {
+      font-size: 0.9rem;
+    }
+    .bg-cover img {
+      opacity: 1;
+      transition: all 0.5s ease-in-out;
+    }
+    .bg-cover img.dark {
+      opacity: 0;
+      height: 0;
+    }
+    .dark .bg-cover img.day {
+      opacity: 0;
+      height: 0;
+    }
+    .dark .bg-cover img.dark {
+      opacity: 1;
+      height: auto;
+    }
+  </style>
+  <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+    <div class="max-w-screen-xl mx-auto" style="padding-top: 3rem">
+      <div class="bg-local bg-cover">
+        <img class="day" src="/banner/light.png" />
+        <img class="dark" src="/banner/dark.png" />
+      </div>
+    </div>
+    <!-- <article class="mx-6 my-7">
+      <h1 class="font-bold text-3xl text-primary-text"></h1>
+    </article> -->
+    <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+      <div class="col-span-2 sidebar">
+        <div class="widget bg-secondary-bg rounded p-6">
+          <h2 class="widget-title">最新文章</h2>
+          <ul class="widget-list">
+            {{- $recent := default 5 .Site.Params.numberOfRecentPosts }} {{- $posts := where (where
+            .Site.RegularPages "Permalink" "!=" .Permalink) "Type" "in" .Site.Params.mainSections }}
+            {{- range first $recent $posts }}
+            <li>
+              <a href="{{ .RelPermalink }}" class="nav-link">{{ .Title }}</a>
+            </li>
+            {{- end }}
+          </ul>
+        </div>
+        <!-- <div class="widget bg-secondary-bg rounded p-6">
+          <h2 class="widget-title">友情链接</h2>
+          <ul class="widget-list">
+            {{ range .Site.Menus.friends }}
+            <li>
+              <a href="{{ .URL }}">{{ .Name }}</a>
+            </li>
+            {{ end }}
+          </ul>
+        </div> -->
+        <!-- <div class="widget bg-secondary-bg rounded p-6">
+          <h2 class="widget-title">管理</h2>
+          <ul class="widget-list">
+            <li>
+              <a href="/admin">🛠 后台管理</a>
+            </li>
+            <li>
+              <a href="{{ .Site.Params.comment.waline.serverURL }}/ui">💬 评论管理</a>
+            </li>
+          </ul>
+        </div> -->
+      </div>
+      <div class="col-span-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <div class="bg-secondary-bg rounded overflow-hidden px-4 divide-y">
+          {{ range .Paginator.Pages }}
+          <div class="px-2 py-6">{{ partial "components/summary-plain.html" . }}</div>
+          {{ end }}
+        </div>
+        {{ template "_internal/pagination.html" . }}
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
