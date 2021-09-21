@@ -1,21 +1,21 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Vim - 分类 - 跨界Coder</title>
-        <link>http://example.org/categories/vim/</link>
+        <link>https://mrzhang123.github.io/categories/vim/</link>
         <description>Vim - 分类 - 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/vim/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/vim/" rel="self" type="application/rss+xml" /><item>
     <title>vim的搜索与替换</title>
-    <link>http://example.org/posts/2020-vimsearch/</link>
+    <link>https://mrzhang123.github.io/posts/2020-vimsearch/</link>
     <pubDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020-vimsearch/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020-vimsearch/</guid>
     <description><![CDATA[<p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p>]]></description>
 </item><item>
     <title>记一次vim性能优化</title>
-    <link>http://example.org/posts/2019-vimperformance/</link>
+    <link>https://mrzhang123.github.io/posts/2019-vimperformance/</link>
     <pubDate>Sun, 01 Sep 2019 16:15:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2019-vimperformance/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2019-vimperformance/</guid>
     <description><![CDATA[<h3 id="关键点">关键点</h3>
 <ul>
 <li><code>vim -u NONE -N</code>可以不加载vim配置和插件打开vim</li>

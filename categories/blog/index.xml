@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Blog - 分类 - 跨界Coder</title>
-        <link>http://example.org/categories/blog/</link>
+        <link>https://mrzhang123.github.io/categories/blog/</link>
         <description>Blog - 分类 - 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 01 Apr 2017 20:57:48 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/blog/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 01 Apr 2017 20:57:48 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/blog/" rel="self" type="application/rss+xml" /><item>
     <title>如何写一个自己的hexo主题</title>
-    <link>http://example.org/posts/2017-hexotheme/</link>
+    <link>https://mrzhang123.github.io/posts/2017-hexotheme/</link>
     <pubDate>Sat, 01 Apr 2017 20:57:48 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2017-hexotheme/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2017-hexotheme/</guid>
     <description><![CDATA[<blockquote>
 <p>好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章<a href="https://segmentfault.com/a/1190000006057336]" target="_blank" rel="noopener noreffer">写一个自己的Hexo主题</a>和该文中提到的作者自己写的主题<a href="https://github.com/showonne/hexo-showonne" target="_blank" rel="noopener noreffer">hexo-showonne</a>的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——<a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener noreffer">hexo-theme-icarus</a>进行了修正。</p>
 </blockquote>]]></description>

@@ -1,29 +1,29 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Javascript - 标签 - 跨界Coder</title>
-        <link>http://example.org/tags/javascript/</link>
+        <link>https://mrzhang123.github.io/tags/javascript/</link>
         <description>Javascript - 标签 - 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 23 Apr 2020 17:08:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/javascript/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 23 Apr 2020 17:08:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/javascript/" rel="self" type="application/rss+xml" /><item>
     <title>「译」V8中的指针压缩</title>
-    <link>http://example.org/posts/2020_pointer_compression_in_v8/</link>
+    <link>https://mrzhang123.github.io/posts/2020_pointer_compression_in_v8/</link>
     <pubDate>Thu, 23 Apr 2020 17:08:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020_pointer_compression_in_v8/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020_pointer_compression_in_v8/</guid>
     <description><![CDATA[<p>原文链接：https://v8.dev/blog/pointer-compression</p>
 <p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p>]]></description>
 </item><item>
     <title>「译」JS新特性“可选链式调用”</title>
-    <link>http://example.org/posts/2019-optional-chaining/</link>
+    <link>https://mrzhang123.github.io/posts/2019-optional-chaining/</link>
     <pubDate>Tue, 03 Sep 2019 00:00:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2019-optional-chaining/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2019-optional-chaining/</guid>
     <description><![CDATA[<p>在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现<code>null</code>或<code>undefined</code>（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的<code>if</code>声明或者复制属性访问链的长的<code>if</code>条件：</p>]]></description>
 </item><item>
     <title>「译」ES 草案：class私有属性</title>
-    <link>http://example.org/posts/2019-privatefields/</link>
+    <link>https://mrzhang123.github.io/posts/2019-privatefields/</link>
     <pubDate>Sun, 21 Jul 2019 00:00:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2019-privatefields/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2019-privatefields/</guid>
     <description><![CDATA[<blockquote>
 <p>原文链接：https://2ality.com/2019/07/private-class-fields.html</p>
 </blockquote>
@@ -34,62 +34,62 @@
 </ol>]]></description>
 </item><item>
     <title>「译」稳定的Array.prototype.sort</title>
-    <link>http://example.org/posts/2019-stablesort/</link>
+    <link>https://mrzhang123.github.io/posts/2019-stablesort/</link>
     <pubDate>Mon, 08 Jul 2019 23:10:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2019-stablesort/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2019-stablesort/</guid>
     <description><![CDATA[<p>原文链接：https://v8.dev/features/stable-sort#support</p>
 <p>假设你有一系列的狗狗，每个狗狗有名字和评分。（如果这个例子看起来很奇怪，你应该知道有一个专门针对这个的Twitter账户&hellip;别问为什么！）</p>]]></description>
 </item><item>
     <title>使用Axios请求时如何传递数组？</title>
-    <link>http://example.org/posts/2019-axiosparams/</link>
+    <link>https://mrzhang123.github.io/posts/2019-axiosparams/</link>
     <pubDate>Sat, 18 May 2019 16:40:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2019-axiosparams/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2019-axiosparams/</guid>
     <description><![CDATA[<blockquote>
 <p>最近在项目开发中使用Axios请求，API层使用<strong>Node</strong>，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。</p>
 </blockquote>
 <p>在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即<code>http://xx.xx.com?a=1&amp;b=2</code>这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？</p>]]></description>
 </item><item>
     <title>ES2018（ES9）的新特性</title>
-    <link>http://example.org/posts/2018-es2018/</link>
+    <link>https://mrzhang123.github.io/posts/2018-es2018/</link>
     <pubDate>Wed, 20 Jun 2018 17:39:25 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2018-es2018/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2018-es2018/</guid>
     <description><![CDATA[<p>原文链接：https://www.sitepoint.com/es2018-whats-new/</p>
 <p>在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。</p>]]></description>
 </item><item>
     <title>JS转换转义字符</title>
-    <link>http://example.org/posts/2017-jsdecode/</link>
+    <link>https://mrzhang123.github.io/posts/2017-jsdecode/</link>
     <pubDate>Sat, 25 Nov 2017 23:03:40 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2017-jsdecode/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2017-jsdecode/</guid>
     <description><![CDATA[<blockquote>
 <p>这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。</p>
 </blockquote>]]></description>
 </item><item>
     <title>小记：React操作真实DOM实现动态吸底部</title>
-    <link>http://example.org/posts/2017-reactdom/</link>
+    <link>https://mrzhang123.github.io/posts/2017-reactdom/</link>
     <pubDate>Sun, 22 Oct 2017 17:23:11 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2017-reactdom/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2017-reactdom/</guid>
     <description><![CDATA[<p>动态吸底：开始时fixed在页面上，当页面滚动到距离底部一定距离的时fixed部分固定。</p>
 <p>这个是需要计算页面滚动距离的，如果使用Jquery或者原生js实现是非常好实现的，但是由于使用react并不推崇操作DOM，但是如果使用virtual DOM的话是无法实现该效果的，所以还是要引入js去直接获取DOM进行操作。</p>]]></description>
 </item><item>
     <title>调用Google Map Api实现自定义Google Map</title>
-    <link>http://example.org/posts/2017-googlemap/</link>
+    <link>https://mrzhang123.github.io/posts/2017-googlemap/</link>
     <pubDate>Sun, 11 Jun 2017 00:10:54 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2017-googlemap/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2017-googlemap/</guid>
     <description><![CDATA[<blockquote>
 <p>前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。</p>
 </blockquote>]]></description>
 </item><item>
     <title>写一个简单的分页插件</title>
-    <link>http://example.org/posts/2017-pagination/</link>
+    <link>https://mrzhang123.github.io/posts/2017-pagination/</link>
     <pubDate>Sun, 07 May 2017 20:57:48 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2017-pagination/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2017-pagination/</guid>
     <description><![CDATA[<p>前段时间有一个项目需要用一个前端分页，说实话之前自己从来没搞过，这次准备自己搞一下，所以先找了几篇文章看看怎么写，但是网上的文章写分页的都基本看不懂，完全不知所云，所以决定在自己搞定分页后写一下如何弄这个。</p>]]></description>
 </item></channel>
 </rss>

@@ -1,24 +1,24 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>React Native - 分类 - 跨界Coder</title>
-        <link>http://example.org/categories/react-native/</link>
+        <link>https://mrzhang123.github.io/categories/react-native/</link>
         <description>React Native - 分类 - 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 20 Dec 2017 19:24:07 &#43;0000</lastBuildDate><atom:link href="http://example.org/categories/react-native/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 20 Dec 2017 19:24:07 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/react-native/" rel="self" type="application/rss+xml" /><item>
     <title>RN Webview与Web的通信与调试</title>
-    <link>http://example.org/posts/2017-rnwebview/</link>
+    <link>https://mrzhang123.github.io/posts/2017-rnwebview/</link>
     <pubDate>Wed, 20 Dec 2017 19:24:07 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2017-rnwebview/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2017-rnwebview/</guid>
     <description><![CDATA[<blockquote>
 <p>React Native Version:0.51</p>
 </blockquote>
 <p>RN 在 0.37 版本中加入了<code>WebView</code>功能，所以想要在使用<code>WebView</code>,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用<code>JSON.stringify</code>和<code>JSON.parse</code>就可以</p>]]></description>
 </item><item>
     <title>RN长列表--ListView &amp;&amp; SectionList</title>
-    <link>http://example.org/posts/2017-reactnativelist/</link>
+    <link>https://mrzhang123.github.io/posts/2017-reactnativelist/</link>
     <pubDate>Sun, 11 Jun 2017 00:10:54 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2017-reactnativelist/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2017-reactnativelist/</guid>
     <description><![CDATA[<p>突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。</p>]]></description>
 </item></channel>
 </rss>

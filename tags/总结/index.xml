@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>总结 - 标签 - 跨界Coder</title>
-        <link>http://example.org/tags/%E6%80%BB%E7%BB%93/</link>
+        <link>https://mrzhang123.github.io/tags/%E6%80%BB%E7%BB%93/</link>
         <description>总结 - 标签 - 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 14 Jan 2018 20:22:59 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E6%80%BB%E7%BB%93/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 14 Jan 2018 20:22:59 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E6%80%BB%E7%BB%93/" rel="self" type="application/rss+xml" /><item>
     <title>MAF项目总结</title>
-    <link>http://example.org/posts/2018-maf/</link>
+    <link>https://mrzhang123.github.io/posts/2018-maf/</link>
     <pubDate>Sun, 14 Jan 2018 20:22:59 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2018-maf/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2018-maf/</guid>
     <description><![CDATA[<blockquote>
 <p>做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。</p>
 </blockquote>]]></description>

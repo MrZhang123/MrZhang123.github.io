@@ -1,66 +1,66 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>所有文章 - 跨界Coder</title>
-        <link>http://example.org/posts/</link>
+        <link>https://mrzhang123.github.io/posts/</link>
         <description>所有文章 | 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/posts/" rel="self" type="application/rss+xml" /><item>
     <title>从新能源这波行情看机构与散户的区别</title>
-    <link>http://example.org/posts/2021-newenergy/</link>
+    <link>https://mrzhang123.github.io/posts/2021-newenergy/</link>
     <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2021-newenergy/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2021-newenergy/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/title.webp" referrerpolicy="no-referrer">
             </div>本文摘自7月14日自己对投资、市场的反思，当天看到一篇关于李录减持比亚迪以及大佬们开始激流勇退新能源的文章，引发自己的一些思考。 7月14日李]]></description>
 </item><item>
     <title>再见2020，起航2021</title>
-    <link>http://example.org/posts/2020-2021newyear/</link>
+    <link>https://mrzhang123.github.io/posts/2020-2021newyear/</link>
     <pubDate>Thu, 31 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020-2021newyear/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020-2021newyear/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/img/title.png" referrerpolicy="no-referrer">
             </div>从2016年开始，每年年底都会总结一下这一年来自己经历的事，有哪些成长，今年也不例外。今年这一年对我，对我的祖国，对整个世界来说都是不平凡的]]></description>
 </item><item>
     <title>基础排序</title>
-    <link>http://example.org/posts/2020-basicsort/</link>
+    <link>https://mrzhang123.github.io/posts/2020-basicsort/</link>
     <pubDate>Tue, 14 Jul 2020 09:08:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020-basicsort/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020-basicsort/</guid>
     <description><![CDATA[<h2 id="选择排序">选择排序</h2>
 <blockquote>
 <p>首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。</p>
 </blockquote>]]></description>
 </item><item>
     <title>「译」V8中的指针压缩</title>
-    <link>http://example.org/posts/2020_pointer_compression_in_v8/</link>
+    <link>https://mrzhang123.github.io/posts/2020_pointer_compression_in_v8/</link>
     <pubDate>Thu, 23 Apr 2020 17:08:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020_pointer_compression_in_v8/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020_pointer_compression_in_v8/</guid>
     <description><![CDATA[<p>原文链接：https://v8.dev/blog/pointer-compression</p>
 <p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p>]]></description>
 </item><item>
     <title>学习读财报之资产负债表</title>
-    <link>http://example.org/posts/2020-blance-sheet/</link>
+    <link>https://mrzhang123.github.io/posts/2020-blance-sheet/</link>
     <pubDate>Sun, 12 Apr 2020 20:15:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020-blance-sheet/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020-blance-sheet/</guid>
     <description><![CDATA[<blockquote>
 <p>分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的<a href="https://book.douban.com/subject/25926542/" target="_blank" rel="noopener noreffer">《一本书读懂财务报表》</a>，加深对书中概念的理解。</p>
 </blockquote>]]></description>
 </item><item>
     <title>vim的搜索与替换</title>
-    <link>http://example.org/posts/2020-vimsearch/</link>
+    <link>https://mrzhang123.github.io/posts/2020-vimsearch/</link>
     <pubDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020-vimsearch/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020-vimsearch/</guid>
     <description><![CDATA[<p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p>]]></description>
 </item><item>
     <title>解析OKR</title>
-    <link>http://example.org/posts/2020_okr/</link>
+    <link>https://mrzhang123.github.io/posts/2020_okr/</link>
     <pubDate>Thu, 27 Feb 2020 22:30:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020_okr/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020_okr/</guid>
     <description><![CDATA[<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -74,10 +74,10 @@
 </div><p>第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书<a href="https://book.douban.com/subject/30144978/" target="_blank" rel="noopener noreffer">《见识》</a>中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了<a href="https://book.douban.com/subject/30396635/" target="_blank" rel="noopener noreffer">《这就是OKR》</a>之后的一些总结以及自己对OKR的理解。</p>]]></description>
 </item><item>
     <title>《这就是OKR》读书笔记</title>
-    <link>http://example.org/posts/2020_this_is_okr/</link>
+    <link>https://mrzhang123.github.io/posts/2020_this_is_okr/</link>
     <pubDate>Sun, 23 Feb 2020 17:08:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020_this_is_okr/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020_this_is_okr/</guid>
     <description><![CDATA[<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -91,10 +91,10 @@
 </div>]]></description>
 </item><item>
     <title>再见2019，你好2020</title>
-    <link>http://example.org/posts/2019-2020newyear/</link>
+    <link>https://mrzhang123.github.io/posts/2019-2020newyear/</link>
     <pubDate>Tue, 31 Dec 2019 02:00:25 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2019-2020newyear/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2019-2020newyear/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/img/2020.jpeg" referrerpolicy="no-referrer">
             </div><blockquote>
@@ -102,10 +102,10 @@
 </blockquote>]]></description>
 </item><item>
     <title>「译」JS新特性“可选链式调用”</title>
-    <link>http://example.org/posts/2019-optional-chaining/</link>
+    <link>https://mrzhang123.github.io/posts/2019-optional-chaining/</link>
     <pubDate>Tue, 03 Sep 2019 00:00:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2019-optional-chaining/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2019-optional-chaining/</guid>
     <description><![CDATA[<p>在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现<code>null</code>或<code>undefined</code>（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的<code>if</code>声明或者复制属性访问链的长的<code>if</code>条件：</p>]]></description>
 </item></channel>
 </rss>

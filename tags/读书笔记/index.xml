@@ -1,14 +1,14 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>读书笔记 - 标签 - 跨界Coder</title>
-        <link>http://example.org/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
+        <link>https://mrzhang123.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</link>
         <description>读书笔记 - 标签 - 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 23 Feb 2020 17:08:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 23 Feb 2020 17:08:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
     <title>《这就是OKR》读书笔记</title>
-    <link>http://example.org/posts/2020_this_is_okr/</link>
+    <link>https://mrzhang123.github.io/posts/2020_this_is_okr/</link>
     <pubDate>Sun, 23 Feb 2020 17:08:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2020_this_is_okr/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2020_this_is_okr/</guid>
     <description><![CDATA[<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
