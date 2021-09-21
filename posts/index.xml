@@ -3,7 +3,16 @@
         <title>所有文章 - 跨界Coder</title>
         <link>http://example.org/posts/</link>
         <description>所有文章 | 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 31 Dec 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>从新能源这波行情看机构与散户的区别</title>
+    <link>http://example.org/posts/2021-newenergy/</link>
+    <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2021-newenergy/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/title.webp" referrerpolicy="no-referrer">
+            </div>本文摘自7月14日自己对投资、市场的反思，当天看到一篇关于李录减持比亚迪以及大佬们开始激流勇退新能源的文章，引发自己的一些思考。 7月14日李]]></description>
+</item><item>
     <title>再见2020，起航2021</title>
     <link>http://example.org/posts/2020-2021newyear/</link>
     <pubDate>Thu, 31 Dec 2020 00:00:00 &#43;0000</pubDate><author>
@@ -98,18 +107,5 @@
         <name>跨界Coder</name>
     </author><guid>http://example.org/posts/2019-optional-chaining/</guid>
     <description><![CDATA[<p>在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现<code>null</code>或<code>undefined</code>（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的<code>if</code>声明或者复制属性访问链的长的<code>if</code>条件：</p>]]></description>
-</item><item>
-    <title>记一次vim性能优化</title>
-    <link>http://example.org/posts/2019-vimperformance/</link>
-    <pubDate>Sun, 01 Sep 2019 16:15:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
-    </author><guid>http://example.org/posts/2019-vimperformance/</guid>
-    <description><![CDATA[<h3 id="关键点">关键点</h3>
-<ul>
-<li><code>vim -u NONE -N</code>可以不加载vim配置和插件打开vim</li>
-<li><code>vim --startuptime vim.log</code>可以生成vim启动的log</li>
-<li>使用<code>vim-plug</code>插件管理工具，给插件配置<code>for</code> or <code>on</code>可以实现插件懒加载</li>
-<li>设置<code>foldmethod=syntax</code>会导致vim插入模式下卡顿</li>
-</ul>]]></description>
 </item></channel>
 </rss>

@@ -3,7 +3,21 @@
         <title>Tags - 标签 - 跨界Coder</title>
         <link>http://example.org/tags/</link>
         <description>Tags - 标签 - 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 31 Dec 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>思考</title>
+    <link>http://example.org/tags/%E6%80%9D%E8%80%83/</link>
+    <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/tags/%E6%80%9D%E8%80%83/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>投资</title>
+    <link>http://example.org/tags/%E6%8A%95%E8%B5%84/</link>
+    <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/tags/%E6%8A%95%E8%B5%84/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>年终总结</title>
     <link>http://example.org/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
     <pubDate>Thu, 31 Dec 2020 00:00:00 &#43;0000</pubDate><author>
@@ -58,20 +72,6 @@
     <pubDate>Sun, 23 Feb 2020 17:08:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
     </author><guid>http://example.org/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>leetCode</title>
-    <link>http://example.org/tags/leetcode/</link>
-    <pubDate>Tue, 16 Jul 2019 00:00:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
-    </author><guid>http://example.org/tags/leetcode/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>React</title>
-    <link>http://example.org/tags/react/</link>
-    <pubDate>Sun, 07 Jul 2019 15:43:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
-    </author><guid>http://example.org/tags/react/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>

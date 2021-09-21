@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>投资 - 标签 - 跨界Coder</title>
+        <link>http://example.org/tags/%E6%8A%95%E8%B5%84/</link>
+        <description>投资 - 标签 - 跨界Coder</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://example.org/tags/%E6%8A%95%E8%B5%84/" rel="self" type="application/rss+xml" /><item>
+    <title>从新能源这波行情看机构与散户的区别</title>
+    <link>http://example.org/posts/2021-newenergy/</link>
+    <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>http://example.org/posts/2021-newenergy/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/title.webp" referrerpolicy="no-referrer">
+            </div>本文摘自7月14日自己对投资、市场的反思，当天看到一篇关于李录减持比亚迪以及大佬们开始激流勇退新能源的文章，引发自己的一些思考。 7月14日李]]></description>
+</item></channel>
+</rss>

@@ -1,5 +1,5 @@
 ---
-title: 【译】稳定的Array.prototype.sort
+title: 「译」稳定的Array.prototype.sort
 date: 2019-07-08 23:10:00
 tags:
   - JavaScript
