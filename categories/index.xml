@@ -3,7 +3,14 @@
         <title>Categories - 分类 - 跨界Coder</title>
         <link>https://mrzhang123.github.io/categories/</link>
         <description>Categories - 分类 - 跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>年终总结</title>
+    <link>https://mrzhang123.github.io/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
+    <pubDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>https://mrzhang123.github.io/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>思考</title>
     <link>https://mrzhang123.github.io/categories/%E6%80%9D%E8%80%83/</link>
     <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
@@ -16,13 +23,6 @@
     <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
     </author><guid>https://mrzhang123.github.io/categories/%E6%8A%95%E8%B5%84/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>年终总结</title>
-    <link>https://mrzhang123.github.io/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</link>
-    <pubDate>Thu, 31 Dec 2020 00:00:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
-    </author><guid>https://mrzhang123.github.io/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/</guid>
     <description><![CDATA[]]></description>
 </item><item>
     <title>算法</title>

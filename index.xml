@@ -3,9 +3,18 @@
         <title>跨界Coder</title>
         <link>https://mrzhang123.github.io/</link>
         <description>跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://mrzhang123.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>再见2021，你好2022</title>
+    <link>https://mrzhang123.github.io/posts/2022anewyear/</link>
+    <pubDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>跨界Coder</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022anewyear/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/img/2022.jpeg" referrerpolicy="no-referrer">
+            </div>不知不觉又到了年底了，又到了年终总结的时候了。一年过的真的太快了，回想起来去年年终总结2020年12月31日写完，发出来后走在下班的路上开心]]></description>
+</item><item>
     <title>从新能源这波行情看机构与散户的区别</title>
     <link>https://mrzhang123.github.io/posts/2021-newenergy/</link>
     <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
@@ -102,12 +111,5 @@
             </div><blockquote>
 <p>不知不觉又到年底了，临近年底大家都忙着总结2019年发生的大事儿，比如前端2019年发生了哪些大事儿，投资界2019年发生了哪些事情让大家惊讶，DJ们也忙着制作并推出 Year Mix 2019。我从2016年开始，在每年的年底都会写一篇年底总结文章，回头看看这一年对我来说重要的事情，这一年我又学到了哪些，有哪些成长，今年也不例外&hellip;</p>
 </blockquote>]]></description>
-</item><item>
-    <title>「译」JS新特性“可选链式调用”</title>
-    <link>https://mrzhang123.github.io/posts/2019-optional-chaining/</link>
-    <pubDate>Tue, 03 Sep 2019 00:00:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
-    </author><guid>https://mrzhang123.github.io/posts/2019-optional-chaining/</guid>
-    <description><![CDATA[<p>在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现<code>null</code>或<code>undefined</code>（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的<code>if</code>声明或者复制属性访问链的长的<code>if</code>条件：</p>]]></description>
 </item></channel>
 </rss>
