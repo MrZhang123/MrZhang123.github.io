@@ -223,7 +223,7 @@ series = "series"
     # DoIt 新增 | 0.2.4 是否在 RSS 中显示全文内容
     rssFullText = false
     # DoIt 新增 | 0.2.11 页面样式 ("normal", "wide")
-    pageStyle = "wide"
+    pageStyle = "normal"
     # DoIt 新增 | 0.2.0 目录配置
     [params.page.toc]
       # 是否使用目录
