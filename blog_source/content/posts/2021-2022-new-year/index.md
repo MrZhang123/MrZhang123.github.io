@@ -1,10 +1,8 @@
 ---
 title: 再见2021，你好2022
 date: 2021-12-31
-tags:
-  - 年终总结
-categories:
-  - 年终总结
+tags: ["年终总结", "思考"]
+categories: ["年终总结", "思考"]
 draft: false
 featuredImage: img/2022.jpeg
 ---
