@@ -40,7 +40,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2020_okr/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2020_this_is_okr/" /><link rel="next" href="https://mrzhang123.github.io/posts/2020-vimsearch/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -68,14 +68,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -104,7 +104,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -146,19 +146,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">解析OKR</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%81%8C%E5%9C%BA/"><i class="far fa-folder fa-fw"></i>职场</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-27">2020-02-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-27">2020-02-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2757 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#优先事项的聚焦和承诺">优先事项的聚焦和承诺</a></li>
     <li><a href="#团队工作的协同和联系">团队工作的协同和联系</a></li>
@@ -171,6 +159,18 @@
     <li><a href="#okr例子">OKR例子</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">解析OKR</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%81%8C%E5%9C%BA/"><i class="far fa-folder fa-fw"></i>职场</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-27">2020-02-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-27">2020-02-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2757 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -190,8 +190,8 @@
 <li>持续追踪，改进</li>
 <li>充分延展进而挑战不可能</li>
 </ul>
-<h2 id="优先事项的聚焦和承诺">优先事项的聚焦和承诺</h2>
-<p>大部分成功人士超越常人的地方不在于智力，而在于时间管理。**查理·芒格说：这辈子我遇见的所有成功人士，没有一个是不读书的，没有，一个都没有！**沃伦·巴菲特也将自己大量的时间花费在读书上面。提起读书，很多人都会说自己很忙，没时间。但是谁又能比巴菲特需要做的事情多呢？为什么巴菲特有那么多时间去阅读？这就要提到巴菲特对事情优先级冷酷的排序。</p>
+<h2 id="优先事项的聚焦和承诺" class="headerLink">
+    <a href="#%e4%bc%98%e5%85%88%e4%ba%8b%e9%a1%b9%e7%9a%84%e8%81%9a%e7%84%a6%e5%92%8c%e6%89%bf%e8%af%ba" class="header-mark"></a>优先事项的聚焦和承诺</h2><p>大部分成功人士超越常人的地方不在于智力，而在于时间管理。**查理·芒格说：这辈子我遇见的所有成功人士，没有一个是不读书的，没有，一个都没有！**沃伦·巴菲特也将自己大量的时间花费在读书上面。提起读书，很多人都会说自己很忙，没时间。但是谁又能比巴菲特需要做的事情多呢？为什么巴菲特有那么多时间去阅读？这就要提到巴菲特对事情优先级冷酷的排序。</p>
 <p>按照优先级列出你想做的那些事情，然后取前20%，然后集中精力去完成。为什么是20%呢？这里要提到一个基本事实：</p>
 <blockquote>
 <p><em>20%的优先级任务会占据我们结果的80%，即<a href="https://zh.wikipedia.org/zh-sg/%E5%B8%95%E7%B4%AF%E6%89%98%E6%B3%95%E5%88%99" target="_blank" rel="noopener noreffer">二八法则</a></em></p>
@@ -208,10 +208,10 @@
 <p>衡量一件事情的重要性时，应该先考虑这样的问题：**在接下来的周期里（一般是3个月或6个月或12个月），什么事情最重要？**将重要的事情列到清单，这就是我们的Objectives（目标）。<strong>每个周期最多定制3到5个目标，就能帮助公司、团队和个人明确什么是最重要的。</strong></p>
 <p>关键性结果是实现目标过程的一个个节点。如果目标设定较为科学的话，通常<strong>3到5个关键结果</strong>足以确保目标的达成。太多的目标会淡化焦点，对于预期的进展形成阻碍。<strong>关键结果应该是明确的、具体的、可衡量的</strong>，完成了所有关键结果的也就实现了目标，如果完成了所有关键结果而没实现目标，那就不是OKR了。</p>
 <p><strong>双线并行</strong>是目标设定的最佳方式，既有短期的OKR来支持年度OKR的实现，也有长期的战略规划。尽管推动实际工作的是短期目标，但是年度计划需要依据实际情况指定，并确保这一计划可以实施。</p>
-<h2 id="团队工作的协同和联系">团队工作的协同和联系</h2>
-<p>OKR充分发挥员工的主动性，鼓励<strong>目标自下而上</strong>的涌现，同时为了适应企业和员工双方需求的波动，领导者对自上而下和自下而上这两种目标设定的选择往往各占一半。这使得全公司整体目标更加一致，除此之外还有更深层的含义，即始终保持员工的目标与公司的核心价值一致。也就是说，<strong>员工目标必须对公司的核心价值作出实质性的贡献。</strong></p>
-<h2 id="持续追踪改进">持续追踪，改进</h2>
-<p>在定制OKR的过程中，为了促进沟通，管理者可以向员工提出以下问题：</p>
+<h2 id="团队工作的协同和联系" class="headerLink">
+    <a href="#%e5%9b%a2%e9%98%9f%e5%b7%a5%e4%bd%9c%e7%9a%84%e5%8d%8f%e5%90%8c%e5%92%8c%e8%81%94%e7%b3%bb" class="header-mark"></a>团队工作的协同和联系</h2><p>OKR充分发挥员工的主动性，鼓励<strong>目标自下而上</strong>的涌现，同时为了适应企业和员工双方需求的波动，领导者对自上而下和自下而上这两种目标设定的选择往往各占一半。这使得全公司整体目标更加一致，除此之外还有更深层的含义，即始终保持员工的目标与公司的核心价值一致。也就是说，<strong>员工目标必须对公司的核心价值作出实质性的贡献。</strong></p>
+<h2 id="持续追踪改进" class="headerLink">
+    <a href="#%e6%8c%81%e7%bb%ad%e8%bf%bd%e8%b8%aa%e6%94%b9%e8%bf%9b" class="header-mark"></a>持续追踪，改进</h2><p>在定制OKR的过程中，为了促进沟通，管理者可以向员工提出以下问题：</p>
 <ul>
 <li>你打算把精力集中在哪些OKR上，以便为你的角色、团队或公司发挥最大的价值？</li>
 <li>这些OKR中，哪些指标与组织中的关键计划保持一致？</li>
@@ -239,8 +239,8 @@
 <li>如果我要重新写一个完整的目标，我要作出什么改变？</li>
 <li>我学到了哪些经验，可以帮助我更有效的定制下一个周期的OKR？</li>
 </ul>
-<h2 id="充分延展进而挑战不可能">充分延展进而挑战不可能</h2>
-<p>目标设定越具有挑战性，所产生的结果越好。虽然高难度的目标预期产出与结果之间的差距会大于低难度目标与其产出结果之间的差距，但是前者达到的最终结果往往要比后者好。就像拉里佩奇说的：“当你设定的是一个疯狂而富有挑战性的目标时，即使没有实现它，你也会取得一些不小的成就。假如你的目标是去一颗恒星，也许你永远无法达到，但是在这个过程中，你可能已经飞到了月球。”</p>
+<h2 id="充分延展进而挑战不可能" class="headerLink">
+    <a href="#%e5%85%85%e5%88%86%e5%bb%b6%e5%b1%95%e8%bf%9b%e8%80%8c%e6%8c%91%e6%88%98%e4%b8%8d%e5%8f%af%e8%83%bd" class="header-mark"></a>充分延展进而挑战不可能</h2><p>目标设定越具有挑战性，所产生的结果越好。虽然高难度的目标预期产出与结果之间的差距会大于低难度目标与其产出结果之间的差距，但是前者达到的最终结果往往要比后者好。就像拉里佩奇说的：“当你设定的是一个疯狂而富有挑战性的目标时，即使没有实现它，你也会取得一些不小的成就。假如你的目标是去一颗恒星，也许你永远无法达到，但是在这个过程中，你可能已经飞到了月球。”</p>
 <p>我们可以在设定OKR时，可以设定两类：</p>
 <ul>
 <li>承诺型OKR</li>
@@ -248,8 +248,8 @@
 </ul>
 <p>承诺型OKR也就是一定可以完成的目标，是能够通过调整工作时间和资源配置确保其得以实现的目标，这类OKR得分应该是1.0。如果小于1.0，就需要想想为什么没有完成，因为这表明团队在定制计划或执行的过程中存在某种失误。</p>
 <p>愿景型OKR表达我们对变化的预期，我们可能并不清楚如何实现以及实现这一OKR所必须的资源，愿景型OKR的平均得分是0.7分。</p>
-<h2 id="设计有效okr的基本准则">设计有效OKR的基本准则</h2>
-<p>在OKR的定制过程中应该注意以下几个基本准则：</p>
+<h2 id="设计有效okr的基本准则" class="headerLink">
+    <a href="#%e8%ae%be%e8%ae%a1%e6%9c%89%e6%95%88okr%e7%9a%84%e5%9f%ba%e6%9c%ac%e5%87%86%e5%88%99" class="header-mark"></a>设计有效OKR的基本准则</h2><p>在OKR的定制过程中应该注意以下几个基本准则：</p>
 <ul>
 <li>首先目标是“什么”
 <ul>
@@ -267,10 +267,10 @@
 </ul>
 </li>
 </ul>
-<h2 id="okr目标管理方法与kpi关键绩效指标的区别">OKR（目标管理方法）与KPI（关键绩效指标）的区别</h2>
-<p>OKR是目标管理方法，而不仅仅是绩效管理方法。和OKR相比，KPI更注重绩效结果考核，更关心绩效与考核的结果与薪酬的结合。而OKR有很大的不同，OKR有助于确保公司上下一齐聚焦解决重要的难题。</p>
-<h2 id="我的okr表格">我的OKR表格</h2>
-<p><img
+<h2 id="okr目标管理方法与kpi关键绩效指标的区别" class="headerLink">
+    <a href="#okr%e7%9b%ae%e6%a0%87%e7%ae%a1%e7%90%86%e6%96%b9%e6%b3%95%e4%b8%8ekpi%e5%85%b3%e9%94%ae%e7%bb%a9%e6%95%88%e6%8c%87%e6%a0%87%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>OKR（目标管理方法）与KPI（关键绩效指标）的区别</h2><p>OKR是目标管理方法，而不仅仅是绩效管理方法。和OKR相比，KPI更注重绩效结果考核，更关心绩效与考核的结果与薪酬的结合。而OKR有很大的不同，OKR有助于确保公司上下一齐聚焦解决重要的难题。</p>
+<h2 id="我的okr表格" class="headerLink">
+    <a href="#%e6%88%91%e7%9a%84okr%e8%a1%a8%e6%a0%bc" class="header-mark"></a>我的OKR表格</h2><p><img
         class="lazyload"
         data-src="./img/OKR.jpeg"
         data-srcset="./img/OKR.jpeg, ./img/OKR.jpeg 1.5x, ./img/OKR.jpeg 2x"
@@ -278,8 +278,8 @@
         alt="./img/OKR.jpeg"
         title="OKR表格"
     /></p>
-<h2 id="okr制定流程例子">OKR制定流程例子</h2>
-<p><img
+<h2 id="okr制定流程例子" class="headerLink">
+    <a href="#okr%e5%88%b6%e5%ae%9a%e6%b5%81%e7%a8%8b%e4%be%8b%e5%ad%90" class="header-mark"></a>OKR制定流程例子</h2><p><img
         class="lazyload"
         data-src="./img/4.png"
         data-srcset="./img/4.png, ./img/4.png 1.5x, ./img/4.png 2x"
@@ -295,8 +295,8 @@
         alt="./img/5.png"
         title="OKR flow 2"
     /></p>
-<h2 id="okr例子">OKR例子</h2>
-<p><img
+<h2 id="okr例子" class="headerLink">
+    <a href="#okr%e4%be%8b%e5%ad%90" class="header-mark"></a>OKR例子</h2><p><img
         class="lazyload"
         data-src="./img/1.png"
         data-srcset="./img/1.png, ./img/1.png 1.5x, ./img/1.png 2x"
@@ -311,7 +311,9 @@
         data-sizes="auto"
         alt="./img/2.png"
         title="OKR demo 2"
-    /></p></div><div class="post-footer" id="post-footer">
+    /></p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -330,7 +332,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%81%8C%E5%9C%BA/">职场</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -339,8 +341,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -350,7 +356,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

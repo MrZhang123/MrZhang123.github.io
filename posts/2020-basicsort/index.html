@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title class="pjax-title">基础排序 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="基础排序" />
-<meta property="og:description" content="选择排序
-
+<meta property="og:description" content="
+    选择排序
 首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。
 " />
 <meta property="og:type" content="article" />
@@ -19,14 +19,14 @@
 <meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
 
 <meta name="twitter:title" content="基础排序"/>
-<meta name="twitter:description" content="选择排序
-
+<meta name="twitter:description" content="
+    选择排序
 首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。
 "/>
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2020-basicsort/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2020_pointer_compression_in_v8/" /><link rel="next" href="https://mrzhang123.github.io/posts/2020-2021newyear/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -54,14 +54,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -90,7 +90,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -132,19 +132,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">基础排序</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%AE%97%E6%B3%95/"><i class="far fa-folder fa-fw"></i>算法</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-07-14">2020-07-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-07-14">2020-07-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1684 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#选择排序">选择排序</a>
       <ul>
@@ -165,18 +153,30 @@
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="选择排序">选择排序</h2>
-<blockquote>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">基础排序</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%AE%97%E6%B3%95/"><i class="far fa-folder fa-fw"></i>算法</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-07-14">2020-07-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-07-14">2020-07-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1684 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
+            </div><div class="content" id="content"><h2 id="选择排序" class="headerLink">
+    <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>选择排序</h2><blockquote>
 <p>首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。</p>
 </blockquote>
 <p><strong>命题A</strong>：对于长度为N的数组，选择排序需要大约$N^2 / 2$次比较和N次交换</p>
-<h3 id="特性">特性</h3>
-<ul>
+<h3 id="特性" class="headerLink">
+    <a href="#%e7%89%b9%e6%80%a7" class="header-mark"></a>特性</h3><ul>
 <li>运行时间和输入无关</li>
 <li>数据移动是最少的</li>
 </ul>
-<h3 id="代码实现">代码实现</h3>
-<p><img
+<h3 id="代码实现" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0" class="header-mark"></a>代码实现</h3><p><img
         class="lazyload"
         data-src="./img/selectSort.png"
         data-srcset="./img/selectSort.png, ./img/selectSort.png 1.5x, ./img/selectSort.png 2x"
@@ -263,14 +263,14 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="插入排序">插入排序</h2>
-<blockquote>
+</div><h2 id="插入排序" class="headerLink">
+    <a href="#%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f" class="header-mark"></a>插入排序</h2><blockquote>
 <p>指针 i 用于遍历整个数组，指针 j 用于将右边部分数组依此跟前一个元素进行比较，如果比前一个元素小，就将元素与前一个元素交换，直到遍历完成整个数组。</p>
 </blockquote>
 <p>与选择排序一样，当前索引左边的所有元素都是有序的，但是它的最终位置还不确定。和选择排序不同的是，<strong>插入排序所需的时间取决于输入中元素的初始顺序</strong>。</p>
 <p><strong>命题B</strong>：对于随机排列的长度为N且主键不重复的数组，平均情况下插入排序需要 ～$N^2 / 4$ 次比较及 ~ $N^2 / 4$ 次交换，最坏情况下插入排序需要 ～$N^2 / 2$ 次比较及 ~ $N^2 / 2$ 次交换，最好情况下需要 N-1 次比较和 0 次交换。</p>
-<h3 id="代码实现-1">代码实现</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="代码实现-1" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0-1" class="header-mark"></a>代码实现</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -294,8 +294,8 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="部分有序">部分有序</h3>
-<p>如果数组中倒置的数量小于数组大小的某个倍数，那么我们说这个数组是部分有序的。以下是几种经典的部分有序数组：</p>
+</div><h3 id="部分有序" class="headerLink">
+    <a href="#%e9%83%a8%e5%88%86%e6%9c%89%e5%ba%8f" class="header-mark"></a>部分有序</h3><p>如果数组中倒置的数量小于数组大小的某个倍数，那么我们说这个数组是部分有序的。以下是几种经典的部分有序数组：</p>
 <ul>
 <li>数组中每个元素距离它的最终位置都不远</li>
 <li>一个有序的大数组接一个小数组</li>
@@ -318,8 +318,8 @@
 </div><p>事实上，当倒置数量很少时，插入排序可能比我们所知道任何基础排序算法都要快。</p>
 <p><strong>命题C</strong>：插入排序需要的交换操作和数组中倒置的数量相同，需要的比较次数大于等于倒置的数量，小于等于倒置的数量加上数组的大小再减一。</p>
 <p>如果逆序对是线性的（部分有序数组），插入排序对这样的数组排序的时间是线性的。总的来说，插入排序对于部分有序的数组十分高效，也很适合小规模数组。</p>
-<h2 id="希尔排序shell-sort">希尔排序（Shell sort）</h2>
-<blockquote>
+<h2 id="希尔排序shell-sort" class="headerLink">
+    <a href="#%e5%b8%8c%e5%b0%94%e6%8e%92%e5%ba%8fshell-sort" class="header-mark"></a>希尔排序（Shell sort）</h2><blockquote>
 <p>前面的排序每次都移动一个位置，导致效率要低一些，所以希尔排序将数组每次移动若干位置，这种操作叫做对数组进行h-排序。希尔排序的思想是使数组中任意间隔为h的元素都是有序的。这样的数组被成为“h有序数组”。</p>
 </blockquote>
 <p>h-排序包含h个不同的交叉的“有序子列”，通过递减h值的h-排序实现一种排序方法，对h-排序使用“插入排序”，之前每次获取新的项往回走一个，现在往回走h个。</p>
@@ -337,8 +337,8 @@
 <li>2n-1：1，3，5，7&hellip;</li>
 <li>3n+1：1，4，13，40&hellip;</li>
 </ul>
-<h3 id="代码实现-2">代码实现</h3>
-<p>实现方式，增量取3n+1</p>
+<h3 id="代码实现-2" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81%e5%ae%9e%e7%8e%b0-2" class="header-mark"></a>代码实现</h3><p>实现方式，增量取3n+1</p>
 <p><img
         class="lazyload"
         data-src="./img/shellSort.png"
@@ -437,8 +437,8 @@
 </div>
 </div><p>已知在最坏情况下该算法的比较次数和N^(3/2)成正比</p>
 <p>性质E：使用递增序列1，4，13，40，121，364&hellip;（即$3*h+1$）的希尔排序所需的比较次数不会超过N的若干倍乘以递增序列的长度。</p>
-<h1 id="洗牌算法shuffling">洗牌算法（Shuffling）</h1>
-<p>要点：指针 i 遍历整个数组，将数组分为左右两个部分，从右边已经乱序的数组中随机找到元素 a[r] ，将 a[i] 与 a[r] 交换，i++</p>
+<h1 id="洗牌算法shuffling" class="headerLink">
+    <a href="#%e6%b4%97%e7%89%8c%e7%ae%97%e6%b3%95shuffling" class="header-mark"></a>洗牌算法（Shuffling）</h1><p>要点：指针 i 遍历整个数组，将数组分为左右两个部分，从右边已经乱序的数组中随机找到元素 a[r] ，将 a[i] 与 a[r] 交换，i++</p>
 <p><img
         class="lazyload"
         data-src="./img/Shuffling.png"
@@ -446,7 +446,9 @@
         data-sizes="auto"
         alt="./img/Shuffling.png"
         title="Shuffling"
-    /></p></div><div class="post-footer" id="post-footer">
+    /></p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -465,7 +467,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%AE%97%E6%B3%95/">算法</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -474,8 +476,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -485,7 +491,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

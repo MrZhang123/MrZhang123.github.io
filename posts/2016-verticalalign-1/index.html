@@ -24,7 +24,7 @@ IE6/7下line-height不支持小数"/>
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-verticalalign-1/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-gulpbrosersync/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-webpack1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -37,7 +37,7 @@ IE6/7下line-height不支持小数"/>
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2016-verticalalign-1\/"
-        },"genre": "posts","keywords": "CSS","wordcount":  2996 ,
+        },"genre": "posts","keywords": "CSS","wordcount":  3029 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-verticalalign-1\/","datePublished": "2016-05-23T23:07:35+00:00","dateModified": "2016-05-23T23:07:35+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -52,14 +52,14 @@ IE6/7下line-height不支持小数"/>
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@ IE6/7下line-height不支持小数"/>
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@ IE6/7下line-height不支持小数"/>
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">慕课网---深入理解vertical-align总结</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/css/"><i class="far fa-folder fa-fw"></i>CSS</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2996 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#vertical-align起作用的前提">vertical-align起作用的前提</a>
       <ul>
@@ -200,19 +188,31 @@ IE6/7下line-height不支持小数"/>
     <li><a href="#vertical-align前后不一的作用机制与示例">vertical-align前后不一的作用机制与示例</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">慕课网---深入理解vertical-align总结</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/css/"><i class="far fa-folder fa-fw"></i>CSS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3029 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><p>看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下
 vertical-align的百分比值相对于line-height计算
 IE6/7下line-height不支持小数</p>
-<h2 id="vertical-align起作用的前提">vertical-align起作用的前提</h2>
-<p>该属性应用于inline水平或者table-cell元素</p>
-<h4 id="inline水平">inline水平</h4>
-<p>inline:img,span,strong,em等
+<h2 id="vertical-align起作用的前提" class="headerLink">
+    <a href="#vertical-align%e8%b5%b7%e4%bd%9c%e7%94%a8%e7%9a%84%e5%89%8d%e6%8f%90" class="header-mark"></a>vertical-align起作用的前提</h2><p>该属性应用于inline水平或者table-cell元素</p>
+<h4 id="inline水平" class="headerLink">
+    <a href="#inline%e6%b0%b4%e5%b9%b3" class="header-mark"></a>inline水平</h4><p>inline:img,span,strong,em等
 inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
-<h4 id="table-cell元素">table-cell元素</h4>
-<p>td
+<h4 id="table-cell元素" class="headerLink">
+    <a href="#table-cell%e5%85%83%e7%b4%a0" class="header-mark"></a>table-cell元素</h4><p>td
 所以<font color='red'>默认情况下</font>支持vertical-align的有：图片，按钮，文字，单元格</p>
-<h3 id="抛出一个问题">抛出一个问题</h3>
-<p>想实现图片的垂直居中</p>
+<h3 id="抛出一个问题" class="headerLink">
+    <a href="#%e6%8a%9b%e5%87%ba%e4%b8%80%e4%b8%aa%e9%97%ae%e9%a2%98" class="header-mark"></a>抛出一个问题</h3><p>想实现图片的垂直居中</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -268,8 +268,8 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>利用vertical-align：middle实现垂直居中，但是这里并没有按照我们想要的去做，解决办法：</p>
-<h4 id="1给父元素p添加line-height的值为p的高度ie7都可以实现">1.给父元素<p>添加line-height的值为<p>的高度（ie7+都可以实现）</h4>
-<div class="highlight"><div class="chroma">
+<h4 id="1给父元素p添加line-height的值为p的高度ie7都可以实现" class="headerLink">
+    <a href="#1%e7%bb%99%e7%88%b6%e5%85%83%e7%b4%a0p%e6%b7%bb%e5%8a%a0line-height%e7%9a%84%e5%80%bc%e4%b8%bap%e7%9a%84%e9%ab%98%e5%ba%a6ie7%e9%83%bd%e5%8f%af%e4%bb%a5%e5%ae%9e%e7%8e%b0" class="header-mark"></a>1.给父元素<p>添加line-height的值为<p>的高度（ie7+都可以实现）</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -281,8 +281,8 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="2给父元素p添加displaytable-cell">2.给父元素<p>添加display:table-cell</h4>
-<p>table-cell元素的vertical-align只会作用于自身，里面的子元素设置不起作用</p>
+</div><h4 id="2给父元素p添加displaytable-cell" class="headerLink">
+    <a href="#2%e7%bb%99%e7%88%b6%e5%85%83%e7%b4%a0p%e6%b7%bb%e5%8a%a0displaytable-cell" class="header-mark"></a>2.给父元素<p>添加display:table-cell</h4><p>table-cell元素的vertical-align只会作用于自身，里面的子元素设置不起作用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -299,8 +299,8 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="vertical-align与line-height">vertical-align与line-height</h2>
-<p>利用text-align:justify任意数目列表两端对齐效果</p>
+</div><h2 id="vertical-align与line-height" class="headerLink">
+    <a href="#vertical-align%e4%b8%8eline-height" class="header-mark"></a>vertical-align与line-height</h2><p>利用text-align:justify任意数目列表两端对齐效果</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -370,8 +370,8 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
         alt="./img/4.png"
         title="icon"
     /></p>
-<h4 id="为什么会出现这样的现象">为什么会出现这样的现象？</h4>
-<p>首先看一个东西
+<h4 id="为什么会出现这样的现象" class="headerLink">
+    <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bc%9a%e5%87%ba%e7%8e%b0%e8%bf%99%e6%a0%b7%e7%9a%84%e7%8e%b0%e8%b1%a1" class="header-mark"></a>为什么会出现这样的现象？</h4><p>首先看一个东西
 从CSS2的可视化格式模型文档中看到：
 ‘inline-block’的基线是正常流中最后一个line box的基线，除非，这个line box里面既没有line boxes或者本身‘overflow’属性的计算值而不是‘visible’，这种情况下基线是margin第边缘
 举例说明：</p>
@@ -452,25 +452,25 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
         alt="./img/1.png"
         title="icon"
     /></p>
-<h2 id="vertical-align线性属性值">vertical-align线性属性值</h2>
-<h3 id="1vertical-alignbottomtop与之差不多">1.vertical-align:bottom（top与之差不多）</h3>
-<h4 id="定义">定义</h4>
-<ol>
+<h2 id="vertical-align线性属性值" class="headerLink">
+    <a href="#vertical-align%e7%ba%bf%e6%80%a7%e5%b1%9e%e6%80%a7%e5%80%bc" class="header-mark"></a>vertical-align线性属性值</h2><h3 id="1vertical-alignbottomtop与之差不多" class="headerLink">
+    <a href="#1vertical-alignbottomtop%e4%b8%8e%e4%b9%8b%e5%b7%ae%e4%b8%8d%e5%a4%9a" class="header-mark"></a>1.vertical-align:bottom（top与之差不多）</h3><h4 id="定义" class="headerLink">
+    <a href="#%e5%ae%9a%e4%b9%89" class="header-mark"></a>定义</h4><ol>
 <li>inline / inline-block元素：元素底部和整行底部对齐。</li>
 <li>table-cell元素：单元格底padding边缘和表格行的底部对齐</li>
 </ol>
-<h3 id="2vertical-alignmiddle">2.vertical-align:middle</h3>
-<h4 id="定义-1">定义</h4>
-<ol>
+<h3 id="2vertical-alignmiddle" class="headerLink">
+    <a href="#2vertical-alignmiddle" class="header-mark"></a>2.vertical-align:middle</h3><h4 id="定义-1" class="headerLink">
+    <a href="#%e5%ae%9a%e4%b9%89-1" class="header-mark"></a>定义</h4><ol>
 <li>inline / inline-block元素：元素的垂直中心点和父元素基线上1/2 x-height处对齐</li>
 <li>table - cell元素：单元格填充盒子相对于外卖的表格行居中对齐</li>
 </ol>
-<h4 id="利用vertical-alignmiddle所实现的是font-colorred近似font垂直居中">利用vertical-align：middle所实现的是<font color="red">近似</font>垂直居中</h4>
-<p>为什么是近似呢？答案就在于： inline / inline-block元素：元素的垂直中心点和父元素基线上1/2 x-height处对齐
+<h4 id="利用vertical-alignmiddle所实现的是font-colorred近似font垂直居中" class="headerLink">
+    <a href="#%e5%88%a9%e7%94%a8vertical-alignmiddle%e6%89%80%e5%ae%9e%e7%8e%b0%e7%9a%84%e6%98%affont-colorred%e8%bf%91%e4%bc%bcfont%e5%9e%82%e7%9b%b4%e5%b1%85%e4%b8%ad" class="header-mark"></a>利用vertical-align：middle所实现的是<font color="red">近似</font>垂直居中</h4><p>为什么是近似呢？答案就在于： inline / inline-block元素：元素的垂直中心点和父元素基线上1/2 x-height处对齐
 父元素基线上1/2 x-height处其实就是用line-height撑开后字符水平中心
 字符所在的水平中心线和经过line-height撑开后的水平中心线（vertical-algin：middle的水平中心线）不是一个中心线（具体演示看[4-1 vertical-align线性属性值]http://www.imooc.com/video/10403）因为字符，本身有个下沉的特性</p>
-<h4 id="那么如何实现完全垂直居中">那么如何实现完全垂直居中？</h4>
-<p>给父元素设置</p>
+<h4 id="那么如何实现完全垂直居中" class="headerLink">
+    <a href="#%e9%82%a3%e4%b9%88%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e5%ae%8c%e5%85%a8%e5%9e%82%e7%9b%b4%e5%b1%85%e4%b8%ad" class="header-mark"></a>那么如何实现完全垂直居中？</h4><p>给父元素设置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -493,28 +493,28 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
 <span class="nt">img</span><span class="o">+</span><span class="nt">span</span> <span class="p">{</span> <span class="n">veritcal-align</span><span class="p">:</span><span class="kc">middle</span><span class="p">;</span> <span class="p">}</span> 
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="vertical-align文本类属性值">vertical-align文本类属性值</h2>
-<h3 id="定义-2">定义：</h3>
-<ol>
+</div><h2 id="vertical-align文本类属性值" class="headerLink">
+    <a href="#vertical-align%e6%96%87%e6%9c%ac%e7%b1%bb%e5%b1%9e%e6%80%a7%e5%80%bc" class="header-mark"></a>vertical-align文本类属性值</h2><h3 id="定义-2" class="headerLink">
+    <a href="#%e5%ae%9a%e4%b9%89-2" class="header-mark"></a>定义：</h3><ol>
 <li>vertical-align :text-top
 盒子的顶部和父级content area的顶部对齐</li>
 <li>vertical-align：text-bottom</li>
 </ol>
 <p>盒子的底部和父级content area的底部对齐</p>
-<h3 id="解释">解释：</h3>
-<p>content area就是只与父级font-size的大小有关，与行高，以及后面是否有inline-block元素的没有任何关系，但是vertical-align：middle / top / bottom都会被后面的inline-block水平元素影响。</p>
-<h3 id="用处">用处：</h3>
-<p>一般用于表情图片（或原始尺寸背景图标）与文字的对齐效果</p>
-<h2 id="输入理解vertical-align上标下标类---sub--super">输入理解vertical-align上标下标类&mdash;sub / super</h2>
-<p>HTML中有原生的上下标标签，分别为：<code>&lt;sup&gt;</code> ,<code>&lt;sub&gt;</code>。利用原生的HTML获得的上下标文字大小是父元素75%左右。</p>
-<h3 id="定义-3">定义：</h3>
-<p>1.vertical-align：super
+<h3 id="解释" class="headerLink">
+    <a href="#%e8%a7%a3%e9%87%8a" class="header-mark"></a>解释：</h3><p>content area就是只与父级font-size的大小有关，与行高，以及后面是否有inline-block元素的没有任何关系，但是vertical-align：middle / top / bottom都会被后面的inline-block水平元素影响。</p>
+<h3 id="用处" class="headerLink">
+    <a href="#%e7%94%a8%e5%a4%84" class="header-mark"></a>用处：</h3><p>一般用于表情图片（或原始尺寸背景图标）与文字的对齐效果</p>
+<h2 id="输入理解vertical-align上标下标类---sub--super" class="headerLink">
+    <a href="#%e8%be%93%e5%85%a5%e7%90%86%e8%a7%a3vertical-align%e4%b8%8a%e6%a0%87%e4%b8%8b%e6%a0%87%e7%b1%bb---sub--super" class="header-mark"></a>输入理解vertical-align上标下标类&mdash;sub / super</h2><p>HTML中有原生的上下标标签，分别为：<code>&lt;sup&gt;</code> ,<code>&lt;sub&gt;</code>。利用原生的HTML获得的上下标文字大小是父元素75%左右。</p>
+<h3 id="定义-3" class="headerLink">
+    <a href="#%e5%ae%9a%e4%b9%89-3" class="header-mark"></a>定义：</h3><p>1.vertical-align：super
 提高盒子的基线到父级合适的上标基线位置。
 2.vertical-align：sub
 降低盒子的基线到父级合适的下标基线位置。
 这里的‘合适的上（下）标基线位置’，哪里合适，说不清</p>
-<h2 id="vertical-align前后不一的作用机制与示例">vertical-align前后不一的作用机制与示例</h2>
-<p>vertical-align所有的表现只当前元素和父级有关，前后并没有直接影响
+<h2 id="vertical-align前后不一的作用机制与示例" class="headerLink">
+    <a href="#vertical-align%e5%89%8d%e5%90%8e%e4%b8%8d%e4%b8%80%e7%9a%84%e4%bd%9c%e7%94%a8%e6%9c%ba%e5%88%b6%e4%b8%8e%e7%a4%ba%e4%be%8b" class="header-mark"></a>vertical-align前后不一的作用机制与示例</h2><p>vertical-align所有的表现只当前元素和父级有关，前后并没有直接影响
 1.实现小图标和文字的对齐
 使用vertical-align负值，虽然图片文字对齐可以使用浮动实现的，但是尽量少用浮动，因为会破坏布局，使用vertical-align负值可以实现居中
 2.不定尺寸图片或多行文字的<font color='red'>垂直居中</font>,具体实现步骤如下：
@@ -632,7 +632,9 @@ a.大小不固定的图片垂直居中</p>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -651,7 +653,7 @@ a.大小不固定的图片垂直居中</p>
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/css/">CSS</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -660,8 +662,12 @@ a.大小不固定的图片垂直居中</p>
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -671,7 +677,7 @@ a.大小不固定的图片垂直居中</p>
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

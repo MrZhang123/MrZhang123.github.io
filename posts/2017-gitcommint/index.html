@@ -24,7 +24,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2017-gitcommint/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2017-reactsum/" /><link rel="next" href="https://mrzhang123.github.io/posts/2017-reactdom/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2017-gitcommint\/"
-        },"genre": "posts","keywords": "Git","wordcount":  1893 ,
+        },"genre": "posts","keywords": "Git","wordcount":  1921 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2017-gitcommint\/","datePublished": "2017-10-18T22:11:36+00:00","dateModified": "2017-10-18T22:11:36+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -52,14 +52,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git Commint规范</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>Git</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1893 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#配置检测git-commit是否合法">配置检测git commit是否合法</a></li>
     <li><a href="#commit-message-的格式">Commit message 的格式</a>
@@ -168,11 +156,23 @@
     <li><a href="#生成change-log">生成change log</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git Commint规范</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>Git</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1921 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。</p>
 </blockquote>
-<h2 id="配置检测git-commit是否合法">配置检测git commit是否合法</h2>
-<div class="highlight"><div class="chroma">
+<h2 id="配置检测git-commit是否合法" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%ae%e6%a3%80%e6%b5%8bgit-commit%e6%98%af%e5%90%a6%e5%90%88%e6%b3%95" class="header-mark"></a>配置检测git commit是否合法</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -267,8 +267,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>配置完成之后，提交所写的commit如果不符合规范，则无法进行下一步操作</p>
-<h2 id="commit-message-的格式">Commit message 的格式</h2>
-<p>每次提交，Commit message 都包括三个部分：Header，Body 和 Footer</p>
+<h2 id="commit-message-的格式" class="headerLink">
+    <a href="#commit-message-%e7%9a%84%e6%a0%bc%e5%bc%8f" class="header-mark"></a>Commit message 的格式</h2><p>每次提交，Commit message 都包括三个部分：Header，Body 和 Footer</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -286,10 +286,10 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>Header是必需的，Body和Footer可以省略</p>
-<h3 id="header">header</h3>
-<p>Header部分只有一行，包括三个字段：type（必需）、scope（可选）和subject（必需）</p>
-<h4 id="type">type</h4>
-<p>该字段用于说明commit的类型，被指定在上面的<code>type-enum</code>中</p>
+<h3 id="header" class="headerLink">
+    <a href="#header" class="header-mark"></a>header</h3><p>Header部分只有一行，包括三个字段：type（必需）、scope（可选）和subject（必需）</p>
+<h4 id="type" class="headerLink">
+    <a href="#type" class="header-mark"></a>type</h4><p>该字段用于说明commit的类型，被指定在上面的<code>type-enum</code>中</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -317,18 +317,18 @@
 </span></code></pre></td></tr></table>
 </div>
 </div><p>如果type为feat和fix，则该 commit 将肯定出现在 Change log 之中。其他情况建议是不要放入</p>
-<h4 id="scope">scope</h4>
-<p>用于说明commit的影响范围</p>
-<h4 id="subject">subject</h4>
-<p>subject是 commit 目的的简短描述，不超过50个字符</p>
+<h4 id="scope" class="headerLink">
+    <a href="#scope" class="header-mark"></a>scope</h4><p>用于说明commit的影响范围</p>
+<h4 id="subject" class="headerLink">
+    <a href="#subject" class="header-mark"></a>subject</h4><p>subject是 commit 目的的简短描述，不超过50个字符</p>
 <p>要求如下：</p>
 <ul>
 <li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
 <li>第一个字母小写</li>
 <li>结尾不加句号（.）</li>
 </ul>
-<h3 id="body">body</h3>
-<p>body 部分是对本次 commit 的描述，可以分成多行，例如：</p>
+<h3 id="body" class="headerLink">
+    <a href="#body" class="header-mark"></a>body</h3><p>body 部分是对本次 commit 的描述，可以分成多行，例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -358,10 +358,10 @@ Further paragraphs come after blank lines.
 <p>应该说明代码变动的原因，以及跟以前提交的对比</p>
 </li>
 </ol>
-<h3 id="footer">footer</h3>
-<p>footer只用于以下两种情况：</p>
-<h4 id="不兼容变动">不兼容变动</h4>
-<p>如果当前代码与上一个版本不兼容，则 Footer 部分以BREAKING CHANGE开头，后面是对变动的描述、以及变动理由和迁移方法</p>
+<h3 id="footer" class="headerLink">
+    <a href="#footer" class="header-mark"></a>footer</h3><p>footer只用于以下两种情况：</p>
+<h4 id="不兼容变动" class="headerLink">
+    <a href="#%e4%b8%8d%e5%85%bc%e5%ae%b9%e5%8f%98%e5%8a%a8" class="header-mark"></a>不兼容变动</h4><p>如果当前代码与上一个版本不兼容，则 Footer 部分以BREAKING CHANGE开头，后面是对变动的描述、以及变动理由和迁移方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -402,8 +402,8 @@ Further paragraphs come after blank lines.
     The removed <span class="sb">`</span>inject<span class="sb">`</span> wasn<span class="err">&#39;</span>t generaly useful <span class="k">for</span> directives so there should be no code using it.
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="关闭issue">关闭Issue</h4>
-<p>如果当前 commit 针对某个issue，那么可以在 footer 部分关闭这个 issue</p>
+</div><h4 id="关闭issue" class="headerLink">
+    <a href="#%e5%85%b3%e9%97%adissue" class="header-mark"></a>关闭Issue</h4><p>如果当前 commit 针对某个issue，那么可以在 footer 部分关闭这个 issue</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -418,8 +418,8 @@ Closes <span class="c1">#1</span>
 Closes <span class="c1">#2, #3, #4</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="revert">revert</h3>
-<p>还有一种特殊情况，如果当前 commit 用于撤销以前的 commit，必须以revert:开头，后面跟着被撤销 commit 的 header</p>
+</div><h3 id="revert" class="headerLink">
+    <a href="#revert" class="header-mark"></a>revert</h3><p>还有一种特殊情况，如果当前 commit 用于撤销以前的 commit，必须以revert:开头，后面跟着被撤销 commit 的 header</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -434,8 +434,8 @@ This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
 </div>
 </div><p>Body部分的格式是固定的，必须写成<code>This reverts commit &lt;hash&gt;.</code>，其中的hash是被撤销 commit 的 SHA 标识符</p>
 <p>如果当前 commit 与被撤销的 commit，在同一个发布（release）里面，那么它们都不会出现在 Change log 里面。如果两者在不同的发布，那么当前 commit，会出现在 Change log 的Reverts小标题下面。</p>
-<h3 id="example">Example</h3>
-<div class="highlight"><div class="chroma">
+<h3 id="example" class="headerLink">
+    <a href="#example" class="header-mark"></a>Example</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -455,8 +455,8 @@ tests.
 PR Close <span class="c1">#19558</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="生成change-log">生成change log</h2>
-<p>如果你的所有 Commit 都符合 Angular 格式，那么发布新版本时， Change log 就可以用脚本自动生成。</p>
+</div><h2 id="生成change-log" class="headerLink">
+    <a href="#%e7%94%9f%e6%88%90change-log" class="header-mark"></a>生成change log</h2><p>如果你的所有 Commit 都符合 Angular 格式，那么发布新版本时， Change log 就可以用脚本自动生成。</p>
 <p>生成的文档包括以下三个部分。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -520,7 +520,9 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w
 <pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ npm run changelog
 </code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -539,7 +541,7 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/git/">Git</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -548,8 +550,12 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -559,7 +565,7 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

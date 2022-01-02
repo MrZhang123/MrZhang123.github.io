@@ -20,7 +20,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-fileupload2/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-es6practice/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-filerem/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -48,14 +48,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -84,7 +84,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -126,19 +126,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">文件上传（二）---新XMLHttpRequest实现带进度条文件上传</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-04-14">2016-04-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-04-14">2016-04-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2319 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#创建xmlhttprequest对象">创建XMLHttpRequest对象</a>
       <ul>
@@ -153,9 +141,21 @@
     </li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">文件上传（二）---新XMLHttpRequest实现带进度条文件上传</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-04-14">2016-04-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-04-14">2016-04-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2319 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><p>前几天搞得那个文件上传，最近工作不太忙，又开始完善。这次主要添加了文件上传的进度部分，主要用到的则是XMLHttpRequest2的progress，由于我读的是《javascript高级程序设计》（第三版），这里我遇到一个关于progeress事件的坑，后面详细解答。</p>
-<h2 id="创建xmlhttprequest对象">创建XMLHttpRequest对象</h2>
-<p>首先说说XMLHttpRequest，在IE7+浏览器中，只需要new一个XMLHttpRequest对象即可：</p>
+<h2 id="创建xmlhttprequest对象" class="headerLink">
+    <a href="#%e5%88%9b%e5%bb%baxmlhttprequest%e5%af%b9%e8%b1%a1" class="header-mark"></a>创建XMLHttpRequest对象</h2><p>首先说说XMLHttpRequest，在IE7+浏览器中，只需要new一个XMLHttpRequest对象即可：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -165,8 +165,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>由于现在淘宝都不再支持IE6以及7，所以这里不考虑IE7及以下浏览器关于xhr的创建方法。</p>
-<h3 id="open方法">open()方法</h3>
-<p>在使用XHR对象时候，第一个方法是open()方法，它接受3个参数：</p>
+<h3 id="open方法" class="headerLink">
+    <a href="#open%e6%96%b9%e6%b3%95" class="header-mark"></a>open()方法</h3><p>在使用XHR对象时候，第一个方法是open()方法，它接受3个参数：</p>
 <ul>
 <li>要发送的请求的类型（&ldquo;get&rdquo;、&ldquo;post&quot;等）；</li>
 <li>请求的URL；</li>
@@ -188,8 +188,8 @@
 <li>URL相对于执行代码的当前页面；</li>
 <li>调用open()方法并不会真正发送请求，只是启动一个请求以备发送</li>
 </ul>
-<h3 id="sned方法">sned()方法</h3>
-<p>send()方法接收一个参数，即要作为请求主题发送的数据。如果不需要通过请求主题发送数据，则传入null。在发送数据收到响应后，响应的数据会自动填充XHR对象的属性，相关属性如下：</p>
+<h3 id="sned方法" class="headerLink">
+    <a href="#sned%e6%96%b9%e6%b3%95" class="header-mark"></a>sned()方法</h3><p>send()方法接收一个参数，即要作为请求主题发送的数据。如果不需要通过请求主题发送数据，则传入null。在发送数据收到响应后，响应的数据会自动填充XHR对象的属性，相关属性如下：</p>
 <ul>
 <li>responseText：作为响应主题被返回的文本；</li>
 <li>responseXML：如果响应的内容类型是&quot;text/xml&quot;或者&quot;application/xml&rdquo;，则这个属性中将保存包含着响应数据的XML DOM文档；</li>
@@ -234,8 +234,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>所以利用以上代码就可以实现文件是上传成功还是失败。</p>
-<h2 id="xmlhttprequest2级的进度事件">XMLHttpRequest2级的进度事件</h2>
-<p>XHR2有如下6个进度事件：</p>
+<h2 id="xmlhttprequest2级的进度事件" class="headerLink">
+    <a href="#xmlhttprequest2%e7%ba%a7%e7%9a%84%e8%bf%9b%e5%ba%a6%e4%ba%8b%e4%bb%b6" class="header-mark"></a>XMLHttpRequest2级的进度事件</h2><p>XHR2有如下6个进度事件：</p>
 <ul>
 <li>loadstart：在接收到响应数据的第一个字节时触发。</li>
 <li>progress：在接收响应期间持续不断地触发。</li>
@@ -246,8 +246,8 @@
 </ul>
 <p>以上事件触发顺序如下：
 laodstart =&gt; progress =&gt; error =&gt; abort/load =&gt; loadend</p>
-<h3 id="关于progress事件中上传与下载的事件">关于progress事件中上传与下载的事件</h3>
-<p>这里就是我遇到的坑，在《javascript高级程序设计》中并没有说清楚，让我感到困惑，在原书中581页这么描写：“onprogress事件处理程序会接收到一个 event 对象，其 target 属性是 XHR 对象，但包含着三个额外的属性：lengthComputable、position 和 totalSize。其中，lengthComputable 是一个表示进度信息是否可用的布尔值，position 表示已经接收的字节数，totalSize 表示根据Content-Length 响应头部确定的预期字节数。”而实际上表示<font color=red>总字节数的属性是total，表示已经传输的字节数是load属性。</font>
+<h3 id="关于progress事件中上传与下载的事件" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8eprogress%e4%ba%8b%e4%bb%b6%e4%b8%ad%e4%b8%8a%e4%bc%a0%e4%b8%8e%e4%b8%8b%e8%bd%bd%e7%9a%84%e4%ba%8b%e4%bb%b6" class="header-mark"></a>关于progress事件中上传与下载的事件</h3><p>这里就是我遇到的坑，在《javascript高级程序设计》中并没有说清楚，让我感到困惑，在原书中581页这么描写：“onprogress事件处理程序会接收到一个 event 对象，其 target 属性是 XHR 对象，但包含着三个额外的属性：lengthComputable、position 和 totalSize。其中，lengthComputable 是一个表示进度信息是否可用的布尔值，position 表示已经接收的字节数，totalSize 表示根据Content-Length 响应头部确定的预期字节数。”而实际上表示<font color=red>总字节数的属性是total，表示已经传输的字节数是load属性。</font>
 XHR2传输数据有一个progress事件，用来返回进度信息，它分成上传和下载两种情况，<font color=red>下载的progress事件属于XMLHttpRequest对象，而上传的progress事件属于XMLHttpRequest.upload对象</font>。
 首先定义传输文件的函数：</p>
 <div class="highlight"><div class="chroma">
@@ -364,7 +364,9 @@ XHR2传输数据有一个progress事件，用来返回进度信息，它分成�
 <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
-</div></div><div class="post-footer" id="post-footer">
+</div></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -383,7 +385,7 @@ XHR2传输数据有一个progress事件，用来返回进度信息，它分成�
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/h5/">H5</a>,&nbsp;<a href="/tags/file/">file</a>,&nbsp;<a href="/tags/canvas/">canvas</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -392,8 +394,12 @@ XHR2传输数据有一个progress事件，用来返回进度信息，它分成�
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -403,7 +409,7 @@ XHR2传输数据有一个progress事件，用来返回进度信息，它分成�
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

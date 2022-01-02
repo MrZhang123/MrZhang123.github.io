@@ -22,7 +22,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2018-es2018/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2018-webpackpublicpath/" /><link rel="next" href="https://mrzhang123.github.io/posts/2018-reactproject1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2018-es2018\/"
-        },"genre": "posts","keywords": "Javascript","wordcount":  3079 ,
+        },"genre": "posts","keywords": "Javascript","wordcount":  3104 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2018-es2018\/","datePublished": "2018-06-20T17:39:25+00:00","dateModified": "2018-06-20T17:39:25+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -50,14 +50,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -86,7 +86,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -128,19 +128,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ES2018（ES9）的新特性</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-06-20">2018-06-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-06-20">2018-06-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3079 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#es2016">ES2016</a></li>
     <li><a href="#es2017">ES2017</a></li>
@@ -159,6 +147,18 @@
     <li><a href="#译者参考">译者参考</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ES2018（ES9）的新特性</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-06-20">2018-06-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-06-20">2018-06-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3104 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><p>原文链接：https://www.sitepoint.com/es2018-whats-new/</p>
 <p>在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。</p>
 <p>JavaScript（ECMAScript）是跨多个平台的许多厂商实施的不断发展的标准。ES6（ECMAScript 2015）花费六年的时间敲定，是一个很大的发行版。新的年度发布流程被制定，以简化流程并更快地添加功能。 ES9（ES2018）是撰写本文时的最新版本。</p>
@@ -170,14 +170,14 @@
 <li><strong>Stage 3: candidate（候选）</strong>——提案规范通过审查并从厂商那里收集反馈</li>
 <li><strong>Stage 4: finished（完成）</strong>——提案准备加入ECMAScript，但是到浏览器或者Nodejs中可能需要更长的时间</li>
 </ul>
-<h2 id="es2016">ES2016</h2>
-<p>ES2016添加了两个小的特性来说明标准化过程：</p>
+<h2 id="es2016" class="headerLink">
+    <a href="#es2016" class="header-mark"></a>ES2016</h2><p>ES2016添加了两个小的特性来说明标准化过程：</p>
 <ol>
 <li>数组<code>includes()</code>方法，用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回<code>true</code>，否则返回<code>false</code>。</li>
 <li><code>a ** b</code>指数运算符，它与 <code>Math.pow(a, b)</code>相同。</li>
 </ol>
-<h2 id="es2017">ES2017</h2>
-<p>ES2017提供了更多的新特性：</p>
+<h2 id="es2017" class="headerLink">
+    <a href="#es2017" class="header-mark"></a>ES2017</h2><p>ES2017提供了更多的新特性：</p>
 <ol>
 <li>Async 函数呈现更清晰的 Promise 语法</li>
 <li><code>Object.values</code> 方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用<code>for...in</code>循环的顺序相同（区别在于<code>for...in</code>循环枚举原型链中的属性）</li>
@@ -188,10 +188,10 @@
 <li><code>ShareArrayBuffer</code>和<code>Atomics</code>用于从共享内存位置读取和写入</li>
 </ol>
 <p>关于ES2017的更多信息请参阅 <a href="https://www.sitepoint.com/es2017-whats-new/" target="_blank" rel="noopener noreffer">What&rsquo;s New in ES2017</a></p>
-<h2 id="es2018">ES2018</h2>
-<p>ECMAScript 2018（或者叫ES9）现在已经可用了。以下功能已经到达 stage 4，但是在撰写本文时在各个浏览器的实现还不完整。</p>
-<h3 id="异步迭代">异步迭代</h3>
-<p>在<code>async/await</code>的某些时刻，你可能尝试在同步循环中调用异步函数。例如：</p>
+<h2 id="es2018" class="headerLink">
+    <a href="#es2018" class="header-mark"></a>ES2018</h2><p>ECMAScript 2018（或者叫ES9）现在已经可用了。以下功能已经到达 stage 4，但是在撰写本文时在各个浏览器的实现还不完整。</p>
+<h3 id="异步迭代" class="headerLink">
+    <a href="#%e5%bc%82%e6%ad%a5%e8%bf%ad%e4%bb%a3" class="header-mark"></a>异步迭代</h3><p>在<code>async/await</code>的某些时刻，你可能尝试在同步循环中调用异步函数。例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -243,8 +243,8 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="promisefinally">Promise.finally()</h3>
-<p>一个Promise调用链要么成功到达最后一个<code>.then()</code>，要么失败触发<code>.catch()</code>。在某些情况下，你想要在无论Promise运行成功还是失败，运行相同的代码，例如清除，删除对话，关闭数据库连接等。</p>
+</div><h3 id="promisefinally" class="headerLink">
+    <a href="#promisefinally" class="header-mark"></a>Promise.finally()</h3><p>一个Promise调用链要么成功到达最后一个<code>.then()</code>，要么失败触发<code>.catch()</code>。在某些情况下，你想要在无论Promise运行成功还是失败，运行相同的代码，例如清除，删除对话，关闭数据库连接等。</p>
 <p><code>.finally()</code>允许你指定最终的逻辑：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -274,8 +274,8 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="restspread-属性">Rest/Spread 属性</h3>
-<p>ES2015引入了<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Rest_parameters" target="_blank" rel="noopener noreffer">Rest参数</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax" target="_blank" rel="noopener noreffer">扩展运算符</a>。三个点（&hellip;）仅用于数组。Rest参数语法允许我们将一个布丁数量的参数表示为一个数组。</p>
+</div><h3 id="restspread-属性" class="headerLink">
+    <a href="#restspread-%e5%b1%9e%e6%80%a7" class="header-mark"></a>Rest/Spread 属性</h3><p>ES2015引入了<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Rest_parameters" target="_blank" rel="noopener noreffer">Rest参数</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax" target="_blank" rel="noopener noreffer">扩展运算符</a>。三个点（&hellip;）仅用于数组。Rest参数语法允许我们将一个布丁数量的参数表示为一个数组。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -374,8 +374,8 @@
 </span></code></pre></td></tr></table>
 </div>
 </div><p>可以使用扩展运算符拷贝一个对象，像是这样<code>obj2 = {...obj1}</code>，但是 <strong>这只是一个对象的浅拷贝</strong>。另外，如果一个对象A的属性是对象B，那么在克隆后的对象cloneB中，该属性指向对象B。</p>
-<h3 id="正则表达式命名捕获组regular-expression-named-capture-groups">正则表达式命名捕获组（Regular Expression Named Capture Groups）</h3>
-<p>JavaScript正则表达式可以返回一个匹配的对象——一个包含匹配字符串的类数组，例如：以YYYY-MM-DD的格式解析日期：</p>
+<h3 id="正则表达式命名捕获组regular-expression-named-capture-groups" class="headerLink">
+    <a href="#%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e5%91%bd%e5%90%8d%e6%8d%95%e8%8e%b7%e7%bb%84regular-expression-named-capture-groups" class="header-mark"></a>正则表达式命名捕获组（Regular Expression Named Capture Groups）</h3><p>JavaScript正则表达式可以返回一个匹配的对象——一个包含匹配字符串的类数组，例如：以YYYY-MM-DD的格式解析日期：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -430,8 +430,8 @@
   <span class="nx">usDate</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reDate</span><span class="p">,</span> <span class="s1">&#39;$&lt;month&gt;-$&lt;day&gt;-$&lt;year&gt;&#39;</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="正则表达式反向断言lookbehind">正则表达式反向断言（lookbehind）</h3>
-<p>目前JavaScript在正则表达式中支持先行断言（lookahead）。这意味着匹配会发生，但不会有任何捕获，并且断言没有包含在整个匹配字段中。例如从价格中捕获货币符号：</p>
+</div><h3 id="正则表达式反向断言lookbehind" class="headerLink">
+    <a href="#%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e5%8f%8d%e5%90%91%e6%96%ad%e8%a8%80lookbehind" class="header-mark"></a>正则表达式反向断言（lookbehind）</h3><p>目前JavaScript在正则表达式中支持先行断言（lookahead）。这意味着匹配会发生，但不会有任何捕获，并且断言没有包含在整个匹配字段中。例如从价格中捕获货币符号：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -482,8 +482,8 @@
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// null
 </span></code></pre></td></tr></table>
 </div>
-</div><h3 id="正则表达式dotall模式">正则表达式<code>dotAll</code>模式</h3>
-<p>正则表达式中点<code>.</code>匹配除回车外的任何单字符，标记<code>s</code>改变这种行为，允许行终止符的出现，例如：</p>
+</div><h3 id="正则表达式dotall模式" class="headerLink">
+    <a href="#%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8fdotall%e6%a8%a1%e5%bc%8f" class="header-mark"></a>正则表达式<code>dotAll</code>模式</h3><p>正则表达式中点<code>.</code>匹配除回车外的任何单字符，标记<code>s</code>改变这种行为，允许行终止符的出现，例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -494,8 +494,8 @@
 </span><span class="c1"></span><span class="err">/hello.world/s.test(&#39;hello\nworld&#39;); // true</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="正则表达式-unicode-转义">正则表达式 Unicode 转义</h3>
-<p>到目前为止，在正则表达式中本地访问 Unicode 字符属性是不被允许的。ES2018添加了 Unicode 属性转义——形式为<code>\p{...}</code>和<code>\P{...}</code>，在正则表达式中使用标记 <code>u</code> (unicode) 设置，在<code>\p</code>块儿内，可以以键值对的方式设置需要匹配的属性而非具体内容。例如：</p>
+</div><h3 id="正则表达式-unicode-转义" class="headerLink">
+    <a href="#%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f-unicode-%e8%bd%ac%e4%b9%89" class="header-mark"></a>正则表达式 Unicode 转义</h3><p>到目前为止，在正则表达式中本地访问 Unicode 字符属性是不被允许的。ES2018添加了 Unicode 属性转义——形式为<code>\p{...}</code>和<code>\P{...}</code>，在正则表达式中使用标记 <code>u</code> (unicode) 设置，在<code>\p</code>块儿内，可以以键值对的方式设置需要匹配的属性而非具体内容。例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -507,18 +507,20 @@
 </span></code></pre></td></tr></table>
 </div>
 </div><p>此特性可以避免使用特定 Unicode 区间来进行内容类型判断，提升可读性和可维护性。</p>
-<h3 id="非转义序列的模板字符串">非转义序列的模板字符串</h3>
-<p>最后，ES2018 移除对 ECMAScript 在带标签的模版字符串中转义序列的语法限制。</p>
+<h3 id="非转义序列的模板字符串" class="headerLink">
+    <a href="#%e9%9d%9e%e8%bd%ac%e4%b9%89%e5%ba%8f%e5%88%97%e7%9a%84%e6%a8%a1%e6%9d%bf%e5%ad%97%e7%ac%a6%e4%b8%b2" class="header-mark"></a>非转义序列的模板字符串</h3><p>最后，ES2018 移除对 ECMAScript 在带标签的模版字符串中转义序列的语法限制。</p>
 <p>之前，<code>\u</code>开始一个 unicode 转义，<code>\x</code>开始一个十六进制转义，<code>\</code>后跟一个数字开始一个八进制转义。这使得创建特定的字符串变得不可能，例如Windows文件路径 <code>C:\uuu\xxx\111</code>。更多细节参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings" target="_blank" rel="noopener noreffer">模板字符串</a>。</p>
 <p>这是所有的ES2018的新特性，ES2019已经开始，你有什么期待的功能想在明年看到吗？</p>
-<h2 id="译者参考">译者参考</h2>
-<ul>
+<h2 id="译者参考" class="headerLink">
+    <a href="#%e8%af%91%e8%80%85%e5%8f%82%e8%80%83" class="header-mark"></a>译者参考</h2><ul>
 <li><a href="https://segmentfault.com/a/1190000006824133" target="_blank" rel="noopener noreffer">javascript正则断言的理解</a></li>
 <li><a href="https://zhuanlan.zhihu.com/p/33353980" target="_blank" rel="noopener noreffer">【RPU-A】正则 Unicode 转义提案进入 ES2018</a></li>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings" target="_blank" rel="noopener noreffer">模板字符串——ES2018关于非法转义序列的修订</a></li>
 <li><a href="http://esnext.justjavac.com/proposal/template-literal-revision.html" target="_blank" rel="noopener noreffer">非转义序列的模板字符串</a></li>
 <li><a href="http://esnext.justjavac.com/proposal/regexp-named-groups.html" target="_blank" rel="noopener noreffer">正则表达式命名捕获组</a></li>
-</ul></div><div class="post-footer" id="post-footer">
+</ul></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -537,7 +539,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -546,8 +548,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -557,7 +563,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

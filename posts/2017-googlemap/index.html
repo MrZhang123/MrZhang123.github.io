@@ -24,7 +24,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2017-googlemap/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2017-pagination/" /><link rel="next" href="https://mrzhang123.github.io/posts/2017-reactnativelist/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2017-googlemap\/"
-        },"genre": "posts","keywords": "Javascript","wordcount":  1606 ,
+        },"genre": "posts","keywords": "Javascript","wordcount":  1608 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2017-googlemap\/","datePublished": "2017-06-11T00:10:54+00:00","dateModified": "2017-06-11T00:10:54+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -52,14 +52,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">调用Google Map Api实现自定义Google Map</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1606 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#加载-google-maps-javascript-api">加载 Google Maps JavaScript API</a></li>
     <li><a href="#创建地图对象">创建地图对象</a></li>
@@ -160,11 +148,23 @@
     <li><a href="#总结">总结</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">调用Google Map Api实现自定义Google Map</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1608 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>前段时间做了一个简单调用Google Map API的项目，因为之前没有接触过这些，所以在看了文档做出来之后自己稍微总结一下。</p>
 </blockquote>
-<h2 id="加载-google-maps-javascript-api">加载 Google Maps JavaScript API</h2>
-<p>官方指导教程中写的引入的Google Map API是异步调用的，引入方式如下：</p>
+<h2 id="加载-google-maps-javascript-api" class="headerLink">
+    <a href="#%e5%8a%a0%e8%bd%bd-google-maps-javascript-api" class="header-mark"></a>加载 Google Maps JavaScript API</h2><p>官方指导教程中写的引入的Google Map API是异步调用的，引入方式如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -201,8 +201,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>这里的key是通过申请成为谷歌开发者然后获取的密钥。</p>
-<h2 id="创建地图对象">创建地图对象</h2>
-<p>地图的 JavaScript 类是 Map 类。该类的对象定义页面上的单个地图。（创建该类的多个实例–每个对象都将定义页面上的一个不同地图。）我们利用 JavaScript new 运算符来新建该类。</p>
+<h2 id="创建地图对象" class="headerLink">
+    <a href="#%e5%88%9b%e5%bb%ba%e5%9c%b0%e5%9b%be%e5%af%b9%e8%b1%a1" class="header-mark"></a>创建地图对象</h2><p>地图的 JavaScript 类是 Map 类。该类的对象定义页面上的单个地图。（创建该类的多个实例–每个对象都将定义页面上的一个不同地图。）我们利用 JavaScript new 运算符来新建该类。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -246,8 +246,8 @@
 <li>mapTypeControlOptions：修改地图类型控件</li>
 </ul>
 <p>谷歌地图默认会显示缩放控件（zoomControl），地图类型控件（mapTypeControl），街景小人（streetViewControl），全屏按钮（fullscreenControl，移动设备可见），除此之外还有旋转控件（rotateControl，默认情况下，该控件是否显示取决于给定地图类型在当前的缩放级别和位置上是否存在 45° 图像），比例控件（scaleControl，默认不显示）。但是有些时候可能需要调节他们的位置或者是否显示，可以通过相应的Options去控制，例如在上面初始化中，控制地图类型控件的位置。</p>
-<h2 id="创建地图marker">创建地图marker</h2>
-<p>我们在创建好地图后需要根据坐标去在地图中标注出相应的位置（marker对象），创建方式如下：</p>
+<h2 id="创建地图marker" class="headerLink">
+    <a href="#%e5%88%9b%e5%bb%ba%e5%9c%b0%e5%9b%bemarker" class="header-mark"></a>创建地图marker</h2><p>我们在创建好地图后需要根据坐标去在地图中标注出相应的位置（marker对象），创建方式如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -271,8 +271,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>其中<code>map</code>为前面所创建的地图，<code>postion</code>则为marker的坐标位置。</p>
-<h4 id="给marker添加事件">给marker添加事件</h4>
-<p>经常见到在点击marker出现弹窗，这个效果可以通过给marker添加点击事件</p>
+<h4 id="给marker添加事件" class="headerLink">
+    <a href="#%e7%bb%99marker%e6%b7%bb%e5%8a%a0%e4%ba%8b%e4%bb%b6" class="header-mark"></a>给marker添加事件</h4><p>经常见到在点击marker出现弹窗，这个效果可以通过给marker添加点击事件</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -286,8 +286,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>这里实现了一个点击设置地图放大到最大的效果，这里需要多说一句，就是在对象中的熟悉是可以通过<code>set</code>去设置的。</p>
-<h4 id="设置marker自动居中">*设置marker自动居中</h4>
-<p>当设置了多个marker在地图中后，会发现点击某个不在中心的marker后，它并不会自动居中，这一点很不友好，为了设置点击自动居中，需要添加如下代码：</p>
+<h4 id="设置marker自动居中" class="headerLink">
+    <a href="#%e8%ae%be%e7%bd%aemarker%e8%87%aa%e5%8a%a8%e5%b1%85%e4%b8%ad" class="header-mark"></a>*设置marker自动居中</h4><p>当设置了多个marker在地图中后，会发现点击某个不在中心的marker后，它并不会自动居中，这一点很不友好，为了设置点击自动居中，需要添加如下代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -325,10 +325,12 @@
 <li><code>LatLngBounds</code>类下的<code>extend</code>方法用于扩展这个边界以包含给定的点（marker）</li>
 <li><code>fitBounds</code>设置视口包含给定的边界</li>
 </ul>
-<h4 id="设置地图缩放自动调整">*设置地图缩放自动调整</h4>
-<p>根据marker的分布自动调整地图缩放比例是很常见的交互，Google Map API提供了<code>panToBounds</code>方法用于根据给定的<code>LatLngBounds</code>绘制出包含最小边界的地图，所以在代码中只需要设置<code>map.panToBounds(bounds)</code>即可。</p>
-<h2 id="总结">总结</h2>
-<p>真心觉得Google的文档写的很好，而且Google Map的功能很强大，我在项目中只是使用了些简单的功能，更复杂功能请参考Google Map API：https://developers.google.com/maps/documentation/javascript/reference?csw=1</p></div><div class="post-footer" id="post-footer">
+<h4 id="设置地图缩放自动调整" class="headerLink">
+    <a href="#%e8%ae%be%e7%bd%ae%e5%9c%b0%e5%9b%be%e7%bc%a9%e6%94%be%e8%87%aa%e5%8a%a8%e8%b0%83%e6%95%b4" class="header-mark"></a>*设置地图缩放自动调整</h4><p>根据marker的分布自动调整地图缩放比例是很常见的交互，Google Map API提供了<code>panToBounds</code>方法用于根据给定的<code>LatLngBounds</code>绘制出包含最小边界的地图，所以在代码中只需要设置<code>map.panToBounds(bounds)</code>即可。</p>
+<h2 id="总结" class="headerLink">
+    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>总结</h2><p>真心觉得Google的文档写的很好，而且Google Map的功能很强大，我在项目中只是使用了些简单的功能，更复杂功能请参考Google Map API：https://developers.google.com/maps/documentation/javascript/reference?csw=1</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -347,7 +349,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -356,8 +358,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -367,7 +373,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

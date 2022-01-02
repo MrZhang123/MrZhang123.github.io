@@ -24,7 +24,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-gitgithub/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-linuxstudy/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-promise/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2016-gitgithub\/"
-        },"genre": "posts","keywords": "github","wordcount":  1173 ,
+        },"genre": "posts","keywords": "github","wordcount":  1175 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-gitgithub\/","datePublished": "2016-11-13T10:54:26+00:00","dateModified": "2016-11-13T10:54:26+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -52,14 +52,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git连接Github总结</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/github/"><i class="far fa-folder fa-fw"></i>github</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-11-13">2016-11-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-11-13">2016-11-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1173 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#创建github仓库">创建github仓库</a></li>
     <li><a href="#安装git客户端">安装git客户端</a></li>
@@ -162,11 +150,23 @@
     <li><a href="#上传项目">上传项目</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Git连接Github总结</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/github/"><i class="far fa-folder fa-fw"></i>github</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-11-13">2016-11-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-11-13">2016-11-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1175 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>好长时间不写东西了， 因为换了工作，所以在忙着熟悉公司的项目代码，所以没什么时间搞自己的东西，回想了一下，在计划中要总结一下关于如何使用终端的git连接github，所以写一下这个。</p>
 </blockquote>
-<h2 id="创建github仓库">创建github仓库</h2>
-<p>在注册了账号后登陆点击头像旁边的+选择New repository创建一个个人的仓库。填写仓库名称，如图所示：</p>
+<h2 id="创建github仓库" class="headerLink">
+    <a href="#%e5%88%9b%e5%bb%bagithub%e4%bb%93%e5%ba%93" class="header-mark"></a>创建github仓库</h2><p>在注册了账号后登陆点击头像旁边的+选择New repository创建一个个人的仓库。填写仓库名称，如图所示：</p>
 <p><img
         class="lazyload"
         data-src="./github.png"
@@ -175,8 +175,8 @@
         alt="./github.png"
         title="icon"
     /></p>
-<h2 id="安装git客户端">安装git客户端</h2>
-<p>如果是windows，建议安装<a href="https://git-for-windows.github.io/" target="_blank" rel="noopener noreffer">gitbash</a></p>
+<h2 id="安装git客户端" class="headerLink">
+    <a href="#%e5%ae%89%e8%a3%85git%e5%ae%a2%e6%88%b7%e7%ab%af" class="header-mark"></a>安装git客户端</h2><p>如果是windows，建议安装<a href="https://git-for-windows.github.io/" target="_blank" rel="noopener noreffer">gitbash</a></p>
 <p>如果是mac，先安装<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="noopener noreffer">Homebrew</a>，然后再使用homebrew安装git。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -195,9 +195,9 @@
 <pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install git
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="配置git">配置git</h2>
-<h3 id="1初始化git">1.初始化git</h3>
-<p>一般我们是要将自己的本地项目上传到github，实现开源共享，那么就首先需要让git知道它需要跟踪这个项目，所以，我们首先在终端进入项目，初始化git(以mac为例，假设项目在桌面)：</p>
+</div><h2 id="配置git" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%aegit" class="header-mark"></a>配置git</h2><h3 id="1初始化git" class="headerLink">
+    <a href="#1%e5%88%9d%e5%a7%8b%e5%8c%96git" class="header-mark"></a>1.初始化git</h3><p>一般我们是要将自己的本地项目上传到github，实现开源共享，那么就首先需要让git知道它需要跟踪这个项目，所以，我们首先在终端进入项目，初始化git(以mac为例，假设项目在桌面)：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -218,8 +218,8 @@ $ <span class="nb">cd</span> Desktop/myproject
 $ git init
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="2创建ssh-key">2.创建ssh key</h4>
-<p>为了让github能够识别是我们自己上传文件，需要创建ssh key</p>
+</div><h4 id="2创建ssh-key" class="headerLink">
+    <a href="#2%e5%88%9b%e5%bb%bassh-key" class="header-mark"></a>2.创建ssh key</h4><p>为了让github能够识别是我们自己上传文件，需要创建ssh key</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -229,8 +229,8 @@ $ git init
 </code></pre></td></tr></table>
 </div>
 </div><p>这里的<strong><a href="mailto:your_email@youremail.com" rel="">your_email@youremail.com</a></strong>是你的<strong>邮箱地址</strong>，在输入后会询问你是否保存创建的ssh key，点回车就好，然后要求输入你要设置的密码，如果直接回车表示不设密码。然后会提示你ssh key已经创建好。</p>
-<h4 id="3将ssh可以写入github">3.将ssh可以写入github</h4>
-<p>创建好本地的ssh key后，我们需要让github知道这个ssh key是我们自己，所以需要将生成的ssh key复制出来，写入github，在mac下在终端输入</p>
+<h4 id="3将ssh可以写入github" class="headerLink">
+    <a href="#3%e5%b0%86ssh%e5%8f%af%e4%bb%a5%e5%86%99%e5%85%a5github" class="header-mark"></a>3.将ssh可以写入github</h4><p>创建好本地的ssh key后，我们需要让github知道这个ssh key是我们自己，所以需要将生成的ssh key复制出来，写入github，在mac下在终端输入</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -240,8 +240,8 @@ $ git init
 </code></pre></td></tr></table>
 </div>
 </div><p>此时在终端会显示出刚刚创建好的ssh key，复制出来，在github在点击头像，然后点击setting，在找到SSH and GPG keys，创建一个new ssh key，然后将刚刚复制的ssh key填入即可。</p>
-<h4 id="4验证是否连接成功">4.验证是否连接成功</h4>
-<p>在终端输入</p>
+<h4 id="4验证是否连接成功" class="headerLink">
+    <a href="#4%e9%aa%8c%e8%af%81%e6%98%af%e5%90%a6%e8%bf%9e%e6%8e%a5%e6%88%90%e5%8a%9f" class="header-mark"></a>4.验证是否连接成功</h4><p>在终端输入</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -251,8 +251,8 @@ $ git init
 </code></pre></td></tr></table>
 </div>
 </div><p>如果回车看到：<strong>You’ve successfully authenticated, but GitHub does not provide shell access</strong> 。表示已成功连上github。</p>
-<h4 id="5设置username和email">5.设置username和email</h4>
-<p>在把本项目上传到github之前还需要分别输入设置username和email，因为github每次commit都会记录他们。所以分别输入如下命令：</p>
+<h4 id="5设置username和email" class="headerLink">
+    <a href="#5%e8%ae%be%e7%bd%aeusername%e5%92%8cemail" class="header-mark"></a>5.设置username和email</h4><p>在把本项目上传到github之前还需要分别输入设置username和email，因为github每次commit都会记录他们。所以分别输入如下命令：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -263,8 +263,8 @@ $ git init
 $ git config --global user.email <span class="s2">&#34;your_email@youremail.com&#34;</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="6添加远程地址">6.添加远程地址</h4>
-<p>在与github连接成功后，如何才能让相应的项目上传到对应的仓库呢？这里就需要添加远程地址，从而让我们的本地项目顺利到达对应的仓库。</p>
+</div><h4 id="6添加远程地址" class="headerLink">
+    <a href="#6%e6%b7%bb%e5%8a%a0%e8%bf%9c%e7%a8%8b%e5%9c%b0%e5%9d%80" class="header-mark"></a>6.添加远程地址</h4><p>在与github连接成功后，如何才能让相应的项目上传到对应的仓库呢？这里就需要添加远程地址，从而让我们的本地项目顺利到达对应的仓库。</p>
 <p>打开终端，输入</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -275,8 +275,8 @@ $ git config --global user.email <span class="s2">&#34;your_email@youremail.com&
 </code></pre></td></tr></table>
 </div>
 </div><p>后面的yourName和yourRepo分别是你的github的用户名和刚才新建的仓库名。</p>
-<h2 id="上传项目">上传项目</h2>
-<p>进入项目，在终端运行</p>
+<h2 id="上传项目" class="headerLink">
+    <a href="#%e4%b8%8a%e4%bc%a0%e9%a1%b9%e7%9b%ae" class="header-mark"></a>上传项目</h2><p>进入项目，在终端运行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -306,7 +306,9 @@ $ git push origin master
 </code></pre></td></tr></table>
 </div>
 </div><p>这里的<strong>master</strong>指的是主分支名，如果是其他分支，则填写相应的分支名。</p>
-<p>这样我们就将我们的项目上传到github仓库。</p></div><div class="post-footer" id="post-footer">
+<p>这样我们就将我们的项目上传到github仓库。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -325,7 +327,7 @@ $ git push origin master
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/github/">github</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -334,8 +336,12 @@ $ git push origin master
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -345,7 +351,7 @@ $ git push origin master
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

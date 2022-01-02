@@ -24,7 +24,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2018-webpackpublicpath/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2018-reactcssmodules/" /><link rel="next" href="https://mrzhang123.github.io/posts/2018-es2018/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2018-webpackpublicpath\/"
-        },"genre": "posts","keywords": "Webpack","wordcount":  2306 ,
+        },"genre": "posts","keywords": "Webpack","wordcount":  2343 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2018-webpackpublicpath\/","datePublished": "2018-05-12T12:26:43+00:00","dateModified": "2018-05-12T12:26:43+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -52,14 +52,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Webpack中publicPath详解</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/webpack/"><i class="far fa-folder fa-fw"></i>Webpack</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-05-12">2018-05-12</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-05-12">2018-05-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2306 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#output">output</a>
       <ul>
@@ -167,13 +155,25 @@
     <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Webpack中publicPath详解</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/webpack/"><i class="far fa-folder fa-fw"></i>Webpack</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-05-12">2018-05-12</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-05-12">2018-05-12</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2343 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>最近自己在搭建一个基于webpack的react项目，遇到关于<code>output.publicPath</code>和webpack-dev-server中<code>publicPath</code>的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。</p>
 </blockquote>
-<h2 id="output">output</h2>
-<p>output选项指定webpack输出的位置，其中比较重要的也是经常用到的有<code>path</code>和<code>publicPath</code></p>
-<h3 id="outputpath">output.path</h3>
-<ul>
+<h2 id="output" class="headerLink">
+    <a href="#output" class="header-mark"></a>output</h2><p>output选项指定webpack输出的位置，其中比较重要的也是经常用到的有<code>path</code>和<code>publicPath</code></p>
+<h3 id="outputpath" class="headerLink">
+    <a href="#outputpath" class="header-mark"></a>output.path</h3><ul>
 <li>默认值：<code>process.cwd()</code></li>
 </ul>
 <p><code>output.path</code>只是指示输出的目录，对应一个<strong>绝对路径</strong>，例如在项目中通常会做如下配置：</p>
@@ -185,12 +185,12 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
- <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">__</span><span class="nx">dirname</span><span class="p">,</span> <span class="s1">&#39;../dist&#39;</span><span class="p">),</span>
+ <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;../dist&#39;</span><span class="p">),</span>
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="outputpublicpath">output.publicPath</h3>
-<ul>
+</div><h3 id="outputpublicpath" class="headerLink">
+    <a href="#outputpublicpath" class="header-mark"></a>output.publicPath</h3><ul>
 <li>默认值：空字符串</li>
 </ul>
 <p><a href="https://doc.webpack-china.org/guides/public-path/" target="_blank" rel="noopener noreffer">官方文档中对publicPath的解释</a>是</p>
@@ -265,8 +265,8 @@
 <blockquote>
 <p>一般情况下<strong>publicPath应该以'/&lsquo;结尾，而其他loader或插件的配置不要以&rsquo;/&lsquo;开头</strong></p>
 </blockquote>
-<h2 id="webpack-dev-server中的publicpath">webpack-dev-server中的publicPath</h2>
-<p><a href="https://doc.webpack-china.org/configuration/dev-server/#devserver-publicpath-" target="_blank" rel="noopener noreffer">点击查看官方文档中关于devServer.publicPath的介绍</a></p>
+<h2 id="webpack-dev-server中的publicpath" class="headerLink">
+    <a href="#webpack-dev-server%e4%b8%ad%e7%9a%84publicpath" class="header-mark"></a>webpack-dev-server中的publicPath</h2><p><a href="https://doc.webpack-china.org/configuration/dev-server/#devserver-publicpath-" target="_blank" rel="noopener noreffer">点击查看官方文档中关于devServer.publicPath的介绍</a></p>
 <p>在开发阶段，我们借用devServer启动一个开发服务器进行开发，这里也会配置一个<code>publicPath</code>，这里的<code>publicPath</code>路径下的打包文件可以在浏览器中访问。而静态资源仍然使用<code>output.publicPath</code>。</p>
 <p>webpack-dev-server打包的内容是放在内存中的，这些打包后的资源对外的的根目录就是<code>publicPath</code>，换句话说，这里我们设置的是打包后资源存放的位置</p>
 <p>例如：</p>
@@ -298,10 +298,10 @@
         alt="./img/webpack-publicpath.png"
         title="webpack-dev-server资源访问路径"
     /></p>
-<h2 id="html-webpack-plugin">html-webpack-plugin</h2>
-<p>这个插件用于将css和js添加到html模版中，其中<code>template</code>和<code>filename</code>会受到路径的影响，从源码中可以看出</p>
-<h3 id="template">template</h3>
-<p>作用：用于定义模版文件的路径</p>
+<h2 id="html-webpack-plugin" class="headerLink">
+    <a href="#html-webpack-plugin" class="header-mark"></a>html-webpack-plugin</h2><p>这个插件用于将css和js添加到html模版中，其中<code>template</code>和<code>filename</code>会受到路径的影响，从源码中可以看出</p>
+<h3 id="template" class="headerLink">
+    <a href="#template" class="header-mark"></a>template</h3><p>作用：用于定义模版文件的路径</p>
 <p>源码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -312,8 +312,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>因此<code>template</code>只有定义在webpack的<code>context</code>下才会被识别，<strong>webpack context的默认值为<code>process.cwd()</code>，既运行 node 命令时所在的文件夹的绝对路径</strong></p>
-<h3 id="filename">filename</h3>
-<p>作用：输出的HTML文件名，默认为index.html，可以直接配置带有子目录</p>
+<h3 id="filename" class="headerLink">
+    <a href="#filename" class="header-mark"></a>filename</h3><p>作用：输出的HTML文件名，默认为index.html，可以直接配置带有子目录</p>
 <p>源码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -329,29 +329,31 @@
 <p>有一种情况除外，就是<code>output.publicPath</code>是相对路径，这时候可以访问本地资源</p>
 </blockquote>
 <p><strong>所以一般情况下都要保证devServer中的<code>publicPath</code>与<code>output.publicPath</code>保持一致。</strong></p>
-<h2 id="最后">最后</h2>
-<p>关于webpack中的<code>path</code>就总结这么多，在研究关于webpack路径的过程中看查到的一些关于路径的零碎的知识如下：</p>
-<h3 id="斜杠的含义">斜杠<code>/</code>的含义</h3>
-<p>配置中<code>/</code>代表url根路径，例如<code>http://localhost:8080/dist/js/test.js</code>中的<code>http://localhost:8080/</code></p>
-<h3 id="devserverpublicpath--devservercontentbase">devServer.publicPath &amp; devServer.contentBase</h3>
-<ul>
+<h2 id="最后" class="headerLink">
+    <a href="#%e6%9c%80%e5%90%8e" class="header-mark"></a>最后</h2><p>关于webpack中的<code>path</code>就总结这么多，在研究关于webpack路径的过程中看查到的一些关于路径的零碎的知识如下：</p>
+<h3 id="斜杠的含义" class="headerLink">
+    <a href="#%e6%96%9c%e6%9d%a0%e7%9a%84%e5%90%ab%e4%b9%89" class="header-mark"></a>斜杠<code>/</code>的含义</h3><p>配置中<code>/</code>代表url根路径，例如<code>http://localhost:8080/dist/js/test.js</code>中的<code>http://localhost:8080/</code></p>
+<h3 id="devserverpublicpath--devservercontentbase" class="headerLink">
+    <a href="#devserverpublicpath--devservercontentbase" class="header-mark"></a>devServer.publicPath &amp; devServer.contentBase</h3><ul>
 <li>devServer.contentBase 告诉服务器从哪里提供内容。只有在你想要提供静态文件时才需要。</li>
 <li>devServer.publicPath 将用于确定应该从哪里提供 bundle，并且此选项优先。</li>
 </ul>
-<h3 id="node中的路径">node中的路径</h3>
-<ul>
+<h3 id="node中的路径" class="headerLink">
+    <a href="#node%e4%b8%ad%e7%9a%84%e8%b7%af%e5%be%84" class="header-mark"></a>node中的路径</h3><ul>
 <li><code>__dirname</code>: 总是返回被执行的 js 所在文件夹的绝对路径</li>
 <li><code>__filename</code>: 总是返回被执行的 js 的绝对路径</li>
 <li><code>process.cwd()</code>: 总是返回运行 node 命令时所在的文件夹的绝对路径</li>
 </ul>
-<h2 id="参考">参考</h2>
-<ul>
+<h2 id="参考" class="headerLink">
+    <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h2><ul>
 <li><a href="http://www.qinshenxue.com/article/20170315092242.html" target="_blank" rel="noopener noreffer">详解Webpack2的那些路径</a></li>
 <li><a href="https://doc.webpack-china.org/guides/public-path/" target="_blank" rel="noopener noreffer">webpack 公共路径(Public Path)</a></li>
 <li><a href="https://doc.webpack-china.org/configuration/dev-server/#devserver-publicpath-" target="_blank" rel="noopener noreffer">devServer.publicPath</a></li>
 <li><a href="https://github.com/imsobear/blog/issues/48" target="_blank" rel="noopener noreffer">浅析 NodeJs 的几种文件路径</a></li>
 <li><a href="https://blog.csdn.net/m0_37721946/article/details/78340638" target="_blank" rel="noopener noreffer">项目中关于相对路径和绝对路径的问题</a></li>
-</ul></div><div class="post-footer" id="post-footer">
+</ul></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -370,7 +372,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/webpack/">Webpack</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -379,8 +381,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -390,7 +396,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

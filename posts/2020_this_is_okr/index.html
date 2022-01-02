@@ -40,7 +40,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2020_this_is_okr/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2019-2020newyear/" /><link rel="next" href="https://mrzhang123.github.io/posts/2020_okr/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -68,14 +68,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -104,7 +104,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -146,19 +146,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">《这就是OKR》读书笔记</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>读书笔记</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8433 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 17 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -194,6 +182,18 @@
     </li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">《这就是OKR》读书笔记</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>读书笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-02-23">2020-02-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 8433 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 17 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -204,8 +204,8 @@
                                           ----安迪 格鲁夫
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="第一部分">第一部分</h3>
-<ul>
+</div><h3 id="第一部分" class="headerLink">
+    <a href="#%e7%ac%ac%e4%b8%80%e9%83%a8%e5%88%86" class="header-mark"></a>第一部分</h3><ul>
 <li>有效的关键结果应该是具体的，有时限的且具有挑战性的，但又必须是能够实现的。最重要的是，它们必须是可衡量、可验证的。</li>
 <li>OKR体现的是公司最主要的目标，能引导员工共同努力和协作，将不同的业务联系在一起，为整个组织提供明确的目标和凝聚力</li>
 <li>目标就像是“一种需要谨慎使用和严密监管的处方药。”作者甚至还提出这样的警告：“由于聚焦过度，出现不道德行为、冒险行为增多，以及合作意愿和工作积极性下降等原因，目标会在组织内引发系统性问题”。</li>
@@ -225,8 +225,8 @@
 </ol>
 </li>
 </ul>
-<h3 id="第二部分">第二部分</h3>
-<ul>
+<h3 id="第二部分" class="headerLink">
+    <a href="#%e7%ac%ac%e4%ba%8c%e9%83%a8%e5%88%86" class="header-mark"></a>第二部分</h3><ul>
 <li>当这些企业<strong>把注意力集中到少数几件优先事项上时</strong>，取得的结果也相当令人震撼</li>
 <li>OKR总在提醒团队需要做些什么，明白无误地告诉我们做到了什么，没做什么</li>
 <li>格鲁夫明确地<strong>知道自己想要什么，以及如何实现</strong>。从这个意义上说，他有点儿像行走的OKR</li>
@@ -243,15 +243,15 @@
 </ul>
 </li>
 </ul>
-<h3 id="第三部分">第三部分</h3>
-<ul>
+<h3 id="第三部分" class="headerLink">
+    <a href="#%e7%ac%ac%e4%b8%89%e9%83%a8%e5%88%86" class="header-mark"></a>第三部分</h3><ul>
 <li>对于低层级员工来说，他们的OKR就是他们的全部工作产出，但经理们会有额外的日常管理责任</li>
 <li>英特尔公司删除制定战略，并将其转化为可实现、可写作的项目</li>
 <li>能够激励员工，并让他们充满热情，但他们却不知道该怎么做，这是很糟糕的</li>
 <li>员工可以表达自己的观点而不担心会遭受惩罚，这种想法和文化至关重要</li>
 </ul>
-<h3 id="第四部分">第四部分</h3>
-<ul>
+<h3 id="第四部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%9b%9b%e9%83%a8%e5%88%86" class="header-mark"></a>第四部分</h3><ul>
 <li>衡量一件事情的重要性时，应该先考虑这样的问题：在接下来的3个月（6个月或12个月）里，什么事最重要的事？<strong>成功的组织聚焦于少数能产生实质性差异的举措，并推迟那些不怎么紧迫的事项</strong></li>
 <li>虽然消减目标清单总是富有挑战性，但却是值得的。正如经验丰富的领导者会告诉你：<strong>没有一个人或公司可以“做所有的事情”</strong></li>
 <li>领导者必须说清楚为什么做某件事，以及怎样做。员工不仅仅需要通过里程碑式的成功来获取动力，他们还渴望理解辛勤工作的意义，同时了解自己的目标与公司使命之间的关联。这一过程不能只是在全体员工季度会议上宣布OKR之后就结束。正如领英公司首席执行官杰夫 韦纳喜欢说饿的：“当你不厌其烦地多次强调的时候，团队成员可能菜真正开始听你话”</li>
@@ -263,37 +263,37 @@
 <li>OKR系统应该为企业提供最卓越的东西，即“聚焦”。只有当我们将目标的数量保持在很小时，才会真正聚焦于此。每次作出承诺时，都会丧失投身其他事项的机会。当然，这是任何有限资源分配中都不可避免的结果。因此，做计划的人必须要有勇气、诚实且遵守纪律。只有这样，才能放弃某个项目的同时启动新的项目。摇头说“不”和微笑着说“行”一样重要。<strong>我们必须意识到关注所有事项和意见都不关注的结果是一样的，并且能够践行这个原则</strong></li>
 <li>OKR既不是一个什么都要完成的愿望清单，也不是团队日常任务的总和。它们是一系列精心策划的目标，值得特别关注，并将推动人们在此时此地努力前行。同时，它与我们期望实现的更大目标相关联</li>
 </ul>
-<h3 id="第五部分">第五部分</h3>
-<ul>
+<h3 id="第五部分" class="headerLink">
+    <a href="#%e7%ac%ac%e4%ba%94%e9%83%a8%e5%88%86" class="header-mark"></a>第五部分</h3><ul>
 <li>对于选择正确的目标来说，聚焦是至关重要的，这对区分OKR的优劣也是至关重要的</li>
 <li>在我看来，你一次只能做好一件大事，所以你最好知道那件大事到底是什么</li>
 <li>总体来说，OKR还是很简单的，但是人们一般不会立刻就掌握这种方法。早些时候，我们公司的目标总是无法完成，原因就在于目标定的太过宏大。以我们的能力最多只能达成两个目标，可我们设定了七八个</li>
 </ul>
-<h3 id="第六部分">第六部分</h3>
-<ul>
+<h3 id="第六部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%85%ad%e9%83%a8%e5%88%86" class="header-mark"></a>第六部分</h3><ul>
 <li>除了聚焦之外，承诺也是OKR第一利器中的核心元素。在实施OKR时，管理者必须公开对其目标作出的承诺，并一以贯之。</li>
 <li>我从为跑马拉松而设定的OKR中认识到，短时间内做太多的事情，注定会以痛苦收尾</li>
 </ul>
-<h3 id="第七部分">第七部分</h3>
-<ul>
+<h3 id="第七部分" class="headerLink">
+    <a href="#%e7%ac%ac%e4%b8%83%e9%83%a8%e5%88%86" class="header-mark"></a>第七部分</h3><ul>
 <li>研究表明，与保持隐秘相比，组织中公开的目标往往更容易实现，而只需简单的按下“开放”按钮，就可以全面提升目标达成的可能性</li>
 <li>在现实中，过度的目标协同也可能会在组织中产生强迫性，进而给组织成员带来精神上的伤害，为了避免这种现象的出现，健康的组织往往会鼓励某些目标自下而上的涌现</li>
 <li>理想的OKR系统往往允许员工自主设置部分目标及大部分或者全部的关键结果。OKR能引导组织成员向更高、更远的范围拓展，设定更宏伟的目标并为之付出，以遍实现更多：<strong>“目标越高，绩效越高”。知道要去哪里的人，往往会更加清晰如何到达目的地</strong></li>
 <li>为了适应企业和员工双方的需求波动，领导者对自上而下和自下而上这两种目标设定的选择往往各占一半。在我看来，这是正确的选择</li>
 </ul>
-<h3 id="第八部分">第八部分</h3>
-<ul>
+<h3 id="第八部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%85%ab%e9%83%a8%e5%88%86" class="header-mark"></a>第八部分</h3><ul>
 <li>除了使公司内部目标更加一致之外，协同还包含着更深层的含义，那就是始终保持你的目标相对于“北极星”（公司最重要的核心价值）的真实性和正确性。也就是说，你的目标必须对公司的核心价值作出实质性的贡献</li>
 </ul>
-<h3 id="第九部分">第九部分</h3>
-<ul>
+<h3 id="第九部分" class="headerLink">
+    <a href="#%e7%ac%ac%e4%b9%9d%e9%83%a8%e5%88%86" class="header-mark"></a>第九部分</h3><ul>
 <li>领导者不能只关注团队成员的日常工作，更应该把精力集中在更有价值、更长远的计划上</li>
 <li>在我所在的部门，每一个员工每季度都有3到5个团队层面的业务目标，同时还有一两个个人业务目标</li>
 <li>当对一个新项目进行讨论时，他们会相互询问该如何使用OKR模版来评价这个项目，如果项目没有得到积极的评价，他们马上会对这个项目亮起“红旗”，并会问一个问题：“我们为什么要做这个项目？”</li>
 <li>研究表明，当一线员工能看到他们的工作如何和公司的目标保持一致时，他们就能发挥能动性</li>
 </ul>
-<h3 id="第十部分">第十部分</h3>
-<ul>
+<h3 id="第十部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e9%83%a8%e5%88%86" class="header-mark"></a>第十部分</h3><ul>
 <li>OKR系统有一个优点常常被低估，这就是它的可追踪性，这一特性使得我们可以<strong>根据实际情况对OKR系统不断进行修改</strong></li>
 <li>研究表明，取得可量化的进步相比公众的认可、金钱刺激或实现目标本身，对人更有驱动力</li>
 <li><strong>OKR系统不需要进行每日跟踪，但是需要定期检查——最好是每周一次，这是防止绩效下滑的必要措施</strong></li>
@@ -323,13 +323,13 @@
 </ul>
 </li>
 </ul>
-<h3 id="第十一部分">第十一部分</h3>
-<ul>
+<h3 id="第十一部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e4%b8%80%e9%83%a8%e5%88%86" class="header-mark"></a>第十一部分</h3><ul>
 <li>人们将目标与使命相混淆。使命是具有方向性的，而目标则包含一系列具体步骤，需要个体真正的参与其中并为之不懈奋斗。有一个宏伟目标是必要的，但你必须要知道如何控制它们的规模，以及如何对它们进行衡量</li>
 <li>设定宏大的目标相对容易，但是达到目标却不容易。我们需要时时刻刻追问：需要克服哪些困难才能实现目标？</li>
 </ul>
-<h3 id="第十二部分">第十二部分</h3>
-<ul>
+<h3 id="第十二部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e4%ba%8c%e9%83%a8%e5%88%86" class="header-mark"></a>第十二部分</h3><ul>
 <li>目标设定越具有挑战性，所产生的结果越佳。虽然高难度的目标预期产出结果之间的差距，通常会大雨低难度目标与其产出结果之间的差距，但是前者达到的最终结果仍比后者要好</li>
 <li>我对创业者的定义是，哪些不仅仅思考各种可能性，而且将各种可能性付诸实践的人</li>
 <li>谷歌将OKR分为两类，一类称为承诺型目标，另一类称为愿景型（或挑战性）目标，二者有着本质的区别</li>
@@ -338,15 +338,15 @@
 <li>正如佩奇所说，10%的改进意味着你和其他人一样，你们在做着同样的事情。你可能不会失败，但是你也绝不会太成功</li>
 <li>领导者必须给员工传达两件事：结果的重要性和结果能够被实现的坚定信念</li>
 </ul>
-<h3 id="第十三部分">第十三部分</h3>
-<ul>
+<h3 id="第十三部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e4%b8%89%e9%83%a8%e5%88%86" class="header-mark"></a>第十三部分</h3><ul>
 <li>就像拉里佩奇说的：“当你设定的是一个疯狂而富有挑战性的目标时，即使没有实现它，你也仍然会取得一些不小的成就。”假如你的目标是去一颗恒星，也许你永远无法到达，但是在这个过程中，你却可能飞到了月球</li>
 <li>作为团队的领导者，你的作用之一就是激励团队让他们觉得目标可以实现</li>
 <li>但我同样认为，尽可能把我们的能力推向极限甚至超越极限是非常重要的</li>
 <li>我尝试着用深入且系统性的思考方式，来取代情绪化的思考方式，我认为前者更有助于问题的解决</li>
 </ul>
-<h3 id="第十四部分">第十四部分</h3>
-<ul>
+<h3 id="第十四部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e5%9b%9b%e9%83%a8%e5%88%86" class="header-mark"></a>第十四部分</h3><ul>
 <li>有两个原因影响了工程师们设定目标的准确性，一方面他们讨厌放弃自己认为好的想法，另一方面他们习惯性地低估了完成任务所需要花费的时间</li>
 <li>我们需要依靠明确的规则迫使人们将其团队的目标清单缩减到3至4个</li>
 <li><strong>巨石理论：</strong>
@@ -356,8 +356,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="第十五部分">第十五部分</h3>
-<ul>
+<h3 id="第十五部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e4%ba%94%e9%83%a8%e5%88%86" class="header-mark"></a>第十五部分</h3><ul>
 <li>在德鲁克看来，管理者的“首要角色”是“自己本身”，管理者需要和他人建立有效的人际关系，激发共同的信心，构建命运共同体</li>
 <li><strong>年度绩效管理是回顾性的评估</strong>，通常在年底举行。而持续性绩效管理是领导同员工之间持续跟进的前瞻性对话，<strong>通常以五个问题为中心：</strong>
 <ul>
@@ -379,8 +379,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="第十六部分">第十六部分</h3>
-<ul>
+<h3 id="第十六部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e5%85%ad%e9%83%a8%e5%88%86" class="header-mark"></a>第十六部分</h3><ul>
 <li>绩效管理不是进行事后管理，而是参与整个过程并进行实时把控</li>
 <li>想要云作好一个持续性绩效管理系统，需要做到如下三点：
 <ul>
@@ -391,12 +391,12 @@
 </li>
 <li>成功并不是通过表格、排名和评级来体现的，也不是由那些使人们陷入困境或阻碍他们前行的政策和程序驱动的。真正的成功机制是构筑能力，并激发员工真心为公司服务的东西</li>
 </ul>
-<h3 id="第十七部分">第十七部分</h3>
-<ul>
+<h3 id="第十七部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e4%b8%83%e9%83%a8%e5%88%86" class="header-mark"></a>第十七部分</h3><ul>
 <li>OKR管理方法最巧妙的一点就是它能“反思”程序化。每个季度，至少保证有一次为员工提供一个安静的地方，让他们思考该如何决策才能与公司的利益保持一致，于是员工学会了站在宏观的角度思考问题，学会如何更加直接而具体地执行目标</li>
 </ul>
-<h3 id="第十八部分">第十八部分</h3>
-<ul>
+<h3 id="第十八部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e5%85%ab%e9%83%a8%e5%88%86" class="header-mark"></a>第十八部分</h3><ul>
 <li>团队的绩效表现与以下五个问题息息相关：
 <ol>
 <li>结构和清晰度：我们团队的目标、角色和执行计划是清晰而明确的吗？</li>
@@ -408,21 +408,21 @@
 </li>
 <li>最佳绩效往往是团队高度合作和对产品高度负责的结果</li>
 </ul>
-<h3 id="第十九部分">第十九部分</h3>
-<ul>
+<h3 id="第十九部分" class="headerLink">
+    <a href="#%e7%ac%ac%e5%8d%81%e4%b9%9d%e9%83%a8%e5%88%86" class="header-mark"></a>第十九部分</h3><ul>
 <li>人们关注你做了什么，而不是你说了什么</li>
 <li>讨论如何让这些目标回到正轨上来。在跨部门协作精神的鼓舞下，每个高级主管都需要主动帮助同事完成目标。正如阿特所说：“我们在一起时为了相互帮助，我们应当同心协力。”据我所知，“推销”未完成的目标时OKR的运用中独一无二的环节，并且非常值得推广</li>
 <li>OKR能让你从整体业务的角度来关注自己的工作，而不是仅仅将眼光放在自己的工作上</li>
 </ul>
-<h3 id="第二十部分">第二十部分</h3>
-<ul>
+<h3 id="第二十部分" class="headerLink">
+    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e9%83%a8%e5%88%86" class="header-mark"></a>第二十部分</h3><ul>
 <li>在用OKR的这几年里，我也经常说：“这就像是攀登珠穆朗玛峰，我们先想象一下登顶后的成就感，然后再想象一下登顶后的成就感，然后再想象一下攀登的难度，最后再思考我们该如何到达峰顶”</li>
 <li>OKR让我们保持让我们保持了激情，但又给了我们一个思考和执行的框架，这个框架时非常必要的，没有它，思考就过于抽象</li>
 <li>OKR让每一个人思考：你对什么充满激情？这些激情江湖让你做些什么？</li>
 <li>如果所有目标都是绿色的，那么你们就失败了。这对很多人来说是违反直觉的，因为，“绿色”表明我们完成了所有的目标。但约翰坚持认为：“你们需要更深的红色”</li>
 </ul>
-<h3 id="第二十一部分">第二十一部分</h3>
-<ul>
+<h3 id="第二十一部分" class="headerLink">
+    <a href="#%e7%ac%ac%e4%ba%8c%e5%8d%81%e4%b8%80%e9%83%a8%e5%88%86" class="header-mark"></a>第二十一部分</h3><ul>
 <li>有想法很容易，但关键是执行，没有执行，一切都是空中楼阁</li>
 <li>你永远不会发现“教练”（比尔 坎贝尔）会分心查看他的手机。他特别投入，在那个环境中总能“闪闪发光”</li>
 <li>我们可以使用OKR让人们专注于最重要的目标，避免其被紧急的次要目标分心，OKR很宏大，它不是渐进式的——我们并不是非要全部实现不可。（这样的话，我们就没有表现出足够的进取性。）我们利用猜测进度来衡量我们的业绩：
@@ -433,8 +433,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="设计有效okr">设计有效OKR</h3>
-<ul>
+<h3 id="设计有效okr" class="headerLink">
+    <a href="#%e8%ae%be%e8%ae%a1%e6%9c%89%e6%95%88okr" class="header-mark"></a>设计有效OKR</h3><ul>
 <li>设计OKR过程中应该注意以下几个基本规则：
 <ul>
 <li>首先目标是“什么”
@@ -455,8 +455,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="okr分类">OKR分类</h3>
-<ul>
+<h3 id="okr分类" class="headerLink">
+    <a href="#okr%e5%88%86%e7%b1%bb" class="header-mark"></a>OKR分类</h3><ul>
 <li>OKR主要分承诺型OKR和愿景型OKR
 <ul>
 <li>承诺型OKR是指我们一定会实现的OKR，是我们甘愿通过调整工作时间和资源配置以确保其得以实现的目标，承诺型OKR的得分应该是1.0分。若得分小于1.0分，则需要解释未完成部分的原因，因为它表明团队在制定计划或执行计划时存在着某种失误</li>
@@ -464,8 +464,8 @@
 </ul>
 </li>
 </ul>
-<h3 id="okr流程">OKR流程</h3>
-<p><img
+<h3 id="okr流程" class="headerLink">
+    <a href="#okr%e6%b5%81%e7%a8%8b" class="header-mark"></a>OKR流程</h3><p><img
         class="lazyload"
         data-src="./img/1.png"
         data-srcset="./img/1.png, ./img/1.png 1.5x, ./img/1.png 2x"
@@ -481,8 +481,8 @@
         alt="./img/2.png"
         title="OKR流程图2"
     /></p>
-<h3 id="okr沟通反馈">OKR沟通反馈</h3>
-<ul>
+<h3 id="okr沟通反馈" class="headerLink">
+    <a href="#okr%e6%b2%9f%e9%80%9a%e5%8f%8d%e9%a6%88" class="header-mark"></a>OKR沟通反馈</h3><ul>
 <li>持续改进的绩效管理是互相交织的两个过程：第一过程是设定OKR，第二过程是定期和持续沟通，并根据需求不断进行调整</li>
 <li>为了促进沟通，管理者可能会向相关员工提出以下问题：
 <ul>
@@ -503,21 +503,21 @@
 </ul>
 </li>
 </ul>
-<h3 id="总结">总结</h3>
-<ul>
+<h3 id="总结" class="headerLink">
+    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>总结</h3><ul>
 <li>为自己的OKR循环设定合适的节奏。我推荐双重追踪，即季度OKR（用于短期目标）和年度OKR（用于长期策略）并进行部署</li>
 <li>在每个循环周期，<strong>需要承诺3～5个最高目标</strong>，太多的目标会分散注意力</li>
 <li><strong>每个目标的关键结果都不要超过5个</strong>，而且这些关键结果是可以衡量的、明确的以及有时间限制的。关键结果也即目标如何实现？根据定义，完成了所有关键结果等于实现了目标</li>
 <li>要想在生产力或创新上取得飞跃，请遵循谷歌公司的“10倍”原则，并且用指数级来替换增量式的OKR。这就是企业被颠覆、品类被推新的原因</li>
 <li>在管理者和员工之间的绩效沟通中，允许员工设置工作计划，而管理者的角色则是学习和指导</li>
 </ul>
-<h3 id="后记">后记</h3>
-<ul>
+<h3 id="后记" class="headerLink">
+    <a href="#%e5%90%8e%e8%ae%b0" class="header-mark"></a>后记</h3><ul>
 <li>**OKR（目标管理方法）与KPI（关键绩效指标）**OKR是目标管理方法，而不仅仅是绩效管理方法。和目标管理方法相比，KPI更注重绩效结果考核，更关心绩效考核的结果与薪酬的结合。而OKR则有很大的不同，OKR有助于确保公司上下一起聚焦解决重要的难题</li>
 <li>我们通常以为人区别于其他物种的首要特征是智商，但真正的首要特征是社会智商。人类之所以能够取得伟大的成就，理解和合作能力是首要因素</li>
 </ul>
-<h3 id="附okr例子">附OKR例子</h3>
-<p><img
+<h3 id="附okr例子" class="headerLink">
+    <a href="#%e9%99%84okr%e4%be%8b%e5%ad%90" class="header-mark"></a>附OKR例子</h3><p><img
         class="lazyload"
         data-src="./img/3.png"
         data-srcset="./img/3.png, ./img/3.png 1.5x, ./img/3.png 2x"
@@ -540,7 +540,9 @@
         data-sizes="auto"
         alt="./img/5.png"
         title="OKR Demo 3"
-    /></p></div><div class="post-footer" id="post-footer">
+    /></p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -559,7 +561,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -568,8 +570,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -579,7 +585,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

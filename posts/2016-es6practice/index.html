@@ -20,7 +20,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-es6practice/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-fileupload/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-fileupload2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -48,14 +48,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -84,7 +84,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -126,19 +126,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">初探ES6——轮播图实践总结</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-04-11">2016-04-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-04-11">2016-04-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1765 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#模板字符串">模板字符串</a></li>
     <li><a href="#对函数的扩展">对函数的扩展</a>
@@ -150,9 +138,21 @@
     <li><a href="#es6的forof循环">ES6的for&hellip;of循环</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">初探ES6——轮播图实践总结</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-04-11">2016-04-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-04-11">2016-04-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1765 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><p>最近因为同学的一个轮播图不会写，让我萌生了用ES6写一个轮播图的想法（本人喜欢这些玩儿一些新的东西），以前就知道ES6，但是一直没有学，现在终于下决心学了，借助阮一峰老师的书<a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener noreffer">ECMAScript 6 入门</a> 和Youtube上面老外的视频学习ES6非常不错。阮一峰老师的书写的非常详细，推荐想学习的ES6的同学仔细看看。本篇文章会总结在实践中用到的ES6的知识。</p>
-<h2 id="模板字符串">模板字符串</h2>
-<p>这是我非常喜欢的ES6的特点之一，非常直观的反应出变量和字符串之间的关系，在ES5中，如果我们想在字符串中添加变量，需要用如下写法：</p>
+<h2 id="模板字符串" class="headerLink">
+    <a href="#%e6%a8%a1%e6%9d%bf%e5%ad%97%e7%ac%a6%e4%b8%b2" class="header-mark"></a>模板字符串</h2><p>这是我非常喜欢的ES6的特点之一，非常直观的反应出变量和字符串之间的关系，在ES5中，如果我们想在字符串中添加变量，需要用如下写法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -212,9 +212,9 @@
 </span><span class="cm">fas*/</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="对函数的扩展">对函数的扩展</h2>
-<h3 id="1给函数设置默认值">1.给函数设置默认值</h3>
-<p>在对函数的扩展中，添加了一项给函数设置默认值的功能，这个功能可以说是非常赞的。是否记得我们在ES5中是怎么给函数设置默认值？</p>
+</div><h2 id="对函数的扩展" class="headerLink">
+    <a href="#%e5%af%b9%e5%87%bd%e6%95%b0%e7%9a%84%e6%89%a9%e5%b1%95" class="header-mark"></a>对函数的扩展</h2><h3 id="1给函数设置默认值" class="headerLink">
+    <a href="#1%e7%bb%99%e5%87%bd%e6%95%b0%e8%ae%be%e7%bd%ae%e9%bb%98%e8%ae%a4%e5%80%bc" class="header-mark"></a>1.给函数设置默认值</h3><p>在对函数的扩展中，添加了一项给函数设置默认值的功能，这个功能可以说是非常赞的。是否记得我们在ES5中是怎么给函数设置默认值？</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -246,8 +246,8 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="2箭头函数">2.箭头函数</h3>
-<p>了解Coffescript的同学应该清楚，Cofficescript的强大之处在于它的无处不在的箭头函数，写起来非常爽，现在，ES6正式引入箭头函数，让我们的程序可以得到简化，例如：</p>
+</div><h3 id="2箭头函数" class="headerLink">
+    <a href="#2%e7%ae%ad%e5%a4%b4%e5%87%bd%e6%95%b0" class="header-mark"></a>2.箭头函数</h3><p>了解Coffescript的同学应该清楚，Cofficescript的强大之处在于它的无处不在的箭头函数，写起来非常爽，现在，ES6正式引入箭头函数，让我们的程序可以得到简化，例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -311,8 +311,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>以上代码得到的thisIndex就是当前鼠标放上去的索引，这里我对箭头函数中n这个参数的理解是，传入参数n后会遍历数组中的对象，从而找到与this相等的那个对象，然后返回它的索引，这里用到<font color='red'>Array.from()，这是一个ES6中数组中新增的方法，可以将类数组转换成数组。</font></p>
-<h2 id="es6的forof循环">ES6的for&hellip;of循环</h2>
-<p>上面的JS代码循环用了for，其实可以用ES6中的for&hellip;of循环去代替，这样写法更加简洁。是否记得JS中的for&hellip;in循环，这个循环可以循环键值对中的键，但是无法循环值，而for&hellip;of的出现正是为了弥补它的不足，for&hellip;of循环可以使用的范围包括数组、Set和Map结构、某些类似数组的对象（比如arguments对象、DOM NodeList对象）、Generator对象，以及字符串。所以我们可以利用该循环替代for循环，但是这里要注意一点<font color='red'>如果直接用for&hellip;of循环，在chrome49下会报错，官方已证实这是chrome49的BUG，将会在chrome51中修复</font>，所以我在写的时候，利用Array.from()将NodeList对象转换为数组，这样可以放心操作，代码如下：</p>
+<h2 id="es6的forof循环" class="headerLink">
+    <a href="#es6%e7%9a%84forof%e5%be%aa%e7%8e%af" class="header-mark"></a>ES6的for&hellip;of循环</h2><p>上面的JS代码循环用了for，其实可以用ES6中的for&hellip;of循环去代替，这样写法更加简洁。是否记得JS中的for&hellip;in循环，这个循环可以循环键值对中的键，但是无法循环值，而for&hellip;of的出现正是为了弥补它的不足，for&hellip;of循环可以使用的范围包括数组、Set和Map结构、某些类似数组的对象（比如arguments对象、DOM NodeList对象）、Generator对象，以及字符串。所以我们可以利用该循环替代for循环，但是这里要注意一点<font color='red'>如果直接用for&hellip;of循环，在chrome49下会报错，官方已证实这是chrome49的BUG，将会在chrome51中修复</font>，所以我在写的时候，利用Array.from()将NodeList对象转换为数组，这样可以放心操作，代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -334,7 +334,9 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>是不是非常简洁:)
-以上就是最近几天对ES6的初探的总结，感觉仅仅只是这些就已经让我感受到ES6的魅力了，接下来，我会再做几个demo，慢慢去熟悉这个新的但是非常好玩儿的ES6。</p></div><div class="post-footer" id="post-footer">
+以上就是最近几天对ES6的初探的总结，感觉仅仅只是这些就已经让我感受到ES6的魅力了，接下来，我会再做几个demo，慢慢去熟悉这个新的但是非常好玩儿的ES6。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -353,7 +355,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -362,8 +364,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -373,7 +379,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

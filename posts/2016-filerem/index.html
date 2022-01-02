@@ -22,7 +22,7 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-filerem/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-fileupload2/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-textalgin/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -35,7 +35,7 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2016-filerem\/"
-        },"genre": "posts","keywords": "CSS","wordcount":  1250 ,
+        },"genre": "posts","keywords": "CSS","wordcount":  1296 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-filerem\/","datePublished": "2016-04-26T22:49:25+00:00","dateModified": "2016-04-26T22:49:25+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -50,14 +50,14 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -86,7 +86,7 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -128,19 +128,7 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">利用CSS3新单位rem实现响应</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/css/"><i class="far fa-folder fa-fw"></i>CSS</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-04-26">2016-04-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-04-26">2016-04-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1250 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -156,10 +144,22 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
     </li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">利用CSS3新单位rem实现响应</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/css/"><i class="far fa-folder fa-fw"></i>CSS</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-04-26">2016-04-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-04-26">2016-04-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1296 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><p>做移动端的响应方法有很多，但是我喜欢用 CSS3 的新单位 rem，这个单位非常好用（有个比它还好用的单位 vh，不过兼容性太差，不考虑了），根据不同屏幕，设置不同的基准值，从而实现适配各个屏幕尺寸的移动设备。慕课网有一套非常不错的讲关于 rem 的视频，这里推荐给大家<a href="http://www.imooc.com/learn/494" target="_blank" rel="noopener noreffer">http://www.imooc.com/learn/494</a>。
 rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实现字体的响应，与 em 不同，rem 根据根元素的 font-size 计算，所以要利用 rem 实现适配各个屏幕的大小，就需要根据不同的屏幕设置根元素不同的 font-size 的值。所以我们需要做下面的一些工作。</p>
-<h3 id="1获取浏览器的宽高对于移动设备就是设备的宽度">1.获取浏览器的宽高（对于移动设备就是设备的宽度）</h3>
-<p>代码如下：</p>
+<h3 id="1获取浏览器的宽高对于移动设备就是设备的宽度" class="headerLink">
+    <a href="#1%e8%8e%b7%e5%8f%96%e6%b5%8f%e8%a7%88%e5%99%a8%e7%9a%84%e5%ae%bd%e9%ab%98%e5%af%b9%e4%ba%8e%e7%a7%bb%e5%8a%a8%e8%ae%be%e5%a4%87%e5%b0%b1%e6%98%af%e8%ae%be%e5%a4%87%e7%9a%84%e5%ae%bd%e5%ba%a6" class="header-mark"></a>1.获取浏览器的宽高（对于移动设备就是设备的宽度）</h3><p>代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -188,15 +188,15 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="11-windowinnerwidth-与-documentdocumentelementclientwidth">1.1 window.innerWidth 与 document.documentElement.clientWidth</h4>
-<p>通过测试发现，在 IE9+，chrome，firefox 下利用 window.innerWidth 与 document.documentElement.clientWidth 都可以获取到浏览器的宽高，但是他们有区别：</p>
+</div><h4 id="11-windowinnerwidth-与-documentdocumentelementclientwidth" class="headerLink">
+    <a href="#11-windowinnerwidth-%e4%b8%8e-documentdocumentelementclientwidth" class="header-mark"></a>1.1 window.innerWidth 与 document.documentElement.clientWidth</h4><p>通过测试发现，在 IE9+，chrome，firefox 下利用 window.innerWidth 与 document.documentElement.clientWidth 都可以获取到浏览器的宽高，但是他们有区别：</p>
 <ul>
 <li>window.innerWidth 获取到的宽度是把右侧滚动条<font color="red">算在内</font>的宽度</li>
 <li>document.documentElement.clientWidth 获取到的宽度是把右侧滚动条的宽度<font color="red">不算在内</font>的宽度</li>
 </ul>
 <p>但是，window.innerWidth 支持的是 IE9+，到 IE8 以前就会输出 undefined，而 document.documentElement.clientWidth 可以支持 IE7（在 IE 模拟器中，没有 IE6，到 IE5 就只能输出 0 了），在《javascript 高级程序设计》（第三版）中这样写道：“在 IE6 中，这些属性必须在标准模式下才有效；如果是混杂模式，就必须通过 document.body.clientWidth 和 document.body. clientHeight 取得相同信息。”所以 document.body.clientWidth;用于混杂模式，在标准模式下只需要 document.documentElement.clientWidth 即可。</p>
-<h4 id="12-如何判断浏览器处于什么模式">1.2 如何判断浏览器处于什么模式？</h4>
-<p>Javascript 提供了方法</p>
+<h4 id="12-如何判断浏览器处于什么模式" class="headerLink">
+    <a href="#12-%e5%a6%82%e4%bd%95%e5%88%a4%e6%96%ad%e6%b5%8f%e8%a7%88%e5%99%a8%e5%a4%84%e4%ba%8e%e4%bb%80%e4%b9%88%e6%a8%a1%e5%bc%8f" class="header-mark"></a>1.2 如何判断浏览器处于什么模式？</h4><p>Javascript 提供了方法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -213,8 +213,8 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="2计算根元素字体大小">2.计算根元素字体大小</h3>
-<p>通过上面代码可以拿到浏览器窗口（也就是 document）的宽度，这样就可以计算根元素的基准值了。</p>
+</div><h3 id="2计算根元素字体大小" class="headerLink">
+    <a href="#2%e8%ae%a1%e7%ae%97%e6%a0%b9%e5%85%83%e7%b4%a0%e5%ad%97%e4%bd%93%e5%a4%a7%e5%b0%8f" class="header-mark"></a>2.计算根元素字体大小</h3><p>通过上面代码可以拿到浏览器窗口（也就是 document）的宽度，这样就可以计算根元素的基准值了。</p>
 <p>假设<code>1rem = xpx</code>，这里的<code>x</code>是计算得出的，这里的<code>1rem</code>代表根元素字体大小。</p>
 <p>计算rem的公式如下(rem表示基准值)</p>
 <div class="highlight"><div class="chroma">
@@ -242,13 +242,15 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 </span></code></pre></td></tr></table>
 </div>
 </div><p>通过以上代码就实现了给根元素设置基准 fontSize。</p>
-<h3 id="3将-psd-中测量出的值换算成-rem">3.将 PSD 中测量出的值换算成 rem</h3>
-<p>公司设计师给的 PSD 的基准宽度为 720px,所以我在布局的时候常常使用 nexus 5 作为移动端设备去测试，因为它的宽度是 360px，与 720px 刚好是 2 倍的关系，根据这个 2 倍的关系，所以换算步骤如下：</p>
+<h3 id="3将-psd-中测量出的值换算成-rem" class="headerLink">
+    <a href="#3%e5%b0%86-psd-%e4%b8%ad%e6%b5%8b%e9%87%8f%e5%87%ba%e7%9a%84%e5%80%bc%e6%8d%a2%e7%ae%97%e6%88%90-rem" class="header-mark"></a>3.将 PSD 中测量出的值换算成 rem</h3><p>公司设计师给的 PSD 的基准宽度为 720px,所以我在布局的时候常常使用 nexus 5 作为移动端设备去测试，因为它的宽度是 360px，与 720px 刚好是 2 倍的关系，根据这个 2 倍的关系，所以换算步骤如下：</p>
 <ol>
 <li>PSD 设计图中测量出来的尺寸为 m px，则放在我移动设备中需要写的尺寸为 m/2 px</li>
 <li>将 px 换算为 rem，由于在 360px 的移动设备下，font-size 基准值为 360 / 20 = 18px，所以 px=&gt;rem 过程为：rem = m / 2 / 18 = m / 36;</li>
 </ol>
-<p>通过以上计算就将 PSD 中的 px 转换为移动设备中的 rem，这样就可以实现对各个移动设备的适配。</p></div><div class="post-footer" id="post-footer">
+<p>通过以上计算就将 PSD 中的 px 转换为移动设备中的 rem，这样就可以实现对各个移动设备的适配。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -267,7 +269,7 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/css/">CSS</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -276,8 +278,12 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -287,7 +293,7 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

@@ -16,8 +16,8 @@
     <pubDate>Sun, 01 Sep 2019 16:15:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
     </author><guid>https://mrzhang123.github.io/posts/2019-vimperformance/</guid>
-    <description><![CDATA[<h3 id="关键点">关键点</h3>
-<ul>
+    <description><![CDATA[<h3 id="关键点" class="headerLink">
+    <a href="#%e5%85%b3%e9%94%ae%e7%82%b9" class="header-mark"></a>关键点</h3><ul>
 <li><code>vim -u NONE -N</code>可以不加载vim配置和插件打开vim</li>
 <li><code>vim --startuptime vim.log</code>可以生成vim启动的log</li>
 <li>使用<code>vim-plug</code>插件管理工具，给插件配置<code>for</code> or <code>on</code>可以实现插件懒加载</li>

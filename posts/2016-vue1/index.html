@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title class="pjax-title">基于Vue的简单的单页面应用 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="基于Vue的简单的单页面应用" />
-<meta property="og:description" content="基于Vue的简单的单页面应用
-在对Vue和webpack有了一定了解后，我们就可以开始利用所了解的东西做一个简单的webapp了，不了解的同学可以看下我的前两篇关于vue和webpack的基本应用：
+<meta property="og:description" content="
+    基于Vue的简单的单页面应用在对Vue和webpack有了一定了解后，我们就可以开始利用所了解的东西做一个简单的webapp了，不了解的同学可以看下我的前两篇关于vue和webpack的基本应用：
 webpack&#43;vue起步
 利用webpack和vue实现组件化" />
 <meta property="og:type" content="article" />
@@ -19,14 +19,14 @@ webpack&#43;vue起步
 <meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
 
 <meta name="twitter:title" content="基于Vue的简单的单页面应用"/>
-<meta name="twitter:description" content="基于Vue的简单的单页面应用
-在对Vue和webpack有了一定了解后，我们就可以开始利用所了解的东西做一个简单的webapp了，不了解的同学可以看下我的前两篇关于vue和webpack的基本应用：
+<meta name="twitter:description" content="
+    基于Vue的简单的单页面应用在对Vue和webpack有了一定了解后，我们就可以开始利用所了解的东西做一个简单的webapp了，不了解的同学可以看下我的前两篇关于vue和webpack的基本应用：
 webpack&#43;vue起步
 利用webpack和vue实现组件化"/>
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-vue1/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-webpackvue2/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-summarizejune/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -54,14 +54,14 @@ webpack&#43;vue起步
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -90,7 +90,7 @@ webpack&#43;vue起步
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -132,19 +132,7 @@ webpack&#43;vue起步
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">基于Vue的简单的单页面应用</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vue/"><i class="far fa-folder fa-fw"></i>Vue</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-06-08">2016-06-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-06-08">2016-06-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2323 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#基于vue的简单的单页面应用">基于Vue的简单的单页面应用</a></li>
     <li><a href="#构建项目">构建项目</a></li>
@@ -160,12 +148,24 @@ webpack&#43;vue起步
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="基于vue的简单的单页面应用">基于Vue的简单的单页面应用</h2>
-<p>在对Vue和webpack有了一定了解后，我们就可以开始利用所了解的东西做一个简单的webapp了，不了解的同学可以看下我的前两篇关于vue和webpack的基本应用：
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">基于Vue的简单的单页面应用</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vue/"><i class="far fa-folder fa-fw"></i>Vue</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-06-08">2016-06-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-06-08">2016-06-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2323 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
+            </div><div class="content" id="content"><h2 id="基于vue的简单的单页面应用" class="headerLink">
+    <a href="#%e5%9f%ba%e4%ba%8evue%e7%9a%84%e7%ae%80%e5%8d%95%e7%9a%84%e5%8d%95%e9%a1%b5%e9%9d%a2%e5%ba%94%e7%94%a8" class="header-mark"></a>基于Vue的简单的单页面应用</h2><p>在对Vue和webpack有了一定了解后，我们就可以开始利用所了解的东西做一个简单的webapp了，不了解的同学可以看下我的前两篇关于vue和webpack的基本应用：
 <a href="https://segmentfault.com/a/1190000005614864" target="_blank" rel="noopener noreffer">webpack+vue起步</a>
 <a href="https://segmentfault.com/a/1190000005616974" target="_blank" rel="noopener noreffer">利用webpack和vue实现组件化</a></p>
-<h2 id="构建项目">构建项目</h2>
-<p>首先创建各个组件，我的目录结构如下：</p>
+<h2 id="构建项目" class="headerLink">
+    <a href="#%e6%9e%84%e5%bb%ba%e9%a1%b9%e7%9b%ae" class="header-mark"></a>构建项目</h2><p>首先创建各个组件，我的目录结构如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -202,8 +202,8 @@ webpack&#43;vue起步
 </span><span class="c1"></span>    <span class="o">|-</span><span class="nx">index</span><span class="p">.</span><span class="nx">html</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="配置路由">配置路由</h2>
-<p>首先在我们的项目中安装vue-router</p>
+</div><h2 id="配置路由" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%ae%e8%b7%af%e7%94%b1" class="header-mark"></a>配置路由</h2><p>首先在我们的项目中安装vue-router</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -328,8 +328,8 @@ webpack&#43;vue起步
 </code></pre></td></tr></table>
 </div>
 </div><p>此时我们在页面中看到的页面就是home.vue</p>
-<h2 id="在homevue中实现tab切换">在home.vue中实现tab切换</h2>
-<p>tab切换作为一个常见的效果，出现的频率很高，那么如何用vuejs写一个tab切换效果呢？
+<h2 id="在homevue中实现tab切换" class="headerLink">
+    <a href="#%e5%9c%a8homevue%e4%b8%ad%e5%ae%9e%e7%8e%b0tab%e5%88%87%e6%8d%a2" class="header-mark"></a>在home.vue中实现tab切换</h2><p>tab切换作为一个常见的效果，出现的频率很高，那么如何用vuejs写一个tab切换效果呢？
 利用当前被点击的tab是第几个，从而动态的切换相应的动态组件是vuejs实现切换的一种方式。动态组件的介绍如下：<a href="https://vuejs.org.cn/guide/components.html#%e5%8a%a8%e6%80%81%e7%bb%84%e4%bb%b6" target="_blank" rel="noopener noreffer">https://vuejs.org.cn/guide/components.html#动态组件</a>。所以实现代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -447,8 +447,8 @@ webpack&#43;vue起步
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="利用v-link实现路由链接">利用<code>v-link</code>实现路由链接</h2>
-<p>在组件中，用到了路由，在给<code>a</code>写路由链接时候要使用<code>v-link</code>而不是<code>href</code>。在带有<code>v-link</code>指令的元素，如果<code>v-link</code>对应的URL匹配当前路径，则该元素会被添加一个特定的class，默认为<code>.v-link-active</code>，这个默认值，我们可以通过在创建路由时指定<code>linkActiveClass</code>全局选项来自定义，也可以通过<code>activeClass</code>内联选项来单独制定：</p>
+</div><h2 id="利用v-link实现路由链接" class="headerLink">
+    <a href="#%e5%88%a9%e7%94%a8v-link%e5%ae%9e%e7%8e%b0%e8%b7%af%e7%94%b1%e9%93%be%e6%8e%a5" class="header-mark"></a>利用<code>v-link</code>实现路由链接</h2><p>在组件中，用到了路由，在给<code>a</code>写路由链接时候要使用<code>v-link</code>而不是<code>href</code>。在带有<code>v-link</code>指令的元素，如果<code>v-link</code>对应的URL匹配当前路径，则该元素会被添加一个特定的class，默认为<code>.v-link-active</code>，这个默认值，我们可以通过在创建路由时指定<code>linkActiveClass</code>全局选项来自定义，也可以通过<code>activeClass</code>内联选项来单独制定：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -457,9 +457,9 @@ webpack&#43;vue起步
 <pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">v-link</span><span class="o">=</span><span class="s">&#34;{path:&#39;/a&#39;,activeClass:&#39;active&#39;}&#34;</span><span class="p">&gt;</span>test<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="遇到的一些问题">遇到的一些问题</h2>
-<h3 id="1v-for循环插入图片">1.<code>v-for</code>循环插入图片</h3>
-<p>在写循环插入图片的时候，写的代码如下：</p>
+</div><h2 id="遇到的一些问题" class="headerLink">
+    <a href="#%e9%81%87%e5%88%b0%e7%9a%84%e4%b8%80%e4%ba%9b%e9%97%ae%e9%a2%98" class="header-mark"></a>遇到的一些问题</h2><h3 id="1v-for循环插入图片" class="headerLink">
+    <a href="#1v-for%e5%be%aa%e7%8e%af%e6%8f%92%e5%85%a5%e5%9b%be%e7%89%87" class="header-mark"></a>1.<code>v-for</code>循环插入图片</h3><p>在写循环插入图片的时候，写的代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -498,10 +498,10 @@ webpack&#43;vue起步
 </code></pre></td></tr></table>
 </div>
 </div><p>这里<code>href</code>是参数，它告诉 <code>v-bind </code>指令将元素的 <code>href </code>特性跟表达式 url 的值绑定。可能你已注意到可以用特性插值<code> href=&quot;{{url}}&quot;</code> 获得同样的结果：这样没错，并且实际上在内部特性插值会转为<code> v-bind</code> 绑定。</p>
-<h3 id="2v-model的使用">2.<code>v-model</code>的使用</h3>
-<p><code>v-model</code>用于在表单上创建双向绑定，只能用于<code>&lt;input&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;textarea&gt;</code>，如果用在其他元素中，则会在产生警告。</p>
-<h3 id="3如何让组件的css样式只在组件中起作用">3.如何让组件的CSS样式只在组件中起作用</h3>
-<p>在每一个vue组件中都可以定义各自的css，js，如果想写的css只对当前组件起作用，则在<code>style</code>中写入<code>scoped</code>，即：</p>
+<h3 id="2v-model的使用" class="headerLink">
+    <a href="#2v-model%e7%9a%84%e4%bd%bf%e7%94%a8" class="header-mark"></a>2.<code>v-model</code>的使用</h3><p><code>v-model</code>用于在表单上创建双向绑定，只能用于<code>&lt;input&gt;</code>、<code>&lt;select&gt;</code>、<code>&lt;textarea&gt;</code>，如果用在其他元素中，则会在产生警告。</p>
+<h3 id="3如何让组件的css样式只在组件中起作用" class="headerLink">
+    <a href="#3%e5%a6%82%e4%bd%95%e8%ae%a9%e7%bb%84%e4%bb%b6%e7%9a%84css%e6%a0%b7%e5%bc%8f%e5%8f%aa%e5%9c%a8%e7%bb%84%e4%bb%b6%e4%b8%ad%e8%b5%b7%e4%bd%9c%e7%94%a8" class="header-mark"></a>3.如何让组件的CSS样式只在组件中起作用</h3><p>在每一个vue组件中都可以定义各自的css，js，如果想写的css只对当前组件起作用，则在<code>style</code>中写入<code>scoped</code>，即：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -510,7 +510,9 @@ webpack&#43;vue起步
 <pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="o">&lt;</span><span class="nt">style</span> <span class="nt">scoped</span><span class="o">&gt;&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>这样就完成了一个简单的基于Vue+webpack+vue-router的单页面应用，具体实现代码见github:<a href="https://github.com/MrZhang123/Vue_project/tree/master/vue_spa_demo" target="_blank" rel="noopener noreffer">vue_spa_demo</a>。</p></div><div class="post-footer" id="post-footer">
+</div><p>这样就完成了一个简单的基于Vue+webpack+vue-router的单页面应用，具体实现代码见github:<a href="https://github.com/MrZhang123/Vue_project/tree/master/vue_spa_demo" target="_blank" rel="noopener noreffer">vue_spa_demo</a>。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -529,7 +531,7 @@ webpack&#43;vue起步
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vue/">Vue</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -538,8 +540,12 @@ webpack&#43;vue起步
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -549,7 +555,7 @@ webpack&#43;vue起步
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

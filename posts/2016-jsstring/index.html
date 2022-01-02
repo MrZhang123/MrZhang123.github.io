@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title class="pjax-title">Javascript中字符串方法总结 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="Javascript中字符串方法总结" />
-<meta property="og:description" content="字符方法
-chartAt()与charCodeAt()
-参数：基于0的字符位置
+<meta property="og:description" content="
+    字符方法
+    chartAt()与charCodeAt()参数：基于0的字符位置
 **chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://mrzhang123.github.io/posts/2016-jsstring/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/><meta property="article:section" content="posts" />
@@ -19,14 +19,14 @@ chartAt()与charCodeAt()
 <meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
 
 <meta name="twitter:title" content="Javascript中字符串方法总结"/>
-<meta name="twitter:description" content="字符方法
-chartAt()与charCodeAt()
-参数：基于0的字符位置
+<meta name="twitter:description" content="
+    字符方法
+    chartAt()与charCodeAt()参数：基于0的字符位置
 **chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。"/>
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-jsstring/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-jsposition/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-flipcards/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -39,7 +39,7 @@ chartAt()与charCodeAt()
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2016-jsstring\/"
-        },"genre": "posts","keywords": "Javascript","wordcount":  2575 ,
+        },"genre": "posts","keywords": "Javascript","wordcount":  2654 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-jsstring\/","datePublished": "2016-08-14T16:48:34+00:00","dateModified": "2016-08-14T16:48:34+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -54,14 +54,14 @@ chartAt()与charCodeAt()
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -90,7 +90,7 @@ chartAt()与charCodeAt()
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -132,19 +132,7 @@ chartAt()与charCodeAt()
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Javascript中字符串方法总结</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2575 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#字符方法">字符方法</a>
       <ul>
@@ -184,9 +172,21 @@ chartAt()与charCodeAt()
     <li><a href="#另附js中string和array方法的总结图">另附js中String和Array方法的总结图：</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="字符方法">字符方法</h2>
-<h3 id="chartat与charcodeat">chartAt()与charCodeAt()</h3>
-<p>参数：<em>基于<strong>0的字符位置</strong></em></p>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Javascript中字符串方法总结</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2654 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
+            </div><div class="content" id="content"><h2 id="字符方法" class="headerLink">
+    <a href="#%e5%ad%97%e7%ac%a6%e6%96%b9%e6%b3%95" class="header-mark"></a>字符方法</h2><h3 id="chartat与charcodeat" class="headerLink">
+    <a href="#chartat%e4%b8%8echarcodeat" class="header-mark"></a>chartAt()与charCodeAt()</h3><p>参数：<em>基于<strong>0的字符位置</strong></em></p>
 <p>**chartAt()<strong>以单字符字符串的形式返回给定位置的那个字符。而</strong>charCodeAt()**返回的是字符编码。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -200,18 +200,18 @@ chartAt()与charCodeAt()
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">chartAt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>    <span class="c1">// &#39;e&#39;
 </span></code></pre></td></tr></table>
 </div>
-</div><h2 id="字符串操作方法">字符串操作方法</h2>
-<h3 id="concat数组中也有该方法">concat()(数组中也有该方法)</h3>
-<p>参数：<em>一个或多个字符串</em></p>
+</div><h2 id="字符串操作方法" class="headerLink">
+    <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%93%8d%e4%bd%9c%e6%96%b9%e6%b3%95" class="header-mark"></a>字符串操作方法</h2><h3 id="concat数组中也有该方法" class="headerLink">
+    <a href="#concat%e6%95%b0%e7%bb%84%e4%b8%ad%e4%b9%9f%e6%9c%89%e8%af%a5%e6%96%b9%e6%b3%95" class="header-mark"></a>concat()(数组中也有该方法)</h3><p>参数：<em>一个或多个字符串</em></p>
 <p>将一个会多个字符串拼接起来，当然更常用的是使用 “+” 进行拼接</p>
-<h3 id="substring与slice数组中也有此方法">substring()与slice()(数组中也有此方法)</h3>
-<p>参数：<em>指定子字符串的开始位置</em>，<em>子字符串到哪里结束</em></p>
+<h3 id="substring与slice数组中也有此方法" class="headerLink">
+    <a href="#substring%e4%b8%8eslice%e6%95%b0%e7%bb%84%e4%b8%ad%e4%b9%9f%e6%9c%89%e6%ad%a4%e6%96%b9%e6%b3%95" class="header-mark"></a>substring()与slice()(数组中也有此方法)</h3><p>参数：<em>指定子字符串的开始位置</em>，<em>子字符串到哪里结束</em></p>
 <p>作用：创建新的子字符串（可以理解为字符串截取）</p>
-<h3 id="substr">substr()</h3>
-<p>参数：<em>指定子字符串的开始位置</em>，<em>返回的子字符串的字符个数</em></p>
+<h3 id="substr" class="headerLink">
+    <a href="#substr" class="header-mark"></a>substr()</h3><p>参数：<em>指定子字符串的开始位置</em>，<em>返回的子字符串的字符个数</em></p>
 <p>作用：创建新的子字符串（可以理解为字符串截取）</p>
-<h3 id="repeates6新增">repeat()（ES6新增）</h3>
-<p>参数：<em>数字（表示重复的次数）</em></p>
+<h3 id="repeates6新增" class="headerLink">
+    <a href="#repeates6%e6%96%b0%e5%a2%9e" class="header-mark"></a>repeat()（ES6新增）</h3><p>参数：<em>数字（表示重复的次数）</em></p>
 <p>作用：将原字符串重复n次</p>
 <p>如果传入负数，则报错，传入小数和<code>NaN</code>等同于传入0</p>
 <p><strong>substring，slice，substr，repeat均返回子字符串，不会修改原来的字符串</strong></p>
@@ -250,9 +250,9 @@ chartAt()与charCodeAt()
 <li>substring()会把所有的负参数转化为0</li>
 <li>repeat()会报错</li>
 </ul>
-<h2 id="字符串位置方法">字符串位置方法</h2>
-<h3 id="indexof和lastindexof数组中也有该方法">indexOf()和lastIndexOf()(数组中也有该方法)</h3>
-<p>参数：<em>要搜索的子字符串</em>，<em>开始搜索的位置（可选）</em></p>
+<h2 id="字符串位置方法" class="headerLink">
+    <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e4%bd%8d%e7%bd%ae%e6%96%b9%e6%b3%95" class="header-mark"></a>字符串位置方法</h2><h3 id="indexof和lastindexof数组中也有该方法" class="headerLink">
+    <a href="#indexof%e5%92%8clastindexof%e6%95%b0%e7%bb%84%e4%b8%ad%e4%b9%9f%e6%9c%89%e8%af%a5%e6%96%b9%e6%b3%95" class="header-mark"></a>indexOf()和lastIndexOf()(数组中也有该方法)</h3><p>参数：<em>要搜索的子字符串</em>，<em>开始搜索的位置（可选）</em></p>
 <p>搜索给定的子字符串，如果找到则返回位置，否则返回-1</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -294,8 +294,8 @@ chartAt()与charCodeAt()
 <span class="nx">alert</span><span class="p">(</span><span class="nx">positions</span><span class="p">);</span>    <span class="c1">//&#34;3,24,32,35,52&#34;
 </span></code></pre></td></tr></table>
 </div>
-</div><h3 id="es6新增includesstartswithendswith"><strong>ES6新增</strong>includes()、startsWith()、endsWith()</h3>
-<ul>
+</div><h3 id="es6新增includesstartswithendswith" class="headerLink">
+    <a href="#es6%e6%96%b0%e5%a2%9eincludesstartswithendswith" class="header-mark"></a><strong>ES6新增</strong>includes()、startsWith()、endsWith()</h3><ul>
 <li>includes()：返回布尔值，表示是否找到了参数字符串</li>
 <li>startsWith()：返回布尔值，表示参数字符串是否在源字符串的头部</li>
 <li>endsWith()：返回布尔值，表示参数字符串是否在源字符串的尾部</li>
@@ -317,8 +317,8 @@ chartAt()与charCodeAt()
 </div>
 </div><p><strong>注意：</strong>
 使用第2个参数n时，<code>endsWith</code>的行为与其他两个方法有所不同。它针对<strong>前面</strong>n个字符，而其他两个方法针对从第n个位置开始直到字符串结束的字符。</p>
-<h2 id="去空格--trim">去空格&ndash;trim()</h2>
-<p>ES5中新增<code>trim()</code>方法用于去除字符串的左右空格，<strong>该方法会创建一个字符串的副本，不会改变原有的字符串</strong>，此外，Firefox 3.5+、Safari 5+
+<h2 id="去空格--trim" class="headerLink">
+    <a href="#%e5%8e%bb%e7%a9%ba%e6%a0%bc--trim" class="header-mark"></a>去空格&ndash;trim()</h2><p>ES5中新增<code>trim()</code>方法用于去除字符串的左右空格，<strong>该方法会创建一个字符串的副本，不会改变原有的字符串</strong>，此外，Firefox 3.5+、Safari 5+
 和 Chrome 8+还支持非标准的 trimLeft()和 trimRight()方法，分别用于删除字符串开头和末尾的
 空格。</p>
 <p>其实去空格可以使用正则去匹配的去掉，这里写一个去空格函数</p>
@@ -358,11 +358,11 @@ chartAt()与charCodeAt()
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="字符串大小写转换">字符串大小写转换</h2>
-<h3 id="tolowercasetolocalelowercasetouppercase和-tolocaleuppercase">toLowerCase()、toLocaleLowerCase()、toUpperCase()和 toLocaleUpperCase()</h3>
-<h2 id="字符串的模式匹配方法">字符串的模式匹配方法</h2>
-<h3 id="match">match()</h3>
-<p>参数：<em>一个正则表达式或RegExp对象</em></p>
+</div><h2 id="字符串大小写转换" class="headerLink">
+    <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%a4%a7%e5%b0%8f%e5%86%99%e8%bd%ac%e6%8d%a2" class="header-mark"></a>字符串大小写转换</h2><h3 id="tolowercasetolocalelowercasetouppercase和-tolocaleuppercase" class="headerLink">
+    <a href="#tolowercasetolocalelowercasetouppercase%e5%92%8c-tolocaleuppercase" class="header-mark"></a>toLowerCase()、toLocaleLowerCase()、toUpperCase()和 toLocaleUpperCase()</h3><h2 id="字符串的模式匹配方法" class="headerLink">
+    <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e7%9a%84%e6%a8%a1%e5%bc%8f%e5%8c%b9%e9%85%8d%e6%96%b9%e6%b3%95" class="header-mark"></a>字符串的模式匹配方法</h2><h3 id="match" class="headerLink">
+    <a href="#match" class="header-mark"></a>match()</h3><p>参数：<em>一个正则表达式或RegExp对象</em></p>
 <p>返回一个数组。在字符串上调用这个方法本质上与调用RegExp的exec()方法相同。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -386,8 +386,8 @@ chartAt()与charCodeAt()
 </span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">);</span>          <span class="c1">//0 
 </span></code></pre></td></tr></table>
 </div>
-</div><h3 id="search">search()</h3>
-<p>参数：<em>一个正则表达式或RegExp对象</em></p>
+</div><h3 id="search" class="headerLink">
+    <a href="#search" class="header-mark"></a>search()</h3><p>参数：<em>一个正则表达式或RegExp对象</em></p>
 <p>返回字符串中第一个匹配项的索引，如果没有找到，则返回-1</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -401,8 +401,8 @@ chartAt()与charCodeAt()
 <span class="nx">alert</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span>   <span class="c1">//1 
 </span></code></pre></td></tr></table>
 </div>
-</div><h3 id="replace">replace()</h3>
-<p>参数：<em>一个RegExp对象或者一个字符串（这个字符串不会被转换成正则表达式）</em>，<em>一个字符串或一个函数</em></p>
+</div><h3 id="replace" class="headerLink">
+    <a href="#replace" class="header-mark"></a>replace()</h3><p>参数：<em>一个RegExp对象或者一个字符串（这个字符串不会被转换成正则表达式）</em>，<em>一个字符串或一个函数</em></p>
 <p>利用<code>replace()</code>进行替换的时候，如果传入的是字符串，则只会替换第一个子字符串，要想替换所有的子字符串，则需要传入一个正则表达式，而且要指定全局（g）标志</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -473,8 +473,8 @@ chartAt()与charCodeAt()
 <span class="kd">var</span> <span class="nx">newString</span> <span class="o">=</span> <span class="s1">&#39;abc12345#$*%&#39;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^\d]*)(\d*)([^\w]*)/</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">);</span> <span class="c1">// =&gt;&#34;abc - 12345 - #$*%&#34;
 </span></code></pre></td></tr></table>
 </div>
-</div><h3 id="split">split()</h3>
-<p>参数：<em>用于分隔字符串的分隔符</em>，<em>数字（可选，用于指定数组的大小）</em></p>
+</div><h3 id="split" class="headerLink">
+    <a href="#split" class="header-mark"></a>split()</h3><p>参数：<em>用于分隔字符串的分隔符</em>，<em>数字（可选，用于指定数组的大小）</em></p>
 <p>作用：基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个<strong>数组</strong>中，分隔符可以是字符串，也可以是RegExp对象</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -491,15 +491,15 @@ chartAt()与charCodeAt()
 </span></code></pre></td></tr></table>
 </div>
 </div><p>最后一个调用<code>split</code>的时候，出现了前后的两个空白，是因为通过正则表达式指定的分隔符出现在了字符串的开头和结尾。</p>
-<h2 id="localecompare">localeCompare()</h2>
-<p>这个方法用于比较两个字符串，并返回下列值中的一个：</p>
+<h2 id="localecompare" class="headerLink">
+    <a href="#localecompare" class="header-mark"></a>localeCompare()</h2><p>这个方法用于比较两个字符串，并返回下列值中的一个：</p>
 <ul>
 <li>如果字符串在字母表中应该排在字符串参数之前，则返回负数（大多情况下为-1）</li>
 <li>如果相等，则返回0</li>
 <li>如果排在字符串参数之前，则返回正数（大多数情况下为1）</li>
 </ul>
-<h2 id="fromcharcode">fromCharCode()</h2>
-<p>String构造函数的一个静态方法</p>
+<h2 id="fromcharcode" class="headerLink">
+    <a href="#fromcharcode" class="header-mark"></a>fromCharCode()</h2><p>String构造函数的一个静态方法</p>
 <p>参数：<em>一个或多个字符串编码</em></p>
 <p>作用：将接收到的一个或多个字符串编码<strong>转换</strong>成一个字符串，这个方法与实例方法<code>charCodeAt()</code>执行<strong>相反</strong>的操作。</p>
 <div class="highlight"><div class="chroma">
@@ -549,15 +549,17 @@ chartAt()与charCodeAt()
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">news</span><span class="p">);</span> <span class="c1">// =&gt; &#34;olleh&#34;
 </span></code></pre></td></tr></table>
 </div>
-</div><h2 id="另附js中string和array方法的总结图">另附js中String和Array方法的总结图：</h2>
-<p><img
+</div><h2 id="另附js中string和array方法的总结图" class="headerLink">
+    <a href="#%e5%8f%a6%e9%99%84js%e4%b8%adstring%e5%92%8carray%e6%96%b9%e6%b3%95%e7%9a%84%e6%80%bb%e7%bb%93%e5%9b%be" class="header-mark"></a>另附js中String和Array方法的总结图：</h2><p><img
         class="lazyload"
         data-src="./string&amp;Array.png"
         data-srcset="./string&amp;Array.png, ./string&amp;Array.png 1.5x, ./string&amp;Array.png 2x"
         data-sizes="auto"
         alt="./string&amp;Array.png"
         title="icon"
-    /></p></div><div class="post-footer" id="post-footer">
+    /></p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -576,7 +578,7 @@ chartAt()与charCodeAt()
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -585,8 +587,12 @@ chartAt()与charCodeAt()
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -596,7 +602,7 @@ chartAt()与charCodeAt()
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

@@ -20,7 +20,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019-optional-chaining/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2019-vimperformance/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019-2020newyear/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -48,14 +48,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -84,7 +84,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -126,7 +126,13 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#介绍可选调用链">介绍可选调用链</a></li>
+    <li><a href="#其他的语法形式调用和动态属性">其他的语法形式：调用和动态属性</a></li>
+    <li><a href="#可选调用链的属性">可选调用链的属性</a></li>
+  </ul>
+</nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">「译」JS新特性“可选链式调用”</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
@@ -138,13 +144,7 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#介绍可选调用链">介绍可选调用链</a></li>
-    <li><a href="#其他的语法形式调用和动态属性">其他的语法形式：调用和动态属性</a></li>
-    <li><a href="#可选调用链的属性">可选调用链的属性</a></li>
-  </ul>
-</nav></div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><p>在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现<code>null</code>或<code>undefined</code>（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的<code>if</code>声明或者复制属性访问链的长的<code>if</code>条件：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -189,8 +189,8 @@
     <span class="o">:</span> <span class="kc">undefined</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="介绍可选调用链">介绍可选调用链</h2>
-<p>我们并不想写出这样的代码，所以有一些代替方案是可取的。一些语言（例如swift，具体查看https://www.jianshu.com/p/5599b422afb0）针对这个问题提供了优雅的解决方案——可选调用链。
+</div><h2 id="介绍可选调用链" class="headerLink">
+    <a href="#%e4%bb%8b%e7%bb%8d%e5%8f%af%e9%80%89%e8%b0%83%e7%94%a8%e9%93%be" class="header-mark"></a>介绍可选调用链</h2><p>我们并不想写出这样的代码，所以有一些代替方案是可取的。一些语言（例如swift，具体查看https://www.jianshu.com/p/5599b422afb0）针对这个问题提供了优雅的解决方案——可选调用链。
 根据<a href="https://github.com/tc39/proposal-optional-chaining" target="_blank" rel="noopener noreffer">最近的规范</a>，“可选调用链是一个或多个属性访问和函数调用的链，以<code>?.</code>开头”。</p>
 <p>使用新的可选调用链，我们可以重写上面的demo：</p>
 <div class="highlight"><div class="chroma">
@@ -205,8 +205,8 @@
 </div>
 </div><p>使用可选调用链，当<code>db</code>，<code>user</code>，或<code>name</code>是<code>undefined</code>或者<code>null</code>的时候，<code>nameLength</code>被初始化为<code>undefined</code>，而不是像之前那样抛出错误。</p>
 <p>**Note：**可选调用链比我们自己用<code>if(db &amp;&amp; db.user &amp;&amp; db.user.name)</code>检查更加健壮，例如，如果<code>name</code>是一个空字符串，可选字符串会将<code>name?.length</code>改为<code>name.length</code>然后得到正确的长度<code>0</code>，但是如果像我们之前那样做判断，不会得到正确的值，因为在if语句中空字符和<code>false</code>的行为相同。可选调用链修复了这个常见的bug。</p>
-<h2 id="其他的语法形式调用和动态属性">其他的语法形式：调用和动态属性</h2>
-<p>还有一个用于调用可选方法的运算符：</p>
+<h2 id="其他的语法形式调用和动态属性" class="headerLink">
+    <a href="#%e5%85%b6%e4%bb%96%e7%9a%84%e8%af%ad%e6%b3%95%e5%bd%a2%e5%bc%8f%e8%b0%83%e7%94%a8%e5%92%8c%e5%8a%a8%e6%80%81%e5%b1%9e%e6%80%a7" class="header-mark"></a>其他的语法形式：调用和动态属性</h2><p>还有一个用于调用可选方法的运算符：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -269,10 +269,10 @@
 <pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="kr">const</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span> <span class="nx">names</span><span class="o">:</span> <span class="p">{</span> <span class="nx">first</span><span class="o">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="nx">last</span><span class="o">:</span> <span class="s1">&#39;Smith&#39;</span> <span class="p">}};</span>
 
 <span class="p">{</span> <span class="c1">// With lodash:
-</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="mi">_</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="s1">&#39;names.first&#39;</span><span class="p">);</span>
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="s1">&#39;names.first&#39;</span><span class="p">);</span>
   <span class="c1">// → &#39;Alice&#39;
 </span><span class="c1"></span>
-  <span class="kr">const</span> <span class="nx">middleName</span> <span class="o">=</span> <span class="mi">_</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="s1">&#39;names.middle&#39;</span><span class="p">,</span> <span class="s1">&#39;(no middle name)&#39;</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="nx">middleName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="s1">&#39;names.middle&#39;</span><span class="p">,</span> <span class="s1">&#39;(no middle name)&#39;</span><span class="p">);</span>
   <span class="c1">// → &#39;(no middle name)&#39;
 </span><span class="c1"></span><span class="p">}</span>
 
@@ -285,8 +285,8 @@
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="可选调用链的属性">可选调用链的属性</h2>
-<p>可选调用链有一些有趣的属性：<em>短路（short-circuiting）</em>，<em>堆叠（stacking）<em>和</em>可选删除（optonal deletion）</em>。下面通过例子来了解这些属性。</p>
+</div><h2 id="可选调用链的属性" class="headerLink">
+    <a href="#%e5%8f%af%e9%80%89%e8%b0%83%e7%94%a8%e9%93%be%e7%9a%84%e5%b1%9e%e6%80%a7" class="header-mark"></a>可选调用链的属性</h2><p>可选调用链有一些有趣的属性：<em>短路（short-circuiting）</em>，<em>堆叠（stacking）<em>和</em>可选删除（optonal deletion）</em>。下面通过例子来了解这些属性。</p>
 <p>*短路（short-circuiting）*即如果可选调用链提前返回则不计算表达式的其余部分：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -322,7 +322,9 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>更多细节可以访问<a href="https://github.com/tc39/proposal-optional-chaining#semantics" target="_blank" rel="noopener noreffer">该提案的语义部分</a>。</p>
-<p>原文链接：https://v8.dev/features/optional-chaining</p></div><div class="post-footer" id="post-footer">
+<p>原文链接：https://v8.dev/features/optional-chaining</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -341,7 +343,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -350,8 +352,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -361,7 +367,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

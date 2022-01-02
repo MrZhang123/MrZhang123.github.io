@@ -24,7 +24,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019-tmux/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2019-axiosparams/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019-componentstips/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2019-tmux\/"
-        },"genre": "posts","keywords": "Linux","wordcount":  3370 ,
+        },"genre": "posts","keywords": "Linux","wordcount":  3376 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2019-tmux\/","datePublished": "2019-06-23T14:32:00+00:00","dateModified": "2019-06-23T14:32:00+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -52,14 +52,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">终端复用神器Tmux</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3370 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -171,6 +159,18 @@
     </li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">终端复用神器Tmux</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3376 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。</p>
 </blockquote>
@@ -195,8 +195,8 @@
         title="tmux分屏图片"
     /></p>
 <p>正是基于这个原因，开始学着始使用tmux。</p>
-<h3 id="安装">安装</h3>
-<blockquote>
+<h3 id="安装" class="headerLink">
+    <a href="#%e5%ae%89%e8%a3%85" class="header-mark"></a>安装</h3><blockquote>
 <p>tmux的仓库：https://github.com/tmux/tmux</p>
 </blockquote>
 <p>首先安装tmux：</p>
@@ -232,9 +232,9 @@ sudo apt-get install tmux
         alt="./img/tmux-name.png"
         title="tmux名词标注"
     /></p>
-<h3 id="session">session</h3>
-<h4 id="新建">新建</h4>
-<p>安装完成后，在终端直接输入<code>tmux</code>即可进入tmux。进入之后可以看到session的名字是0，这是因为我们直接输入<code>tmux</code>会创建一个无名的会话，如果想要新建session的时候给session命名，可以使用以下命令：</p>
+<h3 id="session" class="headerLink">
+    <a href="#session" class="header-mark"></a>session</h3><h4 id="新建" class="headerLink">
+    <a href="#%e6%96%b0%e5%bb%ba" class="header-mark"></a>新建</h4><p>安装完成后，在终端直接输入<code>tmux</code>即可进入tmux。进入之后可以看到session的名字是0，这是因为我们直接输入<code>tmux</code>会创建一个无名的会话，如果想要新建session的时候给session命名，可以使用以下命令：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -243,8 +243,8 @@ sudo apt-get install tmux
 <pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">tmux new -s your-session-name
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="断开">断开</h4>
-<p>如果想要断开当前session可以使用</p>
+</div><h4 id="断开" class="headerLink">
+    <a href="#%e6%96%ad%e5%bc%80" class="header-mark"></a>断开</h4><p>如果想要断开当前session可以使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -254,8 +254,8 @@ sudo apt-get install tmux
 </code></pre></td></tr></table>
 </div>
 </div><p>或者使用快捷键<code>[prefix]+d</code>，其中<code>prefx</code>默认为<code>ctrl+b</code></p>
-<h4 id="恢复">恢复</h4>
-<p>退出session之后，想要恢复之前工作的区域，直接在终端输入：</p>
+<h4 id="恢复" class="headerLink">
+    <a href="#%e6%81%a2%e5%a4%8d" class="header-mark"></a>恢复</h4><p>退出session之后，想要恢复之前工作的区域，直接在终端输入：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -271,8 +271,8 @@ tmux a -t your-session-name
 </code></pre></td></tr></table>
 </div>
 </div><p>其中<code>session-name</code>是可选的，如果不输入，默认进入第一个会话。</p>
-<h4 id="关闭">关闭</h4>
-<p>使用完成后，要关闭，可以使用<code>tmux kill</code>命令，<code>kill</code>有以下四种：</p>
+<h4 id="关闭" class="headerLink">
+    <a href="#%e5%85%b3%e9%97%ad" class="header-mark"></a>关闭</h4><p>使用完成后，要关闭，可以使用<code>tmux kill</code>命令，<code>kill</code>有以下四种：</p>
 <ul>
 <li><code>kill-server</code>：关闭sessions，clients和server，这个命令会将tmux创建的都关闭</li>
 <li><code>kill-session</code></li>
@@ -293,8 +293,8 @@ tmux kill-session -t your-session-name
 tmux kill-server
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="查看">查看</h4>
-<div class="highlight"><div class="chroma">
+</div><h4 id="查看" class="headerLink">
+    <a href="#%e6%9f%a5%e7%9c%8b" class="header-mark"></a>查看</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -316,10 +316,10 @@ tmux ls
         alt="./img/tmux-showall.png"
         title="tmux展示所有session和window的图"
     /></p>
-<h3 id="tmux基础配置">tmux基础配置</h3>
-<p>tmux的配置在<code>~/.tmux.conf</code>文件中，如果没有该文件，可以先新建配置文件。</p>
-<h4 id="配置tmux前缀">配置tmux前缀</h4>
-<p>前面介绍session使用的时候，提到过一些快捷键，可以看到都是<code>prefix+xxx</code>的形式，这里的<code>prefix</code>是tmux的前缀键，默认为<code>ctrl+b</code>，只有按下<code>prefix</code>，才会激活tmux，然后再按其他键进行tmux操作，这样做的一个好处是可以有效的避免和其他应用快捷键的冲突。</p>
+<h3 id="tmux基础配置" class="headerLink">
+    <a href="#tmux%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae" class="header-mark"></a>tmux基础配置</h3><p>tmux的配置在<code>~/.tmux.conf</code>文件中，如果没有该文件，可以先新建配置文件。</p>
+<h4 id="配置tmux前缀" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%aetmux%e5%89%8d%e7%bc%80" class="header-mark"></a>配置tmux前缀</h4><p>前面介绍session使用的时候，提到过一些快捷键，可以看到都是<code>prefix+xxx</code>的形式，这里的<code>prefix</code>是tmux的前缀键，默认为<code>ctrl+b</code>，只有按下<code>prefix</code>，才会激活tmux，然后再按其他键进行tmux操作，这样做的一个好处是可以有效的避免和其他应用快捷键的冲突。</p>
 <p>但是如果经常用tmux，就会发现<code>ctrl</code>和<code>b</code>这两个键按的不是很舒服，我们是否可以修改一个更加舒服的前缀键呢？当然是可以的，只需要在tmux的配置文件中解绑原有的<code>prefix</code>并修改成我们自定义的即可。配置如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -356,8 +356,8 @@ unbind C-b
 </code></pre></td></tr></table>
 </div>
 </div><p>这样，直接输入<code>prefix+r</code>就可以让配置生效。</p>
-<h4 id="分屏">分屏</h4>
-<p>在tmux中，水平和竖直分屏默认快捷键为<code>prefix+&quot;</code> 和 <code>prefix+%</code>，这两个键可以说很少用而且不容易按到，我们可以自定义自己习惯的快捷键，对于对vim熟悉的用户，可以将其设置为跟vim一样的快捷键：</p>
+<h4 id="分屏" class="headerLink">
+    <a href="#%e5%88%86%e5%b1%8f" class="header-mark"></a>分屏</h4><p>在tmux中，水平和竖直分屏默认快捷键为<code>prefix+&quot;</code> 和 <code>prefix+%</code>，这两个键可以说很少用而且不容易按到，我们可以自定义自己习惯的快捷键，对于对vim熟悉的用户，可以将其设置为跟vim一样的快捷键：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -369,8 +369,8 @@ unbind C-b
 </code></pre></td></tr></table>
 </div>
 </div><p>这里的<code>splitw</code>其实是<code>split-window</code>的缩写，<code>-c '#{pane_current_path}'</code>表示在打开新pane的时候，默认进入当前目录。</p>
-<h4 id="切换pane">切换pane</h4>
-<p>在iterm2中，切换标签的快捷键是<code>commond+option+方向键</code>或<code>commond+[</code>或<code>commond+]</code>，相应的在tmux中，切换pane默认快捷为<code>prefix+方向键</code>但是方向键本身和<code>ctrl</code>离的太远，操作不方便，同样的我们可以设置自己喜欢的快捷键，例如设置跟vim一样的快捷键（这里多说一句，其实在vim中最常用的控制方向的键就是hjkl，如果习惯使用vim，可以设置tmux与之相同快捷键）。</p>
+<h4 id="切换pane" class="headerLink">
+    <a href="#%e5%88%87%e6%8d%a2pane" class="header-mark"></a>切换pane</h4><p>在iterm2中，切换标签的快捷键是<code>commond+option+方向键</code>或<code>commond+[</code>或<code>commond+]</code>，相应的在tmux中，切换pane默认快捷为<code>prefix+方向键</code>但是方向键本身和<code>ctrl</code>离的太远，操作不方便，同样的我们可以设置自己喜欢的快捷键，例如设置跟vim一样的快捷键（这里多说一句，其实在vim中最常用的控制方向的键就是hjkl，如果习惯使用vim，可以设置tmux与之相同快捷键）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -385,8 +385,8 @@ unbind C-b
 <span class="nb">bind</span> l <span class="k">select</span>-pane -R <span class="c1"># right</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="开启鼠标支持">开启鼠标支持</h4>
-<p>在刚上手tmux的时候，总觉得各种命令很麻烦，而且不好记，如果支持鼠标就更好了，其实想要支持鼠标，只需要在配置文件中开启即可：</p>
+</div><h4 id="开启鼠标支持" class="headerLink">
+    <a href="#%e5%bc%80%e5%90%af%e9%bc%a0%e6%a0%87%e6%94%af%e6%8c%81" class="header-mark"></a>开启鼠标支持</h4><p>在刚上手tmux的时候，总觉得各种命令很麻烦，而且不好记，如果支持鼠标就更好了，其实想要支持鼠标，只需要在配置文件中开启即可：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -397,8 +397,8 @@ unbind C-b
 </div>
 </div><p>开启鼠标之后，切换pane可以直接点击激活，调整分屏大小可以直接拖拽实现。</p>
 <p><strong>当然了，既然使用了tmux，目的就不只是界面好看而已，而是要提高效率，所以尽量少用鼠标😏</strong></p>
-<h4 id="调整pane">调整pane</h4>
-<p>如果想要使用快捷键调节pane大小，同样可以设置快捷键实现：</p>
+<h4 id="调整pane" class="headerLink">
+    <a href="#%e8%b0%83%e6%95%b4pane" class="header-mark"></a>调整pane</h4><p>如果想要使用快捷键调节pane大小，同样可以设置快捷键实现：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -414,8 +414,8 @@ unbind C-b
 </code></pre></td></tr></table>
 </div>
 </div><p>这样通过<code>prefix+HJKL</code>实现pane的扩展</p>
-<h3 id="附">附</h3>
-<table>
+<h3 id="附" class="headerLink">
+    <a href="#%e9%99%84" class="header-mark"></a>附</h3><table>
 <thead>
 <tr>
 <th>前缀</th>
@@ -829,13 +829,15 @@ unbind C-b
 </tr>
 </tbody>
 </table>
-<h3 id="参考">参考</h3>
-<ul>
+<h3 id="参考" class="headerLink">
+    <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h3><ul>
 <li><a href="http://louiszhai.github.io/2017/09/30/tmux/#Tmux%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4" target="_blank" rel="noopener noreffer">Tmux使用手册</a></li>
 <li><a href="https://cnbin.github.io/blog/2015/06/20/iterm2-kuai-jie-jian-da-quan/" target="_blank" rel="noopener noreffer">iTerm2 快捷键大全</a></li>
 <li><a href="https://gist.github.com/MohamedAlaa/2961058" target="_blank" rel="noopener noreffer">tmux shortcuts &amp; cheatsheet</a></li>
 <li><a href="https://gist.github.com/andreyvit/2921703" target="_blank" rel="noopener noreffer">tmux cheat sheet</a></li>
-</ul></div><div class="post-footer" id="post-footer">
+</ul></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -854,7 +856,7 @@ unbind C-b
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/linux/">Linux</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -863,8 +865,12 @@ unbind C-b
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -874,7 +880,7 @@ unbind C-b
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

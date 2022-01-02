@@ -20,7 +20,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2017-reactnativelist/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2017-googlemap/" /><link rel="next" href="https://mrzhang123.github.io/posts/2017-reactsum/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2017-reactnativelist\/"
-        },"genre": "posts","keywords": "React Native","wordcount":  2666 ,
+        },"genre": "posts","keywords": "React Native","wordcount":  2673 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2017-reactnativelist\/","datePublished": "2017-06-11T00:10:54+00:00","dateModified": "2017-06-11T00:10:54+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -48,14 +48,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -84,7 +84,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -126,19 +126,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">RN长列表--ListView &amp;&amp; SectionList</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react-native/"><i class="far fa-folder fa-fw"></i>React Native</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2666 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#listview">ListView</a>
       <ul>
@@ -158,12 +146,24 @@
     <li><a href="#最后">最后</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">RN长列表--ListView &amp;&amp; SectionList</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react-native/"><i class="far fa-folder fa-fw"></i>React Native</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-06-11">2017-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2673 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><p>突然发现自己的博客已经从原来的几天更新一次变成了如今的一个月更新一次[捂脸]，最近这一个月实在是太忙了，上个月月初的时候，接了一个RN的项目，做一个app，那时候老大问谁感兴趣，我直接说我。其实自己对RN一直很有兴趣，但是那时候由于在看Vue，所以并没有去搞，现在刚好有个项目，正好我可以去了解一下RN。说实话，这一答应不要紧，差点儿被RN气死，以前觉得RN应该比较成熟了，经过这段时间做项目，发现RN的坑还是很多的。</p>
 <p>在项目中我用到的比较多的是长列表，所以这篇文章主要是记一下对RN的<code>ListView</code>和<code>SectionList</code>的一些总结。我项目中使用的RN是0.44，关于为什么不用性能更好的<code>FlatList</code>而使用老的<code>ListView</code>，是因为自己本身第一次接触RN，所以担心用不好<code>FlatList</code>而且担心会有什么bug，毕竟这个是在0.43版本才添加的。</p>
-<h2 id="listview">ListView</h2>
-<p>对于<code>ListView</code>最重要的两个属性，一个是数据源（dataSource），再一个就是列表项渲染（renderRow）。<code>ListView</code>可以根据不同的数据结构对应的生成普通长列表和分组长列表。</p>
-<h3 id="普通长列表">普通长列表</h3>
-<p>普通长列表使用<code>cloneWithRows(dataBlob, rowIdentities)</code>创建datasource，在项目中<code>dataBlob</code>的数据结构如下：</p>
+<h2 id="listview" class="headerLink">
+    <a href="#listview" class="header-mark"></a>ListView</h2><p>对于<code>ListView</code>最重要的两个属性，一个是数据源（dataSource），再一个就是列表项渲染（renderRow）。<code>ListView</code>可以根据不同的数据结构对应的生成普通长列表和分组长列表。</p>
+<h3 id="普通长列表" class="headerLink">
+    <a href="#%e6%99%ae%e9%80%9a%e9%95%bf%e5%88%97%e8%a1%a8" class="header-mark"></a>普通长列表</h3><p>普通长列表使用<code>cloneWithRows(dataBlob, rowIdentities)</code>创建datasource，在项目中<code>dataBlob</code>的数据结构如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -181,8 +181,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>在使用<code>renderRow(rowData, sectionID, rowID, highlightRow)</code>渲染列表项的时候，<code>rowData</code>就是数组中每一个对象。</p>
-<h3 id="分组长列表">分组长列表</h3>
-<p>在项目中，遇到分组长列表，由于RN版本为0.44，所以有<code>ListView</code>和<code>SectionList</code>两种选择方案，最终我选择了<code>SectionList</code>，因为我发现<code>ListView</code>的<code>section</code>只能是一个简单的字符串，不能是一个对象（这里说实话我也不知道对不对，若不对，请指正并说明如何使用<code>ListView</code>实现<code>section</code>是一个对象）。</p>
+<h3 id="分组长列表" class="headerLink">
+    <a href="#%e5%88%86%e7%bb%84%e9%95%bf%e5%88%97%e8%a1%a8" class="header-mark"></a>分组长列表</h3><p>在项目中，遇到分组长列表，由于RN版本为0.44，所以有<code>ListView</code>和<code>SectionList</code>两种选择方案，最终我选择了<code>SectionList</code>，因为我发现<code>ListView</code>的<code>section</code>只能是一个简单的字符串，不能是一个对象（这里说实话我也不知道对不对，若不对，请指正并说明如何使用<code>ListView</code>实现<code>section</code>是一个对象）。</p>
 <p>这里我要吐槽一下RN的文档，真的是有些地方写的太简单，比如在<code>ListView</code>这里写到使用<code>cloneWithRowsAndSections</code>的使用，只是简单的说跟<code>cloneWithRows</code>差不多，而接受的数据结构也就简单的说明有三种：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -244,8 +244,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>dataSoure1生成的sectionHeader是数组的下标，而第二个第三个分别是对应的<code>key</code>，在项目中我的sectionHeader是一个对象，类似于<code>{headerName:'',headerContent:''}</code>，所以无法使用。</p>
-<h2 id="sectionlist分组长列表">SectionList分组长列表</h2>
-<p><code>SectionList</code>和<code>FlatList</code>一样是新增的高性能长列表，在文档中关于<code>SectionList</code>接受的数据结构描述如下：</p>
+<h2 id="sectionlist分组长列表" class="headerLink">
+    <a href="#sectionlist%e5%88%86%e7%bb%84%e9%95%bf%e5%88%97%e8%a1%a8" class="header-mark"></a>SectionList分组长列表</h2><p><code>SectionList</code>和<code>FlatList</code>一样是新增的高性能长列表，在文档中关于<code>SectionList</code>接受的数据结构描述如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -366,8 +366,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>这里需要注意一点就是<code>renderItem</code>所用的数据<code>key</code>必须是<code>data</code>，而且<code>key</code>必须是唯一的，然后其余的数据用在<code>headerItem</code>中，这样就非常容易在<code>sectionHeader</code>中渲染出多个后台给定的数据。</p>
-<h4 id="sectionlist和flatlist需要注意几点"><code>SectionList</code>和<code>FlatList</code>需要注意几点：</h4>
-<ul>
+<h4 id="sectionlist和flatlist需要注意几点" class="headerLink">
+    <a href="#sectionlist%e5%92%8cflatlist%e9%9c%80%e8%a6%81%e6%b3%a8%e6%84%8f%e5%87%a0%e7%82%b9" class="header-mark"></a><code>SectionList</code>和<code>FlatList</code>需要注意几点：</h4><ul>
 <li>
 <p>文档中提到<span style='color:red'>为了优化内存占用同时保持滑动的流畅，列表内容会在屏幕外异步绘制。这意味着如果用户滑动的速度超过渲染的速度，则会先看到空白的内容。这是为了优化不得不作出的妥协，而我们也在设法持续改进。</span>所以如果不想在滑动过快导致白屏出现，就只能使用<code>ListView</code>。</p>
 </li>
@@ -378,13 +378,15 @@
 <p><code>SectionList</code>和<code>FlatList</code>提供了一个叫<code>legacyImplementation</code>的属性，该属性如果设置为<code>true</code>则使用旧的<code>ListView</code>实现。在上述提到的两个问题中，如果将<code>SectionList</code>的<code>legacyImplementation</code>设置为<code>true</code>，则两个问题均解决。个人觉得这是官方提供的一个降级的办法，所以其实我们可以抛弃<code>ListView</code>转而使用<code>FlatList</code>和<code>SectionList</code>，如果有什么问题，让它们用旧的<code>ListView</code>实现。</p>
 </li>
 </ul>
-<h2 id="最后">最后</h2>
-<p>最后列几个长列表（<code>ListView</code>，<code>SectionList</code>，<code>FlatList</code>）的常用属性</p>
+<h2 id="最后" class="headerLink">
+    <a href="#%e6%9c%80%e5%90%8e" class="header-mark"></a>最后</h2><p>最后列几个长列表（<code>ListView</code>，<code>SectionList</code>，<code>FlatList</code>）的常用属性</p>
 <p><code>onEndReached</code>（function）：当列表到达底部时候触发的事件，关于这个事件需要注意一点，<span style='color:red'>当第一次渲染时，如果数据不足一屏（比如初始值是空的），这个事件也会被触发，需要自行过滤</span></p>
 <p><code>onEndReachedThreshold</code>（number）：距离最后一个列表元素多少像素时候触发<code>onEndReached</code>事件</p>
 <p><code>initialListSize</code>（number）：初始化时候渲染多少条数据，如果不写择时逐条渲染</p>
 <p><code>showsVerticalScrollIndicator</code>（bool）：默认情况下，ListView有滚动条，当设置为false的时候不显示该滚动条（继承自ScrollView）</p>
-<p><code>pageSize</code>（number，仅<code>ListView</code>有）：每次事件循环（每帧）渲染的行数，常用于分页，数据请求回来后渲染多少条，不设置则逐条渲染。</p></div><div class="post-footer" id="post-footer">
+<p><code>pageSize</code>（number，仅<code>ListView</code>有）：每次事件循环（每帧）渲染的行数，常用于分页，数据请求回来后渲染多少条，不设置则逐条渲染。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -403,7 +405,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react-native/">React Native</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -412,8 +414,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -423,7 +429,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

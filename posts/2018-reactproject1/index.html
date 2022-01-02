@@ -20,7 +20,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2018-reactproject1/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2018-es2018/" /><link rel="next" href="https://mrzhang123.github.io/posts/2018-reactproject2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -48,14 +48,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -84,7 +84,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -126,19 +126,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">从零开始搭建React应用（一）——基础搭建</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-07-18">2018-07-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-07-18">2018-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2078 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#核心">核心</a></li>
     <li><a href="#目录结构">目录结构</a></li>
@@ -157,9 +145,21 @@
     <li><a href="#结语">结语</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">从零开始搭建React应用（一）——基础搭建</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-07-18">2018-07-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-07-18">2018-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2078 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><p>项目链接：<a href="https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack" target="_blank" rel="noopener noreffer">https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack</a></p>
-<h2 id="核心">核心</h2>
-<ul>
+<h2 id="核心" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83" class="header-mark"></a>核心</h2><ul>
 <li>React:16.3.2</li>
 <li>React-dom:16.3.2</li>
 <li>Webpack:4.6.0</li>
@@ -167,8 +167,8 @@
 <li>Redux:4.0.0</li>
 <li>React-hot-loader:4.1.2</li>
 </ul>
-<h2 id="目录结构">目录结构</h2>
-<div class="highlight"><div class="chroma">
+<h2 id="目录结构" class="headerLink">
+    <a href="#%e7%9b%ae%e5%bd%95%e7%bb%93%e6%9e%84" class="header-mark"></a>目录结构</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -254,10 +254,10 @@
 └── yarn.lock
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="基础搭建">基础搭建</h2>
-<p>首先搭建一个基础的React开发环境，没有redux和react-router</p>
-<h3 id="安装必须的包">安装必须的包</h3>
-<div class="highlight"><div class="chroma">
+</div><h2 id="基础搭建" class="headerLink">
+    <a href="#%e5%9f%ba%e7%a1%80%e6%90%ad%e5%bb%ba" class="header-mark"></a>基础搭建</h2><p>首先搭建一个基础的React开发环境，没有redux和react-router</p>
+<h3 id="安装必须的包" class="headerLink">
+    <a href="#%e5%ae%89%e8%a3%85%e5%bf%85%e9%a1%bb%e7%9a%84%e5%8c%85" class="header-mark"></a>安装必须的包</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -278,8 +278,8 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
 <li>webpack4的cli(command line interface)已经移动到webpack-cli了，如果要使用CLI,你需要安装webpack-cli，具体使用可以查看<a href="https://doc.webpack-china.org/api/cli/" target="_blank" rel="noopener noreffer">webpack-cli的文档</a>。</li>
 <li>由于Babel默认只转换新的JavaScript句法（syntax），而不转换新的API，比如Iterator、Generator、Set、Maps、Proxy、Reflect、Symbol、Promise等全局对象，以及一些定义在全局对象上的方法（比如Object.assign），所以如果想使用这些方法就必须使用babel-polyfill，为当前环境提供一个垫片。</li>
 </ol>
-<h3 id="配置webpack">配置webpack</h3>
-<p>在build文件夹下新建三个文件——webpack.base.config.js, webpack.dev.config.js, webpack.production.config.js，将dev和produciton里公共的部分放在base文件中。</p>
+<h3 id="配置webpack" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%aewebpack" class="header-mark"></a>配置webpack</h3><p>在build文件夹下新建三个文件——webpack.base.config.js, webpack.dev.config.js, webpack.production.config.js，将dev和produciton里公共的部分放在base文件中。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -334,11 +334,11 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
   <span class="nx">entry</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">main</span><span class="o">:</span> <span class="p">[</span>
       <span class="s1">&#39;babel-polyfill&#39;</span><span class="p">,</span>
-      <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">__</span><span class="nx">dirname</span><span class="p">,</span> <span class="s1">&#39;../src/main.js&#39;</span><span class="p">)</span>
+      <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;../src/main.js&#39;</span><span class="p">)</span>
     <span class="p">]</span>
   <span class="p">},</span>
   <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">__</span><span class="nx">dirname</span><span class="p">,</span> <span class="s1">&#39;../dist&#39;</span><span class="p">),</span>
+    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;../dist&#39;</span><span class="p">),</span>
     <span class="nx">publicPath</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
     <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;[name].js&#39;</span><span class="p">,</span>
     <span class="nx">chunkFilename</span><span class="o">:</span> <span class="s1">&#39;chunk/[name].[chunkhash].js&#39;</span>
@@ -373,8 +373,8 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
 </code></pre></td></tr></table>
 </div>
 </div><p>由于是webpack的公共配置文件，所以这里mode设置空，之后在dev和prodctuon中再分别设置。</p>
-<h4 id="webpack4的mode">webpack4的mode</h4>
-<p>在webpack v4中新增一些默认配置，通过设置<code>mode</code>是<code>development</code>和<code>production</code>（默认）来启用在开发环境和生产环境的默认配置。</p>
+<h4 id="webpack4的mode" class="headerLink">
+    <a href="#webpack4%e7%9a%84mode" class="header-mark"></a>webpack4的mode</h4><p>在webpack v4中新增一些默认配置，通过设置<code>mode</code>是<code>development</code>和<code>production</code>（默认）来启用在开发环境和生产环境的默认配置。</p>
 <p>1.二者都有的配置</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -476,8 +476,8 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
 </span><span class="c1"></span><span class="nx">optimization</span><span class="p">.</span><span class="nx">minimize</span><span class="o">:</span><span class="kc">true</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="配置webpackdevconfigjs">配置webpack.dev.config.js</h4>
-<div class="highlight"><div class="chroma">
+</div><h4 id="配置webpackdevconfigjs" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%aewebpackdevconfigjs" class="header-mark"></a>配置webpack.dev.config.js</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -548,8 +548,8 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
 </code></pre></td></tr></table>
 </div>
 </div><p>关于<code>output.publicPath</code>和<code>devServer.publicPath</code>的区别可以参考我的文章：<a href="https://juejin.im/post/5ae9ae5e518825672f19b094" target="_blank" rel="noopener noreffer">Webpack中publicPath详解</a></p>
-<h4 id="配置webpackproductionconfigjs">配置webpack.production.config.js</h4>
-<div class="highlight"><div class="chroma">
+<h4 id="配置webpackproductionconfigjs" class="headerLink">
+    <a href="#%e9%85%8d%e7%bd%aewebpackproductionconfigjs" class="header-mark"></a>配置webpack.production.config.js</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -577,7 +577,7 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
 
 <span class="nx">config</span><span class="p">.</span><span class="nx">plugins</span> <span class="o">=</span> <span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">plugins</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">concat</span><span class="p">([</span>
 	<span class="k">new</span> <span class="nx">CleanWebpackPlugin</span><span class="p">([</span><span class="s1">&#39;dist&#39;</span><span class="p">],</span> <span class="p">{</span>
-    <span class="nx">root</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">__</span><span class="nx">dirname</span><span class="p">,</span> <span class="s1">&#39;../&#39;</span><span class="p">)</span>
+    <span class="nx">root</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;../&#39;</span><span class="p">)</span>
   <span class="p">}),</span>
   <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">HashedModuleIdsPlugin</span><span class="p">()</span>
 <span class="p">])</span>
@@ -585,8 +585,10 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">config</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="结语">结语</h2>
-<p>至此，一个简单的React开发环境就搭建完成，但是在使用后会发现一些问题，比如webpack将js和css打包在一起，我们在使用webpack的HMR时候，只要保存，页面就会刷新，页面的状态会重置等问题以及加入常用的redux和react-router，下一篇——<a href="https://juejin.im/post/5b4de4496fb9a04fc226a7af" target="_blank" rel="noopener noreffer">从零开始搭建React应用（二）——React应用架构</a>将就这些问题作出解决。</p></div><div class="post-footer" id="post-footer">
+</div><h2 id="结语" class="headerLink">
+    <a href="#%e7%bb%93%e8%af%ad" class="header-mark"></a>结语</h2><p>至此，一个简单的React开发环境就搭建完成，但是在使用后会发现一些问题，比如webpack将js和css打包在一起，我们在使用webpack的HMR时候，只要保存，页面就会刷新，页面的状态会重置等问题以及加入常用的redux和react-router，下一篇——<a href="https://juejin.im/post/5b4de4496fb9a04fc226a7af" target="_blank" rel="noopener noreffer">从零开始搭建React应用（二）——React应用架构</a>将就这些问题作出解决。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -605,7 +607,7 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -614,8 +616,12 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -625,7 +631,7 @@ yarn add --dev webpack webpack-cli webpack-dev-server babel-core babel-loader ba
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

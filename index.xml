@@ -7,10 +7,10 @@
             <atom:link href="https://mrzhang123.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>再见2021，你好2022</title>
-    <link>https://mrzhang123.github.io/posts/2022anewyear/</link>
+    <link>https://mrzhang123.github.io/posts/2021-2022-new-year/</link>
     <pubDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
-    </author><guid>https://mrzhang123.github.io/posts/2022anewyear/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2021-2022-new-year/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/img/2022.jpeg" referrerpolicy="no-referrer">
             </div>不知不觉又到了年底了，又到了年终总结的时候了。一年过的真的太快了，回想起来去年年终总结2020年12月31日写完，发出来后走在下班的路上开心]]></description>
@@ -38,8 +38,8 @@
     <pubDate>Tue, 14 Jul 2020 09:08:00 &#43;0000</pubDate><author>
         <name>跨界Coder</name>
     </author><guid>https://mrzhang123.github.io/posts/2020-basicsort/</guid>
-    <description><![CDATA[<h2 id="选择排序">选择排序</h2>
-<blockquote>
+    <description><![CDATA[<h2 id="选择排序" class="headerLink">
+    <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>选择排序</h2><blockquote>
 <p>首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。</p>
 </blockquote>]]></description>
 </item><item>

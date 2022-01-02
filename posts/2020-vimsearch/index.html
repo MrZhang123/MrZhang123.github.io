@@ -20,7 +20,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2020-vimsearch/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2020_okr/" /><link rel="next" href="https://mrzhang123.github.io/posts/2020-blance-sheet/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -48,14 +48,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -84,7 +84,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -126,7 +126,12 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#高亮搜索结果">高亮搜索结果</a></li>
+    <li><a href="#搜索大小写敏感">搜索大小写敏感</a></li>
+  </ul>
+</nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">vim的搜索与替换</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
@@ -138,15 +143,10 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#高亮搜索结果">高亮搜索结果</a></li>
-    <li><a href="#搜索大小写敏感">搜索大小写敏感</a></li>
-  </ul>
-</nav></div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p>
-<h1 id="利用vim自带搜索">利用vim自带搜索</h1>
-<p>对于搜索当前打开文件，vim自带搜索功能足以应对，在Normal modal下键入<code>/</code>，即可进入搜索模式，此时输入想要搜索的单词然后回车，即可完成搜索，光标会跳到当前搜索到的第一个匹配的单词。按下<code>n</code>，光标跳到下一个匹配的单词，按下<code>N</code>（<code>shift+n</code>）光标会跳到上一个匹配的单词。</p>
+<h1 id="利用vim自带搜索" class="headerLink">
+    <a href="#%e5%88%a9%e7%94%a8vim%e8%87%aa%e5%b8%a6%e6%90%9c%e7%b4%a2" class="header-mark"></a>利用vim自带搜索</h1><p>对于搜索当前打开文件，vim自带搜索功能足以应对，在Normal modal下键入<code>/</code>，即可进入搜索模式，此时输入想要搜索的单词然后回车，即可完成搜索，光标会跳到当前搜索到的第一个匹配的单词。按下<code>n</code>，光标跳到下一个匹配的单词，按下<code>N</code>（<code>shift+n</code>）光标会跳到上一个匹配的单词。</p>
 <p>除了在Normal modal下可以键入<code>/</code>开始搜索外，还可以键入以下符号开始搜索：</p>
 <ul>
 <li><code>?</code>：与<code>/</code>相反，键入该符号后<strong>反向向上搜索</strong></li>
@@ -155,8 +155,8 @@
 </ul>
 <p>其中<code>\&lt;</code>是单词界定符，表示只匹配单词的开头，<code>/&gt;</code>表示只匹配单词的末尾</p>
 <p>此外vim搜索还支持正则，例如输入<code>/se$</code>表示搜索以<code>se</code>结尾的单词，输入<code>/^se</code>表示搜索以<code>se</code>开头的单词</p>
-<h2 id="高亮搜索结果">高亮搜索结果</h2>
-<p>默认情况下，搜索的结果不会高亮，只是光标会跳到搜索到的单词，如果想要高亮搜索结果，可以在Normal modal下输入<code>:set hlsearch</code>，或者在<code>.vimrc</code>文件中设置：</p>
+<h2 id="高亮搜索结果" class="headerLink">
+    <a href="#%e9%ab%98%e4%ba%ae%e6%90%9c%e7%b4%a2%e7%bb%93%e6%9e%9c" class="header-mark"></a>高亮搜索结果</h2><p>默认情况下，搜索的结果不会高亮，只是光标会跳到搜索到的单词，如果想要高亮搜索结果，可以在Normal modal下输入<code>:set hlsearch</code>，或者在<code>.vimrc</code>文件中设置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -168,8 +168,8 @@
 </span></code></pre></td></tr></table>
 </div>
 </div><p>这样设置后，在搜索完成后，所有的匹配文本都会高亮，想要取消搜索结果的高亮可以在Normal modal下输入<code>:nohlsearch</code>或其简写<code>:noh</code></p>
-<h2 id="搜索大小写敏感">搜索大小写敏感</h2>
-<p>在使用vim的搜索默认是大小写不敏感的，如果想要让vim搜索做到<strong>大小写敏感</strong>，可以在输入想要搜索的单词后面添加<code>\C</code>，对应的如果使用<code>\c</code>，则表示搜索大小写不敏感。</p>
+<h2 id="搜索大小写敏感" class="headerLink">
+    <a href="#%e6%90%9c%e7%b4%a2%e5%a4%a7%e5%b0%8f%e5%86%99%e6%95%8f%e6%84%9f" class="header-mark"></a>搜索大小写敏感</h2><p>在使用vim的搜索默认是大小写不敏感的，如果想要让vim搜索做到<strong>大小写敏感</strong>，可以在输入想要搜索的单词后面添加<code>\C</code>，对应的如果使用<code>\c</code>，则表示搜索大小写不敏感。</p>
 <p>或者直接在<code>.vimrc</code>中添加设置：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -188,8 +188,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>开启智能推测后，如果输入的文本带有大写字母，vim会认为你当前搜索是区分大小写的，否则不区分大小写。即开启后，如果输入<code>:Set</code>，则只能搜索到<code>Set</code>，但是如果输入<code>:set</code>，则可以搜索到<code>set</code>和<code>Set</code>。</p>
-<h1 id="vim中的替换">vim中的替换</h1>
-<p>对于替换当前打开文件中的文本，vim提供如下语法：</p>
+<h1 id="vim中的替换" class="headerLink">
+    <a href="#vim%e4%b8%ad%e7%9a%84%e6%9b%bf%e6%8d%a2" class="header-mark"></a>vim中的替换</h1><p>对于替换当前打开文件中的文本，vim提供如下语法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -224,8 +224,8 @@
 <p><code>:%s/remember/me/&amp;</code>命令没看明白做什么用</p>
 </li>
 </ul>
-<h1 id="利用插件在vim中搜索">利用插件在vim中搜索</h1>
-<p>有时候需要在整个项目中搜索文件或者文本，这类操作借助插件更方便一些。</p>
+<h1 id="利用插件在vim中搜索" class="headerLink">
+    <a href="#%e5%88%a9%e7%94%a8%e6%8f%92%e4%bb%b6%e5%9c%a8vim%e4%b8%ad%e6%90%9c%e7%b4%a2" class="header-mark"></a>利用插件在vim中搜索</h1><p>有时候需要在整个项目中搜索文件或者文本，这类操作借助插件更方便一些。</p>
 <p>说起vim中搜索文件，就一定会想到大名鼎鼎的<a href="https://github.com/kien/ctrlp.vims" target="_blank" rel="noopener noreffer">ctrlp.vim</a>，但该插件早已不再维护（最近一次提交是在2015年11月30日），那是否还有其他替代插件呢？答案是有的，可以使用<a href="https://github.com/junegunn/fzf.vim" target="_blank" rel="noopener noreffer">fzf.vim</a>。fzf.vim支持文件搜索，全局文本搜索，buffer搜索，git log搜索等，这里只介绍最常用的全局文本搜索和文件搜索。</p>
 <p>首先使用<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener noreffer">vim-plug</a>安装插件：</p>
 <div class="highlight"><div class="chroma">
@@ -311,7 +311,9 @@ command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>
 <li>这里使用了<a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener noreffer">ripgrep</a>（因为据说vscode内的搜索就是基于这个做的，所以选择这个）作为fzf中默认的搜索。<code>fzf#vim#with_preview</code>用于配置展示预览窗口。配置好后在vim中输入<code>:Rg</code>就可以启动在整个项目搜索文本，<code>:Files</code>在整个项目中搜索文件。</li>
 <li>在使用fzf.vim搜索文本和文件的过程中需要注意一点，<strong>搜索是基于你当前打开文件所在的文件夹去搜索</strong>。所以如果要在整个项目中搜索，就需要在项目根目录下打开一个文件进行搜索。这也类似于在vscode中，如果想搜索项目中特定文件夹中的文本，需要选择当前想要选择的文件夹。</li>
 </ul>
-<p>以上配置就可以满足我们日常开发中的搜索/替换文本，搜索文件等常用功能了。</p></div><div class="post-footer" id="post-footer">
+<p>以上配置就可以满足我们日常开发中的搜索/替换文本，搜索文件等常用功能了。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -330,7 +332,7 @@ command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">Vim</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -339,8 +341,12 @@ command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -350,7 +356,7 @@ command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title class="pjax-title">记一次vim性能优化 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="记一次vim性能优化" />
-<meta property="og:description" content="关键点
-
+<meta property="og:description" content="
+    关键点
 vim -u NONE -N可以不加载vim配置和插件打开vim
 vim --startuptime vim.log可以生成vim启动的log
 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载
@@ -22,8 +22,8 @@ vim --startuptime vim.log可以生成vim启动的log
 <meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
 
 <meta name="twitter:title" content="记一次vim性能优化"/>
-<meta name="twitter:description" content="关键点
-
+<meta name="twitter:description" content="
+    关键点
 vim -u NONE -N可以不加载vim配置和插件打开vim
 vim --startuptime vim.log可以生成vim启动的log
 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载
@@ -32,7 +32,7 @@ vim --startuptime vim.log可以生成vim启动的log
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019-vimperformance/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2019-debtcrisisoverview/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019-optional-chaining/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -60,14 +60,14 @@ vim --startuptime vim.log可以生成vim启动的log
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -96,7 +96,7 @@ vim --startuptime vim.log可以生成vim启动的log
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -138,7 +138,17 @@ vim --startuptime vim.log可以生成vim启动的log
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关键点">关键点</a></li>
+        <li><a href="#vim启动优化">vim启动优化</a></li>
+        <li><a href="#vim输入性能优化">vim输入性能优化</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">记一次vim性能优化</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
@@ -150,19 +160,9 @@ vim --startuptime vim.log可以生成vim启动的log
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#关键点">关键点</a></li>
-        <li><a href="#vim启动优化">vim启动优化</a></li>
-        <li><a href="#vim输入性能优化">vim输入性能优化</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h3 id="关键点">关键点</h3>
-<ul>
+                <div class="details-content toc-content" id="toc-content-static"></div>
+            </div><div class="content" id="content"><h3 id="关键点" class="headerLink">
+    <a href="#%e5%85%b3%e9%94%ae%e7%82%b9" class="header-mark"></a>关键点</h3><ul>
 <li><code>vim -u NONE -N</code>可以不加载vim配置和插件打开vim</li>
 <li><code>vim --startuptime vim.log</code>可以生成vim启动的log</li>
 <li>使用<code>vim-plug</code>插件管理工具，给插件配置<code>for</code> or <code>on</code>可以实现插件懒加载</li>
@@ -181,8 +181,8 @@ vim --startuptime vim.log可以生成vim启动的log
 </blockquote>
 <p>最近用vim打开一个2000多行代码的js文件，发现打开文件时候有一些卡顿，在输入的时候发现，卡到爆炸💥，无法正常输入，但是如果不加载<code>.vimrc</code>和插件，即用<code>vim -u NONE -N</code>打开，完全不会卡，至此确定我遇到了vim性能问题，需要优化我的vim配置。</p>
 <p>一般情况下，vim的性能问题都是由于我们装插件太多导致的，本质上是因为vim不支持异步，但是现在（vim8+）支持异步了，所以很多插件都开始转向使用异步API实现自己的功能，比如大名鼎鼎的<code>YouCompleteMe</code>，不过也不是所有的插件都会做支持，毕竟vim好多年了，也许我们用的一些插件都停更好久了。</p>
-<h3 id="vim启动优化">vim启动优化</h3>
-<p>为了优化vim启动，首先可以做的一点是将<strong>插件懒加载</strong>，即用到哪个插件再加载哪个插件，通过<code>vim-plug</code>插件管理工具可以非常方便的做到，配置方式如下：</p>
+<h3 id="vim启动优化" class="headerLink">
+    <a href="#vim%e5%90%af%e5%8a%a8%e4%bc%98%e5%8c%96" class="header-mark"></a>vim启动优化</h3><p>为了优化vim启动，首先可以做的一点是将<strong>插件懒加载</strong>，即用到哪个插件再加载哪个插件，通过<code>vim-plug</code>插件管理工具可以非常方便的做到，配置方式如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -197,8 +197,8 @@ Plug <span class="s1">&#39;scrooloose/nerdtree&#39;</span>, <span class="o">{</s
 </div>
 </div><p><code>on</code>表示在某个条件下加载，例如上面的配置表示在输入命令<code>NERDTreeToggle</code>的时候加载<code>nerdtree</code>插件，<code>for</code>表示该插件针对某一类文件加载，例如<code>vim-jsx</code>插件只有在文件类型为<code>javascript.jsx</code>的时候加载。</p>
 <p>这样就可以让vim在启动的时候，不加载不必要的插件。</p>
-<h3 id="vim输入性能优化">vim输入性能优化</h3>
-<p>启动快了，但是输入还是很卡，所以开始寻找是哪个插件的问题。</p>
+<h3 id="vim输入性能优化" class="headerLink">
+    <a href="#vim%e8%be%93%e5%85%a5%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96" class="header-mark"></a>vim输入性能优化</h3><p>启动快了，但是输入还是很卡，所以开始寻找是哪个插件的问题。</p>
 <p>为了找到具体是哪个插件导致的卡顿，首先可以通过生成的vim.log文件查看vim启动以及使用的时候每一步的时间，具体启动方式如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -219,7 +219,9 @@ $ vim --startuptime vim.log
 <li>去掉代码折叠设置</li>
 </ol>
 <p>总的来说就是不要在插入模式下使用<code>foldmethod=syntax</code>。</p>
-<p>基于以上优化，再打开大型文件，vim不再卡顿，又可以流畅的使用vim编写代码了😁。</p></div><div class="post-footer" id="post-footer">
+<p>基于以上优化，再打开大型文件，vim不再卡顿，又可以流畅的使用vim编写代码了😁。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -238,7 +240,7 @@ $ vim --startuptime vim.log
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">Vim</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -247,8 +249,12 @@ $ vim --startuptime vim.log
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -258,7 +264,7 @@ $ vim --startuptime vim.log
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

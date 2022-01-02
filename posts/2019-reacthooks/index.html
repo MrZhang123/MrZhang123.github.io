@@ -24,7 +24,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019-reacthooks/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2019-reactnews/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019-axiosparams/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2019-reacthooks\/"
-        },"genre": "posts","keywords": "React","wordcount":  1798 ,
+        },"genre": "posts","keywords": "React","wordcount":  1811 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2019-reacthooks\/","datePublished": "2019-03-24T00:00:00+00:00","dateModified": "2019-03-24T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -52,14 +52,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">简述 React Hooks 特征和使用方式</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-03-24">2019-03-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-03-24">2019-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1798 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -171,12 +159,24 @@
     </li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">简述 React Hooks 特征和使用方式</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-03-24">2019-03-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-03-24">2019-03-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1811 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结</p>
 </blockquote>
-<h3 id="basic-react-hooks">Basic React Hooks</h3>
-<h4 id="usestate">useState</h4>
-<div class="highlight"><div class="chroma">
+<h3 id="basic-react-hooks" class="headerLink">
+    <a href="#basic-react-hooks" class="header-mark"></a>Basic React Hooks</h3><h4 id="usestate" class="headerLink">
+    <a href="#usestate" class="header-mark"></a>useState</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -185,8 +185,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>useState返回一个数组，数组内第一个元素是state的值，初始值为initState，利用js的结构将该数组解构赋值，如果设置多个state可以多次调用useState，但是useState也可以传入一个数组，数组内的项为多个initState，是否可以声明多个state的时候使用一个useState有待研究，后续看下项目</p>
-<h4 id="useeffect">useEffect</h4>
-<p>用于写有副作用的代码，可以实现生命周期中的<code>componentDidMount</code>，<code>componentUpdate</code>，<code>componentWillUnmount</code>。</p>
+<h4 id="useeffect" class="headerLink">
+    <a href="#useeffect" class="header-mark"></a>useEffect</h4><p>用于写有副作用的代码，可以实现生命周期中的<code>componentDidMount</code>，<code>componentUpdate</code>，<code>componentWillUnmount</code>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -234,8 +234,8 @@
 </span></code></pre></td></tr></table>
 </div>
 </div><p>如果使用该优化，确保数组包含了来自组件的所有随着时间会变化的value，但是这样实现的是类似于<code>componentDidUpdate</code>，如果想实现<code>componentDidMount</code>和<code>componentWillUnmount</code>，需要给<code>useEffect</code>第二个参数添加空数组<code>[]</code>，这相当于告诉React当前<code>useEffect</code>中的代码不依赖任何来自<code>state</code>或<code>props</code>的值，所以不需要re-render。</p>
-<h4 id="usecontext">useContext</h4>
-<div class="highlight"><div class="chroma">
+<h4 id="usecontext" class="headerLink">
+    <a href="#usecontext" class="header-mark"></a>useContext</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -243,9 +243,9 @@
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">useContext</span><span class="p">(</span><span class="nx">MyContext</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id="additional-hooks">Additional Hooks</h3>
-<h4 id="usereducer">useReducer</h4>
-<div class="highlight"><div class="chroma">
+</div><h3 id="additional-hooks" class="headerLink">
+    <a href="#additional-hooks" class="header-mark"></a>Additional Hooks</h3><h4 id="usereducer" class="headerLink">
+    <a href="#usereducer" class="header-mark"></a>useReducer</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -307,8 +307,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>React可以确保<code>dispatch</code>函数功能的稳定并且在re-render时候不会改变</p>
-<h5 id="懒初始化initstate">懒初始化initState</h5>
-<p>使用<code>useReducer</code>的第三个参数，demo如下</p>
+<h5 id="懒初始化initstate" class="headerLink">
+    <a href="#%e6%87%92%e5%88%9d%e5%a7%8b%e5%8c%96initstate" class="header-mark"></a>懒初始化initState</h5><p>使用<code>useReducer</code>的第三个参数，demo如下</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -379,8 +379,8 @@
 <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="usecallback">useCallback</h4>
-<div class="highlight"><div class="chroma">
+</div><h4 id="usecallback" class="headerLink">
+    <a href="#usecallback" class="header-mark"></a>useCallback</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
@@ -401,8 +401,8 @@
 </div><p>返回记忆化的回调。</p>
 <p>该hooks用于实现类似于<code>shouldComponentUpdate</code>的功能。 用于防止不必要的渲染</p>
 <p><code>useCallback(fn, deps)</code>相当于<code>useMemo(() =&gt; fn, deps)</code></p>
-<h4 id="usememo">useMemo</h4>
-<div class="highlight"><div class="chroma">
+<h4 id="usememo" class="headerLink">
+    <a href="#usememo" class="header-mark"></a>useMemo</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -417,8 +417,8 @@
 <p>传递“create”函数和依赖项数组。<code>useMemo</code>只会重新计算那些依赖发生变化的记忆化的值。这种优化避免了每次渲染的昂贵计算。</p>
 <p>传递给<code>useMemo</code>的函数在渲染期间运行，所以不能传递带有副作用的函数。</p>
 <p>如果没有数组提供，在每次渲染都会计算新值。</p>
-<h4 id="useref">useRef</h4>
-<div class="highlight"><div class="chroma">
+<h4 id="useref" class="headerLink">
+    <a href="#useref" class="header-mark"></a>useRef</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -461,8 +461,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p><code>useRef</code>在内容变更时不会通知你，<code>.current</code>变化不会导致re-render。</p>
-<h4 id="useimperativehandle">useImperativeHandle</h4>
-<div class="highlight"><div class="chroma">
+<h4 id="useimperativehandle" class="headerLink">
+    <a href="#useimperativehandle" class="header-mark"></a>useImperativeHandle</h4><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
@@ -497,8 +497,10 @@
 <span class="nx">FancyInput</span> <span class="o">=</span> <span class="nx">forwardRef</span><span class="p">(</span><span class="nx">FancyInput</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="uselayouteffect">useLayoutEffect</h4>
-<p>与<code>useEffect</code>相同，但是是在所有的DOM变化完成后同步触发。在浏览器绘制之前，将在<code>useLayoutEffect</code>内部计划的更新将同步刷新，该方法会组织views的更新，但是<code>useEffect</code>是异步的，所以不会阻止。</p></div><div class="post-footer" id="post-footer">
+</div><h4 id="uselayouteffect" class="headerLink">
+    <a href="#uselayouteffect" class="header-mark"></a>useLayoutEffect</h4><p>与<code>useEffect</code>相同，但是是在所有的DOM变化完成后同步触发。在浏览器绘制之前，将在<code>useLayoutEffect</code>内部计划的更新将同步刷新，该方法会组织views的更新，但是<code>useEffect</code>是异步的，所以不会阻止。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -517,7 +519,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -526,8 +528,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -537,7 +543,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

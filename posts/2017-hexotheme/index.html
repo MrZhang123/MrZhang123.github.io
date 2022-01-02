@@ -24,7 +24,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2017-hexotheme/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2017-gitreset/" /><link rel="next" href="https://mrzhang123.github.io/posts/2017-cssbem/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2017-hexotheme\/"
-        },"genre": "posts","keywords": "Blog","wordcount":  2397 ,
+        },"genre": "posts","keywords": "Blog","wordcount":  2413 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2017-hexotheme\/","datePublished": "2017-04-01T20:57:48+00:00","dateModified": "2017-04-01T20:57:48+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -52,14 +52,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何写一个自己的hexo主题</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/blog/"><i class="far fa-folder fa-fw"></i>Blog</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-04-01">2017-04-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-04-01">2017-04-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2397 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#搭建项目">搭建项目</a></li>
     <li><a href="#布局">布局</a>
@@ -163,13 +151,25 @@
     <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何写一个自己的hexo主题</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/blog/"><i class="far fa-folder fa-fw"></i>Blog</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-04-01">2017-04-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-04-01">2017-04-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2413 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章<a href="https://segmentfault.com/a/1190000006057336]" target="_blank" rel="noopener noreffer">写一个自己的Hexo主题</a>和该文中提到的作者自己写的主题<a href="https://github.com/showonne/hexo-showonne" target="_blank" rel="noopener noreffer">hexo-showonne</a>的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——<a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener noreffer">hexo-theme-icarus</a>进行了修正。</p>
 </blockquote>
 <p>我的博客就是用的我写的主题，博客地址：https://mrzhang123.github.io/</p>
 <p>项目地址：https://github.com/MrZhang123/hexo-theme-SpecLumn</p>
-<h2 id="搭建项目">搭建项目</h2>
-<p>参考大多数的hexo主题的目录结构不难发现，大部分都会有layout、source以及配置文件_config.yml，所以具体目录如下：</p>
+<h2 id="搭建项目" class="headerLink">
+    <a href="#%e6%90%ad%e5%bb%ba%e9%a1%b9%e7%9b%ae" class="header-mark"></a>搭建项目</h2><p>参考大多数的hexo主题的目录结构不难发现，大部分都会有layout、source以及配置文件_config.yml，所以具体目录如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -224,9 +224,9 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>但是我在项目中使用的是gulp-sass编译成的css文件，无法实现根据_config.yml动态的引入文件，所以准备下次改的时候直接换stylus（虽然hexo可以通过装插件识别scss，但是自己测试并未成功）。</p>
-<h2 id="布局">布局</h2>
-<h3 id="布局文件layoutejs">布局文件layout.ejs</h3>
-<p>在layout文件夹下，布局被写在layout.ejs中，由于hexo支持<strong>模块儿化布局</strong>，使用hexo提供的局部函数<code>partial</code>载入其他模版文件，配合ejs的语法，布局文件layout.ejs：</p>
+<h2 id="布局" class="headerLink">
+    <a href="#%e5%b8%83%e5%b1%80" class="header-mark"></a>布局</h2><h3 id="布局文件layoutejs" class="headerLink">
+    <a href="#%e5%b8%83%e5%b1%80%e6%96%87%e4%bb%b6layoutejs" class="header-mark"></a>布局文件layout.ejs</h3><p>在layout文件夹下，布局被写在layout.ejs中，由于hexo支持<strong>模块儿化布局</strong>，使用hexo提供的局部函数<code>partial</code>载入其他模版文件，配合ejs的语法，布局文件layout.ejs：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -266,8 +266,8 @@
 <li><code>%&gt;</code>  闭合标签</li>
 <li><code>-%&gt;</code> Trim-mode (&lsquo;newline slurp&rsquo;) 标签, 移除随后的换行符</li>
 </ul>
-<h3 id="其他模版">其他模版</h3>
-<table>
+<h3 id="其他模版" class="headerLink">
+    <a href="#%e5%85%b6%e4%bb%96%e6%a8%a1%e7%89%88" class="header-mark"></a>其他模版</h3><table>
 <thead>
 <tr>
 <th>Url</th>
@@ -304,8 +304,8 @@
 </tbody>
 </table>
 <p>在我的主题中只有主页index.ejs，文章页post.ejs。</p>
-<h2 id="变量">变量</h2>
-<p>模版中获取文章，调用配置项等会使用到变量，hexo提供了很多变量供我们使用（<a href="https://hexo.io/zh-cn/docs/variables.html" target="_blank" rel="noopener noreffer">hexo提供的变量</a>），其中比较重要的有：</p>
+<h2 id="变量" class="headerLink">
+    <a href="#%e5%8f%98%e9%87%8f" class="header-mark"></a>变量</h2><p>模版中获取文章，调用配置项等会使用到变量，hexo提供了很多变量供我们使用（<a href="https://hexo.io/zh-cn/docs/variables.html" target="_blank" rel="noopener noreffer">hexo提供的变量</a>），其中比较重要的有：</p>
 <ul>
 <li><code>page</code>：针对该页面的内容以及 front-matter 所设定的变量</li>
 <li><code>config</code>：网站配置（hexo的_config.yml）</li>
@@ -323,8 +323,8 @@
 <li><code>post.date</code>：文章的时间</li>
 </ul>
 <p>以上均获取的是hexo生成的markdown文件中的配置。</p>
-<h2 id="辅助函数">辅助函数</h2>
-<p>在hexo中同样提供了很多<a href="https://hexo.io/zh-cn/docs/helpers.html" target="_blank" rel="noopener noreffer">辅助函数</a>方便在博客主题中使用，但是同样很多都用不着，常用的有：</p>
+<h2 id="辅助函数" class="headerLink">
+    <a href="#%e8%be%85%e5%8a%a9%e5%87%bd%e6%95%b0" class="header-mark"></a>辅助函数</h2><p>在hexo中同样提供了很多<a href="https://hexo.io/zh-cn/docs/helpers.html" target="_blank" rel="noopener noreffer">辅助函数</a>方便在博客主题中使用，但是同样很多都用不着，常用的有：</p>
 <ul>
 <li><code>url_for</code>：输出路径</li>
 <li><code>partial</code>：载入其他模版文件</li>
@@ -366,18 +366,20 @@
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;post/date&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">class_name</span><span class="o">:</span> <span class="s1">&#39;article-date&#39;</span><span class="p">,</span> <span class="nx">date_format</span><span class="o">:</span> <span class="kc">null</span> <span class="p">})</span> <span class="o">%&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="其他">其他</h2>
-<h3 id="评论">评论</h3>
-<p>hexo中添加评论只需要在ejs中添加相应的<code>script</code>标签插入代码即可，以前的时候用多说，现在多说要关闭了，准备换个，但是找来找去没找到一个比较适合的，同事介绍有一个叫来必力的还不错，试用确实觉得可以，可以替代多说，所以推荐一下。<a href="https://livere.com/" target="_blank" rel="noopener noreffer">官方网站</a>。</p>
-<h3 id="代码高亮">代码高亮</h3>
-<p>代码高亮其实就是引入一段css的代码，为了实现可以通过配置文件动态引入，就需要配合<code>hexo-config</code>，前面已经提到过，这里不再重复。</p>
-<h2 id="最后">最后</h2>
-<p>最后写一点自己的想法，说实话，hexo的官方文档，实在是烂的没话可说，跟webpack1的文档不相上下，估计连作者自己都不一定看得懂，所以要想自己写一个主题的同学们还是在github参考一下写的比较好的主题的源码吧。</p>
+</div><h2 id="其他" class="headerLink">
+    <a href="#%e5%85%b6%e4%bb%96" class="header-mark"></a>其他</h2><h3 id="评论" class="headerLink">
+    <a href="#%e8%af%84%e8%ae%ba" class="header-mark"></a>评论</h3><p>hexo中添加评论只需要在ejs中添加相应的<code>script</code>标签插入代码即可，以前的时候用多说，现在多说要关闭了，准备换个，但是找来找去没找到一个比较适合的，同事介绍有一个叫来必力的还不错，试用确实觉得可以，可以替代多说，所以推荐一下。<a href="https://livere.com/" target="_blank" rel="noopener noreffer">官方网站</a>。</p>
+<h3 id="代码高亮" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81%e9%ab%98%e4%ba%ae" class="header-mark"></a>代码高亮</h3><p>代码高亮其实就是引入一段css的代码，为了实现可以通过配置文件动态引入，就需要配合<code>hexo-config</code>，前面已经提到过，这里不再重复。</p>
+<h2 id="最后" class="headerLink">
+    <a href="#%e6%9c%80%e5%90%8e" class="header-mark"></a>最后</h2><p>最后写一点自己的想法，说实话，hexo的官方文档，实在是烂的没话可说，跟webpack1的文档不相上下，估计连作者自己都不一定看得懂，所以要想自己写一个主题的同学们还是在github参考一下写的比较好的主题的源码吧。</p>
 <p>另外，当前这个版本功能相对简单一点儿而且在后期的修改过程中发现用scss确实不如直接用stylus方便一些，所以准备在以后改用stylus。</p>
-<h2 id="参考">参考</h2>
-<p><a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener noreffer">hexo-theme-icarus</a>
+<h2 id="参考" class="headerLink">
+    <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h2><p><a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener noreffer">hexo-theme-icarus</a>
 <a href="https://segmentfault.com/a/1190000006057336" target="_blank" rel="noopener noreffer">写一个自己的Hexo主题</a>
-<a href="https://github.com/showonne/hexo-showonne" target="_blank" rel="noopener noreffer">hexo-showonne</a></p></div><div class="post-footer" id="post-footer">
+<a href="https://github.com/showonne/hexo-showonne" target="_blank" rel="noopener noreffer">hexo-showonne</a></p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -396,7 +398,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/blog/">Blog</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -405,8 +407,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -416,7 +422,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

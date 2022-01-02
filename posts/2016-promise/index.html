@@ -24,7 +24,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-promise/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-gitgithub/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-2017newyear/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2016-promise\/"
-        },"genre": "posts","keywords": "Javascript","wordcount":  4547 ,
+        },"genre": "posts","keywords": "Javascript","wordcount":  4556 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-promise\/","datePublished": "2016-12-13T22:34:16+00:00","dateModified": "2016-12-13T22:34:16+00:00","publisher": {
             "@type": "Organization",
             "name": "跨界Coder"},"author": {
@@ -52,14 +52,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Promise－－优雅解决回调嵌套</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-12-13">2016-12-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-12-13">2016-12-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4547 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#promise状态的理解">Promise状态的理解</a></li>
     <li><a href="#promise的使用">Promise的使用</a></li>
@@ -166,11 +154,23 @@
     <li><a href="#参考">参考</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Promise－－优雅解决回调嵌套</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-12-13">2016-12-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-12-13">2016-12-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4556 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。</p>
 </blockquote>
-<h2 id="promise状态的理解">Promise状态的理解</h2>
-<p>用<code>new Promise</code>实例化的Promise对象有三个状态：</p>
+<h2 id="promise状态的理解" class="headerLink">
+    <a href="#promise%e7%8a%b6%e6%80%81%e7%9a%84%e7%90%86%e8%a7%a3" class="header-mark"></a>Promise状态的理解</h2><p>用<code>new Promise</code>实例化的Promise对象有三个状态：</p>
 <ul>
 <li>“has-resolution” - Fulfilled</li>
 </ul>
@@ -205,8 +205,8 @@
 <p>Promise中的<code>then</code>的回调只会被调用一次，因为Promise的状态只会从Pending变为Fulfilled或者Rejected，不可逆。</p>
 </li>
 </ol>
-<h2 id="promise的使用">Promise的使用</h2>
-<p>在使用Promise实现有序执行异步的基本格式如下：</p>
+<h2 id="promise的使用" class="headerLink">
+    <a href="#promise%e7%9a%84%e4%bd%bf%e7%94%a8" class="header-mark"></a>Promise的使用</h2><p>在使用Promise实现有序执行异步的基本格式如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -241,8 +241,8 @@
 </div>
 </div><p><code>reslove</code>方法的参数就是要传给回调函数的参数，即<code>resolve</code>将运行得到的结果传出来，而<code>then</code>接受该参数给回调继续执行后面的，如果这个<code>then</code>的中的函数还会返回Promise，则会重复执行该步骤直到结束。</p>
 <p><code>reject</code>方法的参数一般是包含了reject原因的Error对象。<code>reject</code>和<code>resolve</code>一样，也会将自己的参数传出去，接收该参数的是<code>then</code>的第二个fun或者是<code>catch</code>。其实<code>.catch</code>只是<code>Promise.then(onFulfilled,onRejected)</code>的别名而已。</p>
-<h2 id="快捷创建promise">快捷创建Promise</h2>
-<p>一般情况下我们会使用<code>new Promise</code>来创建prmise对象，除此之外我们也可以使用<code>Promise.reslove</code>和<code>Promise.reject</code>来直接创建，例如<code>Promise.resolve(42)</code>可以认为是以下代码的语法糖</p>
+<h2 id="快捷创建promise" class="headerLink">
+    <a href="#%e5%bf%ab%e6%8d%b7%e5%88%9b%e5%bb%bapromise" class="header-mark"></a>快捷创建Promise</h2><p>一般情况下我们会使用<code>new Promise</code>来创建prmise对象，除此之外我们也可以使用<code>Promise.reslove</code>和<code>Promise.reject</code>来直接创建，例如<code>Promise.resolve(42)</code>可以认为是以下代码的语法糖</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -257,8 +257,8 @@
 </div>
 </div><p>这段代码可以让这个Promise对象立即进入resolve状态，并将42传递给后面then里所指定的<code>onFulfilled</code>函数。此外<code>Promise.resolve</code>还有一个作用，就是将非Promise对象转换为Promise对象。</p>
 <p><code>Promise.reject(value)</code>与之类似。</p>
-<h2 id="promisethen异步调用带来的思考">Promise.then()异步调用带来的思考</h2>
-<div class="highlight"><div class="chroma">
+<h2 id="promisethen异步调用带来的思考" class="headerLink">
+    <a href="#promisethen%e5%bc%82%e6%ad%a5%e8%b0%83%e7%94%a8%e5%b8%a6%e6%9d%a5%e7%9a%84%e6%80%9d%e8%80%83" class="header-mark"></a>Promise.then()异步调用带来的思考</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -332,9 +332,9 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>所以在Promise中<code>then</code>是异步的。</p>
-<h2 id="promise链式调用">Promise链式调用</h2>
-<h4 id="各个task相互独立">各个Task相互独立</h4>
-<p>如果想实现Promise的链式调用，要求每次链式调用都返回Promise。所以每个异步执行都需要使用Promise包装，这里有一个<font color='red'><strong>误区：</strong></font>每个<code>then</code>，<code>catch</code>会返回也会反回一个新的Promise，但是<strong>这仅仅实现了链式调用</strong>，如果不将异步操作用Promise进行包装，依然不行。下面的例子就是<font color='red'><strong>错误的</strong></font>。</p>
+<h2 id="promise链式调用" class="headerLink">
+    <a href="#promise%e9%93%be%e5%bc%8f%e8%b0%83%e7%94%a8" class="header-mark"></a>Promise链式调用</h2><h4 id="各个task相互独立" class="headerLink">
+    <a href="#%e5%90%84%e4%b8%aatask%e7%9b%b8%e4%ba%92%e7%8b%ac%e7%ab%8b" class="header-mark"></a>各个Task相互独立</h4><p>如果想实现Promise的链式调用，要求每次链式调用都返回Promise。所以每个异步执行都需要使用Promise包装，这里有一个<font color='red'><strong>误区：</strong></font>每个<code>then</code>，<code>catch</code>会返回也会反回一个新的Promise，但是<strong>这仅仅实现了链式调用</strong>，如果不将异步操作用Promise进行包装，依然不行。下面的例子就是<font color='red'><strong>错误的</strong></font>。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -467,8 +467,8 @@
        <span class="p">.</span><span class="nx">then</span><span class="p">(()=&gt;</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">=&gt;</span><span class="nx">pro3</span><span class="p">(</span><span class="nx">resolve</span><span class="p">)));</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="各个task需要参数的传递">各个Task需要参数的传递</h4>
-<p>在Promise的链式调用中，有可能各个task之间存在相互依赖，例如TaskA想给TaskB传递一个参数，像下面这样：</p>
+</div><h4 id="各个task需要参数的传递" class="headerLink">
+    <a href="#%e5%90%84%e4%b8%aatask%e9%9c%80%e8%a6%81%e5%8f%82%e6%95%b0%e7%9a%84%e4%bc%a0%e9%80%92" class="header-mark"></a>各个Task需要参数的传递</h4><p>在Promise的链式调用中，有可能各个task之间存在相互依赖，例如TaskA想给TaskB传递一个参数，像下面这样：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -588,8 +588,8 @@
 <span class="nx">resolve</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="then与catch返回新的promise"><code>then</code>与<code>catch</code>返回新的Promise</h2>
-<p>在Promise中无论是<code>then</code>还是<code>catch</code>方法，都会返回返回一个新的Promise对象。</p>
+</div><h2 id="then与catch返回新的promise" class="headerLink">
+    <a href="#then%e4%b8%8ecatch%e8%bf%94%e5%9b%9e%e6%96%b0%e7%9a%84promise" class="header-mark"></a><code>then</code>与<code>catch</code>返回新的Promise</h2><p>在Promise中无论是<code>then</code>还是<code>catch</code>方法，都会返回返回一个新的Promise对象。</p>
 <p><img
         class="lazyload"
         data-src="./img/then_catch.png"
@@ -660,8 +660,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>由于每次调用<code>then</code>方法都会返回一个新的Promise，所以导致最终输出100而不是100 * 2 * 2。</p>
-<h2 id="promiseall的使用">Promise.all()的使用</h2>
-<p>有时候需要多个彼此没有关联的多个异步任务全部执行完成后再执行后面的操作，这时候就需要用到<code>Promise.all()</code>，它接收一个Promise的对象的数组作为参数，当这个数组里的所有Promise对象全部变成resolve或者reject的时候，它才会去调用后面的<code>.then()</code>。</p>
+<h2 id="promiseall的使用" class="headerLink">
+    <a href="#promiseall%e7%9a%84%e4%bd%bf%e7%94%a8" class="header-mark"></a>Promise.all()的使用</h2><p>有时候需要多个彼此没有关联的多个异步任务全部执行完成后再执行后面的操作，这时候就需要用到<code>Promise.all()</code>，它接收一个Promise的对象的数组作为参数，当这个数组里的所有Promise对象全部变成resolve或者reject的时候，它才会去调用后面的<code>.then()</code>。</p>
 <p>这里需要说明一点，两个彼此无关的异步操作会同时执行，每个Promise的结果（即每个返回的Promise的resolve或reject时传递的参数）和传递给<code>Promise.all</code>的Promise数组的顺序一致。也就是说，假设有两个异步操作TaskA和TaskB，如果传入顺序为<code>Promise.all([TaskA,TaskB])</code>，则执行完成后传给<code>.then</code>的顺序为[TaskA,TaskB]。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -696,8 +696,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>从上面函数的输出值可以看出<code>Promise.all()</code>里的异步操作是同时执行的而且传给<code>.then()</code>的顺序和<code>Promise.all()</code>里的顺序一样。最终执行时间约为200ms，为什么不是200ms，这里涉及到关于<code>setTimeout</code>的精准问题，不在这里讨论。</p>
-<h2 id="promiserace的使用">Promise.race()的使用</h2>
-<p><code>Promise.rance()</code>的用法与<code>Promise.all()</code>类似，不同的地方在于<code>Promise.all()</code>是在接收到的所有Promise都变为FulFilled或者Rejected状态之后才会继续进行后面的处理，而<code>Promise.rance()</code>只要有一个Promise对象进入FullFilled或者Rejected状态，就会继续进行后续处理。这相当于<code>Promise.rance()</code>进行“且”运算而<code>Promise.rance()</code>进行<code>或</code>运算。但是这里有一点需要注意一下：</p>
+<h2 id="promiserace的使用" class="headerLink">
+    <a href="#promiserace%e7%9a%84%e4%bd%bf%e7%94%a8" class="header-mark"></a>Promise.race()的使用</h2><p><code>Promise.rance()</code>的用法与<code>Promise.all()</code>类似，不同的地方在于<code>Promise.all()</code>是在接收到的所有Promise都变为FulFilled或者Rejected状态之后才会继续进行后面的处理，而<code>Promise.rance()</code>只要有一个Promise对象进入FullFilled或者Rejected状态，就会继续进行后续处理。这相当于<code>Promise.rance()</code>进行“且”运算而<code>Promise.rance()</code>进行<code>或</code>运算。但是这里有一点需要注意一下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -751,8 +751,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>从这里可以看出，在第一个Promise变为FulFiled状态运行then里的回调后，后面的Promise并没有停止运行，而是接续执行。也就是说， <code>Promise.race</code> 在第一个promise对象变为Fulfilled之后，并不会取消其他promise对象的执行。</p>
-<h2 id="promise的reject和异步操作error的理解">Promise的reject和异步操作error的理解</h2>
-<div class="highlight"><div class="chroma">
+<h2 id="promise的reject和异步操作error的理解" class="headerLink">
+    <a href="#promise%e7%9a%84reject%e5%92%8c%e5%bc%82%e6%ad%a5%e6%93%8d%e4%bd%9cerror%e7%9a%84%e7%90%86%e8%a7%a3" class="header-mark"></a>Promise的reject和异步操作error的理解</h2><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -775,7 +775,7 @@
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">ReadEveryFiles</span><span class="p">(</span><span class="nx">file</span><span class="p">){</span>
     <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
         <span class="k">if</span><span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
-            <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="mi">__</span><span class="nx">dirname</span><span class="si">}</span><span class="sb">/jQuery/</span><span class="si">${</span><span class="nx">file</span><span class="si">}</span><span class="sb">`</span><span class="p">,(</span><span class="nx">err</span><span class="p">,</span><span class="nx">data</span><span class="p">)=&gt;{</span>
+            <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">__dirname</span><span class="si">}</span><span class="sb">/jQuery/</span><span class="si">${</span><span class="nx">file</span><span class="si">}</span><span class="sb">`</span><span class="p">,(</span><span class="nx">err</span><span class="p">,</span><span class="nx">data</span><span class="p">)=&gt;{</span>
                 <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
                     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
                 <span class="p">}</span><span class="k">else</span><span class="p">{</span>
@@ -791,11 +791,13 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>这里的readFile的error和Promise的reject不一样，一个是readFile过程中导致的错误，而另一个是Promise做处理的时候导致的错误，可以这样理解，假设读取文件成功了，但是Promise还需要讲这个异步操作得到的数据拿到处理，在Promise做这些操作的时候可能出错。</p>
-<h2 id="写在最后">写在最后</h2>
-<p>这几天开始用Promise写了一些东西，发现其实如果用Promise，会使得代码量加大，因为每一个异步都要被Promise封装，但是这样换来的却是更加容易的维护，所以还是值得的，当代码写完后，我们很容易就能看出代码的执行过程，相对于原来用嵌套去写要直观许多，而如果想要解决Promise的代码量过大的问题，我们可以使用Generator函数，另外，在ES7标准中推出了更加牛的异步解决方案<strong>Async/Await</strong>，关于它们，我将会在随后继续深入。</p>
-<h2 id="参考">参考</h2>
-<p><a href="http://liubin.org/promises-book/#introduction" target="_blank" rel="noopener noreffer">JavaScript Promise迷你书（中文版）</a>
-<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener noreffer">ECMAScript 6 入门&mdash;Promise对象</a></p></div><div class="post-footer" id="post-footer">
+<h2 id="写在最后" class="headerLink">
+    <a href="#%e5%86%99%e5%9c%a8%e6%9c%80%e5%90%8e" class="header-mark"></a>写在最后</h2><p>这几天开始用Promise写了一些东西，发现其实如果用Promise，会使得代码量加大，因为每一个异步都要被Promise封装，但是这样换来的却是更加容易的维护，所以还是值得的，当代码写完后，我们很容易就能看出代码的执行过程，相对于原来用嵌套去写要直观许多，而如果想要解决Promise的代码量过大的问题，我们可以使用Generator函数，另外，在ES7标准中推出了更加牛的异步解决方案<strong>Async/Await</strong>，关于它们，我将会在随后继续深入。</p>
+<h2 id="参考" class="headerLink">
+    <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h2><p><a href="http://liubin.org/promises-book/#introduction" target="_blank" rel="noopener noreffer">JavaScript Promise迷你书（中文版）</a>
+<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener noreffer">ECMAScript 6 入门&mdash;Promise对象</a></p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -814,7 +816,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -823,8 +825,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -834,7 +840,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

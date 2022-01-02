@@ -20,9 +20,9 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2021-newenergy/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2020-2021newyear/" /><link rel="next" href="https://mrzhang123.github.io/posts/2022anewyear/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2021-newenergy/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2020-2021newyear/" /><link rel="next" href="https://mrzhang123.github.io/posts/2021-2022-new-year/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -48,14 +48,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -84,7 +84,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -126,7 +126,17 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么有的人能走在前面看到未来十年甚至二十年">为什么有的人能走在前面，看到未来十年甚至二十年</a>
+      <ul>
+        <li><a href="#跨界思维">跨界思维</a></li>
+        <li><a href="#深度思考">深度思考</a></li>
+        <li><a href="#深度调研">深度调研</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">从新能源这波行情看机构与散户的区别</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
@@ -145,17 +155,7 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#为什么有的人能走在前面看到未来十年甚至二十年">为什么有的人能走在前面，看到未来十年甚至二十年</a>
-      <ul>
-        <li><a href="#跨界思维">跨界思维</a></li>
-        <li><a href="#深度思考">深度思考</a></li>
-        <li><a href="#深度调研">深度调研</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>本文摘自7月14日自己对投资、市场的反思，当天看到一篇关于李录减持比亚迪以及大佬们开始激流勇退新能源的文章，引发自己的一些思考。</p>
 </blockquote>
@@ -177,8 +177,8 @@
 <li>“ 高瓴在行情启动前买入，在火爆中清仓，随后新能源开始调整，机构抱团继续推高股价后再次买入“，为什么机构似乎总是在行情启动前提前布局，在调整前离开？</li>
 <li>“此次李录大手笔减持比亚迪，再加上今天龙头股石大胜华的闪崩，可以预见新能源领域短期的情绪调整开始了”，当前新能源如此火爆，大佬们开始收手了，减持一部分，为新能源降温。</li>
 </ol>
-<h2 id="为什么有的人能走在前面看到未来十年甚至二十年">为什么有的人能走在前面，看到未来十年甚至二十年</h2>
-<p>从创建运营公司到投资（其实投资也是买公司），如果能看到别人不能看到的点，则对投资来说会带来额外的回报，对创业来说意味着成功。</p>
+<h2 id="为什么有的人能走在前面看到未来十年甚至二十年" class="headerLink">
+    <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%9c%89%e7%9a%84%e4%ba%ba%e8%83%bd%e8%b5%b0%e5%9c%a8%e5%89%8d%e9%9d%a2%e7%9c%8b%e5%88%b0%e6%9c%aa%e6%9d%a5%e5%8d%81%e5%b9%b4%e7%94%9a%e8%87%b3%e4%ba%8c%e5%8d%81%e5%b9%b4" class="header-mark"></a>为什么有的人能走在前面，看到未来十年甚至二十年</h2><p>从创建运营公司到投资（其实投资也是买公司），如果能看到别人不能看到的点，则对投资来说会带来额外的回报，对创业来说意味着成功。</p>
 <p>看下以下事实：</p>
 <ul>
 <li>特斯拉2003年创建，愿景是『加速全球向可持续能源的转变』，2004年，伊隆·马斯克以A轮投资人的身份加入该公司，2010年6月，特斯拉登陆纳斯达克，上市10年翻60倍；</li>
@@ -187,18 +187,20 @@
 </ul>
 <p>在这种背景下，从今年开始，互联网大佬们开始纷纷宣布造车，股市里新能源相关暴涨，散户、基金经理跟投，进一步推高股价，这时候有些机构开始撤退（高瓴清仓蔚来、小鹏，喜马拉雅李录减持比亚迪10%），随之而来的是新能源开始回调，跟着这波热潮买入的散户们则开始亏钱，亏钱慢慢开始割肉；而新能源造车这块，在可预见的未来必然是死一片，最终剩下那么几家，这个过程一直在循环着。</p>
 <p>为什么有些人能看到未来？为什么有些人有超乎常人的眼界？我个人认为，关键在于第一是跨界思维，第二是深度思考，第三则是深度调研。</p>
-<h3 id="跨界思维">跨界思维</h3>
-<p>我第一次接触跨界思维是在《穷查理宝典》里，芒格提到：“手里拿着锤子，看什么都是钉子”。这个世界本来就是丰富多彩，有多个面的，如果只用一种知识分析，就相当于只能看到一个面，并不能看到更多。</p>
+<h3 id="跨界思维" class="headerLink">
+    <a href="#%e8%b7%a8%e7%95%8c%e6%80%9d%e7%bb%b4" class="header-mark"></a>跨界思维</h3><p>我第一次接触跨界思维是在《穷查理宝典》里，芒格提到：“手里拿着锤子，看什么都是钉子”。这个世界本来就是丰富多彩，有多个面的，如果只用一种知识分析，就相当于只能看到一个面，并不能看到更多。</p>
 <p>从多个角度看问题，才能更多地看清楚事务的多面，才能明白事务背后的本质。</p>
-<h3 id="深度思考">深度思考</h3>
-<p>今年一鸣辞去CEO，专注思考去了。演讲中他说，在创业早期，他有很多时间思考，去思考公司未来的方向，而现在公司越来越大，事情也越来越多，思考的时间越来越少了。所以他决定辞去CEO，专注于思考，去寻找公司未来的发展方向，让公司未来再上一个台阶。</p>
+<h3 id="深度思考" class="headerLink">
+    <a href="#%e6%b7%b1%e5%ba%a6%e6%80%9d%e8%80%83" class="header-mark"></a>深度思考</h3><p>今年一鸣辞去CEO，专注思考去了。演讲中他说，在创业早期，他有很多时间思考，去思考公司未来的方向，而现在公司越来越大，事情也越来越多，思考的时间越来越少了。所以他决定辞去CEO，专注于思考，去寻找公司未来的发展方向，让公司未来再上一个台阶。</p>
 <p>现在我也深深体会到思考的必要性。古人云：“学而不思则罔，思而不学则殆”。我虽然在工作之余学习投资，实践投资。工作中遇到的问题，也会思考如何改进，但是深深地觉得还是可以思考的时间太少了，</p>
 <p>没有思考就没有改进，没有改进就没有成长。如果只是日复一日地重复劳动，毫无改进，则本身除了时间在增加，什么都没有改变。所以后续无论多少忙，都要给自己时间去思考，去改进，这样才能有所成长。</p>
-<h3 id="深度调研">深度调研</h3>
-<p>关于深度调研，使用得最好的就是毛主席了，在《毛选》里提出：“没有调查就没有发言权”，当初主席深入农村深度调研，才看明白中国革命的本质，如何进行中国革命，同时得出“红色革命一定能存在”的依据。</p>
+<h3 id="深度调研" class="headerLink">
+    <a href="#%e6%b7%b1%e5%ba%a6%e8%b0%83%e7%a0%94" class="header-mark"></a>深度调研</h3><p>关于深度调研，使用得最好的就是毛主席了，在《毛选》里提出：“没有调查就没有发言权”，当初主席深入农村深度调研，才看明白中国革命的本质，如何进行中国革命，同时得出“红色革命一定能存在”的依据。</p>
 <p>同理，在投资中如果想要买入自己的公司，也要做深度调研。市场上看到的新闻，传言，包括财报，都不能作为完整认识该事务的依据，要想真实的了解，必须亲自深入调研，去跟公司的高管，员工谈话，去公司 / 工厂实地看看，这也是菲利普.A.费雪在他的《怎样选择成长股》中提到的调研股票时最重要的一点：去谈话，去跟公司高管谈话，从谈话中可以更深入的了解到这家公司。</p>
 <p>这里就有散户与机构的巨大区别：机构本身是那些投资大佬成立的，他们如果去公司调研，可以见到那些公司的高管。相反，散户如果去，估计连公司门都进不去，也就无法进行这样的调研，所以大部分散户只能通过获取成本较低的渠道获取信息，例如：新闻，小道消息，财报等等，而通过这些信息并不能看到的公司完整的样子，这也就导致散户总是追涨杀跌，走在机构的后面。</p>
-</div><div class="post-footer" id="post-footer">
+</div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -217,17 +219,21 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%8A%95%E8%B5%84/">投资</a>,&nbsp;<a href="/tags/%E6%80%9D%E8%80%83/">思考</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
     <div class="post-nav"><a href="/posts/2020-2021newyear/" class="prev" rel="prev" title="再见2020，起航2021"><i class="fas fa-angle-left fa-fw"></i>再见2020，起航2021</a>
-            <a href="/posts/2022anewyear/" class="next" rel="next" title="再见2021，你好2022">再见2021，你好2022<i class="fas fa-angle-right fa-fw"></i></a></div>
+            <a href="/posts/2021-2022-new-year/" class="next" rel="next" title="再见2021，你好2022">再见2021，你好2022<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -237,7 +243,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

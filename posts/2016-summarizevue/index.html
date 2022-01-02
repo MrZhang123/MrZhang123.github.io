@@ -24,7 +24,7 @@
 <meta name="application-name" content="跨界Coder">
 <meta name="apple-mobile-web-app-title" content="跨界Coder">
 
-<meta name="theme-color" content="#ffffff"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-summarizevue/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-summarizejune/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-jsarray/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
@@ -52,14 +52,14 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="id-1" class="typeit"></span></a>
+            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="id-2" class="typeit"></span></a>
+                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -130,19 +130,7 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Vuejs的一些总结</h1><div class="post-meta">
-            <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vue/"><i class="far fa-folder fa-fw"></i>Vue</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-07-14">2016-07-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-07-14">2016-07-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3088 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  kept="">
-                <div class="details-summary toc-title">
-                    <span>目录</span>
-                    <span><i class="details-icon fas fa-angle-right"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
   <ul>
     <li><a href="#1vuejs组件">1.Vuejs组件</a></li>
     <li><a href="#2指令keep-alive">2.指令keep-alive</a></li>
@@ -167,12 +155,24 @@
     <li><a href="#12vuejs中过渡动画">12.vuejs中过渡动画</a></li>
   </ul>
 </nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Vuejs的一些总结</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vue/"><i class="far fa-folder fa-fw"></i>Vue</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-07-14">2016-07-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-07-14">2016-07-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3088 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"></div>
             </div><div class="content" id="content"><blockquote>
 <p>最近一段时间忙着工作的一些事情，同时自己也在试着把项目中的一些移动端页面试着用vuejs重写，所以没时间写文章，今天终于有空可以写一下，由于页面并没有写完，所以就将自己这几天做页面的时候遇到的一些问题总结了一下。其实很多在官网都能找到，但是我们只看官网教程不去写，很难理解到底是什么意思，这里我把我用到的列出来。</p>
 </blockquote>
 <p>文章中提到的很多东西都在我的demo中用到，<a href="https://github.com/MrZhang123/Vue_project/tree/master/vue_spa_demo" target="_blank" rel="noopener noreffer">demo地址</a></p>
-<h2 id="1vuejs组件">1.Vuejs组件</h2>
-<p>vuejs构建组件使用</p>
+<h2 id="1vuejs组件" class="headerLink">
+    <a href="#1vuejs%e7%bb%84%e4%bb%b6" class="header-mark"></a>1.Vuejs组件</h2><p>vuejs构建组件使用</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -220,8 +220,8 @@
 <blockquote>
 <p>webpack报错后，使用<code>webpack --display-error-details</code>可以排错</p>
 </blockquote>
-<h2 id="2指令keep-alive">2.指令keep-alive</h2>
-<p>在看demo的时候看到在vue-router写着<code>keep-alive</code>，<code>keep-alive</code>的含义：
+<h2 id="2指令keep-alive" class="headerLink">
+    <a href="#2%e6%8c%87%e4%bb%a4keep-alive" class="header-mark"></a>2.指令keep-alive</h2><p>在看demo的时候看到在vue-router写着<code>keep-alive</code>，<code>keep-alive</code>的含义：
 如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。为此可以添加一个keep-alive指令</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -231,8 +231,8 @@
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">component</span> <span class="o">:</span><span class="nx">is</span><span class="o">=</span><span class="s1">&#39;curremtView&#39;</span> <span class="nx">keep</span><span class="o">-</span><span class="nx">alive</span><span class="o">&gt;&lt;</span><span class="err">/component&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="3如何让css只在当前组件中起作用">3.如何让css只在当前组件中起作用</h2>
-<p>在每一个vue组件中都可以定义各自的css，js，如果希望组件内写的css只对当前组件起作用，只需要在<code>style</code>中写入<code>scoped</code>，即：</p>
+</div><h2 id="3如何让css只在当前组件中起作用" class="headerLink">
+    <a href="#3%e5%a6%82%e4%bd%95%e8%ae%a9css%e5%8f%aa%e5%9c%a8%e5%bd%93%e5%89%8d%e7%bb%84%e4%bb%b6%e4%b8%ad%e8%b5%b7%e4%bd%9c%e7%94%a8" class="header-mark"></a>3.如何让css只在当前组件中起作用</h2><p>在每一个vue组件中都可以定义各自的css，js，如果希望组件内写的css只对当前组件起作用，只需要在<code>style</code>中写入<code>scoped</code>，即：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -241,8 +241,8 @@
 <pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="o">&lt;</span><span class="nt">style</span> <span class="nt">scoped</span><span class="o">&gt;&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="4vuejs循环插入图片">4.vuejs循环插入图片</h2>
-<p>在写循环的时候，写入如下代码：</p>
+</div><h2 id="4vuejs循环插入图片" class="headerLink">
+    <a href="#4vuejs%e5%be%aa%e7%8e%af%e6%8f%92%e5%85%a5%e5%9b%be%e7%89%87" class="header-mark"></a>4.vuejs循环插入图片</h2><p>在写循环的时候，写入如下代码：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -282,8 +282,8 @@
 </div><blockquote>
 <p>这里<code>href</code>是参数，它告诉 <code>v-bind </code>指令将元素的 <code>href </code>特性跟表达式 url 的值绑定。可能你已注意到可以用特性插值<code> href=&quot;{{url}}&quot;</code> 获得同样的结果：这样没错，并且实际上在内部特性插值会转为<code> v-bind</code> 绑定。</p>
 </blockquote>
-<h2 id="5绑定value到vue实例的一个动态属性上">5.绑定value到Vue实例的一个动态属性上</h2>
-<p>对于单选按钮，勾选框及选择框选项，<code>v-model</code>绑定的value通常是静态字符串（对于勾选框是逻辑值）：</p>
+<h2 id="5绑定value到vue实例的一个动态属性上" class="headerLink">
+    <a href="#5%e7%bb%91%e5%ae%9avalue%e5%88%b0vue%e5%ae%9e%e4%be%8b%e7%9a%84%e4%b8%80%e4%b8%aa%e5%8a%a8%e6%80%81%e5%b1%9e%e6%80%a7%e4%b8%8a" class="header-mark"></a>5.绑定value到Vue实例的一个动态属性上</h2><p>对于单选按钮，勾选框及选择框选项，<code>v-model</code>绑定的value通常是静态字符串（对于勾选框是逻辑值）：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -349,8 +349,8 @@
 <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="6片段实例">6.片段实例</h2>
-<p>下面几种情况会让实例变成一个片断实例：</p>
+</div><h2 id="6片段实例" class="headerLink">
+    <a href="#6%e7%89%87%e6%ae%b5%e5%ae%9e%e4%be%8b" class="header-mark"></a>6.片段实例</h2><p>下面几种情况会让实例变成一个片断实例：</p>
 <ol>
 <li>模板包含多个顶级元素。</li>
 <li>模板只包含普通文本。</li>
@@ -383,8 +383,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p><strong>片段实例</strong>也有用处，但是通常情况下组件有一个根节点比较好，它会保证组件元素上的指令和特性能正确的转换，同时性能也稍微好些。</p>
-<h2 id="7路由嵌套">7.路由嵌套</h2>
-<p><strong>路由嵌套会将其他组件渲染到该组件内，而不是进行整个页面跳转</strong><code>router-view</code>本身就是将组件渲染到该位置，想要进行页面跳转，就要将页面渲染到根组件，在起始配置路由时候写到：</p>
+<h2 id="7路由嵌套" class="headerLink">
+    <a href="#7%e8%b7%af%e7%94%b1%e5%b5%8c%e5%a5%97" class="header-mark"></a>7.路由嵌套</h2><p><strong>路由嵌套会将其他组件渲染到该组件内，而不是进行整个页面跳转</strong><code>router-view</code>本身就是将组件渲染到该位置，想要进行页面跳转，就要将页面渲染到根组件，在起始配置路由时候写到：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -396,8 +396,8 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>这里首先将根组件注册进来，用于将路由中配置好的各个页面渲染出来，然后将根组件挂载到与#app匹配的元素上。</p>
-<h2 id="8实现多个根据不同条件显示不同文字的方法">8.实现多个根据不同条件显示不同文字的方法</h2>
-<p><code>v-if</code>,<code>v-else</code>可以实现条件选择，但是如果是多个连续的条件选择，则需要用到计算属性<code>computed</code>。例如实现当输入框中什么都没写的时候显示字符串‘empty’,否则显示输入框中的内容，代码如下：</p>
+<h2 id="8实现多个根据不同条件显示不同文字的方法" class="headerLink">
+    <a href="#8%e5%ae%9e%e7%8e%b0%e5%a4%9a%e4%b8%aa%e6%a0%b9%e6%8d%ae%e4%b8%8d%e5%90%8c%e6%9d%a1%e4%bb%b6%e6%98%be%e7%a4%ba%e4%b8%8d%e5%90%8c%e6%96%87%e5%ad%97%e7%9a%84%e6%96%b9%e6%b3%95" class="header-mark"></a>8.实现多个根据不同条件显示不同文字的方法</h2><p><code>v-if</code>,<code>v-else</code>可以实现条件选择，但是如果是多个连续的条件选择，则需要用到计算属性<code>computed</code>。例如实现当输入框中什么都没写的时候显示字符串‘empty’,否则显示输入框中的内容，代码如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -448,9 +448,9 @@
 <span class="p">});</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="9vuejs在变化检测问题">9.Vuejs在变化检测问题</h2>
-<h4 id="1检测数组">1.检测数组</h4>
-<p>由于javascript的限制，vuejs不能检测到下面数组的变化：</p>
+</div><h2 id="9vuejs在变化检测问题" class="headerLink">
+    <a href="#9vuejs%e5%9c%a8%e5%8f%98%e5%8c%96%e6%a3%80%e6%b5%8b%e9%97%ae%e9%a2%98" class="header-mark"></a>9.Vuejs在变化检测问题</h2><h4 id="1检测数组" class="headerLink">
+    <a href="#1%e6%a3%80%e6%b5%8b%e6%95%b0%e7%bb%84" class="header-mark"></a>1.检测数组</h4><p>由于javascript的限制，vuejs不能检测到下面数组的变化：</p>
 <ol>
 <li>直接索引设置元素，如<code>vm.item[0]={}</code>;</li>
 <li>修改数据的长度，如<code>vm.item.length</code>。</li>
@@ -491,8 +491,8 @@
 <pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">$remove</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id="2检测对象">2.检测对象</h4>
-<p>受ES5的显示，Vuejs<strong>不能检测到对象属性的添加或删除</strong>。因为Vuejs在初始化时候将属性转化为<code>getter/setter</code>，所以属性必须在<code>data</code>对象才能让Vuejs转换它，才能让它是响应的，例如：</p>
+</div><h4 id="2检测对象" class="headerLink">
+    <a href="#2%e6%a3%80%e6%b5%8b%e5%af%b9%e8%b1%a1" class="header-mark"></a>2.检测对象</h4><p>受ES5的显示，Vuejs<strong>不能检测到对象属性的添加或删除</strong>。因为Vuejs在初始化时候将属性转化为<code>getter/setter</code>，所以属性必须在<code>data</code>对象才能让Vuejs转换它，才能让它是响应的，例如：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -554,8 +554,8 @@
 </span><span class="c1"></span><span class="k">this</span><span class="p">.</span><span class="nx">someObject</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">someObject</span><span class="p">,</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span> <span class="p">})</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id="10关于vuejs页面闪烁message">10.关于vuejs页面闪烁<code>{{message}}</code></h2>
-<p>在vuejs指令中有<code>v-cloak</code>，这个指令保持在元素上直到关联实例结束编译。和CSS规则如<code>[v-cloak]{display:none}</code>一起用时，这个指令可以隐藏未编译的Mustache标签直到实例准备完毕。用法如下：</p>
+</div><h2 id="10关于vuejs页面闪烁message" class="headerLink">
+    <a href="#10%e5%85%b3%e4%ba%8evuejs%e9%a1%b5%e9%9d%a2%e9%97%aa%e7%83%81message" class="header-mark"></a>10.关于vuejs页面闪烁<code>{{message}}</code></h2><p>在vuejs指令中有<code>v-cloak</code>，这个指令保持在元素上直到关联实例结束编译。和CSS规则如<code>[v-cloak]{display:none}</code>一起用时，这个指令可以隐藏未编译的Mustache标签直到实例准备完毕。用法如下：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -577,10 +577,10 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>这样<code>&lt;div&gt;</code>不会显示，直到编译结束</p>
-<h2 id="11关于在v-for循环时候v-model的使用">11.关于在<code>v-for</code>循环时候<code>v-model</code>的使用</h2>
-<p>有时候需要循环生成<code>input</code>，用<code>v-model</code>绑定后，利用vuejs操作它，此时我们可以在<code>v-model</code>中写一个数组<code>selected[$index]</code>，这样就可以给不同的input绑定不同的<code>v-model</code>，从而分别操作他们。这个我在demo中的dataBind.vue中用到。</p>
-<h2 id="12vuejs中过渡动画">12.vuejs中过渡动画</h2>
-<p>在vuejs中，css定义动画：</p>
+<h2 id="11关于在v-for循环时候v-model的使用" class="headerLink">
+    <a href="#11%e5%85%b3%e4%ba%8e%e5%9c%a8v-for%e5%be%aa%e7%8e%af%e6%97%b6%e5%80%99v-model%e7%9a%84%e4%bd%bf%e7%94%a8" class="header-mark"></a>11.关于在<code>v-for</code>循环时候<code>v-model</code>的使用</h2><p>有时候需要循环生成<code>input</code>，用<code>v-model</code>绑定后，利用vuejs操作它，此时我们可以在<code>v-model</code>中写一个数组<code>selected[$index]</code>，这样就可以给不同的input绑定不同的<code>v-model</code>，从而分别操作他们。这个我在demo中的dataBind.vue中用到。</p>
+<h2 id="12vuejs中过渡动画" class="headerLink">
+    <a href="#12vuejs%e4%b8%ad%e8%bf%87%e6%b8%a1%e5%8a%a8%e7%94%bb" class="header-mark"></a>12.vuejs中过渡动画</h2><p>在vuejs中，css定义动画：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -623,7 +623,9 @@
     <span class="p">}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>其中动画在定的时候要注意上下对应，上面有什么，下面有什么，都要变化的，如果有不变化的，应该抽离出去，作为公共css样式，在上面的css中，如果我只写<code> transform: translate(-50%,-50%);</code>而不写下面的<code>transform: translate(0,0);</code>则会导致上面的<code>transform: translate(-50%,-50%);</code>被添加到下面，认为这个是不变的。</p></div><div class="post-footer" id="post-footer">
+</div><p>其中动画在定的时候要注意上下对应，上面有什么，下面有什么，都要变化的，如果有不变化的，应该抽离出去，作为公共css样式，在上面的css中，如果我只写<code> transform: translate(-50%,-50%);</code>而不写下面的<code>transform: translate(0,0);</code>则会导致上面的<code>transform: translate(-50%,-50%);</code>被添加到下面，认为这个是不变的。</p></div>
+
+        <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
@@ -642,7 +644,7 @@
     <div class="post-info-more">
         <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vue/">Vue</a></section>
         <section>
-            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
@@ -651,8 +653,12 @@
 </div>
 </article></div>
         </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.88.1">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.10"><i class="far fa-edit fa-fw"></i> DoIt</a>
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -662,7 +668,7 @@
         </a>
     </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"id-1":"跨界Coder's Blog","id-2":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"],"id-2":["id-2"]},"duration":null,"speed":null}};</script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>
