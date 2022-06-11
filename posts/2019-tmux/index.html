@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">终端复用神器Tmux - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="终端复用神器Tmux" />
+    <title class="pjax-title">终端复用神器Tmux - Raymond</title><meta name="Description" content=""><meta property="og:title" content="终端复用神器Tmux" />
 <meta property="og:description" content="
 记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。
 " />
@@ -21,14 +21,14 @@
 <meta name="twitter:description" content="
 记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。
 "/>
-<meta name="application-name" content="跨界Coder">
-<meta name="apple-mobile-web-app-title" content="跨界Coder">
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019-tmux/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2019-axiosparams/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019-componentstips/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -40,15 +40,15 @@
         },"genre": "posts","keywords": "Linux","wordcount":  3376 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2019-tmux\/","datePublished": "2019-06-23T14:32:00+00:00","dateModified": "2019-06-23T14:32:00+00:00","publisher": {
             "@type": "Organization",
-            "name": "跨界Coder"},"author": {
+            "name": "Raymond"},"author": {
                 "@type": "Person",
-                "name": "跨界Coder"
+                "name": "Raymond"
             },"description": ""
     }
     </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -59,7 +59,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -161,7 +161,7 @@
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">终端复用神器Tmux</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3376 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
@@ -170,7 +170,35 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#session">session</a>
+          <ul>
+            <li><a href="#新建">新建</a></li>
+            <li><a href="#断开">断开</a></li>
+            <li><a href="#恢复">恢复</a></li>
+            <li><a href="#关闭">关闭</a></li>
+            <li><a href="#查看">查看</a></li>
+          </ul>
+        </li>
+        <li><a href="#tmux基础配置">tmux基础配置</a>
+          <ul>
+            <li><a href="#配置tmux前缀">配置tmux前缀</a></li>
+            <li><a href="#分屏">分屏</a></li>
+            <li><a href="#切换pane">切换pane</a></li>
+            <li><a href="#开启鼠标支持">开启鼠标支持</a></li>
+            <li><a href="#调整pane">调整pane</a></li>
+          </ul>
+        </li>
+        <li><a href="#附">附</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><blockquote>
 <p>记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。</p>
 </blockquote>
@@ -182,8 +210,7 @@
         data-srcset="./img/iterm2.png, ./img/iterm2.png 1.5x, ./img/iterm2.png 2x"
         data-sizes="auto"
         alt="./img/iterm2.png"
-        title="item2原生分屏图片"
-    /></p>
+        title="item2原生分屏图片"></p>
 <p>但是分屏很多之后，可以看到很多状态栏，并不是很美观，对比tmux的分屏，看起来就要hack很多，tmux的分屏界面如下：</p>
 <!--tmux分屏图片-->
 <p><img
@@ -192,8 +219,7 @@
         data-srcset="./img/tmux.png, ./img/tmux.png 1.5x, ./img/tmux.png 2x"
         data-sizes="auto"
         alt="./img/tmux.png"
-        title="tmux分屏图片"
-    /></p>
+        title="tmux分屏图片"></p>
 <p>正是基于这个原因，开始学着始使用tmux。</p>
 <h3 id="安装" class="headerLink">
     <a href="#%e5%ae%89%e8%a3%85" class="header-mark"></a>安装</h3><blockquote>
@@ -230,8 +256,7 @@ sudo apt-get install tmux
         data-srcset="./img/tmux-name.png, ./img/tmux-name.png 1.5x, ./img/tmux-name.png 2x"
         data-sizes="auto"
         alt="./img/tmux-name.png"
-        title="tmux名词标注"
-    /></p>
+        title="tmux名词标注"></p>
 <h3 id="session" class="headerLink">
     <a href="#session" class="header-mark"></a>session</h3><h4 id="新建" class="headerLink">
     <a href="#%e6%96%b0%e5%bb%ba" class="header-mark"></a>新建</h4><p>安装完成后，在终端直接输入<code>tmux</code>即可进入tmux。进入之后可以看到session的名字是0，这是因为我们直接输入<code>tmux</code>会创建一个无名的会话，如果想要新建session的时候给session命名，可以使用以下命令：</p>
@@ -314,8 +339,7 @@ tmux ls
         data-srcset="./img/tmux-showall.png, ./img/tmux-showall.png 1.5x, ./img/tmux-showall.png 2x"
         data-sizes="auto"
         alt="./img/tmux-showall.png"
-        title="tmux展示所有session和window的图"
-    /></p>
+        title="tmux展示所有session和window的图"></p>
 <h3 id="tmux基础配置" class="headerLink">
     <a href="#tmux%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae" class="header-mark"></a>tmux基础配置</h3><p>tmux的配置在<code>~/.tmux.conf</code>文件中，如果没有该文件，可以先新建配置文件。</p>
 <h4 id="配置tmux前缀" class="headerLink">
@@ -867,7 +891,7 @@ unbind C-b
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
@@ -878,9 +902,10 @@ unbind C-b
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
 
-<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

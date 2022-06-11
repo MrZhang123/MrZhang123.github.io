@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">文件上传（一）---H5 file API，canvas - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="文件上传（一）---H5 file API，canvas" />
+    <title class="pjax-title">文件上传（一）---H5 file API，canvas - Raymond</title><meta name="Description" content=""><meta property="og:title" content="文件上传（一）---H5 file API，canvas" />
 <meta property="og:description" content="最近公司让调研关于webUploader的图片上传中能否压缩，能否实现图片的格式转换，如果能如何实现，经过调研，这个插件可以实现文件的压缩，但是不能实现图片的格式转换，同时在调研过程中，知道了很多新的东西，H5 file API，canvas，等等，所以有了自己写一个文件上传来熟悉这些东西，所以有了本篇文章。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://mrzhang123.github.io/posts/2016-fileupload/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/><meta property="article:section" content="posts" />
@@ -17,14 +17,14 @@
 
 <meta name="twitter:title" content="文件上传（一）---H5 file API，canvas"/>
 <meta name="twitter:description" content="最近公司让调研关于webUploader的图片上传中能否压缩，能否实现图片的格式转换，如果能如何实现，经过调研，这个插件可以实现文件的压缩，但是不能实现图片的格式转换，同时在调研过程中，知道了很多新的东西，H5 file API，canvas，等等，所以有了自己写一个文件上传来熟悉这些东西，所以有了本篇文章。"/>
-<meta name="application-name" content="跨界Coder">
-<meta name="apple-mobile-web-app-title" content="跨界Coder">
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-fileupload/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-activeelement/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-es6practice/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -36,15 +36,15 @@
         },"genre": "posts","keywords": "H5, file, canvas","wordcount":  4797 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-fileupload\/","datePublished": "2016-03-31T23:35:12+00:00","dateModified": "2016-03-31T23:35:12+00:00","publisher": {
             "@type": "Organization",
-            "name": "跨界Coder"},"author": {
+            "name": "Raymond"},"author": {
                 "@type": "Person",
-                "name": "跨界Coder"
+                "name": "Raymond"
             },"description": ""
     }
     </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -55,7 +55,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -84,7 +84,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -176,7 +176,7 @@
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">文件上传（一）---H5 file API，canvas</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-03-31">2016-03-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-03-31">2016-03-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4797 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
@@ -185,7 +185,54 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一做好htmlcss样式">一.做好HTML，CSS样式</a>
+      <ul>
+        <li><a href="#html">html</a></li>
+        <li><a href="#indexcss">index.css</a></li>
+      </ul>
+    </li>
+    <li><a href="#二用户多选文件并读取用户选择的文件">二.用户多选文件并读取用户选择的文件</a>
+      <ul>
+        <li><a href="#1让input实现多文件选择">1.让input实现多文件选择</a></li>
+        <li><a href="#2利用filereader对象读取源文件">2.利用FileReader对象读取源文件</a>
+          <ul>
+            <li><a href="#filereader对象提供了readasdataurl方法">FileReader对象提供了readAsDataURL()方法：</a></li>
+            <li><a href="#readasdataurl">readAsDataURL()</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#三利用canvas生成缩略图">三.利用canvas生成缩略图</a>
+      <ul>
+        <li><a href="#1drawimage">1.drawImage()</a>
+          <ul>
+            <li><a href="#在画布上定位图像">在画布上定位图像</a></li>
+            <li><a href="#在画布上定位图像并规定图像的宽度和高度">在画布上定位图像并规定图像的宽度和高度</a></li>
+            <li><a href="#剪切图像并在画布上定位被剪切部分">剪切图像并在画布上定位被剪切部分</a></li>
+          </ul>
+        </li>
+        <li><a href="#2todataurl">2.toDataURL()</a></li>
+        <li><a href="#生成缩略图代码实现">生成缩略图代码实现</a></li>
+      </ul>
+    </li>
+    <li><a href="#四将要上传的图片利用canvas进行压缩改变格式---遇到js中的异步执行">四.将要上传的图片利用canvas进行压缩，改变格式&mdash;遇到js中的异步执行</a>
+      <ul>
+        <li><a href="#什么时候就会出现异步执行机制">什么时候就会出现异步执行机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#五利用xmlhttprequestformdata实现文件上传">五.利用XMLHttpRequest,FormData实现文件上传</a>
+      <ul>
+        <li><a href="#1formdata对象">1.FormData对象</a></li>
+        <li><a href="#2xmlhttprequest对象">2.XMLHttpRequest对象</a></li>
+        <li><a href="#3open方法">3.open方法</a></li>
+        <li><a href="#4send方法">4.send()方法</a></li>
+      </ul>
+    </li>
+    <li><a href="#综合以上简单的一个上传图片代码实现如下">综合以上，简单的一个上传图片代码实现如下：</a></li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><p>最近公司让调研关于webUploader的图片上传中能否压缩，能否实现图片的格式转换，如果能如何实现，经过调研，这个插件可以实现文件的压缩，但是不能实现图片的格式转换，同时在调研过程中，知道了很多新的东西，H5 file API，canvas，等等，所以有了自己写一个文件上传来熟悉这些东西，所以有了本篇文章。</p>
 <h2 id="一做好htmlcss样式" class="headerLink">
     <a href="#%e4%b8%80%e5%81%9a%e5%a5%bdhtmlcss%e6%a0%b7%e5%bc%8f" class="header-mark"></a>一.做好HTML，CSS样式</h2><p>这里很简单，就是写一个HTML+CSS的文件，让我们的上传看起来像那么回事儿，这里不细说，代码如下：</p>
@@ -370,8 +417,7 @@
         data-srcset="./canshu.PNG, ./canshu.PNG 1.5x, ./canshu.PNG 2x"
         data-sizes="auto"
         alt="./canshu.PNG"
-        title="mahua"
-    /></p>
+        title="mahua"></p>
 <h3 id="2todataurl" class="headerLink">
     <a href="#2todataurl" class="header-mark"></a>2.toDataURL()</h3><p>toDataURL()方法回传含有图像和参数设置特定格式的dataURLs，回传的图像解析度为96dpi。同样通过toDataURL()可以方便的将图片转换为base64编码，但是这里需要注意两点：</p>
 <ul>
@@ -866,7 +912,7 @@ encoderOptions：生成的图片的品质，为0~1之间的数字，如果只不
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
@@ -877,9 +923,10 @@ encoderOptions：生成的图片的品质，为0~1之间的数字，如果只不
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
 
-<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

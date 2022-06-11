@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">CSS3实现翻转卡牌效果 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="CSS3实现翻转卡牌效果" />
+    <title class="pjax-title">CSS3实现翻转卡牌效果 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="CSS3实现翻转卡牌效果" />
 <meta property="og:description" content="
 今天在工作中遇到需求，需要用CSS3写一个卡片翻转效果，这个效果看起来简单，但是还是涉及到一些不常用的CSS3中的3D转换的属性以及实现该效果的思路，所以这里总结一下。
 " />
@@ -21,14 +21,14 @@
 <meta name="twitter:description" content="
 今天在工作中遇到需求，需要用CSS3写一个卡片翻转效果，这个效果看起来简单，但是还是涉及到一些不常用的CSS3中的3D转换的属性以及实现该效果的思路，所以这里总结一下。
 "/>
-<meta name="application-name" content="跨界Coder">
-<meta name="apple-mobile-web-app-title" content="跨界Coder">
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-flipcards/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-jsstring/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-gulpuse/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -40,15 +40,15 @@
         },"genre": "posts","keywords": "CSS","wordcount":  2468 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-flipcards\/","datePublished": "2016-08-17T23:35:52+00:00","dateModified": "2016-08-17T23:35:52+00:00","publisher": {
             "@type": "Organization",
-            "name": "跨界Coder"},"author": {
+            "name": "Raymond"},"author": {
                 "@type": "Person",
-                "name": "跨界Coder"
+                "name": "Raymond"
             },"description": ""
     }
     </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -59,7 +59,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -178,7 +178,7 @@
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">CSS3实现翻转卡牌效果</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/css/"><i class="far fa-folder fa-fw"></i>CSS</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-08-17">2016-08-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-08-17">2016-08-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2468 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
@@ -187,7 +187,52 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#需要的css3属性">需要的CSS3属性</a>
+      <ul>
+        <li><a href="#perspective">perspective</a>
+          <ul>
+            <li><a href="#定义和用法">定义和用法</a></li>
+            <li><a href="#值">值</a></li>
+          </ul>
+        </li>
+        <li><a href="#transform-style">transform-style</a>
+          <ul>
+            <li><a href="#定义和用法-1">定义和用法</a></li>
+            <li><a href="#值-1">值</a></li>
+          </ul>
+        </li>
+        <li><a href="#transition">transition</a>
+          <ul>
+            <li><a href="#定义和用法-2">定义和用法</a></li>
+          </ul>
+        </li>
+        <li><a href="#backface-visibility">backface-visibility</a>
+          <ul>
+            <li><a href="#定义和用法-3">定义和用法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#实现的思路">实现的思路</a></li>
+    <li><a href="#实现">实现</a></li>
+    <li><a href="#附css中识别各类ie的方法">附：CSS中识别各类IE的方法</a></li>
+    <li><a href="#ie6">IE6</a></li>
+    <li><a href="#ie7">IE7</a></li>
+    <li><a href="#ie6-and-ie7">IE6 and IE7</a></li>
+    <li><a href="#ie67-and-8">IE6,7 and 8</a></li>
+    <li><a href="#ie8">IE8</a></li>
+    <li><a href="#只在ie8标准模式">只在IE8标准模式</a></li>
+    <li><a href="#ie89-and-10">IE8,9 and 10</a></li>
+    <li><a href="#ie9-only">IE9 only</a></li>
+    <li><a href="#ie9">IE9+</a></li>
+    <li><a href="#ie9-and-10">IE9 and 10</a></li>
+    <li><a href="#ie10-only">IE10 only</a></li>
+    <li><a href="#ie10">IE10+</a></li>
+    <li><a href="#ie11">IE11+</a></li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><blockquote>
 <p>今天在工作中遇到需求，需要用CSS3写一个卡片翻转效果，这个效果看起来简单，但是还是涉及到一些不常用的CSS3中的3D转换的属性以及实现该效果的思路，所以这里总结一下。</p>
 </blockquote>
@@ -706,7 +751,7 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
@@ -717,9 +762,10 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
 
-<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

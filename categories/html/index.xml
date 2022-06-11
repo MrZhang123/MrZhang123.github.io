@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>HTML - 分类 - 跨界Coder</title>
+        <title>HTML - 分类 - Raymond</title>
         <link>https://mrzhang123.github.io/categories/html/</link>
-        <description>HTML - 分类 - 跨界Coder</description>
+        <description>HTML - 分类 - Raymond</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 26 Mar 2016 10:20:56 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/html/" rel="self" type="application/rss+xml" /><item>
     <title>H5焦点管理---tabindex与document.activeElement</title>
     <link>https://mrzhang123.github.io/posts/2016-activeelement/</link>
     <pubDate>Sat, 26 Mar 2016 10:20:56 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2016-activeelement/</guid>
     <description><![CDATA[<p>周四下午测试人员提出BUG，说我写的那个类支付宝密码框在按下Tab键时候无法像原生的form表单中的input那样被激活，当时的第一反应是，我的密码框原本就是用div模拟的，怎么可能想form表单一样在Tab键时候激活呢。但是当我打开支付宝官网，按下tab键后，密码框可以被激活，这激起了我的好奇心，也就有了后来对tabindex和document.activeElement的发现。废话不多说，进入正题。</p>]]></description>
 </item></channel>

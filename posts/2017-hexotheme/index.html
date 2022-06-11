@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">如何写一个自己的hexo主题 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="如何写一个自己的hexo主题" />
+    <title class="pjax-title">如何写一个自己的hexo主题 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="如何写一个自己的hexo主题" />
 <meta property="og:description" content="
 好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章写一个自己的Hexo主题和该文中提到的作者自己写的主题hexo-showonne的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——hexo-theme-icarus进行了修正。
 " />
@@ -21,14 +21,14 @@
 <meta name="twitter:description" content="
 好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章写一个自己的Hexo主题和该文中提到的作者自己写的主题hexo-showonne的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——hexo-theme-icarus进行了修正。
 "/>
-<meta name="application-name" content="跨界Coder">
-<meta name="apple-mobile-web-app-title" content="跨界Coder">
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2017-hexotheme/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2017-gitreset/" /><link rel="next" href="https://mrzhang123.github.io/posts/2017-cssbem/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -40,15 +40,15 @@
         },"genre": "posts","keywords": "Blog","wordcount":  2413 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2017-hexotheme\/","datePublished": "2017-04-01T20:57:48+00:00","dateModified": "2017-04-01T20:57:48+00:00","publisher": {
             "@type": "Organization",
-            "name": "跨界Coder"},"author": {
+            "name": "Raymond"},"author": {
                 "@type": "Person",
-                "name": "跨界Coder"
+                "name": "Raymond"
             },"description": ""
     }
     </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -59,7 +59,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -153,7 +153,7 @@
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何写一个自己的hexo主题</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/blog/"><i class="far fa-folder fa-fw"></i>Blog</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-04-01">2017-04-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-04-01">2017-04-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2413 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
@@ -162,7 +162,27 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#搭建项目">搭建项目</a></li>
+    <li><a href="#布局">布局</a>
+      <ul>
+        <li><a href="#布局文件layoutejs">布局文件layout.ejs</a></li>
+        <li><a href="#其他模版">其他模版</a></li>
+      </ul>
+    </li>
+    <li><a href="#变量">变量</a></li>
+    <li><a href="#辅助函数">辅助函数</a></li>
+    <li><a href="#其他">其他</a>
+      <ul>
+        <li><a href="#评论">评论</a></li>
+        <li><a href="#代码高亮">代码高亮</a></li>
+      </ul>
+    </li>
+    <li><a href="#最后">最后</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><blockquote>
 <p>好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章<a href="https://segmentfault.com/a/1190000006057336]" target="_blank" rel="noopener noreffer">写一个自己的Hexo主题</a>和该文中提到的作者自己写的主题<a href="https://github.com/showonne/hexo-showonne" target="_blank" rel="noopener noreffer">hexo-showonne</a>的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——<a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener noreffer">hexo-theme-icarus</a>进行了修正。</p>
 </blockquote>
@@ -409,7 +429,7 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
@@ -420,9 +440,10 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
 
-<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

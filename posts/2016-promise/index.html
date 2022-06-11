@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">Promise－－优雅解决回调嵌套 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="Promise－－优雅解决回调嵌套" />
+    <title class="pjax-title">Promise－－优雅解决回调嵌套 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="Promise－－优雅解决回调嵌套" />
 <meta property="og:description" content="
 最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。
 " />
@@ -21,14 +21,14 @@
 <meta name="twitter:description" content="
 最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。
 "/>
-<meta name="application-name" content="跨界Coder">
-<meta name="apple-mobile-web-app-title" content="跨界Coder">
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-promise/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-gitgithub/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-2017newyear/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -40,15 +40,15 @@
         },"genre": "posts","keywords": "Javascript","wordcount":  4556 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-promise\/","datePublished": "2016-12-13T22:34:16+00:00","dateModified": "2016-12-13T22:34:16+00:00","publisher": {
             "@type": "Organization",
-            "name": "跨界Coder"},"author": {
+            "name": "Raymond"},"author": {
                 "@type": "Person",
-                "name": "跨界Coder"
+                "name": "Raymond"
             },"description": ""
     }
     </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -59,7 +59,7 @@
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -156,7 +156,7 @@
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Promise－－优雅解决回调嵌套</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-12-13">2016-12-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-12-13">2016-12-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4556 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
@@ -165,7 +165,30 @@
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#promise状态的理解">Promise状态的理解</a></li>
+    <li><a href="#promise的使用">Promise的使用</a></li>
+    <li><a href="#快捷创建promise">快捷创建Promise</a></li>
+    <li><a href="#promisethen异步调用带来的思考">Promise.then()异步调用带来的思考</a></li>
+    <li><a href="#promise链式调用">Promise链式调用</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#各个task相互独立">各个Task相互独立</a></li>
+            <li><a href="#各个task需要参数的传递">各个Task需要参数的传递</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#then与catch返回新的promise"><code>then</code>与<code>catch</code>返回新的Promise</a></li>
+    <li><a href="#promiseall的使用">Promise.all()的使用</a></li>
+    <li><a href="#promiserace的使用">Promise.race()的使用</a></li>
+    <li><a href="#promise的reject和异步操作error的理解">Promise的reject和异步操作error的理解</a></li>
+    <li><a href="#写在最后">写在最后</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><blockquote>
 <p>最近一直在用空余时间研究node，当我写了一个简单的复制一个文件夹中的文件到另一个位置的时候，我看到了所谓的回调地狱，虽然只是四五个回调嵌套，但是这已经让我感到害怕，我写这么简单的一个小demo就写成这样，那稍微复杂点儿还了得？记得在看ES6的时候，里面提到过一种新的解决回调的方式－－－Promise，而且在node中也常用这个解决大量嵌套，所以这几天花了点儿时间看了看Promise，让我对Promise的认识更加清晰，所以写一些东西总结一下。</p>
 </blockquote>
@@ -195,8 +218,7 @@
         data-srcset="./img/promise-states.png, ./img/promise-states.png 1.5x, ./img/promise-states.png 2x"
         data-sizes="auto"
         alt="./img/promise-states.png"
-        title="图１"
-    /></p>
+        title="图１"></p>
 <ol>
 <li>
 <p>在Chrome中输出<code>resolve</code>可以得到<code>Promise {[[PromiseStatus]]: &quot;pending&quot;, [[PromiseValue]]: undefined}</code>，可以看出<code>[[PromiseStatus]]</code>中存储的就是Promise的状态，但是并没有公开访问<code>[[PromiseStatus]]</code>的用户API，所以暂时还无法查询其内部状态。</p>
@@ -596,8 +618,7 @@
         data-srcset="./img/then_catch.png, ./img/then_catch.png 1.5x, ./img/then_catch.png 2x"
         data-sizes="auto"
         alt="./img/then_catch.png"
-        title="图２"
-    /></p>
+        title="图２"></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -827,7 +848,7 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
@@ -838,9 +859,10 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
 
-<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

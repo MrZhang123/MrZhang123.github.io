@@ -1,20 +1,20 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Vim - 分类 - 跨界Coder</title>
+        <title>Vim - 分类 - Raymond</title>
         <link>https://mrzhang123.github.io/categories/vim/</link>
-        <description>Vim - 分类 - 跨界Coder</description>
+        <description>Vim - 分类 - Raymond</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/vim/" rel="self" type="application/rss+xml" /><item>
     <title>vim的搜索与替换</title>
     <link>https://mrzhang123.github.io/posts/2020-vimsearch/</link>
     <pubDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2020-vimsearch/</guid>
     <description><![CDATA[<p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p>]]></description>
 </item><item>
     <title>记一次vim性能优化</title>
     <link>https://mrzhang123.github.io/posts/2019-vimperformance/</link>
     <pubDate>Sun, 01 Sep 2019 16:15:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2019-vimperformance/</guid>
     <description><![CDATA[<h3 id="关键点" class="headerLink">
     <a href="#%e5%85%b3%e9%94%ae%e7%82%b9" class="header-mark"></a>关键点</h3><ul>

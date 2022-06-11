@@ -8,9 +8,9 @@ hasCJKLanguage = true
 # 更改使用 Hugo 构建网站时使用的默认主题
 theme = "DoIt"
 # 网站名称
-title = "跨界Coder"
+title = "Raymond"
 # 网站描述
-description = "跨界Coder Blog"
+description = "Raymond Blog"
 
 [menu]
   [[menu.main]]
@@ -71,7 +71,7 @@ description = "跨界Coder Blog"
     endLevel = 6
 # 作者配置
 [author]
-  name = "跨界Coder"
+  name = "Raymond"
   email = ""
   link = ""
   
@@ -88,7 +88,7 @@ series = "series"
   # DoIt 主题版本
   version = "0.2.X"
   # 网站关键词
-  keywords = ["blog", "Hugo", "跨界Coder"]
+  keywords = ["blog", "Hugo", "Raymond"]
   # DoIt 更改 | 0.2.11 网站默认主题样式 ("light", "dark", "black", "auto")
   defaultTheme = "auto"
   # DoIt 新增 | 0.2.0 日期格式
@@ -137,7 +137,7 @@ series = "series"
         # LOGO 的 URL
         logo = ""
         # 标题名称
-        name = "跨界Coder's Blog"
+        name = "Raymond's Blog"
         # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
         pre = ""
         # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
@@ -237,7 +237,7 @@ series = "series"
       # 是否显示代码块的复制按钮
       copy = true
       # 默认展开显示的代码行数
-      maxShownLines = 10
+      maxShownLines = 1000
     # DoIt 更改 | 0.2.0 KaTeX 数学公式
     [params.page.math]
       enable = true

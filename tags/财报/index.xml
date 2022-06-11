@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>财报 - 标签 - 跨界Coder</title>
+        <title>财报 - 标签 - Raymond</title>
         <link>https://mrzhang123.github.io/tags/%E8%B4%A2%E6%8A%A5/</link>
-        <description>财报 - 标签 - 跨界Coder</description>
+        <description>财报 - 标签 - Raymond</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 12 Apr 2020 20:15:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E8%B4%A2%E6%8A%A5/" rel="self" type="application/rss+xml" /><item>
     <title>学习读财报之资产负债表</title>
     <link>https://mrzhang123.github.io/posts/2020-blance-sheet/</link>
     <pubDate>Sun, 12 Apr 2020 20:15:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2020-blance-sheet/</guid>
     <description><![CDATA[<blockquote>
 <p>分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的<a href="https://book.douban.com/subject/25926542/" target="_blank" rel="noopener noreffer">《一本书读懂财务报表》</a>，加深对书中概念的理解。</p>

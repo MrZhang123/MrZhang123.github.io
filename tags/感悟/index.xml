@@ -1,13 +1,13 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>感悟 - 标签 - 跨界Coder</title>
+        <title>感悟 - 标签 - Raymond</title>
         <link>https://mrzhang123.github.io/tags/%E6%84%9F%E6%82%9F/</link>
-        <description>感悟 - 标签 - 跨界Coder</description>
+        <description>感悟 - 标签 - Raymond</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 24 Sep 2016 09:41:09 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E6%84%9F%E6%82%9F/" rel="self" type="application/rss+xml" /><item>
     <title>北京的这一年，写在离开的这一天</title>
     <link>https://mrzhang123.github.io/posts/2016-thoughts/</link>
     <pubDate>Sat, 24 Sep 2016 09:41:09 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2016-thoughts/</guid>
     <description><![CDATA[<blockquote>
 <p>2016年9月23日，对于我来说是一个特殊的日子，我离开了我工作一年多的公司，这是我第一家公司，我的职业之路起于这里，这里是我起飞的地方。</p>
@@ -16,7 +16,7 @@
     <title>六月总结</title>
     <link>https://mrzhang123.github.io/posts/2016-summarizejune/</link>
     <pubDate>Thu, 30 Jun 2016 00:03:50 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2016-summarizejune/</guid>
     <description><![CDATA[<blockquote>
 <p>不知不觉中，六月已经过去，七月悄悄到来，写这篇文章，总结六月，并给七月做一些计划。在未来，每个月都会做一次总结，无论得失，都记录下来，记录自己的成长。</p>

@@ -1,15 +1,22 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>跨界Coder</title>
+        <title>Raymond</title>
         <link>https://mrzhang123.github.io/</link>
-        <description>跨界Coder</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</lastBuildDate>
+        <description>Raymond</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://mrzhang123.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Go 并发编程初识</title>
+    <link>https://mrzhang123.github.io/posts/2022-go-concurrency/</link>
+    <pubDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022-go-concurrency/</guid>
+    <description><![CDATA[Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel]]></description>
+</item><item>
     <title>再见2021，你好2022</title>
     <link>https://mrzhang123.github.io/posts/2021-2022-new-year/</link>
     <pubDate>Fri, 31 Dec 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2021-2022-new-year/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/img/2022.jpeg" referrerpolicy="no-referrer">
@@ -18,7 +25,7 @@
     <title>从新能源这波行情看机构与散户的区别</title>
     <link>https://mrzhang123.github.io/posts/2021-newenergy/</link>
     <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2021-newenergy/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/title.webp" referrerpolicy="no-referrer">
@@ -27,7 +34,7 @@
     <title>再见2020，起航2021</title>
     <link>https://mrzhang123.github.io/posts/2020-2021newyear/</link>
     <pubDate>Thu, 31 Dec 2020 00:00:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2020-2021newyear/</guid>
     <description><![CDATA[<div class="featured-image">
                 <img src="/img/title.png" referrerpolicy="no-referrer">
@@ -36,7 +43,7 @@
     <title>基础排序</title>
     <link>https://mrzhang123.github.io/posts/2020-basicsort/</link>
     <pubDate>Tue, 14 Jul 2020 09:08:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2020-basicsort/</guid>
     <description><![CDATA[<h2 id="选择排序" class="headerLink">
     <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>选择排序</h2><blockquote>
@@ -46,7 +53,7 @@
     <title>「译」V8中的指针压缩</title>
     <link>https://mrzhang123.github.io/posts/2020_pointer_compression_in_v8/</link>
     <pubDate>Thu, 23 Apr 2020 17:08:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2020_pointer_compression_in_v8/</guid>
     <description><![CDATA[<p>原文链接：https://v8.dev/blog/pointer-compression</p>
 <p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p>]]></description>
@@ -54,7 +61,7 @@
     <title>学习读财报之资产负债表</title>
     <link>https://mrzhang123.github.io/posts/2020-blance-sheet/</link>
     <pubDate>Sun, 12 Apr 2020 20:15:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2020-blance-sheet/</guid>
     <description><![CDATA[<blockquote>
 <p>分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的<a href="https://book.douban.com/subject/25926542/" target="_blank" rel="noopener noreffer">《一本书读懂财务报表》</a>，加深对书中概念的理解。</p>
@@ -63,14 +70,14 @@
     <title>vim的搜索与替换</title>
     <link>https://mrzhang123.github.io/posts/2020-vimsearch/</link>
     <pubDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2020-vimsearch/</guid>
     <description><![CDATA[<p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p>]]></description>
 </item><item>
     <title>解析OKR</title>
     <link>https://mrzhang123.github.io/posts/2020_okr/</link>
     <pubDate>Thu, 27 Feb 2020 22:30:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2020_okr/</guid>
     <description><![CDATA[<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -87,7 +94,7 @@
     <title>《这就是OKR》读书笔记</title>
     <link>https://mrzhang123.github.io/posts/2020_this_is_okr/</link>
     <pubDate>Sun, 23 Feb 2020 17:08:00 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
+        <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2020_this_is_okr/</guid>
     <description><![CDATA[<div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -100,16 +107,5 @@
 </code></pre></td></tr></table>
 </div>
 </div>]]></description>
-</item><item>
-    <title>再见2019，你好2020</title>
-    <link>https://mrzhang123.github.io/posts/2019-2020newyear/</link>
-    <pubDate>Tue, 31 Dec 2019 02:00:25 &#43;0000</pubDate><author>
-        <name>跨界Coder</name>
-    </author><guid>https://mrzhang123.github.io/posts/2019-2020newyear/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/img/2020.jpeg" referrerpolicy="no-referrer">
-            </div><blockquote>
-<p>不知不觉又到年底了，临近年底大家都忙着总结2019年发生的大事儿，比如前端2019年发生了哪些大事儿，投资界2019年发生了哪些事情让大家惊讶，DJ们也忙着制作并推出 Year Mix 2019。我从2016年开始，在每年的年底都会写一篇年底总结文章，回头看看这一年对我来说重要的事情，这一年我又学到了哪些，有哪些成长，今年也不例外&hellip;</p>
-</blockquote>]]></description>
 </item></channel>
 </rss>

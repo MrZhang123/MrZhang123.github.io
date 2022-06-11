@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">慕课网---深入理解vertical-align总结 - 跨界Coder</title><meta name="Description" content=""><meta property="og:title" content="慕课网---深入理解vertical-align总结" />
+    <title class="pjax-title">慕课网---深入理解vertical-align总结 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="慕课网---深入理解vertical-align总结" />
 <meta property="og:description" content="看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下
 vertical-align的百分比值相对于line-height计算
 IE6/7下line-height不支持小数" />
@@ -21,14 +21,14 @@ IE6/7下line-height不支持小数" />
 <meta name="twitter:description" content="看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下
 vertical-align的百分比值相对于line-height计算
 IE6/7下line-height不支持小数"/>
-<meta name="application-name" content="跨界Coder">
-<meta name="apple-mobile-web-app-title" content="跨界Coder">
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016-verticalalign-1/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016-gulpbrosersync/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016-webpack1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -40,15 +40,15 @@ IE6/7下line-height不支持小数"/>
         },"genre": "posts","keywords": "CSS","wordcount":  3029 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-verticalalign-1\/","datePublished": "2016-05-23T23:07:35+00:00","dateModified": "2016-05-23T23:07:35+00:00","publisher": {
             "@type": "Organization",
-            "name": "跨界Coder"},"author": {
+            "name": "Raymond"},"author": {
                 "@type": "Person",
-                "name": "跨界Coder"
+                "name": "Raymond"
             },"description": ""
     }
     </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -59,7 +59,7 @@ IE6/7下line-height不支持小数"/>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
-            <a href="/" title="跨界Coder"><span id="desktop-header-typeit" class="typeit"></span></a>
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
@@ -88,7 +88,7 @@ IE6/7下line-height不支持小数"/>
     <div class="header-container">
         <div class="header-wrapper">
             <div class="header-title">
-                <a href="/" title="跨界Coder"><span id="mobile-header-typeit" class="typeit"></span></a>
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
             </div>
             <div class="menu-toggle" id="menu-toggle-mobile">
                 <span></span><span></span><span></span>
@@ -190,7 +190,7 @@ IE6/7下line-height不支持小数"/>
 </nav></div>
     </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">慕课网---深入理解vertical-align总结</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">跨界Coder</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/css/"><i class="far fa-folder fa-fw"></i>CSS</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3029 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
@@ -199,7 +199,64 @@ IE6/7下line-height不支持小数"/>
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#vertical-align起作用的前提">vertical-align起作用的前提</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#inline水平">inline水平</a></li>
+            <li><a href="#table-cell元素">table-cell元素</a></li>
+          </ul>
+        </li>
+        <li><a href="#抛出一个问题">抛出一个问题</a>
+          <ul>
+            <li><a href="#1给父元素p添加line-height的值为p的高度ie7都可以实现">1.给父元素<p>添加line-height的值为<p>的高度（ie7+都可以实现）</a></li>
+            <li><a href="#2给父元素p添加displaytable-cell">2.给父元素<p>添加display:table-cell</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#vertical-align与line-height">vertical-align与line-height</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#为什么会出现这样的现象">为什么会出现这样的现象？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#vertical-align线性属性值">vertical-align线性属性值</a>
+      <ul>
+        <li><a href="#1vertical-alignbottomtop与之差不多">1.vertical-align:bottom（top与之差不多）</a>
+          <ul>
+            <li><a href="#定义">定义</a></li>
+          </ul>
+        </li>
+        <li><a href="#2vertical-alignmiddle">2.vertical-align:middle</a>
+          <ul>
+            <li><a href="#定义-1">定义</a></li>
+            <li><a href="#利用vertical-alignmiddle所实现的是font-colorred近似font垂直居中">利用vertical-align：middle所实现的是<font color="red">近似</font>垂直居中</a></li>
+            <li><a href="#那么如何实现完全垂直居中">那么如何实现完全垂直居中？</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#vertical-align文本类属性值">vertical-align文本类属性值</a>
+      <ul>
+        <li><a href="#定义-2">定义：</a></li>
+        <li><a href="#解释">解释：</a></li>
+        <li><a href="#用处">用处：</a></li>
+      </ul>
+    </li>
+    <li><a href="#输入理解vertical-align上标下标类---sub--super">输入理解vertical-align上标下标类&mdash;sub / super</a>
+      <ul>
+        <li><a href="#定义-3">定义：</a></li>
+      </ul>
+    </li>
+    <li><a href="#vertical-align前后不一的作用机制与示例">vertical-align前后不一的作用机制与示例</a></li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><p>看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下
 vertical-align的百分比值相对于line-height计算
 IE6/7下line-height不支持小数</p>
@@ -345,8 +402,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
         data-srcset="./img/3.png, ./img/3.png 1.5x, ./img/3.png 2x"
         data-sizes="auto"
         alt="./img/3.png"
-        title="icon"
-    /></p>
+        title="icon"></p>
 <p>运行后红色虚线表示i标签的位置
 设置容器，p的行高为0</p>
 <div class="highlight"><div class="chroma">
@@ -368,8 +424,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
         data-srcset="./img/4.png, ./img/4.png 1.5x, ./img/4.png 2x"
         data-sizes="auto"
         alt="./img/4.png"
-        title="icon"
-    /></p>
+        title="icon"></p>
 <h4 id="为什么会出现这样的现象" class="headerLink">
     <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bc%9a%e5%87%ba%e7%8e%b0%e8%bf%99%e6%a0%b7%e7%9a%84%e7%8e%b0%e8%b1%a1" class="header-mark"></a>为什么会出现这样的现象？</h4><p>首先看一个东西
 从CSS2的可视化格式模型文档中看到：
@@ -411,8 +466,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
         data-srcset="./img/2.png, ./img/2.png 1.5x, ./img/2.png 2x"
         data-sizes="auto"
         alt="./img/2.png"
-        title="icon"
-    /></p>
+        title="icon"></p>
 <p>文档解释了该现象，因为前面的盒子没有任何字符，此时它的基线就是它的底边缘，后面的盒子有文字，所以该盒子的基线就是文字的基线，二者基线对齐，现成如此效果。
 如果把第二个盒子line-height:0，此时文字基线的位置，就是文字的垂直中心，所以：</p>
 <p><img
@@ -421,8 +475,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
         data-srcset="./img/5.png, ./img/5.png 1.5x, ./img/5.png 2x"
         data-sizes="auto"
         alt="./img/5.png"
-        title="icon"
-    /></p>
+        title="icon"></p>
 <p>所以，以上情况下面那些空白，是由于本身后面两个图片是没有的，所以可以当作是空白字符（空格），即后面两个<code>&lt;i&gt;</code>是有字符的，而第一个<code>&lt;i&gt;</code>是没有字符的，所以和上面的那个例子一样，默认基线对齐，所以，会导致出现小的空隙（其本质和图2一样），要消除这个空隙，需要给i都添加空白字符（ 或者直接改变对齐方式，vertical-align：top / bottom）即可，而这个line-height：0可以不添加。</p>
 <p>要消除需要给p标签（容器）设置：</p>
 <div class="highlight"><div class="chroma">
@@ -450,8 +503,7 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
         data-srcset="./img/1.png, ./img/1.png 1.5x, ./img/1.png 2x"
         data-sizes="auto"
         alt="./img/1.png"
-        title="icon"
-    /></p>
+        title="icon"></p>
 <h2 id="vertical-align线性属性值" class="headerLink">
     <a href="#vertical-align%e7%ba%bf%e6%80%a7%e5%b1%9e%e6%80%a7%e5%80%bc" class="header-mark"></a>vertical-align线性属性值</h2><h3 id="1vertical-alignbottomtop与之差不多" class="headerLink">
     <a href="#1vertical-alignbottomtop%e4%b8%8e%e4%b9%8b%e5%b7%ae%e4%b8%8d%e5%a4%9a" class="header-mark"></a>1.vertical-align:bottom（top与之差不多）</h3><h4 id="定义" class="headerLink">
@@ -581,8 +633,7 @@ a.大小不固定的图片垂直居中</p>
         data-srcset="./img/center.png, ./img/center.png 1.5x, ./img/center.png 2x"
         data-sizes="auto"
         alt="./img/center.png"
-        title="icon"
-    /></p>
+        title="icon"></p>
 <p>b.大小不固定的文字垂直居中：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -664,7 +715,7 @@ a.大小不固定的图片垂直居中</p>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
                     由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">跨界Coder</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
             </div>
@@ -675,9 +726,10 @@ a.大小不固定的图片垂直居中</p>
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js"></script></div>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
 
-<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"data":{"desktop-header-typeit":"跨界Coder's Blog","mobile-header-typeit":"跨界Coder's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>
