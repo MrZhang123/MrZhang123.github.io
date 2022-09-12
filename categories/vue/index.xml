@@ -10,9 +10,9 @@
         <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2017-vue/</guid>
     <description><![CDATA[<div class="featured-image">
-                <img src="/vue.jpg" referrerpolicy="no-referrer">
+                <img src="/posts/2017-vue/vue.jpg" referrerpolicy="no-referrer">
             </div><blockquote>
-<p>年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，<a href="http://mrzhang123.github.io/2017/02/07/webpack2/" target="_blank" rel="noopener noreffer">点击链接</a>。</p>
+<p>年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，<a href="http://mrzhang123.github.io/2017/02/07/webpack2/" target="_blank" rel="noopener noreferrer">点击链接</a>。</p>
 </blockquote>]]></description>
 </item><item>
     <title>Vuejs的一些总结</title>
@@ -31,8 +31,8 @@
     </author><guid>https://mrzhang123.github.io/posts/2016-vue1/</guid>
     <description><![CDATA[<h2 id="基于vue的简单的单页面应用" class="headerLink">
     <a href="#%e5%9f%ba%e4%ba%8evue%e7%9a%84%e7%ae%80%e5%8d%95%e7%9a%84%e5%8d%95%e9%a1%b5%e9%9d%a2%e5%ba%94%e7%94%a8" class="header-mark"></a>基于Vue的简单的单页面应用</h2><p>在对Vue和webpack有了一定了解后，我们就可以开始利用所了解的东西做一个简单的webapp了，不了解的同学可以看下我的前两篇关于vue和webpack的基本应用：
-<a href="https://segmentfault.com/a/1190000005614864" target="_blank" rel="noopener noreffer">webpack+vue起步</a>
-<a href="https://segmentfault.com/a/1190000005616974" target="_blank" rel="noopener noreffer">利用webpack和vue实现组件化</a></p>]]></description>
+<a href="https://segmentfault.com/a/1190000005614864" target="_blank" rel="noopener noreferrer">webpack+vue起步</a>
+<a href="https://segmentfault.com/a/1190000005616974" target="_blank" rel="noopener noreferrer">利用webpack和vue实现组件化</a></p>]]></description>
 </item><item>
     <title>利用webpack和vue实现组件化</title>
     <link>https://mrzhang123.github.io/posts/2016-webpackvue2/</link>
@@ -40,7 +40,7 @@
         <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2016-webpackvue2/</guid>
     <description><![CDATA[<blockquote>
-<p>上一篇<a href="https://segmentfault.com/a/1190000005614864" target="_blank" rel="noopener noreffer">webpack+vue起步</a>我们实现了用webpack打包vue的最基本用法，这篇我们将利用webpack+vue实现组件化</p>
+<p>上一篇<a href="https://segmentfault.com/a/1190000005614864" target="_blank" rel="noopener noreferrer">webpack+vue起步</a>我们实现了用webpack打包vue的最基本用法，这篇我们将利用webpack+vue实现组件化</p>
 </blockquote>]]></description>
 </item><item>
     <title>webpack与vue起步</title>

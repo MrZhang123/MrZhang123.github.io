@@ -43,7 +43,7 @@ IE6/7下line-height不支持小数</p>]]></description>
     <pubDate>Tue, 26 Apr 2016 22:49:25 &#43;0000</pubDate><author>
         <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2016-filerem/</guid>
-    <description><![CDATA[<p>做移动端的响应方法有很多，但是我喜欢用 CSS3 的新单位 rem，这个单位非常好用（有个比它还好用的单位 vh，不过兼容性太差，不考虑了），根据不同屏幕，设置不同的基准值，从而实现适配各个屏幕尺寸的移动设备。慕课网有一套非常不错的讲关于 rem 的视频，这里推荐给大家<a href="http://www.imooc.com/learn/494" target="_blank" rel="noopener noreffer">http://www.imooc.com/learn/494</a>。
+    <description><![CDATA[<p>做移动端的响应方法有很多，但是我喜欢用 CSS3 的新单位 rem，这个单位非常好用（有个比它还好用的单位 vh，不过兼容性太差，不考虑了），根据不同屏幕，设置不同的基准值，从而实现适配各个屏幕尺寸的移动设备。慕课网有一套非常不错的讲关于 rem 的视频，这里推荐给大家<a href="http://www.imooc.com/learn/494" target="_blank" rel="noopener noreferrer">http://www.imooc.com/learn/494</a>。
 rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实现字体的响应，与 em 不同，rem 根据根元素的 font-size 计算，所以要利用 rem 实现适配各个屏幕的大小，就需要根据不同的屏幕设置根元素不同的 font-size 的值。所以我们需要做下面的一些工作。</p>]]></description>
 </item></channel>
 </rss>

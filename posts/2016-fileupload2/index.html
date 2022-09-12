@@ -175,8 +175,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">xhr</span><span class="o">=</span><span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">xhr</span><span class="o">=</span><span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>由于现在淘宝都不再支持IE6以及7，所以这里不考虑IE7及以下浏览器关于xhr的创建方法。</p>
 <h3 id="open方法" class="headerLink">
@@ -193,9 +193,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">xhr</span><span class="o">=</span><span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span><span class="s1">&#39;example.php&#39;</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">xhr</span><span class="o">=</span><span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span><span class="s1">&#39;example.php&#39;</span><span class="p">,</span><span class="kc">false</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>以上代码会启动一个针对example.php的GET请求。这里需要注意两点：</p>
 <ul>
@@ -234,18 +234,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"> <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-<span class="c1">//必须在open之前指定onreadystatechange才能保证跨浏览器兼容性！！！！
-</span><span class="c1"></span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span><span class="o">=</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span><span class="o">==</span><span class="mi">4</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">((</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&gt;=</span><span class="mi">200</span><span class="o">&amp;&amp;</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&lt;</span><span class="mi">300</span><span class="p">)</span><span class="o">||</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">==</span><span class="mi">304</span><span class="p">){</span>
-            <span class="nx">alert</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
-        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;请求失败&#39;</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
-        <span class="p">}</span>                    
-    <span class="p">}</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"> <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//必须在open之前指定onreadystatechange才能保证跨浏览器兼容性！！！！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span><span class="o">=</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span><span class="o">==</span><span class="mi">4</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">((</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&gt;=</span><span class="mi">200</span><span class="o">&amp;&amp;</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&lt;</span><span class="mi">300</span><span class="p">)</span><span class="o">||</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">==</span><span class="mi">304</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">alert</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;请求失败&#39;</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>                    
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>所以利用以上代码就可以实现文件是上传成功还是失败。</p>
 <h2 id="xmlhttprequest2级的进度事件" class="headerLink">
@@ -274,13 +274,13 @@ XHR2传输数据有一个progress事件，用来返回进度信息，它分成�
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">percentFun</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">lengthComputable</span><span class="p">)</span> <span class="p">{</span>
-        <span class="cm">/*event.total是需要传输的总字节数，event.load是已经传输的字节数，如果event.lengthComputable!=true,则event.total=0*/</span>       
-　　　　 <span class="kd">var</span> <span class="nx">percent</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">/</span> <span class="nx">event</span><span class="p">.</span><span class="nx">total</span><span class="p">;</span>
-　　<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">percentFun</span><span class="p">(</span><span class="nx">event</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">lengthComputable</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/*event.total是需要传输的总字节数，event.load是已经传输的字节数，如果event.lengthComputable!=true,则event.total=0*/</span>       
+</span></span><span class="line"><span class="cl">　　　　 <span class="kd">var</span> <span class="nx">percent</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">/</span> <span class="nx">event</span><span class="p">.</span><span class="nx">total</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">　　<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果需要显示进度，则分别如下：</p>
 <div class="highlight"><div class="chroma">
@@ -291,11 +291,11 @@ XHR2传输数据有一个progress事件，用来返回进度信息，它分成�
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="cm">/*下载的进度*/</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">onprogress</span> <span class="o">=</span> <span class="nx">percentFun</span><span class="p">;</span>
-<span class="cm">/*上传的进度*/</span>
-<span class="nx">xhr</span><span class="p">.</span><span class="nx">upload</span><span class="p">.</span><span class="nx">onprogress</span> <span class="o">=</span> <span class="nx">percentFun</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="cm">/*下载的进度*/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">xhr</span><span class="p">.</span><span class="nx">onprogress</span> <span class="o">=</span> <span class="nx">percentFun</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*上传的进度*/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">xhr</span><span class="p">.</span><span class="nx">upload</span><span class="p">.</span><span class="nx">onprogress</span> <span class="o">=</span> <span class="nx">percentFun</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>基于以上几点，实现了上传进度显示，具体代码如下：</p>
 <div class="highlight"><div class="chroma">
@@ -339,44 +339,44 @@ XHR2传输数据有一个progress事件，用来返回进度信息，它分成�
 </span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">addEvent</span><span class="p">(</span><span class="nx">button</span><span class="p">,</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">filesArray</span><span class="p">.</span><span class="nx">length</span><span class="o">!=</span><span class="mi">0</span><span class="p">){</span>
-        <span class="kd">var</span> <span class="nx">data</span><span class="o">=</span><span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
-        <span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-        <span class="k">while</span><span class="p">(</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">filesLen</span><span class="p">){</span>
-            <span class="nx">data</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="o">+</span><span class="nx">i</span><span class="p">,</span><span class="nx">filesArray</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-            <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
-        <span class="c1">//必须在open之前指定onreadystatechange才能保证跨浏览器兼容性！！！！
-</span><span class="c1"></span>        <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span><span class="o">=</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span><span class="o">==</span><span class="mi">4</span><span class="p">){</span>
-                <span class="k">if</span><span class="p">((</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&gt;=</span><span class="mi">200</span><span class="o">&amp;&amp;</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&lt;</span><span class="mi">300</span><span class="p">)</span><span class="o">||</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">==</span><span class="mi">304</span><span class="p">){</span>
-                    <span class="c1">//console.log(xhr.responseText);
-</span><span class="c1"></span>                <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-                    <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;请求失败&#39;</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
-                <span class="p">}</span>                    
-            <span class="p">}</span>
-        <span class="p">};</span>
-        <span class="nx">xhr</span><span class="p">.</span><span class="nx">upload</span><span class="p">.</span><span class="nx">onprogress</span><span class="o">=</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">e</span><span class="o">=</span><span class="nx">event</span><span class="o">||</span><span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
-            <span class="kd">var</span> <span class="nx">percentComplete</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">((</span><span class="nx">e</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">/</span> <span class="nx">e</span><span class="p">.</span><span class="nx">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">);</span>
-            <span class="kd">var</span> <span class="nx">progressFont</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.progress-font&#39;</span><span class="p">);</span>
-            <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">filesArray</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-                <span class="nx">ThumbnailArray</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">percentComplete</span> <span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-        <span class="cm">/*上传完成后滞空数组，保证下次上传不会重复上传*/</span>
-        <span class="nx">xhr</span><span class="p">.</span><span class="nx">upload</span><span class="p">.</span><span class="nx">onload</span><span class="o">=</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">filesArray</span><span class="o">=</span><span class="p">[];</span>
-            <span class="nx">ThumbnailArray</span><span class="o">=</span><span class="p">[];</span>
-            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;上传完成，数组置空&#39;</span><span class="p">);</span>                
-        <span class="p">}</span>
-        <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span><span class="s1">&#39;uploader.php&#39;</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span> 
-        <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
-    <span class="p">}</span>        
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">addEvent</span><span class="p">(</span><span class="nx">button</span><span class="p">,</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">filesArray</span><span class="p">.</span><span class="nx">length</span><span class="o">!=</span><span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">data</span><span class="o">=</span><span class="k">new</span> <span class="nx">FormData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="p">(</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">filesLen</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">data</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;file&#39;</span><span class="o">+</span><span class="nx">i</span><span class="p">,</span><span class="nx">filesArray</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">i</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//必须在open之前指定onreadystatechange才能保证跨浏览器兼容性！！！！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">xhr</span><span class="p">.</span><span class="nx">onreadystatechange</span><span class="o">=</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">readyState</span><span class="o">==</span><span class="mi">4</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">((</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&gt;=</span><span class="mi">200</span><span class="o">&amp;&amp;</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">&lt;</span><span class="mi">300</span><span class="p">)</span><span class="o">||</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="o">==</span><span class="mi">304</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1">//console.log(xhr.responseText);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;请求失败&#39;</span><span class="o">+</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">status</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>                    
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">};</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">xhr</span><span class="p">.</span><span class="nx">upload</span><span class="p">.</span><span class="nx">onprogress</span><span class="o">=</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">var</span> <span class="nx">e</span><span class="o">=</span><span class="nx">event</span><span class="o">||</span><span class="nb">window</span><span class="p">.</span><span class="nx">event</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">var</span> <span class="nx">percentComplete</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">((</span><span class="nx">e</span><span class="p">.</span><span class="nx">loaded</span> <span class="o">/</span> <span class="nx">e</span><span class="p">.</span><span class="nx">total</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">var</span> <span class="nx">progressFont</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.progress-font&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">filesArray</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">ThumbnailArray</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">innerHTML</span><span class="o">=</span><span class="nx">percentComplete</span> <span class="o">+</span><span class="s1">&#39;%&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/*上传完成后滞空数组，保证下次上传不会重复上传*/</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">xhr</span><span class="p">.</span><span class="nx">upload</span><span class="p">.</span><span class="nx">onload</span><span class="o">=</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">filesArray</span><span class="o">=</span><span class="p">[];</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">ThumbnailArray</span><span class="o">=</span><span class="p">[];</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;上传完成，数组置空&#39;</span><span class="p">);</span>                
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;post&#39;</span><span class="p">,</span><span class="s1">&#39;uploader.php&#39;</span><span class="p">,</span><span class="kc">true</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">        <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>        
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div>
 
@@ -409,7 +409,7 @@ XHR2传输数据有一个progress事件，用来返回进度信息，它分成�
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

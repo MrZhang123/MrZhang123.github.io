@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2019-tmux\/"
-        },"genre": "posts","keywords": "Linux","wordcount":  3376 ,
+        },"genre": "posts","keywords": "Linux","wordcount":  3370 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2019-tmux\/","datePublished": "2019-06-23T14:32:00+00:00","dateModified": "2019-06-23T14:32:00+00:00","publisher": {
             "@type": "Organization",
             "name": "Raymond"},"author": {
@@ -163,7 +163,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3376 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-06-23">2019-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3370 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -202,24 +202,26 @@
             </div><div class="content" id="content"><blockquote>
 <p>记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。</p>
 </blockquote>
-<p>在用tmux之前一直都是用的<a href="https://www.iterm2.com/" target="_blank" rel="noopener noreffer">iterm2</a>（在mac上很好用的终端）原生的新开tab和分屏，其实也还好，界面看起来就像这样：</p>
+<p>在用tmux之前一直都是用的<a href="https://www.iterm2.com/" target="_blank" rel="noopener noreferrer">iterm2</a>（在mac上很好用的终端）原生的新开tab和分屏，其实也还好，界面看起来就像这样：</p>
 <!--item2原生分屏图片-->
-<p><img
-        class="lazyload"
-        data-src="./img/iterm2.png"
-        data-srcset="./img/iterm2.png, ./img/iterm2.png 1.5x, ./img/iterm2.png 2x"
-        data-sizes="auto"
-        alt="./img/iterm2.png"
-        title="item2原生分屏图片"></p>
+<p><a class="lightgallery" href="./img/iterm2.png" title="item2原生分屏图片" data-thumbnail="./img/iterm2.png">
+        <img
+            class="lazyload"
+            data-src="./img/iterm2.png"
+            data-srcset="./img/iterm2.png, ./img/iterm2.png 1.5x, ./img/iterm2.png 2x"
+            data-sizes="auto"
+            alt="./img/iterm2.png">
+    </a></p>
 <p>但是分屏很多之后，可以看到很多状态栏，并不是很美观，对比tmux的分屏，看起来就要hack很多，tmux的分屏界面如下：</p>
 <!--tmux分屏图片-->
-<p><img
-        class="lazyload"
-        data-src="./img/tmux.png"
-        data-srcset="./img/tmux.png, ./img/tmux.png 1.5x, ./img/tmux.png 2x"
-        data-sizes="auto"
-        alt="./img/tmux.png"
-        title="tmux分屏图片"></p>
+<p><a class="lightgallery" href="./img/tmux.png" title="tmux分屏图片" data-thumbnail="./img/tmux.png">
+        <img
+            class="lazyload"
+            data-src="./img/tmux.png"
+            data-srcset="./img/tmux.png, ./img/tmux.png 1.5x, ./img/tmux.png 2x"
+            data-sizes="auto"
+            alt="./img/tmux.png">
+    </a></p>
 <p>正是基于这个原因，开始学着始使用tmux。</p>
 <h3 id="安装" class="headerLink">
     <a href="#%e5%ae%89%e8%a3%85" class="header-mark"></a>安装</h3><blockquote>
@@ -235,12 +237,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># mac安装</span>
-brew install tmux
-
-<span class="c1"># linux 安装</span>
-sudo apt-get install tmux
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># mac安装</span>
+</span></span><span class="line"><span class="cl">brew install tmux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># linux 安装</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install tmux
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>开始学习tmux之前首先要明确几个概念：</p>
 <ul>
@@ -250,13 +252,14 @@ sudo apt-get install tmux
 </ul>
 <p>简单来说就是：session包含window，window包含pane</p>
 <!--tmux名词标注-->
-<p><img
-        class="lazyload"
-        data-src="./img/tmux-name.png"
-        data-srcset="./img/tmux-name.png, ./img/tmux-name.png 1.5x, ./img/tmux-name.png 2x"
-        data-sizes="auto"
-        alt="./img/tmux-name.png"
-        title="tmux名词标注"></p>
+<p><a class="lightgallery" href="./img/tmux-name.png" title="tmux名词标注" data-thumbnail="./img/tmux-name.png">
+        <img
+            class="lazyload"
+            data-src="./img/tmux-name.png"
+            data-srcset="./img/tmux-name.png, ./img/tmux-name.png 1.5x, ./img/tmux-name.png 2x"
+            data-sizes="auto"
+            alt="./img/tmux-name.png">
+    </a></p>
 <h3 id="session" class="headerLink">
     <a href="#session" class="header-mark"></a>session</h3><h4 id="新建" class="headerLink">
     <a href="#%e6%96%b0%e5%bb%ba" class="header-mark"></a>新建</h4><p>安装完成后，在终端直接输入<code>tmux</code>即可进入tmux。进入之后可以看到session的名字是0，这是因为我们直接输入<code>tmux</code>会创建一个无名的会话，如果想要新建session的时候给session命名，可以使用以下命令：</p>
@@ -265,8 +268,8 @@ sudo apt-get install tmux
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">tmux new -s your-session-name
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">tmux new -s your-session-name
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="断开" class="headerLink">
     <a href="#%e6%96%ad%e5%bc%80" class="header-mark"></a>断开</h4><p>如果想要断开当前session可以使用</p>
@@ -275,8 +278,8 @@ sudo apt-get install tmux
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">tmux detach <span class="c1"># 断开当前会话</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">tmux detach <span class="c1"># 断开当前会话</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>或者使用快捷键<code>[prefix]+d</code>，其中<code>prefx</code>默认为<code>ctrl+b</code></p>
 <h4 id="恢复" class="headerLink">
@@ -289,11 +292,11 @@ sudo apt-get install tmux
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">tmux attach-session -t your-session-name
-
-<span class="c1"># 可以简写</span>
-tmux a -t your-session-name
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">tmux attach-session -t your-session-name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以简写</span>
+</span></span><span class="line"><span class="cl">tmux a -t your-session-name
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中<code>session-name</code>是可选的，如果不输入，默认进入第一个会话。</p>
 <h4 id="关闭" class="headerLink">
@@ -312,11 +315,11 @@ tmux a -t your-session-name
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 关闭session</span>
-tmux kill-session -t your-session-name
-<span class="c1"># 关闭所有</span>
-tmux kill-server
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 关闭session</span>
+</span></span><span class="line"><span class="cl">tmux kill-session -t your-session-name
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭所有</span>
+</span></span><span class="line"><span class="cl">tmux kill-server
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="查看" class="headerLink">
     <a href="#%e6%9f%a5%e7%9c%8b" class="header-mark"></a>查看</h4><div class="highlight"><div class="chroma">
@@ -326,20 +329,21 @@ tmux kill-server
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">tmux list-session
-<span class="c1"># 简写</span>
-tmux ls
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">tmux list-session
+</span></span><span class="line"><span class="cl"><span class="c1"># 简写</span>
+</span></span><span class="line"><span class="cl">tmux ls
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>或者使用快捷键<code>prefix+s</code>查看所有session，<code>prefix+w</code>查看所有window。</p>
 <!--tmux展示所有session和window的图-->
-<p><img
-        class="lazyload"
-        data-src="./img/tmux-showall.png"
-        data-srcset="./img/tmux-showall.png, ./img/tmux-showall.png 1.5x, ./img/tmux-showall.png 2x"
-        data-sizes="auto"
-        alt="./img/tmux-showall.png"
-        title="tmux展示所有session和window的图"></p>
+<p><a class="lightgallery" href="./img/tmux-showall.png" title="tmux展示所有session和window的图" data-thumbnail="./img/tmux-showall.png">
+        <img
+            class="lazyload"
+            data-src="./img/tmux-showall.png"
+            data-srcset="./img/tmux-showall.png, ./img/tmux-showall.png 1.5x, ./img/tmux-showall.png 2x"
+            data-sizes="auto"
+            alt="./img/tmux-showall.png">
+    </a></p>
 <h3 id="tmux基础配置" class="headerLink">
     <a href="#tmux%e5%9f%ba%e7%a1%80%e9%85%8d%e7%bd%ae" class="header-mark"></a>tmux基础配置</h3><p>tmux的配置在<code>~/.tmux.conf</code>文件中，如果没有该文件，可以先新建配置文件。</p>
 <h4 id="配置tmux前缀" class="headerLink">
@@ -354,12 +358,12 @@ tmux ls
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">set</span> -g prefix C-a
-
-<span class="c1"># 解绑原有的prefix</span>
-unbind C-b
-<span class="nb">bind</span> C-a send-prefix
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -g prefix C-a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解绑原有的prefix</span>
+</span></span><span class="line"><span class="cl">unbind C-b
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> C-a send-prefix
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>配置完成后，需要重启tmux，或者按下<code>ctrl+b</code>，然后输入<code>:</code>进入命令模式，输入：</p>
 <div class="highlight"><div class="chroma">
@@ -367,8 +371,8 @@ unbind C-b
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">source-file ~/.tmux.conf
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">source-file ~/.tmux.conf
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>或者我们给让配置生效添加快捷键：</p>
 <div class="highlight"><div class="chroma">
@@ -376,8 +380,8 @@ unbind C-b
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">bind</span> r source-file <span class="nv">$HOME</span>/.tmux.conf <span class="se">\;</span> display-message <span class="s1">&#39;Config reloaded&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> r source-file <span class="nv">$HOME</span>/.tmux.conf <span class="se">\;</span> display-message <span class="s1">&#39;Config reloaded&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样，直接输入<code>prefix+r</code>就可以让配置生效。</p>
 <h4 id="分屏" class="headerLink">
@@ -388,9 +392,9 @@ unbind C-b
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">bind</span> C-h splitw -v -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
-<span class="nb">bind</span> C-v splitw -h -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> C-h splitw -v -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> C-v splitw -h -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里的<code>splitw</code>其实是<code>split-window</code>的缩写，<code>-c '#{pane_current_path}'</code>表示在打开新pane的时候，默认进入当前目录。</p>
 <h4 id="切换pane" class="headerLink">
@@ -403,11 +407,11 @@ unbind C-b
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">bind</span> h <span class="k">select</span>-pane -L <span class="c1"># up</span>
-<span class="nb">bind</span> j <span class="k">select</span>-pane -D <span class="c1"># down</span>
-<span class="nb">bind</span> k <span class="k">select</span>-pane -U <span class="c1"># left</span>
-<span class="nb">bind</span> l <span class="k">select</span>-pane -R <span class="c1"># right</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> h <span class="k">select</span>-pane -L <span class="c1"># up</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> j <span class="k">select</span>-pane -D <span class="c1"># down</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> k <span class="k">select</span>-pane -U <span class="c1"># left</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> l <span class="k">select</span>-pane -R <span class="c1"># right</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="开启鼠标支持" class="headerLink">
     <a href="#%e5%bc%80%e5%90%af%e9%bc%a0%e6%a0%87%e6%94%af%e6%8c%81" class="header-mark"></a>开启鼠标支持</h4><p>在刚上手tmux的时候，总觉得各种命令很麻烦，而且不好记，如果支持鼠标就更好了，其实想要支持鼠标，只需要在配置文件中开启即可：</p>
@@ -416,8 +420,8 @@ unbind C-b
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">set-option -g mouse on
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">set-option -g mouse on
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>开启鼠标之后，切换pane可以直接点击激活，调整分屏大小可以直接拖拽实现。</p>
 <p><strong>当然了，既然使用了tmux，目的就不只是界面好看而已，而是要提高效率，所以尽量少用鼠标😏</strong></p>
@@ -431,11 +435,11 @@ unbind C-b
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">bind</span> H resize-pane -L <span class="m">10</span> <span class="c1"># 向左扩展10</span>
-<span class="nb">bind</span> L resize-pane -R <span class="m">10</span> <span class="c1"># 向右扩展10</span>
-<span class="nb">bind</span> K resize-pane -U <span class="m">5</span>  <span class="c1"># 向上扩展5</span>
-<span class="nb">bind</span> J resize-pane -D <span class="m">5</span>  <span class="c1"># 向下扩展5</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> H resize-pane -L <span class="m">10</span> <span class="c1"># 向左扩展10</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> L resize-pane -R <span class="m">10</span> <span class="c1"># 向右扩展10</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> K resize-pane -U <span class="m">5</span>  <span class="c1"># 向上扩展5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> J resize-pane -D <span class="m">5</span>  <span class="c1"># 向下扩展5</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样通过<code>prefix+HJKL</code>实现pane的扩展</p>
 <h3 id="附" class="headerLink">
@@ -855,10 +859,10 @@ unbind C-b
 </table>
 <h3 id="参考" class="headerLink">
     <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h3><ul>
-<li><a href="http://louiszhai.github.io/2017/09/30/tmux/#Tmux%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4" target="_blank" rel="noopener noreffer">Tmux使用手册</a></li>
-<li><a href="https://cnbin.github.io/blog/2015/06/20/iterm2-kuai-jie-jian-da-quan/" target="_blank" rel="noopener noreffer">iTerm2 快捷键大全</a></li>
-<li><a href="https://gist.github.com/MohamedAlaa/2961058" target="_blank" rel="noopener noreffer">tmux shortcuts &amp; cheatsheet</a></li>
-<li><a href="https://gist.github.com/andreyvit/2921703" target="_blank" rel="noopener noreffer">tmux cheat sheet</a></li>
+<li><a href="http://louiszhai.github.io/2017/09/30/tmux/#Tmux%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4" target="_blank" rel="noopener noreferrer">Tmux使用手册</a></li>
+<li><a href="https://cnbin.github.io/blog/2015/06/20/iterm2-kuai-jie-jian-da-quan/" target="_blank" rel="noopener noreferrer">iTerm2 快捷键大全</a></li>
+<li><a href="https://gist.github.com/MohamedAlaa/2961058" target="_blank" rel="noopener noreferrer">tmux shortcuts &amp; cheatsheet</a></li>
+<li><a href="https://gist.github.com/andreyvit/2921703" target="_blank" rel="noopener noreferrer">tmux cheat sheet</a></li>
 </ul></div>
 
         <div class="post-footer" id="post-footer">
@@ -890,7 +894,7 @@ unbind C-b
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

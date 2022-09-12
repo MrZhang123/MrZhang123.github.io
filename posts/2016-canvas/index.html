@@ -180,14 +180,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">convertImageToCanvas</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;canvas&#34;</span><span class="p">);</span>
-	<span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
-	<span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
-	<span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&#34;2d&#34;</span><span class="p">).</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-	<span class="k">return</span> <span class="nx">canvas</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">convertImageToCanvas</span><span class="p">(</span><span class="nx">image</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">canvas</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&#34;canvas&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">image</span><span class="p">.</span><span class="nx">height</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">&#34;2d&#34;</span><span class="p">).</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">canvas</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="用javascript将画布保持成图片格式" class="headerLink">
     <a href="#%e7%94%a8javascript%e5%b0%86%e7%94%bb%e5%b8%83%e4%bf%9d%e6%8c%81%e6%88%90%e5%9b%be%e7%89%87%e6%a0%bc%e5%bc%8f" class="header-mark"></a>用JavaScript将画布保持成图片格式</h4><div class="highlight"><div class="chroma">
@@ -200,13 +200,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">convertCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
-    <span class="c1">//这里的image后面可以写png，jpeg，但是不能写jpg，写了不会转换的
-</span><span class="c1"></span>	<span class="nx">image</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">toDataURL</span><span class="p">(</span><span class="s2">&#34;image/jpeg&#34;</span><span class="p">);</span>
-	<span class="k">return</span> <span class="nx">image</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">convertCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//这里的image后面可以写png，jpeg，但是不能写jpg，写了不会转换的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">image</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">toDataURL</span><span class="p">(</span><span class="s2">&#34;image/jpeg&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">image</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="调用函数实现转换" class="headerLink">
     <a href="#%e8%b0%83%e7%94%a8%e5%87%bd%e6%95%b0%e5%ae%9e%e7%8e%b0%e8%bd%ac%e6%8d%a2" class="header-mark"></a>调用函数实现转换</h4><p>函数convertImageToCanvas需要传入一个image对象，这个对象需要我们手动去获取，例如，可以在html页面中写入img标签并引入图片，然后利用js获取img对象，将img对象传入该函数，即可获得返回的canvas对象，再将该canvas对象传入函数convertCanvasToImage即可获得返回的image，<font color="red">但是，这里获得的是base64的编码的图片，本身绘制在canvas画布上的图片右键保存还是png图，所以，要想获得转换后的图片，可以利用a标签在href中写入base64编码获得，点击a标签可以跳转到转换后的图片。</font>关于如将base64编码的图片解码成图片，因为今天下午事儿多，没顾上研究，有时间，研究一下。</p>
@@ -222,14 +222,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">img</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">body</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">canvas</span><span class="o">=</span><span class="nx">convertImageToCanvas</span><span class="p">(</span><span class="nx">img</span><span class="p">);</span>
-<span class="nx">convertCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">link</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
-<span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">link</span><span class="p">);</span>
-<span class="nx">link</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">(</span><span class="s1">&#39;跳转图片&#39;</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">img</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;img&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">body</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">canvas</span><span class="o">=</span><span class="nx">convertImageToCanvas</span><span class="p">(</span><span class="nx">img</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">convertCanvasToImage</span><span class="p">(</span><span class="nx">canvas</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">link</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">link</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">link</span><span class="p">.</span><span class="nx">innerHTML</span><span class="p">(</span><span class="s1">&#39;跳转图片&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>以上代码可以在点击link链接后得到转换后的图片，今天就研究到这些，以后有时间再继续研究完善。</p></div>
 
@@ -262,7 +262,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

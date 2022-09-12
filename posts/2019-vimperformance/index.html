@@ -178,13 +178,14 @@ vim --startuptime vim.log可以生成vim启动的log
 <li>使用<code>vim-plug</code>插件管理工具，给插件配置<code>for</code> or <code>on</code>可以实现插件懒加载</li>
 <li>设置<code>foldmethod=syntax</code>会导致vim插入模式下卡顿</li>
 </ul>
-<p><img
-        class="lazyload"
-        data-src="./img/vim.jpg"
-        data-srcset="./img/vim.jpg, ./img/vim.jpg 1.5x, ./img/vim.jpg 2x"
-        data-sizes="auto"
-        alt="./img/vim.jpg"
-        title="vim"></p>
+<p><a class="lightgallery" href="./img/vim.jpg" title="vim" data-thumbnail="./img/vim.jpg">
+        <img
+            class="lazyload"
+            data-src="./img/vim.jpg"
+            data-srcset="./img/vim.jpg, ./img/vim.jpg 1.5x, ./img/vim.jpg 2x"
+            data-sizes="auto"
+            alt="./img/vim.jpg">
+    </a></p>
 <blockquote>
 <p>用vim已经一年了，之前虽然知道vim会有性能问题，但是之前从来没遇到过，也许也遇到过？貌似把问题推给电脑了，因为印象中，电脑用一天，内存占用会达到80%以上，那时候，vim也会卡，所以一直是想办法把内存降下来。直到最近&hellip;</p>
 </blockquote>
@@ -199,10 +200,10 @@ vim --startuptime vim.log可以生成vim启动的log
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">Plug <span class="s1">&#39;mattn/emmet-vim&#39;</span>, <span class="o">{</span> <span class="s1">&#39;for&#39;</span>: <span class="o">[</span><span class="s1">&#39;html&#39;</span>, <span class="s1">&#39;javascript.jsx&#39;</span><span class="o">]</span> <span class="o">}</span>
-Plug <span class="s1">&#39;mxw/vim-jsx&#39;</span>, <span class="o">{</span> <span class="s1">&#39;for&#39;</span>: <span class="s1">&#39;javascript.jsx&#39;</span> <span class="o">}</span>
-Plug <span class="s1">&#39;scrooloose/nerdtree&#39;</span>, <span class="o">{</span> <span class="s1">&#39;on&#39;</span>:  <span class="s1">&#39;NERDTreeToggle&#39;</span> <span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">Plug <span class="s1">&#39;mattn/emmet-vim&#39;</span>, <span class="o">{</span> <span class="s1">&#39;for&#39;</span>: <span class="o">[</span><span class="s1">&#39;html&#39;</span>, <span class="s1">&#39;javascript.jsx&#39;</span><span class="o">]</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">Plug <span class="s1">&#39;mxw/vim-jsx&#39;</span>, <span class="o">{</span> <span class="s1">&#39;for&#39;</span>: <span class="s1">&#39;javascript.jsx&#39;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">Plug <span class="s1">&#39;scrooloose/nerdtree&#39;</span>, <span class="o">{</span> <span class="s1">&#39;on&#39;</span>:  <span class="s1">&#39;NERDTreeToggle&#39;</span> <span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>on</code>表示在某个条件下加载，例如上面的配置表示在输入命令<code>NERDTreeToggle</code>的时候加载<code>nerdtree</code>插件，<code>for</code>表示该插件针对某一类文件加载，例如<code>vim-jsx</code>插件只有在文件类型为<code>javascript.jsx</code>的时候加载。</p>
 <p>这样就可以让vim在启动的时候，不加载不必要的插件。</p>
@@ -215,16 +216,16 @@ Plug <span class="s1">&#39;scrooloose/nerdtree&#39;</span>, <span class="o">{</s
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="c1"># 启动vim并生成vim启动时候的日志</span>
-$ vim --startuptime vim.log
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 启动vim并生成vim启动时候的日志</span>
+</span></span><span class="line"><span class="cl">$ vim --startuptime vim.log
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样就可以拿到具体vim启动时候的各个步骤的启动时间，但是查看了日志并没看看出明显的问题🤔，所以开始尝试第二种方法，逐个注销vim的插件，看哪个插件注销后，卡顿会消失。</p>
-<p>发现注释掉<code>vim-javascript</code>后，输入变得流畅，所以可以确定是这个插件导致的问题，但是这个插件是用来支持js语法的，不应该出现这么严重的性能问题啊，去GitHub vim-javascript 的 issues中搜索关于<code>performance</code>的帖子，最终找到一篇关于打开大的js文件严重卡顿的原因：<a href="https://github.com/pangloss/vim-javascript/issues/140" target="_blank" rel="noopener noreffer">Very slow performance in large Js files</a>，在帖子中插件的作者回复到，<strong>出现卡顿的原因是设置了<code>foldmethod=syntax</code></strong>（该设置项本来是让vim基于语法进行折叠），作者强调给vim设置该选项本身就会导致插入时候速度变慢，具体原因以及解决方法（文中的解决方案尝试了，但是没有效果😅）可以查看：<a href="https://vim.fandom.com/wiki/Keep_folds_closed_while_inserting_text" target="_blank" rel="noopener noreffer">Keep folds closed while inserting text</a>。</p>
+<p>发现注释掉<code>vim-javascript</code>后，输入变得流畅，所以可以确定是这个插件导致的问题，但是这个插件是用来支持js语法的，不应该出现这么严重的性能问题啊，去GitHub vim-javascript 的 issues中搜索关于<code>performance</code>的帖子，最终找到一篇关于打开大的js文件严重卡顿的原因：<a href="https://github.com/pangloss/vim-javascript/issues/140" target="_blank" rel="noopener noreferrer">Very slow performance in large Js files</a>，在帖子中插件的作者回复到，<strong>出现卡顿的原因是设置了<code>foldmethod=syntax</code></strong>（该设置项本来是让vim基于语法进行折叠），作者强调给vim设置该选项本身就会导致插入时候速度变慢，具体原因以及解决方法（文中的解决方案尝试了，但是没有效果😅）可以查看：<a href="https://vim.fandom.com/wiki/Keep_folds_closed_while_inserting_text" target="_blank" rel="noopener noreferrer">Keep folds closed while inserting text</a>。</p>
 <p><strong>解决方案：</strong></p>
 <ol>
 <li>可以给foldmethod设置其他选项（manual，indent，marker）</li>
-<li>直接使用vim的一个插件——<a href="https://github.com/Konfekt/FastFold" target="_blank" rel="noopener noreffer">FastFold</a>实现代码折叠</li>
+<li>直接使用vim的一个插件——<a href="https://github.com/Konfekt/FastFold" target="_blank" rel="noopener noreferrer">FastFold</a>实现代码折叠</li>
 <li>去掉代码折叠设置</li>
 </ol>
 <p>总的来说就是不要在插入模式下使用<code>foldmethod=syntax</code>。</p>
@@ -259,7 +260,7 @@ $ vim --startuptime vim.log
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

@@ -178,9 +178,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">xxState</span><span class="p">})</span>
-<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">xxState</span><span class="p">){</span> <span class="p">...</span> <span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">xxState</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">xxState</span><span class="p">){</span> <span class="p">...</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>当执行时候发现，<code>this.state.xxState</code>并没有被改变，原因在于<code>setState</code>是异步的，而js执行代码的顺序是<code>同步 =&gt; 异步 =&gt; 回调</code>，所以会先执行if的语句，如果想要在设置完<code>state</code>之后再执行后面的语句，代码如下：</p>
 <div class="highlight"><div class="chroma">
@@ -192,23 +192,24 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">xxState</span><span class="p">},()=&gt;{</span>
-  <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">xxState</span><span class="p">){</span>
-    <span class="p">...</span>
-  <span class="p">}</span>
-<span class="p">})</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span><span class="nx">xxState</span><span class="p">},()=&gt;{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">xxState</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="对redux中action变量命名的理解" class="headerLink">
     <a href="#%e5%af%b9redux%e4%b8%adaction%e5%8f%98%e9%87%8f%e5%91%bd%e5%90%8d%e7%9a%84%e7%90%86%e8%a7%a3" class="header-mark"></a>对redux中action变量命名的理解</h2><p>在redux中有<code>action</code>，<code>reducer</code>和<code>store</code>，我们在写的时候分别写在三个文件夹中，每个模块对应一个<code>action</code>，<code>reducer</code>，但是最终在运行应用的时候会组和在一起，将所有的<code>action</code>合并成一个文件，通过action去找到对应模块的<code>reducer</code>，从而找到正确的方法。</p>
 <p>如果把redux比做一本书的话，<code>action</code>是一本书的目录，而<code>reducer</code>则相当于书的每一章的内容，书的目录是不能重复的，否则会导致在寻找内容的时候出现找到两处对应的内容，这在redux中是不允许的。如下图所示：</p>
-<p><img
-        class="lazyload"
-        data-src="./react_redux.jpg"
-        data-srcset="./react_redux.jpg, ./react_redux.jpg 1.5x, ./react_redux.jpg 2x"
-        data-sizes="auto"
-        alt="./react_redux.jpg"
-        title="react_redux"></p>
+<p><a class="lightgallery" href="./react_redux.jpg" title="react_redux" data-thumbnail="./react_redux.jpg">
+        <img
+            class="lazyload"
+            data-src="./react_redux.jpg"
+            data-srcset="./react_redux.jpg, ./react_redux.jpg 1.5x, ./react_redux.jpg 2x"
+            data-sizes="auto"
+            alt="./react_redux.jpg">
+    </a></p>
 <p>所以<span style="color:red">action中的常量名在整个项目中是不能重复的</span>，否则会在执行当前模块的reducer时候同时执行其他模块的<code>reducer</code>，导致数据的混乱。</p>
 <p>##使用react router进行页面传值</p>
 <p>首先说明一下，router的跳页方式有两种，一种是直接写<code>Link</code>，另一种是使用<code>hashHistory.push</code>：</p>
@@ -223,14 +224,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span><span class="nx">Route</span><span class="p">,</span><span class="nx">hashHistory</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router&#39;</span>
-<span class="o">&lt;</span><span class="nx">Link</span> <span class="nx">to</span><span class="o">=</span><span class="s2">&#34;/a/b&#34;</span><span class="o">&gt;</span><span class="nx">链接</span><span class="o">&lt;</span><span class="err">/Link&gt;</span>
-<span class="c1">//or
-</span><span class="c1"></span><span class="nx">clickFun</span><span class="p">(){</span>
-  <span class="nx">hashHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;/a/b&#34;</span><span class="p">)</span>
-<span class="p">}</span>
-<span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">clickFun</span><span class="p">()}</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span><span class="nx">Route</span><span class="p">,</span><span class="nx">hashHistory</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">Link</span> <span class="nx">to</span><span class="o">=</span><span class="s2">&#34;/a/b&#34;</span><span class="o">&gt;</span><span class="nx">链接</span><span class="o">&lt;</span><span class="err">/Link&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//or
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">clickFun</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">hashHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&#34;/a/b&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">div</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">clickFun</span><span class="p">()}</span><span class="o">&gt;&lt;</span><span class="err">/div&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>有时候需要在跳页的时候给下一个页面传递数据，使用react router有三种方式可以实现该需求：</p>
 <h3 id="propsparams" class="headerLink">
@@ -258,26 +259,26 @@
 </span><span class="lnt">19
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span><span class="nx">Route</span><span class="p">,</span><span class="nx">hashHistory</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router&#39;</span>
-<span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="o">&lt;</span><span class="nx">Router</span> <span class="nx">history</span><span class="o">=</span><span class="p">{</span><span class="nx">hashHistory</span><span class="p">}</span><span class="o">&gt;</span>
-            <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">&#39;/a/:params&#39;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="err">/Route&gt;</span>
-        <span class="o">&lt;</span><span class="err">/Router&gt;</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="c1">//取值
-</span><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">UserPage</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
-    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
-        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="nx">render</span><span class="p">(){</span>
-        <span class="k">return</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">name</span><span class="o">&lt;</span><span class="err">/div&gt;)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span><span class="nx">Route</span><span class="p">,</span><span class="nx">hashHistory</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="nx">Router</span> <span class="nx">history</span><span class="o">=</span><span class="p">{</span><span class="nx">hashHistory</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s1">&#39;/a/:params&#39;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">UserPage</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="err">/Route&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="err">/Router&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//取值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">UserPage</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">render</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">name</span><span class="o">&lt;</span><span class="err">/div&gt;)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面的方法可以传递一个或多个值，但是每个值的类型都是字符串，没法传递一个对象,如果传递的话可以将json对象转换为字符串，然后传递过去，传递过去之后再将json字符串转换为对象将数据取出来。</p>
 <h3 id="query" class="headerLink">
@@ -296,17 +297,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">b</span><span class="o">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="nx">c</span><span class="o">:</span><span class="mi">36</span><span class="p">};</span>
-<span class="kd">let</span> <span class="nx">path</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">pathname</span><span class="o">:</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span>
-  <span class="nx">query</span><span class="o">:</span><span class="nx">data</span><span class="p">,</span>
-<span class="p">}</span>
-<span class="o">&lt;</span><span class="nx">Link</span> <span class="nx">to</span><span class="o">=</span><span class="p">{</span><span class="nx">path</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">跳转</span><span class="o">&lt;</span><span class="err">/Link&gt;</span>
-<span class="c1">//or
-</span><span class="c1"></span><span class="nx">hashHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
-<span class="c1">//取值
-</span><span class="c1"></span><span class="kr">const</span> <span class="p">{</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">query</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">b</span><span class="o">:</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="nx">c</span><span class="o">:</span><span class="mi">36</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">path</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">pathname</span><span class="o">:</span><span class="s1">&#39;/user&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">query</span><span class="o">:</span><span class="nx">data</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">Link</span> <span class="nx">to</span><span class="o">=</span><span class="p">{</span><span class="nx">path</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">跳转</span><span class="o">&lt;</span><span class="err">/Link&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//or
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">hashHistory</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//取值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="p">{</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">query</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="state" class="headerLink">
     <a href="#state" class="header-mark"></a>state</h3><p><code>state</code>传递数据方式类似于<code>post</code>，使用方式与<code>query</code>类似，取值的时候使用<code>this.props.location.state</code></p>
@@ -333,24 +334,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">initState</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">ajaxState</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
-  <span class="nx">orderData</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">current_page</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="nx">per_page_count</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="nx">total_count</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="nx">total_page</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="nx">data_list</span><span class="o">:</span> <span class="p">[],</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="kr">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initState</span> <span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="p">{</span><span class="nx">type</span> <span class="p">,</span> <span class="nx">ajaxState</span> <span class="p">,</span> <span class="nx">orderData</span> <span class="o">=</span> <span class="p">{}}</span> <span class="o">=</span> <span class="nx">action</span><span class="p">;</span>
-  <span class="k">switch</span><span class="p">(</span><span class="nx">type</span><span class="p">){</span>
-    <span class="k">case</span> <span class="nx">ORDERDATA</span><span class="o">:</span>
-      <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">state</span><span class="p">,{</span><span class="nx">orderData</span><span class="p">})</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">initState</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ajaxState</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">orderData</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">current_page</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">per_page_count</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">total_count</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">total_page</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">data_list</span><span class="o">:</span> <span class="p">[],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initState</span> <span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span><span class="nx">type</span> <span class="p">,</span> <span class="nx">ajaxState</span> <span class="p">,</span> <span class="nx">orderData</span> <span class="o">=</span> <span class="p">{}}</span> <span class="o">=</span> <span class="nx">action</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">switch</span><span class="p">(</span><span class="nx">type</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nx">ORDERDATA</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">state</span><span class="p">,{</span><span class="nx">orderData</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里<code>initState</code>相当于一个默认值，拿到新的state时候就将原有的覆盖掉。</p>
 <p>但是在做项目时候遇到一个问题，如果传递部分数据（比如<code>orderData</code>只传递传递了<code>current_page</code>和<code>per_page_count</code>），没有传递的希望保持默认，这样使用<code>Object.assign</code>合并会导致合并的结果中未传递的部分直接丢失。</p>
@@ -381,29 +382,29 @@
 </span><span class="lnt">22
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">a</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
-  <span class="nx">b</span><span class="o">:</span><span class="mi">2</span>
-<span class="p">}</span>
-<span class="kr">const</span> <span class="nx">init</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">name</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-  <span class="nx">obj</span><span class="o">:</span><span class="p">{</span>
-    <span class="nx">a</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="nx">b</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="nx">c</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-<span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">init</span><span class="p">,</span><span class="nx">obj</span><span class="p">)</span> 
-<span class="cm">/*结果
-</span><span class="cm">[object Object] {
-</span><span class="cm">  obj: [object Object] {
-</span><span class="cm">    a: 1,
-</span><span class="cm">    b: 2,
-</span><span class="cm">  },
-</span><span class="cm">  name: &#34;&#34;
-</span><span class="cm">}
-</span><span class="cm">*/</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">b</span><span class="o">:</span><span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">init</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">name</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">obj</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">a</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">b</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">c</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">init</span><span class="p">,</span><span class="nx">obj</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="cm">/*结果
+</span></span></span><span class="line"><span class="cl"><span class="cm">[object Object] {
+</span></span></span><span class="line"><span class="cl"><span class="cm">  obj: [object Object] {
+</span></span></span><span class="line"><span class="cl"><span class="cm">    a: 1,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    b: 2,
+</span></span></span><span class="line"><span class="cl"><span class="cm">  },
+</span></span></span><span class="line"><span class="cl"><span class="cm">  name: &#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>所以，如果要让不传递的数据使用默认值，就需要在<code>reducer</code>开始拿到传递到的数据时候，将没有传递过来的数据加到传过来的数据上，就需要使用两次<code>Object.assign</code>，分别对子对象和对象进行</p>
 <div class="highlight"><div class="chroma">
@@ -419,16 +420,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initState</span> <span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kr">const</span> <span class="p">{</span><span class="nx">type</span> <span class="p">,</span> <span class="nx">ajaxState</span> <span class="p">,</span> <span class="nx">orderData</span> <span class="o">=</span> <span class="p">{}}</span> <span class="o">=</span> <span class="nx">action</span><span class="p">;</span>
-  <span class="c1">//将没有传递过来的数据的默认值加到传过来的state中
-</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">defaultOrderData</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">initState</span><span class="p">.</span><span class="nx">orderData</span><span class="p">,{</span><span class="nx">orderData</span><span class="p">})</span>
-  <span class="k">switch</span><span class="p">(</span><span class="nx">type</span><span class="p">){</span>
-    <span class="k">case</span> <span class="nx">ORDERDATA</span><span class="o">:</span>
-      <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">state</span><span class="p">,{</span><span class="nx">orderData</span><span class="o">:</span><span class="nx">defaultOrderData</span><span class="p">})</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initState</span> <span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span><span class="nx">type</span> <span class="p">,</span> <span class="nx">ajaxState</span> <span class="p">,</span> <span class="nx">orderData</span> <span class="o">=</span> <span class="p">{}}</span> <span class="o">=</span> <span class="nx">action</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//将没有传递过来的数据的默认值加到传过来的state中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">defaultOrderData</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">initState</span><span class="p">.</span><span class="nx">orderData</span><span class="p">,{</span><span class="nx">orderData</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="k">switch</span><span class="p">(</span><span class="nx">type</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">case</span> <span class="nx">ORDERDATA</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span><span class="nx">state</span><span class="p">,{</span><span class="nx">orderData</span><span class="o">:</span><span class="nx">defaultOrderData</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样就可以实现传递部分数据，不传递的使用默认值</p>
 <p>从该例子中可以看出，在reducer中，尽量不要使用嵌套对象，因为每嵌套一层，就需要<code>Object.assign</code>一次</p>
@@ -463,7 +464,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

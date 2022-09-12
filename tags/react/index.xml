@@ -9,7 +9,7 @@
     <pubDate>Sun, 07 Jul 2019 15:43:00 &#43;0000</pubDate><author>
         <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2019-componentstips/</guid>
-    <description><![CDATA[<p>原文链接：<a href="https://dev.to/selbekk/the-10-component-commandments-2a7f" target="_blank" rel="noopener noreffer">The 10 Component Commandments</a></p>
+    <description><![CDATA[<p>原文链接：<a href="https://dev.to/selbekk/the-10-component-commandments-2a7f" target="_blank" rel="noopener noreferrer">The 10 Component Commandments</a></p>
 <p>创建被很多人用的组件是很难的。如果那些<code>props</code>作为公共API，你需要非常谨慎的考虑哪些<code>props</code>是可以接收的。</p>
 <p>这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。</p>]]></description>
 </item><item>
@@ -37,7 +37,7 @@
         <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2018-reactlifecycle/</guid>
     <description><![CDATA[<blockquote>
-<p>原文链接：<a href="https://www.andreasreiterer.at/reactjs-lifecycle-methods/" target="_blank" rel="noopener noreffer">How to use React Lifecycle Methods</a></p>
+<p>原文链接：<a href="https://www.andreasreiterer.at/reactjs-lifecycle-methods/" target="_blank" rel="noopener noreferrer">How to use React Lifecycle Methods</a></p>
 </blockquote>]]></description>
 </item><item>
     <title>从零开始搭建React应用（二）——React应用架构</title>
@@ -45,14 +45,14 @@
     <pubDate>Wed, 18 Jul 2018 10:28:51 &#43;0000</pubDate><author>
         <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2018-reactproject2/</guid>
-    <description><![CDATA[<p>上一篇文章——<a href="https://juejin.im/post/5af6857651882542682e4843" target="_blank" rel="noopener noreffer">从零开始搭建 React 应用（一）——基础搭建</a>讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。</p>]]></description>
+    <description><![CDATA[<p>上一篇文章——<a href="https://juejin.im/post/5af6857651882542682e4843" target="_blank" rel="noopener noreferrer">从零开始搭建 React 应用（一）——基础搭建</a>讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。</p>]]></description>
 </item><item>
     <title>从零开始搭建React应用（一）——基础搭建</title>
     <link>https://mrzhang123.github.io/posts/2018-reactproject1/</link>
     <pubDate>Wed, 18 Jul 2018 10:26:46 &#43;0000</pubDate><author>
         <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/posts/2018-reactproject1/</guid>
-    <description><![CDATA[<p>项目链接：<a href="https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack" target="_blank" rel="noopener noreffer">https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack</a></p>]]></description>
+    <description><![CDATA[<p>项目链接：<a href="https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack" target="_blank" rel="noopener noreferrer">https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack</a></p>]]></description>
 </item><item>
     <title>CSS Modules在React中的应用</title>
     <link>https://mrzhang123.github.io/posts/2018-reactcssmodules/</link>

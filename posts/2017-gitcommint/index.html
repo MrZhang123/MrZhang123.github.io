@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2017-gitcommint\/"
-        },"genre": "posts","keywords": "Git","wordcount":  1921 ,
+        },"genre": "posts","keywords": "Git","wordcount":  1922 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2017-gitcommint\/","datePublished": "2017-10-18T22:11:36+00:00","dateModified": "2017-10-18T22:11:36+00:00","publisher": {
             "@type": "Organization",
             "name": "Raymond"},"author": {
@@ -160,7 +160,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/git/"><i class="far fa-folder fa-fw"></i>Git</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1921 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-10-18">2017-10-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1922 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -202,8 +202,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">npm install --save-dev @commitlint/cli husky
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">npm install --save-dev @commitlint/cli husky
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>新建<code>commitlint.config.js</code>配置git提交规范（这里使用的是angular的提交规范）</p>
 <div class="highlight"><div class="chroma">
@@ -241,38 +241,38 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-    <span class="s1">&#39;body-leading-blank&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">],</span> <span class="c1">//body开始于空白行
-</span><span class="c1"></span>    <span class="s1">&#39;body-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span> 
-    <span class="s1">&#39;footer-leading-blank&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">],</span> <span class="c1">//footer开始于空白行
-</span><span class="c1"></span>    <span class="s1">&#39;footer-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span>
-    <span class="s1">&#39;header-max-length&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="mi">72</span><span class="p">],</span>
-    <span class="s1">&#39;scope-case&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="s1">&#39;lowerCase&#39;</span><span class="p">],</span> <span class="c1">//scope小写
-</span><span class="c1"></span>    <span class="s1">&#39;subject-empty&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">],</span> <span class="c1">//subjec不t为空
-</span><span class="c1"></span>    <span class="s1">&#39;subject-full-stop&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="c1">//subject结尾不加&#39;.&#39;
-</span><span class="c1"></span>    <span class="s1">&#39;subject-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span> <span class="c1">//以动词开头，使用第一人称现在时，比如change，而不是changed或changes
-</span><span class="c1"></span>    <span class="s1">&#39;type-case&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="s1">&#39;lowerCase&#39;</span><span class="p">],</span> <span class="c1">//type小写
-</span><span class="c1"></span>    <span class="s1">&#39;type-empty&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">],</span> <span class="c1">//type不为空
-</span><span class="c1"></span>    <span class="s1">&#39;type-enum&#39;</span><span class="o">:</span> <span class="p">[</span>
-      <span class="mi">2</span><span class="p">,</span>
-      <span class="s1">&#39;always&#39;</span><span class="p">,</span>
-      <span class="p">[</span>
-        <span class="s1">&#39;build&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;chore&#39;</span><span class="p">,</span>      <span class="c1">//构建过程或辅助工具的变动
-</span><span class="c1"></span>        <span class="s1">&#39;docs&#39;</span><span class="p">,</span>       <span class="c1">//文档（documentation）
-</span><span class="c1"></span>        <span class="s1">&#39;feat&#39;</span><span class="p">,</span>       <span class="c1">//新功能（feature）
-</span><span class="c1"></span>        <span class="s1">&#39;fix&#39;</span><span class="p">,</span>        <span class="c1">//修补bug
-</span><span class="c1"></span>        <span class="s1">&#39;perf&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;refactor&#39;</span><span class="p">,</span>   <span class="c1">//重构（即不是新增功能，也不是修改bug的代码变动）
-</span><span class="c1"></span>        <span class="s1">&#39;revert&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;style&#39;</span><span class="p">,</span>      <span class="c1">//格式（不影响代码运行的变动）
-</span><span class="c1"></span>        <span class="s1">&#39;test&#39;</span><span class="p">,</span>       <span class="c1">//增加测试
-</span><span class="c1"></span>      <span class="p">],</span>
-    <span class="p">],</span> <span class="c1">//type关键字必须是其中之一
-</span><span class="c1"></span>  <span class="p">},</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;body-leading-blank&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">],</span> <span class="c1">//body开始于空白行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;body-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span> 
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;footer-leading-blank&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">],</span> <span class="c1">//footer开始于空白行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;footer-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;header-max-length&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="mi">72</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;scope-case&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="s1">&#39;lowerCase&#39;</span><span class="p">],</span> <span class="c1">//scope小写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;subject-empty&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">],</span> <span class="c1">//subjec不t为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;subject-full-stop&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="c1">//subject结尾不加&#39;.&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;subject-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span> <span class="c1">//以动词开头，使用第一人称现在时，比如change，而不是changed或changes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;type-case&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="s1">&#39;lowerCase&#39;</span><span class="p">],</span> <span class="c1">//type小写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;type-empty&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">],</span> <span class="c1">//type不为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;type-enum&#39;</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39;always&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;build&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;chore&#39;</span><span class="p">,</span>      <span class="c1">//构建过程或辅助工具的变动
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;docs&#39;</span><span class="p">,</span>       <span class="c1">//文档（documentation）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;feat&#39;</span><span class="p">,</span>       <span class="c1">//新功能（feature）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;fix&#39;</span><span class="p">,</span>        <span class="c1">//修补bug
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;perf&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;refactor&#39;</span><span class="p">,</span>   <span class="c1">//重构（即不是新增功能，也不是修改bug的代码变动）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;revert&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;style&#39;</span><span class="p">,</span>      <span class="c1">//格式（不影响代码运行的变动）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;test&#39;</span><span class="p">,</span>       <span class="c1">//增加测试
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span> <span class="c1">//type关键字必须是其中之一
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>配置husky</p>
 <div class="highlight"><div class="chroma">
@@ -284,12 +284,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;commitmsg&#34;</span><span class="p">:</span> <span class="s2">&#34;commitlint -e&#34;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;commitmsg&#34;</span><span class="p">:</span> <span class="s2">&#34;commitlint -e&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>配置完成之后，提交所写的commit如果不符合规范，则无法进行下一步操作</p>
 <h2 id="commit-message-的格式" class="headerLink">
@@ -303,12 +303,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;type&gt;</span>(<span class="nt">&lt;scope&gt;</span>): <span class="nt">&lt;subject&gt;</span>
-// 空一行
-<span class="nt">&lt;body&gt;</span>
-// 空一行
-<span class="nt">&lt;footer&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;type&gt;</span>(<span class="nt">&lt;scope&gt;</span>): <span class="nt">&lt;subject&gt;</span>
+</span></span><span class="line"><span class="cl">// 空一行
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;body&gt;</span>
+</span></span><span class="line"><span class="cl">// 空一行
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;footer&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Header是必需的，Body和Footer可以省略</p>
 <h3 id="header" class="headerLink">
@@ -329,17 +329,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="s1">&#39;build&#39;</span><span class="p">,</span>
-<span class="s1">&#39;chore&#39;</span><span class="p">,</span>      <span class="c1">//构建过程或辅助工具的变动
-</span><span class="c1"></span><span class="s1">&#39;docs&#39;</span><span class="p">,</span>       <span class="c1">//文档（documentation）
-</span><span class="c1"></span><span class="s1">&#39;feat&#39;</span><span class="p">,</span>       <span class="c1">//新功能（feature）
-</span><span class="c1"></span><span class="s1">&#39;fix&#39;</span><span class="p">,</span>        <span class="c1">//修补bug
-</span><span class="c1"></span><span class="s1">&#39;perf&#39;</span><span class="p">,</span>
-<span class="s1">&#39;refactor&#39;</span><span class="p">,</span>   <span class="c1">//重构（即不是新增功能，也不是修改bug的代码变动）
-</span><span class="c1"></span><span class="s1">&#39;revert&#39;</span><span class="p">,</span>
-<span class="s1">&#39;style&#39;</span><span class="p">,</span>      <span class="c1">//格式（不影响代码运行的变动）
-</span><span class="c1"></span><span class="s1">&#39;test&#39;</span><span class="p">,</span>       <span class="c1">//增加测试
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="s1">&#39;build&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;chore&#39;</span><span class="p">,</span>      <span class="c1">//构建过程或辅助工具的变动
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;docs&#39;</span><span class="p">,</span>       <span class="c1">//文档（documentation）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;feat&#39;</span><span class="p">,</span>       <span class="c1">//新功能（feature）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;fix&#39;</span><span class="p">,</span>        <span class="c1">//修补bug
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;perf&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;refactor&#39;</span><span class="p">,</span>   <span class="c1">//重构（即不是新增功能，也不是修改bug的代码变动）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;revert&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;style&#39;</span><span class="p">,</span>      <span class="c1">//格式（不影响代码运行的变动）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;test&#39;</span><span class="p">,</span>       <span class="c1">//增加测试
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果type为feat和fix，则该 commit 将肯定出现在 Change log 之中。其他情况建议是不要放入</p>
 <h4 id="scope" class="headerLink">
@@ -365,14 +365,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">More detailed explanatory text, <span class="k">if</span> necessary.  Wrap it to 
-about <span class="m">72</span> characters or so. 
-
-Further paragraphs come after blank lines.
-
-- Bullet points are okay, too
-- Use a hanging indent
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">More detailed explanatory text, <span class="k">if</span> necessary.  Wrap it to 
+</span></span><span class="line"><span class="cl">about <span class="m">72</span> characters or so. 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Further paragraphs come after blank lines.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- Bullet points are okay, too
+</span></span><span class="line"><span class="cl">- Use a hanging indent
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>有两个注意点:</p>
 <ol>
@@ -408,24 +408,24 @@ Further paragraphs come after blank lines.
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">BREAKING CHANGE: isolate scope bindings definition has changed.
-
-    To migrate the code follow the example below:
-
-    Before:
-
-    scope: <span class="o">{</span>
-      myAttr: <span class="s1">&#39;attribute&#39;</span>,
-    <span class="o">}</span>
-
-    After:
-
-    scope: <span class="o">{</span>
-      myAttr: <span class="s1">&#39;@&#39;</span>,
-    <span class="o">}</span>
-
-    The removed <span class="sb">`</span>inject<span class="sb">`</span> wasn<span class="err">&#39;</span>t generaly useful <span class="k">for</span> directives so there should be no code using it.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">BREAKING CHANGE: isolate scope bindings definition has changed.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    To migrate the code follow the example below:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    Before:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    scope: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      myAttr: <span class="s1">&#39;attribute&#39;</span>,
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    After:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    scope: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      myAttr: <span class="s1">&#39;@&#39;</span>,
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    The removed <span class="sb">`</span>inject<span class="sb">`</span> wasn<span class="err">&#39;</span>t generaly useful <span class="k">for</span> directives so there should be no code using it.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="关闭issue" class="headerLink">
     <a href="#%e5%85%b3%e9%97%adissue" class="header-mark"></a>关闭Issue</h4><p>如果当前 commit 针对某个issue，那么可以在 footer 部分关闭这个 issue</p>
@@ -437,11 +437,11 @@ Further paragraphs come after blank lines.
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">//关闭一个
-Closes <span class="c1">#1</span>
-//关闭多个
-Closes <span class="c1">#2, #3, #4</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">//关闭一个
+</span></span><span class="line"><span class="cl">Closes <span class="c1">#1</span>
+</span></span><span class="line"><span class="cl">//关闭多个
+</span></span><span class="line"><span class="cl">Closes <span class="c1">#2, #3, #4</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="revert" class="headerLink">
     <a href="#revert" class="header-mark"></a>revert</h3><p>还有一种特殊情况，如果当前 commit 用于撤销以前的 commit，必须以revert:开头，后面跟着被撤销 commit 的 header</p>
@@ -452,10 +452,10 @@ Closes <span class="c1">#2, #3, #4</span>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">revert: refactor<span class="o">(</span>compiler<span class="o">)</span>: introduce <span class="sb">`</span>TestBed.deprecatedOverrideProvider<span class="sb">`</span> <span class="o">(</span><span class="c1">#19558)</span>
-
-This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">revert: refactor<span class="o">(</span>compiler<span class="o">)</span>: introduce <span class="sb">`</span>TestBed.deprecatedOverrideProvider<span class="sb">`</span> <span class="o">(</span><span class="c1">#19558)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>Body部分的格式是固定的，必须写成<code>This reverts commit &lt;hash&gt;.</code>，其中的hash是被撤销 commit 的 SHA 标识符</p>
 <p>如果当前 commit 与被撤销的 commit，在同一个发布（release）里面，那么它们都不会出现在 Change log 里面。如果两者在不同的发布，那么当前 commit，会出现在 Change log 的Reverts小标题下面。</p>
@@ -471,14 +471,14 @@ This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">refactor<span class="o">(</span>compiler<span class="o">)</span>: introduce <span class="sb">`</span>TestBed.deprecatedOverrideProvider<span class="sb">`</span> <span class="o">(</span><span class="c1">#19558)</span>
-
-This allows use to fix <span class="sb">`</span>TestBed.overrideProvider<span class="sb">`</span> to keep imported <span class="sb">`</span>NgModule<span class="sb">`</span>s eager,
-<span class="k">while</span> allowing our users to still keep the old semantics <span class="k">until</span> they have fixed their
-tests.
-
-PR Close <span class="c1">#19558</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">refactor<span class="o">(</span>compiler<span class="o">)</span>: introduce <span class="sb">`</span>TestBed.deprecatedOverrideProvider<span class="sb">`</span> <span class="o">(</span><span class="c1">#19558)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">This allows use to fix <span class="sb">`</span>TestBed.overrideProvider<span class="sb">`</span> to keep imported <span class="sb">`</span>NgModule<span class="sb">`</span>s eager,
+</span></span><span class="line"><span class="cl"><span class="k">while</span> allowing our users to still keep the old semantics <span class="k">until</span> they have fixed their
+</span></span><span class="line"><span class="cl">tests.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PR Close <span class="c1">#19558</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="生成change-log" class="headerLink">
     <a href="#%e7%94%9f%e6%88%90change-log" class="header-mark"></a>生成change log</h2><p>如果你的所有 Commit 都符合 Angular 格式，那么发布新版本时， Change log 就可以用脚本自动生成。</p>
@@ -490,10 +490,10 @@ PR Close <span class="c1">#19558</span>
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">New features
-Bug fixes
-Breaking changes.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">New features
+</span></span><span class="line"><span class="cl">Bug fixes
+</span></span><span class="line"><span class="cl">Breaking changes.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>每个部分都会罗列相关的 commit ，并且有指向这些 commit 的链接。当然，生成的文档允许手动修改，所以发布前，你还可以添加其他内容。</p>
 <p>conventional-changelog 就是生成 Change log 的工具，运行下面的命令即可。</p>
@@ -504,10 +504,10 @@ Breaking changes.
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ npm install -g conventional-changelog
-$ <span class="nb">cd</span> my-project
-$ conventional-changelog -p angular -i CHANGELOG.md -w
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ npm install -g conventional-changelog
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> my-project
+</span></span><span class="line"><span class="cl">$ conventional-changelog -p angular -i CHANGELOG.md -w
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面命令不会覆盖以前的 Change log，只会在CHANGELOG.md的头部加上自从上次发布以来的变动。</p>
 <p>如果你想生成所有发布的 Change log，要改为运行下面的命令。</p>
@@ -516,8 +516,8 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ conventional-changelog -p angular -i CHANGELOG.md -w -r <span class="m">0</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ conventional-changelog -p angular -i CHANGELOG.md -w -r <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>为了方便使用，可以将其写入package.json的scripts字段。</p>
 <div class="highlight"><div class="chroma">
@@ -529,12 +529,12 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;changelog&#34;</span><span class="p">:</span> <span class="s2">&#34;conventional-changelog -p angular -i CHANGELOG.md -w -r 0&#34;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;changelog&#34;</span><span class="p">:</span> <span class="s2">&#34;conventional-changelog -p angular -i CHANGELOG.md -w -r 0&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>以后，直接运行下面的命令即可。</p>
 <div class="highlight"><div class="chroma">
@@ -542,8 +542,8 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ npm run changelog
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ npm run changelog
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div>
 
@@ -576,7 +576,7 @@ $ conventional-changelog -p angular -i CHANGELOG.md -w
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

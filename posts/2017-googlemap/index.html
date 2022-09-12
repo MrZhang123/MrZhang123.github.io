@@ -196,17 +196,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-  <span class="kd">var</span> <span class="nx">map</span><span class="p">;</span>
-  <span class="kd">function</span> <span class="nx">initMap</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">),</span> <span class="p">{</span>
-      <span class="nx">center</span><span class="o">:</span> <span class="p">{</span><span class="nx">lat</span><span class="o">:</span> <span class="o">-</span><span class="mf">34.397</span><span class="p">,</span> <span class="nx">lng</span><span class="o">:</span> <span class="mf">150.644</span><span class="p">},</span>
-      <span class="nx">zoom</span><span class="o">:</span> <span class="mi">8</span>
-    <span class="p">});</span>
-  <span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">async</span> <span class="na">defer</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">var</span> <span class="nx">map</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">initMap</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">),</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">center</span><span class="o">:</span> <span class="p">{</span><span class="nx">lat</span><span class="o">:</span> <span class="o">-</span><span class="mf">34.397</span><span class="p">,</span> <span class="nx">lng</span><span class="o">:</span> <span class="mf">150.644</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">zoom</span><span class="o">:</span> <span class="mi">8</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">async</span> <span class="na">defer</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&amp;callback=initMap&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里需要注意一点官方提供是异步加载Google Maps JavaScript API，这样会让网站运行速率更高，<code>但是这样会有一个问题，就是在自己写的js必须与引用在引入api之前，否则会报错。</code>由于项目中js api只能在自己写的js的后面，所以只能使用同步的方式引入api js，引入方式如下：</p>
 <div class="highlight"><div class="chroma">
@@ -214,8 +214,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;https://maps.googleapis.com/maps/api/js?key=yourkey&#34;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">&#34;https://maps.googleapis.com/maps/api/js?key=yourkey&#34;</span><span class="o">&gt;&lt;</span><span class="err">/script&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里的key是通过申请成为谷歌开发者然后获取的密钥。</p>
 <h2 id="创建地图对象" class="headerLink">
@@ -239,22 +239,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//初次进入页面只显示首都不显示坐标，只定义地图
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">),</span> <span class="p">{</span>
-  <span class="nx">center</span><span class="o">:</span> <span class="nx">capitalLatLng</span><span class="p">,</span>
-  <span class="nx">zoom</span><span class="o">:</span> <span class="nx">mapZoom</span><span class="p">,</span>
-  <span class="nx">maxZoom</span><span class="o">:</span> <span class="nx">mapMaxZoom</span><span class="p">,</span>
-  <span class="nx">minZoom</span><span class="o">:</span> <span class="nx">mapMinZoom</span><span class="p">,</span>
-  <span class="c1">//禁用街景地图
-</span><span class="c1"></span>  <span class="nx">streetViewControl</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
-  <span class="nx">mapTypeId</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeId</span><span class="p">.</span><span class="nx">ROADMAP</span><span class="p">,</span>
-  <span class="c1">//控制地图类型控件的位置
-</span><span class="c1"></span>  <span class="nx">mapTypeControlOptions</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">style</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeControlStyle</span><span class="p">.</span><span class="nx">HORIZONTAL_BAR</span><span class="p">,</span>
-    <span class="nx">position</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">ControlPosition</span><span class="p">.</span><span class="nx">TOP_RIGHT</span>
-  <span class="p">},</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//初次进入页面只显示首都不显示坐标，只定义地图
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Map</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">),</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">center</span><span class="o">:</span> <span class="nx">capitalLatLng</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">zoom</span><span class="o">:</span> <span class="nx">mapZoom</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">maxZoom</span><span class="o">:</span> <span class="nx">mapMaxZoom</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">minZoom</span><span class="o">:</span> <span class="nx">mapMinZoom</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//禁用街景地图
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">streetViewControl</span><span class="o">:</span><span class="kc">false</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">mapTypeId</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeId</span><span class="p">.</span><span class="nx">ROADMAP</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//控制地图类型控件的位置
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">mapTypeControlOptions</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">style</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">MapTypeControlStyle</span><span class="p">.</span><span class="nx">HORIZONTAL_BAR</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">position</span><span class="o">:</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">ControlPosition</span><span class="p">.</span><span class="nx">TOP_RIGHT</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>center：设置地图初始化后中心点的位置，接受经纬度对象{lat: -25.363, lng: 131.044}</li>
@@ -277,15 +277,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//latlngArr为所地理位置数组
-</span><span class="c1"></span><span class="nx">latlngArr</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">position</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
-    <span class="nx">position</span><span class="p">,</span>
-    <span class="nx">zIndex</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="nx">map</span>
-  <span class="p">});</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//latlngArr为所地理位置数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">latlngArr</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">position</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">position</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">zIndex</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">map</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>其中<code>map</code>为前面所创建的地图，<code>postion</code>则为marker的坐标位置。</p>
 <h4 id="给marker添加事件" class="headerLink">
@@ -297,10 +297,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">marker</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">map</span><span class="p">.</span><span class="nx">setZoom</span><span class="p">(</span><span class="nx">mapMaxZoom</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">marker</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">map</span><span class="p">.</span><span class="nx">setZoom</span><span class="p">(</span><span class="nx">mapMaxZoom</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里实现了一个点击设置地图放大到最大的效果，这里需要多说一句，就是在对象中的熟悉是可以通过<code>set</code>去设置的。</p>
 <h4 id="设置marker自动居中" class="headerLink">
@@ -322,20 +322,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//map auto center
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">bounds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLngBounds</span><span class="p">();</span>
-<span class="nx">latlngArr</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">position</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
-    <span class="nx">position</span><span class="p">,</span>
-    <span class="nx">icon</span><span class="o">:</span> <span class="nx">notSelect</span><span class="p">,</span>
-    <span class="nx">zIndex</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="nx">map</span>
-  <span class="p">});</span>
-  <span class="nx">bounds</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">marker</span><span class="p">.</span><span class="nx">position</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">map</span><span class="p">.</span><span class="nx">fitBounds</span><span class="p">(</span><span class="nx">bounds</span><span class="p">);</span>
-<span class="nx">map</span><span class="p">.</span><span class="nx">panToBounds</span><span class="p">(</span><span class="nx">bounds</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//map auto center
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">bounds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">LatLngBounds</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">latlngArr</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">position</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">let</span> <span class="nx">marker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">google</span><span class="p">.</span><span class="nx">maps</span><span class="p">.</span><span class="nx">Marker</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">position</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">icon</span><span class="o">:</span> <span class="nx">notSelect</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">zIndex</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">map</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">bounds</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">marker</span><span class="p">.</span><span class="nx">position</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">map</span><span class="p">.</span><span class="nx">fitBounds</span><span class="p">(</span><span class="nx">bounds</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">map</span><span class="p">.</span><span class="nx">panToBounds</span><span class="p">(</span><span class="nx">bounds</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>一个<code>LatLngBounds</code>实例表示地理坐标中的矩形，包括穿过180度纵向子午线在内的矩形</li>
@@ -376,7 +376,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

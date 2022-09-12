@@ -175,15 +175,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Symbol     Value
-I          1
-V          5
-X          10
-L          50
-C          100
-D          500
-M          1000
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Symbol     Value
+</span></span><span class="line"><span class="cl">I          1
+</span></span><span class="line"><span class="cl">V          5
+</span></span><span class="line"><span class="cl">X          10
+</span></span><span class="line"><span class="cl">L          50
+</span></span><span class="line"><span class="cl">C          100
+</span></span><span class="line"><span class="cl">D          500
+</span></span><span class="line"><span class="cl">M          1000
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>例如，罗马数字<code>II</code>表示2，就是将两个1加在一起。12被写作<code>XII</code>。27被写作<code>XXVII</code>，就是<code>XX</code>+<code>V</code>+<code>II</code>。</p>
 <p>罗马数字通常从左到右，从最大到最小。然而，数字4不是<code>IIII</code>。而是<code>IV</code>。因为1写到5前面得到4，相同的原理，9被表示成<code>IX</code>。这里有6个使用剑法的例子🌰：</p>
@@ -214,23 +214,23 @@ M          1000
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">Input: &#34;III&#34;
-Output: 3
-
-Input: &#34;IV&#34;
-Output: 4
-
-Input: &#34;IX&#34;
-Output: 9
-
-Input: &#34;LVIII&#34;
-Output: 58
-Explanation: L = 50, V= 5, III = 3.
-
-Input: &#34;MCMXCIV&#34;
-Output: 1994
-Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Input: &#34;III&#34;
+</span></span><span class="line"><span class="cl">Output: 3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Input: &#34;IV&#34;
+</span></span><span class="line"><span class="cl">Output: 4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Input: &#34;IX&#34;
+</span></span><span class="line"><span class="cl">Output: 9
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Input: &#34;LVIII&#34;
+</span></span><span class="line"><span class="cl">Output: 58
+</span></span><span class="line"><span class="cl">Explanation: L = 50, V= 5, III = 3.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Input: &#34;MCMXCIV&#34;
+</span></span><span class="line"><span class="cl">Output: 1994
+</span></span><span class="line"><span class="cl">Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>难度：Easy</strong></p>
 <h3 id="思路" class="headerLink">
@@ -294,57 +294,57 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 </span><span class="lnt">50
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/**
-</span><span class="cm"> * @param {string} s
-</span><span class="cm"> * @return {number}
-</span><span class="cm"> */</span>
-<span class="cm">/*
-</span><span class="cm">{
-</span><span class="cm">    &#39;I&#39; =&gt; 1,
-</span><span class="cm">    &#39;V&#39; =&gt; 5,
-</span><span class="cm">    &#39;X&#39; =&gt; 10,
-</span><span class="cm">    &#39;L&#39; =&gt; 50,
-</span><span class="cm">    &#39;C&#39; =&gt; 100,
-</span><span class="cm">    &#39;D&#39; =&gt; 500,
-</span><span class="cm">    &#39;M&#39; =&gt; 1000
-</span><span class="cm">}
-</span><span class="cm">*/</span>
-<span class="kd">var</span> <span class="nx">romanList</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1000</span><span class="p">},</span>
-    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">500</span><span class="p">},</span>
-    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">100</span><span class="p">},</span>
-    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">50</span><span class="p">},</span>
-    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">10</span><span class="p">},</span>
-    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">5</span><span class="p">},</span>
-    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">}</span>
-<span class="p">]</span>
-<span class="kd">var</span> <span class="nx">getRomanMap</span> <span class="o">=</span> <span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">mapData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span>
-    <span class="nx">romanList</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="nx">mapData</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">v</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
-    <span class="p">});</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mapData</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">mapData</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">romanToInt</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">romanMap</span> <span class="o">=</span> <span class="nx">getRomanMap</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
-    <span class="kr">const</span> <span class="nx">strArr</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kd">let</span> <span class="nx">nowData</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kd">let</span> <span class="nx">next</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">strArr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">nowData</span> <span class="o">=</span> <span class="nx">romanMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">strArr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
-        <span class="nx">next</span> <span class="o">=</span> <span class="nx">romanMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">strArr</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">nowData</span> <span class="o">&lt;</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">result</span> <span class="o">-=</span> <span class="nx">nowData</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="nx">result</span> <span class="o">+=</span> <span class="nx">nowData</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
-    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
-<span class="p">};</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {string} s
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {number}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">{
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;I&#39; =&gt; 1,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;V&#39; =&gt; 5,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;X&#39; =&gt; 10,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;L&#39; =&gt; 50,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;C&#39; =&gt; 100,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;D&#39; =&gt; 500,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;M&#39; =&gt; 1000
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">romanList</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1000</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">500</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">100</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">50</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">10</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">5</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">getRomanMap</span> <span class="o">=</span> <span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">mapData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">romanList</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">mapData</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">v</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mapData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">mapData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">romanToInt</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">romanMap</span> <span class="o">=</span> <span class="nx">getRomanMap</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">strArr</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">nowData</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">next</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">strArr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">nowData</span> <span class="o">=</span> <span class="nx">romanMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">strArr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">next</span> <span class="o">=</span> <span class="nx">romanMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">strArr</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">nowData</span> <span class="o">&lt;</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">result</span> <span class="o">-=</span> <span class="nx">nowData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">result</span> <span class="o">+=</span> <span class="nx">nowData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div>
 
@@ -377,7 +377,7 @@ Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

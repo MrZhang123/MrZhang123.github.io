@@ -171,7 +171,7 @@
     <a href="#%e4%bd%bf%e7%94%a8jsonstringifyparse" class="header-mark"></a>使用JSON.stringify/parse</h3><p>既然我们传递的只能是一个字符串，最直接的办法就是先把数组变成字符串，然后在API层再做解析。我们可以在前端使用<code>JSON.stringify</code>将数组变成字符串，传递到API层，然后再用<code>JSON.parse</code>做解析，这样就可以成功的将数组从前端传递到API层。</p>
 <p>但是，这样做有一个问题，就是如果我们传递太多的数组，会导致前端传递数据的时候有很多<code>JSON.stringify</code>同样的，在Node这边会有很多的<code>JSON.parse</code>导致代码很不美观，那么如何更优雅的处理呢？</p>
 <h3 id="使用qs库和axios的参数处理函数" class="headerLink">
-    <a href="#%e4%bd%bf%e7%94%a8qs%e5%ba%93%e5%92%8caxios%e7%9a%84%e5%8f%82%e6%95%b0%e5%a4%84%e7%90%86%e5%87%bd%e6%95%b0" class="header-mark"></a>使用qs库和axios的参数处理函数</h3><p><a href="https://github.com/ljharb/qs" target="_blank" rel="noopener noreffer">qs</a>是一个用于解析嵌套字符串的库，使用这个库，可以在前端发出请求前，将参数统一<code>stringify</code>，然后在node层也使用qs将参数进行<code>pase</code>，具体处理方式如下：</p>
+    <a href="#%e4%bd%bf%e7%94%a8qs%e5%ba%93%e5%92%8caxios%e7%9a%84%e5%8f%82%e6%95%b0%e5%a4%84%e7%90%86%e5%87%bd%e6%95%b0" class="header-mark"></a>使用qs库和axios的参数处理函数</h3><p><a href="https://github.com/ljharb/qs" target="_blank" rel="noopener noreferrer">qs</a>是一个用于解析嵌套字符串的库，使用这个库，可以在前端发出请求前，将参数统一<code>stringify</code>，然后在node层也使用qs将参数进行<code>pase</code>，具体处理方式如下：</p>
 <p>首先将参数做统一处理：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -180,10 +180,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">paramsSerializer</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;indices&#39;</span><span class="p">})</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">paramsSerializer</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;indices&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后在API层，引入<code>qs</code>库，直接将整个参数进行<code>qs.parse</code>，即可还原传递过来的参数。</p>
 <p><strong>这里需要特别说明一下：</strong></p>
@@ -203,18 +203,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span> <span class="nx">indices</span><span class="o">:</span> <span class="kc">false</span> <span class="p">})</span>
-<span class="c1">// 形式： ids=1&amp;ids=2&amp;id=3
-</span><span class="c1"></span>
-<span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;indices&#39;</span><span class="p">})</span>
-<span class="c1">// 形式： ids[0]=1&amp;aids1]=2&amp;ids[2]=3
-</span><span class="c1"></span>
-<span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;brackets&#39;</span><span class="p">})</span>
-<span class="c1">// 形式：ids[]=1&amp;ids[]=2&amp;ids[]=3
-</span><span class="c1"></span>
-<span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;repeat&#39;</span><span class="p">})</span> 
-<span class="c1">// 形式： ids=1&amp;ids=2&amp;id=3
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span> <span class="nx">indices</span><span class="o">:</span> <span class="kc">false</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式： ids=1&amp;ids=2&amp;id=3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;indices&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式： ids[0]=1&amp;aids1]=2&amp;ids[2]=3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;brackets&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式：ids[]=1&amp;ids[]=2&amp;ids[]=3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;repeat&#39;</span><span class="p">})</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式： ids=1&amp;ids=2&amp;id=3
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>使用第一种方式传递数组，如果数组元素不止一个，则在API层不用<code>parse</code>直接就可以拿到数组，<strong>但是，如果是数组只有一个元素，则拿到的就是一个字符串</strong>，所以，最后的办法就是在前端进行<code>stringify</code>，在API层进行<code>parse</code>。</p>
 <p>以上就是大概的一个总结，一个小小的坑，总结一下，后面方便查询</p></div>
@@ -248,7 +248,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

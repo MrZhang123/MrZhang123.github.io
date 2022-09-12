@@ -205,7 +205,7 @@
 <li>结尾逗号，数组定义和函数参数列表</li>
 <li><code>ShareArrayBuffer</code>和<code>Atomics</code>用于从共享内存位置读取和写入</li>
 </ol>
-<p>关于ES2017的更多信息请参阅 <a href="https://www.sitepoint.com/es2017-whats-new/" target="_blank" rel="noopener noreffer">What&rsquo;s New in ES2017</a></p>
+<p>关于ES2017的更多信息请参阅 <a href="https://www.sitepoint.com/es2017-whats-new/" target="_blank" rel="noopener noreferrer">What&rsquo;s New in ES2017</a></p>
 <h2 id="es2018" class="headerLink">
     <a href="#es2018" class="header-mark"></a>ES2018</h2><p>ECMAScript 2018（或者叫ES9）现在已经可用了。以下功能已经到达 stage 4，但是在撰写本文时在各个浏览器的实现还不完整。</p>
 <h3 id="异步迭代" class="headerLink">
@@ -219,12 +219,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="k">of</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">await</span> <span class="nx">doSomething</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="k">of</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">await</span> <span class="nx">doSomething</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这段代码不会正常运行，下面这段同样也不会：</p>
 <div class="highlight"><div class="chroma">
@@ -236,12 +236,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kr">async</span> <span class="nx">i</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="kr">await</span> <span class="nx">doSomething</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-  <span class="p">});</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kr">async</span> <span class="nx">i</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">await</span> <span class="nx">doSomething</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这段代码中，循环本身依旧保持同步，并在在内部异步函数之前全部调用完成。</p>
 <p>ES2018引入异步迭代器（asynchronous iterators），这就像常规迭代器，除了<code>next()</code>方法返回一个Promise。因此<code>await</code>可以和<code>for...of</code>循环一起使用，以串行的方式运行异步操作。例如：</p>
@@ -254,12 +254,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="kr">await</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="k">of</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">doSomething</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="kr">await</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="k">of</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">doSomething</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="promisefinally" class="headerLink">
     <a href="#promisefinally" class="header-mark"></a>Promise.finally()</h3><p>一个Promise调用链要么成功到达最后一个<code>.then()</code>，要么失败触发<code>.catch()</code>。在某些情况下，你想要在无论Promise运行成功还是失败，运行相同的代码，例如清除，删除对话，关闭数据库连接等。</p>
@@ -279,21 +279,21 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">doSomething</span><span class="p">()</span> <span class="p">{</span>
-  <span class="nx">doSomething1</span><span class="p">()</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">doSomething2</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">doSomething3</span><span class="p">)</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="c1">// finish here!
-</span><span class="c1"></span>  <span class="p">});</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">doSomething</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">doSomething1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">doSomething2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">doSomething3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// finish here!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="restspread-属性" class="headerLink">
-    <a href="#restspread-%e5%b1%9e%e6%80%a7" class="header-mark"></a>Rest/Spread 属性</h3><p>ES2015引入了<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Rest_parameters" target="_blank" rel="noopener noreffer">Rest参数</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax" target="_blank" rel="noopener noreffer">扩展运算符</a>。三个点（&hellip;）仅用于数组。Rest参数语法允许我们将一个布丁数量的参数表示为一个数组。</p>
+    <a href="#restspread-%e5%b1%9e%e6%80%a7" class="header-mark"></a>Rest/Spread 属性</h3><p>ES2015引入了<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Rest_parameters" target="_blank" rel="noopener noreferrer">Rest参数</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax" target="_blank" rel="noopener noreferrer">扩展运算符</a>。三个点（&hellip;）仅用于数组。Rest参数语法允许我们将一个布丁数量的参数表示为一个数组。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -305,14 +305,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">restParam</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
-
-<span class="kd">function</span> <span class="nx">restParam</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="p">...</span><span class="nx">p3</span><span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// p1 = 1
-</span><span class="c1"></span>  <span class="c1">// p2 = 2
-</span><span class="c1"></span>  <span class="c1">// p3 = [3, 4, 5]
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restParam</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">restParam</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="p">...</span><span class="nx">p3</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// p1 = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// p2 = 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// p3 = [3, 4, 5]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>展开操作符以相反的方式工作，将数组转换成可传递给函数的单独参数。例如<code>Math.max()</code>返回给定数字中的最大值：</p>
 <div class="highlight"><div class="chroma">
@@ -321,9 +321,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">16</span><span class="p">];</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">values</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// 100
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">16</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">values</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// 100
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>ES2018为对象解构提供了和数组一样的Rest参数（）和展开操作符，一个简单的例子：</p>
 <div class="highlight"><div class="chroma">
@@ -339,16 +339,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span>
-<span class="p">};</span>
-
-<span class="kr">const</span> <span class="p">{</span> <span class="nx">a</span><span class="p">,</span> <span class="p">...</span><span class="nx">x</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">myObject</span><span class="p">;</span>
-<span class="c1">// a = 1
-</span><span class="c1">// x = { b: 2, c: 3 }
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span> <span class="nx">a</span><span class="p">,</span> <span class="p">...</span><span class="nx">x</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">myObject</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// a = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1">// x = { b: 2, c: 3 }
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>或者你可以使用它给函数传递参数：</p>
 <div class="highlight"><div class="chroma">
@@ -365,17 +365,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">restParam</span><span class="p">({</span>
-  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
-  <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span>
-<span class="p">});</span>
-
-<span class="kd">function</span> <span class="nx">restParam</span><span class="p">({</span> <span class="nx">a</span><span class="p">,</span> <span class="p">...</span><span class="nx">x</span> <span class="p">})</span> <span class="p">{</span>
-  <span class="c1">// a = 1
-</span><span class="c1"></span>  <span class="c1">// x = { b: 2, c: 3 }
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restParam</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">restParam</span><span class="p">({</span> <span class="nx">a</span><span class="p">,</span> <span class="p">...</span><span class="nx">x</span> <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// a = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// x = { b: 2, c: 3 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>跟数组一样，Rest参数只能在声明的结尾处使用。此外，它只适用于每个对象的顶层，如果对象中嵌套对象则无法适用。</p>
 <p>扩展运算符可以在其他对象内使用，例如：</p>
@@ -386,10 +386,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span> <span class="p">};</span>
-<span class="kr">const</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">z</span><span class="o">:</span> <span class="mi">26</span> <span class="p">};</span>
-<span class="c1">// obj2 is { a: 1, b: 2, c: 3, z: 26 }
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">z</span><span class="o">:</span> <span class="mi">26</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// obj2 is { a: 1, b: 2, c: 3, z: 26 }
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>可以使用扩展运算符拷贝一个对象，像是这样<code>obj2 = {...obj1}</code>，但是 <strong>这只是一个对象的浅拷贝</strong>。另外，如果一个对象A的属性是对象B，那么在克隆后的对象cloneB中，该属性指向对象B。</p>
 <h3 id="正则表达式命名捕获组regular-expression-named-capture-groups" class="headerLink">
@@ -404,13 +404,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span>
-  <span class="nx">reDate</span> <span class="o">=</span> <span class="sr">/([0-9]{4})-([0-9]{2})-([0-9]{2})/</span><span class="p">,</span>
-  <span class="nx">match</span>  <span class="o">=</span> <span class="nx">reDate</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;2018-04-30&#39;</span><span class="p">),</span>
-  <span class="nx">year</span>   <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="c1">// 2018
-</span><span class="c1"></span>  <span class="nx">month</span>  <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="c1">// 04
-</span><span class="c1"></span>  <span class="nx">day</span>    <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// 30
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reDate</span> <span class="o">=</span> <span class="sr">/([0-9]{4})-([0-9]{2})-([0-9]{2})/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>  <span class="o">=</span> <span class="nx">reDate</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;2018-04-30&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span>   <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="c1">// 2018
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">month</span>  <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="c1">// 04
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">day</span>    <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// 30
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样的代码很难读懂，并且改变正则表达式的结构有可能改变匹配对象的索引。</p>
 <p>ES2018允许命名捕获组使用符号<code>?&lt;name&gt;</code>，在打开捕获括号<code>(</code>后立即命名，示例如下：</p>
@@ -424,13 +424,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span>
-  <span class="nx">reDate</span> <span class="o">=</span> <span class="sr">/(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/</span><span class="p">,</span>
-  <span class="nx">match</span>  <span class="o">=</span> <span class="nx">reDate</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;2018-04-30&#39;</span><span class="p">),</span>
-  <span class="nx">year</span>   <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">year</span><span class="p">,</span>  <span class="c1">// 2018
-</span><span class="c1"></span>  <span class="nx">month</span>  <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">month</span><span class="p">,</span> <span class="c1">// 04
-</span><span class="c1"></span>  <span class="nx">day</span>    <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">day</span><span class="p">;</span>   <span class="c1">// 30
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reDate</span> <span class="o">=</span> <span class="sr">/(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>  <span class="o">=</span> <span class="nx">reDate</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;2018-04-30&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span>   <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">year</span><span class="p">,</span>  <span class="c1">// 2018
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">month</span>  <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">month</span><span class="p">,</span> <span class="c1">// 04
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">day</span>    <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">day</span><span class="p">;</span>   <span class="c1">// 30
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>任何匹配失败的命名组都将返回<code>undefined</code>。</p>
 <p>命名捕获也可以使用在<code>replace()</code>方法中。例如将日期转换为美国的 MM-DD-YYYY 格式：</p>
@@ -442,11 +442,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span>
-  <span class="nx">reDate</span> <span class="o">=</span> <span class="sr">/(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/</span><span class="p">,</span>
-  <span class="nx">d</span>      <span class="o">=</span> <span class="s1">&#39;2018-04-30&#39;</span><span class="p">,</span>
-  <span class="nx">usDate</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reDate</span><span class="p">,</span> <span class="s1">&#39;$&lt;month&gt;-$&lt;day&gt;-$&lt;year&gt;&#39;</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reDate</span> <span class="o">=</span> <span class="sr">/(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">d</span>      <span class="o">=</span> <span class="s1">&#39;2018-04-30&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">usDate</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reDate</span><span class="p">,</span> <span class="s1">&#39;$&lt;month&gt;-$&lt;day&gt;-$&lt;year&gt;&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="正则表达式反向断言lookbehind" class="headerLink">
     <a href="#%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f%e5%8f%8d%e5%90%91%e6%96%ad%e8%a8%80lookbehind" class="header-mark"></a>正则表达式反向断言（lookbehind）</h3><p>目前JavaScript在正则表达式中支持先行断言（lookahead）。这意味着匹配会发生，但不会有任何捕获，并且断言没有包含在整个匹配字段中。例如从价格中捕获货币符号：</p>
@@ -459,12 +459,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span>
-  <span class="nx">reLookahead</span> <span class="o">=</span> <span class="sr">/\D(?=\d+)/</span><span class="p">,</span>
-  <span class="nx">match</span>       <span class="o">=</span> <span class="nx">reLookahead</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;$123.89&#39;</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// $
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reLookahead</span> <span class="o">=</span> <span class="sr">/\D(?=\d+)/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>       <span class="o">=</span> <span class="nx">reLookahead</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;$123.89&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// $
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>ES2018引入以相同方式工作但是匹配前面的反向断言（lookbehind），这样我就可以忽略货币符号，单纯的捕获价格的数字：</p>
 <div class="highlight"><div class="chroma">
@@ -476,12 +476,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span>
-  <span class="nx">reLookbehind</span> <span class="o">=</span> <span class="sr">/(?&lt;=\D)\d+/</span><span class="p">,</span>
-  <span class="nx">match</span>        <span class="o">=</span> <span class="nx">reLookbehind</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;$123.89&#39;</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// 123.89
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reLookbehind</span> <span class="o">=</span> <span class="sr">/(?&lt;=\D)\d+/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>        <span class="o">=</span> <span class="nx">reLookbehind</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;$123.89&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// 123.89
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>以上是 <strong>肯定反向断言</strong>，非数字<code>\D</code>必须存在。同样的，还存在 <strong>否定反向断言</strong>，表示一个值必须不存在，例如：</p>
 <div class="highlight"><div class="chroma">
@@ -493,12 +493,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span>
-  <span class="nx">reLookbehindNeg</span> <span class="o">=</span> <span class="sr">/(?&lt;!\D)\d+/</span><span class="p">,</span>
-  <span class="nx">match</span>           <span class="o">=</span> <span class="nx">reLookbehind</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;$123.89&#39;</span><span class="p">);</span>
-
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// null
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reLookbehindNeg</span> <span class="o">=</span> <span class="sr">/(?&lt;!\D)\d+/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>           <span class="o">=</span> <span class="nx">reLookbehind</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;$123.89&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// null
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="正则表达式dotall模式" class="headerLink">
     <a href="#%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8fdotall%e6%a8%a1%e5%bc%8f" class="header-mark"></a>正则表达式<code>dotAll</code>模式</h3><p>正则表达式中点<code>.</code>匹配除回车外的任何单字符，标记<code>s</code>改变这种行为，允许行终止符的出现，例如：</p>
@@ -508,9 +508,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="sr">/hello.world/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;hello\nworld&#39;</span><span class="p">);</span>  <span class="c1">// false
-</span><span class="c1"></span><span class="err">/hello.world/s.test(&#39;hello\nworld&#39;); // true</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="sr">/hello.world/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;hello\nworld&#39;</span><span class="p">);</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">/hello.world/s.test(&#39;hello\nworld&#39;); // true</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="正则表达式-unicode-转义" class="headerLink">
     <a href="#%e6%ad%a3%e5%88%99%e8%a1%a8%e8%be%be%e5%bc%8f-unicode-%e8%bd%ac%e4%b9%89" class="header-mark"></a>正则表达式 Unicode 转义</h3><p>到目前为止，在正则表达式中本地访问 Unicode 字符属性是不被允许的。ES2018添加了 Unicode 属性转义——形式为<code>\p{...}</code>和<code>\P{...}</code>，在正则表达式中使用标记 <code>u</code> (unicode) 设置，在<code>\p</code>块儿内，可以以键值对的方式设置需要匹配的属性而非具体内容。例如：</p>
@@ -520,22 +520,22 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">reGreekSymbol</span> <span class="o">=</span> <span class="sr">/\p{Script=Greek}/u</span><span class="p">;</span>
-<span class="nx">reGreekSymbol</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;π&#39;</span><span class="p">);</span> <span class="c1">// true
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reGreekSymbol</span> <span class="o">=</span> <span class="sr">/\p{Script=Greek}/u</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">reGreekSymbol</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;π&#39;</span><span class="p">);</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>此特性可以避免使用特定 Unicode 区间来进行内容类型判断，提升可读性和可维护性。</p>
 <h3 id="非转义序列的模板字符串" class="headerLink">
     <a href="#%e9%9d%9e%e8%bd%ac%e4%b9%89%e5%ba%8f%e5%88%97%e7%9a%84%e6%a8%a1%e6%9d%bf%e5%ad%97%e7%ac%a6%e4%b8%b2" class="header-mark"></a>非转义序列的模板字符串</h3><p>最后，ES2018 移除对 ECMAScript 在带标签的模版字符串中转义序列的语法限制。</p>
-<p>之前，<code>\u</code>开始一个 unicode 转义，<code>\x</code>开始一个十六进制转义，<code>\</code>后跟一个数字开始一个八进制转义。这使得创建特定的字符串变得不可能，例如Windows文件路径 <code>C:\uuu\xxx\111</code>。更多细节参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings" target="_blank" rel="noopener noreffer">模板字符串</a>。</p>
+<p>之前，<code>\u</code>开始一个 unicode 转义，<code>\x</code>开始一个十六进制转义，<code>\</code>后跟一个数字开始一个八进制转义。这使得创建特定的字符串变得不可能，例如Windows文件路径 <code>C:\uuu\xxx\111</code>。更多细节参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings" target="_blank" rel="noopener noreferrer">模板字符串</a>。</p>
 <p>这是所有的ES2018的新特性，ES2019已经开始，你有什么期待的功能想在明年看到吗？</p>
 <h2 id="译者参考" class="headerLink">
     <a href="#%e8%af%91%e8%80%85%e5%8f%82%e8%80%83" class="header-mark"></a>译者参考</h2><ul>
-<li><a href="https://segmentfault.com/a/1190000006824133" target="_blank" rel="noopener noreffer">javascript正则断言的理解</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/33353980" target="_blank" rel="noopener noreffer">【RPU-A】正则 Unicode 转义提案进入 ES2018</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings" target="_blank" rel="noopener noreffer">模板字符串——ES2018关于非法转义序列的修订</a></li>
-<li><a href="http://esnext.justjavac.com/proposal/template-literal-revision.html" target="_blank" rel="noopener noreffer">非转义序列的模板字符串</a></li>
-<li><a href="http://esnext.justjavac.com/proposal/regexp-named-groups.html" target="_blank" rel="noopener noreffer">正则表达式命名捕获组</a></li>
+<li><a href="https://segmentfault.com/a/1190000006824133" target="_blank" rel="noopener noreferrer">javascript正则断言的理解</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/33353980" target="_blank" rel="noopener noreferrer">【RPU-A】正则 Unicode 转义提案进入 ES2018</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings" target="_blank" rel="noopener noreferrer">模板字符串——ES2018关于非法转义序列的修订</a></li>
+<li><a href="http://esnext.justjavac.com/proposal/template-literal-revision.html" target="_blank" rel="noopener noreferrer">非转义序列的模板字符串</a></li>
+<li><a href="http://esnext.justjavac.com/proposal/regexp-named-groups.html" target="_blank" rel="noopener noreferrer">正则表达式命名捕获组</a></li>
 </ul></div>
 
         <div class="post-footer" id="post-footer">
@@ -567,7 +567,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

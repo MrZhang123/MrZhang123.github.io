@@ -168,9 +168,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="s2">&#34; search result heighligh, when enter `:noh` in command line , clean heightlight
-</span><span class="s2">set hlsearch
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="s2">&#34; search result heighligh, when enter `:noh` in command line , clean heightlight
+</span></span></span><span class="line"><span class="cl"><span class="s2">set hlsearch
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样设置后，在搜索完成后，所有的匹配文本都会高亮，想要取消搜索结果的高亮可以在Normal modal下输入<code>:nohlsearch</code>或其简写<code>:noh</code></p>
 <h2 id="搜索大小写敏感" class="headerLink">
@@ -185,12 +185,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="s2">&#34; 开启大小写不敏感（默认值）
-</span><span class="s2">set ignorecase
-</span><span class="s2">
-</span><span class="s2">&#34;</span> 开启智能推测
-<span class="nb">set</span> smartcase
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="s2">&#34; 开启大小写不敏感（默认值）
+</span></span></span><span class="line"><span class="cl"><span class="s2">set ignorecase
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 开启智能推测
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> smartcase
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>开启智能推测后，如果输入的文本带有大写字母，vim会认为你当前搜索是区分大小写的，否则不区分大小写。即开启后，如果输入<code>:Set</code>，则只能搜索到<code>Set</code>，但是如果输入<code>:set</code>，则可以搜索到<code>set</code>和<code>Set</code>。</p>
 <h1 id="vim中的替换" class="headerLink">
@@ -200,8 +200,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">:<span class="o">{</span>作用范围<span class="o">}</span>s/<span class="o">{</span>目标字符<span class="o">}</span>/<span class="o">{</span>替换的字符<span class="o">}</span>/<span class="o">{</span>替换标志<span class="o">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">:<span class="o">{</span>作用范围<span class="o">}</span>s/<span class="o">{</span>目标字符<span class="o">}</span>/<span class="o">{</span>替换的字符<span class="o">}</span>/<span class="o">{</span>替换标志<span class="o">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>作用范围：用于指定替换的范围，<code>1,3</code>表示替换第一行至第三行，<code>1,$</code>表示替换第一行到最后一行，也可以直接用<code>%</code>表示。
 替换标志（可以组合使用）：</p>
@@ -213,13 +213,14 @@
 </ul>
 <p>具体的用法可以查看下图（摘自Reddit）：</p>
 <!--vim替换的图示-->
-<p><img
-        class="lazyload"
-        data-src="./img/vim1.jpg"
-        data-srcset="./img/vim1.jpg, ./img/vim1.jpg 1.5x, ./img/vim1.jpg 2x"
-        data-sizes="auto"
-        alt="./img/vim1.jpg"
-        title="vim搜索和替换命令"></p>
+<p><a class="lightgallery" href="./img/vim1.jpg" title="vim搜索和替换命令" data-thumbnail="./img/vim1.jpg">
+        <img
+            class="lazyload"
+            data-src="./img/vim1.jpg"
+            data-srcset="./img/vim1.jpg, ./img/vim1.jpg 1.5x, ./img/vim1.jpg 2x"
+            data-sizes="auto"
+            alt="./img/vim1.jpg">
+    </a></p>
 <ul>
 <li>
 <p><code>:%s/remember/me/n</code>命令不会替换任何东西。 只是告诉我们如果我们运行命令，受影响的行数。实际操作过程中，在vim中运行该命令，显示<code>89 matches on 89 lines</code></p>
@@ -230,19 +231,19 @@
 </ul>
 <h1 id="利用插件在vim中搜索" class="headerLink">
     <a href="#%e5%88%a9%e7%94%a8%e6%8f%92%e4%bb%b6%e5%9c%a8vim%e4%b8%ad%e6%90%9c%e7%b4%a2" class="header-mark"></a>利用插件在vim中搜索</h1><p>有时候需要在整个项目中搜索文件或者文本，这类操作借助插件更方便一些。</p>
-<p>说起vim中搜索文件，就一定会想到大名鼎鼎的<a href="https://github.com/kien/ctrlp.vims" target="_blank" rel="noopener noreffer">ctrlp.vim</a>，但该插件早已不再维护（最近一次提交是在2015年11月30日），那是否还有其他替代插件呢？答案是有的，可以使用<a href="https://github.com/junegunn/fzf.vim" target="_blank" rel="noopener noreffer">fzf.vim</a>。fzf.vim支持文件搜索，全局文本搜索，buffer搜索，git log搜索等，这里只介绍最常用的全局文本搜索和文件搜索。</p>
-<p>首先使用<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener noreffer">vim-plug</a>安装插件：</p>
+<p>说起vim中搜索文件，就一定会想到大名鼎鼎的<a href="https://github.com/kien/ctrlp.vims" target="_blank" rel="noopener noreferrer">ctrlp.vim</a>，但该插件早已不再维护（最近一次提交是在2015年11月30日），那是否还有其他替代插件呢？答案是有的，可以使用<a href="https://github.com/junegunn/fzf.vim" target="_blank" rel="noopener noreferrer">fzf.vim</a>。fzf.vim支持文件搜索，全局文本搜索，buffer搜索，git log搜索等，这里只介绍最常用的全局文本搜索和文件搜索。</p>
+<p>首先使用<a href="https://github.com/junegunn/vim-plug" target="_blank" rel="noopener noreferrer">vim-plug</a>安装插件：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">Plug <span class="s1">&#39;junegunn/fzf&#39;</span>, <span class="o">{</span> <span class="s1">&#39;do&#39;</span>: <span class="o">{</span> -&gt; fzf#install<span class="o">()</span> <span class="o">}</span> <span class="o">}</span>
-Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">Plug <span class="s1">&#39;junegunn/fzf&#39;</span>, <span class="o">{</span> <span class="s1">&#39;do&#39;</span>: <span class="o">{</span> -&gt; fzf#install<span class="o">()</span> <span class="o">}</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>从以上安装可以看到要想使用fzf.vim，需要首先安装<a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener noreffer">fzf</a>。</p>
+</div><p>从以上安装可以看到要想使用fzf.vim，需要首先安装<a href="https://github.com/junegunn/fzf" target="_blank" rel="noopener noreferrer">fzf</a>。</p>
 <p>fzf是一款golang编写的命令行模糊查找器，支持文件，命令等的模糊搜索。强烈建议使用，对于经常使用终端的同学来说太方便了。</p>
 <hr>
 <p>备注：</p>
@@ -253,9 +254,9 @@ Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">Plug <span class="s1">&#39;/usr/local/opt/fzf&#39;</span>
-Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">Plug <span class="s1">&#39;/usr/local/opt/fzf&#39;</span>
+</span></span><span class="line"><span class="cl">Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><hr>
 <p>安装完成后在<code>.vimrc</code>中添加如下配置：</p>
@@ -281,25 +282,25 @@ Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="s2">&#34; fzf
-</span><span class="s2">&#34;</span> fzf use rg search config
-<span class="nb">let</span> g:fzf_layout <span class="o">=</span> <span class="o">{</span> <span class="s1">&#39;down&#39;</span>: <span class="s1">&#39;~70%&#39;</span> <span class="o">}</span>
-command! -bang -nargs<span class="o">=</span>* Rg
-      <span class="se">\ </span>call fzf#vim#grep<span class="o">(</span>
-      <span class="se">\ </span>  <span class="s2">&#34;rg --column --line-number --no-heading --color=always --smart-case &#34;</span>
-      <span class="se">\ </span>  .<span class="o">(</span>len<span class="o">(</span>&lt;q-args&gt;<span class="o">)</span> &gt; <span class="m">0</span> ? &lt;q-args&gt;: <span class="s1">&#39;&#34;&#34;&#39;</span><span class="o">)</span>,
-      <span class="se">\ </span>  1,
-      <span class="se">\ </span>  &lt;bang&gt;0 ? fzf#vim#with_preview<span class="o">({</span><span class="s1">&#39;options&#39;</span>: <span class="s1">&#39;--delimiter : --nth 4..&#39;</span><span class="o">}</span>, <span class="s1">&#39;up:60%&#39;</span><span class="o">)</span>
-      <span class="se">\ </span>  : fzf#vim#with_preview<span class="o">({</span><span class="s1">&#39;options&#39;</span>: <span class="s1">&#39;--delimiter : --nth 4..&#39;</span><span class="o">}</span>, <span class="s1">&#39;right:50%:hidden&#39;</span>, <span class="s1">&#39;?&#39;</span><span class="o">)</span>,
-      <span class="se">\ </span>  &lt;bang&gt;0<span class="o">)</span>
-command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>dir Files
-  <span class="se">\ </span>call fzf#vim#files<span class="o">(</span>&lt;q-args&gt;, fzf#vim#with_preview<span class="o">()</span>, &lt;bang&gt;0<span class="o">)</span>
-
-<span class="s2">&#34; fzf vim
-</span><span class="s2">nnoremap  &lt;silent&gt; &lt;Leader&gt;rg :Rg&lt;CR&gt;
-</span><span class="s2">nnoremap &lt;leader&gt;b :Buffers&lt;CR&gt;
-</span><span class="s2">nnoremap &lt;C-p&gt; :Files&lt;CR&gt;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="s2">&#34; fzf
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> fzf use rg search config
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:fzf_layout <span class="o">=</span> <span class="o">{</span> <span class="s1">&#39;down&#39;</span>: <span class="s1">&#39;~70%&#39;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">command! -bang -nargs<span class="o">=</span>* Rg
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>call fzf#vim#grep<span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  <span class="s2">&#34;rg --column --line-number --no-heading --color=always --smart-case &#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  .<span class="o">(</span>len<span class="o">(</span>&lt;q-args&gt;<span class="o">)</span> &gt; <span class="m">0</span> ? &lt;q-args&gt;: <span class="s1">&#39;&#34;&#34;&#39;</span><span class="o">)</span>,
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  1,
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  &lt;bang&gt;0 ? fzf#vim#with_preview<span class="o">({</span><span class="s1">&#39;options&#39;</span>: <span class="s1">&#39;--delimiter : --nth 4..&#39;</span><span class="o">}</span>, <span class="s1">&#39;up:60%&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  : fzf#vim#with_preview<span class="o">({</span><span class="s1">&#39;options&#39;</span>: <span class="s1">&#39;--delimiter : --nth 4..&#39;</span><span class="o">}</span>, <span class="s1">&#39;right:50%:hidden&#39;</span>, <span class="s1">&#39;?&#39;</span><span class="o">)</span>,
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  &lt;bang&gt;0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>dir Files
+</span></span><span class="line"><span class="cl">  <span class="se">\ </span>call fzf#vim#files<span class="o">(</span>&lt;q-args&gt;, fzf#vim#with_preview<span class="o">()</span>, &lt;bang&gt;0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; fzf vim
+</span></span></span><span class="line"><span class="cl"><span class="s2">nnoremap  &lt;silent&gt; &lt;Leader&gt;rg :Rg&lt;CR&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">nnoremap &lt;leader&gt;b :Buffers&lt;CR&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">nnoremap &lt;C-p&gt; :Files&lt;CR&gt;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>关于fzf.vim的配置有几点说明：</p>
 <ul>
@@ -312,7 +313,7 @@ command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>
 <li><code>fullscreen</code>：是否全屏，<code>&lt;bang&gt;0</code>是vim script，在vim命令中如果输入<code>!</code>则<code>&lt;bang&gt;0</code>转换成1，否则为0；</li>
 </ul>
 </li>
-<li>这里使用了<a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener noreffer">ripgrep</a>（因为据说vscode内的搜索就是基于这个做的，所以选择这个）作为fzf中默认的搜索。<code>fzf#vim#with_preview</code>用于配置展示预览窗口。配置好后在vim中输入<code>:Rg</code>就可以启动在整个项目搜索文本，<code>:Files</code>在整个项目中搜索文件。</li>
+<li>这里使用了<a href="https://github.com/BurntSushi/ripgrep" target="_blank" rel="noopener noreferrer">ripgrep</a>（因为据说vscode内的搜索就是基于这个做的，所以选择这个）作为fzf中默认的搜索。<code>fzf#vim#with_preview</code>用于配置展示预览窗口。配置好后在vim中输入<code>:Rg</code>就可以启动在整个项目搜索文本，<code>:Files</code>在整个项目中搜索文件。</li>
 <li>在使用fzf.vim搜索文本和文件的过程中需要注意一点，<strong>搜索是基于你当前打开文件所在的文件夹去搜索</strong>。所以如果要在整个项目中搜索，就需要在项目根目录下打开一个文件进行搜索。这也类似于在vscode中，如果想搜索项目中特定文件夹中的文本，需要选择当前想要选择的文件夹。</li>
 </ul>
 <p>以上配置就可以满足我们日常开发中的搜索/替换文本，搜索文件等常用功能了。</p></div>
@@ -346,7 +347,7 @@ command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

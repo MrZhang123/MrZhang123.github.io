@@ -178,20 +178,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Note:按字母顺序进行预排序
-</span><span class="c1"></span><span class="kr">const</span> <span class="nx">doggos</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Abby&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bandit&#39;</span><span class="p">,</span> <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Choco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Daisy&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Elmo&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Falco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Ghost&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span>
-<span class="p">];</span>
-<span class="c1">// 按照`rating`把狗狗进行降序排序
-</span><span class="c1">// （这会更新doggos）
-</span><span class="c1"></span><span class="nx">doggos</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">rating</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">rating</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Note:按字母顺序进行预排序
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">doggos</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Abby&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bandit&#39;</span><span class="p">,</span> <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Choco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Daisy&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Elmo&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Falco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Ghost&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 按照`rating`把狗狗进行降序排序
+</span></span></span><span class="line"><span class="cl"><span class="c1">// （这会更新doggos）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">doggos</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">b</span><span class="p">.</span><span class="nx">rating</span> <span class="o">-</span> <span class="nx">a</span><span class="p">.</span><span class="nx">rating</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>数据按照字母顺序与排序。为了按照评分排序（所以我们首先得到评分最高的狗狗），我们使用<code>Array#sort</code>，传递一个比较评分的自定义回调。排序后的结果如下：</p>
 <div class="highlight"><div class="chroma">
@@ -207,16 +207,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">[</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Choco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Ghost&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bandit&#39;</span><span class="p">,</span> <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Falco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Abby&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Daisy&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Elmo&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-<span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Choco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Ghost&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bandit&#39;</span><span class="p">,</span> <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Falco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Abby&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Daisy&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Elmo&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>狗狗按照评分排序，但是在每个评分内，它们依然按照名字的字母的顺序排序。例如，Choco和Ghost的评分都是14，但是在排序结果中Choco在Ghost的前面，因为这也是它们在原始数据中的顺序。</p>
 <p>但是要得到这个结果，JavaScript引擎不能只使用任何排序算法——排序算法必须是“稳定的排序”。很长时间里，JavaScript规范并不要求<code>Array#sort</code>进行排序的稳定性，而是将其留给实现过程。因为这种行为没有具体说明，所以你可能得到的Ghost排在Choco前面的排序结果。</p>
@@ -233,22 +233,22 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">[</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Ghost&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span> <span class="c1">// 😢
-</span><span class="c1"></span>  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Choco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span> <span class="c1">// 😢
-</span><span class="c1"></span>  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bandit&#39;</span><span class="p">,</span> <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Falco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Abby&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Daisy&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Elmo&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
-<span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Ghost&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span> <span class="c1">// 😢
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Choco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">14</span> <span class="p">},</span> <span class="c1">// 😢
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Bandit&#39;</span><span class="p">,</span> <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Falco&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">13</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Abby&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Daisy&#39;</span><span class="p">,</span>  <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Elmo&#39;</span><span class="p">,</span>   <span class="nx">rating</span><span class="o">:</span> <span class="mi">12</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>换句话说，JavaScript开发者不能依赖排序的稳定性。在实践中，情况可能更令人愤怒，因为有些JavaScript引擎对短数组进行稳定排序而对长数组进行不稳定排序。这让人非常困惑，开发者在测试他们的代码时候，看到的是稳定的排序，但是当数组略大的时候，突然在生产环境中获得不稳定排序的结果。</p>
-<p>但是有一些好消息。我们<a href="https://github.com/tc39/ecma262/pull/1340" target="_blank" rel="noopener noreffer">提出规范变更</a>，让<code>Array#sort</code>变得稳定，并且被接受。现在，所有的JavaScript主流引擎都实现了稳定的<code>Array#sort</code>。作为开发人员，只需要担心一件事情，太好了！</p>
+<p>但是有一些好消息。我们<a href="https://github.com/tc39/ecma262/pull/1340" target="_blank" rel="noopener noreferrer">提出规范变更</a>，让<code>Array#sort</code>变得稳定，并且被接受。现在，所有的JavaScript主流引擎都实现了稳定的<code>Array#sort</code>。作为开发人员，只需要担心一件事情，太好了！</p>
 <p>（我们做了同样的事情为<code>TypedArrays</code>：它的sort现在也稳定了）</p>
 <blockquote>
-<p>尽管现在每个规范都要求稳定，JavaScript引擎依然可以自由的实现它们想要的排序算法。例如<a href="https://v8.dev/blog/array-sort#timsort" target="_blank" rel="noopener noreffer">V8使用的Timsort</a>。该规范并不要求任何特定的排序算法。</p>
+<p>尽管现在每个规范都要求稳定，JavaScript引擎依然可以自由的实现它们想要的排序算法。例如<a href="https://v8.dev/blog/array-sort#timsort" target="_blank" rel="noopener noreferrer">V8使用的Timsort</a>。该规范并不要求任何特定的排序算法。</p>
 </blockquote>
 <p>译者注：
 Timsort算法是非常有名的一个算法，在保证高性能的同时还能保证性能稳定。
@@ -258,18 +258,18 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
 <h2 id="特性支持" class="headerLink">
     <a href="#%e7%89%b9%e6%80%a7%e6%94%af%e6%8c%81" class="header-mark"></a>特性支持</h2><h3 id="稳定的arrayprototypesort" class="headerLink">
     <a href="#%e7%a8%b3%e5%ae%9a%e7%9a%84arrayprototypesort" class="header-mark"></a>稳定的<code>Array.prototype.sort</code></h3><ul>
-<li><a href="https://v8.dev/blog/v8-release-70#javascript-language-features" target="_blank" rel="noopener noreffer">Chrome 70+</a></li>
+<li><a href="https://v8.dev/blog/v8-release-70#javascript-language-features" target="_blank" rel="noopener noreferrer">Chrome 70+</a></li>
 <li>Firefox混合支持</li>
 <li>Safari混合支持</li>
-<li><a href="https://twitter.com/mathias/status/1120700101637353473" target="_blank" rel="noopener noreffer">Node 12+</a></li>
+<li><a href="https://twitter.com/mathias/status/1120700101637353473" target="_blank" rel="noopener noreferrer">Node 12+</a></li>
 <li><del>Babel</del></li>
 </ul>
 <h3 id="稳定的typedarrayprototypesort" class="headerLink">
     <a href="#%e7%a8%b3%e5%ae%9a%e7%9a%84typedarrayprototypesort" class="header-mark"></a>稳定的<code>%TypedArray%.prototype.sort</code></h3><ul>
-<li><a href="https://bugs.chromium.org/p/v8/issues/detail?id=8567" target="_blank" rel="noopener noreffer">Chrome 74+</a></li>
-<li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1290554" target="_blank" rel="noopener noreffer">Firefox 67+</a></li>
+<li><a href="https://bugs.chromium.org/p/v8/issues/detail?id=8567" target="_blank" rel="noopener noreferrer">Chrome 74+</a></li>
+<li><a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1290554" target="_blank" rel="noopener noreferrer">Firefox 67+</a></li>
 <li>Safari混合支持</li>
-<li><a href="https://twitter.com/mathias/status/1120700101637353473" target="_blank" rel="noopener noreffer">Node 12+</a></li>
+<li><a href="https://twitter.com/mathias/status/1120700101637353473" target="_blank" rel="noopener noreferrer">Node 12+</a></li>
 <li><del>Babel</del></li>
 </ul></div>
 
@@ -302,7 +302,7 @@ TimSort的设计思路很新颖（当然也可能借鉴了其他算法）：既�
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

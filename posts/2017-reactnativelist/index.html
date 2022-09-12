@@ -192,12 +192,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">[</span>
-    <span class="p">{</span><span class="nx">id</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span>
-    <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Mark&#39;</span><span class="p">},</span>
-    <span class="p">...</span>
-<span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">id</span><span class="o">:</span><span class="mi">1</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;Mark&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在使用<code>renderRow(rowData, sectionID, rowID, highlightRow)</code>渲染列表项的时候，<code>rowData</code>就是数组中每一个对象。</p>
 <h3 id="分组长列表" class="headerLink">
@@ -212,12 +212,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">{</span> <span class="nx">sectionID_1</span><span class="o">:</span> <span class="p">{</span> <span class="nx">rowID_1</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">rowData1</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span> <span class="p">...</span> <span class="p">}</span>
-<span class="c1">//or
-</span><span class="c1"></span><span class="p">{</span> <span class="nx">sectionID_1</span><span class="o">:</span> <span class="p">[</span> <span class="o">&lt;</span><span class="nx">rowData1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">rowData2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">],</span> <span class="p">...</span> <span class="p">}</span>
-<span class="c1">//or
-</span><span class="c1"></span><span class="p">[</span> <span class="p">[</span> <span class="o">&lt;</span><span class="nx">rowData1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">rowData2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">],</span> <span class="p">...</span> <span class="p">]</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span> <span class="nx">sectionID_1</span><span class="o">:</span> <span class="p">{</span> <span class="nx">rowID_1</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">rowData1</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">},</span> <span class="p">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//or
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span> <span class="nx">sectionID_1</span><span class="o">:</span> <span class="p">[</span> <span class="o">&lt;</span><span class="nx">rowData1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">rowData2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">],</span> <span class="p">...</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//or
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span> <span class="p">[</span> <span class="o">&lt;</span><span class="nx">rowData1</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="nx">rowData2</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">],</span> <span class="p">...</span> <span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>但是具体这里的是些什么，我觉得没有说清楚。所以我在项目中试了下用<code>ListView</code>的<code>cloneWithRowsAndSections</code>实现带有粘性标题的列表，发现前两种<code>sectionID</code>只能是一个简单的字符串或者数字，不能是一个对象，数据结构如下：</p>
 <div class="highlight"><div class="chroma">
@@ -242,25 +242,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">dataSource1</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">[</span><span class="s1">&#39;row1&#39;</span><span class="p">,</span><span class="s1">&#39;row2&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;row3&#39;</span><span class="p">,</span><span class="s1">&#39;row4&#39;</span><span class="p">],</span>
-    <span class="p">[</span><span class="s1">&#39;row5&#39;</span><span class="p">,</span><span class="s1">&#39;row6&#39;</span><span class="p">],</span>
-<span class="p">];</span>
-
-<span class="kr">const</span> <span class="nx">dataSoure2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;id1&#39;</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;row1&#39;</span><span class="p">,</span><span class="s1">&#39;row2&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;id2&#39;</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;row3&#39;</span><span class="p">,</span><span class="s1">&#39;row4&#39;</span><span class="p">],</span>
-    <span class="s1">&#39;id3&#39;</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;row5&#39;</span><span class="p">,</span><span class="s1">&#39;row6&#39;</span><span class="p">],</span>
-<span class="p">}</span>
-
-<span class="kr">const</span> <span class="nx">dataSoure3</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;id1&#39;</span><span class="o">:</span><span class="p">{</span><span class="s1">&#39;row1&#39;</span><span class="p">,</span><span class="s1">&#39;row2&#39;</span><span class="p">},</span>
-    <span class="s1">&#39;id2&#39;</span><span class="o">:</span><span class="p">{</span><span class="s1">&#39;row3&#39;</span><span class="p">,</span><span class="s1">&#39;row4&#39;</span><span class="p">},</span>
-    <span class="s1">&#39;id3&#39;</span><span class="o">:</span><span class="p">{</span><span class="s1">&#39;row5&#39;</span><span class="p">,</span><span class="s1">&#39;row6&#39;</span><span class="p">},</span>
-<span class="p">}</span>
-<span class="nx">cloneWithRowsAndSections</span><span class="p">(</span><span class="nx">dataSource</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">dataSource1</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s1">&#39;row1&#39;</span><span class="p">,</span><span class="s1">&#39;row2&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s1">&#39;row3&#39;</span><span class="p">,</span><span class="s1">&#39;row4&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="s1">&#39;row5&#39;</span><span class="p">,</span><span class="s1">&#39;row6&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">dataSoure2</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;id1&#39;</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;row1&#39;</span><span class="p">,</span><span class="s1">&#39;row2&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;id2&#39;</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;row3&#39;</span><span class="p">,</span><span class="s1">&#39;row4&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;id3&#39;</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;row5&#39;</span><span class="p">,</span><span class="s1">&#39;row6&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">dataSoure3</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;id1&#39;</span><span class="o">:</span><span class="p">{</span><span class="s1">&#39;row1&#39;</span><span class="p">,</span><span class="s1">&#39;row2&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;id2&#39;</span><span class="o">:</span><span class="p">{</span><span class="s1">&#39;row3&#39;</span><span class="p">,</span><span class="s1">&#39;row4&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;id3&#39;</span><span class="o">:</span><span class="p">{</span><span class="s1">&#39;row5&#39;</span><span class="p">,</span><span class="s1">&#39;row6&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cloneWithRowsAndSections</span><span class="p">(</span><span class="nx">dataSource</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>dataSoure1生成的sectionHeader是数组的下标，而第二个第三个分别是对应的<code>key</code>，在项目中我的sectionHeader是一个对象，类似于<code>{headerName:'',headerContent:''}</code>，所以无法使用。</p>
 <h2 id="sectionlist分组长列表" class="headerLink">
@@ -286,24 +286,24 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">SectionList</span>
-  <span class="nx">renderItem</span><span class="o">=</span><span class="p">{({</span><span class="nx">item</span><span class="p">})</span> <span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">ListItem</span> <span class="nx">title</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">}</span>
-  <span class="nx">renderSectionHeader</span><span class="o">=</span><span class="p">{({</span><span class="nx">section</span><span class="p">})</span> <span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">H1</span> <span class="nx">title</span><span class="o">=</span><span class="p">{</span><span class="nx">section</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">}</span>
-  <span class="nx">sections</span><span class="o">=</span><span class="p">{[</span> <span class="c1">// homogenous rendering between sections
-</span><span class="c1"></span>    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...},</span>
-    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...},</span>
-    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...},</span>
-  <span class="p">]}</span>
-<span class="err">/&gt;</span>
-
-<span class="o">&lt;</span><span class="nx">SectionList</span>
-  <span class="nx">sections</span><span class="o">=</span><span class="p">{[</span> <span class="c1">// heterogeneous rendering between sections
-</span><span class="c1"></span>    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...,</span> <span class="nx">renderItem</span><span class="o">:</span> <span class="p">...},</span>
-    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...,</span> <span class="nx">renderItem</span><span class="o">:</span> <span class="p">...},</span>
-    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...,</span> <span class="nx">renderItem</span><span class="o">:</span> <span class="p">...},</span>
-  <span class="p">]}</span>
-<span class="err">/&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">SectionList</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">renderItem</span><span class="o">=</span><span class="p">{({</span><span class="nx">item</span><span class="p">})</span> <span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">ListItem</span> <span class="nx">title</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">renderSectionHeader</span><span class="o">=</span><span class="p">{({</span><span class="nx">section</span><span class="p">})</span> <span class="p">=&gt;</span> <span class="o">&lt;</span><span class="nx">H1</span> <span class="nx">title</span><span class="o">=</span><span class="p">{</span><span class="nx">section</span><span class="p">.</span><span class="nx">title</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">sections</span><span class="o">=</span><span class="p">{[</span> <span class="c1">// homogenous rendering between sections
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]}</span>
+</span></span><span class="line"><span class="cl"><span class="err">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">SectionList</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">sections</span><span class="o">=</span><span class="p">{[</span> <span class="c1">// heterogeneous rendering between sections
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...,</span> <span class="nx">renderItem</span><span class="o">:</span> <span class="p">...},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...,</span> <span class="nx">renderItem</span><span class="o">:</span> <span class="p">...},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="p">[...],</span> <span class="nx">title</span><span class="o">:</span> <span class="p">...,</span> <span class="nx">renderItem</span><span class="o">:</span> <span class="p">...},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">]}</span>
+</span></span><span class="line"><span class="cl"><span class="err">/&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>说实话我第一次看到这个描述的时候很懵逼，这好像并没说明data里具体的数据结构是什么样子的，<code>renderSectionHeader</code>中的数据又该如何取，在网上看了一个简单的讲解才大概知道<code>sections</code>里的数据应该怎么写，代码如下：</p>
 <div class="highlight"><div class="chroma">
@@ -346,43 +346,43 @@
 </span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span> <span class="p">,</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
-<span class="kr">import</span> <span class="p">{</span>
-    <span class="nx">AppRegistry</span><span class="p">,</span>
-    <span class="nx">StyleSheet</span><span class="p">,</span>
-    <span class="nx">Text</span><span class="p">,</span>
-    <span class="nx">View</span><span class="p">,</span>
-    <span class="nx">SectionList</span>
-<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
-
-<span class="kr">const</span> <span class="nx">dataSource</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">{</span><span class="nx">data</span><span class="o">:</span><span class="p">[{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;nader&#39;</span><span class="p">},{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;chris&#39;</span><span class="p">}],</span><span class="nx">key</span><span class="o">:</span><span class="s1">&#39;A&#39;</span><span class="p">},</span>
-    <span class="p">{</span><span class="nx">data</span><span class="o">:</span><span class="p">[{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;nick&#39;</span><span class="p">},{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;amanda&#39;</span><span class="p">}],</span><span class="nx">key</span><span class="o">:</span><span class="s1">&#39;B&#39;</span><span class="p">}</span>
-<span class="p">];</span>
-
-<span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">SectionListExample</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
-    <span class="nx">renderItem</span> <span class="o">=</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
-    <span class="p">}</span>
-
-    <span class="nx">renderHeader</span> <span class="o">=</span> <span class="p">(</span><span class="nx">headerItem</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">header</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">headerItem</span><span class="p">.</span><span class="nx">section</span><span class="p">.</span><span class="nx">key</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
-    <span class="p">}</span>
-
-    <span class="nx">render</span><span class="p">(){</span>
-        <span class="k">return</span><span class="p">(</span>
-            <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">container</span><span class="p">}</span><span class="o">&gt;</span>
-                <span class="o">&lt;</span><span class="nx">SectionList</span>
-                    <span class="nx">renderItem</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">renderItem</span><span class="p">}</span>
-                    <span class="nx">renderSectionHeader</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">renderHeader</span><span class="p">}</span>
-                    <span class="nx">sections</span><span class="o">=</span><span class="p">{</span><span class="nx">dataSource</span><span class="p">}</span>
-                    <span class="nx">keyExtractor</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">)=&gt;</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>
-                <span class="o">/&gt;</span>
-            <span class="o">&lt;</span><span class="err">/View&gt;</span>
-        <span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span> <span class="p">,</span> <span class="p">{</span><span class="nx">Component</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">AppRegistry</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">StyleSheet</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Text</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">View</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">SectionList</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-native&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">dataSource</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">data</span><span class="o">:</span><span class="p">[{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;nader&#39;</span><span class="p">},{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;chris&#39;</span><span class="p">}],</span><span class="nx">key</span><span class="o">:</span><span class="s1">&#39;A&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">data</span><span class="o">:</span><span class="p">[{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;nick&#39;</span><span class="p">},{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;amanda&#39;</span><span class="p">}],</span><span class="nx">key</span><span class="o">:</span><span class="s1">&#39;B&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="kr">class</span> <span class="nx">SectionListExample</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">renderItem</span> <span class="o">=</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">text</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">renderHeader</span> <span class="o">=</span> <span class="p">(</span><span class="nx">headerItem</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">header</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">headerItem</span><span class="p">.</span><span class="nx">section</span><span class="p">.</span><span class="nx">key</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">render</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">container</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">&lt;</span><span class="nx">SectionList</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">renderItem</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">renderItem</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">renderSectionHeader</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">renderHeader</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">sections</span><span class="o">=</span><span class="p">{</span><span class="nx">dataSource</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">keyExtractor</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">)=&gt;</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">&lt;</span><span class="err">/View&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里需要注意一点就是<code>renderItem</code>所用的数据<code>key</code>必须是<code>data</code>，而且<code>key</code>必须是唯一的，然后其余的数据用在<code>headerItem</code>中，这样就非常容易在<code>sectionHeader</code>中渲染出多个后台给定的数据。</p>
 <h4 id="sectionlist和flatlist需要注意几点" class="headerLink">
@@ -434,7 +434,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

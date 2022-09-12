@@ -252,13 +252,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*方法一*/</span>
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-<span class="cm">/*方法二*/</span>
-<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
-<span class="cm">/*方法三（ES6新增）*/</span>
-<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*方法一*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*方法二*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*方法三（ES6新增）*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="k">of</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>Array.of()</code>是ES6中新增的将一组值转换为数组的方法，该方法的出现时为了弥补构造函数<code>Array()</code>因为参数不同导致的不同行为。</p>
 <div class="highlight"><div class="chroma">
@@ -268,10 +268,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nb">Array</span><span class="p">()</span>         <span class="c1">//[]
-</span><span class="c1"></span><span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>        <span class="c1">//[ , , ]
-</span><span class="c1"></span><span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>    <span class="c1">//[1,2,3]
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">Array</span><span class="p">()</span>         <span class="c1">//[]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>        <span class="c1">//[ , , ]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>    <span class="c1">//[1,2,3]
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>从上面可以看出，只有在参数个数不少于2时候，才会返回新的数组。</p>
 <h2 id="数组的检测" class="headerLink">
@@ -288,14 +288,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">checkArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">){</span>
-        <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
-    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-        <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span><span class="o">===</span><span class="s1">&#39;[object Array]&#39;</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">checkArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">toString</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span><span class="o">===</span><span class="s1">&#39;[object Array]&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="数组中的方法" class="headerLink">
     <a href="#%e6%95%b0%e7%bb%84%e4%b8%ad%e7%9a%84%e6%96%b9%e6%b3%95" class="header-mark"></a>数组中的方法：</h2><h3 id="更改原数组" class="headerLink">
@@ -314,10 +314,10 @@ shift():<strong>移除</strong>数组中的<strong>第一项</strong>并返回�
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
-<span class="nx">values</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">);</span> <span class="c1">// =&gt;5,4,3,2,1
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">values</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">);</span> <span class="c1">// =&gt;5,4,3,2,1
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>sort():按照升序排列数组项，但是它在实现排序时会调用每个数组项的<code>toString()</code>放法，去比较字符串，所以会出现如下情况</p>
 <div class="highlight"><div class="chroma">
@@ -327,10 +327,10 @@ shift():<strong>移除</strong>数组中的<strong>第一项</strong>并返回�
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">];</span>
-<span class="nx">values</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">);</span> <span class="c1">// =&gt; 0,1,10,15,5
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">values</span><span class="p">.</span><span class="nx">sort</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">);</span> <span class="c1">// =&gt; 0,1,10,15,5
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>为了在使用<code>sort()</code>方法时返回正确的排序，我们需要给<code>sort()</code>传入一个比较函数，该比较函数传入两个参数，如果第一个参数应该位于第二个参数之前则返回一个负数，如果两个参数相等返回0，如果第一个参数应该位于第二个参数之后则返回一个正数。</p>
 <div class="highlight"><div class="chroma">
@@ -351,21 +351,21 @@ shift():<strong>移除</strong>数组中的<strong>第一项</strong>并返回�
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*升序
-</span><span class="cm">降序则更改返回值即可*/</span>
-<span class="kd">function</span> <span class="nx">compare</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span><span class="nx">value2</span><span class="p">){</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">value1</span> <span class="o">&lt;</span> <span class="nx">value2</span><span class="p">){</span>
-        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">value1</span> <span class="o">&gt;</span> <span class="nx">value2</span><span class="p">){</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">];</span>
-<span class="nx">values</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">compare</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*升序
+</span></span></span><span class="line"><span class="cl"><span class="cm">降序则更改返回值即可*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">compare</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span><span class="nx">value2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">value1</span> <span class="o">&lt;</span> <span class="nx">value2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">value1</span> <span class="o">&gt;</span> <span class="nx">value2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">values</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="nx">compare</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">values</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>对于数值类型或者其<code>valueOf()</code>方法会返回数值类型的对象类型，可以使用一个简单的比较函数</p>
 <div class="highlight"><div class="chroma">
@@ -375,10 +375,10 @@ shift():<strong>移除</strong>数组中的<strong>第一项</strong>并返回�
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">compare</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span><span class="nx">value2</span><span class="p">){</span>
-    <span class="k">return</span> <span class="nx">value2</span> <span class="o">-</span> <span class="nx">value1</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">compare</span><span class="p">(</span><span class="nx">value1</span><span class="p">,</span><span class="nx">value2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">value2</span> <span class="o">-</span> <span class="nx">value1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="截取" class="headerLink">
     <a href="#%e6%88%aa%e5%8f%96" class="header-mark"></a>截取</h4><p>slice():接受一个或两个参数，要返回的起始位置到结束位置<strong>但不包括结束位置</strong>项，如果只写一个参数则截取数组到最后。<strong>可以接收负数作为参数</strong>
@@ -399,19 +399,19 @@ splice():做多可以接收三个参数，分别为<em>起始位置</em>，<em>�
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">colors</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">];</span>
-<span class="kd">var</span> <span class="nx">removed</span> <span class="o">=</span><span class="nx">colors</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">//删除第一项
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">colors</span><span class="p">);</span>                <span class="c1">//green,blue
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">removed</span><span class="p">);</span>               <span class="c1">//redm,返回的数组中只包含一项
-</span><span class="c1"></span>
-<span class="nx">removed</span> <span class="o">=</span> <span class="nx">colors</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span><span class="s1">&#39;orange&#39;</span><span class="p">);</span> <span class="c1">//从位置1开始插入两项
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">colors</span><span class="p">);</span>                <span class="c1">//green,yellow,orange,blue
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">removed</span><span class="p">);</span>               <span class="c1">//返回的是一个空数组
-</span><span class="c1"></span>
-<span class="nx">removed</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;purple&#39;</span><span class="p">);</span>  <span class="c1">//插入两项，删除一项
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">colors</span><span class="p">);</span>                <span class="c1">//green,yellow,purple,orange,blue
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">removed</span><span class="p">);</span>               <span class="c1">//返回yellow
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">colors</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="s1">&#39;blue&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">removed</span> <span class="o">=</span><span class="nx">colors</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">//删除第一项
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">colors</span><span class="p">);</span>                <span class="c1">//green,blue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">removed</span><span class="p">);</span>               <span class="c1">//redm,返回的数组中只包含一项
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">removed</span> <span class="o">=</span> <span class="nx">colors</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;yellow&#39;</span><span class="p">,</span><span class="s1">&#39;orange&#39;</span><span class="p">);</span> <span class="c1">//从位置1开始插入两项
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">colors</span><span class="p">);</span>                <span class="c1">//green,yellow,orange,blue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">removed</span><span class="p">);</span>               <span class="c1">//返回的是一个空数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">removed</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="s1">&#39;purple&#39;</span><span class="p">);</span>  <span class="c1">//插入两项，删除一项
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">colors</span><span class="p">);</span>                <span class="c1">//green,yellow,purple,orange,blue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">removed</span><span class="p">);</span>               <span class="c1">//返回yellow
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="copywithin" class="headerLink">
     <a href="#copywithin" class="header-mark"></a>copyWithin()</h4><p>参数：</p>
@@ -429,11 +429,11 @@ splice():做多可以接收三个参数，分别为<em>起始位置</em>，<em>�
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
-<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">copyWithin</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">// =&gt;[1,2,3]
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">copyWithin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c1">// =&gt;[2,3,3]
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">copyWithin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="c1">// =&gt;[2,2,3]
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">copyWithin</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">// =&gt;[1,2,3]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">copyWithin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c1">// =&gt;[2,3,3]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">copyWithin</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="c1">// =&gt;[2,2,3]
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面例子可以看出，虽然<code>copyWithin</code>的后两个参数是可选的，但是需要写第二个参数，否则返回的只是原数组本身。</p>
 <h3 id="不更改原素组生成新数组" class="headerLink">
@@ -447,11 +447,11 @@ splice():做多可以接收三个参数，分别为<em>起始位置</em>，<em>�
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
-<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">]);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// =&gt;1,2,3
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,[</span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="s1">&#39;d&#39;</span><span class="p">,</span><span class="s1">&#39;e&#39;</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span> <span class="c1">// =&gt;1,2,3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">b</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="寻找" class="headerLink">
     <a href="#%e5%af%bb%e6%89%be" class="header-mark"></a>寻找</h4><h5 id="1indexoflastindexof与includes" class="headerLink">
@@ -479,14 +479,14 @@ ES7中新增<code>includes()</code>方法，用于查找数组总是否包含某
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
-<span class="nx">a</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">n</span><span class="p">)=&gt;</span> <span class="nx">n</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">);</span>  <span class="c1">// -5
-</span><span class="c1"></span>
-<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">];</span>
-<span class="nx">b</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span><span class="nx">index</span><span class="p">,</span><span class="nx">arr</span><span class="p">){</span>
-    <span class="k">return</span> <span class="nx">value</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">;</span>
-<span class="p">});</span><span class="c1">//=&gt;2
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">a</span><span class="p">.</span><span class="nx">find</span><span class="p">((</span><span class="nx">n</span><span class="p">)=&gt;</span> <span class="nx">n</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">);</span>  <span class="c1">// -5
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">b</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span><span class="nx">index</span><span class="p">,</span><span class="nx">arr</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">value</span> <span class="o">&gt;</span> <span class="mi">9</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span><span class="c1">//=&gt;2
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="迭代方法" class="headerLink">
     <a href="#%e8%bf%ad%e4%bb%a3%e6%96%b9%e6%b3%95" class="header-mark"></a>迭代方法</h4><p>ES5为数组定义了五个迭代方法
@@ -515,14 +515,14 @@ ES7中新增<code>includes()</code>方法，用于查找数组总是否包含某
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-<span class="cm">/*求和*/</span>
-<span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)=&gt;</span><span class="nx">x</span><span class="o">+</span><span class="nx">y</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
-<span class="cm">/*求积*/</span>
-<span class="kd">var</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)=&gt;</span><span class="nx">x</span><span class="o">*</span><span class="nx">y</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
-<span class="cm">/*求最大值*/</span>
-<span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)=&gt;(</span><span class="nx">x</span><span class="o">&gt;</span><span class="nx">y</span><span class="p">)</span><span class="o">?</span><span class="nx">x</span><span class="o">:</span><span class="nx">y</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*求和*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)=&gt;</span><span class="nx">x</span><span class="o">+</span><span class="nx">y</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*求积*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">product</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)=&gt;</span><span class="nx">x</span><span class="o">*</span><span class="nx">y</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*求最大值*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)=&gt;(</span><span class="nx">x</span><span class="o">&gt;</span><span class="nx">y</span><span class="p">)</span><span class="o">?</span><span class="nx">x</span><span class="o">:</span><span class="nx">y</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个方法的简单用法就是这样，在《javascript高级程序设计》（第三版）中只是介绍了这个用法，但是在《javascript权威指南》（第六版）中提到了<code>reduce</code>的<strong>高级用法。</strong>
 例1：求任意数目对象的“并集”</p>
@@ -539,16 +539,16 @@ ES7中新增<code>includes()</code>方法，用于查找数组总是否包含某
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*
-</span><span class="cm">返回一个新对象，这个对象同时拥有o和p的属性
-</span><span class="cm">如果o和p中有重名属性，使用p中属性
-</span><span class="cm">*/</span>
-<span class="kd">function</span> <span class="nx">union</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">p</span><span class="p">){</span>
-    <span class="k">return</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">extend</span><span class="p">({},</span><span class="nx">o</span><span class="p">),</span><span class="nx">p</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">objects</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},{</span><span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">},{</span><span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">}];</span>
-<span class="kd">var</span> <span class="nx">merged</span> <span class="o">=</span> <span class="nx">objects</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">union</span><span class="p">);</span> <span class="c1">// =&gt;{x:1,y:2,z:3}
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">返回一个新对象，这个对象同时拥有o和p的属性
+</span></span></span><span class="line"><span class="cl"><span class="cm">如果o和p中有重名属性，使用p中属性
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">union</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span><span class="nx">p</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">extend</span><span class="p">(</span><span class="nx">extend</span><span class="p">({},</span><span class="nx">o</span><span class="p">),</span><span class="nx">p</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">objects</span> <span class="o">=</span> <span class="p">[{</span><span class="nx">x</span><span class="o">:</span><span class="mi">1</span><span class="p">},{</span><span class="nx">y</span><span class="o">:</span><span class="mi">2</span><span class="p">},{</span><span class="nx">z</span><span class="o">:</span><span class="mi">3</span><span class="p">}];</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">merged</span> <span class="o">=</span> <span class="nx">objects</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="nx">union</span><span class="p">);</span> <span class="c1">// =&gt;{x:1,y:2,z:3}
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>例2：统计字符串中每个字符出现的重复次数</p>
 <div class="highlight"><div class="chroma">
@@ -558,10 +558,10 @@ ES7中新增<code>includes()</code>方法，用于查找数组总是否包含某
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="s1">&#39;abcdabcdadbc&#39;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">p</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span><span class="o">++</span> <span class="o">||</span> <span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> <span class="nx">p</span><span class="p">),</span> <span class="p">{});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">info</span><span class="p">);</span> <span class="c1">//=&gt; Object {a: 3, b: 3, c: 3, d: 3}
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="s1">&#39;abcdabcdadbc&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">info</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">p</span><span class="p">,</span><span class="nx">k</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span><span class="o">++</span> <span class="o">||</span> <span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span> <span class="nx">p</span><span class="p">),</span> <span class="p">{});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">info</span><span class="p">);</span> <span class="c1">//=&gt; Object {a: 3, b: 3, c: 3, d: 3}
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这两个例子，尤其是第二个例子可以看出，<code>reduce()</code>并不单单只是用于数学计算，在第二个例子中可以明显看出在<code>reduce()</code>第二个参数传入一个空对象，此时它最终返回的就是一个对象。由于本身传入的初始值是对象，所以返回对象。如果传入一个空数组，则返回数组。所以可以看出，最终<code>reduce()</code>函数返回什么，取决于第二个参数的形式。</p>
 <h4 id="join" class="headerLink">
@@ -574,8 +574,8 @@ ES7中新增<code>includes()</code>方法，用于查找数组总是否包含某
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span> <span class="c1">//=&gt;[7,7,7]
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span> <span class="c1">//=&gt;[7,7,7]
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="转换为数组的方法es6新增" class="headerLink">
     <a href="#%e8%bd%ac%e6%8d%a2%e4%b8%ba%e6%95%b0%e7%bb%84%e7%9a%84%e6%96%b9%e6%b3%95es6%e6%96%b0%e5%a2%9e" class="header-mark"></a>转换为数组的方法(ES6新增)</h2><h4 id="arrayfrom" class="headerLink">
@@ -592,22 +592,22 @@ ES7中新增<code>includes()</code>方法，用于查找数组总是否包含某
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="mi">0</span><span class="o">:</span><span class="s1">&#39;li&#39;</span><span class="p">,</span>
-    <span class="mi">1</span><span class="o">:</span><span class="s1">&#39;li&#39;</span><span class="p">,</span>
-    <span class="mi">2</span><span class="o">:</span><span class="s1">&#39;li&#39;</span><span class="p">,</span>
-    <span class="nx">length</span><span class="o">:</span><span class="mi">3</span>
-<span class="p">};</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nx">a</span><span class="p">));</span> <span class="c1">// =&gt; [&#39;li&#39;,&#39;li&#39;,&#39;li&#39;];
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">0</span><span class="o">:</span><span class="s1">&#39;li&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">1</span><span class="o">:</span><span class="s1">&#39;li&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="mi">2</span><span class="o">:</span><span class="s1">&#39;li&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">length</span><span class="o">:</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="nx">a</span><span class="p">));</span> <span class="c1">// =&gt; [&#39;li&#39;,&#39;li&#39;,&#39;li&#39;];
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],(</span><span class="nx">x</span><span class="p">)=&gt;</span><span class="nx">x</span><span class="o">*</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// =&gt;1,4,9
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],(</span><span class="nx">x</span><span class="p">)=&gt;</span><span class="nx">x</span><span class="o">*</span><span class="nx">x</span><span class="p">);</span> <span class="c1">// =&gt;1,4,9
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="扩展运算符" class="headerLink">
     <a href="#%e6%89%a9%e5%b1%95%e8%bf%90%e7%ae%97%e7%ac%a6" class="header-mark"></a>扩展运算符（&hellip;）</h4><div class="highlight"><div class="chroma">
@@ -620,13 +620,13 @@ ES7中新增<code>includes()</code>方法，用于查找数组总是否包含某
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//arguments对象
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">foo</span><span class="p">(){</span>
-    <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">arguments</span><span class="p">];</span>
-<span class="p">}</span>
-<span class="c1">//nodelist
-</span><span class="c1"></span><span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)];</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//arguments对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">foo</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">arguments</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//nodelist
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[...</span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)];</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div></div>
 
@@ -659,7 +659,7 @@ ES7中新增<code>includes()</code>方法，用于查找数组总是否包含某
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

@@ -183,10 +183,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span> <span class="nx">mkdir</span> <span class="p">[</span><span class="nx">project</span> <span class="nx">name</span><span class="p">]</span>
-<span class="nx">$</span> <span class="nx">cd</span> <span class="p">[</span><span class="nx">project</span> <span class="nx">name</span><span class="p">]</span>
-<span class="nx">$</span> <span class="nx">npm</span> <span class="nx">init</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">mkdir</span> <span class="p">[</span><span class="nx">project</span> <span class="nx">name</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">cd</span> <span class="p">[</span><span class="nx">project</span> <span class="nx">name</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">init</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>2.在项目目录下新建<code>index.html</code></p>
 <div class="highlight"><div class="chroma">
@@ -204,18 +204,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Vue example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>{{message}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;dist/build.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Vue example<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>{{message}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;dist/build.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>src文件夹，并在该文件夹下建立<code>main.js</code></p>
 <div class="highlight"><div class="chroma">
@@ -229,14 +229,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
-<span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
-    <span class="nx">el</span><span class="o">:</span><span class="s1">&#39;body&#39;</span><span class="p">,</span>
-    <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
-        <span class="nx">message</span><span class="o">:</span><span class="s1">&#39;test success!&#39;</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span><span class="s1">&#39;body&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">message</span><span class="o">:</span><span class="s1">&#39;test success!&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="设置webpack" class="headerLink">
     <a href="#%e8%ae%be%e7%bd%aewebpack" class="header-mark"></a>设置webpack</h2><h3 id="1安装webpackwebpack-dev-server以及相关的loaders" class="headerLink">
@@ -249,12 +249,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="c1"># 全局安装webpack，webpack-dev-server
-</span><span class="c1"></span><span class="err">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">webpack</span>
-<span class="err">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">webpack</span><span class="o">-</span><span class="nx">dev</span><span class="o">-</span><span class="nx">server</span>
-<span class="c1"># 为项目安装其他依赖
-</span><span class="c1"></span><span class="err">$</span> <span class="nx">npm</span> <span class="nx">i</span> <span class="nx">webpack</span><span class="o">-</span><span class="nx">merge</span> <span class="nx">css</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">style</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">file</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">url</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">core</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">plugin</span><span class="o">-</span><span class="nx">transform</span><span class="o">-</span><span class="nx">runtime</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="nx">es2015</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="nx">stage</span><span class="o">-</span><span class="mi">0</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">runtime</span> <span class="nx">vue</span> <span class="nx">vue</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">vue</span><span class="o">-</span><span class="nx">html</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">vue</span><span class="o">-</span><span class="nx">style</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">vue</span><span class="o">-</span><span class="nx">hot</span><span class="o">-</span><span class="nx">reload</span><span class="o">-</span><span class="nx">api</span> <span class="o">-</span><span class="nx">D</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1"># 全局安装webpack，webpack-dev-server
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">webpack</span>
+</span></span><span class="line"><span class="cl"><span class="err">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">-</span><span class="nx">g</span> <span class="nx">webpack</span><span class="o">-</span><span class="nx">dev</span><span class="o">-</span><span class="nx">server</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 为项目安装其他依赖
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">$</span> <span class="nx">npm</span> <span class="nx">i</span> <span class="nx">webpack</span><span class="o">-</span><span class="nx">merge</span> <span class="nx">css</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">style</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">file</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">url</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">core</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">plugin</span><span class="o">-</span><span class="nx">transform</span><span class="o">-</span><span class="nx">runtime</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="nx">es2015</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">preset</span><span class="o">-</span><span class="nx">stage</span><span class="o">-</span><span class="mi">0</span> <span class="nx">babel</span><span class="o">-</span><span class="nx">runtime</span> <span class="nx">vue</span> <span class="nx">vue</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">vue</span><span class="o">-</span><span class="nx">html</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">vue</span><span class="o">-</span><span class="nx">style</span><span class="o">-</span><span class="nx">loader</span> <span class="nx">vue</span><span class="o">-</span><span class="nx">hot</span><span class="o">-</span><span class="nx">reload</span><span class="o">-</span><span class="nx">api</span> <span class="o">-</span><span class="nx">D</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>webpack-merge：开发环境和生产环节的webpaak配置文件的配置合并</li>
@@ -273,7 +273,7 @@
 <li>babel-runtime：babel执行环境</li>
 </ul>
 <h4 id="url-loader" class="headerLink">
-    <a href="#url-loader" class="header-mark"></a>url-loader</h4><p>这里介绍下url-loader，这个loader实际上是对file-loader的封装<a href="https://github.com/webpack/url-loader" target="_blank" rel="noopener noreffer">https://github.com/webpack/url-loader</a>
+    <a href="#url-loader" class="header-mark"></a>url-loader</h4><p>这里介绍下url-loader，这个loader实际上是对file-loader的封装<a href="https://github.com/webpack/url-loader" target="_blank" rel="noopener noreferrer">https://github.com/webpack/url-loader</a>
 比如CSS文件中有时候会这么写：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -282,10 +282,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">demo</span><span class="p">{</span>
-    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="s1">&#39;a.png&#39;</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">demo</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background-image</span><span class="p">:</span> <span class="nb">url</span><span class="p">(</span><span class="s1">&#39;a.png&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -296,12 +296,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="o">:</span><span class="p">{</span>
-    <span class="nx">loaders</span><span class="o">:</span><span class="p">[</span>
-        <span class="p">{</span><span class="nx">test</span><span class="o">:</span><span class="sr">/\.(png|jpg)$/</span><span class="p">,</span><span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;url-loader?limit=8192&#39;</span><span class="p">}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">module</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">loaders</span><span class="o">:</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="nx">test</span><span class="o">:</span><span class="sr">/\.(png|jpg)$/</span><span class="p">,</span><span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;url-loader?limit=8192&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>经过以上配置，当a.png小于8K就会自动将图片转换成base64编码，如果不小于，则不会转换。
 <strong>这里顺便提一句，在module配置的时候，loader的写法：</strong></p>
@@ -318,16 +318,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">module</span><span class="o">:</span><span class="p">{</span>
-    <span class="nx">loaders</span><span class="o">:</span><span class="p">[</span>
-        <span class="p">{</span><span class="nx">test</span><span class="o">:</span><span class="sr">/\.jade$/</span><span class="p">,</span><span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;jade&#39;</span><span class="p">}</span>
-        <span class="c1">//这里配置了让webpack识别jade的loader，其他类似，比如.vue
-</span><span class="c1"></span>        <span class="c1">//用于css文件的loader有两种写法
-</span><span class="c1"></span>        <span class="p">{</span><span class="nx">test</span><span class="o">:</span><span class="sr">/\.css$/</span><span class="p">,</span><span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;style!css&#39;</span><span class="p">}</span>
-        <span class="p">{</span><span class="nx">test</span><span class="o">:</span><span class="sr">/\.css$/</span><span class="p">,</span><span class="nx">loaders</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;style&#39;</span><span class="p">,</span><span class="s1">&#39;css&#39;</span><span class="p">]}</span>
-    <span class="p">]</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">module</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">loaders</span><span class="o">:</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="nx">test</span><span class="o">:</span><span class="sr">/\.jade$/</span><span class="p">,</span><span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;jade&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//这里配置了让webpack识别jade的loader，其他类似，比如.vue
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="c1">//用于css文件的loader有两种写法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">{</span><span class="nx">test</span><span class="o">:</span><span class="sr">/\.css$/</span><span class="p">,</span><span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;style!css&#39;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="nx">test</span><span class="o">:</span><span class="sr">/\.css$/</span><span class="p">,</span><span class="nx">loaders</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;style&#39;</span><span class="p">,</span><span class="s1">&#39;css&#39;</span><span class="p">]}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="2配置webpackconfigjs" class="headerLink">
     <a href="#2%e9%85%8d%e7%bd%aewebpackconfigjs" class="header-mark"></a>2.配置<code>webpack.config.js</code></h3><p>在根目录下建立webpack.config.js，配置如下：</p>
@@ -366,38 +366,38 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/main.js&#39;</span><span class="p">,</span>
-  <span class="c1">//定义webpack输出的文件，我们在这里设置了
-</span><span class="c1"></span>  <span class="nx">让打包后生成的文件放在dist文件夹下的build</span><span class="p">.</span><span class="nx">js文件中</span>
-  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;./dist&#39;</span><span class="p">,</span>
-    <span class="nx">publicPath</span><span class="o">:</span><span class="s1">&#39;dist/&#39;</span><span class="p">,</span>
-    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;build.js&#39;</span>
-  <span class="p">},</span>
-  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
-    <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
-      <span class="c1">//转化ES6语法
-</span><span class="c1"></span>      <span class="p">{</span>
-        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>
-        <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel&#39;</span><span class="p">,</span>
-        <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span>
-      <span class="p">},</span>
-      <span class="c1">//图片转化，小于8K自动转化为base64的编码
-</span><span class="c1"></span>      <span class="p">{</span>
-        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.(png|jpg|gif)$/</span><span class="p">,</span>
-        <span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;url-loader?limit=8192&#39;</span>
-      <span class="p">}</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="c1">//这里用于安装babel，如果在根目录下的.babelrc配置了，这里就不写了
-</span><span class="c1"></span>  <span class="nx">babel</span><span class="o">:</span> <span class="p">{</span>
-     <span class="nx">presets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;es2015&#39;</span><span class="p">,</span><span class="s1">&#39;stage-0&#39;</span><span class="p">],</span>
-     <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;transform-runtime&#39;</span><span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/main.js&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//定义webpack输出的文件，我们在这里设置了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">让打包后生成的文件放在dist文件夹下的build</span><span class="p">.</span><span class="nx">js文件中</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;./dist&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">publicPath</span><span class="o">:</span><span class="s1">&#39;dist/&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;build.js&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">loaders</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">//转化ES6语法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.js$/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;babel&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">//图片转化，小于8K自动转化为base64的编码
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.(png|jpg|gif)$/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">loader</span><span class="o">:</span><span class="s1">&#39;url-loader?limit=8192&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//这里用于安装babel，如果在根目录下的.babelrc配置了，这里就不写了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">babel</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">presets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;es2015&#39;</span><span class="p">,</span><span class="s1">&#39;stage-0&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;transform-runtime&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>特别说明</strong>
 如果要在.babelrc下配置babel，则需要在根目录下新建该文件，windows环境下，不能新建该txt文件然后改后缀，需要通过dos命令建立：</p>
@@ -406,8 +406,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">echo</span><span class="o">&gt;.</span><span class="nx">babelrc</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">echo</span><span class="o">&gt;.</span><span class="nx">babelrc</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>通过该命令就可以建立babelde配置文件，用编辑器打开，修改里面的内容为：</p>
 <div class="highlight"><div class="chroma">
@@ -418,11 +418,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">{</span>
-  <span class="s2">&#34;presets&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;es2015&#34;</span><span class="p">,</span> <span class="s2">&#34;stage-0&#34;</span><span class="p">],</span>
-  <span class="s2">&#34;plugins&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;transform-runtime&#34;</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;presets&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;es2015&#34;</span><span class="p">,</span> <span class="s2">&#34;stage-0&#34;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;plugins&#34;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;transform-runtime&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>完成该配置我们在命令中运行</p>
 <div class="highlight"><div class="chroma">
@@ -430,11 +430,11 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span> <span class="nx">webpack</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">webpack</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>打开<code>index.html</code>就可以看到浏览器中看到我们刚刚写的文字
-至此我们实现了最基本的利用webpack打包vue，下一篇将讲解<a href="https://segmentfault.com/a/1190000005616974" target="_blank" rel="noopener noreffer">如何利用webpack+vue真正实现组件化</a>。</p></div>
+至此我们实现了最基本的利用webpack打包vue，下一篇将讲解<a href="https://segmentfault.com/a/1190000005616974" target="_blank" rel="noopener noreferrer">如何利用webpack+vue真正实现组件化</a>。</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -465,7 +465,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

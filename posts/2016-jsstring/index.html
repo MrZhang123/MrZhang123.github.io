@@ -39,7 +39,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2016-jsstring\/"
-        },"genre": "posts","keywords": "Javascript","wordcount":  2654 ,
+        },"genre": "posts","keywords": "Javascript","wordcount":  2641 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2016-jsstring\/","datePublished": "2016-08-14T16:48:34+00:00","dateModified": "2016-08-14T16:48:34+00:00","publisher": {
             "@type": "Organization",
             "name": "Raymond"},"author": {
@@ -176,7 +176,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2654 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-08-14">2016-08-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2641 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -234,10 +234,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
-<span class="cm">/*chartAt()*/</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">chartAt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>    <span class="c1">// &#39;e&#39;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*chartAt()*/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">chartAt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>    <span class="c1">// &#39;e&#39;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="字符串操作方法" class="headerLink">
     <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e6%93%8d%e4%bd%9c%e6%96%b9%e6%b3%95" class="header-mark"></a>字符串操作方法</h2><h3 id="concat数组中也有该方法" class="headerLink">
@@ -269,18 +269,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;hello world&#34;</span><span class="p">;</span> 
-<span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>          <span class="c1">//&#34;lo world&#34; 
-</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>      <span class="c1">//&#34;lo world&#34; 
-</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>         <span class="c1">//&#34;lo world&#34; 
-</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>       <span class="c1">//&#34;lo w&#34; 
-</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>    <span class="c1">//&#34;lo w&#34; 
-</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>      <span class="c1">//&#34;lo worl&#34; 
-</span><span class="c1"></span><span class="cm">/*repeat()*/</span>
-<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;he&#39;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb">---</span><span class="si">${</span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="sr">/		  /</span><span class="o">/</span><span class="s2">&#34;he---hehehe&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;hello world&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>          <span class="c1">//&#34;lo world&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>      <span class="c1">//&#34;lo world&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>         <span class="c1">//&#34;lo world&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>       <span class="c1">//&#34;lo w&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>    <span class="c1">//&#34;lo w&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>      <span class="c1">//&#34;lo worl&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*repeat()*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;he&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb">---</span><span class="si">${</span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="sr">/		  /</span><span class="o">/</span><span class="s2">&#34;he---hehehe&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>当给这三个方法传入负值的时候，三个的表现不同：</p>
 <ul>
@@ -300,10 +300,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;hello world&#34;</span><span class="p">;</span> 
-<span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;o&#34;</span><span class="p">));</span>             <span class="c1">//4 
-</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s2">&#34;o&#34;</span><span class="p">));</span>         <span class="c1">//7 
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;hello world&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;o&#34;</span><span class="p">));</span>             <span class="c1">//4 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s2">&#34;o&#34;</span><span class="p">));</span>         <span class="c1">//7 
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这两个方法在搜索到第一个匹配的子字符串后就停止运行，所以如果想找到字符串中所有的
 子字符串出现的位置，可以循环调用<code>indexOf</code>或<code>lastIndexOf</code>。</p>
@@ -321,17 +321,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;Lorem ipsum dolor sit amet, consectetur adipisicing elit&#34;</span><span class="p">;</span> 
-<span class="kd">var</span> <span class="nx">positions</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span> 
-<span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">);</span> 
- 
-<span class="k">while</span><span class="p">(</span><span class="nx">pos</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span> 
-    <span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span> 
-    <span class="nx">pos</span> <span class="o">=</span> <span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="nx">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> 
-<span class="p">}</span> 
-     
-<span class="nx">alert</span><span class="p">(</span><span class="nx">positions</span><span class="p">);</span>    <span class="c1">//&#34;3,24,32,35,52&#34;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;Lorem ipsum dolor sit amet, consectetur adipisicing elit&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">positions</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="nx">pos</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span> 
+</span></span><span class="line"><span class="cl">    <span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="nx">pos</span> <span class="o">=</span> <span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="nx">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">positions</span><span class="p">);</span>    <span class="c1">//&#34;3,24,32,35,52&#34;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="es6新增includesstartswithendswith" class="headerLink">
     <a href="#es6%e6%96%b0%e5%a2%9eincludesstartswithendswith" class="header-mark"></a><strong>ES6新增</strong>includes()、startsWith()、endsWith()</h3><ul>
@@ -348,11 +348,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
-<span class="nx">s</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>	<span class="c1">// true
-</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>		<span class="c1">// true
-</span><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>		<span class="c1">//false
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>	<span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>		<span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>		<span class="c1">//false
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p><strong>注意：</strong>
 使用第2个参数n时，<code>endsWith</code>的行为与其他两个方法有所不同。它针对<strong>前面</strong>n个字符，而其他两个方法针对从第n个位置开始直到字符串结束的字符。</p>
@@ -380,22 +380,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*trim	去掉空白
-</span><span class="cm">str要处理的字符串		
-</span><span class="cm">[type] 	类型：l 去除左边的空白	r去除右边空白	b去掉两边的空白		a去除所有空白*/</span>
-<span class="kd">function</span> <span class="nx">trim</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">type</span><span class="o">=</span><span class="nx">type</span><span class="o">||</span><span class="s2">&#34;b&#34;</span><span class="p">;</span>
-	<span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;b&#34;</span><span class="p">){</span>
-		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\s*|\s*$/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
-	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;l&#34;</span><span class="p">){</span>
-		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\s*/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
-	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;r&#34;</span><span class="p">){</span>
-		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s*$/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
-	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;a&#34;</span><span class="p">){</span>
-		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s*/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
-	<span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*trim	去掉空白
+</span></span></span><span class="line"><span class="cl"><span class="cm">str要处理的字符串		
+</span></span></span><span class="line"><span class="cl"><span class="cm">[type] 	类型：l 去除左边的空白	r去除右边空白	b去掉两边的空白		a去除所有空白*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">trim</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">type</span><span class="o">=</span><span class="nx">type</span><span class="o">||</span><span class="s2">&#34;b&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;b&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\s*|\s*$/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;l&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\s*/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;r&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s*$/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;a&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s*/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="字符串大小写转换" class="headerLink">
     <a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2%e5%a4%a7%e5%b0%8f%e5%86%99%e8%bd%ac%e6%8d%a2" class="header-mark"></a>字符串大小写转换</h2><h3 id="tolowercasetolocalelowercasetouppercase和-tolocaleuppercase" class="headerLink">
@@ -415,15 +415,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;cat, bat, sat, fat&#34;</span><span class="p">;</span>  
-<span class="kd">var</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/.at/</span><span class="p">;</span> 
- 
-<span class="c1">//与 pattern.exec(text)相同 
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">matches</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">);</span>         
-<span class="nx">alert</span><span class="p">(</span><span class="nx">matches</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>             <span class="c1">//0 
-</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>                 <span class="c1">//&#34;cat&#34; 
-</span><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">);</span>          <span class="c1">//0 
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;cat, bat, sat, fat&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/.at/</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">//与 pattern.exec(text)相同 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">matches</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">);</span>         
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">matches</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>             <span class="c1">//0 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>                 <span class="c1">//&#34;cat&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">);</span>          <span class="c1">//0 
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="search" class="headerLink">
     <a href="#search" class="header-mark"></a>search()</h3><p>参数：<em>一个正则表达式或RegExp对象</em></p>
@@ -435,10 +435,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;cat, bat, sat, fat&#34;</span><span class="p">;</span>  
-<span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/at/</span><span class="p">);</span> 
-<span class="nx">alert</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span>   <span class="c1">//1 
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;cat, bat, sat, fat&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/at/</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span>   <span class="c1">//1 
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="replace" class="headerLink">
     <a href="#replace" class="header-mark"></a>replace()</h3><p>参数：<em>一个RegExp对象或者一个字符串（这个字符串不会被转换成正则表达式）</em>，<em>一个字符串或一个函数</em></p>
@@ -453,13 +453,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;cat , bat , sat , fat&#39;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;at&#39;</span><span class="p">,</span><span class="s1">&#39;ond&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">// =&gt;&#39;cont , bat , sat , fat&#39;
-</span><span class="c1"></span>
-<span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/at/g</span><span class="p">,</span><span class="s1">&#39;ond&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">//=&gt;&#39;cont , bont , sont , font&#39;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;cat , bat , sat , fat&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;at&#39;</span><span class="p">,</span><span class="s1">&#39;ond&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">// =&gt;&#39;cont , bat , sat , fat&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/at/g</span><span class="p">,</span><span class="s1">&#39;ond&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">//=&gt;&#39;cont , bont , sont , font&#39;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>该方法并不改变调用它的字符串本身，只是返回一个新的替换后的字符串。</p>
 <p><strong>当第二个参数为函数时</strong>函数的返回值作为替换字符串。与第二个参数是字符串一样，如果第一个参数是正则表达式，并且全局匹配，则这个函数的方法将被多次调用，每次匹配都会被调用。</p>
@@ -492,25 +492,25 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">replacer</span><span class="p">(</span><span class="nx">match</span> <span class="p">,</span> <span class="nx">p1</span> <span class="p">,</span> <span class="nx">p2</span> <span class="p">,</span> <span class="nx">p3</span> <span class="p">,</span> <span class="nx">offset</span> <span class="p">,</span> <span class="nx">string</span><span class="p">){</span>
-	<span class="c1">// p1 is nondigits, p2 digits, and p3 non-alphanumerics
-</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">match</span><span class="si">}</span><span class="sb">
-</span><span class="sb">				 </span><span class="si">${</span><span class="nx">p1</span><span class="si">}</span><span class="sb">
-</span><span class="sb">				 </span><span class="si">${</span><span class="nx">p2</span><span class="si">}</span><span class="sb">
-</span><span class="sb">				 </span><span class="si">${</span><span class="nx">p3</span><span class="si">}</span><span class="sb">
-</span><span class="sb">				 </span><span class="si">${</span><span class="nx">offset</span><span class="si">}</span><span class="sb">
-</span><span class="sb">				 </span><span class="si">${</span><span class="nx">string</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> 
-	<span class="cm">/* =&gt; abc12345#$*%
-</span><span class="cm">         abc
-</span><span class="cm">         12345
-</span><span class="cm">         #$*%
-</span><span class="cm">         0
-</span><span class="cm">         abc12345#$*%&#34;	*/</span>		 
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; - &#39;</span><span class="p">));</span> <span class="c1">// =&gt; &#34;abc - 12345 - #$*%&#34;
-</span><span class="c1"></span>    <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; - &#39;</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="kd">var</span> <span class="nx">newString</span> <span class="o">=</span> <span class="s1">&#39;abc12345#$*%&#39;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^\d]*)(\d*)([^\w]*)/</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">);</span> <span class="c1">// =&gt;&#34;abc - 12345 - #$*%&#34;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">replacer</span><span class="p">(</span><span class="nx">match</span> <span class="p">,</span> <span class="nx">p1</span> <span class="p">,</span> <span class="nx">p2</span> <span class="p">,</span> <span class="nx">p3</span> <span class="p">,</span> <span class="nx">offset</span> <span class="p">,</span> <span class="nx">string</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// p1 is nondigits, p2 digits, and p3 non-alphanumerics
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">match</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">p1</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">p2</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">p3</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">offset</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">string</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">	<span class="cm">/* =&gt; abc12345#$*%
+</span></span></span><span class="line"><span class="cl"><span class="cm">         abc
+</span></span></span><span class="line"><span class="cl"><span class="cm">         12345
+</span></span></span><span class="line"><span class="cl"><span class="cm">         #$*%
+</span></span></span><span class="line"><span class="cl"><span class="cm">         0
+</span></span></span><span class="line"><span class="cl"><span class="cm">         abc12345#$*%&#34;	*/</span>		 
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; - &#39;</span><span class="p">));</span> <span class="c1">// =&gt; &#34;abc - 12345 - #$*%&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; - &#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">newString</span> <span class="o">=</span> <span class="s1">&#39;abc12345#$*%&#39;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^\d]*)(\d*)([^\w]*)/</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">);</span> <span class="c1">// =&gt;&#34;abc - 12345 - #$*%&#34;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="split" class="headerLink">
     <a href="#split" class="header-mark"></a>split()</h3><p>参数：<em>用于分隔字符串的分隔符</em>，<em>数字（可选，用于指定数组的大小）</em></p>
@@ -523,11 +523,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red,blue,yellow,black&#39;</span><span class="p">;</span>
-<span class="kd">var</span> <span class="nx">color1</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">);</span>		<span class="c1">// =&gt;[&#39;red&#39;,&#39;blue&#39;,&#39;yellow&#39;,&#39;black&#39;]
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">color2</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>	<span class="c1">// =&gt;[&#39;red&#39;,&#39;blue&#39;]
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">color3</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/[^\,]+/</span><span class="p">);</span> <span class="c1">// =&gt;[&#34;&#34;, &#34;,&#34;, &#34;,&#34;, &#34;,&#34;, &#34;&#34;] 
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red,blue,yellow,black&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">color1</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">);</span>		<span class="c1">// =&gt;[&#39;red&#39;,&#39;blue&#39;,&#39;yellow&#39;,&#39;black&#39;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">color2</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>	<span class="c1">// =&gt;[&#39;red&#39;,&#39;blue&#39;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">color3</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/[^\,]+/</span><span class="p">);</span> <span class="c1">// =&gt;[&#34;&#34;, &#34;,&#34;, &#34;,&#34;, &#34;,&#34;, &#34;&#34;] 
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后一个调用<code>split</code>的时候，出现了前后的两个空白，是因为通过正则表达式指定的分隔符出现在了字符串的开头和结尾。</p>
 <h2 id="localecompare" class="headerLink">
@@ -559,21 +559,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*fromCharCode*/</span>
-<span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="mi">104</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">108</span><span class="p">,</span><span class="mi">108</span><span class="p">,</span><span class="mi">111</span><span class="p">);</span>	<span class="c1">// =&gt;hello
-</span><span class="c1"></span><span class="cm">/*charCodeAt*/</span>
-<span class="kd">let</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
-<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="si">}</span><span class="sb">----</span><span class="si">${</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">charCodeAt</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
-<span class="p">}</span>
-<span class="cm">/*
-</span><span class="cm">&#34;h----104&#34;
-</span><span class="cm">&#34;e----101&#34;
-</span><span class="cm">&#34;l----108&#34;
-</span><span class="cm">&#34;l----108&#34;
-</span><span class="cm">&#34;o----111&#34;
-</span><span class="cm">*/</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*fromCharCode*/</span>
+</span></span><span class="line"><span class="cl"><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="mi">104</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">108</span><span class="p">,</span><span class="mi">108</span><span class="p">,</span><span class="mi">111</span><span class="p">);</span>	<span class="c1">// =&gt;hello
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*charCodeAt*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="si">}</span><span class="sb">----</span><span class="si">${</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">charCodeAt</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;h----104&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;e----101&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;l----108&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;l----108&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;o----111&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>最后写一个字符串与数组方法应用的一个例子，熟悉它们方法的话很简单，不熟悉就会觉得有点儿乱。</p>
 <div class="highlight"><div class="chroma">
@@ -583,19 +583,20 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">news</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">news</span><span class="p">);</span> <span class="c1">// =&gt; &#34;olleh&#34;
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">news</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">news</span><span class="p">);</span> <span class="c1">// =&gt; &#34;olleh&#34;
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="另附js中string和array方法的总结图" class="headerLink">
-    <a href="#%e5%8f%a6%e9%99%84js%e4%b8%adstring%e5%92%8carray%e6%96%b9%e6%b3%95%e7%9a%84%e6%80%bb%e7%bb%93%e5%9b%be" class="header-mark"></a>另附js中String和Array方法的总结图：</h2><p><img
-        class="lazyload"
-        data-src="./string&amp;Array.png"
-        data-srcset="./string&amp;Array.png, ./string&amp;Array.png 1.5x, ./string&amp;Array.png 2x"
-        data-sizes="auto"
-        alt="./string&amp;Array.png"
-        title="icon"></p></div>
+    <a href="#%e5%8f%a6%e9%99%84js%e4%b8%adstring%e5%92%8carray%e6%96%b9%e6%b3%95%e7%9a%84%e6%80%bb%e7%bb%93%e5%9b%be" class="header-mark"></a>另附js中String和Array方法的总结图：</h2><p><a class="lightgallery" href="./string&amp;Array.png" title="icon" data-thumbnail="./string&amp;Array.png">
+        <img
+            class="lazyload"
+            data-src="./string&amp;Array.png"
+            data-srcset="./string&amp;Array.png, ./string&amp;Array.png 1.5x, ./string&amp;Array.png 2x"
+            data-sizes="auto"
+            alt="./string&amp;Array.png">
+    </a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -626,7 +627,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

@@ -212,13 +212,14 @@
 <ul>
 <li>既不是resolve也不是reject状态，也就是Promise刚刚被创建后的初始化状态。</li>
 </ul>
-<p><img
-        class="lazyload"
-        data-src="./img/promise-states.png"
-        data-srcset="./img/promise-states.png, ./img/promise-states.png 1.5x, ./img/promise-states.png 2x"
-        data-sizes="auto"
-        alt="./img/promise-states.png"
-        title="图１"></p>
+<p><a class="lightgallery" href="./img/promise-states.png" title="图１" data-thumbnail="./img/promise-states.png">
+        <img
+            class="lazyload"
+            data-src="./img/promise-states.png"
+            data-srcset="./img/promise-states.png, ./img/promise-states.png 1.5x, ./img/promise-states.png 2x"
+            data-sizes="auto"
+            alt="./img/promise-states.png">
+    </a></p>
 <ol>
 <li>
 <p>在Chrome中输出<code>resolve</code>可以得到<code>Promise {[[PromiseStatus]]: &quot;pending&quot;, [[PromiseValue]]: undefined}</code>，可以看出<code>[[PromiseStatus]]</code>中存储的就是Promise的状态，但是并没有公开访问<code>[[PromiseStatus]]</code>的用户API，所以暂时还无法查询其内部状态。</p>
@@ -246,20 +247,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//defined Promise async function
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">asyncFun</span><span class="p">(){</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">reslove</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">reslove</span><span class="p">){</span>
-            <span class="nx">reslove</span><span class="p">(</span><span class="cm">/*reslove parameter*/</span><span class="p">);</span>
-        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="cm">/*Error*/</span><span class="p">));</span>
-        <span class="p">}</span>
-    <span class="p">})</span>
-<span class="p">}</span>
-
-<span class="c1">//use Promise&amp;then
-</span><span class="c1"></span><span class="nx">asyncFun</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="cm">/*function*/</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="cm">/*function*/</span><span class="p">)...</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//defined Promise async function
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">asyncFun</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">reslove</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nx">reslove</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">reslove</span><span class="p">(</span><span class="cm">/*reslove parameter*/</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">reject</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="cm">/*Error*/</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//use Promise&amp;then
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">asyncFun</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="cm">/*function*/</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="cm">/*function*/</span><span class="p">)...</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p><code>reslove</code>方法的参数就是要传给回调函数的参数，即<code>resolve</code>将运行得到的结果传出来，而<code>then</code>接受该参数给回调继续执行后面的，如果这个<code>then</code>的中的函数还会返回Promise，则会重复执行该步骤直到结束。</p>
 <p><code>reject</code>方法的参数一般是包含了reject原因的Error对象。<code>reject</code>和<code>resolve</code>一样，也会将自己的参数传出去，接收该参数的是<code>then</code>的第二个fun或者是<code>catch</code>。其实<code>.catch</code>只是<code>Promise.then(onFulfilled,onRejected)</code>的别名而已。</p>
@@ -272,10 +273,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">reslove</span><span class="p">)=&gt;{</span>
-    <span class="nx">reslove</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">reslove</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">reslove</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这段代码可以让这个Promise对象立即进入resolve状态，并将42传递给后面then里所指定的<code>onFulfilled</code>函数。此外<code>Promise.resolve</code>还有一个作用，就是将非Promise对象转换为Promise对象。</p>
 <p><code>Promise.reject(value)</code>与之类似。</p>
@@ -298,21 +299,21 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;inner promise&#34;</span><span class="p">);</span> <span class="c1">// 1
-</span><span class="c1"></span>    <span class="nx">resolve</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 3
-</span><span class="c1"></span><span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;outer promise&#34;</span><span class="p">);</span> <span class="c1">// 2
-</span><span class="c1"></span>
-<span class="cm">/*输出：
-</span><span class="cm">&#34;inner promise&#34;
-</span><span class="cm">&#34;outer promise&#34;
-</span><span class="cm">42
-</span><span class="cm">*/</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;inner promise&#34;</span><span class="p">);</span> <span class="c1">// 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">resolve</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;outer promise&#34;</span><span class="p">);</span> <span class="c1">// 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*输出：
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;inner promise&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;outer promise&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">42
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>从以上的这段代码我们可以看出<code>Promise.then()</code>是异步调用的，这也是Promise设计上规定的，其原因在于<strong>同步调用和异步调用同时存在会导致混乱</strong>。</p>
 <p>以上那段代码如果在<strong>调用onReady之前DOM已经载入的话</strong>，对回调函数进行<strong>同步</strong>调用，如果在<strong>调用onReady之前DOM还没有载入的话</strong>，通过注册<code>DOMContentLoader</code>事件监听器来对回调进行<strong>异步</strong>调用。这会导致该代码在源文件中不同位置输出不同的结果，关于这个现象，有如下几点：</p>
@@ -339,19 +340,19 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">onReady</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">readyState</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">readyState</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">readyState</span> <span class="o">===</span> <span class="s1">&#39;interactive&#39;</span> <span class="o">||</span> <span class="nx">readyState</span> <span class="o">===</span> <span class="s1">&#39;complete&#39;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;DOMContentLoaded&#39;</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">onReady</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;DOM fully loaded and parsed&#39;</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;==Starting==&#39;</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">onReady</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">readyState</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">readyState</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">readyState</span> <span class="o">===</span> <span class="s1">&#39;interactive&#39;</span> <span class="o">||</span> <span class="nx">readyState</span> <span class="o">===</span> <span class="s1">&#39;complete&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">setTimeout</span><span class="p">(</span><span class="nx">fn</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;DOMContentLoaded&#39;</span><span class="p">,</span> <span class="nx">fn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">onReady</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;DOM fully loaded and parsed&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;==Starting==&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>所以在Promise中<code>then</code>是异步的。</p>
 <h2 id="promise链式调用" class="headerLink">
@@ -385,31 +386,31 @@
 </span><span class="lnt">24
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">pro1</span><span class="p">(){</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">reslove</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">reslove</span><span class="p">){</span>
-            <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1000</span><span class="p">)},</span><span class="mi">1000</span><span class="p">);</span>
-            <span class="nx">reslove</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">})</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">pro2</span><span class="p">(){</span>
-    <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2000</span><span class="p">)},</span><span class="mi">2000</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">pro3</span><span class="p">(){</span>
-    <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3000</span><span class="p">)},</span><span class="mi">3000</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nx">pro1</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro3</span><span class="p">);</span>
-
-<span class="kd">function</span> <span class="nx">pro1</span><span class="p">(){</span>
-    <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1000</span><span class="p">)},</span><span class="mi">1000</span><span class="p">);</span>
-<span class="p">}</span>
-
-<span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro3</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">pro1</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">reslove</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nx">reslove</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1000</span><span class="p">)},</span><span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">reslove</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">pro2</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">2000</span><span class="p">)},</span><span class="mi">2000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">pro3</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3000</span><span class="p">)},</span><span class="mi">3000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">pro1</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">pro1</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1000</span><span class="p">)},</span><span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro3</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>上面的写法有两处错误：</p>
 <ol>
@@ -456,38 +457,38 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//直接返回Promise
-</span><span class="c1"></span><span class="kd">function</span> <span class="nx">pro1</span><span class="p">(){</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
-        <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="nx">resolve</span><span class="p">();},</span><span class="mi">1000</span><span class="p">);</span>
-        
-    <span class="p">})</span>
-<span class="p">}</span>
-<span class="kd">function</span> <span class="nx">pro2</span><span class="p">(){</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
-        <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span><span class="nx">resolve</span><span class="p">();},</span><span class="mi">5000</span><span class="p">);</span>
-        
-    <span class="p">});</span>
-<span class="p">}</span>
-<span class="kd">function</span> <span class="nx">pro3</span><span class="p">(){</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
-        <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="nx">resolve</span><span class="p">();},</span><span class="mi">500</span><span class="p">);</span>
-    <span class="p">})</span>
-<span class="p">}</span>
-<span class="nx">pro1</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro3</span><span class="p">);</span>
-
-<span class="c1">//or使用Promise.reslove()
-</span><span class="c1"></span>
-<span class="kd">function</span> <span class="nx">pro1</span><span class="p">(</span><span class="nx">cb</span><span class="p">){</span><span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="nx">cb</span><span class="p">()},</span><span class="mi">1000</span><span class="p">)};</span>
-<span class="kd">function</span> <span class="nx">pro2</span><span class="p">(</span><span class="nx">cb</span><span class="p">){</span><span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span><span class="nx">cb</span><span class="p">()},</span><span class="mi">3000</span><span class="p">)};</span>
-<span class="kd">function</span> <span class="nx">pro3</span><span class="p">(</span><span class="nx">cb</span><span class="p">){</span><span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="nx">cb</span><span class="p">()},</span><span class="mi">500</span><span class="p">)};</span>
-
-
-<span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">()</span>
-       <span class="p">.</span><span class="nx">then</span><span class="p">(()=&gt;</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">=&gt;</span><span class="nx">pro1</span><span class="p">(</span><span class="nx">resolve</span><span class="p">)))</span>
-       <span class="p">.</span><span class="nx">then</span><span class="p">(()=&gt;</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">=&gt;</span><span class="nx">pro2</span><span class="p">(</span><span class="nx">resolve</span><span class="p">)))</span>
-       <span class="p">.</span><span class="nx">then</span><span class="p">(()=&gt;</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">=&gt;</span><span class="nx">pro3</span><span class="p">(</span><span class="nx">resolve</span><span class="p">)));</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//直接返回Promise
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">function</span> <span class="nx">pro1</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="nx">resolve</span><span class="p">();},</span><span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">pro2</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span><span class="nx">resolve</span><span class="p">();},</span><span class="mi">5000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">pro3</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="nx">resolve</span><span class="p">();},</span><span class="mi">500</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">pro1</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">pro3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">//or使用Promise.reslove()
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">pro1</span><span class="p">(</span><span class="nx">cb</span><span class="p">){</span><span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span><span class="nx">cb</span><span class="p">()},</span><span class="mi">1000</span><span class="p">)};</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">pro2</span><span class="p">(</span><span class="nx">cb</span><span class="p">){</span><span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span><span class="nx">cb</span><span class="p">()},</span><span class="mi">3000</span><span class="p">)};</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">pro3</span><span class="p">(</span><span class="nx">cb</span><span class="p">){</span><span class="nx">setTimeout</span><span class="p">(()=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span><span class="nx">cb</span><span class="p">()},</span><span class="mi">500</span><span class="p">)};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">       <span class="p">.</span><span class="nx">then</span><span class="p">(()=&gt;</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">=&gt;</span><span class="nx">pro1</span><span class="p">(</span><span class="nx">resolve</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">       <span class="p">.</span><span class="nx">then</span><span class="p">(()=&gt;</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">=&gt;</span><span class="nx">pro2</span><span class="p">(</span><span class="nx">resolve</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">       <span class="p">.</span><span class="nx">then</span><span class="p">(()=&gt;</span><span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">=&gt;</span><span class="nx">pro3</span><span class="p">(</span><span class="nx">resolve</span><span class="p">)));</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="各个task需要参数的传递" class="headerLink">
     <a href="#%e5%90%84%e4%b8%aatask%e9%9c%80%e8%a6%81%e5%8f%82%e6%95%b0%e7%9a%84%e4%bc%a0%e9%80%92" class="header-mark"></a>各个Task需要参数的传递</h4><p>在Promise的链式调用中，有可能各个task之间存在相互依赖，例如TaskA想给TaskB传递一个参数，像下面这样：</p>
@@ -534,46 +535,46 @@
 </span><span class="lnt">39
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="cm">/*例1.使用Promise.resolve()启动*/</span>
-<span class="kd">let</span> <span class="nx">task1</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value1</span><span class="p">)=&gt;</span><span class="nx">value1</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">task2</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value2</span><span class="p">)=&gt;</span><span class="nx">value2</span><span class="o">+</span><span class="mi">2</span><span class="p">;</span>
-<span class="kd">let</span> <span class="nx">task3</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value3</span><span class="p">)=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value3</span><span class="o">+</span><span class="mi">3</span><span class="p">)};</span>
-
-<span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task3</span><span class="p">);</span><span class="c1">//console =&gt; 7
-</span><span class="c1"></span>
-
-<span class="cm">/*例2.普通的返回一个Promise*/</span>
-<span class="kd">function</span> <span class="nx">task1</span><span class="p">(</span><span class="nx">value1</span><span class="p">){</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
-      <span class="nx">resolve</span><span class="p">(</span><span class="nx">value1</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
-    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;throw Error @ task1&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">task2</span><span class="p">(</span><span class="nx">value2</span><span class="p">){</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
-      <span class="nx">resolve</span><span class="p">(</span><span class="nx">value2</span><span class="o">+</span><span class="mi">2</span><span class="p">);</span>
-    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;throw Error @ task1&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
-<span class="p">}</span>
-<span class="kd">function</span> <span class="nx">task3</span><span class="p">(</span><span class="nx">value3</span><span class="p">){</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
-      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value3</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>
-    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;throw Error @ task1&#34;</span><span class="p">);</span>
-    <span class="p">}</span>
-  <span class="p">});</span>
-<span class="p">}</span>
-
-<span class="nx">task1</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task3</span><span class="p">);</span><span class="c1">//console =&gt; 7
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*例1.使用Promise.resolve()启动*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">task1</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value1</span><span class="p">)=&gt;</span><span class="nx">value1</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">task2</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value2</span><span class="p">)=&gt;</span><span class="nx">value2</span><span class="o">+</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">task3</span> <span class="o">=</span> <span class="p">(</span><span class="nx">value3</span><span class="p">)=&gt;{</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value3</span><span class="o">+</span><span class="mi">3</span><span class="p">)};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task3</span><span class="p">);</span><span class="c1">//console =&gt; 7
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*例2.普通的返回一个Promise*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">task1</span><span class="p">(</span><span class="nx">value1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">resolve</span><span class="p">(</span><span class="nx">value1</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;throw Error @ task1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">task2</span><span class="p">(</span><span class="nx">value2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">resolve</span><span class="p">(</span><span class="nx">value2</span><span class="o">+</span><span class="mi">2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;throw Error @ task1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">task3</span><span class="p">(</span><span class="nx">value3</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value3</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&#34;throw Error @ task1&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">task1</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task2</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">task3</span><span class="p">);</span><span class="c1">//console =&gt; 7
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>关于<code>reslove</code>与<code>reject</code>有以下两点说明：</p>
 <ul>
@@ -603,22 +604,23 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a1</span><span class="o">:</span><span class="nx">a1</span><span class="p">,</span><span class="nx">a2</span><span class="o">:</span><span class="nx">a2</span><span class="p">,</span><span class="nx">a3</span><span class="o">:</span><span class="nx">a3</span><span class="p">};</span>
-<span class="nx">resolve</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
-<span class="c1">//or
-</span><span class="c1"></span><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span><span class="p">[</span><span class="nx">a1</span><span class="p">,</span><span class="nx">a2</span><span class="p">,</span><span class="nx">a3</span><span class="p">];</span>
-<span class="nx">resolve</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">a1</span><span class="o">:</span><span class="nx">a1</span><span class="p">,</span><span class="nx">a2</span><span class="o">:</span><span class="nx">a2</span><span class="p">,</span><span class="nx">a3</span><span class="o">:</span><span class="nx">a3</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="nx">resolve</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//or
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span><span class="p">[</span><span class="nx">a1</span><span class="p">,</span><span class="nx">a2</span><span class="p">,</span><span class="nx">a3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">resolve</span><span class="p">(</span><span class="nx">arr</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="then与catch返回新的promise" class="headerLink">
     <a href="#then%e4%b8%8ecatch%e8%bf%94%e5%9b%9e%e6%96%b0%e7%9a%84promise" class="header-mark"></a><code>then</code>与<code>catch</code>返回新的Promise</h2><p>在Promise中无论是<code>then</code>还是<code>catch</code>方法，都会返回返回一个新的Promise对象。</p>
-<p><img
-        class="lazyload"
-        data-src="./img/then_catch.png"
-        data-srcset="./img/then_catch.png, ./img/then_catch.png 1.5x, ./img/then_catch.png 2x"
-        data-sizes="auto"
-        alt="./img/then_catch.png"
-        title="图２"></p>
+<p><a class="lightgallery" href="./img/then_catch.png" title="图２" data-thumbnail="./img/then_catch.png">
+        <img
+            class="lazyload"
+            data-src="./img/then_catch.png"
+            data-srcset="./img/then_catch.png, ./img/then_catch.png 1.5x, ./img/then_catch.png 2x"
+            data-sizes="auto"
+            alt="./img/then_catch.png">
+    </a></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -634,18 +636,18 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">aPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">resolve</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="kd">var</span> <span class="nx">thenPromise</span> <span class="o">=</span> <span class="nx">aPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="kd">var</span> <span class="nx">catchPromise</span> <span class="o">=</span> <span class="nx">thenPromise</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">aPromise</span> <span class="o">!==</span> <span class="nx">thenPromise</span><span class="p">);</span> <span class="c1">// =&gt; true
-</span><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">thenPromise</span> <span class="o">!==</span> <span class="nx">catchPromise</span><span class="p">);</span><span class="c1">// =&gt; true
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">aPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">resolve</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">thenPromise</span> <span class="o">=</span> <span class="nx">aPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">catchPromise</span> <span class="o">=</span> <span class="nx">thenPromise</span><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">aPromise</span> <span class="o">!==</span> <span class="nx">thenPromise</span><span class="p">);</span> <span class="c1">// =&gt; true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">thenPromise</span> <span class="o">!==</span> <span class="nx">catchPromise</span><span class="p">);</span><span class="c1">// =&gt; true
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>所以像下面这样将链式调用分开写是不成功的</p>
 <div class="highlight"><div class="chroma">
@@ -665,20 +667,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// 1: 对同一个promise对象同时调用 `then` 方法
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">aPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">resolve</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="nx">aPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
-<span class="p">});</span>
-<span class="nx">aPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
-<span class="p">});</span>
-<span class="nx">aPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;1: &#34;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span> <span class="c1">// =&gt; 100
-</span><span class="c1"></span><span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 1: 对同一个promise对象同时调用 `then` 方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">aPromise</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">resolve</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">aPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">aPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">value</span> <span class="o">*</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">aPromise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;1: &#34;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">);</span> <span class="c1">// =&gt; 100
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>由于每次调用<code>then</code>方法都会返回一个新的Promise，所以导致最终输出100而不是100 * 2 * 2。</p>
 <h2 id="promiseall的使用" class="headerLink">
@@ -701,20 +703,20 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">setTime</span><span class="p">(</span><span class="nx">time</span><span class="p">){</span>
-  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)=&gt;{</span>
-    <span class="nx">setTimeout</span><span class="p">(()=&gt;</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">time</span><span class="p">),</span><span class="nx">time</span><span class="p">);</span>
-  <span class="p">})</span>
-<span class="p">}</span>
-
-<span class="kd">let</span> <span class="nx">startTime</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
-
-<span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">setTime</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="nx">setTime</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="nx">setTime</span><span class="p">(</span><span class="mi">200</span><span class="p">)])</span>
-       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">value</span><span class="p">)=&gt;{</span>
-         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>    <span class="c1">//[1,100,200]
-</span><span class="c1"></span>         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">startTime</span><span class="p">);</span> <span class="c1">//203
-</span><span class="c1"></span>       <span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">setTime</span><span class="p">(</span><span class="nx">time</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">setTimeout</span><span class="p">(()=&gt;</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">time</span><span class="p">),</span><span class="nx">time</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">startTime</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">setTime</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="nx">setTime</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span><span class="nx">setTime</span><span class="p">(</span><span class="mi">200</span><span class="p">)])</span>
+</span></span><span class="line"><span class="cl">       <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">value</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>    <span class="c1">//[1,100,200]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>         <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">startTime</span><span class="p">);</span> <span class="c1">//203
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>       <span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>从上面函数的输出值可以看出<code>Promise.all()</code>里的异步操作是同时执行的而且传给<code>.then()</code>的顺序和<code>Promise.all()</code>里的顺序一样。最终执行时间约为200ms，为什么不是200ms，这里涉及到关于<code>setTimeout</code>的精准问题，不在这里讨论。</p>
 <h2 id="promiserace的使用" class="headerLink">
@@ -746,30 +748,30 @@
 </span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">taskA</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this is taskA&#39;</span><span class="p">);</span>
-            <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;this is taskA&#39;</span><span class="p">);</span>
-        <span class="p">},</span> <span class="mi">4</span><span class="p">);</span>
-    <span class="p">});</span>
-<span class="kd">var</span> <span class="nx">taskB</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this is taskB&#39;</span><span class="p">);</span>
-            <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;this is taskB&#39;</span><span class="p">);</span>
-        <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
-    <span class="p">});</span>
-
-<span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span><span class="nx">winnerPromise</span><span class="p">,</span> <span class="nx">loserPromise</span><span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
-<span class="p">});</span>
-
-<span class="cm">/*
-</span><span class="cm">输出结果：
-</span><span class="cm">this is taskA
-</span><span class="cm">this is taskA
-</span><span class="cm">this is taskB
-</span><span class="cm">*/</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">taskA</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this is taskA&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;this is taskA&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="mi">4</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">taskB</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">resolve</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;this is taskB&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">resolve</span><span class="p">(</span><span class="s1">&#39;this is taskB&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">Promise</span><span class="p">.</span><span class="nx">race</span><span class="p">([</span><span class="nx">winnerPromise</span><span class="p">,</span> <span class="nx">loserPromise</span><span class="p">]).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">输出结果：
+</span></span></span><span class="line"><span class="cl"><span class="cm">this is taskA
+</span></span></span><span class="line"><span class="cl"><span class="cm">this is taskA
+</span></span></span><span class="line"><span class="cl"><span class="cm">this is taskB
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>从这里可以看出，在第一个Promise变为FulFiled状态运行then里的回调后，后面的Promise并没有停止运行，而是接续执行。也就是说， <code>Promise.race</code> 在第一个promise对象变为Fulfilled之后，并不会取消其他promise对象的执行。</p>
 <h2 id="promise的reject和异步操作error的理解" class="headerLink">
@@ -793,30 +795,30 @@
 </span><span class="lnt">16
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">ReadEveryFiles</span><span class="p">(</span><span class="nx">file</span><span class="p">){</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
-        <span class="k">if</span><span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
-            <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">__dirname</span><span class="si">}</span><span class="sb">/jQuery/</span><span class="si">${</span><span class="nx">file</span><span class="si">}</span><span class="sb">`</span><span class="p">,(</span><span class="nx">err</span><span class="p">,</span><span class="nx">data</span><span class="p">)=&gt;{</span>
-                <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
-                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
-                <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-                    <span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">data</span><span class="o">:</span><span class="nx">data</span><span class="p">,</span><span class="nx">file</span><span class="o">:</span><span class="nx">file</span><span class="p">};</span>
-                    <span class="nx">resolve</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
-                <span class="p">}</span>
-            <span class="p">});</span>
-        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-            <span class="c1">//promise reject error
-</span><span class="c1"></span>        <span class="p">}</span>
-    <span class="p">});</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">ReadEveryFiles</span><span class="p">(</span><span class="nx">file</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="nx">reject</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="nx">resolve</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">__dirname</span><span class="si">}</span><span class="sb">/jQuery/</span><span class="si">${</span><span class="nx">file</span><span class="si">}</span><span class="sb">`</span><span class="p">,(</span><span class="nx">err</span><span class="p">,</span><span class="nx">data</span><span class="p">)=&gt;{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="nx">data</span><span class="o">:</span><span class="nx">data</span><span class="p">,</span><span class="nx">file</span><span class="o">:</span><span class="nx">file</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">                    <span class="nx">resolve</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">});</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">//promise reject error
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里的readFile的error和Promise的reject不一样，一个是readFile过程中导致的错误，而另一个是Promise做处理的时候导致的错误，可以这样理解，假设读取文件成功了，但是Promise还需要讲这个异步操作得到的数据拿到处理，在Promise做这些操作的时候可能出错。</p>
 <h2 id="写在最后" class="headerLink">
     <a href="#%e5%86%99%e5%9c%a8%e6%9c%80%e5%90%8e" class="header-mark"></a>写在最后</h2><p>这几天开始用Promise写了一些东西，发现其实如果用Promise，会使得代码量加大，因为每一个异步都要被Promise封装，但是这样换来的却是更加容易的维护，所以还是值得的，当代码写完后，我们很容易就能看出代码的执行过程，相对于原来用嵌套去写要直观许多，而如果想要解决Promise的代码量过大的问题，我们可以使用Generator函数，另外，在ES7标准中推出了更加牛的异步解决方案<strong>Async/Await</strong>，关于它们，我将会在随后继续深入。</p>
 <h2 id="参考" class="headerLink">
-    <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h2><p><a href="http://liubin.org/promises-book/#introduction" target="_blank" rel="noopener noreffer">JavaScript Promise迷你书（中文版）</a>
-<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener noreffer">ECMAScript 6 入门&mdash;Promise对象</a></p></div>
+    <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h2><p><a href="http://liubin.org/promises-book/#introduction" target="_blank" rel="noopener noreferrer">JavaScript Promise迷你书（中文版）</a>
+<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank" rel="noopener noreferrer">ECMAScript 6 入门&mdash;Promise对象</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -847,7 +849,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

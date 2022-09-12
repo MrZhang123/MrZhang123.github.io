@@ -37,7 +37,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/mrzhang123.github.io\/posts\/2018-reactlifecycle\/"
-        },"genre": "posts","keywords": "React","wordcount":  1839 ,
+        },"genre": "posts","keywords": "React","wordcount":  1844 ,
         "url": "https:\/\/mrzhang123.github.io\/posts\/2018-reactlifecycle\/","datePublished": "2018-07-28T13:39:28+00:00","dateModified": "2018-07-28T13:39:28+00:00","publisher": {
             "@type": "Organization",
             "name": "Raymond"},"author": {
@@ -190,7 +190,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-07-28">2018-07-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-07-28">2018-07-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1839 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-07-28">2018-07-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-07-28">2018-07-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1844 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -254,7 +254,7 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p>原文链接：<a href="https://www.andreasreiterer.at/reactjs-lifecycle-methods/" target="_blank" rel="noopener noreffer">How to use React Lifecycle Methods</a></p>
+<p>原文链接：<a href="https://www.andreasreiterer.at/reactjs-lifecycle-methods/" target="_blank" rel="noopener noreferrer">How to use React Lifecycle Methods</a></p>
 </blockquote>
 <h2 id="react-生命周期" class="headerLink">
     <a href="#react-%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" class="header-mark"></a>React 生命周期</h2><p>大体上分三类</p>
@@ -289,8 +289,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentWillMount</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">componentWillMount</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>当 React 渲染一个组件的是你，首先进入该方法。</p>
 <p><strong>Note：</strong><code>componentWillMount()</code>是唯一一个在<code>render()</code>之前调用的生命周期方法。因此是在服务端渲染中唯一被调用的方法。</p>
@@ -304,8 +304,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentDidMount</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">componentDidMount</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>当该方法被调用时候，React 已经渲染了组件并且将组件插入 DOM。因此如有有任何依赖于 DOM 的初始化，应该放在这里。</p>
 <h4 id="state-1" class="headerLink">
@@ -322,8 +322,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentWillReceiveProps</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">componentWillReceiveProps</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>当组件接收到新的<code>props</code>，该方法会首先被调用，但是需要注意一点，<strong>即使<code>props</code>并没有发生改变，该方法也会被调用</strong>，所以使用该方法的时候要确保比较<code>this.props</code>和<code>nextProps</code>，避免不必要的渲染。</p>
 <p><strong>Update：</strong><code>componentWillReceiveProps</code>将被移除，使用新的<code>static getDerivedStateFromProps</code>代替。</p>
@@ -333,8 +333,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">static</span> <span class="nx">getDerivedStateFromProps</span><span class="p">(</span><span class="nx">props</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">static</span> <span class="nx">getDerivedStateFromProps</span><span class="p">(</span><span class="nx">props</span><span class="p">,</span> <span class="nx">state</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>每次<code>render</code>都会调用该方法——即使<code>props</code>没有发生变化。<strong>所以要谨慎使用。</strong></p>
 <h3 id="shouldcomponentupdate" class="headerLink">
@@ -343,8 +343,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextState</span><span class="p">,</span> <span class="nx">nextProps</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextState</span><span class="p">,</span> <span class="nx">nextProps</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>有些时候需要避免不必要的渲染，可以使用该方法。返回<code>false</code>意味着 React 不执行<code>componentWillUpdate()</code>，<code>render()</code>，<code>componentDidUpdate()</code>。</p>
 <p>该方法在初始化时候不执行。</p>
@@ -359,8 +359,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentWillUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">componentWillUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>该方法在被渲染前调用。<code>shouldComponentUpdate</code>在新的<code>props</code>进入组件或者<code>state</code>改变的时候调用。</p>
 <p>该方法在初始渲染时候不被调用。</p>
@@ -381,8 +381,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">getSnapshotBeforeUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">getSnapshotBeforeUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>该方法在 React 16.3 被添加并且它配合<code>componentDidUpdate</code>。该方法应该覆盖了旧方法<code>shouldComponentUpdate</code>的所有用例。</p>
 <p><code>getSnapshotBeforeUpdate</code>在元素被渲染并写入 DOM 之前调用，这样，你在 DOM 更新前捕获 DOM 信息（例如：滚动位置）。</p>
@@ -395,8 +395,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentDidUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">componentDidUpdate</span><span class="p">(</span><span class="nx">prevProps</span><span class="p">,</span> <span class="nx">prevState</span><span class="p">,</span> <span class="nx">snapshot</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>React 更新组件后，调用<code>componentDidUpdate</code>。该方法在初始渲染时候不会被调用。</p>
 <h4 id="use-cases-3" class="headerLink">
@@ -407,8 +407,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentWillUnmount</span><span class="p">()</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">componentWillUnmount</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在卸载，销毁组件之前调用该方法。</p>
 <h4 id="state-4" class="headerLink">
@@ -451,7 +451,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

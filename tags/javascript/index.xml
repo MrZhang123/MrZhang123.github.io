@@ -29,7 +29,7 @@
 </blockquote>
 <p>class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：</p>
 <ol>
-<li><a href="https://2ality.com/2019/07/public-class-fields.html" target="_blank" rel="noopener noreffer">公有class属性</a></li>
+<li><a href="https://2ality.com/2019/07/public-class-fields.html" target="_blank" rel="noopener noreferrer">公有class属性</a></li>
 <li>私有class属性</li>
 </ol>]]></description>
 </item><item>

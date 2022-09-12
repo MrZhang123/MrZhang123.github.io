@@ -171,7 +171,7 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
     </li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>做移动端的响应方法有很多，但是我喜欢用 CSS3 的新单位 rem，这个单位非常好用（有个比它还好用的单位 vh，不过兼容性太差，不考虑了），根据不同屏幕，设置不同的基准值，从而实现适配各个屏幕尺寸的移动设备。慕课网有一套非常不错的讲关于 rem 的视频，这里推荐给大家<a href="http://www.imooc.com/learn/494" target="_blank" rel="noopener noreffer">http://www.imooc.com/learn/494</a>。
+            </div><div class="content" id="content"><p>做移动端的响应方法有很多，但是我喜欢用 CSS3 的新单位 rem，这个单位非常好用（有个比它还好用的单位 vh，不过兼容性太差，不考虑了），根据不同屏幕，设置不同的基准值，从而实现适配各个屏幕尺寸的移动设备。慕课网有一套非常不错的讲关于 rem 的视频，这里推荐给大家<a href="http://www.imooc.com/learn/494" target="_blank" rel="noopener noreferrer">http://www.imooc.com/learn/494</a>。
 rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实现字体的响应，与 em 不同，rem 根据根元素的 font-size 计算，所以要利用 rem 实现适配各个屏幕的大小，就需要根据不同的屏幕设置根元素不同的 font-size 的值。所以我们需要做下面的一些工作。</p>
 <h3 id="1获取浏览器的宽高对于移动设备就是设备的宽度" class="headerLink">
     <a href="#1%e8%8e%b7%e5%8f%96%e6%b5%8f%e8%a7%88%e5%99%a8%e7%9a%84%e5%ae%bd%e9%ab%98%e5%af%b9%e4%ba%8e%e7%a7%bb%e5%8a%a8%e8%ae%be%e5%a4%87%e5%b0%b1%e6%98%af%e8%ae%be%e5%a4%87%e7%9a%84%e5%ae%bd%e5%ba%a6" class="header-mark"></a>1.获取浏览器的宽高（对于移动设备就是设备的宽度）</h3><p>代码如下：</p>
@@ -190,18 +190,18 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">pageWidth</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span>
-<span class="kd">var</span> <span class="nx">pageHeight</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">pageWidth</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="s1">&#39;CSS1Compat&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">pageWidt</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span>
-    <span class="nx">pageHeight</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">pageWidt</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientWidth</span>
-    <span class="nx">pageHeight</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">pageWidth</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">pageHeight</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">pageWidth</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="s1">&#39;CSS1Compat&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pageWidt</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pageHeight</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pageWidt</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientWidth</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pageHeight</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="11-windowinnerwidth-与-documentdocumentelementclientwidth" class="headerLink">
     <a href="#11-windowinnerwidth-%e4%b8%8e-documentdocumentelementclientwidth" class="header-mark"></a>1.1 window.innerWidth 与 document.documentElement.clientWidth</h4><p>通过测试发现，在 IE9+，chrome，firefox 下利用 window.innerWidth 与 document.documentElement.clientWidth 都可以获取到浏览器的宽高，但是他们有区别：</p>
@@ -221,12 +221,12 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="s1">&#39;CSS1Compat&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;标准模式&#39;</span><span class="p">)</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="s1">&#39;BackCompat&#39;</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;混杂模式&#39;</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="s1">&#39;CSS1Compat&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;标准模式&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="s1">&#39;BackCompat&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">alert</span><span class="p">(</span><span class="s1">&#39;混杂模式&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="2计算根元素字体大小" class="headerLink">
     <a href="#2%e8%ae%a1%e7%ae%97%e6%a0%b9%e5%85%83%e7%b4%a0%e5%ad%97%e4%bd%93%e5%a4%a7%e5%b0%8f" class="header-mark"></a>2.计算根元素字体大小</h3><p>通过上面代码可以拿到浏览器窗口（也就是 document）的宽度，这样就可以计算根元素的基准值了。</p>
@@ -245,16 +245,16 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">rem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span> <span class="o">*</span> <span class="nx">dpr</span> <span class="o">/</span> <span class="mi">10</span>
-<span class="sb">``</span>
-
-<span class="nx">假设在宽度为720px的屏幕上</span><span class="err">，</span><span class="sb">`1rem = 36px`</span><span class="err">，</span><span class="nx">即720px的屏幕上根元素字体大小为</span><span class="sb">`36px`</span><span class="err">，</span><span class="nx">则在360px的屏幕上字体大小为</span><span class="sb">`18px`</span><span class="err">，</span><span class="nx">因为屏幕宽度和根元素字体大小的比值不变</span><span class="err">，</span><span class="nx">是20</span><span class="err">，</span><span class="nx">所以计算公式如下</span><span class="err">：</span>
-
-<span class="sb">```javascript
-</span><span class="sb">var fontSize = pageWidth / 20
-</span><span class="sb">var html = document.querySelectorAll(&#39;html&#39;)[0]
-</span><span class="sb">html.style.fontSize = fontSize
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">rem</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span> <span class="o">*</span> <span class="nx">dpr</span> <span class="o">/</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="sb">``</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">假设在宽度为720px的屏幕上</span><span class="err">，</span><span class="sb">`1rem = 36px`</span><span class="err">，</span><span class="nx">即720px的屏幕上根元素字体大小为</span><span class="sb">`36px`</span><span class="err">，</span><span class="nx">则在360px的屏幕上字体大小为</span><span class="sb">`18px`</span><span class="err">，</span><span class="nx">因为屏幕宽度和根元素字体大小的比值不变</span><span class="err">，</span><span class="nx">是20</span><span class="err">，</span><span class="nx">所以计算公式如下</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="sb">```javascript
+</span></span></span><span class="line"><span class="cl"><span class="sb">var fontSize = pageWidth / 20
+</span></span></span><span class="line"><span class="cl"><span class="sb">var html = document.querySelectorAll(&#39;html&#39;)[0]
+</span></span></span><span class="line"><span class="cl"><span class="sb">html.style.fontSize = fontSize
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>通过以上代码就实现了给根元素设置基准 fontSize。</p>
 <h3 id="3将-psd-中测量出的值换算成-rem" class="headerLink">
@@ -294,7 +294,7 @@ rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实�
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

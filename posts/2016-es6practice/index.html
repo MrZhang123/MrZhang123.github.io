@@ -161,7 +161,7 @@
     <li><a href="#es6的forof循环">ES6的for&hellip;of循环</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>最近因为同学的一个轮播图不会写，让我萌生了用ES6写一个轮播图的想法（本人喜欢这些玩儿一些新的东西），以前就知道ES6，但是一直没有学，现在终于下决心学了，借助阮一峰老师的书<a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener noreffer">ECMAScript 6 入门</a> 和Youtube上面老外的视频学习ES6非常不错。阮一峰老师的书写的非常详细，推荐想学习的ES6的同学仔细看看。本篇文章会总结在实践中用到的ES6的知识。</p>
+            </div><div class="content" id="content"><p>最近因为同学的一个轮播图不会写，让我萌生了用ES6写一个轮播图的想法（本人喜欢这些玩儿一些新的东西），以前就知道ES6，但是一直没有学，现在终于下决心学了，借助阮一峰老师的书<a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener noreferrer">ECMAScript 6 入门</a> 和Youtube上面老外的视频学习ES6非常不错。阮一峰老师的书写的非常详细，推荐想学习的ES6的同学仔细看看。本篇文章会总结在实践中用到的ES6的知识。</p>
 <h2 id="模板字符串" class="headerLink">
     <a href="#%e6%a8%a1%e6%9d%bf%e5%ad%97%e7%ac%a6%e4%b8%b2" class="header-mark"></a>模板字符串</h2><p>这是我非常喜欢的ES6的特点之一，非常直观的反应出变量和字符串之间的关系，在ES5中，如果我们想在字符串中添加变量，需要用如下写法：</p>
 <div class="highlight"><div class="chroma">
@@ -173,12 +173,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">animate</span><span class="p">(</span><span class="nx">box</span><span class="p">,</span> <span class="s1">&#39;translate(-&#39;</span> <span class="o">+</span> <span class="nx">itemWidth</span> <span class="o">*</span> <span class="nx">num</span> <span class="o">+</span> <span class="s1">&#39;px,0)&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transitionDuration</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-    <span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="s1">&#39;translate(-800px,0)&#39;</span><span class="p">;</span>
-    <span class="nx">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">animate</span><span class="p">(</span><span class="nx">box</span><span class="p">,</span> <span class="s1">&#39;translate(-&#39;</span> <span class="o">+</span> <span class="nx">itemWidth</span> <span class="o">*</span> <span class="nx">num</span> <span class="o">+</span> <span class="s1">&#39;px,0)&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transitionDuration</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="s1">&#39;translate(-800px,0)&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在用ES6的模板字符串，可以直接把字符串和变量相结合，更加易懂。</p>
 <div class="highlight"><div class="chroma">
@@ -190,12 +190,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">animate</span><span class="p">(</span><span class="nx">box</span><span class="p">,</span> <span class="sb">`translate(-</span><span class="si">${</span><span class="nx">itemWidth</span><span class="o">*</span><span class="nx">num</span><span class="si">}</span><span class="sb">px,0)`</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transitionDuration</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
-    <span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="sb">`translate(-</span><span class="si">${</span><span class="nx">itemWidth</span><span class="o">*</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="sb">px,0)`</span><span class="p">;</span>
-    <span class="nx">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
-<span class="p">});</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="nx">animate</span><span class="p">(</span><span class="nx">box</span><span class="p">,</span> <span class="sb">`translate(-</span><span class="si">${</span><span class="nx">itemWidth</span><span class="o">*</span><span class="nx">num</span><span class="si">}</span><span class="sb">px,0)`</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transitionDuration</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">box</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">transform</span> <span class="o">=</span> <span class="sb">`translate(-</span><span class="si">${</span><span class="nx">itemWidth</span><span class="o">*</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="sb">px,0)`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>是不是非常直观方便，从上面的两个简单示例中可以看出，在ES6中，字符串用反引号（``）标识，这一点需要知道。
 还有一个特点，模板字符串可以输出折行的字符串，这在ES5传统字符串中是无法做到的，必须借助（\n），且不能在书写时候写入回车，但是在ES6的字符串模板中，可以直接写入回车，空格，然后在字符串输出时候直接输出，非常方便。</p>
@@ -212,16 +212,16 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">myString</span><span class="o">=</span><span class="sb">`abc
-</span><span class="sb">de
-</span><span class="sb">ffff  
-</span><span class="sb">fas`</span><span class="p">;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myString</span><span class="p">);</span>
-<span class="cm">/*输出abc
-</span><span class="cm">de
-</span><span class="cm">ffff  
-</span><span class="cm">fas*/</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">myString</span><span class="o">=</span><span class="sb">`abc
+</span></span></span><span class="line"><span class="cl"><span class="sb">de
+</span></span></span><span class="line"><span class="cl"><span class="sb">ffff  
+</span></span></span><span class="line"><span class="cl"><span class="sb">fas`</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myString</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*输出abc
+</span></span></span><span class="line"><span class="cl"><span class="cm">de
+</span></span></span><span class="line"><span class="cl"><span class="cm">ffff  
+</span></span></span><span class="line"><span class="cl"><span class="cm">fas*/</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="对函数的扩展" class="headerLink">
     <a href="#%e5%af%b9%e5%87%bd%e6%95%b0%e7%9a%84%e6%89%a9%e5%b1%95" class="header-mark"></a>对函数的扩展</h2><h3 id="1给函数设置默认值" class="headerLink">
@@ -236,13 +236,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">){</span>
-    <span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="nx">a</span><span class="o">||</span><span class="mi">10</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="nx">b</span><span class="o">||</span><span class="mi">15</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">c</span><span class="o">||</span><span class="mi">20</span><span class="p">;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="o">+</span><span class="nx">c</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">c</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="nx">a</span><span class="o">||</span><span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="nx">b</span><span class="o">||</span><span class="mi">15</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">var</span> <span class="nx">c</span><span class="o">=</span><span class="nx">c</span><span class="o">||</span><span class="mi">20</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="o">+</span><span class="nx">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里我们设置默认值，可以达到自己的预期效果，直到有一天，我们把a=0传入，这时候，我们这么写就不对了，对于程序来说，0就是false，所以a会取默认值10，从而达不到我们预期的效果。但是ES6为我们提供非常好的设置默认值的方式。上面的代码可以改写成下面的这样：</p>
 <div class="highlight"><div class="chroma">
@@ -252,10 +252,10 @@
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">a</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="nx">c</span><span class="o">=</span><span class="mi">20</span><span class="p">){</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="o">+</span><span class="nx">c</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">test</span><span class="p">(</span><span class="nx">a</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="nx">b</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span><span class="nx">c</span><span class="o">=</span><span class="mi">20</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="o">+</span><span class="nx">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="2箭头函数" class="headerLink">
     <a href="#2%e7%ae%ad%e5%a4%b4%e5%87%bd%e6%95%b0" class="header-mark"></a>2.箭头函数</h3><p>了解Coffescript的同学应该清楚，Cofficescript的强大之处在于它的无处不在的箭头函数，写起来非常爽，现在，ES6正式引入箭头函数，让我们的程序可以得到简化，例如：</p>
@@ -269,13 +269,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//ES5的写法
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span>
-    <span class="k">return</span> <span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="c1">//ES6的箭头函数
-</span><span class="c1"></span><span class="kd">var</span> <span class="nx">test2</span> <span class="o">=</span> <span class="nx">test</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)=&gt;</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">//ES5的写法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">test</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//ES6的箭头函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">test2</span> <span class="o">=</span> <span class="nx">test</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)=&gt;</span><span class="nx">a</span><span class="o">+</span><span class="nx">b</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>在写轮播时候，需要鼠标移动到下面的这个小圆点在小圆点类数组对象中是第几个，从而才能让图运动到正确位置，在ES5的时候，我们需要给当前这个对象添加属性，写起来比较繁琐，写法如下：</p>
 <div class="highlight"><div class="chroma">
@@ -289,14 +289,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">liList</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
-<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">liList</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-    <span class="nx">liList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">index</span><span class="o">=</span><span class="nx">i</span><span class="p">;</span>
-    <span class="nx">liList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>
-    <span class="p">},</span><span class="kc">false</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">liList</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">liList</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">liList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">index</span><span class="o">=</span><span class="nx">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">liList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span><span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这个this.index属性就是当前的鼠标放上去的元素的索引，然后根据这个索引去得到当前的元素。但是在ES6中，我们可以直接使用箭头函数以及在数组中新引入的findIndex来找到当前的活动元素的索引，代码如下：</p>
 <div class="highlight"><div class="chroma">
@@ -311,15 +311,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">liList</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">ArrayliList</span><span class="o">=</span><span class="nb">Array</span><span class="p">.</span><span class="nx">form</span><span class="p">(</span><span class="nx">liList</span><span class="p">);</span>
-<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">liList</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
-    <span class="nx">liList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">index</span><span class="o">=</span><span class="nx">i</span><span class="p">;</span>
-    <span class="nx">liList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-        <span class="kd">let</span> <span class="nx">thisIndex</span> <span class="o">=</span> <span class="nx">ArrayliList</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">((</span><span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="o">==</span> <span class="k">this</span><span class="p">);</span>
-    <span class="p">},</span><span class="kc">false</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">liList</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">ArrayliList</span><span class="o">=</span><span class="nb">Array</span><span class="p">.</span><span class="nx">form</span><span class="p">(</span><span class="nx">liList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">liList</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">liList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">index</span><span class="o">=</span><span class="nx">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">liList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">thisIndex</span> <span class="o">=</span> <span class="nx">ArrayliList</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">((</span><span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="o">==</span> <span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span><span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>以上代码得到的thisIndex就是当前鼠标放上去的索引，这里我对箭头函数中n这个参数的理解是，传入参数n后会遍历数组中的对象，从而找到与this相等的那个对象，然后返回它的索引，这里用到<font color='red'>Array.from()，这是一个ES6中数组中新增的方法，可以将类数组转换成数组。</font></p>
 <h2 id="es6的forof循环" class="headerLink">
@@ -335,14 +335,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">liList</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">ArrayliList</span><span class="o">=</span><span class="nb">Array</span><span class="p">.</span><span class="nx">form</span><span class="p">(</span><span class="nx">liList</span><span class="p">);</span>
-<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">li</span> <span class="k">of</span> <span class="nx">liList</span><span class="p">){</span>
-    <span class="nx">li</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
-        <span class="kd">let</span> <span class="nx">thisIndex</span> <span class="o">=</span> <span class="nx">ArrayliList</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">((</span><span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="o">==</span> <span class="k">this</span><span class="p">);</span>
-    <span class="p">},</span><span class="kc">false</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">liList</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">ArrayliList</span><span class="o">=</span><span class="nb">Array</span><span class="p">.</span><span class="nx">form</span><span class="p">(</span><span class="nx">liList</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">li</span> <span class="k">of</span> <span class="nx">liList</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">li</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;mouseenter&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">let</span> <span class="nx">thisIndex</span> <span class="o">=</span> <span class="nx">ArrayliList</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">((</span><span class="nx">n</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">n</span> <span class="o">==</span> <span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span><span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>是不是非常简洁:)
 以上就是最近几天对ES6的初探的总结，感觉仅仅只是这些就已经让我感受到ES6的魅力了，接下来，我会再做几个demo，慢慢去熟悉这个新的但是非常好玩儿的ES6。</p></div>
@@ -376,7 +376,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

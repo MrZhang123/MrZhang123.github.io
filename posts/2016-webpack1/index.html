@@ -164,19 +164,20 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><blockquote>
-<p>很早就听说webpack包管理工具，但是一直没有机会学习，这次又看到<a href="http://gold.xitu.io/#/" target="_blank" rel="noopener noreffer">掘金</a>上面有关于vue+webpack的初级文章，而且最近公司没什么事儿做，决定搞一下。在搞的过程中，虽然按照文章中写的去做，但是还是有很多问题，所以写下本文，总结下我遇到的问题以及解决办法。</p>
+<p>很早就听说webpack包管理工具，但是一直没有机会学习，这次又看到<a href="http://gold.xitu.io/#/" target="_blank" rel="noopener noreferrer">掘金</a>上面有关于vue+webpack的初级文章，而且最近公司没什么事儿做，决定搞一下。在搞的过程中，虽然按照文章中写的去做，但是还是有很多问题，所以写下本文，总结下我遇到的问题以及解决办法。</p>
 </blockquote>
 <h3 id="包管理工具---webpack" class="headerLink">
     <a href="#%e5%8c%85%e7%ae%a1%e7%90%86%e5%b7%a5%e5%85%b7---webpack" class="header-mark"></a>包管理工具&mdash;webpack</h3><p>Webpack 是当下最热门的前端资源模块化管理和打包工具。它可以将许多松散的模块按照依赖和规则打包成符合生产环境部署的前端资源。还可以将按需加载的模块进行代码分隔，等到实际需要的时候再异步加载。通过 <code>loader</code>的转换，任何形式的资源都可以视作模块，比如 CommonJs 模块、 AMD 模块、 ES6 模块、CSS、图片、 JSON、Coffeescript、 LESS 等。</p>
-<p><img
-        class="lazyload"
-        data-src="./what-is-webpack.jpg"
-        data-srcset="./what-is-webpack.jpg, ./what-is-webpack.jpg 1.5x, ./what-is-webpack.jpg 2x"
-        data-sizes="auto"
-        alt="./what-is-webpack.jpg"
-        title="webpack官方解释图">
-<a href="http://webpack.github.io/" target="_blank" rel="noopener noreffer">官网：http://webpack.github.io/</a>
-对应各种不同文件类型的资源, Webpack 有对应的模块 loader比如 CoffeeScript 用的是coffee-loader, 其他还有很多:<a href="http://webpack.github.io/docs/list-of-loaders.html" target="_blank" rel="noopener noreffer">http://webpack.github.io/docs/list-of-loaders.html</a></p>
+<p><a class="lightgallery" href="./what-is-webpack.jpg" title="webpack官方解释图" data-thumbnail="./what-is-webpack.jpg">
+        <img
+            class="lazyload"
+            data-src="./what-is-webpack.jpg"
+            data-srcset="./what-is-webpack.jpg, ./what-is-webpack.jpg 1.5x, ./what-is-webpack.jpg 2x"
+            data-sizes="auto"
+            alt="./what-is-webpack.jpg">
+    </a>
+<a href="http://webpack.github.io/" target="_blank" rel="noopener noreferrer">官网：http://webpack.github.io/</a>
+对应各种不同文件类型的资源, Webpack 有对应的模块 loader比如 CoffeeScript 用的是coffee-loader, 其他还有很多:<a href="http://webpack.github.io/docs/list-of-loaders.html" target="_blank" rel="noopener noreferrer">http://webpack.github.io/docs/list-of-loaders.html</a></p>
 <h2 id="安装" class="headerLink">
     <a href="#%e5%ae%89%e8%a3%85" class="header-mark"></a>安装</h2><blockquote>
 <p>webpack的安装其实其实Google一搜一大把，但是为了完整性，还是写写吧。</p>
@@ -188,8 +189,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">webpack</span> <span class="o">-</span><span class="nx">g</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">webpack</span> <span class="o">-</span><span class="nx">g</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>或者将webpack安装到项目依赖中:</p>
 <div class="highlight"><div class="chroma">
@@ -200,11 +201,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="err">#</span> <span class="nx">进入项目目录</span>
-<span class="err">#</span> <span class="nx">确定已有package</span><span class="p">.</span><span class="nx">json</span><span class="err">，</span><span class="nx">没有就通过npm</span> <span class="nx">init创建</span>
-<span class="err">#</span> <span class="nx">安装webpack依赖</span>
-<span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">webpack</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="err">#</span> <span class="nx">进入项目目录</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="nx">确定已有package</span><span class="p">.</span><span class="nx">json</span><span class="err">，</span><span class="nx">没有就通过npm</span> <span class="nx">init创建</span>
+</span></span><span class="line"><span class="cl"><span class="err">#</span> <span class="nx">安装webpack依赖</span>
+</span></span><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="nx">webpack</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="使用" class="headerLink">
     <a href="#%e4%bd%bf%e7%94%a8" class="header-mark"></a>使用</h2><p>首先创建一个静态页面index.html和一个JS入口文件entry.js：</p>
@@ -222,17 +223,17 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-	<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;bundle.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Document<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/javascript&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;bundle.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -240,9 +241,9 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//entry.js
-</span><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;It works.&#39;</span><span class="p">);</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//entry.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;It works.&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后编译entry.js并打包到bundle.js：</p>
 <div class="highlight"><div class="chroma">
@@ -250,8 +251,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">$</span> <span class="nx">webpack</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">js</span> <span class="nx">bundle</span><span class="p">.</span><span class="nx">js</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">webpack</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">js</span> <span class="nx">bundle</span><span class="p">.</span><span class="nx">js</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>然后用浏览器打开<code>index.html</code>就可以看到<code>It works.</code>
 接下来添加一个模块module.js并修改入口entry.js：</p>
@@ -264,12 +265,12 @@
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">//module.js
-</span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="o">=</span><span class="s1">&#39;It work from module.js.&#39;</span><span class="p">;</span>
-<span class="c1">//entry.js
-</span><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;It works.&#39;</span><span class="p">);</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./module.js&#39;</span><span class="p">));</span><span class="c1">//添加模块
-</span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//module.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="o">=</span><span class="s1">&#39;It work from module.js.&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//entry.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="s1">&#39;It works.&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nb">document</span><span class="p">.</span><span class="nx">write</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./module.js&#39;</span><span class="p">));</span><span class="c1">//添加模块
+</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>重新运行打包命令后就可以看到<code>It work from module.js.</code>
 这里我们用到了commonjs的模块写法：<code>exports</code>，<code>require</code>；前面已经说过，webpack作为打包工具，可以为commonjs，AMD，ES6模块打包。
@@ -305,7 +306,7 @@ Webpack	会分析入口文件，解析包含依赖关系的各个文件。这些
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

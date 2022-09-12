@@ -186,23 +186,24 @@
 </blockquote>
 <h2 id="创建github仓库" class="headerLink">
     <a href="#%e5%88%9b%e5%bb%bagithub%e4%bb%93%e5%ba%93" class="header-mark"></a>创建github仓库</h2><p>在注册了账号后登陆点击头像旁边的+选择New repository创建一个个人的仓库。填写仓库名称，如图所示：</p>
-<p><img
-        class="lazyload"
-        data-src="./github.png"
-        data-srcset="./github.png, ./github.png 1.5x, ./github.png 2x"
-        data-sizes="auto"
-        alt="./github.png"
-        title="icon"></p>
+<p><a class="lightgallery" href="./github.png" title="icon" data-thumbnail="./github.png">
+        <img
+            class="lazyload"
+            data-src="./github.png"
+            data-srcset="./github.png, ./github.png 1.5x, ./github.png 2x"
+            data-sizes="auto"
+            alt="./github.png">
+    </a></p>
 <h2 id="安装git客户端" class="headerLink">
-    <a href="#%e5%ae%89%e8%a3%85git%e5%ae%a2%e6%88%b7%e7%ab%af" class="header-mark"></a>安装git客户端</h2><p>如果是windows，建议安装<a href="https://git-for-windows.github.io/" target="_blank" rel="noopener noreffer">gitbash</a></p>
-<p>如果是mac，先安装<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="noopener noreffer">Homebrew</a>，然后再使用homebrew安装git。</p>
+    <a href="#%e5%ae%89%e8%a3%85git%e5%ae%a2%e6%88%b7%e7%ab%af" class="header-mark"></a>安装git客户端</h2><p>如果是windows，建议安装<a href="https://git-for-windows.github.io/" target="_blank" rel="noopener noreferrer">gitbash</a></p>
+<p>如果是mac，先安装<a href="http://brew.sh/index_zh-cn.html" target="_blank" rel="noopener noreferrer">Homebrew</a>，然后再使用homebrew安装git。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ brew install git 
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ brew install git 
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果是linux直接在终端使用<code>apt-get</code>安装：</p>
 <div class="highlight"><div class="chroma">
@@ -210,8 +211,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install git
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo apt-get install git
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="配置git" class="headerLink">
     <a href="#%e9%85%8d%e7%bd%aegit" class="header-mark"></a>配置git</h2><h3 id="1初始化git" class="headerLink">
@@ -227,14 +228,14 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">//进入项目
-
-$ <span class="nb">cd</span> Desktop/myproject
-
-//初始化git
-
-$ git init
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">//进入项目
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> Desktop/myproject
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">//初始化git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git init
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="2创建ssh-key" class="headerLink">
     <a href="#2%e5%88%9b%e5%bb%bassh-key" class="header-mark"></a>2.创建ssh key</h4><p>为了让github能够识别是我们自己上传文件，需要创建ssh key</p>
@@ -243,8 +244,8 @@ $ git init
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ ssh-keygen -t rsa -C <span class="s2">&#34;your_email@youremail.com&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ ssh-keygen -t rsa -C <span class="s2">&#34;your_email@youremail.com&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里的<strong><a href="mailto:your_email@youremail.com" rel="">your_email@youremail.com</a></strong>是你的<strong>邮箱地址</strong>，在输入后会询问你是否保存创建的ssh key，点回车就好，然后要求输入你要设置的密码，如果直接回车表示不设密码。然后会提示你ssh key已经创建好。</p>
 <h4 id="3将ssh可以写入github" class="headerLink">
@@ -254,8 +255,8 @@ $ git init
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">cat ~/.ssh/id_rsa.pub
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat ~/.ssh/id_rsa.pub
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>此时在终端会显示出刚刚创建好的ssh key，复制出来，在github在点击头像，然后点击setting，在找到SSH and GPG keys，创建一个new ssh key，然后将刚刚复制的ssh key填入即可。</p>
 <h4 id="4验证是否连接成功" class="headerLink">
@@ -265,8 +266,8 @@ $ git init
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ ssh -T git@github.com
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ ssh -T git@github.com
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果回车看到：<strong>You’ve successfully authenticated, but GitHub does not provide shell access</strong> 。表示已成功连上github。</p>
 <h4 id="5设置username和email" class="headerLink">
@@ -277,9 +278,9 @@ $ git init
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ git config --global user.name <span class="s2">&#34;your name&#34;</span>
-$ git config --global user.email <span class="s2">&#34;your_email@youremail.com&#34;</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ git config --global user.name <span class="s2">&#34;your name&#34;</span>
+</span></span><span class="line"><span class="cl">$ git config --global user.email <span class="s2">&#34;your_email@youremail.com&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="6添加远程地址" class="headerLink">
     <a href="#6%e6%b7%bb%e5%8a%a0%e8%bf%9c%e7%a8%8b%e5%9c%b0%e5%9d%80" class="header-mark"></a>6.添加远程地址</h4><p>在与github连接成功后，如何才能让相应的项目上传到对应的仓库呢？这里就需要添加远程地址，从而让我们的本地项目顺利到达对应的仓库。</p>
@@ -289,8 +290,8 @@ $ git config --global user.email <span class="s2">&#34;your_email@youremail.com&
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ git remote add origin git@github.com:yourName/yourRepo.git
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ git remote add origin git@github.com:yourName/yourRepo.git
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>后面的yourName和yourRepo分别是你的github的用户名和刚才新建的仓库名。</p>
 <h2 id="上传项目" class="headerLink">
@@ -300,8 +301,8 @@ $ git config --global user.email <span class="s2">&#34;your_email@youremail.com&
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ git status
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ git status
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>查看要上传的文件是否正确，然后将项目下的所有文件添加到git跟踪范围。</p>
 <div class="highlight"><div class="chroma">
@@ -309,8 +310,8 @@ $ git config --global user.email <span class="s2">&#34;your_email@youremail.com&
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ git add .
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ git add .
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>记录此次提交并上传</p>
 <div class="highlight"><div class="chroma">
@@ -319,9 +320,9 @@ $ git config --global user.email <span class="s2">&#34;your_email@youremail.com&
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ git commit -m <span class="s1">&#39;my project push&#39;</span>
-$ git push origin master
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ git commit -m <span class="s1">&#39;my project push&#39;</span>
+</span></span><span class="line"><span class="cl">$ git push origin master
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>这里的<strong>master</strong>指的是主分支名，如果是其他分支，则填写相应的分支名。</p>
 <p>这样我们就将我们的项目上传到github仓库。</p></div>
@@ -355,7 +356,7 @@ $ git push origin master
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

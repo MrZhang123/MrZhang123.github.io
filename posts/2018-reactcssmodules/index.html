@@ -190,20 +190,20 @@
 </ul>
 <p>但是这样做也不一定可以保证不会冲突，而且还导致class名字太复杂，嵌套太深，可维护性差，那么是否可以将CSS也像JS那样，实现模块化呢？答案是肯定的。CSS模块化方案很多，但是主要的就三类：</p>
 <h4 id="命名约定" class="headerLink">
-    <a href="#%e5%91%bd%e5%90%8d%e7%ba%a6%e5%ae%9a" class="header-mark"></a>命名约定</h4><p>比较常用的有<a href="http://mrzhang123.github.io/2017/04/05/BEM/" target="_blank" rel="noopener noreffer">BEM</a>，SMACSS和OOCSS，但是存在以下问题：</p>
+    <a href="#%e5%91%bd%e5%90%8d%e7%ba%a6%e5%ae%9a" class="header-mark"></a>命名约定</h4><p>比较常用的有<a href="http://mrzhang123.github.io/2017/04/05/BEM/" target="_blank" rel="noopener noreferrer">BEM</a>，SMACSS和OOCSS，但是存在以下问题：</p>
 <ul>
 <li>JS CSS之间依旧没有打通变量和选择器</li>
 <li>命名太复杂</li>
 </ul>
 <h4 id="css-in-js" class="headerLink">
-    <a href="#css-in-js" class="header-mark"></a>CSS in JS</h4><p>直接在JS中写CSS并内联样式，例如aphrodite，babel-plugin-css-in-js等（<a href="http://michelebertoli.github.io/css-in-js/" target="_blank" rel="noopener noreffer">点击查看所有CSS in JS的解决方案</a>）但是存在以下问题：</p>
+    <a href="#css-in-js" class="header-mark"></a>CSS in JS</h4><p>直接在JS中写CSS并内联样式，例如aphrodite，babel-plugin-css-in-js等（<a href="http://michelebertoli.github.io/css-in-js/" target="_blank" rel="noopener noreferrer">点击查看所有CSS in JS的解决方案</a>）但是存在以下问题：</p>
 <ul>
 <li>样式代码可能会重复出现</li>
-<li>写法上已经和传统的CSS不再相似（例如<a href="https://github.com/Khan/aphrodite" target="_blank" rel="noopener noreffer">aphrodite</a>，写法类似于React Native中样式的写法）</li>
+<li>写法上已经和传统的CSS不再相似（例如<a href="https://github.com/Khan/aphrodite" target="_blank" rel="noopener noreferrer">aphrodite</a>，写法类似于React Native中样式的写法）</li>
 <li>不能利用成熟的CSS预处理器（或后处理器）</li>
 </ul>
 <h4 id="使用js来管理css模块" class="headerLink">
-    <a href="#%e4%bd%bf%e7%94%a8js%e6%9d%a5%e7%ae%a1%e7%90%86css%e6%a8%a1%e5%9d%97" class="header-mark"></a>使用JS来管理CSS模块</h4><p>使用JS编译原生CSS文件，使其具有模块化，典型的就是<a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener noreffer">CSS Modules</a>。只要使用到webpack，就会使用到css-loader，在webpack中稍加配置即可使用</p>
+    <a href="#%e4%bd%bf%e7%94%a8js%e6%9d%a5%e7%ae%a1%e7%90%86css%e6%a8%a1%e5%9d%97" class="header-mark"></a>使用JS来管理CSS模块</h4><p>使用JS编译原生CSS文件，使其具有模块化，典型的就是<a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener noreferrer">CSS Modules</a>。只要使用到webpack，就会使用到css-loader，在webpack中稍加配置即可使用</p>
 <h3 id="使用css-modules" class="headerLink">
     <a href="#%e4%bd%bf%e7%94%a8css-modules" class="header-mark"></a>使用CSS Modules</h3><p>配置css-loader启动css modules</p>
 <div class="highlight"><div class="chroma">
@@ -225,22 +225,22 @@
 </span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// webpack.config.js
-</span><span class="c1"></span>  <span class="p">{</span>
-    <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
-    <span class="nx">use</span><span class="o">:</span> <span class="nx">ExtractTextPlugin</span><span class="p">.</span><span class="nx">extract</span><span class="p">({</span>
-      <span class="nx">fallback</span><span class="o">:</span> <span class="s1">&#39;style-loader&#39;</span><span class="p">,</span>
-      <span class="nx">use</span><span class="o">:</span> <span class="p">{</span>
-        <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span>
-        <span class="nx">options</span><span class="o">:</span><span class="p">{</span>
-          <span class="nx">modules</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-          <span class="nx">minimize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-          <span class="nx">localIdentName</span><span class="o">:</span> <span class="s1">&#39;[path][name]__[local]--[hash:base64:5]&#39;</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">})</span>
-  <span class="p">},</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// webpack.config.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">use</span><span class="o">:</span> <span class="nx">ExtractTextPlugin</span><span class="p">.</span><span class="nx">extract</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">fallback</span><span class="o">:</span> <span class="s1">&#39;style-loader&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">use</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">options</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">modules</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">minimize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">localIdentName</span><span class="o">:</span> <span class="s1">&#39;[path][name]__[local]--[hash:base64:5]&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -250,11 +250,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="o">//</span> <span class="nt">Button</span><span class="p">.</span><span class="nc">css</span>
-<span class="p">.</span><span class="nc">button</span><span class="p">{</span>
-  <span class="k">font-size</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">//</span> <span class="nt">Button</span><span class="p">.</span><span class="nc">css</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -264,11 +264,11 @@
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Button.js
-</span><span class="c1"></span><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./Button.css&#39;</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">styles</span><span class="p">)</span>
-<span class="nx">buttonElement</span><span class="p">.</span><span class="nx">outerHTML</span> <span class="o">=</span> <span class="sb">`&lt;div class=</span><span class="si">${</span><span class="nx">styles</span><span class="p">.</span><span class="nx">button</span><span class="si">}</span><span class="sb">&gt;Button&lt;/div&gt;`</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Button.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./Button.css&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">styles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">buttonElement</span><span class="p">.</span><span class="nx">outerHTML</span> <span class="o">=</span> <span class="sb">`&lt;div class=</span><span class="si">${</span><span class="nx">styles</span><span class="p">.</span><span class="nx">button</span><span class="si">}</span><span class="sb">&gt;Button&lt;/div&gt;`</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>console出来的styles如下：</p>
 <div class="highlight"><div class="chroma">
@@ -281,13 +281,13 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="p">{</span>
- <span class="nx">button</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__button--1mmZb&#34;</span>
- <span class="nx">large</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__large--2atzR&#34;</span>
- <span class="nx">normall</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__normall--3prnh&#34;</span>
- <span class="nx">small</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__small--34Wrr&#34;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">button</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__button--1mmZb&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">large</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__large--2atzR&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">normall</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__normall--3prnh&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">small</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__small--34Wrr&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>通过以上配置，css loader为我们生成如上class名字，其中<code>1mmZb</code>是按照<code>[hash:base64:5]</code>生成的，大大降低了命名冲突的概率。</p>
 <p>通过这些简单的处理，CSS Modules 实现了以下几点：</p>
@@ -334,38 +334,38 @@
 </span><span class="lnt">31
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
-<span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./index.css&#39;</span>
-
-<span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
-  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
-  <span class="p">}</span>
-  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">styles</span><span class="p">)</span>
-    <span class="kd">let</span> <span class="nx">buttonClass</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-    <span class="k">switch</span> <span class="p">(</span><span class="nx">size</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">case</span> <span class="s1">&#39;large&#39;</span><span class="o">:</span>
-        <span class="nx">buttonClass</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">large</span>
-        <span class="k">break</span>
-
-      <span class="k">case</span> <span class="s1">&#39;small&#39;</span><span class="o">:</span>
-        <span class="nx">buttonClass</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">small</span>
-        <span class="k">break</span>
-
-      <span class="k">default</span><span class="o">:</span>
-        <span class="nx">buttonClass</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">normall</span>
-        <span class="k">break</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">buttonClass</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">确定</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">Button</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./index.css&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">styles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">buttonClass</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="nx">size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s1">&#39;large&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">buttonClass</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">large</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s1">&#39;small&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">buttonClass</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">small</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">buttonClass</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">normall</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">buttonClass</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">确定</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Button</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>注</p>
 <p>1.使用CSS Modules时发现，它只支持单独的class名字，不能像我们写css的时候一级一级的写，例如：<code>.a .b .c</code>，在CSS Modules中就是一步到位<code>.c</code>。</p>
@@ -383,19 +383,19 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">font</span> <span class="p">{</span>
- <span class="k">line-height</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
- <span class="k">font-size</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="p">.</span><span class="nc">title-font</span> <span class="p">{</span>
- <span class="n">composes</span><span class="p">:</span> <span class="k">font</span><span class="p">;</span>
- <span class="k">font-size</span><span class="p">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">font</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">line-height</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">font-size</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">title-font</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">composes</span><span class="p">:</span> <span class="k">font</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">font-size</span><span class="p">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="react-css-modules" class="headerLink">
-    <a href="#react-css-modules" class="header-mark"></a>React CSS Modules</h4><p>但是有一个问题，我们在写样式的时候，需要频繁使用 styles.xxx，如何能够方便的直接写入class名字呢？可以使用<a href="https://github.com/gajus/react-css-modules" target="_blank" rel="noopener noreffer">React CSS Modules</a>，它以高阶函数的形式生成className</p>
+    <a href="#react-css-modules" class="header-mark"></a>React CSS Modules</h4><p>但是有一个问题，我们在写样式的时候，需要频繁使用 styles.xxx，如何能够方便的直接写入class名字呢？可以使用<a href="https://github.com/gajus/react-css-modules" target="_blank" rel="noopener noreferrer">React CSS Modules</a>，它以高阶函数的形式生成className</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -414,23 +414,23 @@
 </span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
-<span class="kr">import</span> <span class="nx">CSSModules</span> <span class="nx">from</span> <span class="s1">&#39;react-css-modules&#39;</span>
-<span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./index.css&#39;</span>
-
-<span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
-  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">styleName</span><span class="o">=</span><span class="s1">&#39;normall&#39;</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">确定</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">CSSModules</span><span class="p">(</span><span class="nx">Button</span><span class="p">,</span> <span class="nx">styles</span><span class="p">)</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">CSSModules</span> <span class="nx">from</span> <span class="s1">&#39;react-css-modules&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./index.css&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">styleName</span><span class="o">=</span><span class="s1">&#39;normall&#39;</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">确定</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">CSSModules</span><span class="p">(</span><span class="nx">Button</span><span class="p">,</span> <span class="nx">styles</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>可以看到，react-css-modules是运行时的依赖，而且需要在运行时获取className，性能损耗比较大，可否把获取className前置到编译阶段？答案是可以的，可以使用<a href="https://github.com/gajus/babel-plugin-react-css-modules" target="_blank" rel="noopener noreffer">babel-plugin-react-css-modules</a></p>
+</div><p>可以看到，react-css-modules是运行时的依赖，而且需要在运行时获取className，性能损耗比较大，可否把获取className前置到编译阶段？答案是可以的，可以使用<a href="https://github.com/gajus/babel-plugin-react-css-modules" target="_blank" rel="noopener noreferrer">babel-plugin-react-css-modules</a></p>
 <h4 id="babel-plugin-react-css-modules" class="headerLink">
     <a href="#babel-plugin-react-css-modules" class="header-mark"></a>babel-plugin-react-css-modules</h4><p>babel-plugin-react-css-modules插件可以实现用styleName属性自动加载CSS模块，通过babel插件来进行语法树解析并最终生成className，写的时候，只需要将我们原来写的className替换成styleName即可。</p>
 <div class="highlight"><div class="chroma">
@@ -450,27 +450,27 @@
 </span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
-<span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./index.css&#39;</span>
-
-<span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
-  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">styleName</span><span class="o">=</span><span class="s1">&#39;normall&#39;</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">确定</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">Button</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./index.css&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">styleName</span><span class="o">=</span><span class="s1">&#39;normall&#39;</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">确定</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Button</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>具体配置可以查看<a href="https://github.com/gajus/babel-plugin-react-css-modules#babel-plugin-react-css-modules" target="_blank" rel="noopener noreffer">文档</a></p>
+</div><p>具体配置可以查看<a href="https://github.com/gajus/babel-plugin-react-css-modules#babel-plugin-react-css-modules" target="_blank" rel="noopener noreferrer">文档</a></p>
 <h3 id="参考" class="headerLink">
-    <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h3><p><a href="https://github.com/webpack-contrib/css-loader" target="_blank" rel="noopener noreffer">https://github.com/webpack-contrib/css-loader</a></p>
-<p><a href="https://juanha.github.io/2017/01/10/react-css-modules/" target="_blank" rel="noopener noreffer">https://juanha.github.io/2017/01/10/react-css-modules/</a></p>
-<p><a href="http://www.alloyteam.com/2017/03/getting-started-with-css-modules-and-react-in-practice/" target="_blank" rel="noopener noreffer">http://www.alloyteam.com/2017/03/getting-started-with-css-modules-and-react-in-practice/</a></p>
-<p><a href="https://github.com/camsong/blog/issues/5" target="_blank" rel="noopener noreffer">https://github.com/camsong/blog/issues/5</a></p></div>
+    <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h3><p><a href="https://github.com/webpack-contrib/css-loader" target="_blank" rel="noopener noreferrer">https://github.com/webpack-contrib/css-loader</a></p>
+<p><a href="https://juanha.github.io/2017/01/10/react-css-modules/" target="_blank" rel="noopener noreferrer">https://juanha.github.io/2017/01/10/react-css-modules/</a></p>
+<p><a href="http://www.alloyteam.com/2017/03/getting-started-with-css-modules-and-react-in-practice/" target="_blank" rel="noopener noreferrer">http://www.alloyteam.com/2017/03/getting-started-with-css-modules-and-react-in-practice/</a></p>
+<p><a href="https://github.com/camsong/blog/issues/5" target="_blank" rel="noopener noreferrer">https://github.com/camsong/blog/issues/5</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -501,7 +501,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.91.2">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.102.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
