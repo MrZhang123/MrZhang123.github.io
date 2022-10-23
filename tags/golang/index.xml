@@ -5,10 +5,10 @@
         <description>golang - 标签 - Raymond</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/golang/" rel="self" type="application/rss+xml" /><item>
     <title>Go 并发编程初识</title>
-    <link>https://mrzhang123.github.io/posts/2022-go-concurrency/</link>
+    <link>https://mrzhang123.github.io/posts/2022/go-concurrency/</link>
     <pubDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</pubDate><author>
         <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2022-go-concurrency/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2022/go-concurrency/</guid>
     <description><![CDATA[Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel]]></description>
 </item></channel>
 </rss>

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">RN Webview与Web的通信与调试 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="RN Webview与Web的通信与调试" />
+<meta property="og:description" content="
+React Native Version:0.51
+
+RN 在 0.37 版本中加入了WebView功能，所以想要在使用WebView,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用JSON.stringify和JSON.parse就可以" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mrzhang123.github.io/posts/2017/2017-rnwebview/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-12-20T19:24:07+00:00" />
+<meta property="article:modified_time" content="2017-12-20T19:24:07+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
+
+<meta name="twitter:title" content="RN Webview与Web的通信与调试"/>
+<meta name="twitter:description" content="
+React Native Version:0.51
+
+RN 在 0.37 版本中加入了WebView功能，所以想要在使用WebView,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用JSON.stringify和JSON.parse就可以"/>
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2017/2017-rnwebview/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2017/2017-jsdecode/" /><link rel="next" href="https://mrzhang123.github.io/posts/2017/2017-2018newyear/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "RN Webview与Web的通信与调试",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/mrzhang123.github.io\/posts\/2017\/2017-rnwebview\/"
+        },"genre": "posts","keywords": "React Native","wordcount":  788 ,
+        "url": "https:\/\/mrzhang123.github.io\/posts\/2017\/2017-rnwebview\/","datePublished": "2017-12-20T19:24:07+00:00","dateModified": "2017-12-20T19:24:07+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Raymond"},"author": {
+                "@type": "Person",
+                "name": "Raymond"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#加载-html">加载 html</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#注意-">注意 ⚠️</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#webview-与-html-的通信">WebView 与 html 的通信</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#webview-发送信息到-html">webview 发送信息到 html</a></li>
+            <li><a href="#html-发送信息到-webview">html 发送信息到 webview</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#debug">debug</a>
+      <ul>
+        <li><a href="#注意--1">注意 ⚠️</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">RN Webview与Web的通信与调试</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react-native/"><i class="far fa-folder fa-fw"></i>React Native</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-12-20">2017-12-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-12-20">2017-12-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 788 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#加载-html">加载 html</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#注意-">注意 ⚠️</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#webview-与-html-的通信">WebView 与 html 的通信</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#webview-发送信息到-html">webview 发送信息到 html</a></li>
+            <li><a href="#html-发送信息到-webview">html 发送信息到 webview</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#debug">debug</a>
+      <ul>
+        <li><a href="#注意--1">注意 ⚠️</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>React Native Version:0.51</p>
+</blockquote>
+<p>RN 在 0.37 版本中加入了<code>WebView</code>功能，所以想要在使用<code>WebView</code>,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用<code>JSON.stringify</code>和<code>JSON.parse</code>就可以</p>
+<h2 id="加载-html" class="headerLink">
+    <a href="#%e5%8a%a0%e8%bd%bd-html" class="header-mark"></a>加载 html</h2><p><code>source</code>属性用于指定加载的 html，可以加载在线的页面，也可以加载本地的页面，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 加载线上页面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;</span><span class="nx">Webview</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">source</span><span class="o">=</span><span class="p">{{</span><span class="nx">uri</span><span class="o">:</span> <span class="s1">&#39;http://www.mi.com&#39;</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl"><span class="err">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 加载本地html文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;</span><span class="nx">WebView</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../src/html/index.html&#39;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl"><span class="err">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="注意-" class="headerLink">
+    <a href="#%e6%b3%a8%e6%84%8f-" class="header-mark"></a>注意 ⚠️</h4><p>在 RN 中可以加载 WebView，但是<strong>无法调试，也不能使用 alert 来验证代码 js 代码是否运行成功</strong>，只能通过往 html 写入东西（innerHTML）来验证 js 是否运行成功</p>
+<h2 id="webview-与-html-的通信" class="headerLink">
+    <a href="#webview-%e4%b8%8e-html-%e7%9a%84%e9%80%9a%e4%bf%a1" class="header-mark"></a>WebView 与 html 的通信</h2><h4 id="webview-发送信息到-html" class="headerLink">
+    <a href="#webview-%e5%8f%91%e9%80%81%e4%bf%a1%e6%81%af%e5%88%b0-html" class="header-mark"></a>webview 发送信息到 html</h4><p>WebView 给 html 发送信息需要使用<code>postMessage</code>，而 html 接收 RN 发过来的信息需要监听<code>message</code>事件，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// RN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">WebViewExample</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">onLoadEnd</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">refs</span><span class="p">.</span><span class="nx">webview</span><span class="p">.</span><span class="nx">postMessage</span> <span class="o">=</span> <span class="s1">&#39;this is RN msg&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">WebView</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ref</span><span class="o">=</span><span class="s2">&#34;webview&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../html/index.html&#39;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">onLoadEnd</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">onLoadEnd</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">WebViewExample</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// web
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">data</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>这里需要注意一点</strong></p>
+<p><code>postMessage</code>需要在 webview 加载完成之后再去 post，如果放在<code>commponentWillMount</code>里由于页面没有加载完成就 post 信息，会导致 html 端无法监听到 message 事件。</p>
+<h4 id="html-发送信息到-webview" class="headerLink">
+    <a href="#html-%e5%8f%91%e9%80%81%e4%bf%a1%e6%81%af%e5%88%b0-webview" class="header-mark"></a>html 发送信息到 webview</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// RN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">WebViewExample</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">handleMessage</span> <span class="o">=</span> <span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">nativeEvent</span><span class="p">.</span><span class="nx">data</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">WebView</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ref</span><span class="o">=</span><span class="s2">&#34;webview&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../html/index.html&#39;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">onMessage</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleMessage</span><span class="p">(</span><span class="nx">e</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">WebViewExample</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// web
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">window</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s1">&#39;this is html msg&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="debug" class="headerLink">
+    <a href="#debug" class="header-mark"></a>debug</h2><p>RN 中 debug webview 和安卓开发中看起来是差不多的，连接好设备后，在 chrome 中输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">chrome://inspect
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就可以看到安卓设备上正在运行的 webview 了，点击<strong>inspect</strong>就会开启一个调试页面，就可以进行 debug 了，RN 似乎默认开启了 debug 调试，直接就可以看到 webview 中输出的信息。</p>
+<p><a class="lightgallery" href="./img/webview_debug.jpg" title="webview_debug" data-thumbnail="./img/webview_debug.jpg">
+        <img
+            class="lazyload"
+            data-src="./img/webview_debug.jpg"
+            data-srcset="./img/webview_debug.jpg, ./img/webview_debug.jpg 1.5x, ./img/webview_debug.jpg 2x"
+            data-sizes="auto"
+            alt="./img/webview_debug.jpg">
+    </a></p>
+<p>但是我发现我打开的调试界面是一个错乱的界面，不知道为什么，无奈&ndash;！</p>
+<p><a class="lightgallery" href="./img/debug.jpeg" title="debug" data-thumbnail="./img/debug.jpeg">
+        <img
+            class="lazyload"
+            data-src="./img/debug.jpeg"
+            data-srcset="./img/debug.jpeg, ./img/debug.jpeg 1.5x, ./img/debug.jpeg 2x"
+            data-sizes="auto"
+            alt="./img/debug.jpeg">
+    </a></p>
+<h3 id="注意--1" class="headerLink">
+    <a href="#%e6%b3%a8%e6%84%8f--1" class="header-mark"></a>注意 ⚠️</h3><p>这里需要注意一点的，由于安卓版本的差异，所以内部的 webview 对 js 的支持程度也不同，<strong>为了保证兼容性，如果使用了 ES6，请转成 ES5，否则会报错</strong></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2017-12-20</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react-native/">React Native</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2017/2017-jsdecode/" class="prev" rel="prev" title="JS转换转义字符"><i class="fas fa-angle-left fa-fw"></i>JS转换转义字符</a>
+            <a href="/posts/2017/2017-2018newyear/" class="next" rel="next" title="再见2017，你好2018">再见2017，你好2018<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.104.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

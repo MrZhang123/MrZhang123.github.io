@@ -5,10 +5,10 @@
         <description>操作系统 - 分类 - Raymond</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
     <title>并发编程中的锁、条件变量和信号量</title>
-    <link>https://mrzhang123.github.io/posts/2022-lock-condition-signal/</link>
+    <link>https://mrzhang123.github.io/posts/2022/lock-condition-signal/</link>
     <pubDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</pubDate><author>
         <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2022-lock-condition-signal/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2022/lock-condition-signal/</guid>
     <description><![CDATA[在并发编程中，经常会涉及到锁、条件变量和信号量。本文从并发开始，探究为什么需要它们，它们的概念，实现原理以及应用。 并发简介并发是指多个事情，]]></description>
 </item></channel>
 </rss>

@@ -5,19 +5,19 @@
         <description>Git - 分类 - Raymond</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 18 Oct 2017 22:11:36 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/git/" rel="self" type="application/rss+xml" /><item>
     <title>Git Commint规范</title>
-    <link>https://mrzhang123.github.io/posts/2017-gitcommint/</link>
+    <link>https://mrzhang123.github.io/posts/2017/2017-gitcommint/</link>
     <pubDate>Wed, 18 Oct 2017 22:11:36 &#43;0000</pubDate><author>
         <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2017-gitcommint/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2017/2017-gitcommint/</guid>
     <description><![CDATA[<blockquote>
 <p>之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。</p>
 </blockquote>]]></description>
 </item><item>
     <title>使用git回退远程库代码</title>
-    <link>https://mrzhang123.github.io/posts/2017-gitreset/</link>
+    <link>https://mrzhang123.github.io/posts/2017/2017-gitreset/</link>
     <pubDate>Sat, 04 Mar 2017 20:57:48 &#43;0000</pubDate><author>
         <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2017-gitreset/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2017/2017-gitreset/</guid>
     <description><![CDATA[<blockquote>
 <p>前几天在公司合代码的时候出现了问题，需要reset回去，在同事的帮助下利用git的log进行了reset，虽然很简单，但是还是想记录一下。</p>
 </blockquote>]]></description>

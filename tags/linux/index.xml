@@ -5,19 +5,19 @@
         <description>Linux - 标签 - Raymond</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 23 Jun 2019 14:32:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
     <title>终端复用神器Tmux</title>
-    <link>https://mrzhang123.github.io/posts/2019-tmux/</link>
+    <link>https://mrzhang123.github.io/posts/2019/2019-tmux/</link>
     <pubDate>Sun, 23 Jun 2019 14:32:00 &#43;0000</pubDate><author>
         <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2019-tmux/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2019/2019-tmux/</guid>
     <description><![CDATA[<blockquote>
 <p>记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。</p>
 </blockquote>]]></description>
 </item><item>
     <title>Linux日常使用总结</title>
-    <link>https://mrzhang123.github.io/posts/2016-linuxstudy/</link>
+    <link>https://mrzhang123.github.io/posts/2016/2016-linuxstudy/</link>
     <pubDate>Sun, 02 Oct 2016 23:33:47 &#43;0000</pubDate><author>
         <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2016-linuxstudy/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2016/2016-linuxstudy/</guid>
     <description><![CDATA[<blockquote>
 <p>自己一直对linux充满好奇，这次换了新的工作后，由于使用Mac OS和linux，所以国庆回来，给自己的电脑装了ubuntu来熟悉linux。在安装完成后遇到一些问题，经过谷歌都一一解决了，写这篇博文分享给大家。</p>
 </blockquote>]]></description>

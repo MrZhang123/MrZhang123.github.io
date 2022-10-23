@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">CSS Modules在React中的应用 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="CSS Modules在React中的应用" />
+<meta property="og:description" content="由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mrzhang123.github.io/posts/2018/2018-reactcssmodules/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-04-13T14:32:17+00:00" />
+<meta property="article:modified_time" content="2018-04-13T14:32:17+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
+
+<meta name="twitter:title" content="CSS Modules在React中的应用"/>
+<meta name="twitter:description" content="由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理"/>
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2018/2018-reactcssmodules/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2018/2018-maf/" /><link rel="next" href="https://mrzhang123.github.io/posts/2018/2018-webpackpublicpath/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CSS Modules在React中的应用",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/mrzhang123.github.io\/posts\/2018\/2018-reactcssmodules\/"
+        },"genre": "posts","keywords": "React","wordcount":  1780 ,
+        "url": "https:\/\/mrzhang123.github.io\/posts\/2018\/2018-reactcssmodules\/","datePublished": "2018-04-13T14:32:17+00:00","dateModified": "2018-04-13T14:32:17+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Raymond"},"author": {
+                "@type": "Person",
+                "name": "Raymond"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#命名约定">命名约定</a></li>
+            <li><a href="#css-in-js">CSS in JS</a></li>
+            <li><a href="#使用js来管理css模块">使用JS来管理CSS模块</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用css-modules">使用CSS Modules</a></li>
+        <li><a href="#在react中使用css-modules">在React中使用CSS Modules</a>
+          <ul>
+            <li><a href="#react-css-modules">React CSS Modules</a></li>
+            <li><a href="#babel-plugin-react-css-modules">babel-plugin-react-css-modules</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">CSS Modules在React中的应用</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2018-04-13">2018-04-13</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2018-04-13">2018-04-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1780 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#命名约定">命名约定</a></li>
+            <li><a href="#css-in-js">CSS in JS</a></li>
+            <li><a href="#使用js来管理css模块">使用JS来管理CSS模块</a></li>
+          </ul>
+        </li>
+        <li><a href="#使用css-modules">使用CSS Modules</a></li>
+        <li><a href="#在react中使用css-modules">在React中使用CSS Modules</a>
+          <ul>
+            <li><a href="#react-css-modules">React CSS Modules</a></li>
+            <li><a href="#babel-plugin-react-css-modules">babel-plugin-react-css-modules</a></li>
+          </ul>
+        </li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理</p>
+<ul>
+<li>写复杂的class名，降低冲突的概率</li>
+<li>给组件最外层元素添加一个class，限制范围</li>
+</ul>
+<p>但是这样做也不一定可以保证不会冲突，而且还导致class名字太复杂，嵌套太深，可维护性差，那么是否可以将CSS也像JS那样，实现模块化呢？答案是肯定的。CSS模块化方案很多，但是主要的就三类：</p>
+<h4 id="命名约定" class="headerLink">
+    <a href="#%e5%91%bd%e5%90%8d%e7%ba%a6%e5%ae%9a" class="header-mark"></a>命名约定</h4><p>比较常用的有<a href="http://mrzhang123.github.io/2017/04/05/BEM/" target="_blank" rel="noopener noreferrer">BEM</a>，SMACSS和OOCSS，但是存在以下问题：</p>
+<ul>
+<li>JS CSS之间依旧没有打通变量和选择器</li>
+<li>命名太复杂</li>
+</ul>
+<h4 id="css-in-js" class="headerLink">
+    <a href="#css-in-js" class="header-mark"></a>CSS in JS</h4><p>直接在JS中写CSS并内联样式，例如aphrodite，babel-plugin-css-in-js等（<a href="http://michelebertoli.github.io/css-in-js/" target="_blank" rel="noopener noreferrer">点击查看所有CSS in JS的解决方案</a>）但是存在以下问题：</p>
+<ul>
+<li>样式代码可能会重复出现</li>
+<li>写法上已经和传统的CSS不再相似（例如<a href="https://github.com/Khan/aphrodite" target="_blank" rel="noopener noreferrer">aphrodite</a>，写法类似于React Native中样式的写法）</li>
+<li>不能利用成熟的CSS预处理器（或后处理器）</li>
+</ul>
+<h4 id="使用js来管理css模块" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8js%e6%9d%a5%e7%ae%a1%e7%90%86css%e6%a8%a1%e5%9d%97" class="header-mark"></a>使用JS来管理CSS模块</h4><p>使用JS编译原生CSS文件，使其具有模块化，典型的就是<a href="https://github.com/css-modules/css-modules" target="_blank" rel="noopener noreferrer">CSS Modules</a>。只要使用到webpack，就会使用到css-loader，在webpack中稍加配置即可使用</p>
+<h3 id="使用css-modules" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8css-modules" class="header-mark"></a>使用CSS Modules</h3><p>配置css-loader启动css modules</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// webpack.config.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">use</span><span class="o">:</span> <span class="nx">ExtractTextPlugin</span><span class="p">.</span><span class="nx">extract</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">fallback</span><span class="o">:</span> <span class="s1">&#39;style-loader&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">use</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">loader</span><span class="o">:</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">options</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">modules</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">minimize</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">localIdentName</span><span class="o">:</span> <span class="s1">&#39;[path][name]__[local]--[hash:base64:5]&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">//</span> <span class="nt">Button</span><span class="p">.</span><span class="nc">css</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">button</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">font-size</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// Button.js
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./Button.css&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">styles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">buttonElement</span><span class="p">.</span><span class="nx">outerHTML</span> <span class="o">=</span> <span class="sb">`&lt;div class=</span><span class="si">${</span><span class="nx">styles</span><span class="p">.</span><span class="nx">button</span><span class="si">}</span><span class="sb">&gt;Button&lt;/div&gt;`</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>console出来的styles如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">button</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__button--1mmZb&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">large</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__large--2atzR&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">normall</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__normall--3prnh&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">small</span><span class="o">:</span><span class="s2">&#34;src-components-Button-index__small--34Wrr&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过以上配置，css loader为我们生成如上class名字，其中<code>1mmZb</code>是按照<code>[hash:base64:5]</code>生成的，大大降低了命名冲突的概率。</p>
+<p>通过这些简单的处理，CSS Modules 实现了以下几点：</p>
+<ul>
+<li>所有样式都是局部作用域的，解决了全局污染问题</li>
+<li>class 名生成规则配置灵活，可以此来压缩 class 名</li>
+<li>只需引用组件的 JS 就能搞定组件所有的 JS 和 CSS</li>
+<li>依然是熟悉的CSS，学习成本低</li>
+</ul>
+<h3 id="在react中使用css-modules" class="headerLink">
+    <a href="#%e5%9c%a8react%e4%b8%ad%e4%bd%bf%e7%94%a8css-modules" class="header-mark"></a>在React中使用CSS Modules</h3><p>直接在className处使用css中的class名即可</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./index.css&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">styles</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">buttonClass</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">switch</span> <span class="p">(</span><span class="nx">size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s1">&#39;large&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">buttonClass</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">large</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">case</span> <span class="s1">&#39;small&#39;</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">buttonClass</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">small</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="k">default</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">buttonClass</span> <span class="o">=</span> <span class="nx">styles</span><span class="p">.</span><span class="nx">normall</span>
+</span></span><span class="line"><span class="cl">        <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">buttonClass</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">确定</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Button</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注</p>
+<p>1.使用CSS Modules时发现，它只支持单独的class名字，不能像我们写css的时候一级一级的写，例如：<code>.a .b .c</code>，在CSS Modules中就是一步到位<code>.c</code>。</p>
+<p>2.CSS Modules提供了compose组合方法实现样式的复用，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">font</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="k">line-height</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">font-size</span><span class="p">:</span> <span class="mi">12</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">title-font</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="n">composes</span><span class="p">:</span> <span class="k">font</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="k">font-size</span><span class="p">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="react-css-modules" class="headerLink">
+    <a href="#react-css-modules" class="header-mark"></a>React CSS Modules</h4><p>但是有一个问题，我们在写样式的时候，需要频繁使用 styles.xxx，如何能够方便的直接写入class名字呢？可以使用<a href="https://github.com/gajus/react-css-modules" target="_blank" rel="noopener noreferrer">React CSS Modules</a>，它以高阶函数的形式生成className</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">CSSModules</span> <span class="nx">from</span> <span class="s1">&#39;react-css-modules&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./index.css&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">styleName</span><span class="o">=</span><span class="s1">&#39;normall&#39;</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">确定</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">CSSModules</span><span class="p">(</span><span class="nx">Button</span><span class="p">,</span> <span class="nx">styles</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到，react-css-modules是运行时的依赖，而且需要在运行时获取className，性能损耗比较大，可否把获取className前置到编译阶段？答案是可以的，可以使用<a href="https://github.com/gajus/babel-plugin-react-css-modules" target="_blank" rel="noopener noreferrer">babel-plugin-react-css-modules</a></p>
+<h4 id="babel-plugin-react-css-modules" class="headerLink">
+    <a href="#babel-plugin-react-css-modules" class="header-mark"></a>babel-plugin-react-css-modules</h4><p>babel-plugin-react-css-modules插件可以实现用styleName属性自动加载CSS模块，通过babel插件来进行语法树解析并最终生成className，写的时候，只需要将我们原来写的className替换成styleName即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">styles</span> <span class="nx">from</span> <span class="s1">&#39;./index.css&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Button</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">styleName</span><span class="o">=</span><span class="s1">&#39;normall&#39;</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">确定</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">Button</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>具体配置可以查看<a href="https://github.com/gajus/babel-plugin-react-css-modules#babel-plugin-react-css-modules" target="_blank" rel="noopener noreferrer">文档</a></p>
+<h3 id="参考" class="headerLink">
+    <a href="#%e5%8f%82%e8%80%83" class="header-mark"></a>参考</h3><p><a href="https://github.com/webpack-contrib/css-loader" target="_blank" rel="noopener noreferrer">https://github.com/webpack-contrib/css-loader</a></p>
+<p><a href="https://juanha.github.io/2017/01/10/react-css-modules/" target="_blank" rel="noopener noreferrer">https://juanha.github.io/2017/01/10/react-css-modules/</a></p>
+<p><a href="http://www.alloyteam.com/2017/03/getting-started-with-css-modules-and-react-in-practice/" target="_blank" rel="noopener noreferrer">http://www.alloyteam.com/2017/03/getting-started-with-css-modules-and-react-in-practice/</a></p>
+<p><a href="https://github.com/camsong/blog/issues/5" target="_blank" rel="noopener noreferrer">https://github.com/camsong/blog/issues/5</a></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2018-04-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2018/2018-maf/" class="prev" rel="prev" title="MAF项目总结"><i class="fas fa-angle-left fa-fw"></i>MAF项目总结</a>
+            <a href="/posts/2018/2018-webpackpublicpath/" class="next" rel="next" title="Webpack中publicPath详解">Webpack中publicPath详解<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.104.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

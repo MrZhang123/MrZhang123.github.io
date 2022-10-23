@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">Go 并发编程初识 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="Go 并发编程初识" />
+<meta property="og:description" content="Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mrzhang123.github.io/posts/2022/go-concurrency/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-06-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-06-11T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Go 并发编程初识"/>
+<meta name="twitter:description" content="Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel"/>
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2022/go-concurrency/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2021/2021-2022-new-year/" /><link rel="next" href="https://mrzhang123.github.io/posts/2022/lock-condition-signal/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Go 并发编程初识",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/mrzhang123.github.io\/posts\/2022\/go-concurrency\/"
+        },"genre": "posts","keywords": "golang, 并发","wordcount":  5465 ,
+        "url": "https:\/\/mrzhang123.github.io\/posts\/2022\/go-concurrency\/","datePublished": "2022-06-11T00:00:00+00:00","dateModified": "2022-06-11T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Raymond"},"author": {
+                "@type": "Person",
+                "name": "Raymond"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#goroutine">goroutine</a></li>
+    <li><a href="#通道">通道</a>
+      <ul>
+        <li><a href="#创建">创建</a></li>
+        <li><a href="#通道的操作">通道的操作</a></li>
+        <li><a href="#无缓冲通道与缓冲通道">无缓冲通道与缓冲通道</a></li>
+        <li><a href="#管道">管道</a></li>
+        <li><a href="#单向通道">单向通道</a></li>
+        <li><a href="#缓冲通道">缓冲通道</a></li>
+      </ul>
+    </li>
+    <li><a href="#并行循环">并行循环</a></li>
+    <li><a href="#使用-select-多路复用">使用 Select 多路复用</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#竞态">竞态</a></li>
+    <li><a href="#互斥锁syncmutex">互斥锁<code>sync.Mutex</code></a></li>
+    <li><a href="#读写互斥锁syncrwmutex">读写互斥锁：<code>sync.RWMutex</code></a></li>
+    <li><a href="#内存同步">内存同步</a></li>
+    <li><a href="#延迟初始化synconce">延迟初始化：sync.Once</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Go 并发编程初识</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B6%E5%8F%91/"><i class="far fa-folder fa-fw"></i>并发</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/golang/"><i class="far fa-list-alt fa-fw"></i>golang</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-06-11">2022-06-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-06-11">2022-06-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5465 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#goroutine">goroutine</a></li>
+    <li><a href="#通道">通道</a>
+      <ul>
+        <li><a href="#创建">创建</a></li>
+        <li><a href="#通道的操作">通道的操作</a></li>
+        <li><a href="#无缓冲通道与缓冲通道">无缓冲通道与缓冲通道</a></li>
+        <li><a href="#管道">管道</a></li>
+        <li><a href="#单向通道">单向通道</a></li>
+        <li><a href="#缓冲通道">缓冲通道</a></li>
+      </ul>
+    </li>
+    <li><a href="#并行循环">并行循环</a></li>
+    <li><a href="#使用-select-多路复用">使用 Select 多路复用</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#竞态">竞态</a></li>
+    <li><a href="#互斥锁syncmutex">互斥锁<code>sync.Mutex</code></a></li>
+    <li><a href="#读写互斥锁syncrwmutex">读写互斥锁：<code>sync.RWMutex</code></a></li>
+    <li><a href="#内存同步">内存同步</a></li>
+    <li><a href="#延迟初始化synconce">延迟初始化：sync.Once</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Go 有两种并发编程的风格：</p>
+<ul>
+<li>通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel）。CSP是一个并发的模式，在不同的执行体（goroutine）之间传递至，但是变量本身局限局限于单一的执行体。</li>
+<li>传统的共享内存多线程。</li>
+</ul>
+<h1 id="goroutine-和通道" class="headerLink">
+    <a href="#goroutine-%e5%92%8c%e9%80%9a%e9%81%93" class="header-mark"></a>goroutine 和通道</h1><h2 id="goroutine" class="headerLink">
+    <a href="#goroutine" class="header-mark"></a>goroutine</h2><blockquote>
+<p>在 Go 里，每一个并发执行的活动称为 goroutine。</p>
+</blockquote>
+<p>当一个程序启动时，只有一个 goroutine 来调用 <code>main</code> 函数，它被称为 main goroutine。新的 goroutine 通过 go 语句进行创建。</p>
+<p>停止 goroutine 的方式：</p>
+<ul>
+<li>从 <code>main</code> 函数返回</li>
+<li>退出程序</li>
+<li>和 goroutine 通信来要求它自己停止</li>
+</ul>
+<h2 id="通道" class="headerLink">
+    <a href="#%e9%80%9a%e9%81%93" class="header-mark"></a>通道</h2><p>如果说 goroutine 是 Go 程序并发的执行体，通道就是它们之间的连接。通道是可以让一个 goroutine 发送特定值到另一个 goroutine 的通信机制。每一个通道是一个具体类型的导管，叫做通道的元素类型。</p>
+<h3 id="创建" class="headerLink">
+    <a href="#%e5%88%9b%e5%bb%ba" class="header-mark"></a>创建</h3><p>使用内置的 <code>make</code> 函数可以创建一个通道：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>与 <code>map</code> 一样，通道也是一个使用 <code>make</code> 创建的数据结构的<strong>引用</strong>，所以通道的零值是 <code>nil</code>。</p>
+<h3 id="通道的操作" class="headerLink">
+    <a href="#%e9%80%9a%e9%81%93%e7%9a%84%e6%93%8d%e4%bd%9c" class="header-mark"></a>通道的操作</h3><p>通道主要有两个操作：发送（send）和接收（receive），二者统称为通信。发送语句中，通道和值分别在 <code>&lt;-</code> 的左右两边。接收表达式中，<code>&lt;-</code> 放在通道操作数前面。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">x</span> <span class="c1">// 发送语句
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">x</span> <span class="p">=</span> <span class="o">&lt;-</span> <span class="nx">ch</span> <span class="c1">// 赋值语句中的接收表达式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;-</span> <span class="nx">ch</span> <span class="c1">// 接收语句，丢弃结果
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>通道支持的第三个操作：关闭（close），它设置一个标志位来指示值当前已经发送完毕，这个通道后面没有值了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nb">close</span><span class="p">(</span><span class="nx">ch</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>关闭后的发送操作将导致 panic。在一个已经关闭的通道上进行接收操作，将获取所有已发送的值，直到通道为空，这时任何接收操作会立即完成，同时获取到一个通道元素类型对应的零值。</p>
+<h3 id="无缓冲通道与缓冲通道" class="headerLink">
+    <a href="#%e6%97%a0%e7%bc%93%e5%86%b2%e9%80%9a%e9%81%93%e4%b8%8e%e7%bc%93%e5%86%b2%e9%80%9a%e9%81%93" class="header-mark"></a>无缓冲通道与缓冲通道</h3><p>简单<code>make</code>调用创建的通道是无缓冲通道（unbuffered），<code>make</code>还可以接受第二个可选参数，表示通道容量。如果容量是0，<code>make</code>创建的就是一个无缓冲通道。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">ch</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span> <span class="c1">// 无缓冲通道
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">ch</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="c1">// 无缓冲通道
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">ch</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1">// 容量为3的缓冲通道
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用无缓冲通道进行通信导致发送和接收 goroutine 同步化。</p>
+<h3 id="管道" class="headerLink">
+    <a href="#%e7%ae%a1%e9%81%93" class="header-mark"></a>管道</h3><p>通道可以用来连接 goroutine ，这样一个输出是另一个的输入。这就叫做管道（pipeline）。当关闭的通道被读完后，后续所有的接收操作接收到的都是零值。</p>
+<p>判断一个通道是否关闭</p>
+<p>接收操作会产生两个结果：接收到的通道元素，以及一个布尔值，它为<code>true</code>则表示接收成功，<code>false</code>表示当前的接收操作在一个关闭的并且读完的通道上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">go</span> <span class="kd">func</span> <span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">x</span><span class="p">,</span> <span class="nx">ok</span> <span class="o">:=</span> <span class="o">&lt;-</span> <span class="nx">naturals</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">!</span><span class="nx">ok</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">break</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">squares</span> <span class="o">&lt;-</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">close</span><span class="p">(</span><span class="nx">squares</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通道也可以通过<code>range</code>进行遍历。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">naturals</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">squares</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// counter
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="nx">x</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span> <span class="p">&lt;</span> <span class="mi">100</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">naturals</span> <span class="o">&lt;-</span> <span class="nx">x</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">close</span><span class="p">(</span><span class="nx">naturals</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// squares
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="nx">x</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">naturals</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">squares</span> <span class="o">&lt;-</span> <span class="nx">x</span> <span class="o">*</span> <span class="nx">x</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="nb">close</span><span class="p">(</span><span class="nx">squares</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">x</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">squares</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通道用完后，不是一定要有<code>close</code>操作，只有在通知接收方 goroutine 所有数据都发送完毕时才需要显式关闭。垃圾回收器根据通道是否可以被访问来确定通道是否要被回收，跟是否关闭无关。</p>
+<h3 id="单向通道" class="headerLink">
+    <a href="#%e5%8d%95%e5%90%91%e9%80%9a%e9%81%93" class="header-mark"></a>单向通道</h3><p>通道默认是既可以入也可以出，但是在开发过程中，当一个通道用作函数行参的时，一般都会有意地限制不能发送或不能接收。虽然可以做约定，但是还是可能会出现误用，因此 Go 类型系统提供了单向通道类型，仅仅到处发送或接收操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// 只能发送的通道类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">chan</span> <span class="o">&lt;-</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 只能接收到通道类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;-</span> <span class="kd">chan</span> <span class="kt">int</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">counter</span><span class="p">(</span><span class="nx">out</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="nx">x</span><span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">x</span><span class="p">&lt;</span><span class="mi">100</span><span class="p">;</span> <span class="nx">x</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">out</span> <span class="o">&lt;-</span> <span class="nx">x</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">close</span><span class="p">(</span><span class="nx">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">naturals</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">go</span> <span class="nf">counter</span><span class="p">(</span><span class="nx">naturals</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里<code>counter(naturals)</code>的调用<strong>隐式</strong>地将<code>chan int</code>类型转换为参数要求的<code>chan &lt;- int</code>类型。在任何赋值操作中将<strong>双向通道转换为单项通道都是允许的</strong>，但是反过来是不行的。</p>
+<h3 id="缓冲通道" class="headerLink">
+    <a href="#%e7%bc%93%e5%86%b2%e9%80%9a%e9%81%93" class="header-mark"></a>缓冲通道</h3><p>缓冲通道有一个<strong>元素队列</strong>，队列的长度在创建的时候通过<code>make</code>的容量参数来设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">string</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果通道满了，发送操作会阻塞所在的 goroutine 直到另一个 goroutine 对通道内的数据进行了接收，有可用空间。反过来，如果通道是空，则执行接受操作的 goroutine 阻塞。</p>
+<p>通过<code>cap</code>函数可以获取通道缓冲区的容量大小。通过<code>len</code>函数获取当前通道内的元素个数。</p>
+<blockquote>
+<p>将缓冲通道作为队列在单个 goroutine 中使用是错误的。通道和 goroutine 的调度深度关联，如果没有另一个 goroutine 从通道进行接收，发送者（也许是整个程序）有被永久阻塞的风险。如果仅仅需要一个简单队列，应该使用<code>slice</code>。</p>
+</blockquote>
+<h2 id="并行循环" class="headerLink">
+    <a href="#%e5%b9%b6%e8%a1%8c%e5%be%aa%e7%8e%af" class="header-mark"></a>并行循环</h2><p>根据图像文件生成缩略图：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// makeThumbanils 生成指定文件的缩略图
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">makeThumbanils</span><span class="p">(</span><span class="nx">filenames</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span><span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">filenames</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">imageFiles</span><span class="p">(</span><span class="nx">f</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">log</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于以上生成缩略图和顺序并无关系，所以可以使用<code>go</code>来实现并行。但是直接使用<code>go imageFiles(f)</code>会导致不等缩略图生成就返回。所以需要让函数等待缩略图生成完成，可以通过使用通道在生成完成后通知发送一个完成的消息。改造方式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">makeThumbanils</span><span class="p">(</span><span class="nx">filenames</span> <span class="p">[]</span><span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kd">struct</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="nx">_</span><span class="p">,</span><span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">filenames</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">f</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">imageFiles</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="kd">struct</span><span class="p">{}{}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}(</span><span class="nx">f</span><span class="p">)</span> <span class="c1">// 显式传入参数f
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="k">range</span> <span class="nx">filenames</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;-</span> <span class="nx">ch</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition info open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-info-circle fa-fw"></i>信息<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">这里需要注意一点，上面的变量<code>f</code>的值被所有的匿名函数值共享并且被后续的迭代所更新。这时新的 goroutine 执行字面量函数，for 循环可能已经更新<code>f</code>，并且开始另一个迭代或者已经完成结束，所有当这些 goroutine 读取 f 的值时，它们所看到的都是<code>slice</code>的最后一个元素。通过添加显式参数，可以确保当<code>go</code>语句执行的时候，<code>f</code>是当前值。</div>
+        </div>
+    </div>
+<p>以上就是使用<code>chan</code>让 goroutine 进行等待。但其实在实践中<code>chan</code>更多的用于 goroutine 之间的通信，如果只是单纯的等待任务执行完成，更常用的是<code>WaitGroup</code>并发原语。具体操作如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">filenames</span> <span class="p">=</span> <span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;a&#34;</span><span class="p">,</span> <span class="s">&#34;b&#34;</span><span class="p">,</span> <span class="s">&#34;c&#34;</span><span class="p">,</span> <span class="s">&#34;d&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">waitFunc</span><span class="p">(</span><span class="nx">f</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">rand</span><span class="p">.</span><span class="nf">Seed</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Now</span><span class="p">().</span><span class="nf">UnixNano</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">sleepTime</span> <span class="o">:=</span> <span class="nx">rand</span><span class="p">.</span><span class="nf">Intn</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nf">Duration</span><span class="p">(</span><span class="nx">sleepTime</span><span class="p">)</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;f=%s, sleepTime=%d\n&#34;</span><span class="p">,</span> <span class="nx">f</span><span class="p">,</span> <span class="nx">sleepTime</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">waitGroupFunc</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">wg</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">f</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">filenames</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">wg</span><span class="p">.</span><span class="nf">Add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">f</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">defer</span> <span class="nx">wg</span><span class="p">.</span><span class="nf">Done</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">			<span class="nf">waitFunc</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}(</span><span class="nx">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">wg</span><span class="p">.</span><span class="nf">Wait</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nf">waitGroupFunc</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>Add</code>：用来设置<code>WaitGroup</code>的计数值；</li>
+<li><code>Done</code>：&ldquo;用来将<code>WaitGroup</code>的计数值减少1，其实就是调用了<code>Add(-1)</code>；</li>
+<li><code>Wait</code>：调用这个方法的 goroutine 会一直阻塞，直到<code>WaitGroup</code>的计数值变为0。</li>
+</ul>
+<h2 id="使用-select-多路复用" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8-select-%e5%a4%9a%e8%b7%af%e5%a4%8d%e7%94%a8" class="header-mark"></a>使用 Select 多路复用</h2><p><code>select</code>语句的基本形式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ch1</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">case</span> <span class="nx">x</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch2</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">case</span> <span class="nx">ch3</span> <span class="o">&lt;-</span> <span class="nx">y</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">default</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">//...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>select</code>语句和<code>switch</code>语句一样，它有一系列的情况和一个<strong>可选</strong>的默认分支。每一个情况指定一次通行和关联的一段代码块。接收表达式操作可能像第一种情况那样出现在它本身上，或者像第二种情况那样出现在短变量声明中；第二种情况可以引用所接收的值。</p>
+<p><code>select</code>会一直等待，直到一次通信告知有一些情况可以执行。</p>
+<p><strong>如果多个情况同时满足，<code>select</code>会随机选择一个，这样保证每一个通道都有相同的机会被选中。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">case</span> <span class="nx">x</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">ch</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="c1">// 0,2,4,6,8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">case</span> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">i</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="使用共享变量实现并发" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8%e5%85%b1%e4%ba%ab%e5%8f%98%e9%87%8f%e5%ae%9e%e7%8e%b0%e5%b9%b6%e5%8f%91" class="header-mark"></a>使用共享变量实现并发</h1><h2 id="竞态" class="headerLink">
+    <a href="#%e7%ab%9e%e6%80%81" class="header-mark"></a>竞态</h2><p>当一个程序有两个或多个 goroutine 时，每个 goroutine 内部的各个步骤也是顺序执行的，但我们无法知道一个 goroutine 中的事件 x 和另外一个 goroutine 中的事件 y 的先后顺序。如果无法肯定的说一个事件肯定先于另一个事件，那么这两个事件就是<strong>并发</strong>的。</p>
+<p>如果一个能在串行程序中执行正确的函数，在并发调用时仍然执行正确，，那么就说这个函数是<strong>并发安全的</strong>(concurrency-safe)。如果一个类型的所有可访问方法和操作都是并发安全的，则它可称为并发安全的类型。</p>
+<p>竟态是指在多个 goroutine 按照某些交错的顺序执行时程序无法给出正确的结果。</p>
+<p>两个 goroutine 并发读写同一个变量并且至少其中一个写入时可能会发生数据竞态(data race)。</p>
+<p>下面一个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">balance</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Deposite</span><span class="p">(</span><span class="nx">amount</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span> <span class="nx">balance</span> <span class="p">=</span> <span class="nx">balance</span> <span class="o">+</span> <span class="nx">amount</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Balance</span><span class="p">()</span> <span class="kt">int</span>        <span class="p">{</span> <span class="k">return</span> <span class="nx">balance</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// A
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">Deposite</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="c1">// A1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;=&#34;</span><span class="p">,</span> <span class="nf">Balance</span><span class="p">())</span> <span class="c1">// A2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// B
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">go</span> <span class="nf">Deposite</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接告诉我们，可能有以下三种情况：</p>
+<table>
+<thead>
+<tr>
+<th>A先</th>
+<th>B先</th>
+<th>A / B / A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>A1: 200</td>
+<td>B:  200</td>
+<td>A1: 200</td>
+</tr>
+<tr>
+<td>A2: = 200</td>
+<td>A1: 300</td>
+<td>B:  300</td>
+</tr>
+<tr>
+<td>B: = 300</td>
+<td>A2: = 300</td>
+<td>A2: = 300</td>
+</tr>
+</tbody>
+</table>
+<p>但其实还有第四种情况——数据竞态，B 的操作在 A 操作中间执行，晚于数据读取 A1 read <code>balance + amount</code>，早于数据更新 A1 write <code>balance = </code>，这会导致 B 的操作消失，具体过程如下：</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A1 read</td>
+<td>0</td>
+</tr>
+<tr>
+<td>B</td>
+<td>100</td>
+</tr>
+<tr>
+<td>A1 write</td>
+<td>200</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>=200</td>
+</tr>
+</tbody>
+</table>
+<p>当发生数据竞态的变量类型是大于一个机器字长的类型（如接口、字符串或slice）时，会出现更复杂的情况：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">x</span> <span class="p">[]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">x</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">x</span> <span class="p">=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">x</span><span class="p">[</span><span class="mi">99999</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可能出现运行结果如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">panic: runtime error: index out of range <span class="o">[</span>99999<span class="o">]</span> with length <span class="m">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">goroutine <span class="m">1</span> <span class="o">[</span>running<span class="o">]</span>:
+</span></span><span class="line"><span class="cl">main.main<span class="o">()</span>
+</span></span><span class="line"><span class="cl">        /go_practice/main.go:25 +0x13c
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> status <span class="m">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是还有一种更诡异的情况是：由于<code>slice</code>是由指针、长度和容量三部分组成的，如果指针来自第一个<code>make</code>而长度来自第二个<code>make</code>，那么变量x会变成一个嵌合体，它名义上长度是100000，但实际上底层数组只有10个元素。</p>
+<p>有三种方式可以避免数据竞态：</p>
+<ol>
+<li>不要修改变量。</li>
+<li>避免多个 goroutine 访问同一个变量</li>
+</ol>
+<p>即只允许唯一一个 goroutine 访问该变量，其他 goroutine 想要访问，必须使用通道来向受限 goroutine 发送查询请求或更新变量。</p>
+<blockquote>
+<p>Go 箴言：“不要通过共享内存来通信，而应该通信来共享内存”。</p>
+</blockquote>
+<p>看下面这个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">deposites</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">balances</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Deposite</span><span class="p">(</span><span class="nx">amount</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span> <span class="nx">deposites</span> <span class="o">&lt;-</span> <span class="nx">amount</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Balance</span><span class="p">()</span> <span class="kt">int</span>        <span class="p">{</span> <span class="k">return</span> <span class="o">&lt;-</span><span class="nx">balances</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">teller</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">balance</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">select</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="nx">amount</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">deposites</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">			<span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span>
+</span></span><span class="line"><span class="cl">		<span class="k">case</span> <span class="nx">balances</span> <span class="o">&lt;-</span> <span class="nx">balance</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">go</span> <span class="nf">teller</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>允许多个 goroutine 访问同一个变量，但是在同一时间只有一个 goroutine 可以访问。这种方法称为互斥机制。即使用互斥锁<code>sync.Mutex</code>。</li>
+</ol>
+<h2 id="互斥锁syncmutex" class="headerLink">
+    <a href="#%e4%ba%92%e6%96%a5%e9%94%81syncmutex" class="header-mark"></a>互斥锁<code>sync.Mutex</code></h2><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">mu</span>       <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">balances</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Deposite</span><span class="p">(</span><span class="nx">amount</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">balance</span> <span class="o">+=</span> <span class="nx">amount</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Balance</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">mu</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">mu</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">balance</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<code>Lock</code>和<code>Unlock</code>之间的代码，可以自由地读取和修改共享变量，这一部分称为<em>临界区域</em>。</p>
+<blockquote>
+<p>虽然<code>defer</code>的执行成本比显式调用<code>Unlock</code>的略大，但是在处理并发时，永远应当优先考虑清晰度，拒绝过早优化。在可以使用的地方，就尽量使用<code>defer</code>来让临界区扩展到函数结尾处。</p>
+</blockquote>
+<p><strong>Go 的互斥锁是不能再入的，即无法对一个已经上锁的互斥量再上锁，这会导致死锁。</strong></p>
+<h2 id="读写互斥锁syncrwmutex" class="headerLink">
+    <a href="#%e8%af%bb%e5%86%99%e4%ba%92%e6%96%a5%e9%94%81syncrwmutex" class="header-mark"></a>读写互斥锁：<code>sync.RWMutex</code></h2><p>有时候我们允许读并发进行而写则需要完全独享，这时候就可以使用读写互斥锁<code>sync.RWMutex</code>，它允许只读操作并发执行而写操作需要获得完全独享的访问权限。<code>RLock</code>和<code>RUnlock</code>方法分别用来获取和释放一个<strong>读锁（也称共享锁）</strong>。<code>Lock</code>和<code>Unlock</code>来分别获取和释放一个<strong>写锁（互斥锁）</strong>。</p>
+<blockquote>
+<p>仅在绝大部分 goroutine 都在获取读锁并且写锁竞争比较激烈时（即 goroutine 一般都需要等待后才能获取到锁），<code>RWMutex</code>才有优势。因为<code>RWMutex</code>需要复杂的内部工作，所以在竞争不激烈时它比普通锁慢。</p>
+</blockquote>
+<h2 id="内存同步" class="headerLink">
+    <a href="#%e5%86%85%e5%ad%98%e5%90%8c%e6%ad%a5" class="header-mark"></a>内存同步</h2><p>需要互斥锁的原因有两个：</p>
+<ol>
+<li>防止某个操作插入到其他操作中间；</li>
+<li>同步不仅涉及多个 goroutine 的执行顺序问题，还会影响到内存。</li>
+</ol>
+<p>现代的计算机一般都会有多个处理器，每个处理器都有内存的本地缓存。 <strong>为了提高效率，对内存的写入是缓存在每个处理中的，只有在必要时才刷回内存。甚至刷回内存的顺序都可能和 goroutine 的写入顺序不一致。</strong> 同步元语（例如通道通信或互斥锁操作）会导致处理器把积累的写操作刷回内存并提交。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">y</span> <span class="kt">int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">x</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;y=&#34;</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">go</span> <span class="kd">func</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">y</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;x=&#34;</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>由于以上操作存在数据竞态，所以直觉告诉我们，上面的代码可能产生以下四种结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nv">y</span><span class="o">=</span>0, <span class="nv">x</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">x</span><span class="o">=</span>0, <span class="nv">y</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">x</span><span class="o">=</span>1, <span class="nv">y</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">y</span><span class="o">=</span>1, <span class="nv">x</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但事实上，除了以上四种结果外，还可能产生如下两种结果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">x=0, y=0
+</span></span><span class="line"><span class="cl">y=0, x=0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原因在于，在单个 goroutine 内，每个语句的效果保证按照执行的顺序发生，也就是说，<strong>goroutine 是串行一致的</strong>，但是 <strong>在缺乏使用通道或者互斥量来显式同步的情况下，并不能保证所有的 goroutine 看到的事件都是一致的。</strong> 所以尽管 goroutineA 肯定能在读取 y 之前观察到 x=1 的效果，但是它不一定能观察到 goroutineB 对 y 的写入效果。</p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">这里解释一下【串行一致】的含义，所谓串行一致，指的是在程序执行过程中，因为一些优化，可能会修改指令的执行顺序，但是这些修改不应该改变程序运行的结果。此处关键在于为了优化修改执行顺序，但是不影响运行结果。</div>
+        </div>
+    </div>
+<p>尽管很容易把并发简单理解成多个 goroutine 中语句的某种交错执行方式，但是现代 CPU 并不是这样工作的。因为赋值和<code>Print</code>对应不同的变量，所以编译器可能会认为两个语句的执行顺序不会影响结果，然后交换了两个语句的执行顺序。CPU 也有类似的问题，如果两个 goroutine 在不同的 CPU 上执行，每个 CPU 都有自己的缓存，那么一个 goroutine 的写入操作在同步到内存之前对另外一个 goroutine 的 <code>Print</code> 语句是不可见的。</p>
+<h2 id="延迟初始化synconce" class="headerLink">
+    <a href="#%e5%bb%b6%e8%bf%9f%e5%88%9d%e5%a7%8b%e5%8c%96synconce" class="header-mark"></a>延迟初始化：sync.Once</h2><p>很多时候，延迟一个昂贵的初始化操作是很有必要的，例如下面这个例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">icons</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">loadIcons</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">icons</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;speed&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;sleep&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;data&#34;</span><span class="p">:</span>  <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">Icon</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">icons</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">loadIcons</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">icons</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是上面这个例子中 icons 方法是并发不安全的。直觉告诉我们是因为 Icon 方法在并发的时候可能会导致多次调用 loadIcons 方法。但是这个直觉是错误的，在缺乏明显同步的情况下，<strong>编译器和 CPU 在能保证每个 goroutine 都满足串行的一致性的基础上可以自由地重排访问内存的顺序</strong>。因此 loadIcons 一个可能的语句重排结果如下，它在填充数据之前把一个空 map 赋给 icons：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">loadIcons</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">icons</span> <span class="p">=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">icons</span><span class="p">[</span><span class="s">&#34;speed&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">icons</span><span class="p">[</span><span class="s">&#34;sleep&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">icons</span><span class="p">[</span><span class="s">&#34;data&#34;</span><span class="p">]</span> <span class="p">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>技巧<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">这里再解释一下为什么会先创建一个空 map，然后再调用。由于初始化资源成本比较高，所以会在使用的时候才初始化，所以上面的代码只是为了优化性能而做的可能的重排结果。</div>
+        </div>
+    </div>
+<p>如果是按照上面的重排运行 loadIcons 函数，则一个 goroutine 发现 icons 不是 nil 并不意味着变量的初始化已经完成。因此需要加锁来保证同步，可以使用 sync 包提供的 <code>sync.Once</code> 方法解决。<code>Once</code> 包含一个布尔变量和一个互斥量，布尔变量记录初始化是否已完成，互斥量则负责保护这个布尔变量和客户端的数据结构。<code>Once</code> 的唯一方法 <code>Do</code> 以初始化函数为它的参数。具体修改如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">loadIconOnce</span> <span class="nx">sync</span><span class="p">.</span><span class="nx">Once</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">icons</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">loadIcons</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">icons</span> <span class="p">=</span> <span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">int</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;speed&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;sleep&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="s">&#34;data&#34;</span><span class="p">:</span>  <span class="mi">3</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">icon</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">loadIconOnce</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">loadIcons</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">icons</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>每次调用<code>Do(loadIcons)</code> 时会先锁定互斥量并检查里面的布尔变量。第一次调用时，布尔值为 <code>false</code> ，<code>Do</code> 会调用 loadIcons 然后将布尔值设置为 <code>true</code>。后续的调用相当于空操作，只是通过互斥量的同步来保证 loadIcons 对内存产生的效果对所有 goroutine 都是可见的。</p>
+<p>以上就是 Go 中并发的总结。</p>
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-06-11</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/golang/">golang</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2021/2021-2022-new-year/" class="prev" rel="prev" title="再见2021，你好2022"><i class="fas fa-angle-left fa-fw"></i>再见2021，你好2022</a>
+            <a href="/posts/2022/lock-condition-signal/" class="next" rel="next" title="并发编程中的锁、条件变量和信号量">并发编程中的锁、条件变量和信号量<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.104.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>

@@ -5,19 +5,19 @@
         <description>gulp - 标签 - Raymond</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 07 Sep 2016 23:25:06 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/gulp/" rel="self" type="application/rss+xml" /><item>
     <title>基于Gulp的前端自动化工程搭建</title>
-    <link>https://mrzhang123.github.io/posts/2016-gulpuse/</link>
+    <link>https://mrzhang123.github.io/posts/2016/2016-gulpuse/</link>
     <pubDate>Wed, 07 Sep 2016 23:25:06 &#43;0000</pubDate><author>
         <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2016-gulpuse/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2016/2016-gulpuse/</guid>
     <description><![CDATA[<blockquote>
 <p>上个月月底在公司提出关于前后端分离的想法，并且开始研究关于前后端分离，前端工程化，模块化的一些东西，上周开始我准备自己开始写基于Gulp流的前端工程文件，这两天有时间，着手开始实现这个想法，但是写的过程中，遇到了一些问题，正是因为这些问题的解决让我对Gulp的流式处理有了更深的理解，写下这篇文章，分享一下这俩天我在写Gulp的时候学到的一些东西。</p>
 </blockquote>]]></description>
 </item><item>
     <title>Gulp&#43;BroserSync实现浏览器自动刷新</title>
-    <link>https://mrzhang123.github.io/posts/2016-gulpbrosersync/</link>
+    <link>https://mrzhang123.github.io/posts/2016/2016-gulpbrosersync/</link>
     <pubDate>Mon, 16 May 2016 22:10:39 &#43;0000</pubDate><author>
         <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2016-gulpbrosersync/</guid>
+    </author><guid>https://mrzhang123.github.io/posts/2016/2016-gulpbrosersync/</guid>
     <description><![CDATA[<p>在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。</p>]]></description>
 </item></channel>
 </rss>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">【译】10个React组件的戒律 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="【译】10个React组件的戒律" />
+<meta property="og:description" content="原文链接：The 10 Component Commandments
+创建被很多人用的组件是很难的。如果那些props作为公共API，你需要非常谨慎的考虑哪些props是可以接收的。
+这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mrzhang123.github.io/posts/2019/2019-componentstips/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-07-07T15:43:00+00:00" />
+<meta property="article:modified_time" content="2019-07-07T15:43:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
+
+<meta name="twitter:title" content="【译】10个React组件的戒律"/>
+<meta name="twitter:description" content="原文链接：The 10 Component Commandments
+创建被很多人用的组件是很难的。如果那些props作为公共API，你需要非常谨慎的考虑哪些props是可以接收的。
+这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。"/>
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019/2019-componentstips/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2019/2019-tmux/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019/2019-stablesort/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "【译】10个React组件的戒律",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/mrzhang123.github.io\/posts\/2019\/2019-componentstips\/"
+        },"genre": "posts","keywords": "React","wordcount":  5097 ,
+        "url": "https:\/\/mrzhang123.github.io\/posts\/2019\/2019-componentstips\/","datePublished": "2019-07-07T15:43:00+00:00","dateModified": "2019-07-07T15:43:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Raymond"},"author": {
+                "@type": "Person",
+                "name": "Raymond"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#什么是api">什么是API？</a></li>
+        <li><a href="#api设计中的一些最佳实践">API设计中的一些最佳实践</a>
+          <ul>
+            <li><a href="#稳定的版本控制">稳定的版本控制</a></li>
+            <li><a href="#描述性错误信息">描述性错误信息</a></li>
+            <li><a href="#减少开发人员的意外">减少开发人员的意外</a></li>
+            <li><a href="#最小化你的api">最小化你的API</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#十个组件的告诫">十个组件的告诫</a>
+      <ul>
+        <li><a href="#1编写文档">1.编写文档</a></li>
+        <li><a href="#2允许上下文语意">2.允许上下文语意</a></li>
+        <li><a href="#3避免使用布尔类型pops">3.避免使用布尔类型pops</a></li>
+        <li><a href="#4使用propschildren">4.使用<code>props.children</code></a></li>
+        <li><a href="#5让parent-hook进入内部逻辑">5.让parent hook进入内部逻辑</a></li>
+        <li><a href="#6传递剩余的props">6.传递剩余的props</a></li>
+        <li><a href="#7提供足够的默认值">7.提供足够的默认值</a></li>
+        <li><a href="#8不要重命名html的属性">8.不要重命名HTML的属性</a></li>
+        <li><a href="#9给props添加types">9.给props添加types</a></li>
+        <li><a href="#10为开发者设计">10.为开发者设计</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">【译】10个React组件的戒律</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-07-07">2019-07-07</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-07-07">2019-07-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5097 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#什么是api">什么是API？</a></li>
+        <li><a href="#api设计中的一些最佳实践">API设计中的一些最佳实践</a>
+          <ul>
+            <li><a href="#稳定的版本控制">稳定的版本控制</a></li>
+            <li><a href="#描述性错误信息">描述性错误信息</a></li>
+            <li><a href="#减少开发人员的意外">减少开发人员的意外</a></li>
+            <li><a href="#最小化你的api">最小化你的API</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#十个组件的告诫">十个组件的告诫</a>
+      <ul>
+        <li><a href="#1编写文档">1.编写文档</a></li>
+        <li><a href="#2允许上下文语意">2.允许上下文语意</a></li>
+        <li><a href="#3避免使用布尔类型pops">3.避免使用布尔类型pops</a></li>
+        <li><a href="#4使用propschildren">4.使用<code>props.children</code></a></li>
+        <li><a href="#5让parent-hook进入内部逻辑">5.让parent hook进入内部逻辑</a></li>
+        <li><a href="#6传递剩余的props">6.传递剩余的props</a></li>
+        <li><a href="#7提供足够的默认值">7.提供足够的默认值</a></li>
+        <li><a href="#8不要重命名html的属性">8.不要重命名HTML的属性</a></li>
+        <li><a href="#9给props添加types">9.给props添加types</a></li>
+        <li><a href="#10为开发者设计">10.为开发者设计</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>原文链接：<a href="https://dev.to/selbekk/the-10-component-commandments-2a7f" target="_blank" rel="noopener noreferrer">The 10 Component Commandments</a></p>
+<p>创建被很多人用的组件是很难的。如果那些<code>props</code>作为公共API，你需要非常谨慎的考虑哪些<code>props</code>是可以接收的。</p>
+<p>这篇文章将给你快速介绍API的最佳实践方法，同时有十条实践戒律清单，你可以在创建组件的时候使用，你的开发者将会很乐意使用它们。</p>
+<p><a class="lightgallery" href="./img/1.jpg" title="API?" data-thumbnail="./img/1.jpg">
+        <img
+            class="lazyload"
+            data-src="./img/1.jpg"
+            data-srcset="./img/1.jpg, ./img/1.jpg 1.5x, ./img/1.jpg 2x"
+            data-sizes="auto"
+            alt="./img/1.jpg">
+    </a></p>
+<h3 id="什么是api" class="headerLink">
+    <a href="#%e4%bb%80%e4%b9%88%e6%98%afapi" class="header-mark"></a>什么是API？</h3><p>一个API或者说一个应用程序接口，基本上就是两段代码相遇的地方。它连接<em>你的代码</em>和剩下的世界。我们称这种连接为接口。它是你可以与之交互的一组定义的actions或者data actions。</p>
+<p>后端与前端之间的接口称为API。你可以通过与此API交互访问给定的一组数据和功能。</p>
+<p>类和调用该类的代码之间的接口也是API，你可以调用类里面的方法去取数据或者触发封装在其中的功能。</p>
+<p>按照同样的思路，<strong>你组件接收props同样也是API</strong>。这是你的用户和你的组件的交互方式，当你决定暴露哪些公共API，会有很多同样的规则和注意事项。</p>
+<h3 id="api设计中的一些最佳实践" class="headerLink">
+    <a href="#api%e8%ae%be%e8%ae%a1%e4%b8%ad%e7%9a%84%e4%b8%80%e4%ba%9b%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" class="header-mark"></a>API设计中的一些最佳实践</h3><p>所以在设计API的时候，有哪些适用的规则和考虑因素？我们为此做了一些研究，结果发现那里有很多很棒的资源。我们选择了两篇文章——<a href="https://joshdata.wordpress.com/" target="_blank" rel="noopener noreferrer">Josh Tauberer</a>的<a href="https://joshdata.wordpress.com/2014/02/10/what-makes-a-good-api/" target="_blank" rel="noopener noreferrer">What Makes a Good API ?</a>和<a href="https://medium.com/@rkuris/good-apis-cd861b8b70a3" target="_blank" rel="noopener noreferrer">Ron Kurir&rsquo;s article with the same title</a>——我们提出了4个最佳实践。</p>
+<h4 id="稳定的版本控制" class="headerLink">
+    <a href="#%e7%a8%b3%e5%ae%9a%e7%9a%84%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6" class="header-mark"></a>稳定的版本控制</h4><p>当你考虑创建一个API，其中一个最重要的事情就是尽可能保证API的稳定。这意味着要最大限度减少break change。如果你必须引入一个break change，要确保写明确的升级指南，如果可能的话，提供一个代码模块，为使用者自动化升级。</p>
+<p>如果你发布一个API，确保遵循<a href="https://semver.org/lang/zh-CN/" target="_blank" rel="noopener noreferrer">语义版本控制</a>。这让使用者决定使用哪个版本变得很容易。</p>
+<h4 id="描述性错误信息" class="headerLink">
+    <a href="#%e6%8f%8f%e8%bf%b0%e6%80%a7%e9%94%99%e8%af%af%e4%bf%a1%e6%81%af" class="header-mark"></a>描述性错误信息</h4><p>每当当调用你的API发生错误，你应该尽可能解释是什么发生了错误，如何修正该错误。没有任何其他上下文的情况下使用“错误使用”响应不是一个好的用户体验。</p>
+<p>相反，写描述性错误，帮助用户修正他们调用API时候的错误。</p>
+<h4 id="减少开发人员的意外" class="headerLink">
+    <a href="#%e5%87%8f%e5%b0%91%e5%bc%80%e5%8f%91%e4%ba%ba%e5%91%98%e7%9a%84%e6%84%8f%e5%a4%96" class="header-mark"></a>减少开发人员的意外</h4><p>开发人员是脆弱的生物，你不想在他们使用你的API时候惊吓他们。换句话说，让你的API尽可能的保持直观。你可以根据最佳实践和命名规范实现它们。</p>
+<p>要记住的另一件事情是你记得跟你的代码保持一致。如果你在一个地方的boolean值之前加了<code>is</code>或<code>has</code>，但是在下一个地方没有加，很容让人产生困惑。</p>
+<h4 id="最小化你的api" class="headerLink">
+    <a href="#%e6%9c%80%e5%b0%8f%e5%8c%96%e4%bd%a0%e7%9a%84api" class="header-mark"></a>最小化你的API</h4><p>虽说我们说的是最小化东西——尽量减少你的API。有很多功能是非常好的，但是你的API越少，你的用户学习起来就越容易。反过来，这被认为是一个易于使用的API。</p>
+<p>总有办法控制API的大小——其中一个方法就是从旧的API重构一个新的API。</p>
+<h2 id="十个组件的告诫" class="headerLink">
+    <a href="#%e5%8d%81%e4%b8%aa%e7%bb%84%e4%bb%b6%e7%9a%84%e5%91%8a%e8%af%ab" class="header-mark"></a>十个组件的告诫</h2><p><a class="lightgallery" href="./img/2.jpg" title="component" data-thumbnail="./img/2.jpg">
+        <img
+            class="lazyload"
+            data-src="./img/2.jpg"
+            data-srcset="./img/2.jpg, ./img/2.jpg 1.5x, ./img/2.jpg 2x"
+            data-sizes="auto"
+            alt="./img/2.jpg">
+    </a></p>
+<p>这里有4个黄金法则适用于Pascal中的REST API和旧程序，但是如何转化到现代世界的React？</p>
+<p>就像我们前面提到的，组件有它们自己的API。我们称它们为<code>props</code> , 这就是我们如何用数据，回调函数和其他功能来提供组件。我们如何构建不违反上述规则的<code>props</code>对象？我们如何写方便其他开发人员测试的组件？</p>
+<p>我们创建了当你创建你的组件的时候<strong>10个需要遵循的规则</strong>清单，希望它们对你有用。</p>
+<h3 id="1编写文档" class="headerLink">
+    <a href="#1%e7%bc%96%e5%86%99%e6%96%87%e6%a1%a3" class="header-mark"></a>1.编写文档</h3><p>如果没有好的文档说明你的组件如何使用，那么根据定义，这个组件是无用的，虽然几乎所有的用户都可以查看组件的实现方式，但是这样做用户体验会很糟糕。</p>
+<p>有几种方式来记录组件，但是这里的三种选择是我们所推荐的：</p>
+<ul>
+<li><a href="https://storybook.js.org/" target="_blank" rel="noopener noreferrer">Storybook</a></li>
+<li><a href="https://react-styleguidist.js.org/" target="_blank" rel="noopener noreferrer">Styleguidist</a></li>
+<li><a href="https://www.docz.site/" target="_blank" rel="noopener noreferrer">Docz</a></li>
+</ul>
+<p>前两个为你提供组件开发的场所，而第三个让你用<a href="https://mdxjs.com/" target="_blank" rel="noopener noreferrer">MDX</a>编写更自由的文档。</p>
+<p>不管你选择哪个，要保证记录API以及如何，何时使用组件。最后一部分在共享组件库中非常重要——所以人们在给定的上下文中使用争取的按钮或者布局网格。</p>
+<h3 id="2允许上下文语意" class="headerLink">
+    <a href="#2%e5%85%81%e8%ae%b8%e4%b8%8a%e4%b8%8b%e6%96%87%e8%af%ad%e6%84%8f" class="header-mark"></a>2.允许上下文语意</h3><p>HTML是一种用语义方式构建信息的语言。然而，我们大多数组件使用<code>div</code>标签。这个在某种程度上说是有道理的——因为通用组建无法真正的假设它应该是一个<code>&lt;article /&gt;</code>或者<code>&lt;section /&gt;</code>或者一个<code>&lt;aside /&gt;</code>——但这并不理想。</p>
+<p>我们建议你允许你的组件接受一个<code>as</code>作为props，这将始终允许你覆盖正在呈现的DOM元素。这里是如何实现的一个demo：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">Grid</span><span class="p">({</span> <span class="nx">as</span><span class="o">:</span> <span class="nx">Element</span><span class="p">,</span> <span class="p">...</span><span class="nx">props</span> <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Element</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;grid&#34;</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">Grid</span><span class="p">.</span><span class="nx">defaultProps</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">as</span><span class="o">:</span> <span class="s1">&#39;div&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我们重命名<code>as</code>为局部变量<code>Element</code>在JSX中使用，同时我们给<code>as</code>一个默认值，在不传递语义标签的时候使用。</p>
+<p>当使用这个<code>&lt;Grid /&gt;</code>组件时，你只需要传递正确的标签即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">Grid</span> <span class="nx">as</span><span class="o">=</span><span class="s2">&#34;main&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">MoreContent</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/Grid&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意，这对React组件同样有效。如果你想有一个<code>&lt;Button /&gt;</code>组件，渲染为React Router的<code>&lt;Link /&gt;</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">as</span><span class="o">=</span><span class="p">{</span><span class="nx">Link</span><span class="p">}</span> <span class="nx">to</span><span class="o">=</span><span class="s2">&#34;/profile&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Go</span> <span class="nx">to</span> <span class="nx">Profile</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/Button&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3避免使用布尔类型pops" class="headerLink">
+    <a href="#3%e9%81%bf%e5%85%8d%e4%bd%bf%e7%94%a8%e5%b8%83%e5%b0%94%e7%b1%bb%e5%9e%8bpops" class="header-mark"></a>3.避免使用布尔类型pops</h3><p>布尔类型的props听起来很不错，你可以不实用value指定它们，所以它们看起来很优雅：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">large</span><span class="o">&gt;</span><span class="nx">BUY</span> <span class="nx">NOW</span><span class="o">!&lt;</span><span class="err">/Button&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是即使它们看起来很优雅，布尔属性只允许使用两个属性。on或off，显示或隐藏，1或0。</p>
+<p>每当你开始为像大小，颜色或者任何可能不是二元选择的属性使用布尔属性，你可能会陷入麻烦。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">large</span> <span class="nx">small</span> <span class="nx">primary</span> <span class="nx">disabled</span> <span class="nx">secondary</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">WHAT</span> <span class="nx">AM</span> <span class="nx">I</span><span class="o">??</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/Button&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>换句话说，布尔属性无法随着需求的变化而变化。使用类似字符串的枚举值作为属性可能是一个更好的选择：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">variant</span><span class="o">=</span><span class="s2">&#34;primary&#34;</span> <span class="nx">size</span><span class="o">=</span><span class="s2">&#34;large&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">I</span> <span class="nx">am</span> <span class="nx">primarily</span> <span class="nx">a</span> <span class="nx">large</span> <span class="nx">button</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/Button&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这并不是说布尔属性没有使用的地方。<code>disabled</code>这样的属性还是应该使用布尔值——因为这里不会有介于启用和禁用的属性之间。</p>
+<h3 id="4使用propschildren" class="headerLink">
+    <a href="#4%e4%bd%bf%e7%94%a8propschildren" class="header-mark"></a>4.使用<code>props.children</code></h3><p>React有一些特殊的属性，它们的处理方式与其他属性不同。其中一个是<code>key</code>，它用于跟踪列表项顺序，另一个就是<code>children</code>。</p>
+<p>任何放在打开和闭合的组件标签之间的东西都可以用<code>props.children</code>读取到。你应该尽可能使用它。</p>
+<p>这样做的原因是，它比使用<code>content</code>props或者通常只接受简单值（比如文本）要简单的多。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">TableCell</span> <span class="nx">content</span><span class="o">=</span><span class="s2">&#34;some text&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// vs
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;</span><span class="nx">TableCell</span><span class="o">&gt;</span><span class="nx">Some</span> <span class="nx">text</span><span class="o">&lt;</span><span class="err">/TableCell&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里有几个使用<code>props.children</code>的好处。首先它类似于常规的HTML的工作方式。其次，你可以自由的传递任何你想传递的！而不是给你的组件添加<code>leftIcon</code>和<code>rightIcon</code> props——只需要将它们作为<code>props.children</code>的一部分。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">TableCell</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">ImportantIcon</span> <span class="o">/&gt;</span> <span class="nx">Some</span> <span class="nx">text</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/TableCell&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>你总是争辩说你的组件只允许传纯文本，在一些情况下，这可能是真实的。但是至少现在，使用<code>props.children</code>可以为不断变化的需求检验你的API。</p>
+<h3 id="5让parent-hook进入内部逻辑" class="headerLink">
+    <a href="#5%e8%ae%a9parent-hook%e8%bf%9b%e5%85%a5%e5%86%85%e9%83%a8%e9%80%bb%e8%be%91" class="header-mark"></a>5.让parent hook进入内部逻辑</h3><p>有时候我们创建有大量内在逻辑和状态的组件，比如自动完成下拉菜单或者交互式图标。</p>
+<p>这些组件通常遭遇冗余的API，其中一个原因是随着时间的推移你通常需要支持覆盖量和一些特殊的用法。</p>
+<p>如果我们只是提供一个单一，标准化的props，可以被用户控制，作出反应或者覆盖默认行为的组件呢？</p>
+<p>Kent C. Dodds 写过关于这个概念的非常赞的文章，叫做“state reducers”。<a href="https://kentcdodds.com/blog/the-state-reducer-pattern/" target="_blank" rel="noopener noreferrer">有关概念本身的贴子</a>，另一篇是<a href="https://kentcdodds.com/blog/the-state-reducer-pattern-with-react-hooks" target="_blank" rel="noopener noreferrer">如何使用React hooks实现它</a>。</p>
+<p>快速总结一下，这种传递“state reducers”函数到你组件的模式可以让组件使用者访问组件内部的所有actions。你可以改变state甚至触发副作用。这是一种非常好方式，允许高级定制，而不是所有的props。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">MyCustomDropdown</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">stateReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span> <span class="o">===</span> <span class="nx">Dropdown</span><span class="p">.</span><span class="nx">actions</span><span class="p">.</span><span class="nx">CLOSE</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">buttonRef</span><span class="p">.</span><span class="nx">current</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Dropdown</span> <span class="nx">stateReducer</span><span class="o">=</span><span class="p">{</span><span class="nx">stateReducer</span><span class="p">}</span> <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Button</span> <span class="nx">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">buttonRef</span><span class="p">}</span><span class="o">&gt;</span><span class="nx">Open</span><span class="o">&lt;</span><span class="err">/Button&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>顺便说一句，你当然可以创建更简单的方式对事件作出反应。提供一个<code>onClose</code> prop 在前面的例子中可能带来更好的用户体验。保存state reducer模式，以备不时之需。</p>
+<h3 id="6传递剩余的props" class="headerLink">
+    <a href="#6%e4%bc%a0%e9%80%92%e5%89%a9%e4%bd%99%e7%9a%84props" class="header-mark"></a>6.传递剩余的props</h3><p>每当你创建新组建——要确保剩余的props被用于任何有意义的元素。</p>
+<p>你不必继续在你的组件上添加props，只需要将它们传递到底层组件或者元素上就行。这样做将让你的API更加稳定，无论何时，下一个开发者需要新的监听器或者aria-tag，都无需大量的小版本的颠簸。</p>
+<p>你可以像这样做：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">ToolTip</span><span class="p">({</span> <span class="nx">isVisible</span><span class="p">,</span> <span class="p">...</span><span class="nx">rest</span> <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">isVisible</span> <span class="o">?</span> <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">role</span><span class="o">=</span><span class="s2">&#34;tooltip&#34;</span> <span class="p">{...</span><span class="nx">rest</span><span class="p">}</span> <span class="o">/&gt;</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>每当你的组件在实现中传递props，例如一个类名或者<code>onClick</code>回调，要确保外部使用者会做同样的事情。在使用calss的时候，你可以简单使用npm 包 <code>classnames</code>或者简单的字符串连接附加props。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">classNames</span> <span class="nx">from</span> <span class="s1">&#39;classnames&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">ToolTip</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">span</span> 
+</span></span><span class="line"><span class="cl">      <span class="p">{...</span><span class="nx">props</span><span class="p">}</span> 
+</span></span><span class="line"><span class="cl">      <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">classNames</span><span class="p">(</span><span class="s1">&#39;tooltip&#39;</span><span class="p">,</span> <span class="nx">props</span><span class="p">.</span><span class="nx">tooltip</span><span class="p">)}</span> 
+</span></span><span class="line"><span class="cl">    <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于点击处理和其他回调，你可以使用工具将它们组合到一个函数，就像这样：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">combine</span><span class="p">(...</span><span class="nx">functions</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(...</span><span class="nx">args</span><span class="p">)</span> <span class="p">=&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">functions</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">func</span> <span class="p">=&gt;</span> <span class="k">typeof</span> <span class="nx">func</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">func</span> <span class="p">=&gt;</span> <span class="nx">func</span><span class="p">(...</span><span class="nx">args</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里，我们创建了一个接受你的函数list并将它们组合的函数，它返回一个使用相同参数顺序调用函数list的回调。</p>
+<p>你可以这样使用它们：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">ToolTip</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">isVisible</span><span class="p">,</span> <span class="nx">setVisible</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">span</span> 
+</span></span><span class="line"><span class="cl">      <span class="p">{...</span><span class="nx">props</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">className</span><span class="o">=</span><span class="p">{</span><span class="nx">classNames</span><span class="p">(</span><span class="s1">&#39;tooltipp&#39;</span><span class="p">,</span> <span class="nx">props</span><span class="p">.</span><span class="nx">className</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">onMouseIn</span><span class="o">=</span><span class="p">{</span><span class="nx">combine</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">setVisible</span><span class="p">(</span><span class="kc">true</span><span class="p">),</span> <span class="nx">props</span><span class="p">.</span><span class="nx">onMouseIn</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">onMouseOut</span><span class="o">=</span><span class="p">{</span><span class="nx">combine</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="nx">setVisible</span><span class="p">(</span><span class="kc">false</span><span class="p">),</span> <span class="nx">props</span><span class="p">.</span><span class="nx">onMouseOut</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="7提供足够的默认值" class="headerLink">
+    <a href="#7%e6%8f%90%e4%be%9b%e8%b6%b3%e5%a4%9f%e7%9a%84%e9%bb%98%e8%ae%a4%e5%80%bc" class="header-mark"></a>7.提供足够的默认值</h3><p>只要你可以，请确保为你的props提供足够的默认值。通过这种方式，你可以使你必须传递props的数量最少——这样可以大大简化你的实现。</p>
+<p>拿<code>onClick</code>处理函数举例。如果你的代码中没有要求，提供一个空函数作为默认值。通过这种方式，你可以调用该函数，就好像它总是被提供。</p>
+<p>另一个例子是自定义输入。除非明确提供，否则假设输入的字符串是一个空字符串。这将让你确保你始终处理的是字符串对象，而不是<code>undefined</code>或者<code>null</code>。</p>
+<h3 id="8不要重命名html的属性" class="headerLink">
+    <a href="#8%e4%b8%8d%e8%a6%81%e9%87%8d%e5%91%bd%e5%90%8dhtml%e7%9a%84%e5%b1%9e%e6%80%a7" class="header-mark"></a>8.不要重命名HTML的属性</h3><p>HTML有着自己的props或者说属性，它本身就是HTML元素的API。为什么不继续使用这个API？</p>
+<p>正如我们前面提到的，将API最小化和使其变得直观是优化你的组件API的很好的方式。所以与其在你的组件中使用自己创建的<code>screenReaderLabel</code>props，为什么不直接使用已经给你提供好的<code>aria-label</code>API？</p>
+<p>所以，为了自己的“易用性”<strong>不要重命名任何现有的HTML属性</strong>。你甚至不应该用新的API替换现有的API，而是应该在上层添加你自己的。用户可以将<code>aria-label</code>和你定义的<code>screenReaderLabel</code>一起传递，那么最终的value应该是哪个呢？</p>
+<p>另外，你的组件中要确保永远不覆盖HTML的属性。一个好的例子是<code>&lt;button&gt;</code>的<code>type</code>属性。它可以是<code>submit</code>（默认值），<code>button</code>或者<code>reset</code>。然而，很多开发者喜欢重定义这个属性的用途作为button的视觉属性（<code>primary</code>, <code>cta</code>和其他）。</p>
+<p>通过改变这个props的用途，你必须添加其他属性去覆盖真实的<code>type</code>属性，这只会给用户带来混乱，困惑和痛苦。</p>
+<p>相信我——我一次又一次的犯这个错误——这真是一个让人难以接受的决定。</p>
+<h3 id="9给props添加types" class="headerLink">
+    <a href="#9%e7%bb%99props%e6%b7%bb%e5%8a%a0types" class="header-mark"></a>9.给props添加types</h3><p>没有文档会比内嵌在代码中的文档更好（译者注：言外之意是再好的文档也比不上规范的代码，毕竟一目了然）。React提供<code>prop-types</code>包去申明你的组件API。现在，开始使用它。</p>
+<p>你可以指定你所需和可选择的props的任何类型和形式，你甚至可以使用<a href="https://devhints.io/jsdoc" target="_blank" rel="noopener noreferrer">JSDoc comments</a>去改善它。</p>
+<p>如果你省略所需的pros，或者传递一个无效的或不是期望得到的值，你将在控制台看到一个运行时的warning。这对开发时非常友好，在构建生产环境时可以去除。</p>
+<p>如果你使用Typescript或者Flow写React，你可以将这种API文档作为语言特性。这样可以提供更好的工具支持和出色的用户体验。</p>
+<p>如果你没有使用类型化JavaScript，你仍然应该考虑为那些使用者提供type定义。通过这种方式，用户在使用你的组件时将变得更容易。</p>
+<h3 id="10为开发者设计" class="headerLink">
+    <a href="#10%e4%b8%ba%e5%bc%80%e5%8f%91%e8%80%85%e8%ae%be%e8%ae%a1" class="header-mark"></a>10.为开发者设计</h3><p>最后一个最重要的规则。确保你的API和“组件体验”针对将使用它的人进行优化——你的开发者。</p>
+<p>其中一种优化开发者体验的方式是对无效的使用提供足够的错误信息，以及当有更好的方式来使用你的组件的时候的开发警告。</p>
+<p>当写你的错误和警告，确保用链接引用你的文档或者提供简单的代码示例。使用者越快弄明白哪里出了错并且如何修复它，就，你的组件使用起来就感觉越好。</p>
+<p>事实证明，拥有这些冗长的错误和警告并不会影响你包的最终大小。感觉死码消除的奇迹，所有的这些文字和错误码，在打包到生产环境时都会被移除。</p>
+<p>React本身就是一个非常出色的包。每当你忘记给你的list item指定key，或者拼错生命周期，或者忘记正确的类继承或者使用不确定的方式调用hooks，你将在控制台看到错误信息。为什么使用你组件的用户应该期望的比这些少？</p>
+<p>所以为你未来的用户设计。5周内为自己设计。为那些可怜的笨蛋设计，他们必须在你离开后维护你的代码!为开发人员设计。</p>
+<h2 id="总结" class="headerLink">
+    <a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>总结</h2><p>我们可以从经典的API设计中学到很多东西。通过本文提到的这些提示，技巧，规则和戒律，你应该创建 使用容易，维护简单并且在必要时非常灵活的组件。</p>
+<p>在创建组件的这些tips中，你最喜欢哪一个呢？</p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2019-07-07</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2019/2019-tmux/" class="prev" rel="prev" title="终端复用神器Tmux"><i class="fas fa-angle-left fa-fw"></i>终端复用神器Tmux</a>
+            <a href="/posts/2019/2019-stablesort/" class="next" rel="next" title="「译」稳定的Array.prototype.sort">「译」稳定的Array.prototype.sort<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.104.3">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+
+<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>
