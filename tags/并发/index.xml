@@ -3,7 +3,14 @@
         <title>并发 - 标签 - Raymond</title>
         <link>https://mrzhang123.github.io/tags/%E5%B9%B6%E5%8F%91/</link>
         <description>并发 - 标签 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E5%B9%B6%E5%8F%91/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E5%B9%B6%E5%8F%91/" rel="self" type="application/rss+xml" /><item>
+    <title>并发编程中的锁、条件变量和信号量</title>
+    <link>https://mrzhang123.github.io/posts/2022-lock-condition-signal/</link>
+    <pubDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022-lock-condition-signal/</guid>
+    <description><![CDATA[在并发编程中，经常会涉及到锁、条件变量和信号量。本文从并发开始，探究为什么需要它们，它们的概念，实现原理以及应用。 并发简介并发是指多个事情，]]></description>
+</item><item>
     <title>Go 并发编程初识</title>
     <link>https://mrzhang123.github.io/posts/2022-go-concurrency/</link>
     <pubDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</pubDate><author>

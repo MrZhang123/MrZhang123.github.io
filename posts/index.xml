@@ -3,7 +3,14 @@
         <title>所有文章 - Raymond</title>
         <link>https://mrzhang123.github.io/posts/</link>
         <description>所有文章 | Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>并发编程中的锁、条件变量和信号量</title>
+    <link>https://mrzhang123.github.io/posts/2022-lock-condition-signal/</link>
+    <pubDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022-lock-condition-signal/</guid>
+    <description><![CDATA[在并发编程中，经常会涉及到锁、条件变量和信号量。本文从并发开始，探究为什么需要它们，它们的概念，实现原理以及应用。 并发简介并发是指多个事情，]]></description>
+</item><item>
     <title>Go 并发编程初识</title>
     <link>https://mrzhang123.github.io/posts/2022-go-concurrency/</link>
     <pubDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</pubDate><author>
@@ -88,22 +95,5 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书<a href="https://book.douban.com/subject/30144978/" target="_blank" rel="noopener noreferrer">《见识》</a>中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了<a href="https://book.douban.com/subject/30396635/" target="_blank" rel="noopener noreferrer">《这就是OKR》</a>之后的一些总结以及自己对OKR的理解。</p>]]></description>
-</item><item>
-    <title>《这就是OKR》读书笔记</title>
-    <link>https://mrzhang123.github.io/posts/2020_this_is_okr/</link>
-    <pubDate>Sun, 23 Feb 2020 17:08:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2020_this_is_okr/</guid>
-    <description><![CDATA[<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">尽管很多人都很努力地工作，但是他们却没能取得什么成就感。                
-</span></span><span class="line"><span class="cl">                                          ----安迪 格鲁夫
-</span></span></code></pre></td></tr></table>
-</div>
-</div>]]></description>
 </item></channel>
 </rss>

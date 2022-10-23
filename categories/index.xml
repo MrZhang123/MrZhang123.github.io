@@ -3,7 +3,14 @@
         <title>Categories - 分类 - Raymond</title>
         <link>https://mrzhang123.github.io/categories/</link>
         <description>Categories - 分类 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>操作系统</title>
+    <link>https://mrzhang123.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    <pubDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
     <title>并发</title>
     <link>https://mrzhang123.github.io/categories/%E5%B9%B6%E5%8F%91/</link>
     <pubDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</pubDate><author>
@@ -65,13 +72,6 @@
     <pubDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</pubDate><author>
         <name>Raymond</name>
     </author><guid>https://mrzhang123.github.io/categories/vim/</guid>
-    <description><![CDATA[]]></description>
-</item><item>
-    <title>职场</title>
-    <link>https://mrzhang123.github.io/categories/%E8%81%8C%E5%9C%BA/</link>
-    <pubDate>Thu, 27 Feb 2020 22:30:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/categories/%E8%81%8C%E5%9C%BA/</guid>
     <description><![CDATA[]]></description>
 </item></channel>
 </rss>
