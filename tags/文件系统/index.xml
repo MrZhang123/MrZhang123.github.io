@@ -1,0 +1,14 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>文件系统 - 标签 - Raymond</title>
+        <link>https://mrzhang123.github.io/tags/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</link>
+        <description>文件系统 - 标签 - Raymond</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 27 Nov 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml" /><item>
+    <title>认识文件系统</title>
+    <link>https://mrzhang123.github.io/posts/2022/file-system/</link>
+    <pubDate>Sun, 27 Nov 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022/file-system/</guid>
+    <description><![CDATA[我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文]]></description>
+</item></channel>
+</rss>

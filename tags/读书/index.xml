@@ -1,0 +1,21 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>读书 - 标签 - Raymond</title>
+        <link>https://mrzhang123.github.io/tags/%E8%AF%BB%E4%B9%A6/</link>
+        <description>读书 - 标签 - Raymond</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E8%AF%BB%E4%B9%A6/" rel="self" type="application/rss+xml" /><item>
+    <title>高效使用待办清单</title>
+    <link>https://mrzhang123.github.io/posts/2022/use-to-do-list/</link>
+    <pubDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022/use-to-do-list/</guid>
+    <description><![CDATA[待办清单（to-do list）是一种用起来最简单的任务管理方法，我们将需要完成的任务列下来，在之后的时间里，每完成一个任务，就在待办清单中勾]]></description>
+</item><item>
+    <title>“关注圈”和“影响圈”</title>
+    <link>https://mrzhang123.github.io/posts/2022/fllow-and-effect/</link>
+    <pubDate>Mon, 07 Nov 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022/fllow-and-effect/</guid>
+    <description><![CDATA[满意源自内心，那些对人性一无所知的人总是妄图通过改变外在而不是内在的性情来追求幸福，结果必定是徒劳无功，而本来想摆脱的痛苦却会与日俱增。——]]></description>
+</item></channel>
+</rss>

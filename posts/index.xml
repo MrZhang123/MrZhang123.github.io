@@ -3,7 +3,28 @@
         <title>所有文章 - Raymond</title>
         <link>https://mrzhang123.github.io/posts/</link>
         <description>所有文章 | Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>高效使用待办清单</title>
+    <link>https://mrzhang123.github.io/posts/2022/use-to-do-list/</link>
+    <pubDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022/use-to-do-list/</guid>
+    <description><![CDATA[待办清单（to-do list）是一种用起来最简单的任务管理方法，我们将需要完成的任务列下来，在之后的时间里，每完成一个任务，就在待办清单中勾]]></description>
+</item><item>
+    <title>认识文件系统</title>
+    <link>https://mrzhang123.github.io/posts/2022/file-system/</link>
+    <pubDate>Sun, 27 Nov 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022/file-system/</guid>
+    <description><![CDATA[我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文]]></description>
+</item><item>
+    <title>“关注圈”和“影响圈”</title>
+    <link>https://mrzhang123.github.io/posts/2022/fllow-and-effect/</link>
+    <pubDate>Mon, 07 Nov 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022/fllow-and-effect/</guid>
+    <description><![CDATA[满意源自内心，那些对人性一无所知的人总是妄图通过改变外在而不是内在的性情来追求幸福，结果必定是徒劳无功，而本来想摆脱的痛苦却会与日俱增。——]]></description>
+</item><item>
     <title>并发编程中的锁、条件变量和信号量</title>
     <link>https://mrzhang123.github.io/posts/2022/lock-condition-signal/</link>
     <pubDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</pubDate><author>
@@ -62,38 +83,5 @@
     </author><guid>https://mrzhang123.github.io/posts/2020/2020_pointer_compression_in_v8/</guid>
     <description><![CDATA[<p>原文链接：https://v8.dev/blog/pointer-compression</p>
 <p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p>]]></description>
-</item><item>
-    <title>学习读财报之资产负债表</title>
-    <link>https://mrzhang123.github.io/posts/2020/2020-blance-sheet/</link>
-    <pubDate>Sun, 12 Apr 2020 20:15:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2020/2020-blance-sheet/</guid>
-    <description><![CDATA[<blockquote>
-<p>分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的<a href="https://book.douban.com/subject/25926542/" target="_blank" rel="noopener noreferrer">《一本书读懂财务报表》</a>，加深对书中概念的理解。</p>
-</blockquote>]]></description>
-</item><item>
-    <title>vim的搜索与替换</title>
-    <link>https://mrzhang123.github.io/posts/2020/2020-vimsearch/</link>
-    <pubDate>Sun, 15 Mar 2020 16:15:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2020/2020-vimsearch/</guid>
-    <description><![CDATA[<p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p>]]></description>
-</item><item>
-    <title>解析OKR</title>
-    <link>https://mrzhang123.github.io/posts/2020/2020_okr/</link>
-    <pubDate>Thu, 27 Feb 2020 22:30:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2020/2020_okr/</guid>
-    <description><![CDATA[<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">尽管很多人都很努力地工作，但是他们却没能取得什么成就感。
-</span></span><span class="line"><span class="cl">                                                ----安迪·格鲁夫
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书<a href="https://book.douban.com/subject/30144978/" target="_blank" rel="noopener noreferrer">《见识》</a>中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了<a href="https://book.douban.com/subject/30396635/" target="_blank" rel="noopener noreferrer">《这就是OKR》</a>之后的一些总结以及自己对OKR的理解。</p>]]></description>
 </item></channel>
 </rss>
