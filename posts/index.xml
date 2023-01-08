@@ -3,7 +3,16 @@
         <title>所有文章 - Raymond</title>
         <link>https://mrzhang123.github.io/posts/</link>
         <description>所有文章 | Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 25 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>2022年终总结</title>
+    <link>https://mrzhang123.github.io/posts/2022/2022-2023-new-year/</link>
+    <pubDate>Sun, 25 Dec 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2022/2022-2023-new-year/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/2022/2022-2023-new-year/img/2023.jpeg" referrerpolicy="no-referrer">
+            </div>时间过的好快，不知不觉中又到年底了。从 2016 年开始，每年年底我都会总结这一年来自己做的重要事情。管理者每年通过致股东信的方式给股东汇报这一年来公]]></description>
+</item><item>
     <title>高效使用待办清单</title>
     <link>https://mrzhang123.github.io/posts/2022/use-to-do-list/</link>
     <pubDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</pubDate><author>
@@ -75,13 +84,5 @@
     <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>选择排序</h2><blockquote>
 <p>首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。</p>
 </blockquote>]]></description>
-</item><item>
-    <title>「译」V8中的指针压缩</title>
-    <link>https://mrzhang123.github.io/posts/2020/2020_pointer_compression_in_v8/</link>
-    <pubDate>Thu, 23 Apr 2020 17:08:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2020/2020_pointer_compression_in_v8/</guid>
-    <description><![CDATA[<p>原文链接：https://v8.dev/blog/pointer-compression</p>
-<p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p>]]></description>
 </item></channel>
 </rss>
