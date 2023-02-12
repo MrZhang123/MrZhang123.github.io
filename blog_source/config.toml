@@ -207,6 +207,7 @@ series = "series"
   [params.social]
     GitHub = "MrZhang123"
     Zhihu = "zhang-yi-20-38"
+    Twitter = "raymond_zhang9"
     RSS = true
   # DoIt 更改 | 0.2.0 文章页面配置
   [params.page]

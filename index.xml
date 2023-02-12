@@ -3,9 +3,23 @@
         <title>Raymond</title>
         <link>https://mrzhang123.github.io/</link>
         <description>Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 25 Dec 2022 00:00:00 &#43;0000</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 12 Feb 2023 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://mrzhang123.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>个人时间分析及改进</title>
+    <link>https://mrzhang123.github.io/posts/2023/time-analysis/</link>
+    <pubDate>Sun, 12 Feb 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2023/time-analysis/</guid>
+    <description><![CDATA[最近感觉虽然自己按照规划执行，但是还是每天都完成任务的情况很少。回顾 OKR 也可以看到任务在季度已过半的情况下有些还没有开始，总感觉有点慌。所以尝]]></description>
+</item><item>
+    <title>明确目标才能持续专注于最重要的事</title>
+    <link>https://mrzhang123.github.io/posts/2023/know-your-target/</link>
+    <pubDate>Sat, 04 Feb 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2023/know-your-target/</guid>
+    <description><![CDATA[最近在读《股票深度交易心理学》，其中提到了关于如何持续专注于在交易中对我们有价值的方面。总结来说就是：明确自己的价值观，明确为什么你要做交易]]></description>
+</item><item>
     <title>2022年终总结</title>
     <link>https://mrzhang123.github.io/posts/2022/2022-2023-new-year/</link>
     <pubDate>Sun, 25 Dec 2022 00:00:00 &#43;0000</pubDate><author>
@@ -67,24 +81,5 @@
     <description><![CDATA[<div class="featured-image">
                 <img src="/posts/2021/2021-newenergy/title.webp" referrerpolicy="no-referrer">
             </div>本文摘自7月14日自己对投资、市场的反思，当天看到一篇关于李录减持比亚迪以及大佬们开始激流勇退新能源的文章，引发自己的一些思考。 7月14日李]]></description>
-</item><item>
-    <title>再见2020，起航2021</title>
-    <link>https://mrzhang123.github.io/posts/2020/2020-2021newyear/</link>
-    <pubDate>Thu, 31 Dec 2020 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2020/2020-2021newyear/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/posts/2020/2020-2021newyear/img/title.png" referrerpolicy="no-referrer">
-            </div>从2016年开始，每年年底都会总结一下这一年来自己经历的事，有哪些成长，今年也不例外。今年这一年对我，对我的祖国，对整个世界来说都是不平凡的]]></description>
-</item><item>
-    <title>基础排序</title>
-    <link>https://mrzhang123.github.io/posts/2020/2020-basicsort/</link>
-    <pubDate>Tue, 14 Jul 2020 09:08:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2020/2020-basicsort/</guid>
-    <description><![CDATA[<h2 id="选择排序" class="headerLink">
-    <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>选择排序</h2><blockquote>
-<p>首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。</p>
-</blockquote>]]></description>
 </item></channel>
 </rss>
