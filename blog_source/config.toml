@@ -86,7 +86,7 @@ series = "series"
 
 [params]
   # DoIt 主题版本
-  version = "0.2.X"
+  version = "0.3.X"
   # 网站关键词
   keywords = ["blog", "Hugo", "Raymond"]
   # DoIt 更改 | 0.2.11 网站默认主题样式 ("light", "dark", "black", "auto")

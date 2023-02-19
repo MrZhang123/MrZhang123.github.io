@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">「译」V8中的指针压缩 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="「译」V8中的指针压缩" />
+    <title>「译」V8中的指针压缩 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="「译」V8中的指针压缩" />
 <meta property="og:description" content="原文链接：https://v8.dev/blog/pointer-compression
 内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。" />
 <meta property="og:type" content="article" />
@@ -24,7 +24,7 @@
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2020/2020_pointer_compression_in_v8/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2020/2020-blance-sheet/" /><link rel="next" href="https://mrzhang123.github.io/posts/2020/2020-basicsort/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2020/2020_pointer_compression_in_v8/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2020/2020-blance-sheet/" /><link rel="next" href="https://mrzhang123.github.io/posts/2020/2020-basicsort/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -43,7 +43,8 @@
                 "name": "Raymond"
             },"description": ""
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
@@ -62,16 +63,16 @@
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                    </span><a href="#" class="menu-item theme-select" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                     <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
                         <option value="light">浅色</option>
@@ -95,20 +96,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" onclick="return false;" class="menu-item theme-select" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" class="menu-item theme-select" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
                 <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
                     <option value="light">浅色</option>
@@ -221,10 +222,11 @@
 <p>在实施改进之前，我们需要知道我们目前的状况，从而正确的评估如何改进。为了测量当前的内存和性能，我们使用一组可以代表目前流行站点的<a href="https://v8.dev/blog/optimizing-v8-memory" target="_blank" rel="noopener noreferrer">页面</a>。数据显示在桌面端Chrome<a href="https://www.chromium.org/developers/design-documents/multi-process-architecture" target="_blank" rel="noopener noreferrer">渲染进程</a>内存占用中V8占用了60%，平均为40%。</p>
 <p><a class="lightgallery" href="./img/memory-chrome.svg" title="在Chrome渲染进程内存占用中V8的内存消耗百分比" data-thumbnail="./img/memory-chrome.svg">
         <img
-            class="lazyload"
-            data-src="./img/memory-chrome.svg"
-            data-srcset="./img/memory-chrome.svg, ./img/memory-chrome.svg 1.5x, ./img/memory-chrome.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/memory-chrome.svg"
+            srcset="./img/memory-chrome.svg, ./img/memory-chrome.svg 1.5x, ./img/memory-chrome.svg 2x"
+            sizes="auto"
             alt="./img/memory-chrome.svg">
     </a></p>
 <p>指针压缩是改进V8内存占用的多项工作之一。想法很简单：我们可以存储一些“基”地址的32位偏移量而不是存储64位指针。这样一个简单的想法，我们可以从V8中的这种压缩获得多少收益？</p>
@@ -275,10 +277,11 @@
     <a href="#%e7%ae%80%e5%8d%95%e7%9a%84%e5%a0%86%e5%86%85%e5%ad%98%e5%b8%83%e5%b1%80trivial-heap-layout" class="header-mark"></a>简单的堆内存布局（Trivial heap layout）</h3><p>简单的压缩方案是在前4GB的地址空间分配对象。</p>
 <p><a class="lightgallery" href="./img/heap-layout-0.svg" title="简单的堆内存布局" data-thumbnail="./img/heap-layout-0.svg">
         <img
-            class="lazyload"
-            data-src="./img/heap-layout-0.svg"
-            data-srcset="./img/heap-layout-0.svg, ./img/heap-layout-0.svg 1.5x, ./img/heap-layout-0.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/heap-layout-0.svg"
+            srcset="./img/heap-layout-0.svg, ./img/heap-layout-0.svg 1.5x, ./img/heap-layout-0.svg 2x"
+            sizes="auto"
             alt="./img/heap-layout-0.svg">
     </a></p>
 <p>但是很可惜V8不能这样做，因为Chrome的渲染进程可能需要在同一渲染器进程中创建多个V8的实例，例如对于Web/Service Workers。除此之外，用这个方案会导致所有的V8实例竞争相同的4GB地址空间从而导致所有的V8实例都受到4GB内存的限制。</p>
@@ -286,10 +289,11 @@
     <a href="#%e5%a0%86%e5%86%85%e5%ad%98%e5%b8%83%e5%b1%80v1" class="header-mark"></a>堆内存布局，v1</h3><p>如果我们将V8堆（heap）放在其他地方的连续4GB地址空间，那么一个从base开始的无符号32位偏移量将唯一标识一个指针。</p>
 <p><a class="lightgallery" href="./img/heap-layout-1.svg" title="堆内存布局，开始base对齐" data-thumbnail="./img/heap-layout-1.svg">
         <img
-            class="lazyload"
-            data-src="./img/heap-layout-1.svg"
-            data-srcset="./img/heap-layout-1.svg, ./img/heap-layout-1.svg 1.5x, ./img/heap-layout-1.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/heap-layout-1.svg"
+            srcset="./img/heap-layout-1.svg, ./img/heap-layout-1.svg 1.5x, ./img/heap-layout-1.svg 2x"
+            sizes="auto"
             alt="./img/heap-layout-1.svg">
     </a></p>
 <p>如果我们确保base是4GB对齐（4-GB-aligned），则所有指针的高位32位都相同。</p>
@@ -371,10 +375,11 @@
     <a href="#%e5%a0%86%e5%86%85%e5%ad%98%e5%b8%83%e5%b1%80v2" class="header-mark"></a>堆内存布局，v2</h3><p>如果将base不是放在4GB的开头，而是中间，就可以将压缩值视为从base开始的一个有符号32位偏移量。注意，整个保留不再是4GB对齐（4-GB-aligned），但是base依然是对齐的。</p>
 <p><a class="lightgallery" href="./img/heap-layout-2.svg" title="堆内存布局，中间base对齐" data-thumbnail="./img/heap-layout-2.svg">
         <img
-            class="lazyload"
-            data-src="./img/heap-layout-2.svg"
-            data-srcset="./img/heap-layout-2.svg, ./img/heap-layout-2.svg 1.5x, ./img/heap-layout-2.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/heap-layout-2.svg"
+            srcset="./img/heap-layout-2.svg, ./img/heap-layout-2.svg 1.5x, ./img/heap-layout-2.svg 2x"
+            sizes="auto"
             alt="./img/heap-layout-2.svg">
     </a></p>
 <p>在这个新的布局中，压缩代码和上面堆内存布局v1中的相同。</p>
@@ -431,10 +436,11 @@
 <p>图形显示了在使用指针压缩时Octane在x64架构上的得分。在图中，线越高越好。红色的线是未压缩指针的x64构建，绿色的线是指针压缩的版本。</p>
 <p><a class="lightgallery" href="./img/perf-octane-1.svg" title="Octane第一轮改进" data-thumbnail="./img/perf-octane-1.svg">
         <img
-            class="lazyload"
-            data-src="./img/perf-octane-1.svg"
-            data-srcset="./img/perf-octane-1.svg, ./img/perf-octane-1.svg 1.5x, ./img/perf-octane-1.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/perf-octane-1.svg"
+            srcset="./img/perf-octane-1.svg, ./img/perf-octane-1.svg 1.5x, ./img/perf-octane-1.svg 2x"
+            sizes="auto"
             alt="./img/perf-octane-1.svg">
     </a></p>
 <p>在第一个方案中，我们的回归差约为35%。</p>
@@ -443,20 +449,22 @@
 <p>下面看一下x64汇编</p>
 <p><a class="lightgallery" href="./img/code1.png" title="x64汇编" data-thumbnail="./img/code1.png">
         <img
-            class="lazyload"
-            data-src="./img/code1.png"
-            data-srcset="./img/code1.png, ./img/code1.png 1.5x, ./img/code1.png 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/code1.png"
+            srcset="./img/code1.png, ./img/code1.png 1.5x, ./img/code1.png 2x"
+            sizes="auto"
             alt="./img/code1.png">
     </a></p>
 <p>r13是base值的专用寄存器。注意，无分支代码在这里代码量更多且需要的寄存器也更多。</p>
 <p>在Arm64，我们观察到相同的现象——在强大的CPU上，有分支版本明显更快（尽管这两种情况的代码大小是一样的）。</p>
 <p><a class="lightgallery" href="./img/code2.jpeg" title="Arm64汇编" data-thumbnail="./img/code2.jpeg">
         <img
-            class="lazyload"
-            data-src="./img/code2.jpeg"
-            data-srcset="./img/code2.jpeg, ./img/code2.jpeg 1.5x, ./img/code2.jpeg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/code2.jpeg"
+            srcset="./img/code2.jpeg, ./img/code2.jpeg 1.5x, ./img/code2.jpeg 2x"
+            sizes="auto"
             alt="./img/code2.jpeg">
     </a></p>
 <p>在低端Arm64设备上我们发现在任一方向上几乎没什么性能差异。</p>
@@ -494,10 +502,11 @@
 <p>“中断”优化的其中一个例子是<a href="https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43823.pdf" target="_blank" rel="noopener noreferrer">分配预配置（allocation preternuring）</a>。一旦我们更新匹配模式（pattern matching）使其能够匹配到新的压缩 / 解压 node，我们就可以得到另外11%的改进。</p>
 <p><a class="lightgallery" href="./img/perf-octane-2.svg" title="Octane的第二轮改进" data-thumbnail="./img/perf-octane-2.svg">
         <img
-            class="lazyload"
-            data-src="./img/perf-octane-2.svg"
-            data-srcset="./img/perf-octane-2.svg, ./img/perf-octane-2.svg 1.5x, ./img/perf-octane-2.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/perf-octane-2.svg"
+            srcset="./img/perf-octane-2.svg, ./img/perf-octane-2.svg 1.5x, ./img/perf-octane-2.svg 2x"
+            sizes="auto"
             alt="./img/perf-octane-2.svg">
     </a></p>
 <h3 id="bump5-05" class="headerLink">
@@ -559,20 +568,22 @@
 </div><p>由于我们不关注Smi的符号扩展（sign extending），因此这个改变允许我们回到堆内存布局v1。这是一个base指向4GB预留空间的开始位置。</p>
 <p><a class="lightgallery" href="./img/heap-layout-3.svg" title="Heap layout, base aligned to start" data-thumbnail="./img/heap-layout-3.svg">
         <img
-            class="lazyload"
-            data-src="./img/heap-layout-3.svg"
-            data-srcset="./img/heap-layout-3.svg, ./img/heap-layout-3.svg 1.5x, ./img/heap-layout-3.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/heap-layout-3.svg"
+            srcset="./img/heap-layout-3.svg, ./img/heap-layout-3.svg 1.5x, ./img/heap-layout-3.svg 2x"
+            sizes="auto"
             alt="./img/heap-layout-3.svg">
     </a></p>
 <p>就解压代码而言，这个改变将符号扩展（sign-extension）变为零扩展（zero-extension），这也同样简单。但是这简化了运行时（C++）端的工作。例如，例如地址空间区域保留代码（查看<a href="https://v8.dev/blog/pointer-compression#some-implementation-details" target="_blank" rel="noopener noreferrer">一些细节实现</a>部分）。</p>
 <p>这是用于比较的汇编：</p>
 <p><a class="lightgallery" href="./img/code3.jpeg" title="./img/code3.jpeg" data-thumbnail="./img/code3.jpeg">
         <img
-            class="lazyload"
-            data-src="./img/code3.jpeg"
-            data-srcset="./img/code3.jpeg, ./img/code3.jpeg 1.5x, ./img/code3.jpeg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/code3.jpeg"
+            srcset="./img/code3.jpeg, ./img/code3.jpeg 1.5x, ./img/code3.jpeg 2x"
+            sizes="auto"
             alt="./img/code3.jpeg">
     </a></p>
 <p>因此我们更将8中所有的使用Smi的代码块调整为新的压缩方案，这给我们另外2.5%的性能提升。</p>
@@ -580,10 +591,11 @@
     <a href="#%e5%89%a9%e4%bd%99%e5%b7%ae%e8%b7%9dremaining-gap" class="header-mark"></a>剩余差距（Remaining gap）</h3><p>剩余的性能差距可以用对64位构建的两个优化来解释，这些优化由于与指针压缩不兼容而禁用。</p>
 <p><a class="lightgallery" href="./img/perf-octane-3.svg" title="Octane的最后一轮改进" data-thumbnail="./img/perf-octane-3.svg">
         <img
-            class="lazyload"
-            data-src="./img/perf-octane-3.svg"
-            data-srcset="./img/perf-octane-3.svg, ./img/perf-octane-3.svg 1.5x, ./img/perf-octane-3.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/perf-octane-3.svg"
+            srcset="./img/perf-octane-3.svg, ./img/perf-octane-3.svg 1.5x, ./img/perf-octane-3.svg 2x"
+            sizes="auto"
             alt="./img/perf-octane-3.svg">
     </a></p>
 <h4 id="32-bit-smi优化7--1" class="headerLink">
@@ -629,20 +641,22 @@
 </div><p>一般来说，对象p在内存中的样子如下：</p>
 <p><a class="lightgallery" href="./img/heap-point-1.svg" title="对象p在内存中的形式" data-thumbnail="./img/heap-point-1.svg">
         <img
-            class="lazyload"
-            data-src="./img/heap-point-1.svg"
-            data-srcset="./img/heap-point-1.svg, ./img/heap-point-1.svg 1.5x, ./img/heap-point-1.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/heap-point-1.svg"
+            srcset="./img/heap-point-1.svg, ./img/heap-point-1.svg 1.5x, ./img/heap-point-1.svg 2x"
+            sizes="auto"
             alt="./img/heap-point-1.svg">
     </a></p>
 <p>关于更多存储中的隐藏类，属性和元素可以<a href="https://v8.dev/blog/fast-properties" target="_blank" rel="noopener noreferrer">阅读此文</a></p>
 <p>在64位架构中，双精度值和指针的大小相同。所以<strong>如果我们假设Point字段总是包含number值</strong>，则可以将它们直接存储在对象中。</p>
 <p><a class="lightgallery" href="./img/heap-point-2.svg" title="./img/heap-point-2.svg" data-thumbnail="./img/heap-point-2.svg">
         <img
-            class="lazyload"
-            data-src="./img/heap-point-2.svg"
-            data-srcset="./img/heap-point-2.svg, ./img/heap-point-2.svg 1.5x, ./img/heap-point-2.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/heap-point-2.svg"
+            srcset="./img/heap-point-2.svg, ./img/heap-point-2.svg 1.5x, ./img/heap-point-2.svg 2x"
+            sizes="auto"
             alt="./img/heap-point-2.svg">
     </a></p>
 <p>如果某个字段导致假设不成立，例如执行下面这段代码：</p>
@@ -657,10 +671,11 @@
 </div><p>y属性的number值必须装箱存储（store boxed instead）。另外，如果某处的优化的代码依赖此假设，则该优化必须舍弃。进行这些“字段类型”泛化的原因是为了尽量减少通过同一构造函数创建的对象的Shapes（译者注：在 JavaScript 程序中，多个对象具有相同的key，JS引擎会将这些key单独存储在一个地方，从而优化存储，具体可以查看<a href="https://hijiangtao.github.io/2018/06/17/Shapes-ICs/" target="_blank" rel="noopener noreferrer">[译] JavaScript 引擎基础：Shapes 和 Inline Caches</a>）数量，反过来这对于具有稳定的性能是很必要的。</p>
 <p><a class="lightgallery" href="./img/heap-point-3.svg" title="对象p和q在内存中的形式" data-thumbnail="./img/heap-point-3.svg">
         <img
-            class="lazyload"
-            data-src="./img/heap-point-3.svg"
-            data-srcset="./img/heap-point-3.svg, ./img/heap-point-3.svg 1.5x, ./img/heap-point-3.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/heap-point-3.svg"
+            srcset="./img/heap-point-3.svg, ./img/heap-point-3.svg 1.5x, ./img/heap-point-3.svg 2x"
+            sizes="auto"
             alt="./img/heap-point-3.svg">
     </a></p>
 <p>如果应用该优化，双精度字段拆箱给我们如下好处：</p>
@@ -792,20 +807,22 @@
 <p>我们发现指针压缩将V8堆区大小减少43%！反过来，它减少桌面端Chrome渲染进程20%的内存占用。</p>
 <p><a class="lightgallery" href="./img/v8-heap-memory.svg" title="在Windows 10中的内存节省" data-thumbnail="./img/v8-heap-memory.svg">
         <img
-            class="lazyload"
-            data-src="./img/v8-heap-memory.svg"
-            data-srcset="./img/v8-heap-memory.svg, ./img/v8-heap-memory.svg 1.5x, ./img/v8-heap-memory.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/v8-heap-memory.svg"
+            srcset="./img/v8-heap-memory.svg, ./img/v8-heap-memory.svg 1.5x, ./img/v8-heap-memory.svg 2x"
+            sizes="auto"
             alt="./img/v8-heap-memory.svg">
     </a></p>
 <p>另一个重要的事情是，不是每一个网站都有相同的改进。例如，在没有使用指针压缩的时候Facebook使用V8堆区内存比纽约时报要多，但是使用该优化后，使用堆内存情况变得相反。这个不同可以通过以下事实解释：某些网站具有比其他网站更多的标记值（Tagged values）。</p>
 <p>除了这些内存改进，我们还看到了实际性能的改进。在真实网站上，我们使用更少的CPU和垃圾回收时间！</p>
 <p><a class="lightgallery" href="./img/performance-improvements.svg" title="在CPU和GC time上的改进" data-thumbnail="./img/performance-improvements.svg">
         <img
-            class="lazyload"
-            data-src="./img/performance-improvements.svg"
-            data-srcset="./img/performance-improvements.svg, ./img/performance-improvements.svg 1.5x, ./img/performance-improvements.svg 2x"
-            data-sizes="auto"
+            
+            loading="lazy"
+            src="./img/performance-improvements.svg"
+            srcset="./img/performance-improvements.svg, ./img/performance-improvements.svg 1.5x, ./img/performance-improvements.svg 2x"
+            sizes="auto"
             alt="./img/performance-improvements.svg">
     </a></p>
 <h2 id="结论" class="headerLink">
@@ -846,7 +863,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.108.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.2.13"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
@@ -858,10 +875,8 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/topbar/topbar.min.js"></script><script type="text/javascript" src="/lib/pjax/pjax.min.js"></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
-
-<div class="pjax-assets"><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript></div>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
 </body>
 
 </html>
