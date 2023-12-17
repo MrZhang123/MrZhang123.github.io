@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -26,7 +28,8 @@
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2017/2017-2018newyear/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2017/2017-rnwebview/" /><link rel="next" href="https://mrzhang123.github.io/posts/2018/2018-maf/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2017/2017-2018newyear/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2017/2017-rnwebview/" /><link rel="next" href="https://mrzhang123.github.io/posts/2018/2018-maf/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -36,25 +39,25 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/mrzhang123.github.io\/posts\/2017\/2017-2018newyear\/"
+            "@id": "https://mrzhang123.github.io/posts/2017/2017-2018newyear/"
         },"genre": "posts","keywords": "年终总结","wordcount":  3229 ,
-        "url": "https:\/\/mrzhang123.github.io\/posts\/2017\/2017-2018newyear\/","datePublished": "2017-12-31T23:14:24+00:00","dateModified": "2017-12-31T23:14:24+00:00","publisher": {
+        "url": "https://mrzhang123.github.io/posts/2017/2017-2018newyear/","datePublished": "2017-12-31T23:14:24+00:00","dateModified": "2017-12-31T23:14:24+00:00","publisher": {
             "@type": "Organization",
             "name": "Raymond"},"author": {
                 "@type": "Person",
                 "name": "Raymond"
             },"description": ""
     }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -65,16 +68,16 @@
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" class="menu-item theme-select" title="切换主题">
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                     <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
                         <option value="light">浅色</option>
@@ -98,20 +101,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" class="menu-item theme-select" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
                 <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
                     <option value="light">浅色</option>
@@ -158,12 +161,11 @@
     <li><a href="#结语">结语</a></li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">再见2017，你好2018</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">再见2017，你好2018</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>年终总结</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-12-31">2017-12-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-12-31">2017-12-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3229 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2017-12-31">2017-12-31</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2017-12-31">2017-12-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3229 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -233,72 +235,65 @@
     <a href="#%e5%8e%bb%e4%b8%8a%e6%b5%b7%e5%8f%82%e5%8a%a0ultra-china%e4%ba%ba%e7%94%9f%e4%b8%ad%e7%ac%ac%e4%b8%80%e6%ac%a1%e5%8f%82%e5%8a%a0%e9%9f%b3%e4%b9%90%e6%b4%bb%e5%8a%a8" class="header-mark"></a>去上海参加Ultra China——人生中第一次参加音乐活动</h4><p>如果说2016年对于我来说是民谣的一年，那么2017年就是我的电音元年了。2016年年底，开始有意识的听一些电音，开始知道有电音这种音乐风格。</p>
 <p>之前虽然也喜欢过各种各样的歌手，但是对于去现场，我并没有多大想法，感觉去不去都一样，没什么意思，直到遇到电音。去参加Ultra，人生中第一次参加音乐节。</p>
 <p>2017年初，听说世界顶级电音节之一——Ultra Music Festival要来中国上海了，非常的激动，毕竟自己虽然喜欢电音，但是因为这些音乐节都在国外举行，所以只能看看视频了，并没有去现场看到，这次Ultra来中国，举办首届Ultra China，可以说是必去无疑，虽然是一个人，但是还是决定去一趟。在经过抢票，安排行程住宿后，就盼望着9月8日了。</p>
-<p><a class="lightgallery" href="./img/ultra1.jpeg" title="Ultra China海报" data-thumbnail="./img/ultra1.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/ultra1.jpeg"
-            srcset="./img/ultra1.jpeg, ./img/ultra1.jpeg 1.5x, ./img/ultra1.jpeg 2x"
-            sizes="auto"
-            alt="./img/ultra1.jpeg">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/ultra1.jpeg"
+        srcset="./img/ultra1.jpeg, ./img/ultra1.jpeg 1.5x, ./img/ultra1.jpeg 2x"
+        sizes="auto"
+        alt="Ultra China海报"
+        title="Ultra China海报" ></figure></p>
 <p>经过忙碌的工作，耐心的等待，2017年9月8日终于到来，这两天，全国的顶级raver纷纷乘坐各种交通工具来到上海，参加属于他们的顶级电音节。</p>
-<p><a class="lightgallery" href="./img/raver.jpeg" title="全国的raver赶往上海" data-thumbnail="./img/raver.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/raver.jpeg"
-            srcset="./img/raver.jpeg, ./img/raver.jpeg 1.5x, ./img/raver.jpeg 2x"
-            sizes="auto"
-            alt="./img/raver.jpeg">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/raver.jpeg"
+        srcset="./img/raver.jpeg, ./img/raver.jpeg 1.5x, ./img/raver.jpeg 2x"
+        sizes="auto"
+        alt="全国的raver赶往上海"
+        title="全国的raver赶往上海" ></figure></p>
 <p>我记得8号我坐动车去上海，动车给我晚点了，我也是醉了。最终在晚点90分钟后，成功在凌晨抵达上海，也是够艰难的😂。</p>
 <p>两天的狂欢即将开始&hellip;</p>
-<p><a class="lightgallery" href="./img/ultra2.jpeg" title="ultra1" data-thumbnail="./img/ultra2.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/ultra2.jpeg"
-            srcset="./img/ultra2.jpeg, ./img/ultra2.jpeg 1.5x, ./img/ultra2.jpeg 2x"
-            sizes="auto"
-            alt="./img/ultra2.jpeg">
-    </a></p>
-<p><a class="lightgallery" href="./img/ultra3.jpeg" title="ultra2" data-thumbnail="./img/ultra3.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/ultra3.jpeg"
-            srcset="./img/ultra3.jpeg, ./img/ultra3.jpeg 1.5x, ./img/ultra3.jpeg 2x"
-            sizes="auto"
-            alt="./img/ultra3.jpeg">
-    </a></p>
-<p><a class="lightgallery" href="./img/ultra4.jpeg" title="ultra3" data-thumbnail="./img/ultra4.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/ultra4.jpeg"
-            srcset="./img/ultra4.jpeg, ./img/ultra4.jpeg 1.5x, ./img/ultra4.jpeg 2x"
-            sizes="auto"
-            alt="./img/ultra4.jpeg">
-    </a></p>
-<p><a class="lightgallery" href="./img/ultra5.jpeg" title="ultra4" data-thumbnail="./img/ultra5.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/ultra5.jpeg"
-            srcset="./img/ultra5.jpeg, ./img/ultra5.jpeg 1.5x, ./img/ultra5.jpeg 2x"
-            sizes="auto"
-            alt="./img/ultra5.jpeg">
-    </a></p>
-<p><a class="lightgallery" href="./img/ultra6.jpeg" title="ultra5" data-thumbnail="./img/ultra6.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/ultra6.jpeg"
-            srcset="./img/ultra6.jpeg, ./img/ultra6.jpeg 1.5x, ./img/ultra6.jpeg 2x"
-            sizes="auto"
-            alt="./img/ultra6.jpeg">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/ultra2.jpeg"
+        srcset="./img/ultra2.jpeg, ./img/ultra2.jpeg 1.5x, ./img/ultra2.jpeg 2x"
+        sizes="auto"
+        alt="ultra1"
+        title="ultra1" ></figure></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/ultra3.jpeg"
+        srcset="./img/ultra3.jpeg, ./img/ultra3.jpeg 1.5x, ./img/ultra3.jpeg 2x"
+        sizes="auto"
+        alt="ultra2"
+        title="ultra2" ></figure></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/ultra4.jpeg"
+        srcset="./img/ultra4.jpeg, ./img/ultra4.jpeg 1.5x, ./img/ultra4.jpeg 2x"
+        sizes="auto"
+        alt="ultra3"
+        title="ultra3" ></figure></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/ultra5.jpeg"
+        srcset="./img/ultra5.jpeg, ./img/ultra5.jpeg 1.5x, ./img/ultra5.jpeg 2x"
+        sizes="auto"
+        alt="ultra4"
+        title="ultra4" ></figure></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/ultra6.jpeg"
+        srcset="./img/ultra6.jpeg, ./img/ultra6.jpeg 1.5x, ./img/ultra6.jpeg 2x"
+        sizes="auto"
+        alt="ultra5"
+        title="ultra5" ></figure></p>
 <p>两天的狂欢可以说是让人精疲力尽，各种腰酸腿疼，但是并不后悔，因为之前对于音乐，从未有过如此喜欢的感觉。虽然难说再见，各种不舍，但是最终还是在9月11日，踏上回京的高铁&hellip;</p>
 <p>再见Ultra，2018年上海，不见不散&hellip;</p>
 <p>前几天听说2018年，EDC要来中国上海了，又一大顶级电音节登陆上海，我想说，tomorrowland来中国还远吗？哈哈，看来明年至少去一趟上海了✌️。</p>
@@ -321,9 +316,7 @@
         </div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
@@ -340,7 +333,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

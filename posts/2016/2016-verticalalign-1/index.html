@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -26,7 +28,8 @@ IE6/7下line-height不支持小数"/>
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016/2016-verticalalign-1/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016/2016-gulpbrosersync/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016/2016-webpack1/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2016/2016-verticalalign-1/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2016/2016-gulpbrosersync/" /><link rel="next" href="https://mrzhang123.github.io/posts/2016/2016-webpack1/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -36,25 +39,25 @@ IE6/7下line-height不支持小数"/>
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/mrzhang123.github.io\/posts\/2016\/2016-verticalalign-1\/"
+            "@id": "https://mrzhang123.github.io/posts/2016/2016-verticalalign-1/"
         },"genre": "posts","keywords": "CSS","wordcount":  3007 ,
-        "url": "https:\/\/mrzhang123.github.io\/posts\/2016\/2016-verticalalign-1\/","datePublished": "2016-05-23T23:07:35+00:00","dateModified": "2016-05-23T23:07:35+00:00","publisher": {
+        "url": "https://mrzhang123.github.io/posts/2016/2016-verticalalign-1/","datePublished": "2016-05-23T23:07:35+00:00","dateModified": "2016-05-23T23:07:35+00:00","publisher": {
             "@type": "Organization",
             "name": "Raymond"},"author": {
                 "@type": "Person",
                 "name": "Raymond"
             },"description": ""
     }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -65,16 +68,16 @@ IE6/7下line-height不支持小数"/>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" class="menu-item theme-select" title="切换主题">
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                     <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
                         <option value="light">浅色</option>
@@ -98,20 +101,20 @@ IE6/7下line-height不支持小数"/>
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" class="menu-item theme-select" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
                 <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
                     <option value="light">浅色</option>
@@ -189,12 +192,11 @@ IE6/7下line-height不支持小数"/>
     <li><a href="#vertical-align前后不一的作用机制与示例">vertical-align前后不一的作用机制与示例</a></li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">慕课网---深入理解vertical-align总结</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">慕课网---深入理解vertical-align总结</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/css/"><i class="far fa-folder fa-fw"></i>CSS</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3007 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2016-05-23">2016-05-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3007 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 7 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -397,15 +399,14 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><a class="lightgallery" href="./img/3.png" title="icon" data-thumbnail="./img/3.png">
-        <img
-            
-            loading="lazy"
-            src="./img/3.png"
-            srcset="./img/3.png, ./img/3.png 1.5x, ./img/3.png 2x"
-            sizes="auto"
-            alt="./img/3.png">
-    </a></p>
+</div><p><figure><img
+        
+        loading="lazy"
+        src="./img/3.png"
+        srcset="./img/3.png, ./img/3.png 1.5x, ./img/3.png 2x"
+        sizes="auto"
+        alt="icon"
+        title="icon" ></figure></p>
 <p>运行后红色虚线表示i标签的位置
 设置容器，p的行高为0</p>
 <div class="highlight"><div class="chroma">
@@ -421,15 +422,14 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>则出现如下情况：</p>
-<p><a class="lightgallery" href="./img/4.png" title="icon" data-thumbnail="./img/4.png">
-        <img
-            
-            loading="lazy"
-            src="./img/4.png"
-            srcset="./img/4.png, ./img/4.png 1.5x, ./img/4.png 2x"
-            sizes="auto"
-            alt="./img/4.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/4.png"
+        srcset="./img/4.png, ./img/4.png 1.5x, ./img/4.png 2x"
+        sizes="auto"
+        alt="icon"
+        title="icon" ></figure></p>
 <h4 id="为什么会出现这样的现象" class="headerLink">
     <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bc%9a%e5%87%ba%e7%8e%b0%e8%bf%99%e6%a0%b7%e7%9a%84%e7%8e%b0%e8%b1%a1" class="header-mark"></a>为什么会出现这样的现象？</h4><p>首先看一个东西
 从CSS2的可视化格式模型文档中看到：
@@ -465,26 +465,24 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dib-baseline&#34;</span><span class="p">&gt;</span>dib-baseline<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><a class="lightgallery" href="./img/2.png" title="icon" data-thumbnail="./img/2.png">
-        <img
-            
-            loading="lazy"
-            src="./img/2.png"
-            srcset="./img/2.png, ./img/2.png 1.5x, ./img/2.png 2x"
-            sizes="auto"
-            alt="./img/2.png">
-    </a></p>
+</div><p><figure><img
+        
+        loading="lazy"
+        src="./img/2.png"
+        srcset="./img/2.png, ./img/2.png 1.5x, ./img/2.png 2x"
+        sizes="auto"
+        alt="icon"
+        title="icon" ></figure></p>
 <p>文档解释了该现象，因为前面的盒子没有任何字符，此时它的基线就是它的底边缘，后面的盒子有文字，所以该盒子的基线就是文字的基线，二者基线对齐，现成如此效果。
 如果把第二个盒子line-height:0，此时文字基线的位置，就是文字的垂直中心，所以：</p>
-<p><a class="lightgallery" href="./img/5.png" title="icon" data-thumbnail="./img/5.png">
-        <img
-            
-            loading="lazy"
-            src="./img/5.png"
-            srcset="./img/5.png, ./img/5.png 1.5x, ./img/5.png 2x"
-            sizes="auto"
-            alt="./img/5.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/5.png"
+        srcset="./img/5.png, ./img/5.png 1.5x, ./img/5.png 2x"
+        sizes="auto"
+        alt="icon"
+        title="icon" ></figure></p>
 <p>所以，以上情况下面那些空白，是由于本身后面两个图片是没有的，所以可以当作是空白字符（空格），即后面两个<code>&lt;i&gt;</code>是有字符的，而第一个<code>&lt;i&gt;</code>是没有字符的，所以和上面的那个例子一样，默认基线对齐，所以，会导致出现小的空隙（其本质和图2一样），要消除这个空隙，需要给i都添加空白字符（ 或者直接改变对齐方式，vertical-align：top / bottom）即可，而这个line-height：0可以不添加。</p>
 <p>要消除需要给p标签（容器）设置：</p>
 <div class="highlight"><div class="chroma">
@@ -506,15 +504,14 @@ inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>之后运行结果：</p>
-<p><a class="lightgallery" href="./img/1.png" title="icon" data-thumbnail="./img/1.png">
-        <img
-            
-            loading="lazy"
-            src="./img/1.png"
-            srcset="./img/1.png, ./img/1.png 1.5x, ./img/1.png 2x"
-            sizes="auto"
-            alt="./img/1.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/1.png"
+        srcset="./img/1.png, ./img/1.png 1.5x, ./img/1.png 2x"
+        sizes="auto"
+        alt="icon"
+        title="icon" ></figure></p>
 <h2 id="vertical-align线性属性值" class="headerLink">
     <a href="#vertical-align%e7%ba%bf%e6%80%a7%e5%b1%9e%e6%80%a7%e5%80%bc" class="header-mark"></a>vertical-align线性属性值</h2><h3 id="1vertical-alignbottomtop与之差不多" class="headerLink">
     <a href="#1vertical-alignbottomtop%e4%b8%8e%e4%b9%8b%e5%b7%ae%e4%b8%8d%e5%a4%9a" class="header-mark"></a>1.vertical-align:bottom（top与之差不多）</h3><h4 id="定义" class="headerLink">
@@ -638,15 +635,14 @@ a.大小不固定的图片垂直居中</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>实现垂直居中，效果如下：</p>
-<p><a class="lightgallery" href="./img/center.png" title="icon" data-thumbnail="./img/center.png">
-        <img
-            
-            loading="lazy"
-            src="./img/center.png"
-            srcset="./img/center.png, ./img/center.png 1.5x, ./img/center.png 2x"
-            sizes="auto"
-            alt="./img/center.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/center.png"
+        srcset="./img/center.png, ./img/center.png 1.5x, ./img/center.png 2x"
+        sizes="auto"
+        alt="icon"
+        title="icon" ></figure></p>
 <p>b.大小不固定的文字垂直居中：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -708,9 +704,7 @@ a.大小不固定的图片垂直居中</p>
         </div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
@@ -727,7 +721,7 @@ a.大小不固定的图片垂直居中</p>
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

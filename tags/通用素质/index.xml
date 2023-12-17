@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>通用素质 - 标签 - Raymond</title>
+        <link>https://mrzhang123.github.io/tags/%E9%80%9A%E7%94%A8%E7%B4%A0%E8%B4%A8/</link>
+        <description>通用素质 - 标签 - Raymond</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 20 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E9%80%9A%E7%94%A8%E7%B4%A0%E8%B4%A8/" rel="self" type="application/rss+xml" /><item>
+    <title>成为务实的程序员</title>
+    <link>https://mrzhang123.github.io/posts/2023/pragmatic-programmer/</link>
+    <pubDate>Sun, 20 Aug 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2023/pragmatic-programmer/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/2023/pragmatic-programmer/code.png" referrerpolicy="no-referrer">
+            </div>本文是阅读《程序员修炼之道》后的一些感想和摘抄，个人觉得其中很多内容非常不错，所以分享出来，期望能和大家共同学习，努力成为一名务实的程序员。]]></description>
+</item></channel>
+</rss>

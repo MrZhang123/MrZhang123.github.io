@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -22,27 +24,28 @@
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Raymond">
-    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Raymond"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Raymond">
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "WebSite",
-        "url": "https:\/\/mrzhang123.github.io\/","inLanguage": "zh-CN","author": {
+        "url": "https://mrzhang123.github.io/","inLanguage": "zh-CN","author": {
                 "@type": "Person",
                 "name": "Raymond"
             },"name": "Raymond"
     }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -53,16 +56,16 @@
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" class="menu-item theme-select" title="切换主题">
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                     <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
                         <option value="light">浅色</option>
@@ -86,20 +89,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" class="menu-item theme-select" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
                 <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
                     <option value="light">浅色</option>
@@ -124,129 +127,104 @@
         srcset="/images/avatar.jpeg, /images/avatar.jpeg 1.5x, /images/avatar.jpeg 2x"
         sizes="auto"
         alt="/images/avatar.jpeg"
-        title="/images/avatar.jpeg" height="100" width="100"></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/MrZhang123" title="GitHub" target="_blank" rel="noopener noreferrer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://www.zhihu.com/people/zhang-yi-20-38" title="知乎" target="_blank" rel="noopener noreferrer me"><i data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></i></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2020/2020-2021newyear/" aria-label=再见2020，起航2021><img
-        
-        loading="eager"
-        src="/posts/2020/2020-2021newyear/img/title.png"
-        srcset="/posts/2020/2020-2021newyear/img/title.png, /posts/2020/2020-2021newyear/img/title.png 1.5x, /posts/2020/2020-2021newyear/img/title.png 2x"
-        sizes="auto"
-        alt="/posts/2020/2020-2021newyear/img/title.png"
-        title="/posts/2020/2020-2021newyear/img/title.png" height="365" width="1080"></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020-2021newyear/">再见2020，起航2021</a>
+        title="/images/avatar.jpeg" height="100"   width="100" ></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/MrZhang123" title="GitHub" target="_blank" rel="noopener noreferrer me"><span class="fab fa-github-alt fa-fw"></span></a><a href="https://www.zhihu.com/people/zhang-yi-20-38" title="知乎" target="_blank" rel="noopener noreferrer me"><span data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></span></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><span class="fas fa-rss fa-fw"></span></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/2023/target/">释放创新力：无目标之旅的成功秘密</a>
     </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-12-31">2020-12-31</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>年终总结</a></span></div><div class="content">从2016年开始，每年年底都会总结一下这一年来自己经历的事，有哪些成长，今年也不例外。今年这一年对我，对我的祖国，对整个世界来说都是不平凡的</div><div class="post-footer">
-        <a href="/posts/2020/2020-2021newyear/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020-basicsort/">基础排序</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-07-14">2020-07-14</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%AE%97%E6%B3%95/"><i class="far fa-folder fa-fw"></i>算法</a></span></div><div class="content"><h2 id="选择排序" class="headerLink">
-    <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>选择排序</h2><blockquote>
-<p>首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2020/2020-basicsort/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020_pointer_compression_in_v8/">「译」V8中的指针压缩</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-04-23">2020-04-23</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div><div class="content"><p>原文链接：https://v8.dev/blog/pointer-compression</p>
-<p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p></div><div class="post-footer">
-        <a href="/posts/2020/2020_pointer_compression_in_v8/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020-blance-sheet/">学习读财报之资产负债表</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-04-12">2020-04-12</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E9%87%91%E8%9E%8D/"><i class="far fa-folder fa-fw"></i>金融</a>&nbsp;<a href="/categories/%E8%B4%A2%E6%8A%A5/"><i class="far fa-folder fa-fw"></i>财报</a></span></div><div class="content"><blockquote>
-<p>分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的<a href="https://book.douban.com/subject/25926542/" target="_blank" rel="noopener noreferrer">《一本书读懂财务报表》</a>，加深对书中概念的理解。</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2020/2020-blance-sheet/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E9%87%91%E8%9E%8D/">金融</a>,&nbsp;<a href="/tags/%E8%B4%A2%E6%8A%A5/">财报</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020-vimsearch/">vim的搜索与替换</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-03-15">2020-03-15</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vim/"><i class="far fa-folder fa-fw"></i>Vim</a></span></div><div class="content"><p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p></div><div class="post-footer">
-        <a href="/posts/2020/2020-vimsearch/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">Vim</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020_okr/">解析OKR</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-02-27">2020-02-27</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%81%8C%E5%9C%BA/"><i class="far fa-folder fa-fw"></i>职场</a></span></div><div class="content"><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">尽管很多人都很努力地工作，但是他们却没能取得什么成就感。
-</span></span><span class="line"><span class="cl">                                                ----安迪·格鲁夫
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书<a href="https://book.douban.com/subject/30144978/" target="_blank" rel="noopener noreferrer">《见识》</a>中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了<a href="https://book.douban.com/subject/30396635/" target="_blank" rel="noopener noreferrer">《这就是OKR》</a>之后的一些总结以及自己对OKR的理解。</p></div><div class="post-footer">
-        <a href="/posts/2020/2020_okr/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%81%8C%E5%9C%BA/">职场</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020_this_is_okr/">《这就是OKR》读书笔记</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-02-23">2020-02-23</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>读书笔记</a></span></div><div class="content"><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">尽管很多人都很努力地工作，但是他们却没能取得什么成就感。                
-</span></span><span class="line"><span class="cl">                                          ----安迪 格鲁夫
-</span></span></code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer">
-        <a href="/posts/2020/2020_this_is_okr/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></div></div>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-07-16">2023-07-16</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6/"><i class="far fa-folder fa-fw"></i>读书</a></span></div><div class="content">有时目标导向思维会阻碍创新，成功更依赖于拥抱变化和新机会，而非盲目追求既定目标。在创新过程中，趣味性和开放的探索态度比预设的目标更为关键。 《</div><div class="post-footer">
+        <a href="/posts/2023/target/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a>,&nbsp;<a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">方法论</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2019/2019-2020newyear/" aria-label=再见2019，你好2020><img
+            <a href="/posts/2023/aigc/" aria-label=AIGC：内容创作的新时代><img
         
         loading="eager"
-        src="/posts/2019/2019-2020newyear/img/2020.jpeg"
-        srcset="/posts/2019/2019-2020newyear/img/2020.jpeg, /posts/2019/2019-2020newyear/img/2020.jpeg 1.5x, /posts/2019/2019-2020newyear/img/2020.jpeg 2x"
+        src="/posts/2023/aigc/img/OpenAI-GPT-4.webp"
+        srcset="/posts/2023/aigc/img/OpenAI-GPT-4.webp, /posts/2023/aigc/img/OpenAI-GPT-4.webp 1.5x, /posts/2023/aigc/img/OpenAI-GPT-4.webp 2x"
         sizes="auto"
-        alt="/posts/2019/2019-2020newyear/img/2020.jpeg"
-        title="/posts/2019/2019-2020newyear/img/2020.jpeg" height="750" width="1000"></a>
+        alt="/posts/2023/aigc/img/OpenAI-GPT-4.webp"
+        title="/posts/2023/aigc/img/OpenAI-GPT-4.webp" height="900"   width="1600" ></a>
         </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2019/2019-2020newyear/">再见2019，你好2020</a>
+        <a href="/posts/2023/aigc/">AIGC：内容创作的新时代</a>
     </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2019-12-31">2019-12-31</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>年终总结</a></span></div><div class="content"><blockquote>
-<p>不知不觉又到年底了，临近年底大家都忙着总结2019年发生的大事儿，比如前端2019年发生了哪些大事儿，投资界2019年发生了哪些事情让大家惊讶，DJ们也忙着制作并推出 Year Mix 2019。我从2016年开始，在每年的年底都会写一篇年底总结文章，回头看看这一年对我来说重要的事情，这一年我又学到了哪些，有哪些成长，今年也不例外&hellip;</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2019/2019-2020newyear/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></div></div>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-03-29">2023-03-29</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/ai/"><i class="far fa-folder fa-fw"></i>AI</a>&nbsp;<a href="/categories/aigc/"><i class="far fa-folder fa-fw"></i>AIGC</a></span></div><div class="content">2022 年 11 月底在互联网上出现了一个叫 ChatGPT 的人工智能聊天机器人，紧接着它以火箭般的速度在互联网上传播，从 11 月底发布到月活破亿仅用了两个月的时间，与之</div><div class="post-footer">
+        <a href="/posts/2023/aigc/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ai/">AI</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/posts/2023/javascript-binary/" aria-label=聊一聊&#32;JS&#32;中的二进制><img
+        
+        loading="eager"
+        src="../../../image/logo/nodejs.png"
+        srcset="../../../image/logo/nodejs.png, ../../../image/logo/nodejs.png 1.5x, ../../../image/logo/nodejs.png 2x"
+        sizes="auto"
+        alt="../../../image/logo/nodejs.png"
+        title="../../../image/logo/nodejs.png" height="auto"   width="auto" ></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/2023/javascript-binary/">聊一聊 JS 中的二进制</a>
+    </h1><div class="post-meta">
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-02-18">2023-02-18</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/node.js/"><i class="far fa-folder fa-fw"></i>Node.js</a></span></div><div class="content">在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼</div><div class="post-footer">
+        <a href="/posts/2023/javascript-binary/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/node.js/">Node.js</a>,&nbsp;<a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/">二进制</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2019/2019-optional-chaining/">「译」JS新特性“可选链式调用”</a>
+        <a href="/posts/2023/know-your-target/">明确目标才能持续专注于最重要的事</a>
     </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2019-09-03">2019-09-03</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div><div class="content"><p>在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现<code>null</code>或<code>undefined</code>（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的<code>if</code>声明或者复制属性访问链的长的<code>if</code>条件：</p></div><div class="post-footer">
-        <a href="/posts/2019/2019-optional-chaining/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></div></div>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-02-04">2023-02-04</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6/"><i class="far fa-folder fa-fw"></i>读书</a></span></div><div class="content">最近在读《股票深度交易心理学》，其中提到了关于如何持续专注于在交易中对我们有价值的方面。总结来说就是：明确自己的价值观，明确为什么你要做交易</div><div class="post-footer">
+        <a href="/posts/2023/know-your-target/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a>,&nbsp;<a href="/tags/%E6%88%90%E9%95%BF/">成长</a>,&nbsp;<a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">方法论</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
+            <a href="/posts/2022/2022-2023-new-year/" aria-label=2022年终总结><img
+        
+        loading="eager"
+        src="/posts/2022/2022-2023-new-year/img/2023.jpeg"
+        srcset="/posts/2022/2022-2023-new-year/img/2023.jpeg, /posts/2022/2022-2023-new-year/img/2023.jpeg 1.5x, /posts/2022/2022-2023-new-year/img/2023.jpeg 2x"
+        sizes="auto"
+        alt="/posts/2022/2022-2023-new-year/img/2023.jpeg"
+        title="/posts/2022/2022-2023-new-year/img/2023.jpeg" height="675"   width="1200" ></a>
+        </div><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/2022/2022-2023-new-year/">2022年终总结</a>
+    </h1><div class="post-meta">
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-12-25">2022-12-25</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>年终总结</a></span></div><div class="content">时间过的好快，不知不觉中又到年底了。从 2016 年开始，每年年底我都会总结这一年来自己做的重要事情。管理者每年通过致股东信的方式给股东汇报这一年来公</div><div class="post-footer">
+        <a href="/posts/2022/2022-2023-new-year/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a>,&nbsp;<a href="/tags/%E6%80%9D%E8%80%83/">思考</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2019/2019-vimperformance/">记一次vim性能优化</a>
+        <a href="/posts/2022/use-to-do-list/">高效使用待办清单</a>
     </h1><div class="post-meta">
-        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2019-09-01">2019-09-01</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vim/"><i class="far fa-folder fa-fw"></i>Vim</a></span></div><div class="content"><h3 id="关键点" class="headerLink">
-    <a href="#%e5%85%b3%e9%94%ae%e7%82%b9" class="header-mark"></a>关键点</h3><ul>
-<li><code>vim -u NONE -N</code>可以不加载vim配置和插件打开vim</li>
-<li><code>vim --startuptime vim.log</code>可以生成vim启动的log</li>
-<li>使用<code>vim-plug</code>插件管理工具，给插件配置<code>for</code> or <code>on</code>可以实现插件懒加载</li>
-<li>设置<code>foldmethod=syntax</code>会导致vim插入模式下卡顿</li>
-</ul></div><div class="post-footer">
-        <a href="/posts/2019/2019-vimperformance/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">Vim</a></div></div>
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-12-04">2022-12-04</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/"><i class="far fa-folder fa-fw"></i>效率提升</a></span></div><div class="content">待办清单（to-do list）是一种用起来最简单的任务管理方法，我们将需要完成的任务列下来，在之后的时间里，每完成一个任务，就在待办清单中勾</div><div class="post-footer">
+        <a href="/posts/2022/use-to-do-list/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/">效率提升</a>,&nbsp;<a href="/tags/%E5%BE%85%E5%8A%9E%E6%B8%85%E5%8D%95/">待办清单</a>,&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/2022/file-system/">认识文件系统</a>
+    </h1><div class="post-meta">
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-11-27">2022-11-27</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw"></i>操作系统</a></span></div><div class="content">我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文</div><div class="post-footer">
+        <a href="/posts/2022/file-system/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>,&nbsp;<a href="/tags/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">文件系统</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/2022/fllow-and-effect/">“关注圈”和“影响圈”</a>
+    </h1><div class="post-meta">
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-11-07">2022-11-07</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6/"><i class="far fa-folder fa-fw"></i>读书</a></span></div><div class="content">满意源自内心，那些对人性一无所知的人总是妄图通过改变外在而不是内在的性情来追求幸福，结果必定是徒劳无功，而本来想摆脱的痛苦却会与日俱增。——</div><div class="post-footer">
+        <a href="/posts/2022/fllow-and-effect/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a>,&nbsp;<a href="/tags/%E6%88%90%E9%95%BF/">成长</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/2022/lock-condition-signal/">并发编程中的锁、条件变量和信号量</a>
+    </h1><div class="post-meta">
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-10-22">2022-10-22</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw"></i>操作系统</a></span></div><div class="content">在并发编程中，经常会涉及到锁、条件变量和信号量。本文从并发开始，探究为什么需要它们，它们的概念，实现原理以及应用。 并发简介并发是指多个事情，</div><div class="post-footer">
+        <a href="/posts/2022/lock-condition-signal/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/2022/go-concurrency/">Go 并发编程初识</a>
+    </h1><div class="post-meta">
+        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-06-11">2022-06-11</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B6%E5%8F%91/"><i class="far fa-folder fa-fw"></i>并发</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/golang/"><i class="far fa-list-alt fa-fw"></i>golang</a></span></div><div class="content">Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel</div><div class="post-footer">
+        <a href="/posts/2022/go-concurrency/">阅读全文</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/golang/">golang</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></div></div>
 </article><ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -267,12 +245,12 @@
                     <span class="page-link" aria-hidden="true">&hellip;</span>
                 </li><li class="page-item ">
                     <span class="page-link">
-                        <a href="/page/8/">8</a>
+                        <a href="/page/9/">9</a>
                     </span>
                 </li></ul></div></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

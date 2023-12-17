@@ -3,7 +3,23 @@
         <title>读书 - 分类 - Raymond</title>
         <link>https://mrzhang123.github.io/categories/%E8%AF%BB%E4%B9%A6/</link>
         <description>读书 - 分类 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 04 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/%E8%AF%BB%E4%B9%A6/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 20 Aug 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/%E8%AF%BB%E4%B9%A6/" rel="self" type="application/rss+xml" /><item>
+    <title>成为务实的程序员</title>
+    <link>https://mrzhang123.github.io/posts/2023/pragmatic-programmer/</link>
+    <pubDate>Sun, 20 Aug 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2023/pragmatic-programmer/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/2023/pragmatic-programmer/code.png" referrerpolicy="no-referrer">
+            </div>本文是阅读《程序员修炼之道》后的一些感想和摘抄，个人觉得其中很多内容非常不错，所以分享出来，期望能和大家共同学习，努力成为一名务实的程序员。]]></description>
+</item><item>
+    <title>释放创新力：无目标之旅的成功秘密</title>
+    <link>https://mrzhang123.github.io/posts/2023/target/</link>
+    <pubDate>Sun, 16 Jul 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2023/target/</guid>
+    <description><![CDATA[有时目标导向思维会阻碍创新，成功更依赖于拥抱变化和新机会，而非盲目追求既定目标。在创新过程中，趣味性和开放的探索态度比预设的目标更为关键。 《]]></description>
+</item><item>
     <title>明确目标才能持续专注于最重要的事</title>
     <link>https://mrzhang123.github.io/posts/2023/know-your-target/</link>
     <pubDate>Sat, 04 Feb 2023 00:00:00 &#43;0000</pubDate><author>

@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -26,7 +28,8 @@
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019/2019-reactnews/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2018/2018-2019newyear/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019/2019-reacthooks/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019/2019-reactnews/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2018/2018-2019newyear/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019/2019-reacthooks/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -36,25 +39,25 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/mrzhang123.github.io\/posts\/2019\/2019-reactnews\/"
+            "@id": "https://mrzhang123.github.io/posts/2019/2019-reactnews/"
         },"genre": "posts","keywords": "React","wordcount":  5291 ,
-        "url": "https:\/\/mrzhang123.github.io\/posts\/2019\/2019-reactnews\/","datePublished": "2019-01-16T22:58:11+00:00","dateModified": "2019-01-16T22:58:11+00:00","publisher": {
+        "url": "https://mrzhang123.github.io/posts/2019/2019-reactnews/","datePublished": "2019-01-16T22:58:11+00:00","dateModified": "2019-01-16T22:58:11+00:00","publisher": {
             "@type": "Organization",
             "name": "Raymond"},"author": {
                 "@type": "Person",
                 "name": "Raymond"
             },"description": ""
     }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -65,16 +68,16 @@
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" class="menu-item theme-select" title="切换主题">
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                     <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
                         <option value="light">浅色</option>
@@ -98,20 +101,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" class="menu-item theme-select" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
                 <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
                     <option value="light">浅色</option>
@@ -193,12 +196,11 @@
     </li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">React 新特性总结</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">React 新特性总结</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-01-16">2019-01-16</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-01-16">2019-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5291 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-01-16">2019-01-16</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-01-16">2019-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5291 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -290,15 +292,14 @@
 <h4 id="如何理解-fiber" class="headerLink">
     <a href="#%e5%a6%82%e4%bd%95%e7%90%86%e8%a7%a3-fiber" class="header-mark"></a>如何理解 Fiber</h4><p>我们知道，函数有调用栈，当一个函数执行时，栈上面会添加新的堆栈结构，这个堆栈结构代表了函数执行的事务。而 React app 在执行的时候，类似于调用一个函数。</p>
 <p>但是在处理该用户界面时，如果有太多的事务同时执行，可能会导致卡顿。可能还有一些事务是不需要的，因为它可能被最近的更新取代了。</p>
-<p><a class="lightgallery" href="./img/react-fiber-old.jpeg" title="./img/react-fiber-old.jpeg" data-thumbnail="./img/react-fiber-old.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/react-fiber-old.jpeg"
-            srcset="./img/react-fiber-old.jpeg, ./img/react-fiber-old.jpeg 1.5x, ./img/react-fiber-old.jpeg 2x"
-            sizes="auto"
-            alt="./img/react-fiber-old.jpeg">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/react-fiber-old.jpeg"
+        srcset="./img/react-fiber-old.jpeg, ./img/react-fiber-old.jpeg 1.5x, ./img/react-fiber-old.jpeg 2x"
+        sizes="auto"
+        alt="./img/react-fiber-old.jpeg"
+        title="./img/react-fiber-old.jpeg" ></figure></p>
 <!--React旧的事件执行图-->
 <p>在最新的浏览器和 RN 实现了两个 API：</p>
 <ul>
@@ -309,28 +310,26 @@
 <p>假如可以中断调用栈，让 React 在需要更新界面的时候，及时更新界面，那么用户交互将不会再卡顿，这就是 React Fiber 的目的，React Fiber 为 React 组件实现了堆栈结构，让 React 可以在需要的时候，中断调用栈，转向更新界面或者其他，从而保证用户交互的顺畅，提高 React app 的性能。</p>
 <p>所以 React Fiber 其实就是 <strong>虚拟的堆栈结构（virtual stack frame）。</strong></p>
 <p>使用 React Fiber 后 React 的调用情况</p>
-<p><a class="lightgallery" href="./img/react-fiber-new.jpeg" title="./img/react-fiber-new.jpeg" data-thumbnail="./img/react-fiber-new.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/react-fiber-new.jpeg"
-            srcset="./img/react-fiber-new.jpeg, ./img/react-fiber-new.jpeg 1.5x, ./img/react-fiber-new.jpeg 2x"
-            sizes="auto"
-            alt="./img/react-fiber-new.jpeg">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/react-fiber-new.jpeg"
+        srcset="./img/react-fiber-new.jpeg, ./img/react-fiber-new.jpeg 1.5x, ./img/react-fiber-new.jpeg 2x"
+        sizes="auto"
+        alt="./img/react-fiber-new.jpeg"
+        title="./img/react-fiber-new.jpeg" ></figure></p>
 <!--React Fiber调用情况图-->
 <p>React 将更新分为两个时期：render/reconciliation 和 commit</p>
 <h5 id="renderreconciliation" class="headerLink">
     <a href="#renderreconciliation" class="header-mark"></a>render/reconciliation</h5><p>该阶段是可打断的，React 在 workingProgressTree 上复用 current 上的 Fiber 数据结构来一步步构建新的 tree。</p>
-<p><a class="lightgallery" href="./img/Fiber-2.png" title="./img/Fiber-2.png" data-thumbnail="./img/Fiber-2.png">
-        <img
-            
-            loading="lazy"
-            src="./img/Fiber-2.png"
-            srcset="./img/Fiber-2.png, ./img/Fiber-2.png 1.5x, ./img/Fiber-2.png 2x"
-            sizes="auto"
-            alt="./img/Fiber-2.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/Fiber-2.png"
+        srcset="./img/Fiber-2.png, ./img/Fiber-2.png 1.5x, ./img/Fiber-2.png 2x"
+        sizes="auto"
+        alt="./img/Fiber-2.png"
+        title="./img/Fiber-2.png" ></figure></p>
 <!-- React workingProgress图 -->
 <p>React 16 之前在该阶段执行的生命周期：</p>
 <ul>
@@ -351,15 +350,14 @@
 为了强制开发者这样做，React 官方在 React v16.3 发布的时候将生命周期做了更改，而原有的生命周期加了<code>UNSAFE</code>前缀，这些生命周期将在 React v17 中彻底移除，开发者应该尽快切换。</p>
 <h3 id="react-v163-新的生命周期" class="headerLink">
     <a href="#react-v163-%e6%96%b0%e7%9a%84%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f" class="header-mark"></a>React v16.3 新的生命周期</h3><p>React v16.3 之前，生命周期如下图：</p>
-<p><a class="lightgallery" href="./img/old-lifecycle.png" title="./img/old-lifecycle.png" data-thumbnail="./img/old-lifecycle.png">
-        <img
-            
-            loading="lazy"
-            src="./img/old-lifecycle.png"
-            srcset="./img/old-lifecycle.png, ./img/old-lifecycle.png 1.5x, ./img/old-lifecycle.png 2x"
-            sizes="auto"
-            alt="./img/old-lifecycle.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/old-lifecycle.png"
+        srcset="./img/old-lifecycle.png, ./img/old-lifecycle.png 1.5x, ./img/old-lifecycle.png 2x"
+        sizes="auto"
+        alt="./img/old-lifecycle.png"
+        title="./img/old-lifecycle.png" ></figure></p>
 <!-- React 15生命周期图 -->
 <p>更新 React v16.3 后生命周期的变化</p>
 <h4 id="mount" class="headerLink">
@@ -383,27 +381,25 @@
 </ul>
 <p>可以看到，生命周期更新后，原先在<code>render/reconciliation</code>的生命周期，除了<code>shouldComponentUpdate</code>，其他都被移除，用新的生命周期替代，前面讲到，在这个阶段，开发者可能会在生命周期中执行带有附作用的代码，从而由于该阶段的被打断而带来意想不到的后果，<code>shouldComponentUpdate</code>因不会有副作用的代码而得到保留</p>
 <p>React v16.3 之后生命周期变成了下图这样：</p>
-<p><a class="lightgallery" href="./img/react16.3-lifecycle.png" title="./img/react16.3-lifecycle.png" data-thumbnail="./img/react16.3-lifecycle.png">
-        <img
-            
-            loading="lazy"
-            src="./img/react16.3-lifecycle.png"
-            srcset="./img/react16.3-lifecycle.png, ./img/react16.3-lifecycle.png 1.5x, ./img/react16.3-lifecycle.png 2x"
-            sizes="auto"
-            alt="./img/react16.3-lifecycle.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/react16.3-lifecycle.png"
+        srcset="./img/react16.3-lifecycle.png, ./img/react16.3-lifecycle.png 1.5x, ./img/react16.3-lifecycle.png 2x"
+        sizes="auto"
+        alt="./img/react16.3-lifecycle.png"
+        title="./img/react16.3-lifecycle.png" ></figure></p>
 <!-- React 16.3生命周期图 -->
 <p>React v16.3 到 v16.4，生命周期<code>getDerivedStateFromProps</code>触发的时机有一个变化，这是需要注意的一点。在 v16.3 中，只有父组件<code>setState</code>或者<code>forceUpdate</code>才会触发<code>getDerivedStateFromProps</code>，组件自己<code>setState</code>或者<code>forceUpdate</code>不会触发，很明显，这会造成意想不到的结果，<a href="https://jsfiddle.net/0yne6jzp/" target="_blank" rel="noopener noreferrer">具体可以查看 Fiddle Demo</a>。所以 React 在发布 v16.4 后，修复了这个问题，无论是父组件还是自身，都可以触发<code>getDerivedStateFromProps</code>。关于更详细的描述可以查看 Dan 在 React issue<a href="https://github.com/facebook/react/issues/12898#issuecomment-392117539" target="_blank" rel="noopener noreferrer">#12898</a>的回答。</p>
 <p>所以 React v16.4 的生命周期变成了如下：</p>
-<p><a class="lightgallery" href="./img/react16.4-lifecycle.png" title="./img/react16.4-lifecycle.png" data-thumbnail="./img/react16.4-lifecycle.png">
-        <img
-            
-            loading="lazy"
-            src="./img/react16.4-lifecycle.png"
-            srcset="./img/react16.4-lifecycle.png, ./img/react16.4-lifecycle.png 1.5x, ./img/react16.4-lifecycle.png 2x"
-            sizes="auto"
-            alt="./img/react16.4-lifecycle.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/react16.4-lifecycle.png"
+        srcset="./img/react16.4-lifecycle.png, ./img/react16.4-lifecycle.png 1.5x, ./img/react16.4-lifecycle.png 2x"
+        sizes="auto"
+        alt="./img/react16.4-lifecycle.png"
+        title="./img/react16.4-lifecycle.png" ></figure></p>
 <!-- React 16.4生命周期图 -->
 <h4 id="新生命周期的使用" class="headerLink">
     <a href="#%e6%96%b0%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e7%9a%84%e4%bd%bf%e7%94%a8" class="header-mark"></a>新生命周期的使用</h4><h5 id="static-getderivedstatefromprops" class="headerLink">
@@ -553,27 +549,25 @@
 </div><h3 id="time-slicing-和-suspense" class="headerLink">
     <a href="#time-slicing-%e5%92%8c-suspense" class="header-mark"></a>Time Slicing 和 Suspense</h3><p>Time Slicing 和 Suspense 是 Dan 在 JSConf Iceland 2018 为大家展示的未来 React 将加入的一些特性，预计在 React v17 中发布，具体演讲可以查看——<a href="https://www.bilibili.com/video/av26248565?from=search&amp;seid=3831330787181301576" target="_blank" rel="noopener noreferrer">Dan Abramov- Beyond React 16 - JSConf Iceland 2018</a>。</p>
 <p>这两个特性分别从<strong>CPU 和 IO</strong>来解决 React 的性能问题。</p>
-<p><a class="lightgallery" href="./img/time-siling&amp;Suspense.jpeg" title="./img/time-siling&amp;Suspense.jpeg" data-thumbnail="./img/time-siling&amp;Suspense.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/time-siling&amp;Suspense.jpeg"
-            srcset="./img/time-siling&amp;Suspense.jpeg, ./img/time-siling&amp;Suspense.jpeg 1.5x, ./img/time-siling&amp;Suspense.jpeg 2x"
-            sizes="auto"
-            alt="./img/time-siling&amp;Suspense.jpeg">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/time-siling&amp;Suspense.jpeg"
+        srcset="./img/time-siling&amp;Suspense.jpeg, ./img/time-siling&amp;Suspense.jpeg 1.5x, ./img/time-siling&amp;Suspense.jpeg 2x"
+        sizes="auto"
+        alt="./img/time-siling&amp;Suspense.jpeg"
+        title="./img/time-siling&amp;Suspense.jpeg" ></figure></p>
 <!-- CPU & IO图 -->
 <h4 id="time-slicing" class="headerLink">
     <a href="#time-slicing" class="header-mark"></a>Time Slicing</h4><p>前面讲到 React Fiber 让 React 可以在 UI 渲染中更快的响应，但是同时带来了跟踪 UI 变化的挑战，这就是 Time Slicing 的用武之地。</p>
-<p><a class="lightgallery" href="./img/time-slicing.jpeg" title="./img/time-slicing.jpeg" data-thumbnail="./img/time-slicing.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/time-slicing.jpeg"
-            srcset="./img/time-slicing.jpeg, ./img/time-slicing.jpeg 1.5x, ./img/time-slicing.jpeg 2x"
-            sizes="auto"
-            alt="./img/time-slicing.jpeg">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/time-slicing.jpeg"
+        srcset="./img/time-slicing.jpeg, ./img/time-slicing.jpeg 1.5x, ./img/time-slicing.jpeg 2x"
+        sizes="auto"
+        alt="./img/time-slicing.jpeg"
+        title="./img/time-slicing.jpeg" ></figure></p>
 <!-- CPU demo desc图 -->
 <p>Time Slicing 其实就是异步渲染，试想如果是同步渲染，在性能较差的 CPU 的设备上渲染会慢，用户会明显感知到卡顿。</p>
 <p>通过 Time Slicing，React 可以在空闲回调期间将子组件的更新计算查分为块儿，并将渲染分散到多个帧上。这就让 React 可以在性能差的 CPU 设备上依旧保持流畅的渲染。而这一切对开发者而已是透明的。</p>
@@ -581,15 +575,14 @@
     <a href="#suspense" class="header-mark"></a>Suspense</h4><p>在 Suspense 之前，我们一直用 Redux+Saga 等解决网络 IO 的问题，Suspense 的出现意味着 React 本身将提供该问题的解决问题。</p>
 <p>Suspense 将 React 的异步 IO 提升到一个新的高度。有了 Suspense 功能，React 可以暂停任何 state 更新直到数据就绪，这就让 React 可以和 REST APIs 或 GraphQL 等这些异步 IO 运算配合的更好。</p>
 <p>Suspense 在 React v16.6 已经发布，可以使用<code>React.lazy()</code>和<code>&lt;React.Suspense&gt;</code>延迟加载组件，但是在 Fetch 数据的时候还无法使用<code>&lt;React.Suspense&gt;</code>，原因如下：</p>
-<p><a class="lightgallery" href="./img/Suspense.png" title="./img/Suspense.png" data-thumbnail="./img/Suspense.png">
-        <img
-            
-            loading="lazy"
-            src="./img/Suspense.png"
-            srcset="./img/Suspense.png, ./img/Suspense.png 1.5x, ./img/Suspense.png 2x"
-            sizes="auto"
-            alt="./img/Suspense.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/Suspense.png"
+        srcset="./img/Suspense.png, ./img/Suspense.png 1.5x, ./img/Suspense.png 2x"
+        sizes="auto"
+        alt="./img/Suspense.png"
+        title="./img/Suspense.png" ></figure></p>
 <!-- Dan回答React开发者为什么Suspense没有响应fech api的截图 -->
 <p>事实上想要用 Suspense 实现暂停 state 更新直到数据就绪需要使用一个叫<a href="https://github.com/facebook/react/tree/master/packages/react-cache" target="_blank" rel="noopener noreferrer">react-cache</a>的库。</p>
 <h5 id="react-cache" class="headerLink">
@@ -923,9 +916,7 @@
         </div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
@@ -942,7 +933,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

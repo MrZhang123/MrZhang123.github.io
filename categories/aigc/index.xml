@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>AIGC - 分类 - Raymond</title>
+        <link>https://mrzhang123.github.io/categories/aigc/</link>
+        <description>AIGC - 分类 - Raymond</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 29 Mar 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/aigc/" rel="self" type="application/rss+xml" /><item>
+    <title>AIGC：内容创作的新时代</title>
+    <link>https://mrzhang123.github.io/posts/2023/aigc/</link>
+    <pubDate>Wed, 29 Mar 2023 00:00:00 &#43;0000</pubDate><author>
+        <name>Raymond</name>
+    </author><guid>https://mrzhang123.github.io/posts/2023/aigc/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/posts/2023/aigc/img/OpenAI-GPT-4.webp" referrerpolicy="no-referrer">
+            </div>2022 年 11 月底在互联网上出现了一个叫 ChatGPT 的人工智能聊天机器人，紧接着它以火箭般的速度在互联网上传播，从 11 月底发布到月活破亿仅用了两个月的时间，与之]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,506 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title>成为务实的程序员 - Raymond</title><meta name="Description" content=""><meta property="og:title" content="成为务实的程序员" />
+<meta property="og:description" content="本文是阅读《程序员修炼之道》后的一些感想和摘抄，个人觉得其中很多内容非常不错，所以分享出来，期望能和大家共同学习，努力成为一名务实的程序员。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://mrzhang123.github.io/posts/2023/pragmatic-programmer/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-20T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-08-20T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
+
+<meta name="twitter:title" content="成为务实的程序员"/>
+<meta name="twitter:description" content="本文是阅读《程序员修炼之道》后的一些感想和摘抄，个人觉得其中很多内容非常不错，所以分享出来，期望能和大家共同学习，努力成为一名务实的程序员。"/>
+<meta name="application-name" content="Raymond">
+<meta name="apple-mobile-web-app-title" content="Raymond">
+
+<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2023/pragmatic-programmer/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2023/walter-schloss/" /><link rel="next" href="https://mrzhang123.github.io/posts/2023/berkshire-shareholder-letter-2023/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "成为务实的程序员",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://mrzhang123.github.io/posts/2023/pragmatic-programmer/"
+        },"genre": "posts","keywords": "读书, 通用素质","wordcount":  5481 ,
+        "url": "https://mrzhang123.github.io/posts/2023/pragmatic-programmer/","datePublished": "2023-08-20T00:00:00+00:00","dateModified": "2023-08-20T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Raymond"},"author": {
+                "@type": "Person",
+                "name": "Raymond"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
+                        <option value="light">浅色</option>
+                        <option value="dark">深色</option>
+                        <option value="black">黑色</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
+                    <option value="light">浅色</option>
+                    <option value="dark">深色</option>
+                    <option value="black">黑色</option>
+                    <option value="auto">跟随系统</option>
+                </select>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是务实">什么是“务实”？</a></li>
+    <li><a href="#务实程序员特征">务实程序员特征</a></li>
+    <li><a href="#务实的哲学">务实的哲学</a>
+      <ul>
+        <li><a href="#软件的熵">软件的熵</a></li>
+        <li><a href="#够好即可的软件">够好即可的软件</a></li>
+        <li><a href="#知识组合">知识组合</a></li>
+        <li><a href="#批判性思维">批判性思维</a></li>
+      </ul>
+    </li>
+    <li><a href="#务实的方法">务实的方法</a>
+      <ul>
+        <li><a href="#etc优秀设计的精髓">ETC——优秀设计的精髓</a></li>
+        <li><a href="#dry邪恶的重复">DRY——邪恶的重复</a></li>
+        <li><a href="#正交性">正交性</a>
+          <ul>
+            <li><a href="#设计">设计</a></li>
+            <li><a href="#编码">编码</a></li>
+            <li><a href="#测试">测试</a></li>
+          </ul>
+        </li>
+        <li><a href="#曳光弹">曳光弹</a></li>
+      </ul>
+    </li>
+    <li><a href="#务实的偏执">务实的偏执</a>
+      <ul>
+        <li><a href="#契约式设计dbc">契约式设计（DBC）</a></li>
+        <li><a href="#尽早崩溃">尽早崩溃</a></li>
+        <li><a href="#使用断言编程">使用断言编程</a></li>
+        <li><a href="#保持资源平衡">保持资源平衡</a></li>
+        <li><a href="#不要超出控制范围">不要超出控制范围</a></li>
+      </ul>
+    </li>
+    <li><a href="#当你编码时">当你编码时</a>
+      <ul>
+        <li><a href="#听从直觉">听从直觉</a></li>
+        <li><a href="#重构">重构</a>
+          <ul>
+            <li><a href="#何时重构">何时重构</a></li>
+            <li><a href="#如何重构">如何重构</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#结尾">结尾</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">成为务实的程序员</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6/"><i class="far fa-folder fa-fw"></i>读书</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2023-08-20">2023-08-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2023-08-20">2023-08-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5481 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
+        </div><div class="featured-image"><img
+        
+        loading="eager"
+        src="/posts/2023/pragmatic-programmer/code.png"
+        srcset="/posts/2023/pragmatic-programmer/code.png, /posts/2023/pragmatic-programmer/code.png 1.5x, /posts/2023/pragmatic-programmer/code.png 2x"
+        sizes="auto"
+        alt="/posts/2023/pragmatic-programmer/code.png"
+        title="/posts/2023/pragmatic-programmer/code.png" height="410"   width="1244" ></div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是务实">什么是“务实”？</a></li>
+    <li><a href="#务实程序员特征">务实程序员特征</a></li>
+    <li><a href="#务实的哲学">务实的哲学</a>
+      <ul>
+        <li><a href="#软件的熵">软件的熵</a></li>
+        <li><a href="#够好即可的软件">够好即可的软件</a></li>
+        <li><a href="#知识组合">知识组合</a></li>
+        <li><a href="#批判性思维">批判性思维</a></li>
+      </ul>
+    </li>
+    <li><a href="#务实的方法">务实的方法</a>
+      <ul>
+        <li><a href="#etc优秀设计的精髓">ETC——优秀设计的精髓</a></li>
+        <li><a href="#dry邪恶的重复">DRY——邪恶的重复</a></li>
+        <li><a href="#正交性">正交性</a>
+          <ul>
+            <li><a href="#设计">设计</a></li>
+            <li><a href="#编码">编码</a></li>
+            <li><a href="#测试">测试</a></li>
+          </ul>
+        </li>
+        <li><a href="#曳光弹">曳光弹</a></li>
+      </ul>
+    </li>
+    <li><a href="#务实的偏执">务实的偏执</a>
+      <ul>
+        <li><a href="#契约式设计dbc">契约式设计（DBC）</a></li>
+        <li><a href="#尽早崩溃">尽早崩溃</a></li>
+        <li><a href="#使用断言编程">使用断言编程</a></li>
+        <li><a href="#保持资源平衡">保持资源平衡</a></li>
+        <li><a href="#不要超出控制范围">不要超出控制范围</a></li>
+      </ul>
+    </li>
+    <li><a href="#当你编码时">当你编码时</a>
+      <ul>
+        <li><a href="#听从直觉">听从直觉</a></li>
+        <li><a href="#重构">重构</a>
+          <ul>
+            <li><a href="#何时重构">何时重构</a></li>
+            <li><a href="#如何重构">如何重构</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#结尾">结尾</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>本文是阅读《程序员修炼之道》后的一些感想和摘抄，个人觉得其中很多内容非常不错，所以分享出来，期望能和大家共同学习，努力成为一名务实的程序员。作为务实的程序员，你是编程技艺的行家。倾听需求，提供建议；传达信息，做决策。捕捉难以捉摸的需求，找到表达方式，让计算机轻松应对。记录工作，让他人理解；工程化，促进发展。努力在项目中创造奇迹。</p>
+</blockquote>
+<blockquote>
+<p>”编程是一门技艺。简单地说，就是让计算机做你想让它做的事情（或是你的用户想让它做的事情）。作为一名程序员，你既在倾听，又在献策；既是传译，又行独裁；你试图捕获难以捉摸的需求，并找到一种表达它们的方式，以便仅靠一台机器就可以从容应付。你试着把工作记录成文档，以便他人理解；你试着将工作工程化，这样别人就能在其上有所建树；更重要的是，你试图在项目时钟的滴答声中完成所有这些工作。你每天都在创造小小的奇迹。“</p>
+<p>——《程序员修炼之道》</p>
+</blockquote>
+<h2 id="什么是务实" class="headerLink">
+    <a href="#%e4%bb%80%e4%b9%88%e6%98%af%e5%8a%a1%e5%ae%9e" class="header-mark"></a>什么是“务实”？</h2><p>务实（Pragmatic）这个词来自拉丁语 pragmaticus ——“精通业务”，该词又来源于希腊语 πραγματικός，意思是“适合使用”。</p>
+<h2 id="务实程序员特征" class="headerLink">
+    <a href="#%e5%8a%a1%e5%ae%9e%e7%a8%8b%e5%ba%8f%e5%91%98%e7%89%b9%e5%be%81" class="header-mark"></a>务实程序员特征</h2><ul>
+<li><strong>早期的采纳者 / 快速的适配者</strong>：对技术和技巧有一种直觉，喜欢尝试。当接触到新东西时，你可以快速地掌握它们，并把它们与其他的知识结合起来。你的信心来自经验。</li>
+<li><strong>好奇</strong>：倾向于问问题。热衷于收集各种细微的事实，坚信它们会影响自己多年后的决策。</li>
+<li><strong>批判性的思考者</strong>：你在没有得到证实前很少接受既定事实。当同事们说“因为就该这么做”，或者供应商承诺会解决所有问题时，你会闻到挑战的味道。</li>
+<li><strong>现实主义</strong>：你试图理解所面临的每个问题的本质。这种现实主义让你对事情有多困难、需要用多长时间有一个很好的感知。一个过程应该很难，或是需要点时间才能完成，对这些的深刻理解，给了你坚持下去的毅力。</li>
+<li><strong>多面手</strong>：你努力熟悉各种技术和环境，并努力跟上最新的进展。虽然目前的工作可能要求你在某个专门领域成为行家，但你总是能够进入新的领域，迎接新的挑战。</li>
+</ul>
+<h2 id="务实的哲学" class="headerLink">
+    <a href="#%e5%8a%a1%e5%ae%9e%e7%9a%84%e5%93%b2%e5%ad%a6" class="header-mark"></a>务实的哲学</h2><h3 id="软件的熵" class="headerLink">
+    <a href="#%e8%bd%af%e4%bb%b6%e7%9a%84%e7%86%b5" class="header-mark"></a>软件的熵</h3><blockquote>
+<p>当软件中的无序化增加时，程序员会说“软件在腐烂”。有些人可能会用更乐观的术语来称呼它，即技术债。</p>
+</blockquote>
+<p>有很多原因导致软件腐烂。最重要的一个似乎是项目工作中的心理状态，或者说文化。无视一个明显损坏的东西，会强化这样一种观念：看来没有什么是能修好的，也没人在乎，一切都命中注定了。所有的负面情绪会在团队成员间蔓延，变成恶性循环。</p>
+<blockquote>
+<p>不要放任破窗，及时发现及时修复，漠视会加速腐烂的过程。</p>
+</blockquote>
+<p>软件开发中应该遵循的方法：<strong>不要只是因为一些东西非常着急，就去造成附带伤害。破窗一扇都嫌太多</strong>。</p>
+<h3 id="够好即可的软件" class="headerLink">
+    <a href="#%e5%a4%9f%e5%a5%bd%e5%8d%b3%e5%8f%af%e7%9a%84%e8%bd%af%e4%bb%b6" class="header-mark"></a>够好即可的软件</h3><blockquote>
+<p>不要为了追求更好而损毁了原有已经够好的。</p>
+</blockquote>
+<p>我们做的东西，从用户需求角度出发是否足够好？最好还是留给用户一个机会，让他们亲自参与评判。无视来自用户方面的需求，一味地向程序中堆砌功能，一次又一次地打磨代码，这是很不专业的表现。心浮气躁当然不值得提倡，比如承诺一个无法兑现的时间尺度，然后为了赶上截止日期删减必要的边角工程，这同样是不专业的做法。</p>
+<blockquote>
+<p>如果早点给用户一点东西玩，他们的反馈常常引领你做出更好的最终方案。</p>
+</blockquote>
+<h3 id="知识组合" class="headerLink">
+    <a href="#%e7%9f%a5%e8%af%86%e7%bb%84%e5%90%88" class="header-mark"></a>知识组合</h3><blockquote>
+<p>知识和经验是你最重要的专业资产。学习新事物的能力是你最重要的战略资产。</p>
+</blockquote>
+<p>关于如何构建自己的知识组合，可以参考以下指导方针：</p>
+<ul>
+<li><strong>定期投资</strong>：安排一个固定的时间和地点为你的知识组合投资。</li>
+<li><strong>多样化</strong>：计算机技术变化迅猛——今天的技术热点可能到明天就接近无用（至少不那么受欢迎）。所以，熟悉的技能越多，越能适应变化。</li>
+<li><strong>风险管理</strong>：分散风险，不要把所有的技术鸡蛋放在一个篮子里。</li>
+<li><strong>低买高卖</strong>：在一项新技术变得流行之前就开始学习，可能和发现一只被低估的股票一样困难，但是所得到的收获会和此类股票的收益一样好。</li>
+<li><strong>重新评估调整</strong>：这是一个充满活力的行业。你上个月开始研究的热门技术现在可能已经凉下来了。</li>
+</ul>
+<p>对于那些已经构成知识组合的智力资产，获取它们的最佳途径可以参考如下建议：</p>
+<ol>
+<li><strong>每年学习一门新语言</strong>：不同语言以不同的方式解决相同的问题。多学习几种不同的解决方法，能帮助自己拓宽思维，避免陷入陈规。</li>
+<li><strong>每月读一本技术书</strong>：虽然网络上有大量的短文和偶尔可靠的答案，但深入理解还是需要去读长篇的书。<strong>当你掌握了当前正在使用的所有技术后，扩展你的领域，学习一些和你项目不相关的东西</strong>。</li>
+<li><strong>还要读非技术书</strong>：不要忘记方程式中人的那一面，他需要完全不同的技能集。</li>
+<li><strong>上课</strong>：在本地大学或网上找一些有趣的课程，或许也能在下一场商业会展或技术会议上找到。</li>
+<li><strong>加入本地的用户组和交流群</strong>：不要只是去当听众，要主动参与。<strong>独来独往对你的职业生涯是致命的</strong>：了解一下公司之外的人都在做什么。</li>
+<li><strong>尝试不同的环境</strong>。</li>
+<li><strong>与时俱进</strong>：关心一下和你当前项目不同的技术，阅读相关的新闻和技术贴。</li>
+</ol>
+<h3 id="批判性思维" class="headerLink">
+    <a href="#%e6%89%b9%e5%88%a4%e6%80%a7%e6%80%9d%e7%bb%b4" class="header-mark"></a>批判性思维</h3><blockquote>
+<p>批判性地思考读到的和听到的东西。</p>
+</blockquote>
+<p>批判性地分析问题，先思考几个问题：</p>
+<ul>
+<li><strong>问“五个为什么”</strong>：当有了答案后，还要追问至少五个为什么；</li>
+<li><strong>谁从中受益</strong>：追踪钱的流动更容易理清脉络；</li>
+<li><strong>有什么背景</strong>：每件事都发生在它自己的背景下，这也是为何“能解决所有问题”的方案通常不存在，而那些兜售“最佳实践”的书或文章实际上经不起推敲。</li>
+<li><strong>什么时候在哪里可以工作起来</strong>：不要停留在一阶思维下（接下来会发生什么），要进行二阶思考：当它结束后还会发生什么？</li>
+<li><strong>为什么是这个问题</strong>：是否存在一个基础模型？这个基础模型是怎么工作的？</li>
+</ul>
+<h2 id="务实的方法" class="headerLink">
+    <a href="#%e5%8a%a1%e5%ae%9e%e7%9a%84%e6%96%b9%e6%b3%95" class="header-mark"></a>务实的方法</h2><h3 id="etc优秀设计的精髓" class="headerLink">
+    <a href="#etc%e4%bc%98%e7%a7%80%e8%ae%be%e8%ae%a1%e7%9a%84%e7%b2%be%e9%ab%93" class="header-mark"></a>ETC——优秀设计的精髓</h3><blockquote>
+<p>优秀的设计比糟糕的设计更容易变更。</p>
+</blockquote>
+<p>对代码而言，要顺应变化。因此要信奉 ETC（Easier To Change，更容易变更）原则。ETC 是一种价值观念，不是一条规则。关于培养 ETC 观念，有以下几点意见：</p>
+<ul>
+<li>不断强化意识，问自己这么做是否让系统更容易变更。</li>
+<li>假设不确定什么形式的改变会发生，你也总是可以回到终极的“容易变更”的道路上；试着让你写的东西可替换。</li>
+<li>在工程日志中记下你面临的处境：你有哪些选择，以及关于改变的一些猜测。</li>
+</ul>
+<h3 id="dry邪恶的重复" class="headerLink">
+    <a href="#dry%e9%82%aa%e6%81%b6%e7%9a%84%e9%87%8d%e5%a4%8d" class="header-mark"></a>DRY——邪恶的重复</h3><p>我们认为，想要可靠地开发软件，或让开发项目更容易理解和维护，唯一的方法就是遵循下面这条DRY（<em>Don&rsquo;t repeat yourself，不要重复自己</em>）原则：</p>
+<blockquote>
+<p>在一个系统中，每一处知识都必须<strong>单一、明确、权威</strong>地表达。</p>
+</blockquote>
+<p>与之相对的不同做法是在两个或更多地方表达相同的东西。如果变更其中一个，就必须记得变更其他的那些。</p>
+<p>DRY 不限于编码，DRY 针对的是你对<strong>知识</strong>和<strong>意图</strong>的复制。它强调的是，在两个地方表达的东西其实是相同的，只是表达的方式可能完全不同。</p>
+<ul>
+<li><strong>代码中的重复</strong>；</li>
+<li><strong>文档中的重复</strong>：例如注释和代码表达完全相同的意思，但是未来代码变更可能不会同步注释的变更，或者用数据结构表达知识等。</li>
+<li><strong>开发人员间的重复</strong>：
+<ul>
+<li>最难检测到且难处理的重复类型，可能发在同一个项目的不同开发人员之间。整块的动能集可能会在不经意间重复，而这种重复或者好多年都并未发现，最终导致了维护问题。</li>
+<li>我们认为解决这个问题最好的方法是鼓励开发人员间积极频繁的交流。</li>
+<li>指派团队中的一人作为项目只是管理员，他的工作就是促进知识的传播。在源码目录树中设置一个集中的位置，存放工具程序和脚本程序。</li>
+<li>你要努力的方向，应该是<strong>孕育出一个更容易找到和复用已有事务的环境</strong>，<strong>而不是自己重新编写</strong>。</li>
+</ul>
+</li>
+</ul>
+<h3 id="正交性" class="headerLink">
+    <a href="#%e6%ad%a3%e4%ba%a4%e6%80%a7" class="header-mark"></a>正交性</h3><p>定义：对于两个或多个事物，其中一个的改变不影响其他任何一个，则这些事物是正交的。</p>
+<p>当系统的组件相互之间高度依赖时，就没有局部修理这回事儿。我们希望设计的组件自成一体：独立自主，有单一的清晰定义的意图。但凡编写正交的系统，就能获得两个主要的收益：<strong>提高生产力和降低风险</strong>。</p>
+<h4 id="设计" class="headerLink">
+    <a href="#%e8%ae%be%e8%ae%a1" class="header-mark"></a>设计</h4><p>可以用一个简单的方法可以测试设计的正交性。当你规划好组件后，问问自己：</p>
+<ul>
+<li>如果一个特别功能背后的需求发生显著改变，<strong>有多少模块会影响？</strong></li>
+<li><strong>你的设计与现实世界的变化有多大程度的解耦。</strong> 不要依赖那些你无法控制的东西。</li>
+</ul>
+<h4 id="编码" class="headerLink">
+    <a href="#%e7%bc%96%e7%a0%81" class="header-mark"></a>编码</h4><p>当你写下代码时，就有降低软件正交性的风险。你不仅需要盯着正在做的事情，还要监控软件的大环境。有几种技术可以用来保持正交性：</p>
+<ul>
+<li><strong>保持代码解耦</strong>：编写害羞的代码——模块不会向其他模块透露任何不必要的信息，也不依赖于其他模块的实现。</li>
+<li><strong>避免全局数据</strong>：只要代码引用全局数据，就会将自己绑定到共享该数据的其他组件上。即使只打算对全局数据进行读操作，也可能引发问题（例如突然需要将代码改为多线程的情形）。一般来说，如果总是显式地将任何需要上下文传递给模块，那么代码会更容易理解和维护。</li>
+<li><strong>避免相似的数据</strong>：可以看看《设计模式》中的策略模式。</li>
+</ul>
+<h4 id="测试" class="headerLink">
+    <a href="#%e6%b5%8b%e8%af%95" class="header-mark"></a>测试</h4><p>修 Bug 也是评估整个系统正交性的好时机。遇到问题时，评估一下修复行为的局部化程度。只要变了一个模块，还是有很多处变更分散在整个系统里？当你修正了一个地方，是不是就修复了所有问题，还是会神秘地出现其他问题？</p>
+<h3 id="曳光弹" class="headerLink">
+    <a href="#%e6%9b%b3%e5%85%89%e5%bc%b9" class="header-mark"></a>曳光弹</h3><blockquote>
+<p>使用曳光弹找到目标。</p>
+</blockquote>
+<p>对于我们来说，最初的曳光弹就是，创建一个简单的工程，加一行“hello world！”，并确保其能编译和运行。然后，我们再去找整个应用程序不确定的部分，添加上让它们跑起来的骨架。</p>
+<figure><img src="%e6%9b%b3%e5%85%89%e5%bc%b9.png"/>
+</figure>
+
+<p><strong>使用曳光弹代码的优势</strong>：</p>
+<ul>
+<li>用户可以更早地获得能工作的东西。</li>
+<li>开发者构造了一个可以在其中工作的框架。</li>
+<li>你有了一个集成平台。</li>
+<li>你有可以演示的东西。</li>
+<li>你对进度有更好的感觉。</li>
+</ul>
+<h2 id="务实的偏执" class="headerLink">
+    <a href="#%e5%8a%a1%e5%ae%9e%e7%9a%84%e5%81%8f%e6%89%a7" class="header-mark"></a>务实的偏执</h2><p>务实的程序员会为自己的错误建立防御机制。</p>
+<ul>
+<li>客户和供应商必须就权利和责任达成共识。</li>
+<li>我们想要确保在找出 Bug 的过程中不会造成破坏。</li>
+<li>为你所做的假设编写主动校验的代码。</li>
+<li>只要我们总是坚持走小步，就不会才能够悬崖边掉下去。</li>
+</ul>
+<h3 id="契约式设计dbc" class="headerLink">
+    <a href="#%e5%a5%91%e7%ba%a6%e5%bc%8f%e8%ae%be%e8%ae%a1dbc" class="header-mark"></a>契约式设计（DBC）</h3><p><strong>与计算机系统打交道很难，与人打交道更是难上加难</strong>。而契约规定了你的权利和责任，同时也规定了对方的权利和责任。<strong>文档化</strong>及主张<strong>进行检验</strong>是契约式设计的核心。</p>
+<p>在编写代码之前，简单列出输入域的范围、边界条件是什么、例程承诺要交付什么——或更重要的是，没有承诺要交付什么——这对编写更好的软件来说，是一个巨大的飞跃。</p>
+<h3 id="尽早崩溃" class="headerLink">
+    <a href="#%e5%b0%bd%e6%97%a9%e5%b4%a9%e6%ba%83" class="header-mark"></a>尽早崩溃</h3><p>尽快检测问题的好处之一是，可以尽早崩溃，而崩溃通常是你能做的最好的事。一旦代码发现本来不可能发生的事情已经发生，程序就不再可靠。这一刻开始，它所做的任何事情都是可疑的，所以要尽快终止它。</p>
+<p>一个死掉的程序，通常比瘫痪的程序，造成的损害更小。</p>
+<h3 id="使用断言编程" class="headerLink">
+    <a href="#%e4%bd%bf%e7%94%a8%e6%96%ad%e8%a8%80%e7%bc%96%e7%a8%8b" class="header-mark"></a>使用断言编程</h3><p>无论何时，你发现自己在想“当然这是不可能发生的”时，添加代码来检查这一点，最简单的方式就是使用断言。注意这里的断言检查的是不可能发生的事情，普通的错误处理不要使用断言。</p>
+<h3 id="保持资源平衡" class="headerLink">
+    <a href="#%e4%bf%9d%e6%8c%81%e8%b5%84%e6%ba%90%e5%b9%b3%e8%a1%a1" class="header-mark"></a>保持资源平衡</h3><p>大多数情况下，资源使用遵循一个可预测的模式：</p>
+<ul>
+<li>分配资源</li>
+<li>使用它</li>
+<li>然后释放它</li>
+</ul>
+<h3 id="不要超出控制范围" class="headerLink">
+    <a href="#%e4%b8%8d%e8%a6%81%e8%b6%85%e5%87%ba%e6%8e%a7%e5%88%b6%e8%8c%83%e5%9b%b4" class="header-mark"></a>不要超出控制范围</h3><p>把反馈的频率当作速度限制，永远不要进行“太大”的步骤或任务。</p>
+<p>当你不得不做下面的事情的时候，你可能陷入了占卜的境地：</p>
+<ul>
+<li>估计未来几个月之后的完成日期</li>
+<li>为将来的维护或可扩展性预设方案</li>
+<li>猜测用户将来的需求</li>
+<li>猜测将来有什么技术可用</li>
+</ul>
+<h2 id="当你编码时" class="headerLink">
+    <a href="#%e5%bd%93%e4%bd%a0%e7%bc%96%e7%a0%81%e6%97%b6" class="header-mark"></a>当你编码时</h2><p>传统观点认为，一旦项目到了编码阶段，就几乎只剩下一些机械工作：只是把设计翻译成可运行的代码段而已。我们认为这种态度是软件项目失败的最重要原因。编码不是机械工作。<strong>务实的程序员会对所有代码进行批判性思考，包括自己的代码。我们不断看到程序和设计的改进空间</strong>。</p>
+<h3 id="听从直觉" class="headerLink">
+    <a href="#%e5%90%ac%e4%bb%8e%e7%9b%b4%e8%a7%89" class="header-mark"></a>听从直觉</h3><p>倾听自己直觉的方法：</p>
+<ul>
+<li>
+<p>首先，停止正在做的事情。给自己一点时间和空间，让大脑自我组织。远离键盘，停止对代码的思考，做一些暂时不需要动脑筋的事情——散步、吃午饭、和别人聊天，或是先睡一觉。让想法自己从大脑的各个层面渗透出来：对此不用很刻意。最终这些想法可能上升到有意识的水平，这样你就能抓住一个”啊哈“的时刻。</p>
+</li>
+<li>
+<p>如果这些不起作用，就试着把问题外化。把正在写的代码涂画到纸上，或者向你的同事（最好不是程序员）解释一下怎么回事儿，向橡皮鸭解释下也行。把问题暴露给不同部分的大脑，看看有没有一部分大脑能更好地处理困扰你的问题。</p>
+</li>
+</ul>
+<h3 id="重构" class="headerLink">
+    <a href="#%e9%87%8d%e6%9e%84" class="header-mark"></a>重构</h3><blockquote>
+<p>代码需要演化：它不是一个静态的东西。</p>
+</blockquote>
+<p>马丁.弗勒将重构定义为：<strong>重组现有代码实体、改变其内部结构而不改变其外部行为的规范式技术。</strong></p>
+<ul>
+<li>这项活动是有规范的，不应随意为之。</li>
+<li><strong>外部行为不变；现在不是添加功能的时候</strong>。</li>
+</ul>
+<h4 id="何时重构" class="headerLink">
+    <a href="#%e4%bd%95%e6%97%b6%e9%87%8d%e6%9e%84" class="header-mark"></a>何时重构</h4><p>当你学到一些东西时，当你比去年、昨天甚至是十分钟前更了解某事时，你会重构。</p>
+<p>无论问题是多是少，都有可能促使我们对代码进行重构：</p>
+<ul>
+<li><strong>重复</strong>：当你发现一处违背DRY原则的地方。</li>
+<li><strong>非正交设计</strong>。</li>
+<li><strong>过时的知识</strong>：事情变化来，需求偏移了，你对问题的了解更多了——代码也需要成长。</li>
+<li><strong>使用</strong>：当系统在真实的环境中被真实的人使用时，你会意识到，与以前的认识相比，一些特性现在看来更为重要，反而 “必须拥有” 的特性可能并不重要。</li>
+<li><strong>性能</strong>：你需要将功能从系统的一个区域移动到另一个区域以提高性能。</li>
+<li><strong>通过了测试</strong>。<strong>重构应该是一个小规模活动</strong>，需要良好的测试支持。如果你添加了少量代码，并且通过了一个额外的测试，现在就有了一个很好的机会，来深入研究并整理刚刚编写的代码。</li>
+</ul>
+<blockquote>
+<p>尽早重构，经常重构。</p>
+</blockquote>
+<h4 id="如何重构" class="headerLink">
+    <a href="#%e5%a6%82%e4%bd%95%e9%87%8d%e6%9e%84" class="header-mark"></a>如何重构</h4><p>重构的核心是重新设计。你或团队中的其他人设计任何东西的时候，都可以根据新的事实、更深的理解、更改的需求等重新设计。但是，如果你执拗地非要将海量的代码统统撕毁，可能会发现，自己所处的境地，比开始时更加糟糕。</p>
+<p>重构是一项需要慢慢地、有意地、仔细地进行的活动。马丁.弗勒提供了一些简单技巧，可以用来确保进行重构不至于弊大于利：</p>
+<ul>
+<li><strong>不要试图让重构和添加功能同时进行</strong>。</li>
+<li><strong>在重构开始之前，确保有良好的测试</strong>。</li>
+<li><strong>采取简单而慎重的步骤</strong>：将字段从一个类移动到另一个类，拆分方法，重命名变量。重构通常设涉及对许多局部进行的修改，这些局部修改最终会导致更大范围的修改。如果保持小步骤，并在每个步骤之后进行测试，就能避免冗长的调试。</li>
+</ul>
+<h2 id="结尾" class="headerLink">
+    <a href="#%e7%bb%93%e5%b0%be" class="header-mark"></a>结尾</h2><p>本文只是分享了书中的一部自己觉得比较好的、可以实际使用的观点，并非书中所有观点），<strong>强烈建议大家读一下本书，相信会有不错的收获</strong>。最后贴个大佬对本书的评价，我也是因为刷到这个所以才知道此书的。</p>
+<figure><img src="38e638e5-520d-4505-ad79-73dfc98ac523.png"/>
+</figure>
+
+</div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-08-20</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share"></div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a>,&nbsp;<a href="/tags/%E9%80%9A%E7%94%A8%E7%B4%A0%E8%B4%A8/">通用素质</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2023/walter-schloss/" class="prev" rel="prev" title="沃尔特·施洛斯的投资智慧"><i class="fas fa-angle-left fa-fw"></i>沃尔特·施洛斯的投资智慧</a>
+            <a href="/posts/2023/berkshire-shareholder-letter-2023/" class="next" rel="next" title="摘抄：巴菲特致股东信2023">摘抄：巴菲特致股东信2023<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"comment":{},"data":{"desktop-header-typeit":"Raymond's Blog","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+</body>
+
+</html>

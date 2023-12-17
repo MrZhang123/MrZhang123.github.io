@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -26,7 +28,8 @@
 
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019/2019-debtcrisisoverview/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2019/2019-privatefields/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019/2019-vimperformance/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/posts/2019/2019-debtcrisisoverview/" /><link rel="prev" href="https://mrzhang123.github.io/posts/2019/2019-privatefields/" /><link rel="next" href="https://mrzhang123.github.io/posts/2019/2019-vimperformance/" />
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
         <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -36,25 +39,25 @@
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/mrzhang123.github.io\/posts\/2019\/2019-debtcrisisoverview\/"
+            "@id": "https://mrzhang123.github.io/posts/2019/2019-debtcrisisoverview/"
         },"genre": "posts","keywords": "金融","wordcount":  2789 ,
-        "url": "https:\/\/mrzhang123.github.io\/posts\/2019\/2019-debtcrisisoverview\/","datePublished": "2019-08-07T23:43:00+00:00","dateModified": "2019-08-07T23:43:00+00:00","publisher": {
+        "url": "https://mrzhang123.github.io/posts/2019/2019-debtcrisisoverview/","datePublished": "2019-08-07T23:43:00+00:00","dateModified": "2019-08-07T23:43:00+00:00","publisher": {
             "@type": "Organization",
             "name": "Raymond"},"author": {
                 "@type": "Person",
                 "name": "Raymond"
             },"description": ""
     }
-    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+    </script></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -65,16 +68,16 @@
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" class="menu-item theme-select" title="切换主题">
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                     <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
                         <option value="light">浅色</option>
@@ -98,20 +101,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" class="menu-item theme-select" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
                 <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
                     <option value="light">浅色</option>
@@ -146,12 +149,11 @@
     <li><a href="#附">附</a></li>
   </ul>
 </nav></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">不可不知的债务危机</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">不可不知的债务危机</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="/" title="Author" rel=" author" class="author">Raymond</a>
+                <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E9%87%91%E8%9E%8D/"><i class="far fa-folder fa-fw"></i>金融</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-08-07">2019-08-07</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-08-07">2019-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2789 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-08-07">2019-08-07</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-08-07">2019-08-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2789 字&nbsp;<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -186,15 +188,14 @@
 <ul>
 <li>自我强化——上升阶段</li>
 </ul>
-<p><a class="lightgallery" href="./img/up.png" title="up" data-thumbnail="./img/up.png">
-        <img
-            
-            loading="lazy"
-            src="./img/up.png"
-            srcset="./img/up.png, ./img/up.png 1.5x, ./img/up.png 2x"
-            sizes="auto"
-            alt="./img/up.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/up.png"
+        srcset="./img/up.png, ./img/up.png 1.5x, ./img/up.png 2x"
+        sizes="auto"
+        alt="up"
+        title="up" ></figure></p>
 <ul>
 <li>到达顶峰后转头向下
 <ul>
@@ -205,15 +206,14 @@
 </li>
 <li>自我强化——下降</li>
 </ul>
-<p><a class="lightgallery" href="./img/down.png" title="up" data-thumbnail="./img/down.png">
-        <img
-            
-            loading="lazy"
-            src="./img/down.png"
-            srcset="./img/down.png, ./img/down.png 1.5x, ./img/down.png 2x"
-            sizes="auto"
-            alt="./img/down.png">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/down.png"
+        srcset="./img/down.png, ./img/down.png 1.5x, ./img/down.png 2x"
+        sizes="auto"
+        alt="up"
+        title="up" ></figure></p>
 <ul>
 <li>触底——逆转而上</li>
 </ul>
@@ -227,15 +227,14 @@
 </ul>
 <p>在典型的债务危机中，央行可以通过降低实际利率和名义利率（即降息）缓解危机（给市场增加流动性，提高收入降低债务和偿债成本），但是在危机缓解后，人们并不会记得之前危机时候的情况（资不抵债），相反，人们只会记得当初贷款后可以支出更多，购买更多资产，所以接着借贷（人性，人们总是愿意花钱而不愿意还钱），进而再次出现资不抵债的情况，央行继续降息，但是利率总有降到0的时候，当央行无法再继续降息的时候，就会出现严重的债务危机（萧条）。</p>
 <p>可以看出其实严重的债务危机（萧条）是由一个一个短期债务危机引起的，在典型情况下，每个短期债务周期（即经济周期)的顶部和底部的债务与收入比率都会高于此前一个短期债务周期，<strong>多个短期债务周期的叠加，形成长期债务周期，直到推动债务扩张的降息无法继续</strong>，就像下图这样：</p>
-<p><a class="lightgallery" href="./img/add.jpeg" title="add" data-thumbnail="./img/add.jpeg">
-        <img
-            
-            loading="lazy"
-            src="./img/add.jpeg"
-            srcset="./img/add.jpeg, ./img/add.jpeg 1.5x, ./img/add.jpeg 2x"
-            sizes="auto"
-            alt="./img/add.jpeg">
-    </a></p>
+<p><figure><img
+        
+        loading="lazy"
+        src="./img/add.jpeg"
+        srcset="./img/add.jpeg, ./img/add.jpeg 1.5x, ./img/add.jpeg 2x"
+        sizes="auto"
+        alt="add"
+        title="add" ></figure></p>
 <p>**tips：**其实这个图是霍华德马克斯《周期》中讲述经济周期的图，但是我理解多个短期债务危机叠加形成长期债务危机也是这个过程，所以在这里借用。</p>
 <p>所以从某个角度讲，央行降息推动了债务扩张。</p>
 <p>上面我们讲到，贷款支撑的支出和投资最终会导致收入低于偿债成本，导致债务人资不抵债，从而导致债务人债权人双双破产，后果非常严重。所以在出现债务危机后，决策者会进行调控，降低债务与收入之间的比率和偿债总额与用于偿债的现金流之间的比率，从而避免出现这样严重的情况。决策者主要的调控手段：</p>
@@ -256,15 +255,14 @@
     <a href="#%e7%bb%93%e8%af%ad" class="header-mark"></a>结语</h2><p>后扯点儿读《债务危机》和《周期》的感受，在阅读过程中，越来越觉得（其实书中也是这么说的），（金融）历史总是重复的发生着，虽然并不会完全相同的发生，但是有着固定的模式，而我们要做的，是读懂这个时代，明白我们所处在周期的哪个位置，顺应这个潮流，这样才会走向成功。</p>
 <p>本文主要讲述债务危机的大概过程，主要是《债务危机》第一节内容的总结以及自己的一些理解，作为非专业人士可能文中有些观点不太正确，如果文中有哪些观点有问题，欢迎指正。</p>
 <h2 id="附" class="headerLink">
-    <a href="#%e9%99%84" class="header-mark"></a>附</h2><p><a class="lightgallery" href="./img/overview.png" title="add" data-thumbnail="./img/overview.png">
-        <img
-            
-            loading="lazy"
-            src="./img/overview.png"
-            srcset="./img/overview.png, ./img/overview.png 1.5x, ./img/overview.png 2x"
-            sizes="auto"
-            alt="./img/overview.png">
-    </a></p></div>
+    <a href="#%e9%99%84" class="header-mark"></a>附</h2><p><figure><img
+        
+        loading="lazy"
+        src="./img/overview.png"
+        srcset="./img/overview.png, ./img/overview.png 1.5x, ./img/overview.png 2x"
+        sizes="auto"
+        alt="add"
+        title="add" ></figure></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -276,9 +274,7 @@
         </div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span></span>
-            </div>
+            <div class="post-info-share"></div>
         </div>
     </div>
 
@@ -295,7 +291,7 @@
 </article></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">

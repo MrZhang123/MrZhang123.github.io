@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -21,18 +23,19 @@
 <meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/categories/" /><link rel="alternate" href="/categories/index.xml" type="application/rss+xml" title="Raymond">
-    <link rel="feed" href="/categories/index.xml" type="application/rss+xml" title="Raymond"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <link rel="feed" href="/categories/index.xml" type="application/rss+xml" title="Raymond">
+<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
         <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
-</head>
+        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript></head>
 
 <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark');}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
         getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+        window.switchThemeEventSet = new Set()
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -43,16 +46,16 @@
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item active" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" class="menu-item theme-select" title="切换主题">
+                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                     <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
                         <option value="light">浅色</option>
@@ -76,20 +79,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" class="search-cancel" id="search-cancel-mobile">
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="#" class="menu-item theme-select" title="切换主题">
+                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
                 <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
                     <option value="light">浅色</option>
@@ -125,6 +128,25 @@
                                     <a href="/posts/2019/2019-axiosparams/" class="archive-item-link">使用Axios请求时如何传递数组？</a>
                                 </article><span class="more-post">
                                     <a href="/categories/javascript/" class="more-single-link">更多 >></a>
+                                </span></div>
+                    </div><div class="card-item">
+                        <div class="card-item-wrapper">
+                            <h3 class="card-item-title">
+                                <a href="/categories/%E6%8A%95%E8%B5%84/">
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;投资 <sup>10</sup>
+                                </a>
+                            </h3><article class="archive-item">
+                                    <a href="/posts/2023/charlie-munger/" class="archive-item-link">缅怀查理·芒格：一位智者的启示</a>
+                                </article><article class="archive-item">
+                                    <a href="/posts/2023/debt-crisis-4/" class="archive-item-link">理解债务危机 4：债务危机中常见的货币政策</a>
+                                </article><article class="archive-item">
+                                    <a href="/posts/2023/debt-crisis-3/" class="archive-item-link">理解债务危机 3：通缩性债务周期详解</a>
+                                </article><article class="archive-item">
+                                    <a href="/posts/2023/debt-crisis-2/" class="archive-item-link">理解债务危机 2：债务周期模型</a>
+                                </article><article class="archive-item">
+                                    <a href="/posts/2023/debt-crisis-1/" class="archive-item-link">理解债务危机 1：货币与银行</a>
+                                </article><span class="more-post">
+                                    <a href="/categories/%E6%8A%95%E8%B5%84/" class="more-single-link">更多 >></a>
                                 </span></div>
                     </div><div class="card-item">
                         <div class="card-item-wrapper">
@@ -197,6 +219,21 @@
                                     <a href="/posts/2016/2016-webpackvue2/" class="archive-item-link">利用webpack和vue实现组件化</a>
                                 </article><article class="archive-item">
                                     <a href="/posts/2016/2016-webpackvue1/" class="archive-item-link">webpack与vue起步</a>
+                                </article></div>
+                    </div><div class="card-item">
+                        <div class="card-item-wrapper">
+                            <h3 class="card-item-title">
+                                <a href="/categories/%E8%AF%BB%E4%B9%A6/">
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;读书 <sup>4</sup>
+                                </a>
+                            </h3><article class="archive-item">
+                                    <a href="/posts/2023/pragmatic-programmer/" class="archive-item-link">成为务实的程序员</a>
+                                </article><article class="archive-item">
+                                    <a href="/posts/2023/target/" class="archive-item-link">释放创新力：无目标之旅的成功秘密</a>
+                                </article><article class="archive-item">
+                                    <a href="/posts/2023/know-your-target/" class="archive-item-link">明确目标才能持续专注于最重要的事</a>
+                                </article><article class="archive-item">
+                                    <a href="/posts/2022/fllow-and-effect/" class="archive-item-link">“关注圈”和“影响圈”</a>
                                 </article></div>
                     </div><div class="card-item">
                         <div class="card-item-wrapper">
@@ -313,17 +350,6 @@
                     </div><div class="card-item">
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
-                                <a href="/categories/%E8%AF%BB%E4%B9%A6/">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;读书 <sup>2</sup>
-                                </a>
-                            </h3><article class="archive-item">
-                                    <a href="/posts/2023/know-your-target/" class="archive-item-link">明确目标才能持续专注于最重要的事</a>
-                                </article><article class="archive-item">
-                                    <a href="/posts/2022/fllow-and-effect/" class="archive-item-link">“关注圈”和“影响圈”</a>
-                                </article></div>
-                    </div><div class="card-item">
-                        <div class="card-item-wrapper">
-                            <h3 class="card-item-title">
                                 <a href="/categories/%E9%87%91%E8%9E%8D/">
                                     <i class="far fa-folder fa-fw"></i>&nbsp;金融 <sup>2</sup>
                                 </a>
@@ -331,6 +357,24 @@
                                     <a href="/posts/2020/2020-blance-sheet/" class="archive-item-link">学习读财报之资产负债表</a>
                                 </article><article class="archive-item">
                                     <a href="/posts/2019/2019-debtcrisisoverview/" class="archive-item-link">不可不知的债务危机</a>
+                                </article></div>
+                    </div><div class="card-item">
+                        <div class="card-item-wrapper">
+                            <h3 class="card-item-title">
+                                <a href="/categories/ai/">
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;AI <sup>1</sup>
+                                </a>
+                            </h3><article class="archive-item">
+                                    <a href="/posts/2023/aigc/" class="archive-item-link">AIGC：内容创作的新时代</a>
+                                </article></div>
+                    </div><div class="card-item">
+                        <div class="card-item-wrapper">
+                            <h3 class="card-item-title">
+                                <a href="/categories/aigc/">
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;AIGC <sup>1</sup>
+                                </a>
+                            </h3><article class="archive-item">
+                                    <a href="/posts/2023/aigc/" class="archive-item-link">AIGC：内容创作的新时代</a>
                                 </article></div>
                     </div><div class="card-item">
                         <div class="card-item-wrapper">
@@ -389,15 +433,6 @@
                     </div><div class="card-item">
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
-                                <a href="/categories/%E6%8A%95%E8%B5%84/">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;投资 <sup>1</sup>
-                                </a>
-                            </h3><article class="archive-item">
-                                    <a href="/posts/2021/2021-newenergy/" class="archive-item-link">从新能源这波行情看机构与散户的区别</a>
-                                </article></div>
-                    </div><div class="card-item">
-                        <div class="card-item-wrapper">
-                            <h3 class="card-item-title">
                                 <a href="/categories/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/">
                                     <i class="far fa-folder fa-fw"></i>&nbsp;效率提升 <sup>1</sup>
                                 </a>
@@ -443,7 +478,7 @@
                     </div></div></div></div>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.3.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
+                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
             <div class="footer-line"></div>
             <div class="footer-line">
