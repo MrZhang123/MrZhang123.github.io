@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>JS中的位置与大小 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 最近事儿比较多，一直没时间写东西，前几天又遇到关于获取元素大小的问题，每次遇到这类问题就翻书，比较费时间，所以总结一下。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2016/2016-jsposition/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2016/2016-jsposition/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="JS中的位置与大小">
+  <meta property="og:description" content="最近事儿比较多，一直没时间写东西，前几天又遇到关于获取元素大小的问题，每次遇到这类问题就翻书，比较费时间，所以总结一下。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2016-08-03T00:06:31+00:00">
+    <meta property="article:modified_time" content="2016-08-03T00:06:31+00:00">
+    <meta property="article:tag" content="Javascript">
+
+  <meta itemprop="name" content="JS中的位置与大小">
+  <meta itemprop="description" content="最近事儿比较多，一直没时间写东西，前几天又遇到关于获取元素大小的问题，每次遇到这类问题就翻书，比较费时间，所以总结一下。">
+  <meta itemprop="datePublished" content="2016-08-03T00:06:31+00:00">
+  <meta itemprop="dateModified" content="2016-08-03T00:06:31+00:00">
+  <meta itemprop="wordCount" content="1136">
+  <meta itemprop="keywords" content="Javascript">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JS中的位置与大小">
+  <meta name="twitter:description" content="最近事儿比较多，一直没时间写东西，前几天又遇到关于获取元素大小的问题，每次遇到这类问题就翻书，比较费时间，所以总结一下。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">JS中的位置与大小</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-08-03 </span>
+        <div class="post-category">
+            <a href="/categories/javascript/"> Javascript </a>
+            </div>
+          <span class="more-meta"> 1136 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#1元素的偏移量">1.元素的偏移量</a></li>
+            <li><a href="#2客户区大小">2.客户区大小</a></li>
+            <li><a href="#3滚动大小">3.滚动大小</a></li>
+            <li><a href="#4窗口大小">4.窗口大小</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>最近事儿比较多，一直没时间写东西，前几天又遇到关于获取元素大小的问题，每次遇到这类问题就翻书，比较费时间，所以总结一下。</p>
+</blockquote>
+<h3 id="1元素的偏移量">1.元素的偏移量</h3>
+<p>元素的偏移量包括元素在屏幕上占用的所有可见的空间。元素的可见大小由其高度、宽度决定，包括所有内边距、滚动条和边框大小（注意：这里并不包括外边距）。</p>
+<p><img src="./img/offset_table.PNG" alt="icon"></p>
+<p><img src="./img/offset.PNG" alt="icon"></p>
+<h3 id="2客户区大小">2.客户区大小</h3>
+<p>元素的客户区大小指的是元素内容机器内边距占据空间的大小。</p>
+<p><img src="./img/client_table.PNG" alt="icon"></p>
+<p><img src="./img/client.PNG" alt="icon"></p>
+<p>要确定浏览器可见窗口的大小，可以使用<code>document.documentElement</code>或<code>document.body</code>（IE7之前的版本中）。</p>
+<p>从以上两个我们可以看出元素偏移量（offset）与客户区大小（client）的区别在于<strong>有没有包含边框</strong>，客户区大小不包含边框。</p>
+<h3 id="3滚动大小">3.滚动大小</h3>
+<p><img src="./img/scroll_table.PNG" alt="icon"></p>
+<p><code>scrollWidth</code>和<code>scrollHeight</code>主要用于确定元素内容的实际大小。所以带有垂直滚动条的页面总高度就是<code>document.documentElement.scrollHeight</code>。</p>
+<p><img src="./img/scroll.PNG" alt="icon"></p>
+<h3 id="4窗口大小">4.窗口大小</h3>
+<p>在现代主流浏览器中提供了四个属性确定窗口的大小，分别为：<code>innerWidth</code>、<code>innerHeight</code>、<code>outerWidth</code>和<code>outerHeight</code>。</p>
+<h4 id="41-outerwidth和outerheight">4.1. outerWidth和outerHeight</h4>
+<p>返回浏览器窗口本身的尺寸（无论是从外层的window对象还是从某个框架访问）</p>
+<h4 id="42-innerwidth和innerheight">4.2. innerWidth和innerHeight</h4>
+<p>返回该容器中页面试图去的大小（减去边框宽度）</p>
+<p><strong>注意：</strong></p>
+<p>这里在《javascript高级程序设计》（第三版）中写道在chrome中outer与inner返回的值是一样的，这算是chrome的一个bug，我在chrome 53中已经修复，但是在QQ浏览器中（内核为chromium47）依旧是相等的，这需要注意！
+<code>clientWidth</code>和<code>clientHeight</code>。</p>
+<p>在主流浏览器中，<code>document.docuementElement.clientWidth</code>和<code>document.documentElement.clientHeight</code>中保存的是页面视口信息。返回的值与<code>window.innerHeight</code>，<code>window.innerWidth</code>一样。
+但是<code>window.innerHeight</code>在IE8及以下浏览器中结果是<code>undefined</code>，而<code>document.documentElement.clientHeight</code>还有值。所以在各个浏览器下取得页面视口大小的代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">pageWidth</span><span class="o">=</span><span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">pageHeight</span><span class="o">=</span><span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">pageWidth</span> <span class="o">!==</span> <span class="s1">&#39;number&#39;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">compatMode</span> <span class="o">===</span> <span class="s1">&#39;CSS1Compat&#39;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pageWidth</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pageHeight</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pageWidth</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientWidth</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">pageHeight</span><span class="o">=</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">clientHeight</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>    
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>代码中<code>document.compatMode</code>用于判断浏览器处于什么模式，它有两个值：
+<code>BackCompat</code>:浏览器处于怪异模式
+<code>CSS1Compat</code>:浏览器处于标准模式
+不同模式下，获取浏览器的宽度的方法不同，在代码中已经做了判断。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-08-03
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">Javascript</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2016/2016-jsstring/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Javascript中字符串方法总结</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2016/2016-jsarray/">
+            <span class="next-text nav-default">Javascript中Array方法的总结</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

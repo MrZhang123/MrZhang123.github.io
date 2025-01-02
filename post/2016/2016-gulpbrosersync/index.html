@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Gulp&#43;BroserSync实现浏览器自动刷新 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2016/2016-gulpbrosersync/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2016/2016-gulpbrosersync/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="Gulp&#43;BroserSync实现浏览器自动刷新">
+  <meta property="og:description" content="在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2016-05-16T22:10:39+00:00">
+    <meta property="article:modified_time" content="2016-05-16T22:10:39+00:00">
+    <meta property="article:tag" content="Gulp">
+
+  <meta itemprop="name" content="Gulp&#43;BroserSync实现浏览器自动刷新">
+  <meta itemprop="description" content="在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。">
+  <meta itemprop="datePublished" content="2016-05-16T22:10:39+00:00">
+  <meta itemprop="dateModified" content="2016-05-16T22:10:39+00:00">
+  <meta itemprop="wordCount" content="1909">
+  <meta itemprop="keywords" content="Gulp">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gulp&#43;BroserSync实现浏览器自动刷新">
+  <meta name="twitter:description" content="在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Gulp&#43;BroserSync实现浏览器自动刷新</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-05-16 </span>
+        <div class="post-category">
+            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7/"> 前端工具 </a>
+            </div>
+          <span class="more-meta"> 1909 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#gulp">Gulp</a></li>
+            <li><a href="#brosersync">broserSync</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>在写前端代码的时候，我们为了看效果，需要一直按F5进行刷新，这样做很繁琐而且非常浪费时间，在网上搜过后发现很多关于自动刷新的办法，这里我介绍的是基于gulp和broserSync实现浏览器的自动刷新，即只要编辑器保存，浏览器就会自动刷新。</p>
+<p>那么gulp，broserSync是什么呢？</p>
+<h3 id="gulp">Gulp</h3>
+<p>Gulp是一个前端自动化工具，基于nodejs，和grunt差不多，但是比grunt语法更加简单，语法更加自然。在gulp的插件中，我们可以找到自动刷新，压缩图片/代码/等等各类工具，方便我们的使用，并且gulp的任务是流（pipe），即一个任务完成后，紧接的另一个任务开始进行。gulp的使用如下：</p>
+<h4 id="1安装gulp">1.安装gulp</h4>
+<ol>
+<li>全局安装gulp：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">global</span> <span class="nx">gulp</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>作为项目的开发依赖（devDependencies）安装：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">gulp</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>生成package.json</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">init</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><font color=red>注意：</font>
+这里官网只是写让这么安装，但是需要注意，两个安装不是第一步第二步，而是第一种方式或者第二种方式，两种方式任选其一。第一种安装方式是全局安装，即安装后，整个电脑无论哪个项目都可以使用。对应的，第二个表示安装到对应项目中，即如果在window的cmd命令行进入对应项目A的目录，则运行npm install &ndash;save-dev gulp后，安装的gulp只能在该文件夹下使用，其他文件夹下的其他文件都无法使用。
+其实不只是gulp，gulp的插件也是这样，要么全局安装，要么安装在项目中。一般情况下，gulp会全局安装，但是由于每个项目用到的gulp插件不同，所以可能需要局部安装gulp插件。
+安装完成gulp之后，会在安装gulp的文件夹下生成node_modules文件夹。此时，在与该文件夹同层创建gulpfile.js这就是用于配置gulp插件的文件。</p>
+<h4 id="2恢复gulp">2.恢复gulp</h4>
+<p>随着我们gulp插件的改变，package.json会自动变化，同时我们的配置文件gulpfile.js也会对应变化（自己手动配置）。他们可以把我们安装的gulp给备份，如果我们在电脑A中安装完我们的工具，然后换了一台电脑B，我们只需要把电脑A中package.json与gulpfile.js复制到B电脑，然后在安装完gulp后，运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>gulp就会自动把我们在package.json中的所有gulp插件全部安装回来，非常方便。</p>
+<h3 id="brosersync">broserSync</h3>
+<p>broserSync（以下简称bs）是一款非常优秀的自动刷新工具，本身可以独立使用，也可以配合gulp或者grunt一起使用，非常不错的一款插件。
+当你改变代码的时候，BrowserSync会重新加载页面，或者如果是css文件，会直接添加进css中，页面并不需要再次刷新。这项功能在网站是禁止刷新的时候是很有用的。假设你正在开发单页应用的第4页，刷新页面就会导致你回到开始页。BrowserSync会直接将需要修改的地方添加进CSS，就不用再点击回退。同时，BrowserSync也可以在不同浏览器之间同步点击翻页、表单操作、滚动位置。你可以在电脑和iPhone上打开不同的浏览器然后进行操作。所有设备上的链接将会随之变化，当你向下滚动页面时，所有设备上页面都会向下滚动（通常还很流畅！）。当你在表单中输入文本时，每个窗口都会有输入。当你不想要这种行为时，也可以把这个功能关闭。
+实际上bs对于gulp并不算是一种插件，因为bs并不像一个插件一样操作文件。然而，npm上的bs模块能在gulp上被直接调用。</p>
+<h4 id="1安装brosersync">1.安装broserSync</h4>
+<p>进入需要使用bs的目录，运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span><span class="o">-</span><span class="nx">dev</span> <span class="nx">broser</span><span class="o">-</span><span class="nx">sync</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2配置brosersync">2.配置broserSync</h4>
+<p>bs本身可以打开本地静态服务器，也可以代理像wamp这样的服务器。</p>
+<h5 id="21-代理其他服务器">2.1 代理其他服务器</h5>
+<p>打开我们新建的gulpfile.js，配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*browserSync*/</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">gulp</span>        <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">browserSync</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;browser-sync&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s2">&#34;watch&#34;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">browserSync</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="cm">/*这里的files写的是需要监控的文件的位置*/</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">files</span><span class="o">:</span><span class="p">[</span>             
+</span></span><span class="line"><span class="cl">             <span class="s2">&#34;./Home/View/PC/**/*.html&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="s2">&#34;./public/group/css/*.css&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">             <span class="s2">&#34;./public/group/js/*.js&#34;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">],</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">logLevel</span><span class="o">:</span> <span class="s2">&#34;debug&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">logPrefix</span><span class="o">:</span><span class="s2">&#34;insgeek&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="cm">/*这里的proxy写的是需要代理的服务器，我自己的wamp启动的是localhost:80*/</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">proxy</span><span class="o">:</span><span class="s2">&#34;localhost:80&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">ghostMode</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	        <span class="nx">clicks</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	        <span class="nx">forms</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	        <span class="nx">scroll</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">	     <span class="p">},</span>
+</span></span><span class="line"><span class="cl">         <span class="cm">/*这里写的是代理后，bs在哪个端口打开*/</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">port</span><span class="o">:</span> <span class="mi">81</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="cm">/*这里设置的是bs运行时打开的浏览器名称*/</span>
+</span></span><span class="line"><span class="cl">	     <span class="nx">browser</span><span class="o">:</span> <span class="s2">&#34;chrome&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h5 id="22-启动静态服务器">2.2 启动静态服务器</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">gulp</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;gulp&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">browserSync</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;browser-sync&#39;</span><span class="p">).</span><span class="nx">create</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reload</span> <span class="o">=</span> <span class="nx">browserSync</span><span class="p">.</span><span class="nx">reload</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*实时监控*/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">gulp</span><span class="p">.</span><span class="nx">task</span><span class="p">(</span><span class="s2">&#34;watch&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">browserSync</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">files</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;./work/*/*.html&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;./work/*/*.css&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;./work/*/*.js&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">],</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">logLevel</span><span class="o">:</span> <span class="s2">&#34;debug&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">logPrefix</span><span class="o">:</span> <span class="s2">&#34;insgeek&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">server</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="cm">/*这里写的是html文件相对于根目录所在的文件夹*/</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">baseDir</span><span class="o">:</span> <span class="s2">&#34;./work/statement&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="cm">/*这里如果不写，默认启动的是index.html，如果是其他名字，需要这里写*/</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// index: &#34;insurance_template_statement.html&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ghostMode</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">clicks</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">forms</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">scroll</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">browser</span><span class="o">:</span> <span class="s2">&#34;chrome&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成上述配置后，可以在cmd命令行切换到工作目录，运行gulp watch启动broserSync。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-05-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/gulp/">gulp</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2016/2016-verticalalign-1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">慕课网---深入理解vertical-align总结</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2016/2016-textalgin/">
+            <span class="next-text nav-default">text-algin:justify实现文本两端对齐</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

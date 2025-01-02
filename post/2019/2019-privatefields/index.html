@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>「译」ES 草案：class私有属性 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 原文链接：https://2ality.com/2019/07/private-class-fields.html
+class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：
+公有class属性 私有class属性 " /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2019/2019-privatefields/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2019/2019-privatefields/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="「译」ES 草案：class私有属性">
+  <meta property="og:description" content="原文链接：https://2ality.com/2019/07/private-class-fields.html
+class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：
+公有class属性 私有class属性">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2019-07-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-21T00:00:00+00:00">
+    <meta property="article:tag" content="Javascript">
+
+  <meta itemprop="name" content="「译」ES 草案：class私有属性">
+  <meta itemprop="description" content="原文链接：https://2ality.com/2019/07/private-class-fields.html
+class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：
+公有class属性 私有class属性">
+  <meta itemprop="datePublished" content="2019-07-21T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2019-07-21T00:00:00+00:00">
+  <meta itemprop="wordCount" content="2645">
+  <meta itemprop="keywords" content="Javascript">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="「译」ES 草案：class私有属性">
+  <meta name="twitter:description" content="原文链接：https://2ality.com/2019/07/private-class-fields.html
+class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：
+公有class属性 私有class属性">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">「译」ES 草案：class私有属性</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-21 </span>
+        <div class="post-category">
+            <a href="/categories/javascript/"> JavaScript </a>
+            </div>
+          <span class="more-meta"> 2645 words </span>
+          <span class="more-meta"> 6 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1概览">1.概览</a>
+          <ul>
+            <li><a href="#11-静态私有属性">1.1 静态私有属性</a></li>
+            <li><a href="#12-实例私有属性">1.2 实例私有属性</a></li>
+          </ul>
+        </li>
+        <li><a href="#2-从下划线到实例私有属性">2. 从下划线到实例私有属性</a>
+          <ul>
+            <li><a href="#21-从下划线开始">2.1 从下划线开始</a></li>
+            <li><a href="#22-切换到实例私有属性">2.2 切换到实例私有属性</a></li>
+          </ul>
+        </li>
+        <li><a href="#3-类主体内的所有代码都可以访问私有属性">3. 类主体内的所有代码都可以访问私有属性</a></li>
+        <li><a href="#4高级">4.（高级）</a></li>
+        <li><a href="#5-深入理解私有属性">5. 深入理解私有属性</a></li>
+        <li><a href="#6-陷阱使用this访问私有静态属性">6. 陷阱：使用<code>this</code>访问私有静态属性</a>
+          <ul>
+            <li><a href="#61-this和静态公有变量">6.1 <code>this</code>和静态公有变量</a></li>
+            <li><a href="#62-this和私有静态属性">6.2 <code>this</code>和私有静态属性</a></li>
+          </ul>
+        </li>
+        <li><a href="#7-友好和被保护的隐私">7. “友好”和“被保护的”隐私</a></li>
+        <li><a href="#8-faq">8. FAQ</a>
+          <ul>
+            <li><a href="#81-为什么是为什么不通过private属性声明私有属性">8.1 为什么是<code>#</code>？为什么不通过<code>private</code>属性声明私有属性？</a></li>
+          </ul>
+        </li>
+        <li><a href="#key-word">key word</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>原文链接：https://2ality.com/2019/07/private-class-fields.html</p>
+</blockquote>
+<p>class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：</p>
+<ol>
+<li><a href="https://2ality.com/2019/07/public-class-fields.html">公有class属性</a></li>
+<li>私有class属性</li>
+</ol>
+<p>在这篇文章中，我们看看<em>私有属性</em>，在类和实例中的一种新的私有插槽。这个功能是ES草案<a href="https://github.com/tc39/proposal-class-fields">“JavaScript类属性声明”</a>的一部分。</p>
+<h2 id="1概览">1.概览</h2>
+<p>Private fields是一种与属性不同的新的数据插槽。它们只能在它们声明的class body内直接访问。</p>
+<h3 id="11-静态私有属性">1.1 静态私有属性</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 声明并初始化静态私有属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">static</span> <span class="err">#</span><span class="nx">privateStaticField</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="nx">getPrivateStaticField</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">MyClass</span><span class="p">.</span><span class="err">#</span><span class="nx">privateStaticField</span><span class="p">;</span> <span class="c1">// (A)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="kr">throws</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">()</span> <span class="p">=&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;MyClass.#privateStaticField&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;SyntaxError&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Undefined private field undefined:&#39;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39; must be declared in an enclosing class&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">MyClass</span><span class="p">.</span><span class="nx">getPrivateStaticField</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>小窍门：永远不要用<code>this</code>来访问一个静态私有属性，直接使用类名访问即可（就像A行那样）。为什么会在本文后面解释。</p>
+<h3 id="12-实例私有属性">1.2 实例私有属性</h3>
+<p>使用带有初始值的私有属性（等号后面跟值）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 声明并初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="err">#</span><span class="nx">privateInstanceField</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">getPrivateInstanceField</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">privateInstanceField</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="kr">throws</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">()</span> <span class="p">=&gt;</span> <span class="nb">eval</span><span class="p">(</span><span class="s1">&#39;new MyClass().#privateInstanceField&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;SyntaxError&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Undefined private field undefined:&#39;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39; must be declared in an enclosing class&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="k">new</span> <span class="nx">MyClass</span><span class="p">().</span><span class="nx">getPrivateInstanceField</span><span class="p">(),</span> <span class="mi">2</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用未初始化的实例私有属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">DataStore</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="err">#</span><span class="nx">data</span><span class="p">;</span> <span class="c1">// 必须声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">constructor</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">getData</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="nx">deepEqual</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Reflect</span><span class="p">.</span><span class="nx">ownKeys</span><span class="p">(</span><span class="k">new</span> <span class="nx">DataStore</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[]);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-从下划线到实例私有属性">2. 从下划线到实例私有属性</h2>
+<p>在JavaScript中保持数据私有的公共约定是使用带有下划线的属性名。在这个部分，我们从使用这个约定的代码开始，然后更改它，到使用实例私有属性。</p>
+<h3 id="21-从下划线开始">2.1 从下划线开始</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Countdown</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">_counter</span> <span class="o">=</span> <span class="nx">counter</span><span class="p">;</span> <span class="c1">// private
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">this</span><span class="p">.</span><span class="nx">_action</span> <span class="o">=</span> <span class="nx">action</span><span class="p">;</span> <span class="c1">// private
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">dec</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_counter</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">_counter</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_counter</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">_action</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 变量并非真正的私有
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">assert</span><span class="p">.</span><span class="nx">deepEqual</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Reflect</span><span class="p">.</span><span class="nx">ownKeys</span><span class="p">(</span><span class="k">new</span> <span class="nx">Countdown</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{})),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="s1">&#39;_counter&#39;</span><span class="p">,</span> <span class="s1">&#39;_action&#39;</span><span class="p">]);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个约定并没有给我们任何保护；它仅仅建议使用这个类的用户：不要使用这些属性，它们是私有的。</p>
+<h3 id="22-切换到实例私有属性">2.2 切换到实例私有属性</h3>
+<p>我们可以用实例私有属性代替下划线：</p>
+<ol>
+<li>我们用哈希符<code>#</code>替换每一个下划线<code>_</code>。</li>
+<li>我们在类的顶部声明所有的私有属性。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Countdown</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="err">#</span><span class="nx">counter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="err">#</span><span class="nx">action</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">counter</span> <span class="o">=</span> <span class="nx">counter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">action</span> <span class="o">=</span> <span class="nx">action</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">dec</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">counter</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">counter</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">counter</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">action</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// The data is now private:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">assert</span><span class="p">.</span><span class="nx">deepEqual</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Reflect</span><span class="p">.</span><span class="nx">ownKeys</span><span class="p">(</span><span class="k">new</span> <span class="nx">Countdown</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{})),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[]);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-类主体内的所有代码都可以访问私有属性">3. 类主体内的所有代码都可以访问私有属性</h2>
+<p>例如，实例方法可以访问静态私有属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="err">#</span><span class="nx">privateStaticField</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">getPrivateFieldOfClass</span><span class="p">(</span><span class="nx">theClass</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">theClass</span><span class="p">.</span><span class="err">#</span><span class="nx">privateStaticField</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="k">new</span> <span class="nx">MyClass</span><span class="p">().</span><span class="nx">getPrivateFieldOfClass</span><span class="p">(</span><span class="nx">MyClass</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一个静态方法可以访问实例私有属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="err">#</span><span class="nx">privateInstanceField</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="nx">getPrivateFieldOfInstance</span><span class="p">(</span><span class="nx">theInstance</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">theInstance</span><span class="p">.</span><span class="err">#</span><span class="nx">privateInstanceField</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">MyClass</span><span class="p">.</span><span class="nx">getPrivateFieldOfInstance</span><span class="p">(</span><span class="k">new</span> <span class="nx">MyClass</span><span class="p">()),</span> <span class="mi">2</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4高级">4.（高级）</h2>
+<p>剩余部分是关于类的私有属性的高级用法</p>
+<h2 id="5-深入理解私有属性">5. 深入理解私有属性</h2>
+<p>在规范中，私有属性通过附加到对象上的数据结构进行管理。私有属性的大致处理过程如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Private names
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">_counter</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">__Description__</span><span class="o">:</span> <span class="s1">&#39;counter&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">__Kind__</span><span class="o">:</span> <span class="s1">&#39;field&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">_action</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">__Description__</span><span class="o">:</span> <span class="s1">&#39;action&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">__Kind__</span><span class="o">:</span> <span class="s1">&#39;field&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">class</span> <span class="nb">Object</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// Maps private names to values
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">__PrivateFieldValues__</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">class</span> <span class="nx">Countdown</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">constructor</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">__PrivateFieldValues__</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">_counter</span><span class="p">,</span> <span class="nx">counter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">__PrivateFieldValues__</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">_action</span><span class="p">,</span> <span class="nx">action</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">dec</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">__PrivateFieldValues__</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">_counter</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="k">this</span><span class="p">.</span><span class="nx">__PrivateFieldValues__</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">_counter</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">__PrivateFieldValues__</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">_counter</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">__PrivateFieldValues__</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">_counter</span><span class="p">)</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="p">.</span><span class="nx">__PrivateFieldValues__</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">_action</span><span class="p">)();</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里有两点很重要：</p>
+<ul>
+<li><em>私有名称</em>是唯一的key。它们只能在class内访问。</li>
+<li><em>私有属性的值</em>是一个<strong>私有名称(key)=&gt;值(value)的字典</strong>。每个拥有私有属性的实例都有这样一个字典。只能通过私有变量的key访问其value。</li>
+</ul>
+<p>意义：</p>
+<ul>
+<li>在类<code>Countdown</code>中，只能访问存储在<code>.#counter</code> 和 <code>#action</code> 的私有数据——因为在这个类中你只有这两个私有变量。</li>
+<li>私有属性不能被子类访问。</li>
+</ul>
+<h2 id="6-陷阱使用this访问私有静态属性">6. 陷阱：使用<code>this</code>访问私有静态属性</h2>
+<p><strong>你可以使用<code>this</code>访问公有静态属性，但是你不应该使用它访问私有静态属性。</strong></p>
+<h3 id="61-this和静态公有变量">6.1 <code>this</code>和静态公有变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">SuperClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="nx">publicData</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="nx">getPublicViaThis</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">publicData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">SubClass</span> <span class="kr">extends</span> <span class="nx">SuperClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>公有静态属性（Public static fields）是属性。如果我们用一个方法调用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">SuperClass</span><span class="p">.</span><span class="nx">getPublicViaThis</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>this</code>指向<code>SuperClass</code>，一切都按照我们预想的那样工作。我们也可以通过子类调用<code>.getPublicViaThis()</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">SubClass</span><span class="p">.</span><span class="nx">getPublicViaThis</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>SubClass</code>继承了<code>.getPublicViaThis()</code>方法，<code>this</code>指向<code>SubClass</code>，代码依旧可以运用，因为<code>SubClass</code>也继承了<code>.publicData</code>。</p>
+<p>（注：在这种情况下设置<code>.publicData</code>会在<code>SubClass</code>上创建新的属性，这个属性不会覆盖在<code>SuperClass</code>上定义的属性）</p>
+<h3 id="62-this和私有静态属性">6.2 <code>this</code>和私有静态属性</h3>
+<p>考虑这段代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">SuperClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="err">#</span><span class="nx">privateData</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="nx">getPrivateViaThis</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">privateData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">static</span> <span class="nx">getPrivateViaClassName</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">SuperClass</span><span class="p">.</span><span class="err">#</span><span class="nx">privateData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">SubClass</span> <span class="kr">extends</span> <span class="nx">SuperClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过<code>SuperClass</code>可以调用<code>.getPrivateViaThis()</code>，因为<code>this</code>指向<code>SuperClass</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">SuperClass</span><span class="p">.</span><span class="nx">getPrivateViaThis</span><span class="p">(),</span> <span class="mi">2</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然而，通过<code>SubClass</code>无法调用<code>.getPrivateViaThis()</code>，因为此时<code>this</code>指向<code>SubClass</code>，而<code>SubClass</code>没有私有静态变量<code>.#privateData</code>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="kr">throws</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">SubClass</span><span class="p">.</span><span class="nx">getPrivateViaThis</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;TypeError&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Read of private field #privateData from&#39;</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39; an object which did not contain the field&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>解决办法是直接通过<code>SuperClass</code>访问<code>.#privateData</code>，就像<code>SuperClass</code>中的<code>getPrivateViaClassName</code>方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">assert</span><span class="p">.</span><span class="nx">equal</span><span class="p">(</span><span class="nx">SubClass</span><span class="p">.</span><span class="nx">getPrivateViaClassName</span><span class="p">(),</span> <span class="mi">2</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7-友好和被保护的隐私">7. “友好”和“被保护的”隐私</h2>
+<p>有时候我们想要某些实体成为某一类的“朋友”。这个朋友应该可以访问calss的私有数据（译者注：这里其实就是想控制哪些可以访问私有属性，哪些不可以）。在以下代码中，函数<code>getCounter()</code>是类<code>Countdown</code>的朋友。我们通过使用<code>WeakMaps</code>生成私有数据，这样<code>Countdown</code>就允许朋友们访问该数据。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">_counter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WeakMap</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">_action</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WeakMap</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">Countdown</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">counter</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_counter</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">counter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_action</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">action</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">dec</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">counter</span> <span class="o">=</span> <span class="nx">_counter</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">counter</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">counter</span><span class="o">--</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">_counter</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">counter</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">counter</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">_action</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">)();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">getCounter</span><span class="p">(</span><span class="nx">countdown</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">counter</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">countdown</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就很容易控制哪些可以访问私有数据：如果它们可以使用<code>_counter</code>和<code>_action</code>，它们就可以访问私有数据。如果我们将前面的代码片段放到一个模块中，那么数据在整个模块中是私有的。</p>
+<p>有关此技术的更多信息，可以查看Sect的“<a href="https://exploringjs.com/impatient-js/ch_weakmaps.html#private-data-in-weakmaps">使用<code>WeakMaps</code>保持私有数据</a>”。这同样适用于在superclass和subclass之间共享私有数据（“被保护”的可见度）。</p>
+<h2 id="8-faq">8. FAQ</h2>
+<h3 id="81-为什么是为什么不通过private属性声明私有属性">8.1 为什么是<code>#</code>？为什么不通过<code>private</code>属性声明私有属性？</h3>
+<p>原则上，私有属性应该用如下方式声明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">MyClass</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">private</span> <span class="nx">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">compare</span><span class="p">(</span><span class="nx">other</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">value</span> <span class="o">===</span> <span class="nx">other</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是我们不能在整个class内的任何地方使用属性名值——它们总是被解释为私有变量。</p>
+<p>静态类型语言，例如TypeScript在这方面具有更多的灵活性：它们在编译的时候就知道是否是MyClass的一个实例并且可以是否将<code>.value</code>作为一个私有变量对待。</p>
+<h2 id="key-word">key word</h2>
+<ul>
+<li>class私有属性（private class fields）</li>
+<li>静态私有属性（private static fields）</li>
+<li>实例私有属性（private instance fields）</li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-07-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">JavaScript</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019/2019-debtcrisisoverview/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">不可不知的债务危机</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019/2019-leetcode-romantoint/">
+            <span class="next-text nav-default">Roman To Int</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

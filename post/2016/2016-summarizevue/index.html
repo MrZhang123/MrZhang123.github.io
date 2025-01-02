@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Vuejs的一些总结 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 最近一段时间忙着工作的一些事情，同时自己也在试着把项目中的一些移动端页面试着用vuejs重写，所以没时间写文章，今天终于有空可以写一下，由于页面并没有写完，所以就将自己这几天做页面的时候遇到的一些问题总结了一下。其实很多在官网都能找到，但是我们只看官网教程不去写，很难理解到底是什么意思，这里我把我用到的列出来。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2016/2016-summarizevue/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2016/2016-summarizevue/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="Vuejs的一些总结">
+  <meta property="og:description" content="最近一段时间忙着工作的一些事情，同时自己也在试着把项目中的一些移动端页面试着用vuejs重写，所以没时间写文章，今天终于有空可以写一下，由于页面并没有写完，所以就将自己这几天做页面的时候遇到的一些问题总结了一下。其实很多在官网都能找到，但是我们只看官网教程不去写，很难理解到底是什么意思，这里我把我用到的列出来。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2016-07-14T00:07:45+00:00">
+    <meta property="article:modified_time" content="2016-07-14T00:07:45+00:00">
+    <meta property="article:tag" content="Vue">
+
+  <meta itemprop="name" content="Vuejs的一些总结">
+  <meta itemprop="description" content="最近一段时间忙着工作的一些事情，同时自己也在试着把项目中的一些移动端页面试着用vuejs重写，所以没时间写文章，今天终于有空可以写一下，由于页面并没有写完，所以就将自己这几天做页面的时候遇到的一些问题总结了一下。其实很多在官网都能找到，但是我们只看官网教程不去写，很难理解到底是什么意思，这里我把我用到的列出来。">
+  <meta itemprop="datePublished" content="2016-07-14T00:07:45+00:00">
+  <meta itemprop="dateModified" content="2016-07-14T00:07:45+00:00">
+  <meta itemprop="wordCount" content="3088">
+  <meta itemprop="keywords" content="Vue">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Vuejs的一些总结">
+  <meta name="twitter:description" content="最近一段时间忙着工作的一些事情，同时自己也在试着把项目中的一些移动端页面试着用vuejs重写，所以没时间写文章，今天终于有空可以写一下，由于页面并没有写完，所以就将自己这几天做页面的时候遇到的一些问题总结了一下。其实很多在官网都能找到，但是我们只看官网教程不去写，很难理解到底是什么意思，这里我把我用到的列出来。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Vuejs的一些总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-07-14 </span>
+        <div class="post-category">
+            <a href="/categories/vue/"> Vue </a>
+            </div>
+          <span class="more-meta"> 3088 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1vuejs组件">1.Vuejs组件</a></li>
+        <li><a href="#2指令keep-alive">2.指令keep-alive</a></li>
+        <li><a href="#3如何让css只在当前组件中起作用">3.如何让css只在当前组件中起作用</a></li>
+        <li><a href="#4vuejs循环插入图片">4.vuejs循环插入图片</a></li>
+        <li><a href="#5绑定value到vue实例的一个动态属性上">5.绑定value到Vue实例的一个动态属性上</a></li>
+        <li><a href="#6片段实例">6.片段实例</a></li>
+        <li><a href="#7路由嵌套">7.路由嵌套</a></li>
+        <li><a href="#8实现多个根据不同条件显示不同文字的方法">8.实现多个根据不同条件显示不同文字的方法</a></li>
+        <li><a href="#9vuejs在变化检测问题">9.Vuejs在变化检测问题</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#10关于vuejs页面闪烁message">10.关于vuejs页面闪烁<code>{{message}}</code></a></li>
+        <li><a href="#11关于在v-for循环时候v-model的使用">11.关于在<code>v-for</code>循环时候<code>v-model</code>的使用</a></li>
+        <li><a href="#12vuejs中过渡动画">12.vuejs中过渡动画</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>最近一段时间忙着工作的一些事情，同时自己也在试着把项目中的一些移动端页面试着用vuejs重写，所以没时间写文章，今天终于有空可以写一下，由于页面并没有写完，所以就将自己这几天做页面的时候遇到的一些问题总结了一下。其实很多在官网都能找到，但是我们只看官网教程不去写，很难理解到底是什么意思，这里我把我用到的列出来。</p>
+</blockquote>
+<p>文章中提到的很多东西都在我的demo中用到，<a href="https://github.com/MrZhang123/Vue_project/tree/master/vue_spa_demo">demo地址</a></p>
+<h2 id="1vuejs组件">1.Vuejs组件</h2>
+<p>vuejs构建组件使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;componentName&#39;</span><span class="p">,{</span> <span class="cm">/*component*/</span> <span class="p">})</span><span class="err">；</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里注意一点，组件要先注册再使用，也就是说：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">Vue</span><span class="p">.</span><span class="nx">component</span><span class="p">(</span><span class="s1">&#39;mine&#39;</span><span class="p">,{</span>
+</span></span><span class="line"><span class="cl">           <span class="nx">template</span><span class="o">:</span><span class="s1">&#39;#mineTpl&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="nx">props</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span><span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;city&#39;</span><span class="p">,</span><span class="s1">&#39;content&#39;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="kd">var</span> <span class="nx">v</span><span class="o">=</span><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">el</span><span class="o">:</span><span class="s1">&#39;#vueInstance&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">name</span><span class="o">:</span><span class="s1">&#39;zhang&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">title</span><span class="o">:</span><span class="s1">&#39;this is title&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">city</span><span class="o">:</span><span class="s1">&#39;Beijing&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">         <span class="nx">content</span><span class="o">:</span><span class="s1">&#39;these are some desc about Blog&#39;</span>
+</span></span><span class="line"><span class="cl">     <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果反过来会报错，因为反过来代表先使用了组件的，但是组件却没注册。</p>
+<blockquote>
+<p>webpack报错后，使用<code>webpack --display-error-details</code>可以排错</p>
+</blockquote>
+<h2 id="2指令keep-alive">2.指令keep-alive</h2>
+<p>在看demo的时候看到在vue-router写着<code>keep-alive</code>，<code>keep-alive</code>的含义：
+如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。为此可以添加一个keep-alive指令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">component</span> <span class="o">:</span><span class="nx">is</span><span class="o">=</span><span class="s1">&#39;curremtView&#39;</span> <span class="nx">keep</span><span class="o">-</span><span class="nx">alive</span><span class="o">&gt;&lt;</span><span class="err">/component&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3如何让css只在当前组件中起作用">3.如何让css只在当前组件中起作用</h2>
+<p>在每一个vue组件中都可以定义各自的css，js，如果希望组件内写的css只对当前组件起作用，只需要在<code>style</code>中写入<code>scoped</code>，即：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nt">style</span> <span class="nt">scoped</span><span class="o">&gt;&lt;/</span><span class="nt">style</span><span class="o">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4vuejs循环插入图片">4.vuejs循环插入图片</h2>
+<p>在写循环的时候，写入如下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;bio-slide&#34;</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&#34;item in items&#34;</span><span class="p">&gt;</span>   
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;{{item.image}}&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时在控制台会出现警告
+<code>[Vue Warn]: src=&quot;{{item.image}}&quot;: interpolation in &quot;src&quot; attribute will cause a 404 request. Use v-bind:src instead.</code>这里意思是在“src”属性插值将导致404请求。使用v-bind：src代替。
+所以替换成如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;bio-slide&#34;</span> <span class="na">v-for</span><span class="o">=</span><span class="s">&#34;item in items&#34;</span><span class="p">&gt;</span>   
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">img</span> <span class="na">v-bind:src</span><span class="o">=</span><span class="s">&#34;item.image&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里需要主要，v-bind在写的时候不能再用双花括号，根据官方的说法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">v-bind:href</span><span class="o">=</span><span class="s">&#34;url&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>这里<code>href</code>是参数，它告诉 <code>v-bind </code>指令将元素的 <code>href </code>特性跟表达式 url 的值绑定。可能你已注意到可以用特性插值<code> href=&quot;{{url}}&quot;</code> 获得同样的结果：这样没错，并且实际上在内部特性插值会转为<code> v-bind</code> 绑定。</p>
+</blockquote>
+<h2 id="5绑定value到vue实例的一个动态属性上">5.绑定value到Vue实例的一个动态属性上</h2>
+<p>对于单选按钮，勾选框及选择框选项，<code>v-model</code>绑定的value通常是静态字符串（对于勾选框是逻辑值）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- `toggle` 为 true 或 false --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;checkbox&#34;</span> <span class="na">v-model</span><span class="o">=</span><span class="s">&#34;toggle&#34;</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是有时候想绑定value到vue实例的一个动态属性上，这时可以用<code>v-bind</code>实现，并且这个属性的值可以不是字符串。例如绑定Checkbox的value到vue实例的一个动态属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">input</span> 
+</span></span><span class="line"><span class="cl">	<span class="na">type</span><span class="o">=</span><span class="s">&#34;checkbox&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="na">v-model</span><span class="o">=</span><span class="s">&#34;toggle&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="na">v-bind:true-value</span><span class="o">=</span><span class="s">&#34;a&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="na">v-bind:false-value</span><span class="o">=</span><span class="s">&#34;b&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{toggle}}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里绑定后，并不是说就可以点击后由<code>true</code>,<code>false</code>的切换变为<code>a</code>,<code>b</code>的切换，因为这里定义的动态a，b是scope上的a,b，并不能直接显示出来，此时</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">//当选中时
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">vm</span><span class="p">.</span><span class="nx">toggle</span> <span class="o">===</span> <span class="nx">vm</span><span class="p">.</span><span class="nx">a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//当没选中时
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">vm</span><span class="p">.</span><span class="nx">toggle</span> <span class="o">===</span> <span class="nx">vm</span><span class="p">.</span><span class="nx">b</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以此时需要在data中定义a,b，即：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">el</span><span class="o">:</span><span class="s1">&#39;...&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">a</span><span class="o">:</span><span class="s1">&#39;a&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">b</span><span class="o">:</span><span class="s1">&#39;b&#39;</span>    
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6片段实例">6.片段实例</h2>
+<p>下面几种情况会让实例变成一个片断实例：</p>
+<ol>
+<li>模板包含多个顶级元素。</li>
+<li>模板只包含普通文本。</li>
+<li>模板只包含其它组件（其它组件可能是一个片段实例）。</li>
+<li>模板只包含一个元素指令，如<code>&lt;partial&gt;</code> 或<code> vue-router</code> 的 <code>&lt;router-view&gt;</code>。</li>
+<li>模板根节点有一个流程控制指令，如<code>v-if</code>或<code> v-for</code>。</li>
+</ol>
+<p>这些情况让实例有未知数量的顶级元素，它将把它的 DOM 内容当作片断。片断实例仍然会正确地渲染内容。不过，它<strong>没有</strong>一个根节点，它的<code>$el</code> 指向一个锚节点，即一个空的文本节点（在开发模式下是一个注释节点）。
+但是更重要的是，<strong>组件元素上的非流程控制指令，非 prop 特性和过渡将被忽略</strong>，因为没有根元素供绑定：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- 不可以，因为没有根元素 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">example</span> <span class="na">v-show</span><span class="o">=</span><span class="s">&#34;ok&#34;</span> <span class="na">transition</span><span class="o">=</span><span class="s">&#34;fade&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">example</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- props 可以 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">example</span> <span class="na">:prop</span><span class="o">=</span><span class="s">&#34;someData&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">example</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 流程控制可以，但是不能有过渡 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">example</span> <span class="na">v-if</span><span class="o">=</span><span class="s">&#34;ok&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">example</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>片段实例</strong>也有用处，但是通常情况下组件有一个根节点比较好，它会保证组件元素上的指令和特性能正确的转换，同时性能也稍微好些。</p>
+<h2 id="7路由嵌套">7.路由嵌套</h2>
+<p><strong>路由嵌套会将其他组件渲染到该组件内，而不是进行整个页面跳转</strong><code>router-view</code>本身就是将组件渲染到该位置，想要进行页面跳转，就要将页面渲染到根组件，在起始配置路由时候写到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">App</span> <span class="o">=</span> <span class="nx">Vue</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span> <span class="nx">root</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="nx">router</span><span class="p">.</span><span class="nx">start</span><span class="p">(</span><span class="nx">App</span><span class="p">,</span><span class="s1">&#39;#app&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里首先将根组件注册进来，用于将路由中配置好的各个页面渲染出来，然后将根组件挂载到与#app匹配的元素上。</p>
+<h2 id="8实现多个根据不同条件显示不同文字的方法">8.实现多个根据不同条件显示不同文字的方法</h2>
+<p><code>v-if</code>,<code>v-else</code>可以实现条件选择，但是如果是多个连续的条件选择，则需要用到计算属性<code>computed</code>。例如实现当输入框中什么都没写的时候显示字符串‘empty’,否则显示输入框中的内容，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;test&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text&#34;</span> <span class="na">v-model</span><span class="o">=</span><span class="s">&#34;inputValue&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{changeVaule}}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">el</span><span class="o">:</span><span class="s1">&#39;#test&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">changeVaule</span><span class="o">:</span><span class="s1">&#39;123&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">computed</span> <span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">changeVaule</span><span class="o">:</span><span class="kd">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">inputValue</span><span class="o">!==</span><span class="s1">&#39;&#39;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">inputValue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;empty&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="9vuejs在变化检测问题">9.Vuejs在变化检测问题</h2>
+<h4 id="1检测数组">1.检测数组</h4>
+<p>由于javascript的限制，vuejs不能检测到下面数组的变化：</p>
+<ol>
+<li>直接索引设置元素，如<code>vm.item[0]={}</code>;</li>
+<li>修改数据的长度，如<code>vm.item.length</code>。</li>
+</ol>
+<p>为了解决问题1，Vuejs扩展了观察数组，为它添加一个<code>$set()</code>方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 与 `example1.items[0] = ...` 相同，但是能触发视图更新
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">example1</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">$set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">{</span> <span class="nx">childMsg</span><span class="o">:</span> <span class="s1">&#39;Changed!&#39;</span><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>问题2，需要一个空数组替换<code>items</code>。</p>
+<p>除了<code>$set()</code>，vuejs也为观察数组添加了<code>$remove()</code>方法，用于从目标数组中查找并删除元素，在内部调用了<code>splice()</code>。因此，不必：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">index</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">index</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">index</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>只需：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">this</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">$remove</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2检测对象">2.检测对象</h4>
+<p>受ES5的显示，Vuejs<strong>不能检测到对象属性的添加或删除</strong>。因为Vuejs在初始化时候将属性转化为<code>getter/setter</code>，所以属性必须在<code>data</code>对象才能让Vuejs转换它，才能让它是响应的，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">data</span><span class="o">:</span> <span class="nx">data</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// `vm.a` 和 `data.a` 现在是响应的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 
+</span></span><span class="line"><span class="cl"><span class="nx">vm</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// `vm.b` 不是响应的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 
+</span></span><span class="line"><span class="cl"><span class="nx">data</span><span class="p">.</span><span class="nx">b</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// `data.b` 不是响应的
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>不过，有办法在实例创建之后添加属性并且让它是响应的。对于Vue实例，可以使用<code>$set(key,value)</code>实例方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">vm</span><span class="p">.</span><span class="nx">$set</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// `vm.b` 和 `data.b` 现在是响应的
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于普通数据对象，可以使用全局方法<code>Vue.set(object, key, value)</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">Vue</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// `vm.c` 和 `data.c` 现在是响应的
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>有时你想向已有对象上添加一些属性，例如使用 <code>Object.assign()</code> 或 <code>_.extend()</code> 添加属性。但是，添加到对象上的新属性不会触发更新。这时可以创建一个新的对象，包含原对象的属性和新的属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 不使用 `Object.assign(this.someObject, { a: 1, b: 2 })`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">this</span><span class="p">.</span><span class="nx">someObject</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="k">this</span><span class="p">.</span><span class="nx">someObject</span><span class="p">,</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span> <span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="10关于vuejs页面闪烁message">10.关于vuejs页面闪烁<code>{{message}}</code></h2>
+<p>在vuejs指令中有<code>v-cloak</code>，这个指令保持在元素上直到关联实例结束编译。和CSS规则如<code>[v-cloak]{display:none}</code>一起用时，这个指令可以隐藏未编译的Mustache标签直到实例准备完毕。用法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="o">[</span><span class="nt">v-cloak</span><span class="o">]</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">div</span> <span class="na">v-cloak</span><span class="p">&gt;</span>{{message}}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样<code>&lt;div&gt;</code>不会显示，直到编译结束</p>
+<h2 id="11关于在v-for循环时候v-model的使用">11.关于在<code>v-for</code>循环时候<code>v-model</code>的使用</h2>
+<p>有时候需要循环生成<code>input</code>，用<code>v-model</code>绑定后，利用vuejs操作它，此时我们可以在<code>v-model</code>中写一个数组<code>selected[$index]</code>，这样就可以给不同的input绑定不同的<code>v-model</code>，从而分别操作他们。这个我在demo中的dataBind.vue中用到。</p>
+<h2 id="12vuejs中过渡动画">12.vuejs中过渡动画</h2>
+<p>在vuejs中，css定义动画：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl">  <span class="p">.</span><span class="nc">zoom-transition</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">width</span><span class="p">:</span><span class="mi">60</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">height</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">left</span><span class="p">:</span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">top</span><span class="p">:</span><span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">transform</span><span class="p">:</span> <span class="nb">translate</span><span class="p">(</span><span class="mi">-50</span><span class="kt">%</span><span class="p">,</span><span class="mi">-50</span><span class="kt">%</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kp">-webkit-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span> <span class="kc">ease</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">transition</span><span class="p">:</span> <span class="kc">all</span> <span class="mf">.3</span><span class="kt">s</span> <span class="kc">ease</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nc">zoom-enter</span><span class="o">,</span> <span class="p">.</span><span class="nc">zoom-leave</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">width</span><span class="p">:</span><span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">height</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">left</span><span class="p">:</span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">top</span><span class="p">:</span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">transform</span><span class="p">:</span> <span class="nb">translate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中动画在定的时候要注意上下对应，上面有什么，下面有什么，都要变化的，如果有不变化的，应该抽离出去，作为公共css样式，在上面的css中，如果我只写<code> transform: translate(-50%,-50%);</code>而不写下面的<code>transform: translate(0,0);</code>则会导致上面的<code>transform: translate(-50%,-50%);</code>被添加到下面，认为这个是不变的。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-07-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/vue/">Vue</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2016/2016-jsarray/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Javascript中Array方法的总结</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2016/2016-summarizejune/">
+            <span class="next-text nav-default">六月总结</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

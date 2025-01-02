@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>从零开始搭建React应用（二）——React应用架构 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="上一篇文章——从零开始搭建 React 应用（一）——基础搭建讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2018/2018-reactproject2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2018/2018-reactproject2/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="从零开始搭建React应用（二）——React应用架构">
+  <meta property="og:description" content="上一篇文章——从零开始搭建 React 应用（一）——基础搭建讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2018-07-18T10:28:51+00:00">
+    <meta property="article:modified_time" content="2018-07-18T10:28:51+00:00">
+    <meta property="article:tag" content="React">
+
+  <meta itemprop="name" content="从零开始搭建React应用（二）——React应用架构">
+  <meta itemprop="description" content="上一篇文章——从零开始搭建 React 应用（一）——基础搭建讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。">
+  <meta itemprop="datePublished" content="2018-07-18T10:28:51+00:00">
+  <meta itemprop="dateModified" content="2018-07-18T10:28:51+00:00">
+  <meta itemprop="wordCount" content="6362">
+  <meta itemprop="keywords" content="React">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="从零开始搭建React应用（二）——React应用架构">
+  <meta name="twitter:description" content="上一篇文章——从零开始搭建 React 应用（一）——基础搭建讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">从零开始搭建React应用（二）——React应用架构</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-07-18 </span>
+        <div class="post-category">
+            <a href="/categories/react/"> React </a>
+            </div>
+          <span class="more-meta"> 6362 words </span>
+          <span class="more-meta"> 13 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#redux">redux</a>
+          <ul>
+            <li><a href="#中间件redux-middleware">中间件（Redux middleware）</a></li>
+            <li><a href="#增强器store-enhancer">增强器（Store enhancer）</a></li>
+            <li><a href="#react-redux">react-redux</a></li>
+            <li><a href="#整合-redux-到-react-应用">整合 redux 到 react 应用</a></li>
+          </ul>
+        </li>
+        <li><a href="#react-router">React Router</a>
+          <ul>
+            <li><a href="#redux-与-react-router">redux 与 react router</a></li>
+            <li><a href="#将-redux-与-react-router-深度整合">将 redux 与 react-router 深度整合</a></li>
+            <li><a href="#react-router-config">react-router-config</a></li>
+          </ul>
+        </li>
+        <li><a href="#添加模块热替换hot-module-replacement">添加模块热替换(Hot Module Replacement)</a>
+          <ul>
+            <li><a href="#启用-hmr">启用 HMR</a></li>
+            <li><a href="#添加-react-hot-loader">添加 react-hot-loader</a></li>
+          </ul>
+        </li>
+        <li><a href="#异步加载组件code-splitting">异步加载组件（Code Splitting）</a></li>
+        <li><a href="#异步任务流管理">异步任务流管理</a>
+          <ul>
+            <li><a href="#实现异步操作的思路">实现异步操作的思路</a></li>
+            <li><a href="#redux-thunk">redux-thunk</a></li>
+          </ul>
+        </li>
+        <li><a href="#开发调试工具">开发调试工具</a>
+          <ul>
+            <li><a href="#redux-devtools-extension">redux-devtools-extension</a></li>
+          </ul>
+        </li>
+        <li><a href="#写在最后">写在最后</a></li>
+        <li><a href="#附">附</a>
+          <ul>
+            <li><a href="#关键字">关键字：</a></li>
+            <li><a href="#部分用到的库">部分用到的库</a></li>
+            <li><a href="#参考">参考</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>上一篇文章——<a href="https://juejin.im/post/5af6857651882542682e4843">从零开始搭建 React 应用（一）——基础搭建</a>讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。</p>
+<p>仓库地址：<a href="https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack">https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack</a></p>
+<h2 id="redux">redux</h2>
+<p>在我们开发过程中，很多时候，我们需要让组件共享某些数据，虽然可以通过组件传递数据实现数据共享，但是如果组件之间不是父子关系的话，数据传递是非常麻烦的，而且容易让代码的可读性降低，这时候我们就需要一个 state（状态）管理工具。常见的状态管理工具有 redux，mobx，这里选择 redux 进行状态管理。值得注意的是 React 16.3 带来了全新的<a href="https://doc.react-china.org/docs/context.html">Context API</a>，我们也可以使用新的 Context API 做状态管理。</p>
+<blockquote>
+<p>Redux 是 JavaScript 状态容器，提供可预测化的状态管理。可以让你构建一致化的应用，运行于不同的环境（客户端、服务器、原生应用），并且易于测试。不仅于此，它还提供非常好的开发体验，比如有一个时间旅行调试器可以编辑后实时预览。</p>
+</blockquote>
+<p>redux 的数据流如下图所示：</p>
+<p><img src="./redux-flow.jpg" alt="Redux数据流"></p>
+<p>redux 的三大原则：</p>
+<ol>
+<li>整个应用的<code>state</code>都被存储在一颗 object tree 中，并且这个 object tree 只存在于唯一的 store 中，但是这并不意味使用 redux 就需要将所有的 state 存到 redux 上。</li>
+<li><strong>state 是只读的</strong>，唯一改变 state 的方式是出发<code>action</code>，<code>action</code>是一个用于描述已发生事件的普通对象。</li>
+<li><strong>使用纯函数来执行修改</strong>，为了描述 action 如何改变 state tree，需要编写 reducers。</li>
+</ol>
+<h3 id="中间件redux-middleware">中间件（Redux middleware）</h3>
+<p>Redux middleware <strong>提供位于 action 发起之后，到达 reducer 之前的扩展点</strong>。dispatch 发起的 action 依次经过中间件，最终到达 reducer。我们可以利用 Redux middleware 来进行日志记录、创建崩溃报告、调用异步接口或者路由等等。<strong>本质上来讲中间件只是拓展了 <code>store.dispatch</code> 方法</strong>。</p>
+<h3 id="增强器store-enhancer">增强器（Store enhancer）</h3>
+<p>store enhancer 用于增强 store 的功能，一个 store enhancer 实际上就是一个高阶函数，返回一个新的强化过的 store creator。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">logEnhancer</span> <span class="o">=</span> <span class="nx">createStore</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">reducer</span><span class="p">,</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">enhancer</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">reducer</span><span class="p">,</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">enhancer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">action</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`dispatch an action: </span><span class="si">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">action</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">action</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">newState</span> <span class="o">=</span> <span class="nx">store</span><span class="p">.</span><span class="nx">getState</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`current state: </span><span class="si">${</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">newState</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">res</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">{</span> <span class="p">...</span><span class="nx">store</span><span class="p">,</span> <span class="nx">dispatch</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以看到<code>logEnhancer</code>改变了 store 的默认行为，在每次<code>dispatch</code>前后，都会输出日志。</p>
+<p><img src="./redux-middleware-enhancer.png" alt="Redux中间件增强器示意图"></p>
+<h3 id="react-redux">react-redux</h3>
+<p>redux 本身是一个状态 JS 的状态库，可以结合 react，vue，angular 甚至是原生 JS 应用使用，为了让 redux 帮我们管理 react 应用的状态，需要把 redux 与 react 连接，官方提供了<a href="https://github.com/reduxjs/react-redux">react-redux</a>库。</p>
+<p><strong>react-redux 提供<code>Provider</code>组件通过 context 的方式向应用注入 store，然后组件使用<code>connect</code>高阶方法获取并监听 store，然后根据 store state 和组件自身的 props 计算得到新的 props，注入该组件，并且可以通过监听 store，比较计算出的新 props 判断是否需要更新组件。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">render</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">Provider</span> <span class="nx">store</span><span class="o">=</span><span class="p">{</span><span class="nx">store</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">ConnectedRouter</span> <span class="nx">history</span><span class="o">=</span><span class="p">{</span><span class="nx">history</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/ConnectedRouter&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="err">/Provider&gt;,</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="整合-redux-到-react-应用">整合 redux 到 react 应用</h3>
+<h4 id="合并-reducer">合并 reducer</h4>
+<p>在一个 react 应用中只有一个 store，组件通过调用 action 函数，传递数据到 reducer，reducer 根据数据更改对应的 state。但是随着应用复杂度的提升，reducer 也会变得越来越大，此时可以考虑将 reducer 拆分成多个单独的函数，拆分后的每个函数负责独立管理 state 的一部分。</p>
+<p>redux 提供<code>combineReducers</code>辅助函数，将分散的 reducer 合并成一个最终的 reducer 函数，然后在 createStore 的时候使用。</p>
+<h4 id="整合-middleware">整合 middleware</h4>
+<p>有时候我们需要多个 middleware 组合在一起形成 middleware 链来增强<code>store.dispatch</code>，在创建 store 时候，我们需要将 middleware 链整合到 store 中，官方提供<code>applyMiddleware(...middleware)</code>将 middleware 链在一起。</p>
+<h4 id="整合-store-enhancer">整合 store enhancer</h4>
+<p>store enhancer 用于增强 store，如果我们有多个 store enhancer 时需要将多个 store enhancer 整合，这时候就会用到<code>compose(...functions)</code>。</p>
+<p>使用<code>compose</code>合并多个函数，每个函数都接受一个参数，它的返回值将作为一个参数提供给它左边的函数以此类推，最右边的函数可以接受多个参数。<code>compose(funA,funB,funC)</code>可以理解为<code>compose(funA(funB(funC())))</code>，最终返回从右到左姐收到的函数合并后的最终函数。</p>
+<h4 id="创建-store">创建 Store</h4>
+<p>redux 通过<code>createStore</code>创建一个 Redux store 来以存放应用中所有的 <code>state</code>，<code>createStore</code>的参数形式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">createStore</span><span class="p">(</span><span class="nx">reducer</span><span class="p">,</span> <span class="p">[</span><span class="nx">preloadedState</span><span class="p">],</span> <span class="nx">enhancer</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以我们创建 store 的代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">thunk</span> <span class="nx">from</span> <span class="s1">&#39;redux-thunk&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span><span class="p">,</span> <span class="nx">applyMiddleware</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">reducers</span> <span class="nx">from</span> <span class="s1">&#39;../reducers&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">reducers</span><span class="p">,</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">applyMiddleware</span><span class="p">(</span><span class="nx">thunk</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">store</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后将创建的 store 通过<code>Provider</code>组件注入 react 应用即可将 redux 与 react 应用整合在一起。</p>
+<p><strong>注：应用中应有且仅有一个 store</strong>。</p>
+<h2 id="react-router">React Router</h2>
+<p>React Router 是完整的 React 的路由解决方案，它保持 UI 与 URL 的同步。项目中我们整合最新版的 React Router v4。</p>
+<p>在 react-router v4 中 react-router 被划分为三个包：react-router，react-router-dom 和 react-router-native，区别如下：</p>
+<ul>
+<li>react-router：提供核心路由组件和函数</li>
+<li>react-router-dom：供浏览器使用的 react router</li>
+<li>react-router-native：供 react native 使用的 react router</li>
+</ul>
+<h3 id="redux-与-react-router">redux 与 react router</h3>
+<p>React Router 与 Redux 一起使用时大部分情况下都是正常的，但是偶尔会出现路由更新但是子路由或活动导航链接没有更新。这个情况发生在：</p>
+<ol>
+<li>组件通过<code>connect()(Comp)</code>连接 redux。</li>
+<li>组件不是一个“路由组件”，即组件并没有像<code>&lt;Route component={SomeConnectedThing} /&gt;</code>这样渲染。</li>
+</ol>
+<p>这个问题的原因是 Redux 实现了<code>shouldComponentUpdate</code>，当路由变化时，该组件并没有接收到 props 更新。</p>
+<p>解决这个问题的方法很简单，找到<code>connect</code>并且将它用<code>withRouter</code>包裹：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// before
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">export</span> <span class="k">default</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">mapStateToProps</span><span class="p">)(</span><span class="nx">Something</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// after
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">withRouter</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">withRouter</span><span class="p">(</span><span class="nx">connect</span><span class="p">(</span><span class="nx">mapStateToProps</span><span class="p">)(</span><span class="nx">Something</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="将-redux-与-react-router-深度整合">将 redux 与 react-router 深度整合</h3>
+<p>有时候我们可能希望将 redux 与 react router 进行更深度的整合，实现：</p>
+<ul>
+<li>将 router 的数据与 store 同步，并且从 store 访问</li>
+<li>通过 dispatch actions 导航</li>
+<li>在 redux devtools 中支持路由改变的时间旅行调试</li>
+</ul>
+<p>这些可以通过 connected-react-router 和 history 两个库将 react-router 与 redux 进行深度整合实现。</p>
+<blockquote>
+<p>官方文档中提到的是 react-router-redux，并且它已经被整合到了 react-router v4 中，但是根据 react-router-redux 的文档，该仓库不再维护，推荐使用 connected-react-router。</p>
+</blockquote>
+<p>首先安装 connected-react-router 和 history 两个库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">$ npm install --save connected-react-router
+</span></span><span class="line"><span class="cl">$ npm install --save <span class="nb">history</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后给 store 添加如下配置：</p>
+<ul>
+<li>创建<code>history</code>对象，因为我们的应用是浏览器端，所以使用<code>createBrowserHistory</code>创建</li>
+<li>使用<code>connectRouter</code>包裹 root reducer 并且提供我们创建的<code>history</code>对象，获得新的 root reducer</li>
+<li>使用<code>routerMiddleware(history)</code>实现使用 dispatch history actions，这样就可以使用<code>push('/path/to/somewhere')</code>去改变路由（这里的 push 是来自 connected-react-router 的）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">thunk</span> <span class="nx">from</span> <span class="s1">&#39;redux-thunk&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createBrowserHistory</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;history&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span><span class="p">,</span> <span class="nx">applyMiddleware</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">connectRouter</span><span class="p">,</span> <span class="nx">routerMiddleware</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;connected-react-router&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">reducers</span> <span class="nx">from</span> <span class="s1">&#39;../reducers&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="nx">createBrowserHistory</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">connectRouter</span><span class="p">(</span><span class="nx">history</span><span class="p">)(</span><span class="nx">reducers</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">initialState</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">applyMiddleware</span><span class="p">(</span><span class="nx">thunk</span><span class="p">,</span> <span class="nx">routerMiddleware</span><span class="p">(</span><span class="nx">history</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">store</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在根组件中，我们添加如下配置：</p>
+<ul>
+<li>使用<code>ConnectedRouter</code>包裹路由，并且将 store 中创建的<code>history</code>对象引入，作为 props 传入应用</li>
+<li><code>ConnectedRouter</code>组件要作为<code>Provider</code>的子组件</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">Provider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">ConnectedRouter</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;connected-react-router&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">App</span> <span class="nx">from</span> <span class="s1">&#39;./App&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">store</span> <span class="nx">from</span> <span class="s1">&#39;./redux/store&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">history</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./redux/store&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">render</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">Provider</span> <span class="nx">store</span><span class="o">=</span><span class="p">{</span><span class="nx">store</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">ConnectedRouter</span> <span class="nx">history</span><span class="o">=</span><span class="p">{</span><span class="nx">history</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/ConnectedRouter&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="err">/Provider&gt;,</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样我们就将 redux 与 react-router 整合完毕。</p>
+<h4 id="使用dispatch切换路由">使用dispatch切换路由</h4>
+<p>完成以上配置后，就可以使用<code>dispatch</code>切换路由了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">push</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-redux&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Now you can dispatch navigation actions from anywhere!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">push</span><span class="p">(</span><span class="s1">&#39;/about&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="react-router-config">react-router-config</h3>
+<h4 id="react-router-v4-之前静态路由">react-router v4 之前——静态路由</h4>
+<p>在 react-router v4 之前的版本中，我们可以直接使用静态路由来配置应用程序的路由，它允许在渲染之前对路由进行检查和匹配。</p>
+<p>在 router.js 中一般会有这样的代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">Router</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;/&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">App</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;about&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">About</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;users&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">Users</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;/user/:userId&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">User</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="err">/Route&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;*&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">NoMatch</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/Route&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="err">/Router&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">routes</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在初始化的时候把路由导入，然后渲染：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">routes</span> <span class="nx">from</span> <span class="s1">&#39;./config/routes&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">routes</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="react-router-v4动态路由">react-router v4——动态路由</h4>
+<p>从 v4 版本开始，react-router 使用动态组件代替路径配置，即 <strong>react-router 就是 react 应用的一个普通组件</strong>，随用随写，不必像之前那样，路由跟组件分离。因此 react 应用添加 react-router，首先引入我们需要的东西。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">BrowserRouter</span> <span class="nx">as</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">Link</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里我们将<code>BrowserRouter</code>引入并重新命名为<code>Router</code>，<strong><code>BrowserRouter</code>允许 react-router 将应用的路由信息通过<code>context</code>传递给任何需要的组件</strong>。因此要让 react-router 正常工作，需要在应用程序的根结点中渲染<code>BrowserRouter</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">BrowserRouter</span> <span class="nx">as</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">Link</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Router</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">&lt;</span><span class="nx">Link</span> <span class="nx">to</span><span class="o">=</span><span class="s2">&#34;/&#34;</span><span class="o">&gt;</span><span class="nx">Home</span><span class="o">&lt;</span><span class="err">/Link&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">&lt;</span><span class="nx">hr</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">exact</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;/&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">Home</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="err">/Router&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以还使用了<code>Route</code>，当应用程序的 location 匹配到某个路由时，<code>Route</code>将渲染制定的 component，否则渲染<code>null</code>。</p>
+<p>想要加入更多的路由，添加<code>Route</code>组件即可，但是这样的写法也许我们会感觉到有点儿乱，因为毕竟路由被分散到组件各处，很难像以前那样很容易的看到整个应用的路由，而且如果项目之前是用的 react-router v4 之前的版本，那么升级 v4 也是成本很大的，官方为解决该问题，提供了专门用来处理静态路由配置的库——react-router-config。</p>
+<h4 id="添加-react-router-config-实现使用静态路由">添加 react-router-config 实现使用静态路由</h4>
+<p>添加了 react-router-config 之后，我们就可以写我们熟悉的静态路由了。同时，利用它，可以将路由配置分散在各个组件中，最后使用<code>renderRoutes</code>将分散的路由片段在根组件合并，渲染即可。</p>
+<p>配置静态路由：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">Home</span> <span class="nx">from</span> <span class="s1">&#39;./views/Home&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">About</span> <span class="nx">from</span> <span class="s1">&#39;./views/About&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">exact</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">component</span><span class="o">:</span> <span class="nx">Home</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">component</span><span class="o">:</span> <span class="nx">About</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">routes</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在根组件中合并，渲染：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">renderRoutes</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-config&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">HomeRoute</span> <span class="nx">from</span> <span class="s1">&#39;./views/Home/router&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">AboutRoute</span> <span class="nx">from</span> <span class="s1">&#39;./views/About/router&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 合并路由
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">HomeRoute</span><span class="p">,</span> <span class="p">...</span><span class="nx">AboutRoute</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Router</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&#34;screen&#34;</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">renderRoutes</span><span class="p">(</span><span class="nx">routes</span><span class="p">)}</span><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="err">/Router&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>renderRoutes</code>其实帮我们做了类似的事儿：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">Router</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;/&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">App</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;about&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">About</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;users&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">Users</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;/user/:userId&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">User</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="err">/Route&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&#34;*&#34;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">NoMatch</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/Route&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="err">/Router&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样就给 React 应用添加了静态路由。</p>
+<h2 id="添加模块热替换hot-module-replacement">添加模块热替换(Hot Module Replacement)</h2>
+<p>模块热替换（HMR）功能会在应用程序运行过程中替换、添加或删除模块，而无需重新加载整个页面。主要通过以下几种方式：</p>
+<ul>
+<li>保留在完全重新加载页面时丢失的应用状态</li>
+<li>只更新变更的内容以节省开发时间</li>
+<li>更改样式不需要刷新页面</li>
+</ul>
+<p>在开发模式中，HMR 可以替代 LiveReload，webpack-dev-server 支持<code>hot</code>模式，在试图重新加载整个页面之前，<code>hot</code>模式尝试使用 HMR 来更新。</p>
+<h3 id="启用-hmr">启用 HMR</h3>
+<p>在 webpack 配置文件中添加 HMR 插件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span><span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">HotModuleReplacementPlugin</span><span class="p">(),</span> <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">NamedModulesPlugin</span><span class="p">()]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里添加的<code>NamedModulesPlugin</code>插件，</p>
+<p>设置 webpack-dev-server 开启<code>hot</code>模式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebpackDevServer</span><span class="p">(</span><span class="nx">compiler</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span>  <span class="nx">hot</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// noInfo: true,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">quiet</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">historyApiFallback</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">filename</span><span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">output</span><span class="p">.</span><span class="nx">filename</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">publicPath</span><span class="o">:</span> <span class="nx">config</span><span class="p">.</span><span class="nx">output</span><span class="p">.</span><span class="nx">publicPath</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">stats</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">colors</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样，当修改 react 代码的时候，页面会自动刷新，修改 css 文件，页面不刷新，直接呈现样式。</p>
+<p>但是会发现一个问题，页面的自动刷新会导致我们 react 组件的状态丢失，那么能否做到更改 react 组件像更改 css 文件那样，页面不刷新（保存页面的状态），直接替换呢？答案是肯定的，可以使用 react-hot-loader。</p>
+<h3 id="添加-react-hot-loader">添加 react-hot-loader</h3>
+<p>添加 react-hot-loader 非常简单，只需要在根组件导出的时候添加高阶方法<code>hot</code>即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">hot</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-hot-loader&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">hot</span><span class="p">(</span><span class="nx">module</span><span class="p">)(</span><span class="nx">App</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样，整个应用在开发时候就可以修改 react 组件而保持状态了。</p>
+<p><strong>注：</strong></p>
+<p>在开发过程中，查阅了一些文章说，为了配合 redux，需要在 store.js 中添加如下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;development&#39;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="nx">module</span><span class="p">.</span><span class="nx">hot</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">module</span><span class="p">.</span><span class="nx">hot</span><span class="p">.</span><span class="nx">accept</span><span class="p">(</span><span class="s1">&#39;../reducers/index.js&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// const nextReducer = combineReducers(require(&#39;../reducers&#39;))
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="c1">// store.replaceReducer(nextReducer)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">store</span><span class="p">.</span><span class="nx">replaceReducer</span><span class="p">(</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../reducers/index.js&#39;</span><span class="p">).</span><span class="k">default</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是，在 react-hot-loader v4 中，是不需要的，直接添加<code>hot</code>就可以了。</p>
+<h2 id="异步加载组件code-splitting">异步加载组件（Code Splitting）</h2>
+<p>完成以上配置后，我们的主体已经搭建的差不多了，但是当打开开发者工具会发现，应用开始加载的时候直接把整个应用的 JS 全部加载进来，但是我们期望进入哪个页面加载哪个页面的代码，那么如何实现应用的 Code Splitting 呢？</p>
+<p>其实实现 React Code Splitting 的库有很多，例如：</p>
+<ul>
+<li><a href="https://github.com/smooth-code/loadable-components/">Loadable Components</a></li>
+<li><a href="https://github.com/theKashey/react-imported-component">Imported Component</a></li>
+<li><a href="https://github.com/faceyspacey/react-universal-component">React Universal Component</a></li>
+<li><a href="https://github.com/jamiebuilds/react-loadable">React-Loadable</a></li>
+</ul>
+<p>选用其中之一即可，我项目中选用的是 react-loadable。</p>
+<p>之前我们已经在项目中配置了静态路由，组件是直接引入的，我们只需要对之前的直接引入的组件做处理就可以，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">loadable</span> <span class="nx">from</span> <span class="s1">&#39;react-loadable&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">Loading</span> <span class="nx">from</span> <span class="s1">&#39;../../components/Loading&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">Home</span> <span class="o">=</span> <span class="nx">loadable</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">loader</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="kr">import</span><span class="p">(</span><span class="s1">&#39;./Home&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">loading</span><span class="o">:</span> <span class="nx">Loading</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">About</span> <span class="o">=</span> <span class="nx">loadable</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">loader</span><span class="o">:</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="kr">import</span><span class="p">(</span><span class="s1">&#39;./About&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">loading</span><span class="o">:</span> <span class="nx">Loading</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">routes</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">exact</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">component</span><span class="o">:</span> <span class="nx">Home</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">path</span><span class="o">:</span> <span class="s1">&#39;/about&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">component</span><span class="o">:</span> <span class="nx">About</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">routes</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="异步任务流管理">异步任务流管理</h2>
+<h3 id="实现异步操作的思路">实现异步操作的思路</h3>
+<p>大部分情况下我们的应用中都是同步操作，即 dispatch action 时，state 会被立即更新，但是有些时候我们需要做异步操作。同步操作只要发出一种 Action 即可，但是异步操作需要发出三种 Acion。</p>
+<ul>
+<li>操作发起时的 Action</li>
+<li>操作成功时的 Action</li>
+<li>操作失败时的 Action</li>
+</ul>
+<p>为了区分这三种 action，可能在 action 里添加一个专门的<code>status</code>字段作为标记位：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;FETCH_POSTS&#39;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;FETCH_POSTS&#39;</span><span class="p">,</span> <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="o">:</span> <span class="s1">&#39;Oops&#39;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;FETCH_POSTS&#39;</span><span class="p">,</span> <span class="nx">status</span><span class="o">:</span> <span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="nx">response</span><span class="o">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者为它们定义不同的 type：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;FETCH_POSTS_REQUEST&#39;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;FETCH_POSTS_FAILURE&#39;</span><span class="p">,</span> <span class="nx">error</span><span class="o">:</span> <span class="s1">&#39;Oops&#39;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;FETCH_POSTS_SUCCESS&#39;</span><span class="p">,</span> <span class="nx">response</span><span class="o">:</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span> <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所以想要实现异步操作需要做到：</p>
+<ul>
+<li>操作开始时，发出一个 Action，触发 State 更新为“正在操作”，View 重新渲染</li>
+<li>操作结束后，再发出一个 Action，触发 State 更新为“操作结束”，View 再次重新渲染</li>
+</ul>
+<h3 id="redux-thunk">redux-thunk</h3>
+<p>异步操作至少送出两个 Action，第一个 Action 跟同步操作一样，直接送出即可，那么如何送出第二个 Action 呢？</p>
+<p>我们可以在送出第一个 Action 的时候送一个 Action Creator 函数，这样第二个 Action 可以在异步执行完成后自动送出。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">(</span><span class="nx">fetchPosts</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在组件加载成功后，送出一个 Action 用来请求数据，这里的<code>fetchPosts</code>就是 Action Creator。fetchPosts 代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">SET_DEMO_DATA</span> <span class="o">=</span> <span class="nx">createActionSet</span><span class="p">(</span><span class="s1">&#39;SET_DEMO_DATA&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">fetchPosts</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="kr">async</span> <span class="p">(</span><span class="nx">dispatch</span><span class="p">,</span> <span class="nx">getState</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">SET_DEMO_DATA</span><span class="p">.</span><span class="nx">PENDING</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">await</span> <span class="nx">axios</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;https://jsonplaceholder.typicode.com/users&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="p">=&gt;</span> <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">SET_DEMO_DATA</span><span class="p">.</span><span class="nx">SUCCESS</span><span class="p">,</span> <span class="nx">payload</span><span class="o">:</span> <span class="nx">response</span> <span class="p">}))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="nx">store</span><span class="p">.</span><span class="nx">dispatch</span><span class="p">({</span> <span class="nx">type</span><span class="o">:</span> <span class="nx">SET_DEMO_DATA</span><span class="p">.</span><span class="nx">ERROR</span><span class="p">,</span> <span class="nx">payload</span><span class="o">:</span> <span class="nx">err</span> <span class="p">}))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>fetchPosts</code>是一个 Action Creator，执行返回一个函数，该函数执行时<code>dispatch</code>一个 action，表明马上要进行异步操作；异步执行完成后，根据请求结果的不同，分别<code>dispatch</code>不同的 action 将异步操作的结果返回回来。</p>
+<p>这里需要说明几点：</p>
+<ol>
+<li><code>fetchPosts</code>返回了一个函数，而普通的 Action Creator 默认返回一个对象。</li>
+<li>返回的函数的参数是<code>dispatch</code>和<code>getState</code>这两个 Redux 方法，普通的 Action Creator 的参数是 Action 的内容。</li>
+<li>在返回的函数之中，先发出一个 <code>store.dispatch({type: SET_DEMO_DATA.PENDING})</code>，表示异步操作开始。</li>
+<li>异步操作结束之后，再发出一个 <code>store.dispatch({ type: SET_DEMO_DATA.SUCCESS, payload: response })</code>，表示操作结束。</li>
+</ol>
+<p>但是有一个问题，<code>store.dispatch</code>正常情况下，只能发送对象，而我们要发送函数，为了让<code>store.dispatch</code>可以发送函数，我们使用中间件——redux-thunk。</p>
+<p>引入 redux-thunk 很简单，只需要在创建 store 的时候使用<code>applyMiddleware(thunk)</code>引入即可。</p>
+<h2 id="开发调试工具">开发调试工具</h2>
+<p>开发过程中免不了调试，常用的调试工具有很多，例如 redux-devtools-extension，redux-devtools，storybook 等。</p>
+<h3 id="redux-devtools-extension">redux-devtools-extension</h3>
+<p>redux-devtools-extension 是一款调试 redux 的工具，用来监测 action 非常方便。</p>
+<p>首先根据浏览器在<a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd">Chrome Web Store</a>或者<a href="https://addons.mozilla.org/en-US/firefox/addon/remotedev/">Mozilla Add-ons</a>中下载该插件。</p>
+<p>然后在创建 store 时候，将其加入到 store enhancer 配置中即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">thunk</span> <span class="nx">from</span> <span class="s2">&#34;redux-thunk&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createBrowserHistory</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;history&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">createStore</span><span class="p">,</span> <span class="nx">applyMiddleware</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;redux&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="kr">import</span> <span class="p">{</span> <span class="nx">composeWithDevTools</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;redux-devtools-extension/logOnlyInProduction&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">connectRouter</span><span class="p">,</span> <span class="nx">routerMiddleware</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;connected-react-router&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">reducers</span> <span class="nx">from</span> <span class="s2">&#34;../reducers&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="nx">createBrowserHistory</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">initialState</span> <span class="o">=</span> <span class="p">{};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">+</span>  <span class="kr">const</span> <span class="nx">composeEnhancers</span> <span class="o">=</span> <span class="nx">composeWithDevTools</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span>   <span class="c1">// options like actionSanitizer, stateSanitizer
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">+</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">connectRouter</span><span class="p">(</span><span class="nx">history</span><span class="p">)(</span><span class="nx">reducers</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">initialState</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="o">+</span>  <span class="nx">composeEnhancers</span><span class="p">(</span><span class="nx">applyMiddleware</span><span class="p">(</span><span class="nx">thunk</span><span class="p">,</span> <span class="nx">routerMiddleware</span><span class="p">(</span><span class="nx">history</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="写在最后">写在最后</h2>
+<p>本文梳理了自己对 React 应用架构的认识以及相关库的具体配置，进一步加深了对 React 应用架构的理解，但是像数据 Immutable ，持久化，webpack 优化等这些，本文并未涉及，未来会继续研究相关的东西，力求搭建更加完善的 React 应用。</p>
+<p>另外在搭建项目过程中升级最新的 babel 后发现@babel/preset-stage-0 即将弃用，建议使用其他代替，更多细节参考：</p>
+<ul>
+<li><a href="https://github.com/babel/babel/issues/8307">Cannot read property &lsquo;join&rsquo; of undefined ( preset-stage-0 )</a></li>
+<li><a href="https://github.com/babel/babel/blob/479d0b58271ae70887292b55072e5479611fc60b/packages/babel-preset-stage-0/README.md">关于@babel/preset-stage-0</a></li>
+</ul>
+<h2 id="附">附</h2>
+<h3 id="关键字">关键字：</h3>
+<ul>
+<li>redux</li>
+<li>react-router</li>
+<li>react-router-config</li>
+<li>异步加载（Code Splitting）</li>
+<li>热更新</li>
+<li>异步任务管理——redux-thunk</li>
+<li>react-redux</li>
+<li>redux-devtools-extension</li>
+</ul>
+<h3 id="部分用到的库">部分用到的库</h3>
+<ul>
+<li><a href="https://github.com/supasate/connected-react-router">connected-react-router</a></li>
+<li><a href="https://github.com/ReactTraining/history">history</a></li>
+<li><a href="https://github.com/gaearon/react-hot-loader">react-hot-loader</a></li>
+<li><a href="https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config">react-router-config</a></li>
+</ul>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/G3lQ1yo2CL4Ce92VY_m0xg?scene=25#wechat_redirect&amp;utm_source=mife&amp;utm_medium=article&amp;utm_campaign=mifeweekly&amp;utm_term=tutorial">React 应用架构设计</a></li>
+<li><a href="https://juejin.im/post/5a4874096fb9a044fa1a34c7">浅析 Redux 的 store enhancer</a></li>
+<li><a href="https://cn.redux.js.org/docs/api/createStore.html">createStore</a></li>
+<li><a href="https://cn.redux.js.org/docs/api/applyMiddleware.html">applyMiddleware</a></li>
+<li><a href="https://cn.redux.js.org/docs/api/combineReducers.html">combineReducers</a></li>
+<li><a href="https://cn.redux.js.org/docs/api/compose.html">compose</a></li>
+<li><a href="https://juejin.im/post/5a7e9ee7f265da4e7832949c">[译]简明 React Router v4 教程</a></li>
+<li><a href="https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/redux.md#blocked-updates">React Router 与 Redux 整合</a></li>
+<li><a href="https://webpack.docschina.org/concepts/hot-module-replacement/">模块热替换(hot module replacement)</a></li>
+<li><a href="https://juejin.im/post/5a3880b56fb9a0451a767f07">react-router4 基于 react-router-config 的路由拆分与按需加载</a></li>
+<li><a href="https://juejin.im/post/5a641747518825732d7fb25f">React Router 4 简介及其背后的路由哲学</a></li>
+<li><a href="https://cn.redux.js.org/docs/advanced/AsyncActions.html">异步 Action</a></li>
+<li><a href="https://juejin.im/post/5ad49b595188255c637b6ecc">redux 中间件之 redux-thunk</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_two_async_operations.html">Redux 入门教程（二）：中间件与异步操作</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-07-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/react/">React</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2018/2018-reactlifecycle/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">「译」如何使用React生命周期方法</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2018/2018-reactproject1/">
+            <span class="next-text nav-default">从零开始搭建React应用（一）——基础搭建</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

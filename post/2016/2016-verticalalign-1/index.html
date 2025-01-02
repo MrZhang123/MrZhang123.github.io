@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>慕课网---深入理解vertical-align总结 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下 vertical-align的百分比值相对于line-height计算 IE6/7下line-height不支持小数
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2016/2016-verticalalign-1/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2016/2016-verticalalign-1/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="慕课网---深入理解vertical-align总结">
+  <meta property="og:description" content="看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下 vertical-align的百分比值相对于line-height计算 IE6/7下line-height不支持小数">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2016-05-23T23:07:35+00:00">
+    <meta property="article:modified_time" content="2016-05-23T23:07:35+00:00">
+    <meta property="article:tag" content="CSS">
+
+  <meta itemprop="name" content="慕课网---深入理解vertical-align总结">
+  <meta itemprop="description" content="看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下 vertical-align的百分比值相对于line-height计算 IE6/7下line-height不支持小数">
+  <meta itemprop="datePublished" content="2016-05-23T23:07:35+00:00">
+  <meta itemprop="dateModified" content="2016-05-23T23:07:35+00:00">
+  <meta itemprop="wordCount" content="2996">
+  <meta itemprop="keywords" content="CSS">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="慕课网---深入理解vertical-align总结">
+  <meta name="twitter:description" content="看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下 vertical-align的百分比值相对于line-height计算 IE6/7下line-height不支持小数">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">慕课网---深入理解vertical-align总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-05-23 </span>
+        <div class="post-category">
+            <a href="/categories/css/"> CSS </a>
+            </div>
+          <span class="more-meta"> 2996 words </span>
+          <span class="more-meta"> 6 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#vertical-align起作用的前提">vertical-align起作用的前提</a>
+          <ul>
+            <li></li>
+            <li><a href="#抛出一个问题">抛出一个问题</a></li>
+          </ul>
+        </li>
+        <li><a href="#vertical-align与line-height">vertical-align与line-height</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#vertical-align线性属性值">vertical-align线性属性值</a>
+          <ul>
+            <li><a href="#1vertical-alignbottomtop与之差不多">1.vertical-align:bottom（top与之差不多）</a></li>
+            <li><a href="#2vertical-alignmiddle">2.vertical-align:middle</a></li>
+          </ul>
+        </li>
+        <li><a href="#vertical-align文本类属性值">vertical-align文本类属性值</a>
+          <ul>
+            <li><a href="#定义-2">定义：</a></li>
+            <li><a href="#解释">解释：</a></li>
+            <li><a href="#用处">用处：</a></li>
+          </ul>
+        </li>
+        <li><a href="#输入理解vertical-align上标下标类---sub--super">输入理解vertical-align上标下标类&mdash;sub / super</a>
+          <ul>
+            <li><a href="#定义-3">定义：</a></li>
+          </ul>
+        </li>
+        <li><a href="#vertical-align前后不一的作用机制与示例">vertical-align前后不一的作用机制与示例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下
+vertical-align的百分比值相对于line-height计算
+IE6/7下line-height不支持小数</p>
+<h2 id="vertical-align起作用的前提">vertical-align起作用的前提</h2>
+<p>该属性应用于inline水平或者table-cell元素</p>
+<h4 id="inline水平">inline水平</h4>
+<p>inline:img,span,strong,em等
+inline-block:input,button（ie8+，ie6/7会把inline-block当作inline）</p>
+<h4 id="table-cell元素">table-cell元素</h4>
+<p>td
+所以<font color='red'>默认情况下</font>支持vertical-align的有：图片，按钮，文字，单元格</p>
+<h3 id="抛出一个问题">抛出一个问题</h3>
+<p>想实现图片的垂直居中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;utf-8&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>JS Bin<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;http://www.insgeek.com/public/insgeek2.0/img/indexpec/enleft.jpg&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#39;100&#39;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">p</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">width</span><span class="p">:</span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">height</span><span class="p">:</span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#ccc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">img</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">vertical-align</span><span class="p">:</span><span class="kc">middle</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>利用vertical-align：middle实现垂直居中，但是这里并没有按照我们想要的去做，解决办法：</p>
+<h4 id="1给父元素p添加line-height的值为p的高度ie7都可以实现">1.给父元素<p>添加line-height的值为<p>的高度（ie7+都可以实现）</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">p</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">line-height</span><span class="p">:</span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2给父元素p添加displaytable-cell">2.给父元素<p>添加display:table-cell</h4>
+<p>table-cell元素的vertical-align只会作用于自身，里面的子元素设置不起作用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">p</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">display</span><span class="p">:</span><span class="kc">table-cell</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">/*把img的去掉*/</span>
+</span></span><span class="line"><span class="cl">     <span class="k">vertical-align</span><span class="p">:</span><span class="kc">middle</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="vertical-align与line-height">vertical-align与line-height</h2>
+<p>利用text-align:justify任意数目列表两端对齐效果</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="p">.</span><span class="nc">justify-fix</span><span class="p">{</span><span class="k">display</span><span class="p">:</span><span class="kc">inline-block</span><span class="p">;</span><span class="k">width</span><span class="p">:</span><span class="mi">250</span><span class="kt">px</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">p</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">background</span><span class="p">:</span><span class="mh">#666</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"> <span class="p">&lt;</span><span class="nt">p</span> <span class="na">style</span><span class="o">=</span><span class="s">&#34;text-align: justify&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;img/mm1.jpg&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;250&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;img/mm1.jpg&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;250&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;img/mm1.jpg&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;250&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;img/mm1.jpg&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;250&#34;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;justify-fix&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;justify-fix&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">&lt;</span><span class="nt">i</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;justify-fix&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="./img/3.png" alt="icon"></p>
+<p>运行后红色虚线表示i标签的位置
+设置容器，p的行高为0</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">p</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">line-height</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>则出现如下情况：</p>
+<p><img src="./img/4.png" alt="icon"></p>
+<h4 id="为什么会出现这样的现象">为什么会出现这样的现象？</h4>
+<p>首先看一个东西
+从CSS2的可视化格式模型文档中看到：
+‘inline-block’的基线是正常流中最后一个line box的基线，除非，这个line box里面既没有line boxes或者本身‘overflow’属性的计算值而不是‘visible’，这种情况下基线是margin第边缘
+举例说明：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">.</span><span class="nc">dib-baseline</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">width</span><span class="p">:</span> <span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">height</span><span class="p">:</span> <span class="mi">150</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="mh">#cad5eb</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">background-color</span><span class="p">:</span> <span class="mh">#f0f3f9</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="k">margin-top</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dib-baseline&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">span</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;dib-baseline&#34;</span><span class="p">&gt;</span>dib-baseline<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="./img/2.png" alt="icon"></p>
+<p>文档解释了该现象，因为前面的盒子没有任何字符，此时它的基线就是它的底边缘，后面的盒子有文字，所以该盒子的基线就是文字的基线，二者基线对齐，现成如此效果。
+如果把第二个盒子line-height:0，此时文字基线的位置，就是文字的垂直中心，所以：</p>
+<p><img src="./img/5.png" alt="icon"></p>
+<p>所以，以上情况下面那些空白，是由于本身后面两个图片是没有的，所以可以当作是空白字符（空格），即后面两个<code>&lt;i&gt;</code>是有字符的，而第一个<code>&lt;i&gt;</code>是没有字符的，所以和上面的那个例子一样，默认基线对齐，所以，会导致出现小的空隙（其本质和图2一样），要消除这个空隙，需要给i都添加空白字符（ 或者直接改变对齐方式，vertical-align：top / bottom）即可，而这个line-height：0可以不添加。</p>
+<p>要消除需要给p标签（容器）设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">p</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">line-height</span><span class="p">:</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">.</span><span class="nc">justify-fix</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">vertical-align</span><span class="p">:</span> <span class="kc">bottom</span> <span class="o">/</span> <span class="kc">top</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>之后运行结果：</p>
+<p><img src="./img/1.png" alt="icon"></p>
+<h2 id="vertical-align线性属性值">vertical-align线性属性值</h2>
+<h3 id="1vertical-alignbottomtop与之差不多">1.vertical-align:bottom（top与之差不多）</h3>
+<h4 id="定义">定义</h4>
+<ol>
+<li>inline / inline-block元素：元素底部和整行底部对齐。</li>
+<li>table-cell元素：单元格底padding边缘和表格行的底部对齐</li>
+</ol>
+<h3 id="2vertical-alignmiddle">2.vertical-align:middle</h3>
+<h4 id="定义-1">定义</h4>
+<ol>
+<li>inline / inline-block元素：元素的垂直中心点和父元素基线上1/2 x-height处对齐</li>
+<li>table - cell元素：单元格填充盒子相对于外卖的表格行居中对齐</li>
+</ol>
+<h4 id="利用vertical-alignmiddle所实现的是font-colorred近似font垂直居中">利用vertical-align：middle所实现的是<font color="red">近似</font>垂直居中</h4>
+<p>为什么是近似呢？答案就在于： inline / inline-block元素：元素的垂直中心点和父元素基线上1/2 x-height处对齐
+父元素基线上1/2 x-height处其实就是用line-height撑开后字符水平中心
+字符所在的水平中心线和经过line-height撑开后的水平中心线（vertical-algin：middle的水平中心线）不是一个中心线（具体演示看[4-1 vertical-align线性属性值]http://www.imooc.com/video/10403）因为字符，本身有个下沉的特性</p>
+<h4 id="那么如何实现完全垂直居中">那么如何实现完全垂直居中？</h4>
+<p>给父元素设置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">p</span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样元素的垂直中心点和父元素基线上1/2 x-height处就完全重合了
+但是这样会出现问题，如果我们在父级元素中有文字，那么设置<code>font-size：0</code>会导致文字无法显示，实现完全垂直居中的另一种方法是给图片（img）后面添加一个span,span设置为vertical-align：middle</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">p</span> <span class="p">{</span> <span class="k">line-height</span><span class="p">:</span><span class="mi">250</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">img</span> <span class="p">{</span> <span class="n">veritcal-align</span><span class="p">:</span><span class="kc">middle</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">img</span><span class="o">+</span><span class="nt">span</span> <span class="p">{</span> <span class="n">veritcal-align</span><span class="p">:</span><span class="kc">middle</span><span class="p">;</span> <span class="p">}</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="vertical-align文本类属性值">vertical-align文本类属性值</h2>
+<h3 id="定义-2">定义：</h3>
+<ol>
+<li>vertical-align :text-top
+盒子的顶部和父级content area的顶部对齐</li>
+<li>vertical-align：text-bottom</li>
+</ol>
+<p>盒子的底部和父级content area的底部对齐</p>
+<h3 id="解释">解释：</h3>
+<p>content area就是只与父级font-size的大小有关，与行高，以及后面是否有inline-block元素的没有任何关系，但是vertical-align：middle / top / bottom都会被后面的inline-block水平元素影响。</p>
+<h3 id="用处">用处：</h3>
+<p>一般用于表情图片（或原始尺寸背景图标）与文字的对齐效果</p>
+<h2 id="输入理解vertical-align上标下标类---sub--super">输入理解vertical-align上标下标类&mdash;sub / super</h2>
+<p>HTML中有原生的上下标标签，分别为：<code>&lt;sup&gt;</code> ,<code>&lt;sub&gt;</code>。利用原生的HTML获得的上下标文字大小是父元素75%左右。</p>
+<h3 id="定义-3">定义：</h3>
+<p>1.vertical-align：super
+提高盒子的基线到父级合适的上标基线位置。
+2.vertical-align：sub
+降低盒子的基线到父级合适的下标基线位置。
+这里的‘合适的上（下）标基线位置’，哪里合适，说不清</p>
+<h2 id="vertical-align前后不一的作用机制与示例">vertical-align前后不一的作用机制与示例</h2>
+<p>vertical-align所有的表现只当前元素和父级有关，前后并没有直接影响
+1.实现小图标和文字的对齐
+使用vertical-align负值，虽然图片文字对齐可以使用浮动实现的，但是尽量少用浮动，因为会破坏布局，使用vertical-align负值可以实现居中
+2.不定尺寸图片或多行文字的<font color='red'>垂直居中</font>,具体实现步骤如下：
+a.大小不固定的图片垂直居中</p>
+<ul>
+<li>主体元素inline-block化；</li>
+<li>0宽度100%高度辅助元素；</li>
+<li>vertical-align:middle；</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">img</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;30%&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;./111.jpg&#34;</span><span class="p">&gt;&lt;</span><span class="nt">i</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">p</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">width</span><span class="p">:</span> <span class="mi">500</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">height</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">background-color</span><span class="p">:</span> <span class="kc">yellowgreen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">/*主体元素inline-block化img本身是inline，
+</span></span></span><span class="line"><span class="cl"><span class="c">但是里面的content为inline-block*/</span>
+</span></span><span class="line"><span class="cl"><span class="nt">img</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">width</span><span class="p">:</span> <span class="mi">40</span><span class="kt">%</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">vertical-align</span><span class="p">:</span><span class="kc">middle</span><span class="p">;</span>         
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">/*宽度为0，高度100%的辅助元素*/</span>
+</span></span><span class="line"><span class="cl"><span class="nt">i</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">vertical-align</span><span class="p">:</span><span class="kc">middle</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c">/*给以上 img 和 i 元素添加 vertical-align:middle;  */</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>实现垂直居中，效果如下：</p>
+<p><img src="./img/center.png" alt="icon"></p>
+<p>b.大小不固定的文字垂直居中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>测试文字垂直居中<span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>测试文字垂直居中<span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>测试文字垂直居中<span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>测试文字垂直居中<span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>测试文字垂直居中<span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>测试文字垂直居中<span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>测试文字垂直居中<span class="p">&lt;</span><span class="nt">br</span><span class="p">/&gt;</span>测试文字垂直居中<span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">&lt;</span><span class="nt">i</span><span class="p">&gt;&lt;/</span><span class="nt">i</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"> <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="nt">p</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">width</span><span class="p">:</span> <span class="mi">500</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">height</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">background-color</span><span class="p">:</span> <span class="kc">yellowgreen</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">span</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">vertical-align</span><span class="p">:</span><span class="kc">middle</span><span class="p">;</span>         
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nt">i</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="k">display</span><span class="p">:</span> <span class="kc">inline-block</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">     <span class="k">vertical-align</span><span class="p">:</span><span class="kc">middle</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-05-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/css/">CSS</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2016/2016-webpack1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Webpack初探</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2016/2016-gulpbrosersync/">
+            <span class="next-text nav-default">Gulp&#43;BroserSync实现浏览器自动刷新</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

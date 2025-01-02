@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>vim的搜索与替换 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2020/2020-vimsearch/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2020/2020-vimsearch/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="vim的搜索与替换">
+  <meta property="og:description" content="在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2020-03-15T16:15:00+00:00">
+    <meta property="article:modified_time" content="2020-03-15T16:15:00+00:00">
+    <meta property="article:tag" content="Vim">
+
+  <meta itemprop="name" content="vim的搜索与替换">
+  <meta itemprop="description" content="在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。">
+  <meta itemprop="datePublished" content="2020-03-15T16:15:00+00:00">
+  <meta itemprop="dateModified" content="2020-03-15T16:15:00+00:00">
+  <meta itemprop="wordCount" content="2325">
+  <meta itemprop="keywords" content="Vim">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="vim的搜索与替换">
+  <meta name="twitter:description" content="在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">vim的搜索与替换</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2020-03-15 </span>
+        <div class="post-category">
+            <a href="/categories/vim/"> Vim </a>
+            </div>
+          <span class="more-meta"> 2325 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#利用vim自带搜索">利用vim自带搜索</a>
+      <ul>
+        <li><a href="#高亮搜索结果">高亮搜索结果</a></li>
+        <li><a href="#搜索大小写敏感">搜索大小写敏感</a></li>
+      </ul>
+    </li>
+    <li><a href="#vim中的替换">vim中的替换</a></li>
+    <li><a href="#利用插件在vim中搜索">利用插件在vim中搜索</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p>
+<h1 id="利用vim自带搜索">利用vim自带搜索</h1>
+<p>对于搜索当前打开文件，vim自带搜索功能足以应对，在Normal modal下键入<code>/</code>，即可进入搜索模式，此时输入想要搜索的单词然后回车，即可完成搜索，光标会跳到当前搜索到的第一个匹配的单词。按下<code>n</code>，光标跳到下一个匹配的单词，按下<code>N</code>（<code>shift+n</code>）光标会跳到上一个匹配的单词。</p>
+<p>除了在Normal modal下可以键入<code>/</code>开始搜索外，还可以键入以下符号开始搜索：</p>
+<ul>
+<li><code>?</code>：与<code>/</code>相反，键入该符号后<strong>反向向上搜索</strong></li>
+<li><code>*</code>：搜索当前光标所在单词，例如：如果当前光标所在单词是<code>set</code>，则相当于键入<code>/\&lt;set\&gt;</code></li>
+<li><code>#</code>：搜索当前光标所在单词，相当于键入<code>?\&lt;set\&gt;</code></li>
+</ul>
+<p>其中<code>\&lt;</code>是单词界定符，表示只匹配单词的开头，<code>/&gt;</code>表示只匹配单词的末尾</p>
+<p>此外vim搜索还支持正则，例如输入<code>/se$</code>表示搜索以<code>se</code>结尾的单词，输入<code>/^se</code>表示搜索以<code>se</code>开头的单词</p>
+<h2 id="高亮搜索结果">高亮搜索结果</h2>
+<p>默认情况下，搜索的结果不会高亮，只是光标会跳到搜索到的单词，如果想要高亮搜索结果，可以在Normal modal下输入<code>:set hlsearch</code>，或者在<code>.vimrc</code>文件中设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="s2">&#34; search result heighligh, when enter `:noh` in command line , clean heightlight
+</span></span></span><span class="line"><span class="cl"><span class="s2">set hlsearch
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样设置后，在搜索完成后，所有的匹配文本都会高亮，想要取消搜索结果的高亮可以在Normal modal下输入<code>:nohlsearch</code>或其简写<code>:noh</code></p>
+<h2 id="搜索大小写敏感">搜索大小写敏感</h2>
+<p>在使用vim的搜索默认是大小写不敏感的，如果想要让vim搜索做到<strong>大小写敏感</strong>，可以在输入想要搜索的单词后面添加<code>\C</code>，对应的如果使用<code>\c</code>，则表示搜索大小写不敏感。</p>
+<p>或者直接在<code>.vimrc</code>中添加设置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="s2">&#34; 开启大小写不敏感（默认值）
+</span></span></span><span class="line"><span class="cl"><span class="s2">set ignorecase
+</span></span></span><span class="line"><span class="cl"><span class="s2">
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> 开启智能推测
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> smartcase
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>开启智能推测后，如果输入的文本带有大写字母，vim会认为你当前搜索是区分大小写的，否则不区分大小写。即开启后，如果输入<code>:Set</code>，则只能搜索到<code>Set</code>，但是如果输入<code>:set</code>，则可以搜索到<code>set</code>和<code>Set</code>。</p>
+<h1 id="vim中的替换">vim中的替换</h1>
+<p>对于替换当前打开文件中的文本，vim提供如下语法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">:<span class="o">{</span>作用范围<span class="o">}</span>s/<span class="o">{</span>目标字符<span class="o">}</span>/<span class="o">{</span>替换的字符<span class="o">}</span>/<span class="o">{</span>替换标志<span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>作用范围：用于指定替换的范围，<code>1,3</code>表示替换第一行至第三行，<code>1,$</code>表示替换第一行到最后一行，也可以直接用<code>%</code>表示。
+替换标志（可以组合使用）：</p>
+<ul>
+<li>c: confirm，每次替换前都会询问</li>
+<li>e：不显示error</li>
+<li>g: globe，不询问，整个替换</li>
+<li>i: ignore，即不区分大小写</li>
+</ul>
+<p>具体的用法可以查看下图（摘自Reddit）：</p>
+<!--vim替换的图示-->
+<p><img src="./img/vim1.jpg" alt="vim搜索和替换命令"></p>
+<ul>
+<li>
+<p><code>:%s/remember/me/n</code>命令不会替换任何东西。 只是告诉我们如果我们运行命令，受影响的行数。实际操作过程中，在vim中运行该命令，显示<code>89 matches on 89 lines</code></p>
+</li>
+<li>
+<p><code>:%s/remember/me/&amp;</code>命令没看明白做什么用</p>
+</li>
+</ul>
+<h1 id="利用插件在vim中搜索">利用插件在vim中搜索</h1>
+<p>有时候需要在整个项目中搜索文件或者文本，这类操作借助插件更方便一些。</p>
+<p>说起vim中搜索文件，就一定会想到大名鼎鼎的<a href="https://github.com/kien/ctrlp.vims">ctrlp.vim</a>，但该插件早已不再维护（最近一次提交是在2015年11月30日），那是否还有其他替代插件呢？答案是有的，可以使用<a href="https://github.com/junegunn/fzf.vim">fzf.vim</a>。fzf.vim支持文件搜索，全局文本搜索，buffer搜索，git log搜索等，这里只介绍最常用的全局文本搜索和文件搜索。</p>
+<p>首先使用<a href="https://github.com/junegunn/vim-plug">vim-plug</a>安装插件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">Plug <span class="s1">&#39;junegunn/fzf&#39;</span>, <span class="o">{</span> <span class="s1">&#39;do&#39;</span>: <span class="o">{</span> -&gt; fzf#install<span class="o">()</span> <span class="o">}</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>从以上安装可以看到要想使用fzf.vim，需要首先安装<a href="https://github.com/junegunn/fzf">fzf</a>。</p>
+<p>fzf是一款golang编写的命令行模糊查找器，支持文件，命令等的模糊搜索。强烈建议使用，对于经常使用终端的同学来说太方便了。</p>
+<hr>
+<p>备注：</p>
+<p>如果要安装fzf，在macOS直接：<code>brew install fzf</code>即可。如果通过<code>brew</code>安装过fzf，则vim-plug的配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">Plug <span class="s1">&#39;/usr/local/opt/fzf&#39;</span>
+</span></span><span class="line"><span class="cl">Plug <span class="s1">&#39;junegunn/fzf.vim&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<p>安装完成后在<code>.vimrc</code>中添加如下配置：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="s2">&#34; fzf
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;</span> fzf use rg search config
+</span></span><span class="line"><span class="cl"><span class="nb">let</span> g:fzf_layout <span class="o">=</span> <span class="o">{</span> <span class="s1">&#39;down&#39;</span>: <span class="s1">&#39;~70%&#39;</span> <span class="o">}</span>
+</span></span><span class="line"><span class="cl">command! -bang -nargs<span class="o">=</span>* Rg
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>call fzf#vim#grep<span class="o">(</span>
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  <span class="s2">&#34;rg --column --line-number --no-heading --color=always --smart-case &#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  .<span class="o">(</span>len<span class="o">(</span>&lt;q-args&gt;<span class="o">)</span> &gt; <span class="m">0</span> ? &lt;q-args&gt;: <span class="s1">&#39;&#34;&#34;&#39;</span><span class="o">)</span>,
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  1,
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  &lt;bang&gt;0 ? fzf#vim#with_preview<span class="o">({</span><span class="s1">&#39;options&#39;</span>: <span class="s1">&#39;--delimiter : --nth 4..&#39;</span><span class="o">}</span>, <span class="s1">&#39;up:60%&#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  : fzf#vim#with_preview<span class="o">({</span><span class="s1">&#39;options&#39;</span>: <span class="s1">&#39;--delimiter : --nth 4..&#39;</span><span class="o">}</span>, <span class="s1">&#39;right:50%:hidden&#39;</span>, <span class="s1">&#39;?&#39;</span><span class="o">)</span>,
+</span></span><span class="line"><span class="cl">      <span class="se">\ </span>  &lt;bang&gt;0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">command! -bang -nargs<span class="o">=</span>? -complete<span class="o">=</span>dir Files
+</span></span><span class="line"><span class="cl">  <span class="se">\ </span>call fzf#vim#files<span class="o">(</span>&lt;q-args&gt;, fzf#vim#with_preview<span class="o">()</span>, &lt;bang&gt;0<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="s2">&#34; fzf vim
+</span></span></span><span class="line"><span class="cl"><span class="s2">nnoremap  &lt;silent&gt; &lt;Leader&gt;rg :Rg&lt;CR&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">nnoremap &lt;leader&gt;b :Buffers&lt;CR&gt;
+</span></span></span><span class="line"><span class="cl"><span class="s2">nnoremap &lt;C-p&gt; :Files&lt;CR&gt;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>关于fzf.vim的配置有几点说明：</p>
+<ul>
+<li><code>fzf_layout</code>用于设置调用fzf搜索的窗口位置以及大小，可以设置<code>left</code>、<code>right</code>、<code>down</code>、<code>up</code>。</li>
+<li>fzf.vim内置<code>fzf#vim#grep</code>函数，支持调用第三方搜索，接收参数：<code>fzf#vim#grep(command, [has_column bool], [spec dict], [fullscreen bool])</code>
+<ul>
+<li><code>command</code>：要运行的命令；</li>
+<li><code>has_column</code>：是否打印列号；</li>
+<li><code>spec</code>：展示预览窗口；</li>
+<li><code>fullscreen</code>：是否全屏，<code>&lt;bang&gt;0</code>是vim script，在vim命令中如果输入<code>!</code>则<code>&lt;bang&gt;0</code>转换成1，否则为0；</li>
+</ul>
+</li>
+<li>这里使用了<a href="https://github.com/BurntSushi/ripgrep">ripgrep</a>（因为据说vscode内的搜索就是基于这个做的，所以选择这个）作为fzf中默认的搜索。<code>fzf#vim#with_preview</code>用于配置展示预览窗口。配置好后在vim中输入<code>:Rg</code>就可以启动在整个项目搜索文本，<code>:Files</code>在整个项目中搜索文件。</li>
+<li>在使用fzf.vim搜索文本和文件的过程中需要注意一点，<strong>搜索是基于你当前打开文件所在的文件夹去搜索</strong>。所以如果要在整个项目中搜索，就需要在项目根目录下打开一个文件进行搜索。这也类似于在vscode中，如果想搜索项目中特定文件夹中的文本，需要选择当前想要选择的文件夹。</li>
+</ul>
+<p>以上配置就可以满足我们日常开发中的搜索/替换文本，搜索文件等常用功能了。</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2020-03-15
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/vim/">Vim</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2020/2020-blance-sheet/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">学习读财报之资产负债表</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2020/2020_okr/">
+            <span class="next-text nav-default">解析OKR</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

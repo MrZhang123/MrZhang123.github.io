@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>如何写一个自己的hexo主题 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章写一个自己的Hexo主题和该文中提到的作者自己写的主题hexo-showonne的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——hexo-theme-icarus进行了修正。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2017/2017-hexotheme/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2017/2017-hexotheme/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="如何写一个自己的hexo主题">
+  <meta property="og:description" content="好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章写一个自己的Hexo主题和该文中提到的作者自己写的主题hexo-showonne的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——hexo-theme-icarus进行了修正。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2017-04-01T20:57:48+00:00">
+    <meta property="article:modified_time" content="2017-04-01T20:57:48+00:00">
+    <meta property="article:tag" content="Blog">
+
+  <meta itemprop="name" content="如何写一个自己的hexo主题">
+  <meta itemprop="description" content="好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章写一个自己的Hexo主题和该文中提到的作者自己写的主题hexo-showonne的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——hexo-theme-icarus进行了修正。">
+  <meta itemprop="datePublished" content="2017-04-01T20:57:48+00:00">
+  <meta itemprop="dateModified" content="2017-04-01T20:57:48+00:00">
+  <meta itemprop="wordCount" content="2397">
+  <meta itemprop="keywords" content="Blog">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="如何写一个自己的hexo主题">
+  <meta name="twitter:description" content="好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章写一个自己的Hexo主题和该文中提到的作者自己写的主题hexo-showonne的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——hexo-theme-icarus进行了修正。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">如何写一个自己的hexo主题</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-04-01 </span>
+        <div class="post-category">
+            <a href="/categories/blog/"> Blog </a>
+            </div>
+          <span class="more-meta"> 2397 words </span>
+          <span class="more-meta"> 5 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#搭建项目">搭建项目</a></li>
+        <li><a href="#布局">布局</a>
+          <ul>
+            <li><a href="#布局文件layoutejs">布局文件layout.ejs</a></li>
+            <li><a href="#其他模版">其他模版</a></li>
+          </ul>
+        </li>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#辅助函数">辅助函数</a></li>
+        <li><a href="#其他">其他</a>
+          <ul>
+            <li><a href="#评论">评论</a></li>
+            <li><a href="#代码高亮">代码高亮</a></li>
+          </ul>
+        </li>
+        <li><a href="#最后">最后</a></li>
+        <li><a href="#参考">参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>好长时间不写东西了，都在忙工作，去年三月份的时候我搞了一个hexo的博客，主题换过两三个吧，感觉都大部分的hexo主题都是东西比较多，有那么两三个比较简单的，但是自己并不是很喜欢，所以去年的时候就想着自己抽时间写一个自己的主题，但是当初看了几个hexo主题的源码，完全看不懂是什么，所以放弃了，今年又定了一个目标，写一个自己的hexo主题，终于终于在文章<a href="https://segmentfault.com/a/1190000006057336%5D">写一个自己的Hexo主题</a>和该文中提到的作者自己写的主题<a href="https://github.com/showonne/hexo-showonne">hexo-showonne</a>的启发下，开始了自己的hexo主题之旅，之后更参考自己用了很长时间的hexo主题——<a href="https://github.com/ppoffice/hexo-theme-icarus">hexo-theme-icarus</a>进行了修正。</p>
+</blockquote>
+<p>我的博客就是用的我写的主题，博客地址：https://mrzhang123.github.io/</p>
+<p>项目地址：https://github.com/MrZhang123/hexo-theme-SpecLumn</p>
+<h2 id="搭建项目">搭建项目</h2>
+<p>参考大多数的hexo主题的目录结构不难发现，大部分都会有layout、source以及配置文件_config.yml，所以具体目录如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">├── _config.yml      <span class="c1">#主题的配置文件</span>
+</span></span><span class="line"><span class="cl">├── layout          <span class="c1">#布局模版文件夹 </span>
+</span></span><span class="line"><span class="cl">│   ├── comment     <span class="c1">#评论相关模版</span>
+</span></span><span class="line"><span class="cl">│   ├── common      <span class="c1">#公共的模版</span>
+</span></span><span class="line"><span class="cl">│   │   └── post    <span class="c1">#post页相关模版</span>
+</span></span><span class="line"><span class="cl">│   └── plugin      <span class="c1">#插件</span>
+</span></span><span class="line"><span class="cl">├── <span class="nb">source</span>          <span class="c1">#主题的css和js</span>
+</span></span><span class="line"><span class="cl">│   └── css
+</span></span><span class="line"><span class="cl">│       └── images  <span class="c1">#主题中用到的图片</span>
+</span></span><span class="line"><span class="cl">└── source_src      <span class="c1">#scss所在的文件夹</span>
+</span></span><span class="line"><span class="cl">    └── scss
+</span></span><span class="line"><span class="cl">        ├── code-style
+</span></span><span class="line"><span class="cl">        └── markdown-style
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>项目基于gulp搭建，hexo默认使用stylus，但是我使用的scss，然后生成css，但是在项目过程中发现一个问题（同时明白为什么hexo默认使用stylus,可以直接识别styl文件），hexo提供了<code>hexo-config</code>方法，可以读取<code>_config.yml</code>中的配置。所以如果想要在<code>_config.yml</code>中动态设置代码的高亮主题，可以在stylus中写如下代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="line"><span class="cl"><span class="c">/*
+</span></span></span><span class="line"><span class="cl"><span class="c">一个三元表达式设置默认主题
+</span></span></span><span class="line"><span class="cl"><span class="c">然后在index.styl中设置引入的表达式
+</span></span></span><span class="line"><span class="cl"><span class="c">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nt">highlight</span> <span class="o">=</span> <span class="nt">hexo-config</span><span class="o">(</span><span class="s2">&#34;customize.highlight&#34;</span><span class="o">)</span> <span class="o">||</span> <span class="s2">&#34;tomorrow&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">@</span><span class="k">import</span> <span class="s2">&#34;highlight/&#34;</span> <span class="o">+</span> <span class="nt">highlight</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是我在项目中使用的是gulp-sass编译成的css文件，无法实现根据_config.yml动态的引入文件，所以准备下次改的时候直接换stylus（虽然hexo可以通过装插件识别scss，但是自己测试并未成功）。</p>
+<h2 id="布局">布局</h2>
+<h3 id="布局文件layoutejs">布局文件layout.ejs</h3>
+<p>在layout文件夹下，布局被写在layout.ejs中，由于hexo支持<strong>模块儿化布局</strong>，使用hexo提供的局部函数<code>partial</code>载入其他模版文件，配合ejs的语法，布局文件layout.ejs：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;common/head&#39;</span><span class="p">)</span> <span class="o">%&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;content&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;common/header&#39;</span><span class="p">)</span> <span class="o">%&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;main&#34;</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;%-</span> <span class="nx">body</span> <span class="o">%&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/div&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;common/footer&#39;</span><span class="p">)</span> <span class="o">%&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;common/foot&#39;</span><span class="p">)</span> <span class="o">%&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/body&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/html&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>hexo默认使用ejs语法，但是可以通过安装插件使用Haml和Jade（Jade以前看过，并不喜欢缩进的写法，所以在开发工程中也没用使用同样使用缩进语法的stylus）。</p>
+<p>项目中直接使用了ejs，所以这里简要列一下ejs中tag的使用：</p>
+<ul>
+<li><code>&lt;%</code>&rsquo; 脚本标签，用于控制流程，不会输出</li>
+<li><code>&lt;%=</code> 将转义的值输出到模版</li>
+<li><code>&lt;%-</code> 将未转义的值输出到模版</li>
+<li><code>&lt;%#</code> 注释标签</li>
+<li><code>&lt;%%</code> 输出 &lsquo;&lt;%&rsquo;</li>
+<li><code>%&gt;</code>  闭合标签</li>
+<li><code>-%&gt;</code> Trim-mode (&rsquo;newline slurp&rsquo;) 标签, 移除随后的换行符</li>
+</ul>
+<h3 id="其他模版">其他模版</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Url</th>
+          <th style="text-align: right">Description</th>
+          <th style="text-align: center">Layout</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>/</td>
+          <td style="text-align: right">首页</td>
+          <td style="text-align: center">index.ejs</td>
+      </tr>
+      <tr>
+          <td>/yyyy/mm/dd/:title/</td>
+          <td style="text-align: right">文章</td>
+          <td style="text-align: center">post.ejs</td>
+      </tr>
+      <tr>
+          <td>/archives/</td>
+          <td style="text-align: right">归档</td>
+          <td style="text-align: center">archive.ejs</td>
+      </tr>
+      <tr>
+          <td>/tags/:tagname/</td>
+          <td style="text-align: right">某个标签的归档</td>
+          <td style="text-align: center">tag.ejs</td>
+      </tr>
+      <tr>
+          <td>/:else/</td>
+          <td style="text-align: right">其他</td>
+          <td style="text-align: center">page.ejs</td>
+      </tr>
+  </tbody>
+</table>
+<p>在我的主题中只有主页index.ejs，文章页post.ejs。</p>
+<h2 id="变量">变量</h2>
+<p>模版中获取文章，调用配置项等会使用到变量，hexo提供了很多变量供我们使用（<a href="https://hexo.io/zh-cn/docs/variables.html">hexo提供的变量</a>），其中比较重要的有：</p>
+<ul>
+<li><code>page</code>：针对该页面的内容以及 front-matter 所设定的变量</li>
+<li><code>config</code>：网站配置（hexo的_config.yml）</li>
+<li><code>theme</code>：主题配置（theme的_config.yml）</li>
+<li><code>url</code>：当前页面的完整网址</li>
+<li><code>path</code>：当前页面的路径（不含根路径）</li>
+</ul>
+<p>另外在参看主题hexo-theme-icarus的源码发现一些变量的使用，但是我在官方文档中并没有找到。</p>
+<ul>
+<li><code>post.title</code>：文章的题目</li>
+<li><code>post.excerpt</code>：文章的摘要，即写文章的时候``之上的那段儿，首页显示</li>
+<li><code>post.comments</code>：评论模块</li>
+<li><code>post.photots</code>：文章中插入的图片</li>
+<li><code>post.content</code>：文章内容</li>
+<li><code>post.date</code>：文章的时间</li>
+</ul>
+<p>以上均获取的是hexo生成的markdown文件中的配置。</p>
+<h2 id="辅助函数">辅助函数</h2>
+<p>在hexo中同样提供了很多<a href="https://hexo.io/zh-cn/docs/helpers.html">辅助函数</a>方便在博客主题中使用，但是同样很多都用不着，常用的有：</p>
+<ul>
+<li><code>url_for</code>：输出路径</li>
+<li><code>partial</code>：载入其他模版文件</li>
+<li><code>css</code>：载入css文件</li>
+<li><code>js</code>：载入js文件</li>
+<li><code>data_xml</code>：插入 XML 格式的日期</li>
+<li><code>paginator</code>：生成分页，其中可以插入配置，partial一样，例如改变上一页下一页的文字，可以配置<code>{ prev_text: '« 上一页', next_text: '下一页 »'}</code></li>
+</ul>
+<p>关于<code>partical</code>需要注意几点</p>
+<ol>
+<li>它可以添变量，在被引用文件直接可以饮用，例如：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*引用*/</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;plugin/scripts&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">isHead</span><span class="o">:</span> <span class="kc">true</span> <span class="p">})</span> <span class="o">%&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*被引用文件判断*/</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;%</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="nx">isHead</span><span class="p">)</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">isHead</span><span class="p">)</span> <span class="p">{</span> <span class="o">%&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">&lt;%</span> <span class="p">}</span> <span class="o">%&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>可以添加class名字</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="o">&lt;%-</span> <span class="nx">partial</span><span class="p">(</span><span class="s1">&#39;post/date&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">class_name</span><span class="o">:</span> <span class="s1">&#39;article-date&#39;</span><span class="p">,</span> <span class="nx">date_format</span><span class="o">:</span> <span class="kc">null</span> <span class="p">})</span> <span class="o">%&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="其他">其他</h2>
+<h3 id="评论">评论</h3>
+<p>hexo中添加评论只需要在ejs中添加相应的<code>script</code>标签插入代码即可，以前的时候用多说，现在多说要关闭了，准备换个，但是找来找去没找到一个比较适合的，同事介绍有一个叫来必力的还不错，试用确实觉得可以，可以替代多说，所以推荐一下。<a href="https://livere.com/">官方网站</a>。</p>
+<h3 id="代码高亮">代码高亮</h3>
+<p>代码高亮其实就是引入一段css的代码，为了实现可以通过配置文件动态引入，就需要配合<code>hexo-config</code>，前面已经提到过，这里不再重复。</p>
+<h2 id="最后">最后</h2>
+<p>最后写一点自己的想法，说实话，hexo的官方文档，实在是烂的没话可说，跟webpack1的文档不相上下，估计连作者自己都不一定看得懂，所以要想自己写一个主题的同学们还是在github参考一下写的比较好的主题的源码吧。</p>
+<p>另外，当前这个版本功能相对简单一点儿而且在后期的修改过程中发现用scss确实不如直接用stylus方便一些，所以准备在以后改用stylus。</p>
+<h2 id="参考">参考</h2>
+<p><a href="https://github.com/ppoffice/hexo-theme-icarus">hexo-theme-icarus</a>
+<a href="https://segmentfault.com/a/1190000006057336">写一个自己的Hexo主题</a>
+<a href="https://github.com/showonne/hexo-showonne">hexo-showonne</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2017-04-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/blog/">Blog</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2017/2017-cssbem/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">理解CSS命名规范--BEM</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2017/2017-gitreset/">
+            <span class="next-text nav-default">使用git回退远程库代码</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

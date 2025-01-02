@@ -1,269 +1,327 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-
+<html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.110.0">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>Raymond</title><meta name="Description" content=""><meta property="og:title" content="Raymond" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://mrzhang123.github.io/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<meta name="twitter:title" content="Raymond"/>
-<meta name="twitter:description" content=""/>
-<meta name="application-name" content="Raymond">
-<meta name="apple-mobile-web-app-title" content="Raymond">
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Raymond">
-    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Raymond">
-<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "WebSite",
-        "url": "https://mrzhang123.github.io/","inLanguage": "zh-CN","author": {
-                "@type": "Person",
-                "name": "Raymond"
-            },"name": "Raymond"
-    }
-    </script></head>
 
-<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-        window.switchThemeEventSet = new Set()
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
-                        <option value="light">浅色</option>
-                        <option value="dark">深色</option>
-                        <option value="black">黑色</option>
-                        <option value="auto">跟随系统</option>
-                    </select>
-                </a></div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
-                    <option value="light">浅色</option>
-                    <option value="dark">深色</option>
-                    <option value="black">黑色</option>
-                    <option value="auto">跟随系统</option>
-                </select>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+<meta name="author" content="" /><meta name="description" content="raymond blog" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/" />
+  <link href="https://mrzhang123.github.io/index.xml" rel="alternate" type="application/rss+xml" title="RaymondX成长记" />
+  <link href="https://mrzhang123.github.io/index.xml" rel="feed" type="application/rss+xml" title="RaymondX成长记" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="RaymondX成长记">
+  <meta property="og:description" content="raymond blog">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="RaymondX成长记">
+  <meta itemprop="description" content="raymond blog">
+  <meta itemprop="datePublished" content="2023-12-02T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-12-02T00:00:00+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RaymondX成长记">
+  <meta name="twitter:description" content="raymond blog">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="文章"><img
-        
-        loading="eager"
-        src="/images/avatar.jpeg"
-        srcset="/images/avatar.jpeg, /images/avatar.jpeg 1.5x, /images/avatar.jpeg 2x"
-        sizes="auto"
-        alt="/images/avatar.jpeg"
-        title="/images/avatar.jpeg" height="100"   width="100" ></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/MrZhang123" title="GitHub" target="_blank" rel="noopener noreferrer me"><span class="fab fa-github-alt fa-fw"></span></a><a href="https://www.zhihu.com/people/zhang-yi-20-38" title="知乎" target="_blank" rel="noopener noreferrer me"><span data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></span></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><span class="fas fa-rss fa-fw"></span></a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2023/target/">释放创新力：无目标之旅的成功秘密</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-07-16">2023-07-16</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6/"><i class="far fa-folder fa-fw"></i>读书</a></span></div><div class="content">有时目标导向思维会阻碍创新，成功更依赖于拥抱变化和新机会，而非盲目追求既定目标。在创新过程中，趣味性和开放的探索态度比预设的目标更为关键。 《</div><div class="post-footer">
-        <a href="/posts/2023/target/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a>,&nbsp;<a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">方法论</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2023/aigc/" aria-label=AIGC：内容创作的新时代><img
-        
-        loading="eager"
-        src="/posts/2023/aigc/img/OpenAI-GPT-4.webp"
-        srcset="/posts/2023/aigc/img/OpenAI-GPT-4.webp, /posts/2023/aigc/img/OpenAI-GPT-4.webp 1.5x, /posts/2023/aigc/img/OpenAI-GPT-4.webp 2x"
-        sizes="auto"
-        alt="/posts/2023/aigc/img/OpenAI-GPT-4.webp"
-        title="/posts/2023/aigc/img/OpenAI-GPT-4.webp" height="900"   width="1600" ></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2023/aigc/">AIGC：内容创作的新时代</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-03-29">2023-03-29</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/ai/"><i class="far fa-folder fa-fw"></i>AI</a>&nbsp;<a href="/categories/aigc/"><i class="far fa-folder fa-fw"></i>AIGC</a></span></div><div class="content">2022 年 11 月底在互联网上出现了一个叫 ChatGPT 的人工智能聊天机器人，紧接着它以火箭般的速度在互联网上传播，从 11 月底发布到月活破亿仅用了两个月的时间，与之</div><div class="post-footer">
-        <a href="/posts/2023/aigc/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ai/">AI</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2023/javascript-binary/" aria-label=聊一聊&#32;JS&#32;中的二进制><img
-        
-        loading="eager"
-        src="../../../image/logo/nodejs.png"
-        srcset="../../../image/logo/nodejs.png, ../../../image/logo/nodejs.png 1.5x, ../../../image/logo/nodejs.png 2x"
-        sizes="auto"
-        alt="../../../image/logo/nodejs.png"
-        title="../../../image/logo/nodejs.png" height="auto"   width="auto" ></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2023/javascript-binary/">聊一聊 JS 中的二进制</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-02-18">2023-02-18</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/node.js/"><i class="far fa-folder fa-fw"></i>Node.js</a></span></div><div class="content">在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼</div><div class="post-footer">
-        <a href="/posts/2023/javascript-binary/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/node.js/">Node.js</a>,&nbsp;<a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/">二进制</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2023/know-your-target/">明确目标才能持续专注于最重要的事</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2023-02-04">2023-02-04</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6/"><i class="far fa-folder fa-fw"></i>读书</a></span></div><div class="content">最近在读《股票深度交易心理学》，其中提到了关于如何持续专注于在交易中对我们有价值的方面。总结来说就是：明确自己的价值观，明确为什么你要做交易</div><div class="post-footer">
-        <a href="/posts/2023/know-your-target/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a>,&nbsp;<a href="/tags/%E6%88%90%E9%95%BF/">成长</a>,&nbsp;<a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">方法论</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2022/2022-2023-new-year/" aria-label=2022年终总结><img
-        
-        loading="eager"
-        src="/posts/2022/2022-2023-new-year/img/2023.jpeg"
-        srcset="/posts/2022/2022-2023-new-year/img/2023.jpeg, /posts/2022/2022-2023-new-year/img/2023.jpeg 1.5x, /posts/2022/2022-2023-new-year/img/2023.jpeg 2x"
-        sizes="auto"
-        alt="/posts/2022/2022-2023-new-year/img/2023.jpeg"
-        title="/posts/2022/2022-2023-new-year/img/2023.jpeg" height="675"   width="1200" ></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2022/2022-2023-new-year/">2022年终总结</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-12-25">2022-12-25</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>年终总结</a></span></div><div class="content">时间过的好快，不知不觉中又到年底了。从 2016 年开始，每年年底我都会总结这一年来自己做的重要事情。管理者每年通过致股东信的方式给股东汇报这一年来公</div><div class="post-footer">
-        <a href="/posts/2022/2022-2023-new-year/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a>,&nbsp;<a href="/tags/%E6%80%9D%E8%80%83/">思考</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2022/use-to-do-list/">高效使用待办清单</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-12-04">2022-12-04</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/"><i class="far fa-folder fa-fw"></i>效率提升</a></span></div><div class="content">待办清单（to-do list）是一种用起来最简单的任务管理方法，我们将需要完成的任务列下来，在之后的时间里，每完成一个任务，就在待办清单中勾</div><div class="post-footer">
-        <a href="/posts/2022/use-to-do-list/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/">效率提升</a>,&nbsp;<a href="/tags/%E5%BE%85%E5%8A%9E%E6%B8%85%E5%8D%95/">待办清单</a>,&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2022/file-system/">认识文件系统</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-11-27">2022-11-27</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw"></i>操作系统</a></span></div><div class="content">我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文</div><div class="post-footer">
-        <a href="/posts/2022/file-system/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>,&nbsp;<a href="/tags/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/">文件系统</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2022/fllow-and-effect/">“关注圈”和“影响圈”</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-11-07">2022-11-07</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6/"><i class="far fa-folder fa-fw"></i>读书</a></span></div><div class="content">满意源自内心，那些对人性一无所知的人总是妄图通过改变外在而不是内在的性情来追求幸福，结果必定是徒劳无功，而本来想摆脱的痛苦却会与日俱增。——</div><div class="post-footer">
-        <a href="/posts/2022/fllow-and-effect/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6/">读书</a>,&nbsp;<a href="/tags/%E6%88%90%E9%95%BF/">成长</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2022/lock-condition-signal/">并发编程中的锁、条件变量和信号量</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-10-22">2022-10-22</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"><i class="far fa-folder fa-fw"></i>操作系统</a></span></div><div class="content">在并发编程中，经常会涉及到锁、条件变量和信号量。本文从并发开始，探究为什么需要它们，它们的概念，实现原理以及应用。 并发简介并发是指多个事情，</div><div class="post-footer">
-        <a href="/posts/2022/lock-condition-signal/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2022/go-concurrency/">Go 并发编程初识</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2022-06-11">2022-06-11</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B6%E5%8F%91/"><i class="far fa-folder fa-fw"></i>并发</a></span>&nbsp;<span class="post-category">和</span>&nbsp;<span class="post-series">系列 <a href="/series/golang/"><i class="far fa-list-alt fa-fw"></i>golang</a></span></div><div class="content">Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel</div><div class="post-footer">
-        <a href="/posts/2022/go-concurrency/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/golang/">golang</a>,&nbsp;<a href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></div></div>
-</article><ul class="pagination"><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/">1</a>
-                    </span>
-                </li><li class="page-item active">
-                    <span class="page-link">
-                        <a href="/page/2/">2</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/3/">3</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/4/">4</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link" aria-hidden="true">&hellip;</span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/9/">9</a>
-                    </span>
-                </li></ul></div></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-            <div class="footer-line"></div>
-            <div class="footer-line">
-            </div>
-        </div></footer></div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"data":{"desktop-header-typeit":"Raymond's Blog","id-1":"未来一定属于那些能够自律且肯付出心血的人","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"id-1":["id-1"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2023/berkshire-shareholder-letter-2023/">摘抄：巴菲特致股东信2023</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-08-26 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%8A%95%E8%B5%84/"> 投资 </a>
+          </div>
+        <span class="more-meta"> 4263 words </span>
+        <span class="more-meta"> 9 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <figure><img src="/post/2023/berkshire-shareholder-letter-2023/6402.jpeg">
+</figure>
+
+<p>A common belief is that people choose to save when young, expecting thereby to maintain their living standards after retirement. Any assets that remain at death, this theory says, will usually be left to their families or, possibly, to friends and philanthropy.</p>
+<p>Our experience has differed. We believe Berkshire’s individual holders largely to be of the once-a-saver, always-a-saver variety. Though these people live well, they eventually dispense most of their funds to philanthropic organizations. These, in turn, redistribute the funds by expenditures intended to improve the lives of a great many people who are unrelated to the original benefactor. Sometimes, the results have been spectacular.</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2023/berkshire-shareholder-letter-2023/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2023/pragmatic-programmer/">成为务实的程序员</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-08-20 </span>
+      <div class="post-category">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6/"> 读书 </a>
+          </div>
+        <span class="more-meta"> 5481 words </span>
+        <span class="more-meta"> 11 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <blockquote>
+<p>本文是阅读《程序员修炼之道》后的一些感想和摘抄，个人觉得其中很多内容非常不错，所以分享出来，期望能和大家共同学习，努力成为一名务实的程序员。作为务实的程序员，你是编程技艺的行家。倾听需求，提供建议；传达信息，做决策。捕捉难以捉摸的需求，找到表达方式，让计算机轻松应对。记录工作，让他人理解；工程化，促进发展。努力在项目中创造奇迹。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2023/pragmatic-programmer/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2023/walter-schloss/">沃尔特·施洛斯的投资智慧</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-08-16 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%8A%95%E8%B5%84/"> 投资 </a>
+          </div>
+        <span class="more-meta"> 2018 words </span>
+        <span class="more-meta"> 5 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h2 id="沃尔特施洛斯是谁">沃尔特·施洛斯是谁？</h2>
+<p>沃尔特·施洛斯（Walter Schloss）是知名的美国投资者，被誉为价值投资领域的传奇人物之一。他于1916年生于纽约市，2012年去世。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2023/walter-schloss/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2023/berkshire-shareholder-letter-2022/">摘抄：巴菲特致股东信2022</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-07-24 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%8A%95%E8%B5%84/"> 投资 </a>
+          </div>
+        <span class="more-meta"> 1388 words </span>
+        <span class="more-meta"> 3 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <figure><img src="/post/2023/berkshire-shareholder-letter-2022/6401.jpeg">
+</figure>
+
+<p>Whatever our form of ownership, our goal is to have meaningful investments in businesses with both durable economic advantages and a first-class CEO. Please note particularly that we own stocks based upon our expectations about their long-term business performance and not because we view them as vehicles for timely market moves. That point is crucial: <strong>Charlie and I are not stock-pickers; we are business-pickers</strong>.</p>
+<p>无论我们拥有何种所有权形式，我们的目标都是在具有持久经济优势和一流CEO的企业中进行有意义的投资。请特别注意，我们持有股票是基于我们对它们长期业务表现的预期，而不是因为我们认为它们是适合及时市场行动的工具。这一点非常关键：<strong>查理和我不是股票择时者，我们是企业择时者</strong>。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2023/berkshire-shareholder-letter-2022/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2023/berkshire-shareholder-letter-2021/">摘抄：巴菲特致股东信2021</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-07-23 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%8A%95%E8%B5%84/"> 投资 </a>
+          </div>
+        <span class="more-meta"> 3542 words </span>
+        <span class="more-meta"> 8 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <figure><img src="/post/2023/berkshire-shareholder-letter-2021/640.jpeg">
+</figure>
+
+<blockquote>
+<p>开一个合集，记录巴菲特致股东信中的重点内容。</p>
+</blockquote>
+<h2 id="为什么应该阅读伯克希尔致股东信">为什么应该阅读伯克希尔致股东信？</h2>
+<p>沃伦·巴菲特的致股东信被全球许多投资者、商业领袖和经济学家誉为宝贵的知识来源，他们每年都期待阅读这些信件。通过阅读巴菲特的致股东信，我们可以获取以下信息和见解：</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2023/berkshire-shareholder-letter-2021/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    </section>
+  
+  <nav class="pagination">
+    <a class="prev" href="/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">Prev</span>
+      </a>
+    <a class="next" href="/page/3/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+  </nav>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+    <a href="/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
 </body>
-
 </html>

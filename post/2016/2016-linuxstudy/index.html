@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Linux日常使用总结 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 自己一直对linux充满好奇，这次换了新的工作后，由于使用Mac OS和linux，所以国庆回来，给自己的电脑装了ubuntu来熟悉linux。在安装完成后遇到一些问题，经过谷歌都一一解决了，写这篇博文分享给大家。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2016/2016-linuxstudy/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2016/2016-linuxstudy/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="Linux日常使用总结">
+  <meta property="og:description" content="自己一直对linux充满好奇，这次换了新的工作后，由于使用Mac OS和linux，所以国庆回来，给自己的电脑装了ubuntu来熟悉linux。在安装完成后遇到一些问题，经过谷歌都一一解决了，写这篇博文分享给大家。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2016-10-02T23:33:47+00:00">
+    <meta property="article:modified_time" content="2016-10-02T23:33:47+00:00">
+    <meta property="article:tag" content="Linux">
+
+  <meta itemprop="name" content="Linux日常使用总结">
+  <meta itemprop="description" content="自己一直对linux充满好奇，这次换了新的工作后，由于使用Mac OS和linux，所以国庆回来，给自己的电脑装了ubuntu来熟悉linux。在安装完成后遇到一些问题，经过谷歌都一一解决了，写这篇博文分享给大家。">
+  <meta itemprop="datePublished" content="2016-10-02T23:33:47+00:00">
+  <meta itemprop="dateModified" content="2016-10-02T23:33:47+00:00">
+  <meta itemprop="wordCount" content="1949">
+  <meta itemprop="keywords" content="Linux">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linux日常使用总结">
+  <meta name="twitter:description" content="自己一直对linux充满好奇，这次换了新的工作后，由于使用Mac OS和linux，所以国庆回来，给自己的电脑装了ubuntu来熟悉linux。在安装完成后遇到一些问题，经过谷歌都一一解决了，写这篇博文分享给大家。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Linux日常使用总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-10-02 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 1949 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1设置获取root权限">1．设置获取root权限</a></li>
+        <li><a href="#２在linux下如何安装shadowsocks">２．在linux下如何安装shadowsocks</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#３安装相应的软件">３．安装相应的软件</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>自己一直对linux充满好奇，这次换了新的工作后，由于使用Mac OS和linux，所以国庆回来，给自己的电脑装了ubuntu来熟悉linux。在安装完成后遇到一些问题，经过谷歌都一一解决了，写这篇博文分享给大家。</p>
+</blockquote>
+<h2 id="1设置获取root权限">1．设置获取root权限</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">passwd</span> <span class="n">root</span> <span class="c1">//设置root密码
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后输入当前系统账户的密码并设置新的UNIX密码，密码更新成功后在终端输入<code>su</code>然后输入刚刚设置好的新的UNIX密码，即可进入root权限，如果想退出，输入<code>exit</code>。</p>
+<h2 id="２在linux下如何安装shadowsocks">２．在linux下如何安装shadowsocks</h2>
+<p>因为自己是搞开发的，而且非常喜欢谷歌，所以就需要一个自由的网络环境，博主用的是shadowsocks，在windows下，有客户端，但是现在装了linux，既然装了linux，能用命令行搞定的就尽量用命令行，所以我选择在终端安装shadowsocks客户端，步骤如下：</p>
+<h4 id="安装shadowsocks客户端">安装shadowsocks客户端</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> 
+</span></span><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">gevent</span> <span class="n">python</span><span class="o">-</span><span class="n">pip</span>
+</span></span><span class="line"><span class="cl"><span class="n">pip</span> <span class="n">install</span> <span class="n">shadowsocks</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="建立配置文件">建立配置文件</h4>
+<p>打开终端，运行<code>vim /etc/ss.json</code>，然后写入json</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;server&#34;</span> <span class="p">:</span> <span class="s2">&#34;you server&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;server_port&#34;</span> <span class="p">:</span> <span class="mi">0000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;local_address&#34;</span> <span class="p">:</span> <span class="s2">&#34;127.0.0.1&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;local_port&#34;</span> <span class="p">:</span> <span class="mi">1080</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;password&#34;</span> <span class="p">:</span> <span class="s2">&#34;you password&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&#34;method&#34;</span> <span class="p">:</span> <span class="s2">&#34;aes-256-cfb&#34;</span><span class="p">,</span>   <span class="c1">//shadowsocks的加密方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nt">&#34;fast_open&#34;</span> <span class="p">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="开启shadowsocks">开启shadowsocks</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">sslocal</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ss</span><span class="p">.</span><span class="n">json</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 开启后显示以下内容，代表开启成功：
+</span></span></span><span class="line"><span class="cl"><span class="c1">// INFO  loading libcrypto from libcrypto.so.1.0.0
+</span></span></span><span class="line"><span class="cl"><span class="c1">// INFO  starting local at 127.0.0.1:1080
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="设置开机启动">设置开机启动</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// 打开图形化开机启动项管理界面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">gnome</span><span class="o">-</span><span class="n">session</span><span class="o">-</span><span class="n">properties</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 添加(Add) -&gt; 名称(name)和描述(comment)随便填，命令(Command)填写如下： 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sslocal</span> <span class="o">-</span><span class="n">c</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ss</span><span class="p">.</span><span class="n">json</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="火狐浏览器配置">火狐浏览器配置</h4>
+<p>设置→首选项→高级→网络→链接→设置→手动配置代理→socks主机：127.0.0.1 端口：1080→确定</p>
+<h4 id="chrome配置">chrome配置</h4>
+<p>在终端中输入如下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">chromium</span><span class="o">-</span><span class="n">browser</span> <span class="o">--</span><span class="n">proxy</span><span class="o">-</span><span class="n">server</span><span class="o">=</span><span class="nl">socks5</span><span class="p">:</span><span class="c1">//127.0.0.1:1080
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>进入后安装SwitchyOmega，然后配置此插件：</p>
+<p>情景模式→删除原有的情景模式，新建情景模式（原有的情景模式无socks代理）→手动配置→SOCKS代理：127.0.0.1 端口1080→保存 →ok</p>
+<h5 id="note">note:</h5>
+<p>我在这里运行这个命令后依然无法进入，不清楚是怎么回事儿，所以我直接找了个host进行了替换，关于host，我推荐<a href="https://laod.cn/hosts/2016-google-hosts.html">老d博客中提供的</a>，具体用法他博客中有写。然后才进入的应用商店下载好。</p>
+<h2 id="３安装相应的软件">３．安装相应的软件</h2>
+<h4 id="安装gdebi软件包安装程序">安装Gdebi软件包安装程序</h4>
+<p>在ubuntu中有自己的软件中心，但是有些软件在里面找不到，需要自己去官网下载客户端然后安装（比如网易云音乐，搜狗拼音等），下载好的安装包大部分都是<code>.deb</code>文件，查阅了需要资料，安装这个用<code>gdebi</code>比较方便，在软件中心搜索<code>Gdebi软件包安装程序</code>安装就好，但是，既然用linux了，就用一下它强大的终端，所以我说一下在终端如何安装</p>
+<p>在终端输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">gdebi</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是我在这里输入后，提示我缺少相应的依赖，并让我运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">f</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行完成这个命令后，相应的依赖就被安装好了，这里的这个命令主要是修复依赖关系（depends）的命令，之后重新运行<code>sudo apt-get install gdebi</code>即可。</p>
+<h4 id="安装对应的软件">安装对应的软件</h4>
+<p>在安装完成这个后，安装软件就方便很多，我比如安装chrome浏览器，直接进入下载好文件的目录，运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">gdebi</span> <span class="n">chrome</span><span class="p">.</span><span class="n">deb</span> <span class="c1">//这里是你要安装包的名字
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>完成后去搜索即可。<font color='red'>在安装时候我发现有的软件在安装完成后需要重启下电脑才会有。</font></p>
+<h4 id="卸载apt-get安装的东西">卸载apt-get安装的东西</h4>
+<p>有时候需要卸载一些<code>apt-get</code>安装的东西，需要命令为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">remove</span> <span class="n">XXX</span> <span class="c1">//XXX为要卸载的东西
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="安装node">安装node</h4>
+<p>做前端开发，node是必不可少的，所以需要安装一下，在windows下都是直接下载安装包安装，我本来也在linux下下了个安装包安装了，但是查了一下发现用nvm安装node的比较多，而且那天在公司老大也说在mac下推荐使用nvm安装，所以自己决定试下。</p>
+<h5 id="1安装-nvm-之后最好先删除下已安装的-node-和全局-node-模块">1.安装 nvm 之后最好先删除下已安装的 node 和全局 node 模块：</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">npm</span> <span class="n">ls</span> <span class="o">-</span><span class="n">g</span> <span class="o">--</span><span class="n">depth</span><span class="o">=</span><span class="mi">0</span> <span class="c1">//查看已经安装在全局的模块，以便删除这些全局模块后再按照不同的 node 版本重新进行全局安装
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sudo</span> <span class="n">rm</span> <span class="o">-</span><span class="n">rf</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">node_modules</span> <span class="c1">//删除全局 node_modules 目录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">sudo</span> <span class="n">rm</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">node</span> <span class="c1">//删除 node
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">cd</span>  <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">bin</span> <span class="o">&amp;&amp;</span> <span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="o">|</span> <span class="n">grep</span> <span class="s">&#34;../lib/node_modules/&#34;</span> <span class="o">|</span> <span class="n">awk</span> <span class="err">&#39;</span><span class="p">{</span><span class="n">print</span> <span class="err">$</span><span class="mi">9</span><span class="p">}</span><span class="err">&#39;</span><span class="o">|</span> <span class="n">xargs</span> <span class="n">rm</span> <span class="c1">//删除全局 node 模块注册的软链
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>话说最后一条命令运行会报rm使用错误，不知道怎么弄&hellip;</p>
+<h5 id="2安装nvmhttpsgithubcomcreationixnvm">2.安装<a href="https://github.com/creationix/nvm">nvm</a></h5>
+<p>运行以下两条命令之一</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">curl</span> <span class="o">-</span><span class="n">o</span><span class="o">-</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+</span></span></span><span class="line"><span class="cl"><span class="c1">//or
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">wget</span> <span class="o">-</span><span class="n">qO</span><span class="o">-</span> <span class="nl">https</span><span class="p">:</span><span class="c1">//raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后进入(~/.bash_profile, ~/.zshrc, ~/.profile, or ~/.bashrc)这些文件，看哪个文件有，在最后一行添加.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">export</span> <span class="n">NVM_DIR</span><span class="o">=</span><span class="s">&#34;$HOME/.nvm&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span> <span class="o">-</span><span class="n">s</span> <span class="s">&#34;$NVM_DIR/nvm.sh&#34;</span> <span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="p">.</span> <span class="s">&#34;$NVM_DIR/nvm.sh&#34;</span> <span class="err">#</span> <span class="n">This</span> <span class="n">loads</span> <span class="n">nvm</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里如果不太会改这个的话，可以设置终端从而达到效果，在终端打开<code>编辑→配置文件首选项→命令</code>中勾选<code>以登录shell方式运行命令</code>。在ubuntu中没有<code>执行命令时更新登录登录记录</code>，如果有，一起勾选，然后在终端输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">nvm</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>即可看到帮助，之后运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">nvm</span> <span class="n">install</span> <span class="n">node</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就可以安装到最新版本的node，更多关于nvm的用法可参考<a href="https://segmentfault.com/a/1190000004404505">node版本管理工具nvm-Mac下安装及使用</a></p>
+<p>至此，linux下常用的软件就安装完成&hellip;</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-10-02
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2016/2016-gitgithub/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Git连接Github总结</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2016/2016-thoughts/">
+            <span class="next-text nav-default">北京的这一年，写在离开的这一天</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

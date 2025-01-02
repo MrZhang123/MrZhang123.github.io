@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Vue2.x踩坑与总结 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，点击链接。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2017/2017-vue/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2017/2017-vue/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="Vue2.x踩坑与总结">
+  <meta property="og:description" content="年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，点击链接。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2017-02-07T21:41:02+00:00">
+    <meta property="article:modified_time" content="2017-02-07T21:41:02+00:00">
+    <meta property="article:tag" content="Vue">
+
+  <meta itemprop="name" content="Vue2.x踩坑与总结">
+  <meta itemprop="description" content="年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，点击链接。">
+  <meta itemprop="datePublished" content="2017-02-07T21:41:02+00:00">
+  <meta itemprop="dateModified" content="2017-02-07T21:41:02+00:00">
+  <meta itemprop="wordCount" content="3095">
+  <meta itemprop="keywords" content="Vue">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Vue2.x踩坑与总结">
+  <meta name="twitter:description" content="年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，点击链接。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Vue2.x踩坑与总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-02-07 </span>
+        <div class="post-category">
+            <a href="/categories/vue/"> Vue </a>
+            </div>
+          <span class="more-meta"> 3095 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#vue2x">vue2.x</a>
+      <ul>
+        <li><a href="#1独立构建vs运行时构建">1.独立构建vs运行时构建</a></li>
+        <li><a href="#2挂载点的选择">2.挂载点的选择</a></li>
+        <li><a href="#3动态组件渲染跟1x类似">3.动态组件渲染（跟1.x类似）</a>
+          <ul>
+            <li><a href="#keep-alive"><code>keep-alive</code></a></li>
+          </ul>
+        </li>
+        <li><a href="#4ref">4.ref</a></li>
+        <li><a href="#5自定义事件">5.自定义事件</a></li>
+        <li><a href="#6组件命名的约定">6.组件命名的约定</a></li>
+        <li><a href="#7子组件中使用this">7.子组件中使用<code>this</code></a></li>
+        <li><a href="#8key的使用">8.<code>key</code>的使用</a></li>
+        <li><a href="#9v-move的使用">9.<code>v-move</code>的使用</a></li>
+        <li><a href="#10跳过css检测">10.跳过css检测</a></li>
+        <li><a href="#render函数的使用">render函数的使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#vue-router2x">vue-router2.x</a>
+      <ul>
+        <li><a href="#1router-view">1.router-view</a></li>
+        <li><a href="#2挂载">2.挂载</a></li>
+        <li><a href="#3给link添加事件">3.给link添加事件</a></li>
+        <li><a href="#4利用vue-router做导航">4.利用vue-router做导航</a></li>
+        <li><a href="#5路由嵌套">5.路由嵌套</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考：</a></li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>年前就打算学习并总结一下vue2.x，但是因为年前工作比较多，所以进展十分缓慢，现在终于学了一大部分，而且自己在学习开发中也踩了不少坑也总结了不少，所以将自己踩过的坑总结一下分享出来。因为在项目中使用了webpack2.x，所以对于webpack2.x也有一个踩坑总结，<a href="http://mrzhang123.github.io/2017/02/07/webpack2/">点击链接</a>。</p>
+</blockquote>
+<p>项目地址：<a href="https://github.com/MrZhang123/Vue_project/tree/master/vue2.x">https://github.com/MrZhang123/Vue_project/tree/master/vue2.x</a></p>
+<h1 id="vue2x">vue2.x</h1>
+<h2 id="1独立构建vs运行时构建">1.独立构建vs运行时构建</h2>
+<p>在按照vue1.0的配置配置好webpack后，会出现<code>Failed to mount component: template or render function not defined. (found in root instance) </code>的错误，这里涉及到vue2.0与vue1.0的第一个不同的地方。具体区别<a href="https://vuefe.cn/v2/guide/installation.html#%E7%8B%AC%E7%AB%8B%E6%9E%84%E5%BB%BA-vs-%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9E%84%E5%BB%BA">独立构建 vs 运行时构建</a>。解决方法为在webpack配置文件中添加如下配置项：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">resolve</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">alias</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;vue$&#39;</span><span class="o">:</span> <span class="s1">&#39;vue/dist/vue.common.js&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2挂载点的选择">2.挂载点的选择</h2>
+<p>在原来的vue1.0的项目中我使用<code>body</code>元素作为挂载点，但是在vue2.0中，如果使用<code>body</code>或者<code>html</code>作为挂载点，则会报以下警告：<code>Do not mount Vue to &lt;html&gt; or &lt;body&gt; - mount to normal elements instead.</code></p>
+<p><font color='red'>在vue1.0中允许开发者以<code>body</code>或者<code>html</code>作为根实体的挂载点，但是到了2.0后，只能通过<strong>独立的节点挂载</strong>，例如：div等，否则报警告</font></p>
+<h2 id="3动态组件渲染跟1x类似">3.动态组件渲染（跟1.x类似）</h2>
+<p>多个组件可以使用同一个挂载点，然后动态地在它们之间切换。<strong>使用保留的 <component> 元素</strong>，动态地绑定到它的 is 特性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- 动态组件由 vm 实例的属性值 `componentId` 控制 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">component</span> <span class="na">:is</span><span class="o">=</span><span class="s">&#34;componentId&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">component</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- 也能够渲染注册过的组件或 prop 传入的组件 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">component</span> <span class="na">:is</span><span class="o">=</span><span class="s">&#34;$options.components.child&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">component</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="keep-alive"><code>keep-alive</code></h3>
+<p>如果把切换出去的组件保留在内存中，可以保留它的状态或避免重新渲染。为此可以添加一个 <code>keep-alive</code> 指令参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">keep-alive</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">component</span> <span class="na">:is</span><span class="o">=</span><span class="s">&#34;currentView&#34;</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 非活动组件将被缓存！ --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">component</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">keep-alive</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4ref">4.ref</h2>
+<p>有时候需要直接在父组件中访问子组件实例，或者直接操作DOM元素，此时需要使用<code>ref</code>。</p>
+<p><code>ref</code>被用来给元素或子元素注册引用信息。引用信息会根据父组件的<code>$refs</code>对象进行注册。如果在普通的DOM元素上使用，引用信息就是元素，如果用在子组件上，引用信息就是组件实例。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- vm.$refs.p will be the DOM node --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span> <span class="na">ref</span><span class="o">=</span><span class="s">&#34;p&#34;</span><span class="p">&gt;</span>hello<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!-- vm.$refs.child will be the child comp instance --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">child-comp</span> <span class="na">ref</span><span class="o">=</span><span class="s">&#34;child&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">child-comp</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当 <code>v-for</code> 用于元素或组件的时候，引用信息将是包含DOM节点或组件实例数组。</p>
+<p>关于ref注册时间的重要说明: 因为ref本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！<strong><code>$refs</code> 也不是响应式的</strong>，因此你不应该试图用它在模版中做数据绑定。</p>
+<h2 id="5自定义事件">5.自定义事件</h2>
+<p>在vue自定义事件使用<code>$on</code>与<code>$emit</code>，前者用于触发监听，后者用于触发，监听可以有两种方式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!--使用v-on在html中监听--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">my-component</span> <span class="na">v-on:test</span><span class="o">=</span><span class="s">&#34;callbackFun&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">my-component</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//直接用$on监听
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">vm</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(){})</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6组件命名的约定">6.组件命名的约定</h2>
+<p>当注册组件（或者 props）时，可以使用 kebab-case ，camelCase ，或 TitleCase</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 在组件定义中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">components</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 使用 kebab-case 形式注册
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s1">&#39;kebab-cased-component&#39;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// register using camelCase
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s1">&#39;camelCasedComponent&#39;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// register using TitleCase
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s1">&#39;TitleCasedComponent&#39;</span><span class="o">:</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在 HTML 模版中，只能使用 kebab-case 形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- 在HTML模版中始终使用 kebab-case --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">kebab-cased-component</span><span class="p">&gt;&lt;/</span><span class="nt">kebab-cased-component</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">camel-cased-component</span><span class="p">&gt;&lt;/</span><span class="nt">camel-cased-component</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">title-cased-component</span><span class="p">&gt;&lt;/</span><span class="nt">title-cased-component</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当使用<strong>字符串模式</strong>时可以使用 camelCase 、 TitleCase 或者 kebab-case 来引用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="c">&lt;!-- 在字符串模版中可以用任何你喜欢的方式! --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">my-component</span><span class="p">&gt;&lt;/</span><span class="nt">my-component</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">myComponent</span><span class="p">&gt;&lt;/</span><span class="nt">myComponent</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">MyComponent</span><span class="p">&gt;&lt;/</span><span class="nt">MyComponent</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="7子组件中使用this">7.子组件中使用<code>this</code></h2>
+<p>有时候子组件简单，可以在父组件中直接注册，此时在子组件内使用<code>this</code>就是子组件实例并不是父组件，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">data</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">parentMsg</span><span class="o">:</span><span class="s1">&#39;hello!&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">components</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">child</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">props</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;inputMessage&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">template</span><span class="o">:</span><span class="s1">&#39;&lt;span&gt;{{inputMessage}}&lt;/span&gt;&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;child-secound&#39;</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">props</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;inputMessage&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">template</span><span class="o">:</span><span class="s1">&#39;&lt;span&gt;{{upperCase}}&lt;/span&gt;&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">computed</span><span class="o">:</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nx">upperCase</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">inputMessage</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>    
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="8key的使用">8.<code>key</code>的使用</h2>
+<p>一般情况下，vue在渲染完成后，如果数据发生变化，只会重新渲染数据，不会重新渲染整个元素，但是有时候我们需要元素被重新渲染，此时就需要使用<code>key</code>关键字，使用<code>v-bind</code>绑定<code>key</code>关键字，可以实现在数据发生变化时候重新渲染整个元素。**注：**同一父级元素下所有子元素如果都要在数据变化后重新渲染元素，则需要被绑定的<code>key</code></p>
+<h2 id="9v-move的使用">9.<code>v-move</code>的使用</h2>
+<p>在使用<code>&lt;transition-group&gt;</code>时候，不仅可以定义进入离开动画，还可以使用新增的<code>v-move</code>特性，与过渡一样，默认为<code>v-move</code>，可以用<code>name</code>进行自定义前缀，也可以用<code>move-class</code>属性手动设定。用了这个之后就可以实现移动过程中的动画。</p>
+<h2 id="10跳过css检测">10.跳过css检测</h2>
+<p>对于只使用js过度的元素使用<code>v-bind:css=&quot;false&quot;</code>跳过vue对css的检测。</p>
+<h2 id="render函数的使用">render函数的使用</h2>
+<p>createElement接受三个参数：</p>
+<ul>
+<li>
+<p>{String | Object | Function}即一个HTML标签 | 组件选项 | 一个函数，必须返回上述其中一个</p>
+</li>
+<li>
+<p>{Object}一个对应HTML标签属性的数据对象（可选）</p>
+</li>
+<li>
+<p>{String | Array}子节点（VNode）（可选）</p>
+</li>
+</ul>
+<p>⚠️ 关于第三个参数的说明</p>
+<ul>
+<li>createElement第三个参数，如果是String，则类似于innerHTML，如果是Array，则可以写入一个执行函数，这个函数用于创建另一个DOM结构（而且这里如果想写入一个执行函数，必须是数组！！）</li>
+<li>每个createElement只能创建一个元素，所以如果是创建多个元素相互嵌套，需要多个createElement函数相互嵌套，最后再render，这个跟原生js创建DOM元素类似</li>
+<li>如果需要同时渲染多个元素，则需要在第三个参数的数组中，分别写入需要渲染的元素，此时Vue会按照数组中<strong>顺序</strong>进行渲染</li>
+</ul>
+<p>完整数据对象：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 和`v-bind:class`一样的 API
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="s1">&#39;class&#39;</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">foo</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">bar</span><span class="o">:</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 和`v-bind:style`一样的 API
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">style</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">color</span><span class="o">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">fontSize</span><span class="o">:</span> <span class="s1">&#39;14px&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 正常的 HTML 特性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">attrs</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 组件 props
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">props</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">myProp</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// DOM 属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">domProps</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">innerHTML</span><span class="o">:</span> <span class="s1">&#39;baz&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 事件监听器基于 &#34;on&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 所以不再支持如 v-on:keyup.enter 修饰器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// 需要手动匹配 keyCode。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">click</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">clickHandler</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 仅对于组件，用于监听原生事件，而不是组件使用 vm.$emit 触发的事件。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">nativeOn</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">click</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">nativeClickHandler</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 自定义指令. 注意事项：不能对绑定的旧值设值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// Vue 会为您持续追踨
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">directives</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;my-custom-directive&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;2&#39;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">expression</span><span class="o">:</span> <span class="s1">&#39;1 + 1&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">arg</span><span class="o">:</span> <span class="s1">&#39;foo&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">modifiers</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">bar</span><span class="o">:</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// Scoped slots in the form of
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// { name: props =&gt; VNode | Array&lt;VNode&gt; }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">scopedSlots</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">default</span><span class="o">:</span> <span class="nx">props</span> <span class="p">=&gt;</span> <span class="nx">h</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="nx">props</span><span class="p">.</span><span class="nx">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 如果子组件有定义 slot 的名称
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">slot</span><span class="o">:</span> <span class="s1">&#39;name-of-slot&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// 其他特殊顶层属性
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">key</span><span class="o">:</span> <span class="s1">&#39;myKey&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ref</span><span class="o">:</span> <span class="s1">&#39;myRef&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="vue-router2x">vue-router2.x</h1>
+<h2 id="1router-view">1.router-view</h2>
+<p>在vue-router2中<code>&lt;router-view&gt;</code>是最顶层的出口，渲染最高级路由匹配到组件。同样地，一个被渲染组件同样可以包含自己的嵌套<code>&lt;router-view&gt;</code>。</p>
+<h2 id="2挂载">2.挂载</h2>
+<p>在router1.0中，挂载节点的方式为<code>router.start()</code>而在router2.0中使用vue自己的<code>$mount</code>手动挂载</p>
+<h2 id="3给link添加事件">3.给link添加事件</h2>
+<p>在vue-router1中使用<code>v-link</code>写入路由，但是在vue-router2中要使用<code>router-link</code>写入路由，在浏览器渲染的时候会把<code>router-link</code>渲染成<code>a</code>。</p>
+<p>有时候需要为<code>router-link</code>注册事件，对于一般的html元素，直接使用<code>@click=&quot;eventFun&quot;</code>即可，但是对于<code>router-link</code>，像普通html元素那样注册事件后并不管用，<strong>需要添加<code>.native</code>才会成功注册</strong>。</p>
+<p>事实上给<strong>组件绑定原生事件</strong>就需要<code>.native</code>修饰<code>v-on</code>，否则无法注册成功。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">my-component</span> <span class="na">v-on:click</span><span class="err">.</span><span class="na">native</span><span class="o">=</span><span class="s">&#34;doTheThing&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">my-component</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="4利用vue-router做导航">4.利用vue-router做导航</h2>
+<p>在利用vue-router做导航的时候，需要用到<code>redirect</code>关键字的重定向功能，具体写法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">VueRouter</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">routes</span> <span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="nx">redirect</span><span class="o">:</span><span class="s1">&#39;/ZY&#39;</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="nx">path</span><span class="o">:</span><span class="s1">&#39;/ZY&#39;</span><span class="p">,</span><span class="nx">component</span><span class="o">:</span><span class="nx">ZY</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5路由嵌套">5.路由嵌套</h2>
+<p>vue-router的路由嵌套指的是<strong>子组件会在父组件中渲染出来</strong>，必须是子组件的父组件，祖先不可以实现，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">/user/foo/profile                     /user/foo/posts
+</span></span><span class="line"><span class="cl">+------------------+                  +-----------------+
+</span></span><span class="line"><span class="cl"><span class="p">|</span> User             <span class="p">|</span>                  <span class="p">|</span> User            <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> +--------------+ <span class="p">|</span>                  <span class="p">|</span> +-------------+ <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="p">|</span> Profile      <span class="p">|</span> <span class="p">|</span>  +------------&gt;  <span class="p">|</span> <span class="p">|</span> Posts       <span class="p">|</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> <span class="p">|</span>              <span class="p">|</span> <span class="p">|</span>                  <span class="p">|</span> <span class="p">|</span>             <span class="p">|</span> <span class="p">|</span>
+</span></span><span class="line"><span class="cl"><span class="p">|</span> +--------------+ <span class="p">|</span>                  <span class="p">|</span> +-------------+ <span class="p">|</span>
+</span></span><span class="line"><span class="cl">+------------------+                  +-----------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="参考">参考：</h1>
+<p><a href="https://cn.vuejs.org/v2/guide/">Vue.js官方文档</a></p>
+<p><a href="http://router.vuejs.org/zh-cn/index.html">vue-router 2官方文档</a></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2017-02-07
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/vue/">Vue</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2017/2017-webpack/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Webpack2.x踩坑与总结</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2017/2017-iframepost/">
+            <span class="next-text nav-default">iframe跨域POST提交</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

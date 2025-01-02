@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Javascript中字符串方法总结 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="字符方法 chartAt()与charCodeAt() 参数：基于0的字符位置
+**chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2016/2016-jsstring/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2016/2016-jsstring/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="Javascript中字符串方法总结">
+  <meta property="og:description" content="字符方法 chartAt()与charCodeAt() 参数：基于0的字符位置
+**chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2016-08-14T16:48:34+00:00">
+    <meta property="article:modified_time" content="2016-08-14T16:48:34+00:00">
+    <meta property="article:tag" content="Javascript">
+
+  <meta itemprop="name" content="Javascript中字符串方法总结">
+  <meta itemprop="description" content="字符方法 chartAt()与charCodeAt() 参数：基于0的字符位置
+**chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。">
+  <meta itemprop="datePublished" content="2016-08-14T16:48:34+00:00">
+  <meta itemprop="dateModified" content="2016-08-14T16:48:34+00:00">
+  <meta itemprop="wordCount" content="2580">
+  <meta itemprop="keywords" content="Javascript">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Javascript中字符串方法总结">
+  <meta name="twitter:description" content="字符方法 chartAt()与charCodeAt() 参数：基于0的字符位置
+**chartAt()以单字符字符串的形式返回给定位置的那个字符。而charCodeAt()**返回的是字符编码。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Javascript中字符串方法总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2016-08-14 </span>
+        <div class="post-category">
+            <a href="/categories/javascript/"> Javascript </a>
+            </div>
+          <span class="more-meta"> 2580 words </span>
+          <span class="more-meta"> 6 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#字符方法">字符方法</a>
+          <ul>
+            <li><a href="#chartat与charcodeat">chartAt()与charCodeAt()</a></li>
+          </ul>
+        </li>
+        <li><a href="#字符串操作方法">字符串操作方法</a>
+          <ul>
+            <li><a href="#concat数组中也有该方法">concat()(数组中也有该方法)</a></li>
+            <li><a href="#substring与slice数组中也有此方法">substring()与slice()(数组中也有此方法)</a></li>
+            <li><a href="#substr">substr()</a></li>
+            <li><a href="#repeates6新增">repeat()（ES6新增）</a></li>
+          </ul>
+        </li>
+        <li><a href="#字符串位置方法">字符串位置方法</a>
+          <ul>
+            <li><a href="#indexof和lastindexof数组中也有该方法">indexOf()和lastIndexOf()(数组中也有该方法)</a></li>
+            <li><a href="#es6新增includesstartswithendswith"><strong>ES6新增</strong>includes()、startsWith()、endsWith()</a></li>
+          </ul>
+        </li>
+        <li><a href="#去空格--trim">去空格&ndash;trim()</a></li>
+        <li><a href="#字符串大小写转换">字符串大小写转换</a>
+          <ul>
+            <li><a href="#tolowercasetolocalelowercasetouppercase和-tolocaleuppercase">toLowerCase()、toLocaleLowerCase()、toUpperCase()和 toLocaleUpperCase()</a></li>
+          </ul>
+        </li>
+        <li><a href="#字符串的模式匹配方法">字符串的模式匹配方法</a>
+          <ul>
+            <li><a href="#match">match()</a></li>
+            <li><a href="#search">search()</a></li>
+            <li><a href="#replace">replace()</a></li>
+            <li><a href="#split">split()</a></li>
+          </ul>
+        </li>
+        <li><a href="#localecompare">localeCompare()</a></li>
+        <li><a href="#fromcharcode">fromCharCode()</a></li>
+        <li><a href="#另附js中string和array方法的总结图">另附js中String和Array方法的总结图：</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h2 id="字符方法">字符方法</h2>
+<h3 id="chartat与charcodeat">chartAt()与charCodeAt()</h3>
+<p>参数：<em>基于<strong>0的字符位置</strong></em></p>
+<p>**chartAt()<strong>以单字符字符串的形式返回给定位置的那个字符。而</strong>charCodeAt()**返回的是字符编码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*chartAt()*/</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">chartAt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>    <span class="c1">// &#39;e&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字符串操作方法">字符串操作方法</h2>
+<h3 id="concat数组中也有该方法">concat()(数组中也有该方法)</h3>
+<p>参数：<em>一个或多个字符串</em></p>
+<p>将一个会多个字符串拼接起来，当然更常用的是使用 “+” 进行拼接</p>
+<h3 id="substring与slice数组中也有此方法">substring()与slice()(数组中也有此方法)</h3>
+<p>参数：<em>指定子字符串的开始位置</em>，<em>子字符串到哪里结束</em></p>
+<p>作用：创建新的子字符串（可以理解为字符串截取）</p>
+<h3 id="substr">substr()</h3>
+<p>参数：<em>指定子字符串的开始位置</em>，<em>返回的子字符串的字符个数</em></p>
+<p>作用：创建新的子字符串（可以理解为字符串截取）</p>
+<h3 id="repeates6新增">repeat()（ES6新增）</h3>
+<p>参数：<em>数字（表示重复的次数）</em></p>
+<p>作用：将原字符串重复n次</p>
+<p>如果传入负数，则报错，传入小数和<code>NaN</code>等同于传入0</p>
+<p><strong>substring，slice，substr，repeat均返回子字符串，不会修改原来的字符串</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;hello world&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>          <span class="c1">//&#34;lo world&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>      <span class="c1">//&#34;lo world&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span>         <span class="c1">//&#34;lo world&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>       <span class="c1">//&#34;lo w&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">7</span><span class="p">));</span>    <span class="c1">//&#34;lo w&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">));</span>      <span class="c1">//&#34;lo worl&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*repeat()*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;he&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">repeat</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">a</span><span class="si">}</span><span class="sb">---</span><span class="si">${</span><span class="nx">b</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> <span class="sr">/		  /</span><span class="o">/</span><span class="s2">&#34;he---hehehe&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当给这三个方法传入负值的时候，三个的表现不同：</p>
+<ul>
+<li>slice()会将传入的负值与字符串的长度相加</li>
+<li>substr()会将<strong>第一个</strong>位置的<strong>负值</strong>参数加上字符串长度后转为正数，而<strong>第二个</strong>位置的<strong>负值</strong>将转化为0</li>
+<li>substring()会把所有的负参数转化为0</li>
+<li>repeat()会报错</li>
+</ul>
+<h2 id="字符串位置方法">字符串位置方法</h2>
+<h3 id="indexof和lastindexof数组中也有该方法">indexOf()和lastIndexOf()(数组中也有该方法)</h3>
+<p>参数：<em>要搜索的子字符串</em>，<em>开始搜索的位置（可选）</em></p>
+<p>搜索给定的子字符串，如果找到则返回位置，否则返回-1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;hello world&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;o&#34;</span><span class="p">));</span>             <span class="c1">//4 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">stringValue</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s2">&#34;o&#34;</span><span class="p">));</span>         <span class="c1">//7 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这两个方法在搜索到第一个匹配的子字符串后就停止运行，所以如果想找到字符串中所有的
+子字符串出现的位置，可以循环调用<code>indexOf</code>或<code>lastIndexOf</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">stringValue</span> <span class="o">=</span> <span class="s2">&#34;Lorem ipsum dolor sit amet, consectetur adipisicing elit&#34;</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">positions</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">();</span> 
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="nx">pos</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">){</span> 
+</span></span><span class="line"><span class="cl">    <span class="nx">positions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="nx">pos</span> <span class="o">=</span> <span class="nx">stringValue</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&#34;e&#34;</span><span class="p">,</span> <span class="nx">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="p">}</span> 
+</span></span><span class="line"><span class="cl">     
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">positions</span><span class="p">);</span>    <span class="c1">//&#34;3,24,32,35,52&#34;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="es6新增includesstartswithendswith"><strong>ES6新增</strong>includes()、startsWith()、endsWith()</h3>
+<ul>
+<li>includes()：返回布尔值，表示是否找到了参数字符串</li>
+<li>startsWith()：返回布尔值，表示参数字符串是否在源字符串的头部</li>
+<li>endsWith()：返回布尔值，表示参数字符串是否在源字符串的尾部</li>
+</ul>
+<p>这三个方法的参数与<code>indexOf()</code>，<code>lastIndexOf()</code>一样</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">s</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s1">&#39;world&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>	<span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span>		<span class="c1">// true
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">s</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">&#39;Hello&#39;</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>		<span class="c1">//false
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意：</strong>
+使用第2个参数n时，<code>endsWith</code>的行为与其他两个方法有所不同。它针对<strong>前面</strong>n个字符，而其他两个方法针对从第n个位置开始直到字符串结束的字符。</p>
+<h2 id="去空格--trim">去空格&ndash;trim()</h2>
+<p>ES5中新增<code>trim()</code>方法用于去除字符串的左右空格，<strong>该方法会创建一个字符串的副本，不会改变原有的字符串</strong>，此外，Firefox 3.5+、Safari 5+
+和 Chrome 8+还支持非标准的 trimLeft()和 trimRight()方法，分别用于删除字符串开头和末尾的
+空格。</p>
+<p>其实去空格可以使用正则去匹配的去掉，这里写一个去空格函数</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*trim	去掉空白
+</span></span></span><span class="line"><span class="cl"><span class="cm">str要处理的字符串		
+</span></span></span><span class="line"><span class="cl"><span class="cm">[type] 	类型：l 去除左边的空白	r去除右边空白	b去掉两边的空白		a去除所有空白*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">trim</span> <span class="p">(</span><span class="nx">str</span><span class="p">,</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">type</span><span class="o">=</span><span class="nx">type</span><span class="o">||</span><span class="s2">&#34;b&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;b&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\s*|\s*$/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;l&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\s*/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;r&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s*$/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="o">==</span><span class="s2">&#34;a&#34;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s*/g</span><span class="p">,</span><span class="s2">&#34;&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字符串大小写转换">字符串大小写转换</h2>
+<h3 id="tolowercasetolocalelowercasetouppercase和-tolocaleuppercase">toLowerCase()、toLocaleLowerCase()、toUpperCase()和 toLocaleUpperCase()</h3>
+<h2 id="字符串的模式匹配方法">字符串的模式匹配方法</h2>
+<h3 id="match">match()</h3>
+<p>参数：<em>一个正则表达式或RegExp对象</em></p>
+<p>返回一个数组。在字符串上调用这个方法本质上与调用RegExp的exec()方法相同。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;cat, bat, sat, fat&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">pattern</span> <span class="o">=</span> <span class="sr">/.at/</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">//与 pattern.exec(text)相同 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">matches</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">pattern</span><span class="p">);</span>         
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">matches</span><span class="p">.</span><span class="nx">index</span><span class="p">);</span>             <span class="c1">//0 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">matches</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>                 <span class="c1">//&#34;cat&#34; 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">alert</span><span class="p">(</span><span class="nx">pattern</span><span class="p">.</span><span class="nx">lastIndex</span><span class="p">);</span>          <span class="c1">//0 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="search">search()</h3>
+<p>参数：<em>一个正则表达式或RegExp对象</em></p>
+<p>返回字符串中第一个匹配项的索引，如果没有找到，则返回-1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s2">&#34;cat, bat, sat, fat&#34;</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">pos</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">search</span><span class="p">(</span><span class="sr">/at/</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">alert</span><span class="p">(</span><span class="nx">pos</span><span class="p">);</span>   <span class="c1">//1 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="replace">replace()</h3>
+<p>参数：<em>一个RegExp对象或者一个字符串（这个字符串不会被转换成正则表达式）</em>，<em>一个字符串或一个函数</em></p>
+<p>利用<code>replace()</code>进行替换的时候，如果传入的是字符串，则只会替换第一个子字符串，要想替换所有的子字符串，则需要传入一个正则表达式，而且要指定全局（g）标志</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">text</span> <span class="o">=</span> <span class="s1">&#39;cat , bat , sat , fat&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="s1">&#39;at&#39;</span><span class="p">,</span><span class="s1">&#39;ond&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">// =&gt;&#39;cont , bat , sat , fat&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">result</span> <span class="o">=</span> <span class="nx">text</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/at/g</span><span class="p">,</span><span class="s1">&#39;ond&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span> <span class="c1">//=&gt;&#39;cont , bont , sont , font&#39;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>该方法并不改变调用它的字符串本身，只是返回一个新的替换后的字符串。</p>
+<p><strong>当第二个参数为函数时</strong>函数的返回值作为替换字符串。与第二个参数是字符串一样，如果第一个参数是正则表达式，并且全局匹配，则这个函数的方法将被多次调用，每次匹配都会被调用。</p>
+<p>该函数的参数：</p>
+<ul>
+<li>match：匹配的子串</li>
+<li>p1,p2&hellip;：假如<code>replace()</code>方法的第一个参数是RegExp对象，则代表第n个括号匹配的字符串。</li>
+<li>offset：匹配到的子字符串在原字符串中的偏移量。（比如，如果原字符串是“abcd”，匹配到的子字符串时“bc”，那么这个参数是1）</li>
+<li>被匹配的原字符串</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">replacer</span><span class="p">(</span><span class="nx">match</span> <span class="p">,</span> <span class="nx">p1</span> <span class="p">,</span> <span class="nx">p2</span> <span class="p">,</span> <span class="nx">p3</span> <span class="p">,</span> <span class="nx">offset</span> <span class="p">,</span> <span class="nx">string</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// p1 is nondigits, p2 digits, and p3 non-alphanumerics
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">match</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">p1</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">p2</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">p3</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">offset</span><span class="si">}</span><span class="sb">
+</span></span></span><span class="line"><span class="cl"><span class="sb">				 </span><span class="si">${</span><span class="nx">string</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">	<span class="cm">/* =&gt; abc12345#$*%
+</span></span></span><span class="line"><span class="cl"><span class="cm">         abc
+</span></span></span><span class="line"><span class="cl"><span class="cm">         12345
+</span></span></span><span class="line"><span class="cl"><span class="cm">         #$*%
+</span></span></span><span class="line"><span class="cl"><span class="cm">         0
+</span></span></span><span class="line"><span class="cl"><span class="cm">         abc12345#$*%&#34;	*/</span>		 
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; - &#39;</span><span class="p">));</span> <span class="c1">// =&gt; &#34;abc - 12345 - #$*%&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="p">[</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="nx">p3</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39; - &#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">newString</span> <span class="o">=</span> <span class="s1">&#39;abc12345#$*%&#39;</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/([^\d]*)(\d*)([^\w]*)/</span><span class="p">,</span> <span class="nx">replacer</span><span class="p">);</span> <span class="c1">// =&gt;&#34;abc - 12345 - #$*%&#34;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="split">split()</h3>
+<p>参数：<em>用于分隔字符串的分隔符</em>，<em>数字（可选，用于指定数组的大小）</em></p>
+<p>作用：基于指定的分隔符将一个字符串分割成多个子字符串，并将结果放在一个<strong>数组</strong>中，分隔符可以是字符串，也可以是RegExp对象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="s1">&#39;red,blue,yellow,black&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">color1</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">);</span>		<span class="c1">// =&gt;[&#39;red&#39;,&#39;blue&#39;,&#39;yellow&#39;,&#39;black&#39;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">color2</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>	<span class="c1">// =&gt;[&#39;red&#39;,&#39;blue&#39;]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">var</span> <span class="nx">color3</span> <span class="o">=</span> <span class="nx">color</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/[^\,]+/</span><span class="p">);</span> <span class="c1">// =&gt;[&#34;&#34;, &#34;,&#34;, &#34;,&#34;, &#34;,&#34;, &#34;&#34;] 
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后一个调用<code>split</code>的时候，出现了前后的两个空白，是因为通过正则表达式指定的分隔符出现在了字符串的开头和结尾。</p>
+<h2 id="localecompare">localeCompare()</h2>
+<p>这个方法用于比较两个字符串，并返回下列值中的一个：</p>
+<ul>
+<li>如果字符串在字母表中应该排在字符串参数之前，则返回负数（大多情况下为-1）</li>
+<li>如果相等，则返回0</li>
+<li>如果排在字符串参数之前，则返回正数（大多数情况下为1）</li>
+</ul>
+<h2 id="fromcharcode">fromCharCode()</h2>
+<p>String构造函数的一个静态方法</p>
+<p>参数：<em>一个或多个字符串编码</em></p>
+<p>作用：将接收到的一个或多个字符串编码<strong>转换</strong>成一个字符串，这个方法与实例方法<code>charCodeAt()</code>执行<strong>相反</strong>的操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/*fromCharCode*/</span>
+</span></span><span class="line"><span class="cl"><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="mi">104</span><span class="p">,</span><span class="mi">101</span><span class="p">,</span><span class="mi">108</span><span class="p">,</span><span class="mi">108</span><span class="p">,</span><span class="mi">111</span><span class="p">);</span>	<span class="c1">// =&gt;hello
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cm">/*charCodeAt*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`</span><span class="si">${</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="si">}</span><span class="sb">----</span><span class="si">${</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">charCodeAt</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;h----104&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;e----101&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;l----108&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;l----108&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">&#34;o----111&#34;
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后写一个字符串与数组方法应用的一个例子，熟悉它们方法的话很简单，不熟悉就会觉得有点儿乱。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">s</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kd">let</span> <span class="nx">news</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">).</span><span class="nx">reverse</span><span class="p">().</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">news</span><span class="p">);</span> <span class="c1">// =&gt; &#34;olleh&#34;
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="另附js中string和array方法的总结图">另附js中String和Array方法的总结图：</h2>
+<p><img src="./string&amp;Array.png" alt="icon"></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2016-08-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">Javascript</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2016/2016-flipcards/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">CSS3实现翻转卡牌效果</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2016/2016-jsposition/">
+            <span class="next-text nav-default">JS中的位置与大小</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

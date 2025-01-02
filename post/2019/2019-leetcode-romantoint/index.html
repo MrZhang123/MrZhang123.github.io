@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Roman To Int - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="题目 罗马数字使用七个不同的符号表示：I，V，X，L，C，D和M。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2019/2019-leetcode-romantoint/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2019/2019-leetcode-romantoint/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="Roman To Int">
+  <meta property="og:description" content="题目 罗马数字使用七个不同的符号表示：I，V，X，L，C，D和M。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2019-07-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-07-16T00:00:00+00:00">
+    <meta property="article:tag" content="LeetCode">
+
+  <meta itemprop="name" content="Roman To Int">
+  <meta itemprop="description" content="题目 罗马数字使用七个不同的符号表示：I，V，X，L，C，D和M。">
+  <meta itemprop="datePublished" content="2019-07-16T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2019-07-16T00:00:00+00:00">
+  <meta itemprop="wordCount" content="708">
+  <meta itemprop="keywords" content="LeetCode">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Roman To Int">
+  <meta name="twitter:description" content="题目 罗马数字使用七个不同的符号表示：I，V，X，L，C，D和M。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Roman To Int</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-07-16 </span>
+        <div class="post-category">
+            <a href="/categories/leetcode/"> leetCode </a>
+            </div>
+          <span class="more-meta"> 708 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#题目">题目</a></li>
+            <li><a href="#思路">思路</a></li>
+            <li><a href="#代码实现">代码实现</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h3 id="题目">题目</h3>
+<p>罗马数字使用七个不同的符号表示：<code>I</code>，<code>V</code>，<code>X</code>，<code>L</code>，<code>C</code>，<code>D</code>和<code>M</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Symbol     Value
+</span></span><span class="line"><span class="cl">I          1
+</span></span><span class="line"><span class="cl">V          5
+</span></span><span class="line"><span class="cl">X          10
+</span></span><span class="line"><span class="cl">L          50
+</span></span><span class="line"><span class="cl">C          100
+</span></span><span class="line"><span class="cl">D          500
+</span></span><span class="line"><span class="cl">M          1000
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例如，罗马数字<code>II</code>表示2，就是将两个1加在一起。12被写作<code>XII</code>。27被写作<code>XXVII</code>，就是<code>XX</code>+<code>V</code>+<code>II</code>。</p>
+<p>罗马数字通常从左到右，从最大到最小。然而，数字4不是<code>IIII</code>。而是<code>IV</code>。因为1写到5前面得到4，相同的原理，9被表示成<code>IX</code>。这里有6个使用剑法的例子🌰：</p>
+<ul>
+<li><code>I</code>放在<code>V</code>(5)和<code>X</code>(10)前面表示4和9</li>
+<li><code>X</code>放在<code>L</code>(50)和<code>C</code>(100)前面表示40和90</li>
+<li><code>I</code>放在<code>V</code>(500)和<code>X</code>(1000)前面表示400和900</li>
+</ul>
+<p>给定一个罗马数字，转换成整数。输入保证在1到3999。</p>
+<p>Example1</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Input: &#34;III&#34;
+</span></span><span class="line"><span class="cl">Output: 3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Input: &#34;IV&#34;
+</span></span><span class="line"><span class="cl">Output: 4
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Input: &#34;IX&#34;
+</span></span><span class="line"><span class="cl">Output: 9
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Input: &#34;LVIII&#34;
+</span></span><span class="line"><span class="cl">Output: 58
+</span></span><span class="line"><span class="cl">Explanation: L = 50, V= 5, III = 3.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Input: &#34;MCMXCIV&#34;
+</span></span><span class="line"><span class="cl">Output: 1994
+</span></span><span class="line"><span class="cl">Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>难度：Easy</strong></p>
+<h3 id="思路">思路</h3>
+<ol>
+<li>使用了JS的Map，生成有序的罗马数字和整数的对应关系</li>
+<li>将输入的字符串使用<code>String.prototype.split()</code>将每个字母转换成数组的元素。</li>
+<li>遍历数组，从Map中拿对应关系，这里使用两个相邻元素A,B对应的数字NA和NB比较，如果<code>NA&lt;NB</code>小，<code>result - NA</code>，否则<code>result + NB</code>。</li>
+</ol>
+<h3 id="代码实现">代码实现</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @param {string} s
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * @return {number}
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">{
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;I&#39; =&gt; 1,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;V&#39; =&gt; 5,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;X&#39; =&gt; 10,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;L&#39; =&gt; 50,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;C&#39; =&gt; 100,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;D&#39; =&gt; 500,
+</span></span></span><span class="line"><span class="cl"><span class="cm">    &#39;M&#39; =&gt; 1000
+</span></span></span><span class="line"><span class="cl"><span class="cm">}
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">romanList</span> <span class="o">=</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;M&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1000</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">500</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">100</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">50</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">10</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">5</span><span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="mi">1</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">getRomanMap</span> <span class="o">=</span> <span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">mapData</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">romanList</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">mapData</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">v</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mapData</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">mapData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">romanToInt</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">romanMap</span> <span class="o">=</span> <span class="nx">getRomanMap</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">strArr</span> <span class="o">=</span> <span class="nx">s</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">nowData</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">let</span> <span class="nx">next</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">strArr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">nowData</span> <span class="o">=</span> <span class="nx">romanMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">strArr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">next</span> <span class="o">=</span> <span class="nx">romanMap</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">strArr</span><span class="p">[</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">nowData</span> <span class="o">&lt;</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">result</span> <span class="o">-=</span> <span class="nx">nowData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">result</span> <span class="o">+=</span> <span class="nx">nowData</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-07-16
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/leetcode/">leetCode</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019/2019-privatefields/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">「译」ES 草案：class私有属性</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019/2019-leetcode-twosum/">
+            <span class="next-text nav-default">Two Sum</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

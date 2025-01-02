@@ -1,21 +1,26 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>成长 - 标签 - Raymond</title>
-        <link>https://mrzhang123.github.io/tags/%E6%88%90%E9%95%BF/</link>
-        <description>成长 - 标签 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 04 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E6%88%90%E9%95%BF/" rel="self" type="application/rss+xml" /><item>
-    <title>明确目标才能持续专注于最重要的事</title>
-    <link>https://mrzhang123.github.io/posts/2023/know-your-target/</link>
-    <pubDate>Sat, 04 Feb 2023 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2023/know-your-target/</guid>
-    <description><![CDATA[最近在读《股票深度交易心理学》，其中提到了关于如何持续专注于在交易中对我们有价值的方面。总结来说就是：明确自己的价值观，明确为什么你要做交易]]></description>
-</item><item>
-    <title>“关注圈”和“影响圈”</title>
-    <link>https://mrzhang123.github.io/posts/2022/fllow-and-effect/</link>
-    <pubDate>Mon, 07 Nov 2022 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2022/fllow-and-effect/</guid>
-    <description><![CDATA[满意源自内心，那些对人性一无所知的人总是妄图通过改变外在而不是内在的性情来追求幸福，结果必定是徒劳无功，而本来想摆脱的痛苦却会与日俱增。——]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>成长 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/tags/%E6%88%90%E9%95%BF/</link>
+    <description>Recent content in 成长 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 04 Feb 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/tags/%E6%88%90%E9%95%BF/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>明确目标才能持续专注于最重要的事</title>
+      <link>https://mrzhang123.github.io/post/2023/know-your-target/</link>
+      <pubDate>Sat, 04 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2023/know-your-target/</guid>
+      <description>&lt;p&gt;最近在读《股票深度交易心理学》，其中提到了关于如何持续专注于在交易中对我们有价值的方面。总结来说就是：明确自己的价值观，明确为什么你要做交易，然后运用价值观，为你提供指导和指引方向。&#xA;我觉得这个观点推广到其他事情上也是一样的，只有明确做事的目标（或者说初心），才能在出现突发情况时不至于慌乱，不至于在分心。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>“关注圈”和“影响圈”</title>
+      <link>https://mrzhang123.github.io/post/2022/fllow-and-effect/</link>
+      <pubDate>Mon, 07 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2022/fllow-and-effect/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;满意源自内心，那些对人性一无所知的人总是妄图通过改变外在而不是内在的性情来追求幸福，结果必定是徒劳无功，而本来想摆脱的痛苦却会与日俱增。——塞缪尔.约翰逊&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

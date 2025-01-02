@@ -1,16 +1,19 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Node.js - 分类 - Raymond</title>
-        <link>https://mrzhang123.github.io/categories/node.js/</link>
-        <description>Node.js - 分类 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 18 Feb 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/node.js/" rel="self" type="application/rss+xml" /><item>
-    <title>聊一聊 JS 中的二进制</title>
-    <link>https://mrzhang123.github.io/posts/2023/javascript-binary/</link>
-    <pubDate>Sat, 18 Feb 2023 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2023/javascript-binary/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="../../../image/logo/nodejs.png" referrerpolicy="no-referrer">
-            </div>在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Node.js on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/categories/node.js/</link>
+    <description>Recent content in Node.js on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 18 Feb 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/categories/node.js/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>聊一聊 JS 中的二进制</title>
+      <link>https://mrzhang123.github.io/post/2023/javascript-binary/</link>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2023/javascript-binary/</guid>
+      <description>&lt;p&gt;在 JavaScript 中，有很多跟二进制相关的概念，例如 &lt;code&gt;Buffer&lt;/code&gt;，&lt;code&gt;TypedArray&lt;/code&gt;，&lt;code&gt;ArrayBuffer&lt;/code&gt;，&lt;code&gt;Blob&lt;/code&gt;，&lt;code&gt;Stream&lt;/code&gt; 等等。那么这些概念彼此之间的关系是什么？各自的使用场景是什么？这将是本文内容的重点。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

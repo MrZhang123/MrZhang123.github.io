@@ -1,310 +1,316 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-
+<html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.110.0">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>Raymond</title><meta name="Description" content=""><meta property="og:title" content="Raymond" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://mrzhang123.github.io/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<meta name="twitter:title" content="Raymond"/>
-<meta name="twitter:description" content=""/>
-<meta name="application-name" content="Raymond">
-<meta name="apple-mobile-web-app-title" content="Raymond">
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Raymond">
-    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Raymond">
-<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "WebSite",
-        "url": "https://mrzhang123.github.io/","inLanguage": "zh-CN","author": {
-                "@type": "Person",
-                "name": "Raymond"
-            },"name": "Raymond"
-    }
-    </script></head>
 
-<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-        window.switchThemeEventSet = new Set()
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
-                        <option value="light">浅色</option>
-                        <option value="dark">深色</option>
-                        <option value="black">黑色</option>
-                        <option value="auto">跟随系统</option>
-                    </select>
-                </a></div>
-        </div>
+<meta name="author" content="" /><meta name="description" content="raymond blog" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/" />
+  <link href="https://mrzhang123.github.io/index.xml" rel="alternate" type="application/rss+xml" title="RaymondX成长记" />
+  <link href="https://mrzhang123.github.io/index.xml" rel="feed" type="application/rss+xml" title="RaymondX成长记" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="RaymondX成长记">
+  <meta property="og:description" content="raymond blog">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="RaymondX成长记">
+  <meta itemprop="description" content="raymond blog">
+  <meta itemprop="datePublished" content="2023-12-02T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-12-02T00:00:00+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RaymondX成长记">
+  <meta name="twitter:description" content="raymond blog">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2023/target/">释放创新力：无目标之旅的成功秘密</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-07-16 </span>
+      <div class="post-category">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6/"> 读书 </a>
+          </div>
+        <span class="more-meta"> 1459 words </span>
+        <span class="more-meta"> 3 mins read </span>
     </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
-                    <option value="light">浅色</option>
-                    <option value="dark">深色</option>
-                    <option value="black">黑色</option>
-                    <option value="auto">跟随系统</option>
-                </select>
-            </a></div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <blockquote>
+<p>有时目标导向思维会阻碍创新，成功更依赖于拥抱变化和新机会，而非盲目追求既定目标。在创新过程中，趣味性和开放的探索态度比预设的目标更为关键。</p>
+</blockquote>
+<p>《为什么伟大不能被计划》是一本探讨目标设定与实现的书，对于目标的设定与实现，本书提出了一种新的思考方式。</p>
     </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
-</div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="文章"><img
-        
-        loading="eager"
-        src="/images/avatar.jpeg"
-        srcset="/images/avatar.jpeg, /images/avatar.jpeg 1.5x, /images/avatar.jpeg 2x"
-        sizes="auto"
-        alt="/images/avatar.jpeg"
-        title="/images/avatar.jpeg" height="100"   width="100" ></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/MrZhang123" title="GitHub" target="_blank" rel="noopener noreferrer me"><span class="fab fa-github-alt fa-fw"></span></a><a href="https://www.zhihu.com/people/zhang-yi-20-38" title="知乎" target="_blank" rel="noopener noreferrer me"><span data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></span></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><span class="fas fa-rss fa-fw"></span></a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2021/2021-2022-new-year/" aria-label=再见2021，你好2022><img
-        
-        loading="eager"
-        src="/posts/2021/2021-2022-new-year/img/2022.jpeg"
-        srcset="/posts/2021/2021-2022-new-year/img/2022.jpeg, /posts/2021/2021-2022-new-year/img/2022.jpeg 1.5x, /posts/2021/2021-2022-new-year/img/2022.jpeg 2x"
-        sizes="auto"
-        alt="/posts/2021/2021-2022-new-year/img/2022.jpeg"
-        title="/posts/2021/2021-2022-new-year/img/2022.jpeg" height="1193"   width="2121" ></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2021/2021-2022-new-year/">再见2021，你好2022</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-12-31">2021-12-31</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>年终总结</a>&nbsp;<a href="/categories/%E6%80%9D%E8%80%83/"><i class="far fa-folder fa-fw"></i>思考</a></span></div><div class="content">不知不觉又到了年底了，又到了年终总结的时候了。一年过的真的太快了，回想起来去年年终总结2020年12月31日写完，发出来后走在下班的路上开心</div><div class="post-footer">
-        <a href="/posts/2021/2021-2022-new-year/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a>,&nbsp;<a href="/tags/%E6%80%9D%E8%80%83/">思考</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2021/2021-newenergy/" aria-label=从新能源这波行情看机构与散户的区别><img
-        
-        loading="eager"
-        src="/posts/2021/2021-newenergy/title.webp"
-        srcset="/posts/2021/2021-newenergy/title.webp, /posts/2021/2021-newenergy/title.webp 1.5x, /posts/2021/2021-newenergy/title.webp 2x"
-        sizes="auto"
-        alt="/posts/2021/2021-newenergy/title.webp"
-        title="/posts/2021/2021-newenergy/title.webp" height="708"   width="1080" ></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2021/2021-newenergy/">从新能源这波行情看机构与散户的区别</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-07-20">2021-07-20</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%8A%95%E8%B5%84/"><i class="far fa-folder fa-fw"></i>投资</a>&nbsp;<a href="/categories/%E6%80%9D%E8%80%83/"><i class="far fa-folder fa-fw"></i>思考</a></span></div><div class="content">本文摘自7月14日自己对投资、市场的反思，当天看到一篇关于李录减持比亚迪以及大佬们开始激流勇退新能源的文章，引发自己的一些思考。 7月14日李</div><div class="post-footer">
-        <a href="/posts/2021/2021-newenergy/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%8A%95%E8%B5%84/">投资</a>,&nbsp;<a href="/tags/%E6%80%9D%E8%80%83/">思考</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2020/2020-2021newyear/" aria-label=再见2020，起航2021><img
-        
-        loading="eager"
-        src="/posts/2020/2020-2021newyear/img/title.png"
-        srcset="/posts/2020/2020-2021newyear/img/title.png, /posts/2020/2020-2021newyear/img/title.png 1.5x, /posts/2020/2020-2021newyear/img/title.png 2x"
-        sizes="auto"
-        alt="/posts/2020/2020-2021newyear/img/title.png"
-        title="/posts/2020/2020-2021newyear/img/title.png" height="365"   width="1080" ></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020-2021newyear/">再见2020，起航2021</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-12-31">2020-12-31</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>年终总结</a></span></div><div class="content">从2016年开始，每年年底都会总结一下这一年来自己经历的事，有哪些成长，今年也不例外。今年这一年对我，对我的祖国，对整个世界来说都是不平凡的</div><div class="post-footer">
-        <a href="/posts/2020/2020-2021newyear/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020-basicsort/">基础排序</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-07-14">2020-07-14</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E7%AE%97%E6%B3%95/"><i class="far fa-folder fa-fw"></i>算法</a></span></div><div class="content"><h2 id="选择排序" class="headerLink">
-    <a href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f" class="header-mark"></a>选择排序</h2><blockquote>
-<p>首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2020/2020-basicsort/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020_pointer_compression_in_v8/">「译」V8中的指针压缩</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-04-23">2020-04-23</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div><div class="content"><p>原文链接：https://v8.dev/blog/pointer-compression</p>
-<p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p></div><div class="post-footer">
-        <a href="/posts/2020/2020_pointer_compression_in_v8/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020-blance-sheet/">学习读财报之资产负债表</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-04-12">2020-04-12</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E9%87%91%E8%9E%8D/"><i class="far fa-folder fa-fw"></i>金融</a>&nbsp;<a href="/categories/%E8%B4%A2%E6%8A%A5/"><i class="far fa-folder fa-fw"></i>财报</a></span></div><div class="content"><blockquote>
-<p>分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的<a href="https://book.douban.com/subject/25926542/" target="_blank" rel="noopener noreferrer">《一本书读懂财务报表》</a>，加深对书中概念的理解。</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2020/2020-blance-sheet/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E9%87%91%E8%9E%8D/">金融</a>,&nbsp;<a href="/tags/%E8%B4%A2%E6%8A%A5/">财报</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020-vimsearch/">vim的搜索与替换</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-03-15">2020-03-15</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/vim/"><i class="far fa-folder fa-fw"></i>Vim</a></span></div><div class="content"><p>在使用编辑器的过程中，我们会经常使用到搜索 / 替换，大部分编辑器可以通过快捷键呼出搜索框来搜索 / 替换，通过选择不同的选项可以做到匹配大小写，精准匹配，模糊匹配等等。那么在vim中，这些操作该如何实现？本文将介绍在vim中常用的搜索文本，替换文本操作以及如何结合插件实现更强大的搜索。</p></div><div class="post-footer">
-        <a href="/posts/2020/2020-vimsearch/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/vim/">Vim</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020_okr/">解析OKR</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-02-27">2020-02-27</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%81%8C%E5%9C%BA/"><i class="far fa-folder fa-fw"></i>职场</a></span></div><div class="content"><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">尽管很多人都很努力地工作，但是他们却没能取得什么成就感。
-</span></span><span class="line"><span class="cl">                                                ----安迪·格鲁夫
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书<a href="https://book.douban.com/subject/30144978/" target="_blank" rel="noopener noreferrer">《见识》</a>中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了<a href="https://book.douban.com/subject/30396635/" target="_blank" rel="noopener noreferrer">《这就是OKR》</a>之后的一些总结以及自己对OKR的理解。</p></div><div class="post-footer">
-        <a href="/posts/2020/2020_okr/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%81%8C%E5%9C%BA/">职场</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/2020_this_is_okr/">《这就是OKR》读书笔记</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-02-23">2020-02-23</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>读书笔记</a></span></div><div class="content"><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">尽管很多人都很努力地工作，但是他们却没能取得什么成就感。                
-</span></span><span class="line"><span class="cl">                                          ----安迪 格鲁夫
-</span></span></code></pre></td></tr></table>
-</div>
-</div></div><div class="post-footer">
-        <a href="/posts/2020/2020_this_is_okr/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2019/2019-2020newyear/" aria-label=再见2019，你好2020><img
-        
-        loading="eager"
-        src="/posts/2019/2019-2020newyear/img/2020.jpeg"
-        srcset="/posts/2019/2019-2020newyear/img/2020.jpeg, /posts/2019/2019-2020newyear/img/2020.jpeg 1.5x, /posts/2019/2019-2020newyear/img/2020.jpeg 2x"
-        sizes="auto"
-        alt="/posts/2019/2019-2020newyear/img/2020.jpeg"
-        title="/posts/2019/2019-2020newyear/img/2020.jpeg" height="750"   width="1000" ></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2019/2019-2020newyear/">再见2019，你好2020</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2019-12-31">2019-12-31</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>年终总结</a></span></div><div class="content"><blockquote>
-<p>不知不觉又到年底了，临近年底大家都忙着总结2019年发生的大事儿，比如前端2019年发生了哪些大事儿，投资界2019年发生了哪些事情让大家惊讶，DJ们也忙着制作并推出 Year Mix 2019。我从2016年开始，在每年的年底都会写一篇年底总结文章，回头看看这一年对我来说重要的事情，这一年我又学到了哪些，有哪些成长，今年也不例外&hellip;</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2019/2019-2020newyear/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></div></div>
-</article><ul class="pagination"><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/">1</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/2/">2</a>
-                    </span>
-                </li><li class="page-item active">
-                    <span class="page-link">
-                        <a href="/page/3/">3</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/4/">4</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/5/">5</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link" aria-hidden="true">&hellip;</span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/9/">9</a>
-                    </span>
-                </li></ul></div></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-            <div class="footer-line"></div>
-            <div class="footer-line">
-            </div>
-        </div></footer></div>
+    <div class="read-more">
+      <a href="/post/2023/target/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"data":{"desktop-header-typeit":"Raymond's Blog","id-1":"未来一定属于那些能够自律且肯付出心血的人","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"id-1":["id-1"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2023/aigc/">AIGC：内容创作的新时代</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-03-29 </span>
+      <div class="post-category">
+          <a href="/categories/ai/"> AI </a>
+          <a href="/categories/aigc/"> AIGC </a>
+          </div>
+        <span class="more-meta"> 5472 words </span>
+        <span class="more-meta"> 11 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>2022 年 11 月底在互联网上出现了一个叫 ChatGPT 的人工智能聊天机器人，紧接着它以火箭般的速度在互联网上传播，从 11 月底发布到月活破亿仅用了两个月的时间，与之相比，TikTok 用了 9 个月，Instagram 用了两年半（30 个月），Facebook 则用了 4 年半（54 个月）。与此同时“图文成片”、“AI 绘画”等功能也在各大平台爆火。人工智能的潜力再次被证明，而这些均在来同一个领域：<strong>AIGC</strong>。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2023/aigc/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2023/javascript-binary/">聊一聊 JS 中的二进制</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-02-18 </span>
+      <div class="post-category">
+          <a href="/categories/node.js/"> Node.js </a>
+          </div>
+        <span class="more-meta"> 3492 words </span>
+        <span class="more-meta"> 7 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>在 JavaScript 中，有很多跟二进制相关的概念，例如 <code>Buffer</code>，<code>TypedArray</code>，<code>ArrayBuffer</code>，<code>Blob</code>，<code>Stream</code> 等等。那么这些概念彼此之间的关系是什么？各自的使用场景是什么？这将是本文内容的重点。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2023/javascript-binary/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2023/know-your-target/">明确目标才能持续专注于最重要的事</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2023-02-04 </span>
+      <div class="post-category">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6/"> 读书 </a>
+          </div>
+        <span class="more-meta"> 582 words </span>
+        <span class="more-meta"> 2 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>最近在读《股票深度交易心理学》，其中提到了关于如何持续专注于在交易中对我们有价值的方面。总结来说就是：明确自己的价值观，明确为什么你要做交易，然后运用价值观，为你提供指导和指引方向。
+我觉得这个观点推广到其他事情上也是一样的，只有明确做事的目标（或者说初心），才能在出现突发情况时不至于慌乱，不至于在分心。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2023/know-your-target/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2022/2022-2023-new-year/">2022年终总结</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2022-12-25 </span>
+      <div class="post-category">
+          <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"> 年终总结 </a>
+          </div>
+        <span class="more-meta"> 4594 words </span>
+        <span class="more-meta"> 10 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <blockquote>
+<p>时间过的好快，不知不觉中又到年底了。从 2016 年开始，每年年底我都会总结这一年来自己做的重要事情。管理者每年通过致股东信的方式给股东汇报这一年来公司的运营情况，而我通过年终总结的方式为自己汇报这一年来自己的所思所想，所获所得，同时为下一年的计划提供参考，也为将来的自己留下美好回忆。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2022/2022-2023-new-year/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    </section>
+  
+  <nav class="pagination">
+    <a class="prev" href="/page/2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">Prev</span>
+      </a>
+    <a class="next" href="/page/4/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+  </nav>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+    <a href="/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
 </body>
-
 </html>

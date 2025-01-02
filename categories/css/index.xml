@@ -1,49 +1,47 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>CSS - 分类 - Raymond</title>
-        <link>https://mrzhang123.github.io/categories/css/</link>
-        <description>CSS - 分类 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 05 Apr 2017 20:57:48 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/css/" rel="self" type="application/rss+xml" /><item>
-    <title>理解CSS命名规范--BEM</title>
-    <link>https://mrzhang123.github.io/posts/2017/2017-cssbem/</link>
-    <pubDate>Wed, 05 Apr 2017 20:57:48 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2017/2017-cssbem/</guid>
-    <description><![CDATA[<blockquote>
-<p>最近在写博客主题的时候发现一个很严重的问题，由于css的命名并不是很规范，导致自己在后期修改的时候很是头疼，有些样式需要在浏览器中打开开发者工具去找，很是无奈。所以决定在写完主题之后学习下CSS命名规范中大名鼎鼎的BEM命名规范。</p>
-</blockquote>]]></description>
-</item><item>
-    <title>CSS3实现翻转卡牌效果</title>
-    <link>https://mrzhang123.github.io/posts/2016/2016-flipcards/</link>
-    <pubDate>Wed, 17 Aug 2016 23:35:52 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2016/2016-flipcards/</guid>
-    <description><![CDATA[<blockquote>
-<p>今天在工作中遇到需求，需要用CSS3写一个卡片翻转效果，这个效果看起来简单，但是还是涉及到一些不常用的CSS3中的3D转换的属性以及实现该效果的思路，所以这里总结一下。</p>
-</blockquote>]]></description>
-</item><item>
-    <title>慕课网---深入理解vertical-align总结</title>
-    <link>https://mrzhang123.github.io/posts/2016/2016-verticalalign-1/</link>
-    <pubDate>Mon, 23 May 2016 23:07:35 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2016/2016-verticalalign-1/</guid>
-    <description><![CDATA[<p>看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下
-vertical-align的百分比值相对于line-height计算
-IE6/7下line-height不支持小数</p>]]></description>
-</item><item>
-    <title>text-algin:justify实现文本两端对齐</title>
-    <link>https://mrzhang123.github.io/posts/2016/2016-textalgin/</link>
-    <pubDate>Wed, 11 May 2016 00:25:18 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2016/2016-textalgin/</guid>
-    <description><![CDATA[<p>最近在写页面的时候遇到了一个问题&mdash;当行文本双端对齐，大家都知道CSS属性中有一个“text-align:justify”，但是这个属性使用的时候，要求还是挺多的，尤其是要实现单行文本双端对齐。关于两端对齐，大漠和张鑫旭的博客中都有文章讲，非常不错，推荐给大家：</p>]]></description>
-</item><item>
-    <title>利用CSS3新单位rem实现响应</title>
-    <link>https://mrzhang123.github.io/posts/2016/2016-filerem/</link>
-    <pubDate>Tue, 26 Apr 2016 22:49:25 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2016/2016-filerem/</guid>
-    <description><![CDATA[<p>做移动端的响应方法有很多，但是我喜欢用 CSS3 的新单位 rem，这个单位非常好用（有个比它还好用的单位 vh，不过兼容性太差，不考虑了），根据不同屏幕，设置不同的基准值，从而实现适配各个屏幕尺寸的移动设备。慕课网有一套非常不错的讲关于 rem 的视频，这里推荐给大家<a href="http://www.imooc.com/learn/494" target="_blank" rel="noopener noreferrer">http://www.imooc.com/learn/494</a>。
-rem&mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实现字体的响应，与 em 不同，rem 根据根元素的 font-size 计算，所以要利用 rem 实现适配各个屏幕的大小，就需要根据不同的屏幕设置根元素不同的 font-size 的值。所以我们需要做下面的一些工作。</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CSS on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/categories/css/</link>
+    <description>Recent content in CSS on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 05 Apr 2017 20:57:48 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/categories/css/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>理解CSS命名规范--BEM</title>
+      <link>https://mrzhang123.github.io/post/2017/2017-cssbem/</link>
+      <pubDate>Wed, 05 Apr 2017 20:57:48 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2017/2017-cssbem/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;最近在写博客主题的时候发现一个很严重的问题，由于css的命名并不是很规范，导致自己在后期修改的时候很是头疼，有些样式需要在浏览器中打开开发者工具去找，很是无奈。所以决定在写完主题之后学习下CSS命名规范中大名鼎鼎的BEM命名规范。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>CSS3实现翻转卡牌效果</title>
+      <link>https://mrzhang123.github.io/post/2016/2016-flipcards/</link>
+      <pubDate>Wed, 17 Aug 2016 23:35:52 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2016/2016-flipcards/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;今天在工作中遇到需求，需要用CSS3写一个卡片翻转效果，这个效果看起来简单，但是还是涉及到一些不常用的CSS3中的3D转换的属性以及实现该效果的思路，所以这里总结一下。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>慕课网---深入理解vertical-align总结</title>
+      <link>https://mrzhang123.github.io/post/2016/2016-verticalalign-1/</link>
+      <pubDate>Mon, 23 May 2016 23:07:35 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2016/2016-verticalalign-1/</guid>
+      <description>&lt;p&gt;看了张鑫旭在慕课网关于vertical-align的讲解，感觉讲的挺深，所以总结了一下&#xA;vertical-align的百分比值相对于line-height计算&#xA;IE6/7下line-height不支持小数&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>text-algin:justify实现文本两端对齐</title>
+      <link>https://mrzhang123.github.io/post/2016/2016-textalgin/</link>
+      <pubDate>Wed, 11 May 2016 00:25:18 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2016/2016-textalgin/</guid>
+      <description>&lt;p&gt;最近在写页面的时候遇到了一个问题&amp;mdash;当行文本双端对齐，大家都知道CSS属性中有一个“text-align:justify”，但是这个属性使用的时候，要求还是挺多的，尤其是要实现单行文本双端对齐。关于两端对齐，大漠和张鑫旭的博客中都有文章讲，非常不错，推荐给大家：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>利用CSS3新单位rem实现响应</title>
+      <link>https://mrzhang123.github.io/post/2016/2016-filerem/</link>
+      <pubDate>Tue, 26 Apr 2016 22:49:25 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2016/2016-filerem/</guid>
+      <description>&lt;p&gt;做移动端的响应方法有很多，但是我喜欢用 CSS3 的新单位 rem，这个单位非常好用（有个比它还好用的单位 vh，不过兼容性太差，不考虑了），根据不同屏幕，设置不同的基准值，从而实现适配各个屏幕尺寸的移动设备。慕课网有一套非常不错的讲关于 rem 的视频，这里推荐给大家&lt;a href=&#34;http://www.imooc.com/learn/494&#34;&gt;http://www.imooc.com/learn/494&lt;/a&gt;。&#xA;rem&amp;mdash;-CSS3 中新增的单位，兼容性还不错，常用于移动端实现字体的响应，与 em 不同，rem 根据根元素的 font-size 计算，所以要利用 rem 实现适配各个屏幕的大小，就需要根据不同的屏幕设置根元素不同的 font-size 的值。所以我们需要做下面的一些工作。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

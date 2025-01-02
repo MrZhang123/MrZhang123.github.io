@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Git Commint规范 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2017/2017-gitcommint/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2017/2017-gitcommint/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="Git Commint规范">
+  <meta property="og:description" content="之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2017-10-18T22:11:36+00:00">
+    <meta property="article:modified_time" content="2017-10-18T22:11:36+00:00">
+    <meta property="article:tag" content="Git">
+
+  <meta itemprop="name" content="Git Commint规范">
+  <meta itemprop="description" content="之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。">
+  <meta itemprop="datePublished" content="2017-10-18T22:11:36+00:00">
+  <meta itemprop="dateModified" content="2017-10-18T22:11:36+00:00">
+  <meta itemprop="wordCount" content="1893">
+  <meta itemprop="keywords" content="Git">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Git Commint规范">
+  <meta name="twitter:description" content="之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Git Commint规范</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-10-18 </span>
+        <div class="post-category">
+            <a href="/categories/git/"> Git </a>
+            </div>
+          <span class="more-meta"> 1893 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#配置检测git-commit是否合法">配置检测git commit是否合法</a></li>
+        <li><a href="#commit-message-的格式">Commit message 的格式</a>
+          <ul>
+            <li><a href="#header">header</a></li>
+            <li><a href="#body">body</a></li>
+            <li><a href="#footer">footer</a></li>
+            <li><a href="#revert">revert</a></li>
+            <li><a href="#example">Example</a></li>
+          </ul>
+        </li>
+        <li><a href="#生成change-log">生成change log</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>之前看一个github的开源项目，看到要求使用angular的git commit规范，刚好自己项目中也需要规范git commit，所以就研究总结一下。</p>
+</blockquote>
+<h2 id="配置检测git-commit是否合法">配置检测git commit是否合法</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">npm install --save-dev @commitlint/cli husky
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>新建<code>commitlint.config.js</code>配置git提交规范（这里使用的是angular的提交规范）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;body-leading-blank&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">],</span> <span class="c1">//body开始于空白行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;body-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span> 
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;footer-leading-blank&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">],</span> <span class="c1">//footer开始于空白行
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;footer-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;header-max-length&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="mi">72</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;scope-case&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="s1">&#39;lowerCase&#39;</span><span class="p">],</span> <span class="c1">//scope小写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;subject-empty&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">],</span> <span class="c1">//subjec不t为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;subject-full-stop&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span> <span class="c1">//subject结尾不加&#39;.&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;subject-tense&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;present-imperative&#39;</span><span class="p">]],</span> <span class="c1">//以动词开头，使用第一人称现在时，比如change，而不是changed或changes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;type-case&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;always&#39;</span><span class="p">,</span> <span class="s1">&#39;lowerCase&#39;</span><span class="p">],</span> <span class="c1">//type小写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;type-empty&#39;</span><span class="o">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;never&#39;</span><span class="p">],</span> <span class="c1">//type不为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="s1">&#39;type-enum&#39;</span><span class="o">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="s1">&#39;always&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;build&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;chore&#39;</span><span class="p">,</span>      <span class="c1">//构建过程或辅助工具的变动
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;docs&#39;</span><span class="p">,</span>       <span class="c1">//文档（documentation）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;feat&#39;</span><span class="p">,</span>       <span class="c1">//新功能（feature）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;fix&#39;</span><span class="p">,</span>        <span class="c1">//修补bug
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;perf&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;refactor&#39;</span><span class="p">,</span>   <span class="c1">//重构（即不是新增功能，也不是修改bug的代码变动）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;revert&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s1">&#39;style&#39;</span><span class="p">,</span>      <span class="c1">//格式（不影响代码运行的变动）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="s1">&#39;test&#39;</span><span class="p">,</span>       <span class="c1">//增加测试
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="p">],</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span> <span class="c1">//type关键字必须是其中之一
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置husky</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;commitmsg&#34;</span><span class="p">:</span> <span class="s2">&#34;commitlint -e&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置完成之后，提交所写的commit如果不符合规范，则无法进行下一步操作</p>
+<h2 id="commit-message-的格式">Commit message 的格式</h2>
+<p>每次提交，Commit message 都包括三个部分：Header，Body 和 Footer</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;type&gt;</span>(<span class="nt">&lt;scope&gt;</span>): <span class="nt">&lt;subject&gt;</span>
+</span></span><span class="line"><span class="cl">// 空一行
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;body&gt;</span>
+</span></span><span class="line"><span class="cl">// 空一行
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;footer&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Header是必需的，Body和Footer可以省略</p>
+<h3 id="header">header</h3>
+<p>Header部分只有一行，包括三个字段：type（必需）、scope（可选）和subject（必需）</p>
+<h4 id="type">type</h4>
+<p>该字段用于说明commit的类型，被指定在上面的<code>type-enum</code>中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="s1">&#39;build&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;chore&#39;</span><span class="p">,</span>      <span class="c1">//构建过程或辅助工具的变动
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;docs&#39;</span><span class="p">,</span>       <span class="c1">//文档（documentation）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;feat&#39;</span><span class="p">,</span>       <span class="c1">//新功能（feature）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;fix&#39;</span><span class="p">,</span>        <span class="c1">//修补bug
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;perf&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;refactor&#39;</span><span class="p">,</span>   <span class="c1">//重构（即不是新增功能，也不是修改bug的代码变动）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;revert&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;style&#39;</span><span class="p">,</span>      <span class="c1">//格式（不影响代码运行的变动）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="s1">&#39;test&#39;</span><span class="p">,</span>       <span class="c1">//增加测试
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果type为feat和fix，则该 commit 将肯定出现在 Change log 之中。其他情况建议是不要放入</p>
+<h4 id="scope">scope</h4>
+<p>用于说明commit的影响范围</p>
+<h4 id="subject">subject</h4>
+<p>subject是 commit 目的的简短描述，不超过50个字符</p>
+<p>要求如下：</p>
+<ul>
+<li>以动词开头，使用第一人称现在时，比如change，而不是changed或changes</li>
+<li>第一个字母小写</li>
+<li>结尾不加句号（.）</li>
+</ul>
+<h3 id="body">body</h3>
+<p>body 部分是对本次 commit 的描述，可以分成多行，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">More detailed explanatory text, <span class="k">if</span> necessary.  Wrap it to 
+</span></span><span class="line"><span class="cl">about <span class="m">72</span> characters or so. 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Further paragraphs come after blank lines.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- Bullet points are okay, too
+</span></span><span class="line"><span class="cl">- Use a hanging indent
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>有两个注意点:</p>
+<ol>
+<li>
+<p>使用第一人称现在时，比如使用change而不是changed或changes</p>
+</li>
+<li>
+<p>应该说明代码变动的原因，以及跟以前提交的对比</p>
+</li>
+</ol>
+<h3 id="footer">footer</h3>
+<p>footer只用于以下两种情况：</p>
+<h4 id="不兼容变动">不兼容变动</h4>
+<p>如果当前代码与上一个版本不兼容，则 Footer 部分以BREAKING CHANGE开头，后面是对变动的描述、以及变动理由和迁移方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">BREAKING CHANGE: isolate scope bindings definition has changed.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    To migrate the code follow the example below:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    Before:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    scope: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      myAttr: <span class="s1">&#39;attribute&#39;</span>,
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    After:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    scope: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">      myAttr: <span class="s1">&#39;@&#39;</span>,
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    The removed <span class="sb">`</span>inject<span class="sb">`</span> wasn<span class="err">&#39;</span>t generaly useful <span class="k">for</span> directives so there should be no code using it.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="关闭issue">关闭Issue</h4>
+<p>如果当前 commit 针对某个issue，那么可以在 footer 部分关闭这个 issue</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">//关闭一个
+</span></span><span class="line"><span class="cl">Closes <span class="c1">#1</span>
+</span></span><span class="line"><span class="cl">//关闭多个
+</span></span><span class="line"><span class="cl">Closes <span class="c1">#2, #3, #4</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="revert">revert</h3>
+<p>还有一种特殊情况，如果当前 commit 用于撤销以前的 commit，必须以revert:开头，后面跟着被撤销 commit 的 header</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">revert: refactor<span class="o">(</span>compiler<span class="o">)</span>: introduce <span class="sb">`</span>TestBed.deprecatedOverrideProvider<span class="sb">`</span> <span class="o">(</span><span class="c1">#19558)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Body部分的格式是固定的，必须写成<code>This reverts commit &lt;hash&gt;.</code>，其中的hash是被撤销 commit 的 SHA 标识符</p>
+<p>如果当前 commit 与被撤销的 commit，在同一个发布（release）里面，那么它们都不会出现在 Change log 里面。如果两者在不同的发布，那么当前 commit，会出现在 Change log 的Reverts小标题下面。</p>
+<h3 id="example">Example</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">refactor<span class="o">(</span>compiler<span class="o">)</span>: introduce <span class="sb">`</span>TestBed.deprecatedOverrideProvider<span class="sb">`</span> <span class="o">(</span><span class="c1">#19558)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">This allows use to fix <span class="sb">`</span>TestBed.overrideProvider<span class="sb">`</span> to keep imported <span class="sb">`</span>NgModule<span class="sb">`</span>s eager,
+</span></span><span class="line"><span class="cl"><span class="k">while</span> allowing our users to still keep the old semantics <span class="k">until</span> they have fixed their
+</span></span><span class="line"><span class="cl">tests.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">PR Close <span class="c1">#19558</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="生成change-log">生成change log</h2>
+<p>如果你的所有 Commit 都符合 Angular 格式，那么发布新版本时， Change log 就可以用脚本自动生成。</p>
+<p>生成的文档包括以下三个部分。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">New features
+</span></span><span class="line"><span class="cl">Bug fixes
+</span></span><span class="line"><span class="cl">Breaking changes.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>每个部分都会罗列相关的 commit ，并且有指向这些 commit 的链接。当然，生成的文档允许手动修改，所以发布前，你还可以添加其他内容。</p>
+<p>conventional-changelog 就是生成 Change log 的工具，运行下面的命令即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ npm install -g conventional-changelog
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> my-project
+</span></span><span class="line"><span class="cl">$ conventional-changelog -p angular -i CHANGELOG.md -w
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面命令不会覆盖以前的 Change log，只会在CHANGELOG.md的头部加上自从上次发布以来的变动。</p>
+<p>如果你想生成所有发布的 Change log，要改为运行下面的命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ conventional-changelog -p angular -i CHANGELOG.md -w -r <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为了方便使用，可以将其写入package.json的scripts字段。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;changelog&#34;</span><span class="p">:</span> <span class="s2">&#34;conventional-changelog -p angular -i CHANGELOG.md -w -r 0&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以后，直接运行下面的命令即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ npm run changelog
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2017-10-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/git/">Git</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2017/2017-reactdom/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">小记：React操作真实DOM实现动态吸底部</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2017/2017-reactsum/">
+            <span class="next-text nav-default">React使用小记</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

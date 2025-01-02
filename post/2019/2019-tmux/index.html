@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>终端复用神器Tmux - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2019/2019-tmux/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2019/2019-tmux/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="终端复用神器Tmux">
+  <meta property="og:description" content="记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2019-06-23T14:32:00+00:00">
+    <meta property="article:modified_time" content="2019-06-23T14:32:00+00:00">
+    <meta property="article:tag" content="Linux">
+
+  <meta itemprop="name" content="终端复用神器Tmux">
+  <meta itemprop="description" content="记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。">
+  <meta itemprop="datePublished" content="2019-06-23T14:32:00+00:00">
+  <meta itemprop="dateModified" content="2019-06-23T14:32:00+00:00">
+  <meta itemprop="wordCount" content="3370">
+  <meta itemprop="keywords" content="Linux">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="终端复用神器Tmux">
+  <meta name="twitter:description" content="记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">终端复用神器Tmux</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-06-23 </span>
+        <div class="post-category">
+            <a href="/categories/linux/"> Linux </a>
+            </div>
+          <span class="more-meta"> 3370 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#安装">安装</a></li>
+            <li><a href="#session">session</a></li>
+            <li><a href="#tmux基础配置">tmux基础配置</a></li>
+            <li><a href="#附">附</a></li>
+            <li><a href="#参考">参考</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。</p>
+</blockquote>
+<p>在用tmux之前一直都是用的<a href="https://www.iterm2.com/">iterm2</a>（在mac上很好用的终端）原生的新开tab和分屏，其实也还好，界面看起来就像这样：</p>
+<!--item2原生分屏图片-->
+<p><img src="./img/iterm2.png" alt="item2原生分屏图片"></p>
+<p>但是分屏很多之后，可以看到很多状态栏，并不是很美观，对比tmux的分屏，看起来就要hack很多，tmux的分屏界面如下：</p>
+<!--tmux分屏图片-->
+<p><img src="./img/tmux.png" alt="tmux分屏图片"></p>
+<p>正是基于这个原因，开始学着始使用tmux。</p>
+<h3 id="安装">安装</h3>
+<blockquote>
+<p>tmux的仓库：https://github.com/tmux/tmux</p>
+</blockquote>
+<p>首先安装tmux：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># mac安装</span>
+</span></span><span class="line"><span class="cl">brew install tmux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># linux 安装</span>
+</span></span><span class="line"><span class="cl">sudo apt-get install tmux
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>开始学习tmux之前首先要明确几个概念：</p>
+<ul>
+<li>session：概括一个任务，是一组window的集合，在任务开始前创建一个session，与此任务相关的状态都会保存在session中，通过重新连接session可以方便的继续未完成的任务。session最大的最用就是持久的保存工作状态</li>
+<li>window：tmux中的window其实就是我们常说的tab，在chrome中，新开一个tab就会新建一个页面，tmux也类似</li>
+<li>pane：单个window可以分成若干pane，就像前面使用iterm2分屏一样</li>
+</ul>
+<p>简单来说就是：session包含window，window包含pane</p>
+<!--tmux名词标注-->
+<p><img src="./img/tmux-name.png" alt="tmux名词标注"></p>
+<h3 id="session">session</h3>
+<h4 id="新建">新建</h4>
+<p>安装完成后，在终端直接输入<code>tmux</code>即可进入tmux。进入之后可以看到session的名字是0，这是因为我们直接输入<code>tmux</code>会创建一个无名的会话，如果想要新建session的时候给session命名，可以使用以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">tmux new -s your-session-name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="断开">断开</h4>
+<p>如果想要断开当前session可以使用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">tmux detach <span class="c1"># 断开当前会话</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者使用快捷键<code>[prefix]+d</code>，其中<code>prefx</code>默认为<code>ctrl+b</code></p>
+<h4 id="恢复">恢复</h4>
+<p>退出session之后，想要恢复之前工作的区域，直接在终端输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">tmux attach-session -t your-session-name
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以简写</span>
+</span></span><span class="line"><span class="cl">tmux a -t your-session-name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中<code>session-name</code>是可选的，如果不输入，默认进入第一个会话。</p>
+<h4 id="关闭">关闭</h4>
+<p>使用完成后，要关闭，可以使用<code>tmux kill</code>命令，<code>kill</code>有以下四种：</p>
+<ul>
+<li><code>kill-server</code>：关闭sessions，clients和server，这个命令会将tmux创建的都关闭</li>
+<li><code>kill-session</code></li>
+<li><code>kill-window</code></li>
+<li><code>kill-pane</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># 关闭session</span>
+</span></span><span class="line"><span class="cl">tmux kill-session -t your-session-name
+</span></span><span class="line"><span class="cl"><span class="c1"># 关闭所有</span>
+</span></span><span class="line"><span class="cl">tmux kill-server
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="查看">查看</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">tmux list-session
+</span></span><span class="line"><span class="cl"><span class="c1"># 简写</span>
+</span></span><span class="line"><span class="cl">tmux ls
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者使用快捷键<code>prefix+s</code>查看所有session，<code>prefix+w</code>查看所有window。</p>
+<!--tmux展示所有session和window的图-->
+<p><img src="./img/tmux-showall.png" alt="tmux展示所有session和window的图"></p>
+<h3 id="tmux基础配置">tmux基础配置</h3>
+<p>tmux的配置在<code>~/.tmux.conf</code>文件中，如果没有该文件，可以先新建配置文件。</p>
+<h4 id="配置tmux前缀">配置tmux前缀</h4>
+<p>前面介绍session使用的时候，提到过一些快捷键，可以看到都是<code>prefix+xxx</code>的形式，这里的<code>prefix</code>是tmux的前缀键，默认为<code>ctrl+b</code>，只有按下<code>prefix</code>，才会激活tmux，然后再按其他键进行tmux操作，这样做的一个好处是可以有效的避免和其他应用快捷键的冲突。</p>
+<p>但是如果经常用tmux，就会发现<code>ctrl</code>和<code>b</code>这两个键按的不是很舒服，我们是否可以修改一个更加舒服的前缀键呢？当然是可以的，只需要在tmux的配置文件中解绑原有的<code>prefix</code>并修改成我们自定义的即可。配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">set</span> -g prefix C-a
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 解绑原有的prefix</span>
+</span></span><span class="line"><span class="cl">unbind C-b
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> C-a send-prefix
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>配置完成后，需要重启tmux，或者按下<code>ctrl+b</code>，然后输入<code>:</code>进入命令模式，输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">source-file ~/.tmux.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者我们给让配置生效添加快捷键：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> r source-file <span class="nv">$HOME</span>/.tmux.conf <span class="se">\;</span> display-message <span class="s1">&#39;Config reloaded&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样，直接输入<code>prefix+r</code>就可以让配置生效。</p>
+<h4 id="分屏">分屏</h4>
+<p>在tmux中，水平和竖直分屏默认快捷键为<code>prefix+&quot;</code> 和 <code>prefix+%</code>，这两个键可以说很少用而且不容易按到，我们可以自定义自己习惯的快捷键，对于对vim熟悉的用户，可以将其设置为跟vim一样的快捷键：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> C-h splitw -v -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> C-v splitw -h -c <span class="s1">&#39;#{pane_current_path}&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里的<code>splitw</code>其实是<code>split-window</code>的缩写，<code>-c '#{pane_current_path}'</code>表示在打开新pane的时候，默认进入当前目录。</p>
+<h4 id="切换pane">切换pane</h4>
+<p>在iterm2中，切换标签的快捷键是<code>commond+option+方向键</code>或<code>commond+[</code>或<code>commond+]</code>，相应的在tmux中，切换pane默认快捷为<code>prefix+方向键</code>但是方向键本身和<code>ctrl</code>离的太远，操作不方便，同样的我们可以设置自己喜欢的快捷键，例如设置跟vim一样的快捷键（这里多说一句，其实在vim中最常用的控制方向的键就是hjkl，如果习惯使用vim，可以设置tmux与之相同快捷键）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> h <span class="k">select</span>-pane -L <span class="c1"># up</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> j <span class="k">select</span>-pane -D <span class="c1"># down</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> k <span class="k">select</span>-pane -U <span class="c1"># left</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> l <span class="k">select</span>-pane -R <span class="c1"># right</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="开启鼠标支持">开启鼠标支持</h4>
+<p>在刚上手tmux的时候，总觉得各种命令很麻烦，而且不好记，如果支持鼠标就更好了，其实想要支持鼠标，只需要在配置文件中开启即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">set-option -g mouse on
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>开启鼠标之后，切换pane可以直接点击激活，调整分屏大小可以直接拖拽实现。</p>
+<p><strong>当然了，既然使用了tmux，目的就不只是界面好看而已，而是要提高效率，所以尽量少用鼠标😏</strong></p>
+<h4 id="调整pane">调整pane</h4>
+<p>如果想要使用快捷键调节pane大小，同样可以设置快捷键实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="nb">bind</span> H resize-pane -L <span class="m">10</span> <span class="c1"># 向左扩展10</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> L resize-pane -R <span class="m">10</span> <span class="c1"># 向右扩展10</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> K resize-pane -U <span class="m">5</span>  <span class="c1"># 向上扩展5</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bind</span> J resize-pane -D <span class="m">5</span>  <span class="c1"># 向下扩展5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样通过<code>prefix+HJKL</code>实现pane的扩展</p>
+<h3 id="附">附</h3>
+<table>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>?</td>
+          <td>显示快捷键帮助文档</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>d</td>
+          <td>断开当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>D</td>
+          <td>选择要断开的会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+z</td>
+          <td>挂起当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>r</td>
+          <td>强制重载当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>s</td>
+          <td>显示会话列表用于选择并切换</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>:</td>
+          <td>进入命令行模式，此时可直接输入ls等命令</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>[</td>
+          <td>进入复制模式，按q退出</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>]</td>
+          <td>粘贴复制模式中复制的文本</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>~</td>
+          <td>列出提示信息缓存</td>
+      </tr>
+  </tbody>
+</table>
+<p>window</p>
+<table>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>c</td>
+          <td>新建窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>&amp;</td>
+          <td>关闭当前窗口（关闭前需输入y or n确认）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>0~9</td>
+          <td>切换到指定窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>p</td>
+          <td>切换到上一窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>n</td>
+          <td>切换到下一窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>w</td>
+          <td>打开窗口列表，用于且切换窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>,</td>
+          <td>重命名当前窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>.</td>
+          <td>修改当前窗口编号（适用于窗口重新排序）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>f</td>
+          <td>快速定位到窗口（输入关键字匹配窗口名称）</td>
+      </tr>
+  </tbody>
+</table>
+<p>pane</p>
+<table>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>&quot;</td>
+          <td>当前面板上下一分为二，下侧新建面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>%</td>
+          <td>当前面板左右一分为二，右侧新建面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>x</td>
+          <td>关闭当前面板（关闭前需输入y or n确认）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>z</td>
+          <td>最大化当前面板，再重复一次按键后恢复正常（v1.8版本新增）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>!</td>
+          <td>将当前面板移动到新的窗口打开（原窗口中存在两个及以上面板有效）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>;</td>
+          <td>切换到最后一次使用的面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>q</td>
+          <td>显示面板编号，在编号消失前输入对应的数字可切换到相应的面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>{</td>
+          <td>向前置换当前面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>}</td>
+          <td>向后置换当前面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+o</td>
+          <td>顺时针旋转当前窗口中的所有面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>方向键</td>
+          <td>移动光标切换面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>o</td>
+          <td>选择下一面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>空格键</td>
+          <td>在自带的面板布局中循环切换</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Alt+方向键</td>
+          <td>以5个单元格为单位调整当前面板边缘</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+方向键</td>
+          <td>以1个单元格为单位调整当前面板边缘（Mac下被系统快捷键覆盖）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>t</td>
+          <td>显示时钟前缀</td>
+      </tr>
+      <tr>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>?</td>
+          <td>显示快捷键帮助文档</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>d</td>
+          <td>断开当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>D</td>
+          <td>选择要断开的会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+z</td>
+          <td>挂起当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>r</td>
+          <td>强制重载当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>s</td>
+          <td>显示会话列表用于选择并切换</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>:</td>
+          <td>进入命令行模式，此时可直接输入ls等命令</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>[</td>
+          <td>进入复制模式，按q退出</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>]</td>
+          <td>粘贴复制模式中复制的文本</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>~</td>
+          <td>列出提示信息缓存</td>
+      </tr>
+  </tbody>
+</table>
+<p>表二：窗口（window）指令。</p>
+<table>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>c</td>
+          <td>新建窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>&amp;</td>
+          <td>关闭当前窗口（关闭前需输入y or n确认）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>0~9</td>
+          <td>切换到指定窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>p</td>
+          <td>切换到上一窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>n</td>
+          <td>切换到下一窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>w</td>
+          <td>打开窗口列表，用于且切换窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>,</td>
+          <td>重命名当前窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>.</td>
+          <td>修改当前窗口编号（适用于窗口重新排序）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>f</td>
+          <td>快速定位到窗口（输入关键字匹配窗口名称）</td>
+      </tr>
+  </tbody>
+</table>
+<p>表三：面板（pane）指令。</p>
+<table>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>&quot;</td>
+          <td>当前面板上下一分为二，下侧新建面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>%</td>
+          <td>当前面板左右一分为二，右侧新建面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>x</td>
+          <td>关闭当前面板（关闭前需输入y or n确认）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>z</td>
+          <td>最大化当前面板，再重复一次按键后恢复正常（v1.8版本新增）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>!</td>
+          <td>将当前面板移动到新的窗口打开（原窗口中存在两个及以上面板有效）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>;</td>
+          <td>切换到最后一次使用的面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>q</td>
+          <td>显示面板编号，在编号消失前输入对应的数字可切换到相应的面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>{</td>
+          <td>向前置换当前面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>}</td>
+          <td>向后置换当前面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+o</td>
+          <td>顺时针旋转当前窗口中的所有面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>方向键</td>
+          <td>移动光标切换面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>o</td>
+          <td>选择下一面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>空格键</td>
+          <td>在自带的面板布局中循环切换</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Alt+方向键</td>
+          <td>以5个单元格为单位调整当前面板边缘</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+方向键</td>
+          <td>以1个单元格为单位调整当前面板边缘（Mac下被系统快捷键覆盖）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>t</td>
+          <td>显示时钟</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="参考">参考</h3>
+<ul>
+<li><a href="http://louiszhai.github.io/2017/09/30/tmux/#Tmux%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4">Tmux使用手册</a></li>
+<li><a href="https://cnbin.github.io/blog/2015/06/20/iterm2-kuai-jie-jian-da-quan/">iTerm2 快捷键大全</a></li>
+<li><a href="https://gist.github.com/MohamedAlaa/2961058">tmux shortcuts &amp; cheatsheet</a></li>
+<li><a href="https://gist.github.com/andreyvit/2921703">tmux cheat sheet</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-06-23
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/linux/">Linux</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019/2019-componentstips/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">【译】10个React组件的戒律</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019/2019-axiosparams/">
+            <span class="next-text nav-default">使用Axios请求时如何传递数组？</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

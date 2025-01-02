@@ -1,16 +1,19 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>AI - 标签 - Raymond</title>
-        <link>https://mrzhang123.github.io/tags/ai/</link>
-        <description>AI - 标签 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 29 Mar 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/ai/" rel="self" type="application/rss+xml" /><item>
-    <title>AIGC：内容创作的新时代</title>
-    <link>https://mrzhang123.github.io/posts/2023/aigc/</link>
-    <pubDate>Wed, 29 Mar 2023 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2023/aigc/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/posts/2023/aigc/img/OpenAI-GPT-4.webp" referrerpolicy="no-referrer">
-            </div>2022 年 11 月底在互联网上出现了一个叫 ChatGPT 的人工智能聊天机器人，紧接着它以火箭般的速度在互联网上传播，从 11 月底发布到月活破亿仅用了两个月的时间，与之]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/tags/ai/</link>
+    <description>Recent content in AI on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 29 Mar 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/tags/ai/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AIGC：内容创作的新时代</title>
+      <link>https://mrzhang123.github.io/post/2023/aigc/</link>
+      <pubDate>Wed, 29 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2023/aigc/</guid>
+      <description>&lt;p&gt;2022 年 11 月底在互联网上出现了一个叫 ChatGPT 的人工智能聊天机器人，紧接着它以火箭般的速度在互联网上传播，从 11 月底发布到月活破亿仅用了两个月的时间，与之相比，TikTok 用了 9 个月，Instagram 用了两年半（30 个月），Facebook 则用了 4 年半（54 个月）。与此同时“图文成片”、“AI 绘画”等功能也在各大平台爆火。人工智能的潜力再次被证明，而这些均在来同一个领域：&lt;strong&gt;AIGC&lt;/strong&gt;。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

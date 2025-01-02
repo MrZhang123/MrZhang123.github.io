@@ -1,24 +1,19 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>职场 - 分类 - Raymond</title>
-        <link>https://mrzhang123.github.io/categories/%E8%81%8C%E5%9C%BA/</link>
-        <description>职场 - 分类 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 27 Feb 2020 22:30:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/%E8%81%8C%E5%9C%BA/" rel="self" type="application/rss+xml" /><item>
-    <title>解析OKR</title>
-    <link>https://mrzhang123.github.io/posts/2020/2020_okr/</link>
-    <pubDate>Thu, 27 Feb 2020 22:30:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2020/2020_okr/</guid>
-    <description><![CDATA[<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">尽管很多人都很努力地工作，但是他们却没能取得什么成就感。
-</span></span><span class="line"><span class="cl">                                                ----安迪·格鲁夫
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书<a href="https://book.douban.com/subject/30144978/" target="_blank" rel="noopener noreferrer">《见识》</a>中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了<a href="https://book.douban.com/subject/30396635/" target="_blank" rel="noopener noreferrer">《这就是OKR》</a>之后的一些总结以及自己对OKR的理解。</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>职场 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/categories/%E8%81%8C%E5%9C%BA/</link>
+    <description>Recent content in 职场 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 27 Feb 2020 22:30:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/categories/%E8%81%8C%E5%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解析OKR</title>
+      <link>https://mrzhang123.github.io/post/2020/2020_okr/</link>
+      <pubDate>Thu, 27 Feb 2020 22:30:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2020/2020_okr/</guid>
+      <description>&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;&#xA;&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1&#xA;&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2&#xA;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&#xA;&lt;td class=&#34;lntd&#34;&gt;&#xA;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;尽管很多人都很努力地工作，但是他们却没能取得什么成就感。&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                                ----安迪·格鲁夫&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#xA;&lt;/div&gt;&#xA;&lt;/div&gt;&lt;p&gt;第一次听说OKR是一年前刚来新公司要定制试用期目标，那时候也没有太在意OKR是什么，只是觉得就是绩效，跟KPI一样。直到后来转正，每隔一段时间都要定制自己的OKR，同时在吴军老师的书&lt;a href=&#34;https://book.douban.com/subject/30144978/&#34;&gt;《见识》&lt;/a&gt;中也提到关于OKR的使用，如何用OKR管理自己的时间等等。这时候开始觉得有必要了解一下OKR到底是什么，该如何写，如何用OKR帮助自己管理工作 / 生活中的时间。本文是在阅读了&lt;a href=&#34;https://book.douban.com/subject/30396635/&#34;&gt;《这就是OKR》&lt;/a&gt;之后的一些总结以及自己对OKR的理解。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

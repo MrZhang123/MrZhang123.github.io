@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>理解债务危机 2：债务周期模型 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 上一篇文章 理解债务危机 1：货币与银行 主要介绍了理解债务危机所需要的前置知识，并介绍了银行是如何创造货币的。本篇文章基于上一篇文章的基础，进一步讲述典型的债务周期模型。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2023/debt-crisis-2/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2023/debt-crisis-2/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="理解债务危机 2：债务周期模型">
+  <meta property="og:description" content="上一篇文章 理解债务危机 1：货币与银行 主要介绍了理解债务危机所需要的前置知识，并介绍了银行是如何创造货币的。本篇文章基于上一篇文章的基础，进一步讲述典型的债务周期模型。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-10-21T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-10-21T00:00:00+00:00">
+    <meta property="article:tag" content="投资">
+    <meta property="article:tag" content="债务危机">
+
+  <meta itemprop="name" content="理解债务危机 2：债务周期模型">
+  <meta itemprop="description" content="上一篇文章 理解债务危机 1：货币与银行 主要介绍了理解债务危机所需要的前置知识，并介绍了银行是如何创造货币的。本篇文章基于上一篇文章的基础，进一步讲述典型的债务周期模型。">
+  <meta itemprop="datePublished" content="2023-10-21T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-10-21T00:00:00+00:00">
+  <meta itemprop="wordCount" content="3241">
+  <meta itemprop="keywords" content="投资,债务危机">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="理解债务危机 2：债务周期模型">
+  <meta name="twitter:description" content="上一篇文章 理解债务危机 1：货币与银行 主要介绍了理解债务危机所需要的前置知识，并介绍了银行是如何创造货币的。本篇文章基于上一篇文章的基础，进一步讲述典型的债务周期模型。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">理解债务危机 2：债务周期模型</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2023-10-21 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%8A%95%E8%B5%84/"> 投资 </a>
+            </div>
+          <span class="more-meta"> 3241 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#信贷与债务">信贷与债务</a>
+          <ul>
+            <li><a href="#债务危机为何具有周期性">债务危机为何具有周期性？</a></li>
+            <li><a href="#债务危机能否妥善处理避免出现严重问题">债务危机能否妥善处理，避免出现严重问题？</a></li>
+          </ul>
+        </li>
+        <li><a href="#典型的债务周期模型">典型的债务周期模型</a></li>
+        <li><a href="#对周期的考察">对周期的考察</a>
+          <ul>
+            <li><a href="#债务周期上行阶段的自我强化">债务周期上行阶段的自我强化</a></li>
+            <li><a href="#债务周期下行阶段的自我强化">债务周期下行阶段的自我强化</a></li>
+            <li><a href="#通缩性萧条-vs-通胀性萧条">通缩性萧条 vs 通胀性萧条</a></li>
+          </ul>
+        </li>
+        <li><a href="#最后">最后</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>上一篇文章 <a href="https://mp.weixin.qq.com/s?__biz=Mzg3NTI1MDI1MA==&amp;mid=2247484251&amp;idx=1&amp;sn=0b5f8a0f13bcce256ea965eb3844d162&amp;chksm=cec5147ef9b29d68942aef0d5f916fc24e0d11c2d50c10edf77630ef01920ea03350f9a0989b&amp;token=2053176653&amp;lang=zh_CN#rd">理解债务危机 1：货币与银行</a> 主要介绍了理解债务危机所需要的前置知识，并介绍了银行是如何创造货币的。本篇文章基于上一篇文章的基础，进一步讲述典型的债务周期模型。</p>
+</blockquote>
+<h2 id="信贷与债务">信贷与债务</h2>
+<p>首先我们来看一下“信贷”和“债务”这两个词。</p>
+<p>信贷是指赋予他人购买力，他人承诺今后偿还该购买力，即偿还债务。显然，<strong>以信贷方式赋予他人购买力</strong>，本身是件好事。相反，不赋予他人购买力，使其无法做有益的事，可能会产生不利的后果。因为信贷不足而导致发展缓慢无疑是件坏事，但是如果债务人无力偿还债务，就会产生信贷问题。</p>
+<p>那信贷 / 债务的快速增长到底是好事还是坏事呢？其实这取决于信贷产生的结果和债务的偿还情况。信贷 / 债务增长过快可能会导致债务人收入跟不上债务增长而导致无力偿还债务，但如果信贷 / 债务增长过慢可能导致更严重的问题，因为这可能会导致错失发展机会。</p>
+<p>总体来说，<strong>由于信贷同时创造了购买力和债务，因此增加信贷是好事还是坏事取决于能否把借款用于生产性目的，从而创造出足够多的收入来还本付息</strong>。如果信贷 / 债务能够产生足够大的经济效益，能使债务得到偿还，则信贷 / 债务是件好事，但这本身非常难判断。</p>
+<h3 id="债务危机为何具有周期性">债务危机为何具有周期性？</h3>
+<p>周期，其实是一系列合乎逻辑、以固定模式反复发生的事情。在市场经济中，信贷扩张和信贷收缩推动经济周期的发展，这背后有完美的逻辑支持。<strong>尽管各个周期的规律相似，但是它们重现的方式和持续的时间不会完成相同</strong>。</p>
+<p>简单来说，在任何时候，一旦借钱，就会创造出一个周期。买一件你目前买不起的东西，你的消费必然会超出你的收入。<strong>借款时，你不仅仅是在向贷款人借钱，实际上是在向未来的自己借钱。在未来的某个时，你必须降低消费水平，以偿还债务。</strong> 这种先借款消费、后紧缩开支的模式与周期非常相似。对个人如此，对国家也是如此。所以一旦借款，就启动了一系列可预测的事件。</p>
+<h3 id="债务危机能否妥善处理避免出现严重问题">债务危机能否妥善处理，避免出现严重问题？</h3>
+<p>几乎所有的债务危机中，只要债务是以一国的本币计价，则决策者都有可能妥善处理。因为决策者拥有灵活性，可以把债务问题的不良影响分散到未来若干年，这样债务问题就不是大问题。但是这里还是需要注意：</p>
+<ol>
+<li>当债务以外币而非本币计价时，决策者分散债务问题的难度将大大增加；</li>
+<li>虽然债务危机可以得到妥善处理，但一定会有人为此付出惨痛的代价。</li>
+</ol>
+<p>要降低债务与收入之间的比率和偿债总额与用于偿债的现金流之间的比率，决策者可以采用以下几种策略：</p>
+<ol>
+<li>财政紧缩（即减少支出）；</li>
+<li>债务违约 / 重组；</li>
+<li>央行印钞，购买资产（或提供担保）；</li>
+<li>将资金和信贷从重组的领域转向不充足的领域（财富转移）。</li>
+</ol>
+<p>上面这些措施中，一些具有通胀性，会刺激经济增长（例如央行印钞），一些具有通缩性，有利于减轻债务负担（例如，财政紧缩、债务违约）。</p>
+<h2 id="典型的债务周期模型">典型的债务周期模型</h2>
+<p>通常情况下，一个国家之所以爆发债务危机，是因为债务和偿债成本的增速高于偿债所需收入的增速，最后不得不去杠杆化。</p>
+<p>在典型债务危机中，央行可以通过降低实际利率和名义利率缓解危机，但当央行无法降息时，就会出现严重的债务危机（即萧条）。在典型的情况下，每个短期债务周期（经济周期）的顶部和底部的债务与收入比率都会高于此前一个短债务周期，<strong>多个短债务周期叠加，就形成了长期债务周期，直到推动债务扩张的降息无法继续</strong>。</p>
+<p>当利率降至 0% 时，央行就无法继续使用降息这一工具了，此时，去杠杆化进程就开始了。</p>
+<figure><img src="/post/2023/debt-crisis-2/img/%E7%9F%AD%E5%80%BA%E5%8A%A1%E5%91%A8%E6%9C%9F%E5%BD%A2%E6%88%90%E9%95%BF%E5%80%BA%E5%8A%A1%E5%91%A8%E6%9C%9F.png">
+</figure>
+
+<h2 id="对周期的考察">对周期的考察</h2>
+<p>在债务周期模型中我们会重点关注<strong>萧条之前的时期、萧条时期和萧条底部过后的去杠杆化时期</strong>。债务危机可以分为两大类：</p>
+<ul>
+<li>通缩性债务危机</li>
+<li>通胀性债务危机</li>
+</ul>
+<p>我们前面提到，长债务周期是由多个短债务周期组成的，但其实长债务周期和短债务周期在很多方面是很相似的，只是长债务周期更为极端，因为到达长债务周期顶端时债务负担水平较高，而解决这些问题的货币政策效果又不够好。所以大多数情况下，短债务周期会给经济发展造成小幅颠簸，而长债务周期会给经济发展带来大繁荣和大萧条。</p>
+<p>在短债务周期中，限制支出的因素仅仅是贷款人提供信贷的意愿和借款人接受信贷的意愿。<strong>信贷宽松带来经济扩张，信贷紧缩则导致经济衰退</strong>。信贷供给量主要由央行控制，央行一般可以通过降息刺激债务周期发展，推动经济走出衰退。但随着时间的推移，每个短债务周期的顶部和底部的经济活力都会超过上一个周期，债务总额也会持续增加。为什么会出现这样的情况？因为本质上来讲——人总是喜欢借钱、花钱，而不愿意还债。因此，在很长的一段时间内，<strong>债务憎增长快于收入增长，造成了长债务周期</strong>。</p>
+<p>在正常情况下，<strong>贷款会产生一个自我强化的上升运动，到顶峰后转而向下，进行一个自我强化的下降运行，触底后又逆转向上。在上升过程中，贷款支撑支出和投资，进而推动收入增加，资产价格上涨。收入增加和资产价格上涨会导致进一步借债，扩大在商品和金融资产上的支出。借债基本上会将支出和收入提升至超出警戒生产力稳步增长所对应的水平。接近债务周期顶峰时，人们预期以贷款维持的经济会继续以超越趋势的速度发展下去。这当然是不可能的，收入终将降至贷款成本以下</strong>。</p>
+<p>在泡沫阶段，不计后果的贷款和不切实际的预期带来了大量无法偿还的债务。在某个时间点，这种情况会被央行和商业银行发行，泡沫便开始收缩。</p>
+<blockquote>
+<p>泡沫形成的一个典型表现是：越来越多的借款被用来偿还债务，导致借款人债务负担加剧。</p>
+</blockquote>
+<h3 id="债务周期上行阶段的自我强化">债务周期上行阶段的自我强化</h3>
+<p>在长期债务周期的上行阶段，尽管人们负债累累，贷款人依然可以自由提供信贷，这是因为债务周期的上行阶段是会自我强化的：支出的增加带来收入水平的提高和资产净值的走高，从而导致借款人的借款能力提升，进而增加采购和消费支出。几乎所有市场参与者都愿意承担更多风险。这时候也会出现新型金融中介机构和金融工具，它们往往不受监管机构的监督和保护，因此更具有竞争力，可以带来更高的回报率，承担更高的杠杆率，提供流动性更强、信用风险更大的贷款。由于信贷充足，借款人往往超额支出，带来表面的繁荣，贷款人也因形势大好而沾沾自喜。但是这种现象难以持续，债务的增速不会永远超出偿债的资金和收入，因此债务问题迟早会出现。</p>
+<figure><img src="/post/2023/debt-crisis-2/img/%E4%B8%8A%E8%A1%8C%E9%98%B6%E6%AE%B5%E8%87%AA%E6%88%91%E5%BC%BA%E5%8C%96.png">
+</figure>
+
+<h3 id="债务周期下行阶段的自我强化">债务周期下行阶段的自我强化</h3>
+<p>债务与收入的比率一旦达到极限，上述过程就会反转。届时，资产价格下跌，债务人偿债出现困难，投资者因为害怕而保持谨慎，纷纷抛售债务，或拒绝将债务延期。这反过来会导致流动性问题，人们不得不削减开支。<strong>由于一个人的支出是另一个人的收入，削减开支必然导致收入水平的下降，人们的信誉度降低</strong>。资产价格下跌，进一步挤压银行，而偿债金额还在继续增加，导致支出进一步减少。缺乏信誉和现金的公司减少开支，造成股市崩盘，社会冲突加剧，失业率上升。这个过程也会不断自我强化，导致经济萎缩的局势难以扭转。</p>
+<figure><img src="/post/2023/debt-crisis-2/img/%E4%B8%8B%E8%A1%8C%E9%98%B6%E6%AE%B5%E8%87%AA%E6%88%91%E5%BC%BA%E5%8C%96.png">
+</figure>
+
+<p>在经济衰退时期，央行可以降息并增加流动性，以此放宽货币政策，改善贷款能力和意愿。但在经济萧条时期，因为利率已经达到或接近 0%，无法再降，一般的政策措施无法增加流动性或资金。</p>
+<h3 id="通缩性萧条-vs-通胀性萧条">通缩性萧条 vs 通胀性萧条</h3>
+<p>通缩性萧条和通胀性萧条是两种主要的债务危机，下面简单介绍一下二者的差异。</p>
+<p>在通缩性萧条中，决策者会通过降息应对最初的经济萎缩。但当利率接近 0% 时，这一政策就无法有效地刺激经济，此时，债务重组和财政紧缩站主导地位。在这个阶段，收入下降速度快于债务重组速度，偿债会减少债务存量，但为了支付更高的利息成本，许多借款人不得不承担更多的债务，因此债务负担上升。</p>
+<p><strong>通缩性萧条往往出现在大多数债务是国内融资的、以本币计价的国家，因此最终债务危机会带来强制抛售和违约</strong>，但不会造成汇率问题或国际收支问题。</p>
+<p>通胀性萧条经常出现在依赖外资流动的国家。这些国家积累了大量的以外币计价的债务，无法对债务进行货币化（即央行印钞购债）。当外资流动放缓时，信用创造就会变成信贷紧缩。在通胀性去杠杆化进程中，资本外流导致贷款水平和流动性急剧下降，同时汇率下降拉高通胀。</p>
+<h2 id="最后">最后</h2>
+<p>以上就是第二部分的全部内容，本文回答了为什么债务危机具有周期性，介绍了典型的债务周期模型，在下一篇文章中，我们将会讲述通缩性债务周期的完整阶段，详细介绍每个阶段特点及所使用的调节工具，敬请期待。</p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2023-10-21
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%8A%95%E8%B5%84/">投资</a>
+          <a href="/tags/%E5%80%BA%E5%8A%A1%E5%8D%B1%E6%9C%BA/">债务危机</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2023/debt-crisis-3/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">理解债务危机 3：通缩性债务周期详解</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2023/debt-crisis-1/">
+            <span class="next-text nav-default">理解债务危机 1：货币与银行</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

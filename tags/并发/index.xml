@@ -1,21 +1,26 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>并发 - 标签 - Raymond</title>
-        <link>https://mrzhang123.github.io/tags/%E5%B9%B6%E5%8F%91/</link>
-        <description>并发 - 标签 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E5%B9%B6%E5%8F%91/" rel="self" type="application/rss+xml" /><item>
-    <title>并发编程中的锁、条件变量和信号量</title>
-    <link>https://mrzhang123.github.io/posts/2022/lock-condition-signal/</link>
-    <pubDate>Sat, 22 Oct 2022 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2022/lock-condition-signal/</guid>
-    <description><![CDATA[在并发编程中，经常会涉及到锁、条件变量和信号量。本文从并发开始，探究为什么需要它们，它们的概念，实现原理以及应用。 并发简介并发是指多个事情，]]></description>
-</item><item>
-    <title>Go 并发编程初识</title>
-    <link>https://mrzhang123.github.io/posts/2022/go-concurrency/</link>
-    <pubDate>Sat, 11 Jun 2022 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2022/go-concurrency/</guid>
-    <description><![CDATA[Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>并发 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/tags/%E5%B9%B6%E5%8F%91/</link>
+    <description>Recent content in 并发 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 22 Oct 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/tags/%E5%B9%B6%E5%8F%91/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>并发编程中的锁、条件变量和信号量</title>
+      <link>https://mrzhang123.github.io/post/2022/lock-condition-signal/</link>
+      <pubDate>Sat, 22 Oct 2022 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2022/lock-condition-signal/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;在并发编程中，经常会涉及到锁、条件变量和信号量。本文从并发开始，探究为什么需要它们，它们的概念，实现原理以及应用。&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h1 id=&#34;并发简介&#34;&gt;并发简介&lt;/h1&gt;&#xA;&lt;p&gt;并发是指多个事情，在同一&lt;strong&gt;时间段内&lt;/strong&gt;同时发生了。和并发经常一起被提到的是并行。并行是指多个事情，在同一&lt;strong&gt;时间点&lt;/strong&gt;上同时发生了。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Go 并发编程初识</title>
+      <link>https://mrzhang123.github.io/post/2022/go-concurrency/</link>
+      <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2022/go-concurrency/</guid>
+      <description>&lt;p&gt;Go 有两种并发编程的风格：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel）。CSP是一个并发的模式，在不同的执行体（goroutine）之间传递至，但是变量本身局限局限于单一的执行体。&lt;/li&gt;&#xA;&lt;li&gt;传统的共享内存多线程。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;goroutine-和通道&#34;&gt;goroutine 和通道&lt;/h1&gt;&#xA;&lt;h2 id=&#34;goroutine&#34;&gt;goroutine&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;在 Go 里，每一个并发执行的活动称为 goroutine。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>MAF项目总结 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2018/2018-maf/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2018/2018-maf/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="MAF项目总结">
+  <meta property="og:description" content="做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2018-01-14T20:22:59+00:00">
+    <meta property="article:modified_time" content="2018-01-14T20:22:59+00:00">
+    <meta property="article:tag" content="总结">
+
+  <meta itemprop="name" content="MAF项目总结">
+  <meta itemprop="description" content="做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。">
+  <meta itemprop="datePublished" content="2018-01-14T20:22:59+00:00">
+  <meta itemprop="dateModified" content="2018-01-14T20:22:59+00:00">
+  <meta itemprop="wordCount" content="1177">
+  <meta itemprop="keywords" content="总结">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MAF项目总结">
+  <meta name="twitter:description" content="做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">MAF项目总结</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-01-14 </span>
+        <div class="post-category">
+            <a href="/categories/%E6%80%BB%E7%BB%93/"> 总结 </a>
+            </div>
+          <span class="more-meta"> 1177 words </span>
+          <span class="more-meta"> 3 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#团队">团队</a>
+          <ul>
+            <li><a href="#沟通问题">沟通问题</a></li>
+            <li><a href="#解决">解决</a></li>
+            <li><a href="#团队合作开发问题">团队合作开发问题</a></li>
+            <li><a href="#解决-1">解决</a></li>
+          </ul>
+        </li>
+        <li><a href="#自己">自己</a></li>
+        <li><a href="#结语">结语</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。</p>
+</blockquote>
+<h2 id="团队">团队</h2>
+<h3 id="沟通问题">沟通问题</h3>
+<p>由于参与开发的前端对后端业务并不是很熟悉，而产品跟后端本身对业务流程存在分歧，所以导致在前端开发过程中，前端根据产品的原型做出页面，在跟后端对接口的时候发现有些数据是给不到的，有些业务流程不是像产品说的那样的，最后，在开始开发一周多后，项目的产品，前端，后端一起开会，共同对了一下关于页面的业务逻辑，数据接口以及可行性！从而导致开发效率很低，很多逻辑/原型图改来改去，接口对来对去。</p>
+<h3 id="解决">解决</h3>
+<p>让<strong>所有</strong>参与开发的前端人员参与和产品的会议，如果涉及到后端业务，要和后端一起，在会上确定好业务流程和交互逻辑，从而保证在开发过程中，所有开发人员都对业务有一定的了解。在开发人员充分了解业务和交互的难易程度后再评估工期可能相对更接近实际。</p>
+<h3 id="团队合作开发问题">团队合作开发问题</h3>
+<h4 id="交互不统一">交互不统一</h4>
+<p>开发过程中发现的另一个问题就是大家对有些交互不统一，导致一些细节的问题，其中比较明显的就是在调取扫码的时候要跳转还是在当前页面直接渲染（其实直接跳转新页面更好），但是当做完后发现有的是跳转新页面，有的是在当前页面直接渲染，这导致交互的不统一！</p>
+<h4 id="数据结构不统一">数据结构不统一</h4>
+<p>项目使用React Native开发，使用Redux管理数据，但是关于在Action和Reducer中应该写什么（比如数据处理放在reducer还是action中）可能会有差异，导致代码并不是很统一，从而导致可维护性下降。</p>
+<p>还有一点就是可能需要统一代码中的命名规范，保证代码的统一性</p>
+<h3 id="解决-1">解决</h3>
+<h4 id="统一交互">统一交互</h4>
+<p>在开始项目之前前端开发人员应该一起讨论一下页面中的交互逻辑，查找是否有不同人做的相同的交互，一定要保证页面交互的统一性！</p>
+<h4 id="定规范">定规范</h4>
+<p>关于Redux中Action和Reducer，应该怎写更合适，要定一个统一的标准，从而保证代码的统一！</p>
+<h2 id="自己">自己</h2>
+<p>在开发过程中，也发现了一些自己开发流程上问题，需要更改</p>
+<ol>
+<li>总是一拿到原型就开发，并没有先看看，交互是否合理，哪里不明白，这会导致开发了一部分，甚至已经做完了，才会发现这里好像不太合理，然后去改，这样导致工期加长</li>
+<li>在做另一个APP的时候，后端那边少了一个接口，我这边没有发现，这也可能导致工期加长</li>
+</ol>
+<p>所以针对以上两个问题总结以后的工作流程：</p>
+<ol>
+<li>开发之前要先充分理解原型上的交互逻辑，并考虑交互的合理性</li>
+<li>在对接接口的时候要根据原型图一个个对接，防止遗漏</li>
+</ol>
+<h2 id="结语">结语</h2>
+<p>总结上面所提到的，对于自己来说需要做以下几点：</p>
+<ol>
+<li>如果自己参与该项目，要积极主动跟产品，后端沟通，如果有必要，可以让产品组织开发一起开会，对一下需求</li>
+<li>积极组织团队成员根据原型对一下交互，看哪里有相同的要统一</li>
+<li>总结一份关于React，Redux的规范的草稿放在GitHub上，然后跟团队成员一起讨论规范的合理性，随时修改</li>
+<li>优化自己的开发流程，先看原型再开发 / 对接口，防止出错</li>
+</ol>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-01-14
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2018/2018-reactcssmodules/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">CSS Modules在React中的应用</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2017/2017-2018newyear/">
+            <span class="next-text nav-default">再见2017，你好2018</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

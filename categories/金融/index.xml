@@ -1,25 +1,26 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>金融 - 分类 - Raymond</title>
-        <link>https://mrzhang123.github.io/categories/%E9%87%91%E8%9E%8D/</link>
-        <description>金融 - 分类 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 12 Apr 2020 20:15:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/%E9%87%91%E8%9E%8D/" rel="self" type="application/rss+xml" /><item>
-    <title>学习读财报之资产负债表</title>
-    <link>https://mrzhang123.github.io/posts/2020/2020-blance-sheet/</link>
-    <pubDate>Sun, 12 Apr 2020 20:15:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2020/2020-blance-sheet/</guid>
-    <description><![CDATA[<blockquote>
-<p>分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的<a href="https://book.douban.com/subject/25926542/" target="_blank" rel="noopener noreferrer">《一本书读懂财务报表》</a>，加深对书中概念的理解。</p>
-</blockquote>]]></description>
-</item><item>
-    <title>不可不知的债务危机</title>
-    <link>https://mrzhang123.github.io/posts/2019/2019-debtcrisisoverview/</link>
-    <pubDate>Wed, 07 Aug 2019 23:43:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2019/2019-debtcrisisoverview/</guid>
-    <description><![CDATA[<blockquote>
-<p>在17年年底，因为数字货币的一轮暴涨，开始关注金融，开始关注股票，基金，学习一些跟金融知识，本文是我自写文章以来第一篇关于金融的文章，是我在阅读瑞达里欧《债务危机》的一些摘要和理解。</p>
-</blockquote>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>金融 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/categories/%E9%87%91%E8%9E%8D/</link>
+    <description>Recent content in 金融 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 12 Apr 2020 20:15:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/categories/%E9%87%91%E8%9E%8D/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>学习读财报之资产负债表</title>
+      <link>https://mrzhang123.github.io/post/2020/2020-blance-sheet/</link>
+      <pubDate>Sun, 12 Apr 2020 20:15:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2020/2020-blance-sheet/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;分析上市公司，首先第一步就是阅读公司的财务报表，本系列文章旨在总结之前阅读的&lt;a href=&#34;https://book.douban.com/subject/25926542/&#34;&gt;《一本书读懂财务报表》&lt;/a&gt;，加深对书中概念的理解。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>不可不知的债务危机</title>
+      <link>https://mrzhang123.github.io/post/2019/2019-debtcrisisoverview/</link>
+      <pubDate>Wed, 07 Aug 2019 23:43:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2019/2019-debtcrisisoverview/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;在17年年底，因为数字货币的一轮暴涨，开始关注金融，开始关注股票，基金，学习一些跟金融知识，本文是我自写文章以来第一篇关于金融的文章，是我在阅读瑞达里欧《债务危机》的一些摘要和理解。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+  </channel>
 </rss>

@@ -1,274 +1,321 @@
-
-
 <!DOCTYPE html>
-<html lang="zh-CN">
-
+<html lang="en">
 <head>
-	<meta name="generator" content="Hugo 0.110.0">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noodp" />
-    <title>Raymond</title><meta name="Description" content=""><meta property="og:title" content="Raymond" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://mrzhang123.github.io/" /><meta property="og:image" content="https://mrzhang123.github.io/logo.png"/>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://mrzhang123.github.io/logo.png"/>
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<meta name="twitter:title" content="Raymond"/>
-<meta name="twitter:description" content=""/>
-<meta name="application-name" content="Raymond">
-<meta name="apple-mobile-web-app-title" content="Raymond">
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
-<meta name="theme-color" content="#f8f8f8"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="canonical" href="https://mrzhang123.github.io/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Raymond">
-    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Raymond">
-<link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/color.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "WebSite",
-        "url": "https://mrzhang123.github.io/","inLanguage": "zh-CN","author": {
-                "@type": "Person",
-                "name": "Raymond"
-            },"name": "Raymond"
-    }
-    </script></head>
 
-<body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme;   window.isDark = window.theme !== 'light' }
-        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
-        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
-        window.switchThemeEventSet = new Set()
-    </script>
-    <div id="back-to-top"></div>
-    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Raymond"><span id="desktop-header-typeit" class="typeit"></span></a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
-                    <i class="fas fa-adjust fa-fw"></i>
-                    <select class="color-theme-select" id="theme-select-desktop" title="切换主题">
-                        <option value="light">浅色</option>
-                        <option value="dark">深色</option>
-                        <option value="black">黑色</option>
-                        <option value="auto">跟随系统</option>
-                    </select>
-                </a></div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Raymond"><span id="mobile-header-typeit" class="typeit"></span></a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="请输入关键词进行搜索" id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
-                            <i class="fas fa-times-circle fa-fw"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        取消
-                    </a>
-                </div><a class="menu-item" href="/posts/" title="">文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a href="javascript:void(0);" class="menu-item theme-select" title="切换主题">
-                <i class="fas fa-adjust fa-fw"></i>
-                <select class="color-theme-select" id="theme-select-mobile" title="切换主题">
-                    <option value="light">浅色</option>
-                    <option value="dark">深色</option>
-                    <option value="black">黑色</option>
-                    <option value="auto">跟随系统</option>
-                </select>
-            </a></div>
-    </div>
-</header>
-<div class="search-dropdown desktop">
-    <div id="search-dropdown-desktop"></div>
+<meta name="author" content="" /><meta name="description" content="raymond blog" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/" />
+  <link href="https://mrzhang123.github.io/index.xml" rel="alternate" type="application/rss+xml" title="RaymondX成长记" />
+  <link href="https://mrzhang123.github.io/index.xml" rel="feed" type="application/rss+xml" title="RaymondX成长记" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="RaymondX成长记">
+  <meta property="og:description" content="raymond blog">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="RaymondX成长记">
+  <meta itemprop="description" content="raymond blog">
+  <meta itemprop="datePublished" content="2023-12-02T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2023-12-02T00:00:00+00:00">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RaymondX成长记">
+  <meta name="twitter:description" content="raymond blog">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </div>
-<div class="search-dropdown mobile">
-    <div id="search-dropdown-mobile"></div>
-</div>
-<main class="main">
-            <div class="container"><div class="page home" posts><div class="home-profile"><div class="home-avatar"><a href="/posts/" title="文章"><img
-        
-        loading="eager"
-        src="/images/avatar.jpeg"
-        srcset="/images/avatar.jpeg, /images/avatar.jpeg 1.5x, /images/avatar.jpeg 2x"
-        sizes="auto"
-        alt="/images/avatar.jpeg"
-        title="/images/avatar.jpeg" height="100"   width="100" ></a></div><h2 class="home-subtitle"><div id="id-1" class="typeit"></div></h2><div class="links"><a href="https://github.com/MrZhang123" title="GitHub" target="_blank" rel="noopener noreferrer me"><span class="fab fa-github-alt fa-fw"></span></a><a href="https://www.zhihu.com/people/zhang-yi-20-38" title="知乎" target="_blank" rel="noopener noreferrer me"><span data-svg-src="/lib/simple-icons/icons/zhihu.min.svg"></span></a><a href="/index.xml" title="RSS" target="_blank" rel="noopener noreferrer me"><span class="fas fa-rss fa-fw"></span></a></div></div>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2019/2019-reacthooks/">简述 React Hooks 特征和使用方式</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2019-03-24">2019-03-24</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div><div class="content"><blockquote>
-<p>学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2019/2019-reacthooks/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2019/2019-reactnews/">React 新特性总结</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2019-01-16">2019-01-16</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div><div class="content"><blockquote>
-<p>自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2019/2019-reactnews/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><div class="featured-image-preview">
-            <a href="/posts/2018/2018-2019newyear/" aria-label=再见2018，你好2019><img
-        
-        loading="eager"
-        src="/posts/2018/2018-2019newyear/2019newyear.jpeg"
-        srcset="/posts/2018/2018-2019newyear/2019newyear.jpeg, /posts/2018/2018-2019newyear/2019newyear.jpeg 1.5x, /posts/2018/2018-2019newyear/2019newyear.jpeg 2x"
-        sizes="auto"
-        alt="/posts/2018/2018-2019newyear/2019newyear.jpeg"
-        title="/posts/2018/2018-2019newyear/2019newyear.jpeg" height="782"   width="1280" ></a>
-        </div><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2018/2018-2019newyear/">再见2018，你好2019</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2019-01-07">2019-01-07</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>年终总结</a></span></div><div class="content"><blockquote>
-<p>好久没写博客了，不知不觉的，就又到年底了，2018年已经过去，2019已经到来，回望2018这一年，自己又有了新的成长，新的变化，在去年写的一些计划中，自己也实践了一部分并且有所收获，还是非常开心的。这一年总体来说有这么几件大事儿吧，换了一份工作，换了一个身份，开始新的实践，有了新的认知。</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2018/2018-2019newyear/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/">年终总结</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2018/2018-reactlifecycle/">「译」如何使用React生命周期方法</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2018-07-28">2018-07-28</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div><div class="content"><blockquote>
-<p>原文链接：<a href="https://www.andreasreiterer.at/reactjs-lifecycle-methods/" target="_blank" rel="noopener noreferrer">How to use React Lifecycle Methods</a></p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2018/2018-reactlifecycle/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2018/2018-reactproject2/">从零开始搭建React应用（二）——React应用架构</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2018-07-18">2018-07-18</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div><div class="content"><p>上一篇文章——<a href="https://juejin.im/post/5af6857651882542682e4843" target="_blank" rel="noopener noreferrer">从零开始搭建 React 应用（一）——基础搭建</a>讲述了如何使用 webpack 搭建一个非常基础的 react 开发环境。本文将详细讲述搭建一个 React 应用的架构。</p></div><div class="post-footer">
-        <a href="/posts/2018/2018-reactproject2/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2018/2018-reactproject1/">从零开始搭建React应用（一）——基础搭建</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2018-07-18">2018-07-18</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div><div class="content"><p>项目链接：<a href="https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack" target="_blank" rel="noopener noreferrer">https://github.com/MrZhang123/Web_Project_Build/tree/master/react-webpack</a></p></div><div class="post-footer">
-        <a href="/posts/2018/2018-reactproject1/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2018/2018-es2018/">ES2018（ES9）的新特性</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2018-06-20">2018-06-20</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/javascript/"><i class="far fa-folder fa-fw"></i>Javascript</a></span></div><div class="content"><p>原文链接：https://www.sitepoint.com/es2018-whats-new/</p>
-<p>在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。</p></div><div class="post-footer">
-        <a href="/posts/2018/2018-es2018/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/javascript/">Javascript</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2018/2018-webpackpublicpath/">Webpack中publicPath详解</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2018-05-12">2018-05-12</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/webpack/"><i class="far fa-folder fa-fw"></i>Webpack</a></span></div><div class="content"><blockquote>
-<p>最近自己在搭建一个基于webpack的react项目，遇到关于<code>output.publicPath</code>和webpack-dev-server中<code>publicPath</code>的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2018/2018-webpackpublicpath/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/webpack/">Webpack</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2018/2018-reactcssmodules/">CSS Modules在React中的应用</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2018-04-13">2018-04-13</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/react/"><i class="far fa-folder fa-fw"></i>React</a></span></div><div class="content"><p>由于CSS是全局的，所以在写组件的时候，经常会遇到CSS命名重复导致样式覆盖（冲突），所以我们在写CSS的时候一般会这么处理</p></div><div class="post-footer">
-        <a href="/posts/2018/2018-reactcssmodules/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/react/">React</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2018/2018-maf/">MAF项目总结</a>
-    </h1><div class="post-meta">
-        <span class="post-author"><span class="author fas fa-user-circle fa-fw"></span><a href="/" title="Author" rel=" author" class="author">Raymond</a>
-        </span>&nbsp;<span class="post-publish">发布于 <time datetime="2018-01-14">2018-01-14</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%80%BB%E7%BB%93/"><i class="far fa-folder fa-fw"></i>总结</a></span></div><div class="content"><blockquote>
-<p>做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。</p>
-</blockquote></div><div class="post-footer">
-        <a href="/posts/2018/2018-maf/">阅读全文</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E6%80%BB%E7%BB%93/">总结</a></div></div>
-</article><ul class="pagination"><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/">1</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link" aria-hidden="true">&hellip;</span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/3/">3</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/4/">4</a>
-                    </span>
-                </li><li class="page-item active">
-                    <span class="page-link">
-                        <a href="/page/5/">5</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/6/">6</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/7/">7</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link" aria-hidden="true">&hellip;</span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/9/">9</a>
-                    </span>
-                </li></ul></div></div>
-        </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">
-                    由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.110.0">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreferrer" title="DoIt 0.4.0"><i class="far fa-edit fa-fw"></i> DoIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">Raymond</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
-            <div class="footer-line"></div>
-            <div class="footer-line">
-            </div>
-        </div></footer></div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
 
-    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
-            <i class="fas fa-arrow-up fa-fw"></i>
-        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
-            <i class="fas fa-comment fa-fw"></i>
-        </a>
-    </div><div class="assets"><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/katex/copy-tex.min.css">
-        <noscript><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":1000},"data":{"desktop-header-typeit":"Raymond's Blog","id-1":"未来一定属于那些能够自律且肯付出心血的人","mobile-header-typeit":"Raymond's Blog"},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"distance":100,"findAllMatches":false,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":false,"ignoreLocation":false,"isCaseSensitive":false,"location":0,"maxResultLength":10,"minMatchCharLength":2,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":0.3,"type":"fuse","useExtendedSearch":false},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"desktop-header-typeit":["desktop-header-typeit"],"id-1":["id-1"],"mobile-header-typeit":["mobile-header-typeit"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/typeit/typeit.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js" defer></script><script type="text/javascript" src="/lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="/lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="/js/katex.min.js" defer></script><script type="text/javascript" src="/js/theme.min.js" defer></script></div>
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <section id="posts" class="posts">
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2021/2021-2022-new-year/">再见2021，你好2022</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-12-31 </span>
+      <div class="post-category">
+          <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"> 年终总结 </a>
+          <a href="/categories/%E6%80%9D%E8%80%83/"> 思考 </a>
+          </div>
+        <span class="more-meta"> 7264 words </span>
+        <span class="more-meta"> 15 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <blockquote>
+<p>不知不觉又到了年底了，又到了年终总结的时候了。一年过的真的太快了，回想起来去年年终总结2020年12月31日写完，发出来后走在下班的路上开心的情景还历历在目。如今又要写新的一年的年终总结了。今年发生的事情还是挺多的，疫情还在继续，通胀，加息预期，教育“双减”，互联网告别“996、大小周”元年、裁员大潮，就在这一年快要结束的时候，陕西又爆发了疫情。总之一切都充满了不确定性。我个人觉得，2022年可能会更难。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2021/2021-2022-new-year/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2021/2021-newenergy/">从新能源这波行情看机构与散户的区别</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2021-07-20 </span>
+      <div class="post-category">
+          <a href="/categories/%E6%8A%95%E8%B5%84/"> 投资 </a>
+          <a href="/categories/%E6%80%9D%E8%80%83/"> 思考 </a>
+          </div>
+        <span class="more-meta"> 1959 words </span>
+        <span class="more-meta"> 4 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <blockquote>
+<p>本文摘自7月14日自己对投资、市场的反思，当天看到一篇关于李录减持比亚迪以及大佬们开始激流勇退新能源的文章，引发自己的一些思考。</p>
+</blockquote>
+<p>7月14日李录减持了10%的比亚迪，比亚迪大跌。去比亚迪股票的资讯里看了下，看到一篇关于新能源的文章：<a href="https://mp.weixin.qq.com/s/2jGAdmrV8CKtK42zdFGx7Q">李录大手笔减持比亚迪，让人想起高瓴清仓新能源车</a>。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2021/2021-newenergy/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2020/2020-2021newyear/">再见2020，起航2021</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-12-31 </span>
+      <div class="post-category">
+          <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"> 年终总结 </a>
+          </div>
+        <span class="more-meta"> 8079 words </span>
+        <span class="more-meta"> 17 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <blockquote>
+<p>从2016年开始，每年年底都会总结一下这一年来自己经历的事，有哪些成长，今年也不例外。今年这一年对我，对我的祖国，对整个世界来说都是不平凡的一年，这一年我们经历了太多太多，新冠疫情，抢口罩等防护设备，居家办公，股市大跌、美股两次熔断，以及下决心开始去健身房，成功减肥30多斤等等吧。2020年注定是载入史册的一年，因为这一年有太多的出乎意料，期待在2021年一切会重归美好&hellip;</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2020/2020-2021newyear/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2020/2020-basicsort/">基础排序</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-07-14 </span>
+      <div class="post-category">
+          <a href="/categories/%E7%AE%97%E6%B3%95/"> 算法 </a>
+          </div>
+        <span class="more-meta"> 1684 words </span>
+        <span class="more-meta"> 4 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h2 id="选择排序">选择排序</h2>
+<blockquote>
+<p>首先找到数组中最小的那个元素，其次将它和数组第一个元素交换位置（如果第一个元素就是最小元素，那么它就和自己交换）。再次，在剩下的元素中找到最小元素，将它和数组的第二个元素交换位置。如此往复，直到将整个数组排序。这种方法叫做选择排序。</p>
+</blockquote>
+    </div>
+    <div class="read-more">
+      <a href="/post/2020/2020-basicsort/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2020/2020_pointer_compression_in_v8/">「译」V8中的指针压缩</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2020-04-23 </span>
+      <div class="post-category">
+          <a href="/categories/javascript/"> Javascript </a>
+          </div>
+        <span class="more-meta"> 7541 words </span>
+        <span class="more-meta"> 16 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <p>原文链接：https://v8.dev/blog/pointer-compression</p>
+<p>内存和性能之间的斗争始终存在。作为用户，我们希望速度又快占用内存又少。然而通常情况下，提高性能需要消耗更多的内存（反之亦然）。</p>
+    </div>
+    <div class="read-more">
+      <a href="/post/2020/2020_pointer_compression_in_v8/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    </section>
+  
+  <nav class="pagination">
+    <a class="prev" href="/page/4/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text">Prev</span>
+      </a>
+    <a class="next" href="/page/6/">
+        <span class="next-text">Next</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+  </nav>
+        </div>
+        
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+    <a href="/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
 </body>
-
 </html>

@@ -1,24 +1,26 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>leetCode - 分类 - Raymond</title>
-        <link>https://mrzhang123.github.io/categories/leetcode/</link>
-        <description>leetCode - 分类 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 16 Jul 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/categories/leetcode/" rel="self" type="application/rss+xml" /><item>
-    <title>Roman To Int</title>
-    <link>https://mrzhang123.github.io/posts/2019/2019-leetcode-romantoint/</link>
-    <pubDate>Tue, 16 Jul 2019 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2019/2019-leetcode-romantoint/</guid>
-    <description><![CDATA[<h3 id="题目" class="headerLink">
-    <a href="#%e9%a2%98%e7%9b%ae" class="header-mark"></a>题目</h3><p>罗马数字使用七个不同的符号表示：<code>I</code>，<code>V</code>，<code>X</code>，<code>L</code>，<code>C</code>，<code>D</code>和<code>M</code>。</p>]]></description>
-</item><item>
-    <title>Two Sum</title>
-    <link>https://mrzhang123.github.io/posts/2019/2019-leetcode-twosum/</link>
-    <pubDate>Tue, 16 Jul 2019 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2019/2019-leetcode-twosum/</guid>
-    <description><![CDATA[<h3 id="题目" class="headerLink">
-    <a href="#%e9%a2%98%e7%9b%ae" class="header-mark"></a>题目</h3><p>给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。</p>
-<p>你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。</p>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LeetCode on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/categories/leetcode/</link>
+    <description>Recent content in LeetCode on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 16 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/categories/leetcode/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Roman To Int</title>
+      <link>https://mrzhang123.github.io/post/2019/2019-leetcode-romantoint/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2019/2019-leetcode-romantoint/</guid>
+      <description>&lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;&#xA;&lt;p&gt;罗马数字使用七个不同的符号表示：&lt;code&gt;I&lt;/code&gt;，&lt;code&gt;V&lt;/code&gt;，&lt;code&gt;X&lt;/code&gt;，&lt;code&gt;L&lt;/code&gt;，&lt;code&gt;C&lt;/code&gt;，&lt;code&gt;D&lt;/code&gt;和&lt;code&gt;M&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Two Sum</title>
+      <link>https://mrzhang123.github.io/post/2019/2019-leetcode-twosum/</link>
+      <pubDate>Tue, 16 Jul 2019 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2019/2019-leetcode-twosum/</guid>
+      <description>&lt;h3 id=&#34;题目&#34;&gt;题目&lt;/h3&gt;&#xA;&lt;p&gt;给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。&lt;/p&gt;&#xA;&lt;p&gt;你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

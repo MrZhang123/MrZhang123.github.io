@@ -1,14 +1,19 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>效率提升 - 标签 - Raymond</title>
-        <link>https://mrzhang123.github.io/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/</link>
-        <description>效率提升 - 标签 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/" rel="self" type="application/rss+xml" /><item>
-    <title>高效使用待办清单</title>
-    <link>https://mrzhang123.github.io/posts/2022/use-to-do-list/</link>
-    <pubDate>Sun, 04 Dec 2022 00:00:00 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2022/use-to-do-list/</guid>
-    <description><![CDATA[待办清单（to-do list）是一种用起来最简单的任务管理方法，我们将需要完成的任务列下来，在之后的时间里，每完成一个任务，就在待办清单中勾]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>效率提升 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/</link>
+    <description>Recent content in 效率提升 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 04 Dec 2022 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>高效使用待办清单</title>
+      <link>https://mrzhang123.github.io/post/2022/use-to-do-list/</link>
+      <pubDate>Sun, 04 Dec 2022 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2022/use-to-do-list/</guid>
+      <description>&lt;p&gt;待办清单（to-do list）是一种用起来最简单的任务管理方法，我们将需要完成的任务列下来，在之后的时间里，每完成一个任务，就在待办清单中勾掉一个。但一段时间过去后，我们可能发现自己的待办清单中的待办事项越来越多，很多事情也没有按照我们预想的进展进行。似乎待办清单用与不用并没有太大区别，但事实是否真的如此？为什么没有完成的待办越来越多？究竟如何正确的使用待办清单？&lt;/p&gt;</description>
+    </item>
+  </channel>
 </rss>

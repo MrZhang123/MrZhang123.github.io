@@ -1,16 +1,19 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>总结 - 标签 - Raymond</title>
-        <link>https://mrzhang123.github.io/tags/%E6%80%BB%E7%BB%93/</link>
-        <description>总结 - 标签 - Raymond</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 14 Jan 2018 20:22:59 &#43;0000</lastBuildDate><atom:link href="https://mrzhang123.github.io/tags/%E6%80%BB%E7%BB%93/" rel="self" type="application/rss+xml" /><item>
-    <title>MAF项目总结</title>
-    <link>https://mrzhang123.github.io/posts/2018/2018-maf/</link>
-    <pubDate>Sun, 14 Jan 2018 20:22:59 &#43;0000</pubDate><author>
-        <name>Raymond</name>
-    </author><guid>https://mrzhang123.github.io/posts/2018/2018-maf/</guid>
-    <description><![CDATA[<blockquote>
-<p>做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。</p>
-</blockquote>]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>总结 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/tags/%E6%80%BB%E7%BB%93/</link>
+    <description>Recent content in 总结 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 14 Jan 2018 20:22:59 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/tags/%E6%80%BB%E7%BB%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MAF项目总结</title>
+      <link>https://mrzhang123.github.io/post/2018/2018-maf/</link>
+      <pubDate>Sun, 14 Jan 2018 20:22:59 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2018/2018-maf/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;做了一个多月的售后服务APP在昨天终于上线，期间出现各种问题，反思总结一下，以备后续做项目时候优化流程，更快更好的开发。&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+  </channel>
 </rss>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>「译」JS新特性“可选链式调用” - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现null或undefined（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的if声明或者复制属性访问链的长的if条件：
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2019/2019-optional-chaining/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2019/2019-optional-chaining/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="「译」JS新特性“可选链式调用”">
+  <meta property="og:description" content="在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现null或undefined（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的if声明或者复制属性访问链的长的if条件：">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2019-09-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-09-03T00:00:00+00:00">
+    <meta property="article:tag" content="Javascript">
+
+  <meta itemprop="name" content="「译」JS新特性“可选链式调用”">
+  <meta itemprop="description" content="在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现null或undefined（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的if声明或者复制属性访问链的长的if条件：">
+  <meta itemprop="datePublished" content="2019-09-03T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2019-09-03T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1677">
+  <meta itemprop="keywords" content="Javascript">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="「译」JS新特性“可选链式调用”">
+  <meta name="twitter:description" content="在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现null或undefined（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的if声明或者复制属性访问链的长的if条件：">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">「译」JS新特性“可选链式调用”</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-09-03 </span>
+        <div class="post-category">
+            <a href="/categories/javascript/"> JavaScript </a>
+            </div>
+          <span class="more-meta"> 1677 words </span>
+          <span class="more-meta"> 4 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#介绍可选调用链">介绍可选调用链</a></li>
+        <li><a href="#其他的语法形式调用和动态属性">其他的语法形式：调用和动态属性</a></li>
+        <li><a href="#可选调用链的属性">可选调用链的属性</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>在JavaScript中长的链式调用可能容易出错，因为任何一步都可能出现<code>null</code>或<code>undefined</code>（也被称为“无效”值）。检查每个步骤的属性是否存在很容易变成深层次嵌套的<code>if</code>声明或者复制属性访问链的长的<code>if</code>条件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="c1">// 容易出错的版本，可能抛出错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">nameLength</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 不容易出错，但是难以阅读
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">let</span> <span class="nx">nameLength</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nx">db</span> <span class="o">&amp;&amp;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">user</span> <span class="o">&amp;&amp;</span> <span class="nx">db</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">nameLength</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上还可以使用三元表达式，但是同样难以阅读：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">nameLength</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl">  <span class="p">(</span><span class="nx">db</span>
+</span></span><span class="line"><span class="cl">    <span class="o">?</span> <span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nx">user</span>
+</span></span><span class="line"><span class="cl">      <span class="o">?</span> <span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span>
+</span></span><span class="line"><span class="cl">        <span class="o">?</span> <span class="nx">db</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">.</span><span class="nx">length</span>
+</span></span><span class="line"><span class="cl">        <span class="o">:</span> <span class="kc">undefined</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="o">:</span> <span class="kc">undefined</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">:</span> <span class="kc">undefined</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="介绍可选调用链">介绍可选调用链</h2>
+<p>我们并不想写出这样的代码，所以有一些代替方案是可取的。一些语言（例如swift，具体查看https://www.jianshu.com/p/5599b422afb0）针对这个问题提供了优雅的解决方案——可选调用链。
+根据<a href="https://github.com/tc39/proposal-optional-chaining">最近的规范</a>，“可选调用链是一个或多个属性访问和函数调用的链，以<code>?.</code>开头”。</p>
+<p>使用新的可选调用链，我们可以重写上面的demo：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="c1">// 依然检查错误，但是可读性更高
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">nameLength</span> <span class="o">=</span> <span class="nx">db</span><span class="o">?</span><span class="p">.</span><span class="nx">user</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span><span class="o">?</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用可选调用链，当<code>db</code>，<code>user</code>，或<code>name</code>是<code>undefined</code>或者<code>null</code>的时候，<code>nameLength</code>被初始化为<code>undefined</code>，而不是像之前那样抛出错误。</p>
+<p>**Note：**可选调用链比我们自己用<code>if(db &amp;&amp; db.user &amp;&amp; db.user.name)</code>检查更加健壮，例如，如果<code>name</code>是一个空字符串，可选字符串会将<code>name?.length</code>改为<code>name.length</code>然后得到正确的长度<code>0</code>，但是如果像我们之前那样做判断，不会得到正确的值，因为在if语句中空字符和<code>false</code>的行为相同。可选调用链修复了这个常见的bug。</p>
+<h2 id="其他的语法形式调用和动态属性">其他的语法形式：调用和动态属性</h2>
+<p>还有一个用于调用可选方法的运算符：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="c1">// 使用可选方法扩展接口，仅适用于管理员用户
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">adminOption</span> <span class="o">=</span> <span class="nx">db</span><span class="o">?</span><span class="p">.</span><span class="nx">user</span><span class="o">?</span><span class="p">.</span><span class="nx">validateAdminAndGetPrefs</span><span class="o">?</span><span class="p">.().</span><span class="nx">option</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这个语法可能有点儿出乎意料，因为这里的运算符是<code>?.()</code>，该运算符适用于之前的表达式。</p>
+<p>可选调用链还有第三种用法，即可选动态属性访问<code>?.[]</code>。如果对象中有该key对应的value，则返回value，否则返回<code>undefined</code>。demo如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="c1">// 使用动态属性名访问属性对应的值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">optionName</span> <span class="o">=</span> <span class="s1">&#39;optional setting&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">optionLength</span> <span class="o">=</span> <span class="nx">db</span><span class="o">?</span><span class="p">.</span><span class="nx">user</span><span class="o">?</span><span class="p">.</span><span class="nx">preferences</span><span class="o">?</span><span class="p">.[</span><span class="nx">optionName</span><span class="p">].</span><span class="nx">length</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该用法同样适用于可选索引数组，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// 如果`userArray`是`null`或`undefined`，则`userName`被优雅的赋值为`undefined`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">userIndex</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">userName</span> <span class="o">=</span> <span class="nx">usersArray</span><span class="o">?</span><span class="p">.[</span><span class="nx">userIndex</span><span class="p">].</span><span class="nx">name</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可选调用链可以和<a href="https://github.com/tc39/proposal-nullish-coalescing">nullish coalescing ?? 操作符</a>结合使用，返回一个非<code>undefined</code>的默认值。这样可以使用指定的默认值安全的进行深层属性访问，解决了之前用户需要JavaScript库才能解决的问题，例如<a href="https://lodash.dev/docs/4.17.15#get">lodash的_.get</a>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="mi">123</span><span class="p">,</span> <span class="nx">names</span><span class="o">:</span> <span class="p">{</span> <span class="nx">first</span><span class="o">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="nx">last</span><span class="o">:</span> <span class="s1">&#39;Smith&#39;</span> <span class="p">}};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="c1">// With lodash:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="s1">&#39;names.first&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// → &#39;Alice&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">middleName</span> <span class="o">=</span> <span class="nx">_</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span> <span class="s1">&#39;names.middle&#39;</span><span class="p">,</span> <span class="s1">&#39;(no middle name)&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// → &#39;(no middle name)&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">{</span> <span class="c1">// With optional chaining and nullish coalescing:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kr">const</span> <span class="nx">firstName</span> <span class="o">=</span> <span class="nx">object</span><span class="o">?</span><span class="p">.</span><span class="nx">names</span><span class="o">?</span><span class="p">.</span><span class="nx">first</span> <span class="o">??</span> <span class="s1">&#39;(no first name)&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// → &#39;Alice&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">middleName</span> <span class="o">=</span> <span class="nx">object</span><span class="o">?</span><span class="p">.</span><span class="nx">names</span><span class="o">?</span><span class="p">.</span><span class="nx">middle</span> <span class="o">??</span> <span class="s1">&#39;(no middle name)&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// → &#39;(no middle name)&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="可选调用链的属性">可选调用链的属性</h2>
+<p>可选调用链有一些有趣的属性：<em>短路（short-circuiting）</em>，<em>堆叠（stacking）<em>和</em>可选删除（optonal deletion）</em>。下面通过例子来了解这些属性。</p>
+<p>*短路（short-circuiting）*即如果可选调用链提前返回则不计算表达式的其余部分：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="c1">// 只有在`db`和`user`不是`undefined`的情况下`age`才会+1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">db</span><span class="o">?</span><span class="p">.</span><span class="nx">user</span><span class="o">?</span><span class="p">.</span><span class="nx">grow</span><span class="p">(</span><span class="o">++</span><span class="nx">age</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>*堆叠（stacking）*意味着可以在一系列属性访问中应用多个可选调用运算符：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="c1">// 一个可选链可以跟随另一个可选链
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">const</span> <span class="nx">firstNameLength</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">users</span><span class="o">?</span><span class="p">.[</span><span class="mi">42</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="nx">names</span><span class="p">.</span><span class="nx">first</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是，考虑在一个链中使用多个可选调用运算符。如果一个value保证是有效的，那么不鼓励使用<code>?.</code>去访问属性。像在之前的例子中，<code>db</code>必然是定义的，但是<code>db.users</code>和<code>db.users[42]</code>可能是未定义的。如果数据库中有这样的用户，那么<code>name.first.length</code>也是始终被定义的。</p>
+<p>*可选删除（optonal deletion）*就是<code>delete</code>操作符可以和可选链一起使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-JavaScript" data-lang="JavaScript"><span class="line"><span class="cl"><span class="c1">// 当且仅当`db`是定义过的时候删除`db.user`
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">delete</span> <span class="nx">db</span><span class="o">?</span><span class="p">.</span><span class="nx">user</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>更多细节可以访问<a href="https://github.com/tc39/proposal-optional-chaining#semantics">该提案的语义部分</a>。</p>
+<p>原文链接：https://v8.dev/features/optional-chaining</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-09-03
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">JavaScript</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019/2019-2020newyear/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">再见2019，你好2020</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019/2019-vimperformance/">
+            <span class="next-text nav-default">记一次vim性能优化</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>使用Axios请求时如何传递数组？ - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" 最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
+在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即http://xx.xx.com?a=1&amp;b=2这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2019/2019-axiosparams/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2019/2019-axiosparams/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="使用Axios请求时如何传递数组？">
+  <meta property="og:description" content="最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
+在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即http://xx.xx.com?a=1&amp;b=2这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2019-05-18T16:40:00+00:00">
+    <meta property="article:modified_time" content="2019-05-18T16:40:00+00:00">
+    <meta property="article:tag" content="Javascript">
+
+  <meta itemprop="name" content="使用Axios请求时如何传递数组？">
+  <meta itemprop="description" content="最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
+在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即http://xx.xx.com?a=1&amp;b=2这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？">
+  <meta itemprop="datePublished" content="2019-05-18T16:40:00+00:00">
+  <meta itemprop="dateModified" content="2019-05-18T16:40:00+00:00">
+  <meta itemprop="wordCount" content="925">
+  <meta itemprop="keywords" content="Javascript">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="使用Axios请求时如何传递数组？">
+  <meta name="twitter:description" content="最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
+在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即http://xx.xx.com?a=1&amp;b=2这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">使用Axios请求时如何传递数组？</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2019-05-18 </span>
+        <div class="post-category">
+            <a href="/categories/javascript/"> Javascript </a>
+            </div>
+          <span class="more-meta"> 925 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#使用jsonstringifyparse">使用JSON.stringify/parse</a></li>
+            <li><a href="#使用qs库和axios的参数处理函数">使用qs库和axios的参数处理函数</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>最近在项目开发中使用Axios请求，API层使用<strong>Node</strong>，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。</p>
+</blockquote>
+<p>在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即<code>http://xx.xx.com?a=1&amp;b=2</code>这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？</p>
+<h3 id="使用jsonstringifyparse">使用JSON.stringify/parse</h3>
+<p>既然我们传递的只能是一个字符串，最直接的办法就是先把数组变成字符串，然后在API层再做解析。我们可以在前端使用<code>JSON.stringify</code>将数组变成字符串，传递到API层，然后再用<code>JSON.parse</code>做解析，这样就可以成功的将数组从前端传递到API层。</p>
+<p>但是，这样做有一个问题，就是如果我们传递太多的数组，会导致前端传递数据的时候有很多<code>JSON.stringify</code>同样的，在Node这边会有很多的<code>JSON.parse</code>导致代码很不美观，那么如何更优雅的处理呢？</p>
+<h3 id="使用qs库和axios的参数处理函数">使用qs库和axios的参数处理函数</h3>
+<p><a href="https://github.com/ljharb/qs">qs</a>是一个用于解析嵌套字符串的库，使用这个库，可以在前端发出请求前，将参数统一<code>stringify</code>，然后在node层也使用qs将参数进行<code>pase</code>，具体处理方式如下：</p>
+<p>首先将参数做统一处理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">paramsSerializer</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;indices&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后在API层，引入<code>qs</code>库，直接将整个参数进行<code>qs.parse</code>，即可还原传递过来的参数。</p>
+<p><strong>这里需要特别说明一下：</strong></p>
+<p>qs库对数组的format有以下几种形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span> <span class="nx">indices</span><span class="o">:</span> <span class="kc">false</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式： ids=1&amp;ids=2&amp;id=3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;indices&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式： ids[0]=1&amp;aids1]=2&amp;ids[2]=3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;brackets&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式：ids[]=1&amp;ids[]=2&amp;ids[]=3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nx">qs</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span><span class="nx">ids</span><span class="o">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]},</span> <span class="p">{</span><span class="nx">arrayFormat</span><span class="o">:</span> <span class="s1">&#39;repeat&#39;</span><span class="p">})</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 形式： ids=1&amp;ids=2&amp;id=3
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用第一种方式传递数组，如果数组元素不止一个，则在API层不用<code>parse</code>直接就可以拿到数组，<strong>但是，如果是数组只有一个元素，则拿到的就是一个字符串</strong>，所以，最后的办法就是在前端进行<code>stringify</code>，在API层进行<code>parse</code>。</p>
+<p>以上就是大概的一个总结，一个小小的坑，总结一下，后面方便查询</p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2019-05-18
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">Javascript</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2019/2019-tmux/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">终端复用神器Tmux</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2019/2019-reacthooks/">
+            <span class="next-text nav-default">简述 React Hooks 特征和使用方式</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

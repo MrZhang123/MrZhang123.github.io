@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>ES2018（ES9）的新特性 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content="原文链接：https://www.sitepoint.com/es2018-whats-new/
+在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2018/2018-es2018/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2018/2018-es2018/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="ES2018（ES9）的新特性">
+  <meta property="og:description" content="原文链接：https://www.sitepoint.com/es2018-whats-new/
+在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2018-06-20T17:39:25+00:00">
+    <meta property="article:modified_time" content="2018-06-20T17:39:25+00:00">
+    <meta property="article:tag" content="Javascript">
+
+  <meta itemprop="name" content="ES2018（ES9）的新特性">
+  <meta itemprop="description" content="原文链接：https://www.sitepoint.com/es2018-whats-new/
+在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。">
+  <meta itemprop="datePublished" content="2018-06-20T17:39:25+00:00">
+  <meta itemprop="dateModified" content="2018-06-20T17:39:25+00:00">
+  <meta itemprop="wordCount" content="3079">
+  <meta itemprop="keywords" content="Javascript">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="ES2018（ES9）的新特性">
+  <meta name="twitter:description" content="原文链接：https://www.sitepoint.com/es2018-whats-new/
+在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">ES2018（ES9）的新特性</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-06-20 </span>
+        <div class="post-category">
+            <a href="/categories/javascript/"> Javascript </a>
+            </div>
+          <span class="more-meta"> 3079 words </span>
+          <span class="more-meta"> 7 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#es2016">ES2016</a></li>
+        <li><a href="#es2017">ES2017</a></li>
+        <li><a href="#es2018">ES2018</a>
+          <ul>
+            <li><a href="#异步迭代">异步迭代</a></li>
+            <li><a href="#promisefinally">Promise.finally()</a></li>
+            <li><a href="#restspread-属性">Rest/Spread 属性</a></li>
+            <li><a href="#正则表达式命名捕获组regular-expression-named-capture-groups">正则表达式命名捕获组（Regular Expression Named Capture Groups）</a></li>
+            <li><a href="#正则表达式反向断言lookbehind">正则表达式反向断言（lookbehind）</a></li>
+            <li><a href="#正则表达式dotall模式">正则表达式<code>dotAll</code>模式</a></li>
+            <li><a href="#正则表达式-unicode-转义">正则表达式 Unicode 转义</a></li>
+            <li><a href="#非转义序列的模板字符串">非转义序列的模板字符串</a></li>
+          </ul>
+        </li>
+        <li><a href="#译者参考">译者参考</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <p>原文链接：https://www.sitepoint.com/es2018-whats-new/</p>
+<p>在这篇文章中，我将介绍ES2018（ES9）的新特性，并介绍如何使用它们。</p>
+<p>JavaScript（ECMAScript）是跨多个平台的许多厂商实施的不断发展的标准。ES6（ECMAScript 2015）花费六年的时间敲定，是一个很大的发行版。新的年度发布流程被制定，以简化流程并更快地添加功能。 ES9（ES2018）是撰写本文时的最新版本。</p>
+<p>TC39由包括浏览器厂商在内的各方组成，他们开会推动JavaScript提案沿着一条严格的发展道路前进:</p>
+<ul>
+<li><strong>Stage 0: strawman</strong>——最初想法的提交。</li>
+<li><strong>Stage 1: proposal（提案）</strong>——由TC39至少一名成员倡导的正式提案文件，该文件包括API事例。</li>
+<li><strong>Stage 2: draft（草案）</strong>——功能规范的初始版本，该版本包含功能规范的两个实验实现。</li>
+<li><strong>Stage 3: candidate（候选）</strong>——提案规范通过审查并从厂商那里收集反馈</li>
+<li><strong>Stage 4: finished（完成）</strong>——提案准备加入ECMAScript，但是到浏览器或者Nodejs中可能需要更长的时间</li>
+</ul>
+<h2 id="es2016">ES2016</h2>
+<p>ES2016添加了两个小的特性来说明标准化过程：</p>
+<ol>
+<li>数组<code>includes()</code>方法，用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回<code>true</code>，否则返回<code>false</code>。</li>
+<li><code>a ** b</code>指数运算符，它与 <code>Math.pow(a, b)</code>相同。</li>
+</ol>
+<h2 id="es2017">ES2017</h2>
+<p>ES2017提供了更多的新特性：</p>
+<ol>
+<li>Async 函数呈现更清晰的 Promise 语法</li>
+<li><code>Object.values</code> 方法返回一个给定对象自己的所有可枚举属性值的数组，值的顺序与使用<code>for...in</code>循环的顺序相同（区别在于<code>for...in</code>循环枚举原型链中的属性）</li>
+<li><code>Object.entries()</code>方法返回一个给定对象自身可枚举属性的键值对数组，其排列与使用<code>for...in</code>循环遍历改对象时返回的顺序一致（区别在于<code>for...in</code>循环也枚举原型链中的属性）</li>
+<li><code>Object.getOwnPropertyDescriptors()</code>返回一个对象的所有自身属性的描述符（<code>.value</code>,<code>.writable</code>,<code>.get</code>,<code>.set</code>,<code>.configurable</code>,<code>enumerable</code>）</li>
+<li><code>padStart()</code>和<code>padEnd()</code>，填充字符串达到当前长度</li>
+<li>结尾逗号，数组定义和函数参数列表</li>
+<li><code>ShareArrayBuffer</code>和<code>Atomics</code>用于从共享内存位置读取和写入</li>
+</ol>
+<p>关于ES2017的更多信息请参阅 <a href="https://www.sitepoint.com/es2017-whats-new/">What&rsquo;s New in ES2017</a></p>
+<h2 id="es2018">ES2018</h2>
+<p>ECMAScript 2018（或者叫ES9）现在已经可用了。以下功能已经到达 stage 4，但是在撰写本文时在各个浏览器的实现还不完整。</p>
+<h3 id="异步迭代">异步迭代</h3>
+<p>在<code>async/await</code>的某些时刻，你可能尝试在同步循环中调用异步函数。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="k">of</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">await</span> <span class="nx">doSomething</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段代码不会正常运行，下面这段同样也不会：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kr">async</span> <span class="nx">i</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">await</span> <span class="nx">doSomething</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这段代码中，循环本身依旧保持同步，并在在内部异步函数之前全部调用完成。</p>
+<p>ES2018引入异步迭代器（asynchronous iterators），这就像常规迭代器，除了<code>next()</code>方法返回一个Promise。因此<code>await</code>可以和<code>for...of</code>循环一起使用，以串行的方式运行异步操作。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">async</span> <span class="kd">function</span> <span class="nx">process</span><span class="p">(</span><span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="kr">await</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="k">of</span> <span class="nx">array</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">doSomething</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="promisefinally">Promise.finally()</h3>
+<p>一个Promise调用链要么成功到达最后一个<code>.then()</code>，要么失败触发<code>.catch()</code>。在某些情况下，你想要在无论Promise运行成功还是失败，运行相同的代码，例如清除，删除对话，关闭数据库连接等。</p>
+<p><code>.finally()</code>允许你指定最终的逻辑：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">doSomething</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">doSomething1</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">doSomething2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">doSomething3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">err</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="p">.</span><span class="k">finally</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// finish here!
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="restspread-属性">Rest/Spread 属性</h3>
+<p>ES2015引入了<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Rest_parameters">Rest参数</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Spread_syntax">扩展运算符</a>。三个点（&hellip;）仅用于数组。Rest参数语法允许我们将一个布丁数量的参数表示为一个数组。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restParam</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">restParam</span><span class="p">(</span><span class="nx">p1</span><span class="p">,</span> <span class="nx">p2</span><span class="p">,</span> <span class="p">...</span><span class="nx">p3</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// p1 = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// p2 = 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// p3 = [3, 4, 5]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>展开操作符以相反的方式工作，将数组转换成可传递给函数的单独参数。例如<code>Math.max()</code>返回给定数字中的最大值：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">99</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">16</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">values</span><span class="p">)</span> <span class="p">);</span> <span class="c1">// 100
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>ES2018为对象解构提供了和数组一样的Rest参数（）和展开操作符，一个简单的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="p">{</span> <span class="nx">a</span><span class="p">,</span> <span class="p">...</span><span class="nx">x</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">myObject</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// a = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1">// x = { b: 2, c: 3 }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者你可以使用它给函数传递参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">restParam</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nx">restParam</span><span class="p">({</span> <span class="nx">a</span><span class="p">,</span> <span class="p">...</span><span class="nx">x</span> <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// a = 1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// x = { b: 2, c: 3 }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>跟数组一样，Rest参数只能在声明的结尾处使用。此外，它只适用于每个对象的顶层，如果对象中嵌套对象则无法适用。</p>
+<p>扩展运算符可以在其他对象内使用，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obj1</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">a</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">b</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nx">c</span><span class="o">:</span> <span class="mi">3</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">obj2</span> <span class="o">=</span> <span class="p">{</span> <span class="p">...</span><span class="nx">obj1</span><span class="p">,</span> <span class="nx">z</span><span class="o">:</span> <span class="mi">26</span> <span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// obj2 is { a: 1, b: 2, c: 3, z: 26 }
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以使用扩展运算符拷贝一个对象，像是这样<code>obj2 = {...obj1}</code>，但是 <strong>这只是一个对象的浅拷贝</strong>。另外，如果一个对象A的属性是对象B，那么在克隆后的对象cloneB中，该属性指向对象B。</p>
+<h3 id="正则表达式命名捕获组regular-expression-named-capture-groups">正则表达式命名捕获组（Regular Expression Named Capture Groups）</h3>
+<p>JavaScript正则表达式可以返回一个匹配的对象——一个包含匹配字符串的类数组，例如：以YYYY-MM-DD的格式解析日期：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reDate</span> <span class="o">=</span> <span class="sr">/([0-9]{4})-([0-9]{2})-([0-9]{2})/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>  <span class="o">=</span> <span class="nx">reDate</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;2018-04-30&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span>   <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="c1">// 2018
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">month</span>  <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="c1">// 04
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">day</span>    <span class="o">=</span> <span class="nx">match</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// 30
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样的代码很难读懂，并且改变正则表达式的结构有可能改变匹配对象的索引。</p>
+<p>ES2018允许命名捕获组使用符号<code>?&lt;name&gt;</code>，在打开捕获括号<code>(</code>后立即命名，示例如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reDate</span> <span class="o">=</span> <span class="sr">/(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>  <span class="o">=</span> <span class="nx">reDate</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;2018-04-30&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">year</span>   <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">year</span><span class="p">,</span>  <span class="c1">// 2018
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">month</span>  <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">month</span><span class="p">,</span> <span class="c1">// 04
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">day</span>    <span class="o">=</span> <span class="nx">match</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">day</span><span class="p">;</span>   <span class="c1">// 30
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>任何匹配失败的命名组都将返回<code>undefined</code>。</p>
+<p>命名捕获也可以使用在<code>replace()</code>方法中。例如将日期转换为美国的 MM-DD-YYYY 格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reDate</span> <span class="o">=</span> <span class="sr">/(?&lt;year&gt;[0-9]{4})-(?&lt;month&gt;[0-9]{2})-(?&lt;day&gt;[0-9]{2})/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">d</span>      <span class="o">=</span> <span class="s1">&#39;2018-04-30&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">usDate</span> <span class="o">=</span> <span class="nx">d</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">reDate</span><span class="p">,</span> <span class="s1">&#39;$&lt;month&gt;-$&lt;day&gt;-$&lt;year&gt;&#39;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="正则表达式反向断言lookbehind">正则表达式反向断言（lookbehind）</h3>
+<p>目前JavaScript在正则表达式中支持先行断言（lookahead）。这意味着匹配会发生，但不会有任何捕获，并且断言没有包含在整个匹配字段中。例如从价格中捕获货币符号：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reLookahead</span> <span class="o">=</span> <span class="sr">/\D(?=\d+)/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>       <span class="o">=</span> <span class="nx">reLookahead</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;$123.89&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// $
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>ES2018引入以相同方式工作但是匹配前面的反向断言（lookbehind），这样我就可以忽略货币符号，单纯的捕获价格的数字：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reLookbehind</span> <span class="o">=</span> <span class="sr">/(?&lt;=\D)\d+/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>        <span class="o">=</span> <span class="nx">reLookbehind</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;$123.89&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// 123.89
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>以上是 <strong>肯定反向断言</strong>，非数字<code>\D</code>必须存在。同样的，还存在 <strong>否定反向断言</strong>，表示一个值必须不存在，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">reLookbehindNeg</span> <span class="o">=</span> <span class="sr">/(?&lt;!\D)\d+/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">match</span>           <span class="o">=</span> <span class="nx">reLookbehind</span><span class="p">.</span><span class="nx">exec</span><span class="p">(</span><span class="s1">&#39;$123.89&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">match</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span> <span class="c1">// null
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="正则表达式dotall模式">正则表达式<code>dotAll</code>模式</h3>
+<p>正则表达式中点<code>.</code>匹配除回车外的任何单字符，标记<code>s</code>改变这种行为，允许行终止符的出现，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="sr">/hello.world/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;hello\nworld&#39;</span><span class="p">);</span>  <span class="c1">// false
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">/hello.world/s.test(&#39;hello\nworld&#39;); // true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="正则表达式-unicode-转义">正则表达式 Unicode 转义</h3>
+<p>到目前为止，在正则表达式中本地访问 Unicode 字符属性是不被允许的。ES2018添加了 Unicode 属性转义——形式为<code>\p{...}</code>和<code>\P{...}</code>，在正则表达式中使用标记 <code>u</code> (unicode) 设置，在<code>\p</code>块儿内，可以以键值对的方式设置需要匹配的属性而非具体内容。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">reGreekSymbol</span> <span class="o">=</span> <span class="sr">/\p{Script=Greek}/u</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">reGreekSymbol</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="s1">&#39;π&#39;</span><span class="p">);</span> <span class="c1">// true
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>此特性可以避免使用特定 Unicode 区间来进行内容类型判断，提升可读性和可维护性。</p>
+<h3 id="非转义序列的模板字符串">非转义序列的模板字符串</h3>
+<p>最后，ES2018 移除对 ECMAScript 在带标签的模版字符串中转义序列的语法限制。</p>
+<p>之前，<code>\u</code>开始一个 unicode 转义，<code>\x</code>开始一个十六进制转义，<code>\</code>后跟一个数字开始一个八进制转义。这使得创建特定的字符串变得不可能，例如Windows文件路径 <code>C:\uuu\xxx\111</code>。更多细节参考<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings">模板字符串</a>。</p>
+<p>这是所有的ES2018的新特性，ES2019已经开始，你有什么期待的功能想在明年看到吗？</p>
+<h2 id="译者参考">译者参考</h2>
+<ul>
+<li><a href="https://segmentfault.com/a/1190000006824133">javascript正则断言的理解</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/33353980">【RPU-A】正则 Unicode 转义提案进入 ES2018</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings">模板字符串——ES2018关于非法转义序列的修订</a></li>
+<li><a href="http://esnext.justjavac.com/proposal/template-literal-revision.html">非转义序列的模板字符串</a></li>
+<li><a href="http://esnext.justjavac.com/proposal/regexp-named-groups.html">正则表达式命名捕获组</a></li>
+</ul>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2018-06-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/javascript/">Javascript</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2018/2018-reactproject1/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">从零开始搭建React应用（一）——基础搭建</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2018/2018-webpackpublicpath/">
+            <span class="next-text nav-default">Webpack中publicPath详解</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

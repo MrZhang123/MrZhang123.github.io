@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>RN Webview与Web的通信与调试 - RaymondX成长记</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="" /><meta name="description" content=" React Native Version:0.51
+RN 在 0.37 版本中加入了WebView功能，所以想要在使用WebView,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用JSON.stringify和JSON.parse就可以
+" /><meta name="keywords" content="raymond, blog" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
+
+
+<link rel="canonical" href="https://mrzhang123.github.io/post/2017/2017-rnwebview/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:url" content="https://mrzhang123.github.io/post/2017/2017-rnwebview/">
+  <meta property="og:site_name" content="RaymondX成长记">
+  <meta property="og:title" content="RN Webview与Web的通信与调试">
+  <meta property="og:description" content="React Native Version:0.51
+RN 在 0.37 版本中加入了WebView功能，所以想要在使用WebView,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用JSON.stringify和JSON.parse就可以">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2017-12-20T19:24:07+00:00">
+    <meta property="article:modified_time" content="2017-12-20T19:24:07+00:00">
+    <meta property="article:tag" content="React Native">
+
+  <meta itemprop="name" content="RN Webview与Web的通信与调试">
+  <meta itemprop="description" content="React Native Version:0.51
+RN 在 0.37 版本中加入了WebView功能，所以想要在使用WebView,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用JSON.stringify和JSON.parse就可以">
+  <meta itemprop="datePublished" content="2017-12-20T19:24:07+00:00">
+  <meta itemprop="dateModified" content="2017-12-20T19:24:07+00:00">
+  <meta itemprop="wordCount" content="787">
+  <meta itemprop="keywords" content="React Native">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="RN Webview与Web的通信与调试">
+  <meta name="twitter:description" content="React Native Version:0.51
+RN 在 0.37 版本中加入了WebView功能，所以想要在使用WebView,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用JSON.stringify和JSON.parse就可以">
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">X</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">X</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">RN Webview与Web的通信与调试</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2017-12-20 </span>
+        <div class="post-category">
+            <a href="/categories/react-native/"> React Native </a>
+            </div>
+          <span class="more-meta"> 787 words </span>
+          <span class="more-meta"> 2 mins read </span>
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#加载-html">加载 html</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#webview-与-html-的通信">WebView 与 html 的通信</a>
+          <ul>
+            <li></li>
+          </ul>
+        </li>
+        <li><a href="#debug">debug</a>
+          <ul>
+            <li><a href="#注意--1">注意 ⚠️</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <blockquote>
+<p>React Native Version:0.51</p>
+</blockquote>
+<p>RN 在 0.37 版本中加入了<code>WebView</code>功能，所以想要在使用<code>WebView</code>,版本必须&gt;=0.37，发送的 message 只能是字符串，所以需要将其他格式的数据转换成字符串，在接收到后再转换回去，其实直接用<code>JSON.stringify</code>和<code>JSON.parse</code>就可以</p>
+<h2 id="加载-html">加载 html</h2>
+<p><code>source</code>属性用于指定加载的 html，可以加载在线的页面，也可以加载本地的页面，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// 加载线上页面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;</span><span class="nx">Webview</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">source</span><span class="o">=</span><span class="p">{{</span><span class="nx">uri</span><span class="o">:</span> <span class="s1">&#39;http://www.mi.com&#39;</span><span class="p">}}</span>
+</span></span><span class="line"><span class="cl"><span class="err">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 加载本地html文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">&lt;</span><span class="nx">WebView</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../src/html/index.html&#39;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl"><span class="err">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="注意-">注意 ⚠️</h4>
+<p>在 RN 中可以加载 WebView，但是<strong>无法调试，也不能使用 alert 来验证代码 js 代码是否运行成功</strong>，只能通过往 html 写入东西（innerHTML）来验证 js 是否运行成功</p>
+<h2 id="webview-与-html-的通信">WebView 与 html 的通信</h2>
+<h4 id="webview-发送信息到-html">webview 发送信息到 html</h4>
+<p>WebView 给 html 发送信息需要使用<code>postMessage</code>，而 html 接收 RN 发过来的信息需要监听<code>message</code>事件，代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// RN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">WebViewExample</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">onLoadEnd</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">this</span><span class="p">.</span><span class="nx">refs</span><span class="p">.</span><span class="nx">webview</span><span class="p">.</span><span class="nx">postMessage</span> <span class="o">=</span> <span class="s1">&#39;this is RN msg&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">WebView</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ref</span><span class="o">=</span><span class="s2">&#34;webview&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../html/index.html&#39;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">onLoadEnd</span><span class="o">=</span><span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">onLoadEnd</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">WebViewExample</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// web
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;message&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">data</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>这里需要注意一点</strong></p>
+<p><code>postMessage</code>需要在 webview 加载完成之后再去 post，如果放在<code>commponentWillMount</code>里由于页面没有加载完成就 post 信息，会导致 html 端无法监听到 message 事件。</p>
+<h4 id="html-发送信息到-webview">html 发送信息到 webview</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="c1">// RN
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kr">class</span> <span class="nx">WebViewExample</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">handleMessage</span> <span class="o">=</span> <span class="nx">e</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">nativeEvent</span><span class="p">.</span><span class="nx">data</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">WebView</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">ref</span><span class="o">=</span><span class="s2">&#34;webview&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../html/index.html&#39;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">onMessage</span><span class="o">=</span><span class="p">{</span><span class="nx">e</span> <span class="p">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">handleMessage</span><span class="p">(</span><span class="nx">e</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">WebViewExample</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// web
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nb">window</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span><span class="s1">&#39;this is html msg&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="debug">debug</h2>
+<p>RN 中 debug webview 和安卓开发中看起来是差不多的，连接好设备后，在 chrome 中输入</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">chrome://inspect
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>就可以看到安卓设备上正在运行的 webview 了，点击<strong>inspect</strong>就会开启一个调试页面，就可以进行 debug 了，RN 似乎默认开启了 debug 调试，直接就可以看到 webview 中输出的信息。</p>
+<p><img src="./img/webview_debug.jpg" alt="webview_debug"></p>
+<p>但是我发现我打开的调试界面是一个错乱的界面，不知道为什么，无奈&ndash;！</p>
+<p><img src="./img/debug.jpeg" alt="debug"></p>
+<h3 id="注意--1">注意 ⚠️</h3>
+<p>这里需要注意一点的，由于安卓版本的差异，所以内部的 webview 对 js 的支持程度也不同，<strong>为了保证兼容性，如果使用了 ES6，请转成 ES5，否则会报错</strong></p>
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content"></span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2017-12-20
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      <div class="post-tags">
+          <a href="/tags/react-native/">React Native</a>
+          </div>
+      <nav class="post-nav">
+        <a class="prev" href="/post/2017/2017-2018newyear/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">再见2017，你好2018</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/2017/2017-jsdecode/">
+            <span class="next-text nav-default">JS转换转义字符</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2016 - 
+    2025<span class="heart"><i class="iconfont icon-heart"></i></span><span></span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <script src="/lib/highlight/highlight.pack.js?v=20171001"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>
