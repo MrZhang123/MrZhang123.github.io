@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.132.1 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/post/2018/2018-webpackpublicpath/" />
@@ -43,7 +43,7 @@
 <meta property="og:url" content="https://mrzhang123.github.io/post/2018/2018-webpackpublicpath/">
   <meta property="og:site_name" content="RaymondX成长记">
   <meta property="og:title" content="Webpack中publicPath详解">
-  <meta property="og:description" content="最近自己在搭建一个基于webpack的react项目，遇到关于output.publicPath和webpack-dev-server中publicPath的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。">
+  <meta property="og:description" content=" 最近自己在搭建一个基于webpack的react项目，遇到关于output.publicPath和webpack-dev-server中publicPath的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -52,14 +52,14 @@
     <meta property="article:tag" content="Webpack">
 
   <meta itemprop="name" content="Webpack中publicPath详解">
-  <meta itemprop="description" content="最近自己在搭建一个基于webpack的react项目，遇到关于output.publicPath和webpack-dev-server中publicPath的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。">
+  <meta itemprop="description" content=" 最近自己在搭建一个基于webpack的react项目，遇到关于output.publicPath和webpack-dev-server中publicPath的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。">
   <meta itemprop="datePublished" content="2018-05-12T12:26:43+00:00">
   <meta itemprop="dateModified" content="2018-05-12T12:26:43+00:00">
   <meta itemprop="wordCount" content="2312">
   <meta itemprop="keywords" content="Webpack">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Webpack中publicPath详解">
-  <meta name="twitter:description" content="最近自己在搭建一个基于webpack的react项目，遇到关于output.publicPath和webpack-dev-server中publicPath的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。">
+  <meta name="twitter:description" content=" 最近自己在搭建一个基于webpack的react项目，遇到关于output.publicPath和webpack-dev-server中publicPath的问题，而官方文档对它们的描述也不是很清楚，所以自己研究了下并写下本文记录。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -147,7 +147,7 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
     <li>
@@ -360,21 +360,7 @@
 </ul>
     </div>
 
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content"></span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">LastMod</span>
-    <span class="item-content">
-        2018-05-12
-        
-    </span>
-  </p>
-  
-  
-</div>
+    
 <footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/webpack/">Webpack</a>

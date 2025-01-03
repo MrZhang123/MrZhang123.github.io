@@ -13,7 +13,7 @@
       <link>https://mrzhang123.github.io/post/2022/go-concurrency/</link>
       <pubDate>Sat, 11 Jun 2022 00:00:00 +0000</pubDate>
       <guid>https://mrzhang123.github.io/post/2022/go-concurrency/</guid>
-      <description>&lt;p&gt;Go 有两种并发编程的风格：&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel）。CSP是一个并发的模式，在不同的执行体（goroutine）之间传递至，但是变量本身局限局限于单一的执行体。&lt;/li&gt;&#xA;&lt;li&gt;传统的共享内存多线程。&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h1 id=&#34;goroutine-和通道&#34;&gt;goroutine 和通道&lt;/h1&gt;&#xA;&lt;h2 id=&#34;goroutine&#34;&gt;goroutine&lt;/h2&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;在 Go 里，每一个并发执行的活动称为 goroutine。&lt;/p&gt;</description>
+      <description>Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel</description>
     </item>
   </channel>
 </rss>

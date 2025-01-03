@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>生活 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/tags/%E7%94%9F%E6%B4%BB/</link>
+    <description>Recent content in 生活 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 31 Dec 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2023年终总结</title>
+      <link>https://mrzhang123.github.io/post/2023/year-summary/</link>
+      <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2023/year-summary/</guid>
+      <description>2023 年可以说是 AI 元年了，这一年 AI 开始大规模爆发，各种 AI 开始出现在我们的工作和生活中，所以今年开头献给 AI，本文封面图及开头图均由 AI 模型 DALL-E 3 生成</description>
+    </item>
+  </channel>
+</rss>

@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.132.1 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/post/2016/2016-webpack1/" />
@@ -43,7 +43,7 @@
 <meta property="og:url" content="https://mrzhang123.github.io/post/2016/2016-webpack1/">
   <meta property="og:site_name" content="RaymondX成长记">
   <meta property="og:title" content="Webpack初探">
-  <meta property="og:description" content="很早就听说webpack包管理工具，但是一直没有机会学习，这次又看到掘金上面有关于vue&#43;webpack的初级文章，而且最近公司没什么事儿做，决定搞一下。在搞的过程中，虽然按照文章中写的去做，但是还是有很多问题，所以写下本文，总结下我遇到的问题以及解决办法。">
+  <meta property="og:description" content=" 很早就听说webpack包管理工具，但是一直没有机会学习，这次又看到掘金上面有关于vue&#43;webpack的初级文章，而且最近公司没什么事儿做，决定搞一下。在搞的过程中，虽然按照文章中写的去做，但是还是有很多问题，所以写下本文，总结下我遇到的问题以及解决办法。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -52,14 +52,14 @@
     <meta property="article:tag" content="Webpack">
 
   <meta itemprop="name" content="Webpack初探">
-  <meta itemprop="description" content="很早就听说webpack包管理工具，但是一直没有机会学习，这次又看到掘金上面有关于vue&#43;webpack的初级文章，而且最近公司没什么事儿做，决定搞一下。在搞的过程中，虽然按照文章中写的去做，但是还是有很多问题，所以写下本文，总结下我遇到的问题以及解决办法。">
+  <meta itemprop="description" content=" 很早就听说webpack包管理工具，但是一直没有机会学习，这次又看到掘金上面有关于vue&#43;webpack的初级文章，而且最近公司没什么事儿做，决定搞一下。在搞的过程中，虽然按照文章中写的去做，但是还是有很多问题，所以写下本文，总结下我遇到的问题以及解决办法。">
   <meta itemprop="datePublished" content="2016-05-31T21:02:20+00:00">
   <meta itemprop="dateModified" content="2016-05-31T21:02:20+00:00">
   <meta itemprop="wordCount" content="1277">
   <meta itemprop="keywords" content="Webpack">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Webpack初探">
-  <meta name="twitter:description" content="很早就听说webpack包管理工具，但是一直没有机会学习，这次又看到掘金上面有关于vue&#43;webpack的初级文章，而且最近公司没什么事儿做，决定搞一下。在搞的过程中，虽然按照文章中写的去做，但是还是有很多问题，所以写下本文，总结下我遇到的问题以及解决办法。">
+  <meta name="twitter:description" content=" 很早就听说webpack包管理工具，但是一直没有机会学习，这次又看到掘金上面有关于vue&#43;webpack的初级文章，而且最近公司没什么事儿做，决定搞一下。在搞的过程中，虽然按照文章中写的去做，但是还是有很多问题，所以写下本文，总结下我遇到的问题以及解决办法。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -147,7 +147,7 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
     <li>
@@ -274,21 +274,7 @@ Webpack	会分析入口文件，解析包含依赖关系的各个文件。这些
 这就是最基本的webpack的用法，当我第一次看到这个功能的时候，终于解决了曾经我对在页面中引用JS的一个困惑，即js文件a如何引用js文件b中的东西，webpack非常方便让我们做到了这一点。下一节，会结合Vuejs进行模块化开发，那时会用到更多的webpack的东西，并且会讲到关于ES6模块儿化的一些东西，加油！</p>
     </div>
 
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content"></span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">LastMod</span>
-    <span class="item-content">
-        2016-05-31
-        
-    </span>
-  </p>
-  
-  
-</div>
+    
 <footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/webpack/">Webpack</a>

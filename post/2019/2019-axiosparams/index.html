@@ -25,7 +25,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.140.2 with theme even" />
+<meta name="generator" content="Hugo 0.132.1 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/post/2019/2019-axiosparams/" />
@@ -44,7 +44,7 @@
 <meta property="og:url" content="https://mrzhang123.github.io/post/2019/2019-axiosparams/">
   <meta property="og:site_name" content="RaymondX成长记">
   <meta property="og:title" content="使用Axios请求时如何传递数组？">
-  <meta property="og:description" content="最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
+  <meta property="og:description" content=" 最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
 在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即http://xx.xx.com?a=1&amp;b=2这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
@@ -54,7 +54,7 @@
     <meta property="article:tag" content="Javascript">
 
   <meta itemprop="name" content="使用Axios请求时如何传递数组？">
-  <meta itemprop="description" content="最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
+  <meta itemprop="description" content=" 最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
 在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即http://xx.xx.com?a=1&amp;b=2这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？">
   <meta itemprop="datePublished" content="2019-05-18T16:40:00+00:00">
   <meta itemprop="dateModified" content="2019-05-18T16:40:00+00:00">
@@ -62,7 +62,7 @@
   <meta itemprop="keywords" content="Javascript">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="使用Axios请求时如何传递数组？">
-  <meta name="twitter:description" content="最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
+  <meta name="twitter:description" content=" 最近在项目开发中使用Axios请求，API层使用Node，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。
 在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即http://xx.xx.com?a=1&amp;b=2这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？">
 
 <!--[if lte IE 9]>
@@ -151,7 +151,7 @@
 
     <div class="post-toc" id="post-toc">
   <h2 class="post-toc-title">Contents</h2>
-  <div class="post-toc-content always-active">
+  <div class="post-toc-content">
     <nav id="TableOfContents">
   <ul>
     <li>
@@ -226,21 +226,7 @@
 <p>以上就是大概的一个总结，一个小小的坑，总结一下，后面方便查询</p>
     </div>
 
-    <div class="post-copyright">
-  <p class="copyright-item">
-    <span class="item-title">Author</span>
-    <span class="item-content"></span>
-  </p>
-  <p class="copyright-item">
-    <span class="item-title">LastMod</span>
-    <span class="item-content">
-        2019-05-18
-        
-    </span>
-  </p>
-  
-  
-</div>
+    
 <footer class="post-footer">
       <div class="post-tags">
           <a href="/tags/javascript/">Javascript</a>
