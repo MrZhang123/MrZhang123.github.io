@@ -181,7 +181,7 @@ draft: false
 
 当时这个广告有两个版本，其中有一版是乔布斯的配音，我个人觉得乔布斯配音的版本非常让人震撼：
 
-<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=943076030&bvid=BV1oW4y1i7qf&cid=833235745&p=1" 
+<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=943076030&bvid=BV1oW4y1i7qf&cid=833235745&p=1&autoplay=0" 
         scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" 
         style="width:100%; height:400px;"></iframe>
 
