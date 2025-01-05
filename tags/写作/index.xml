@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>写作 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/tags/%E5%86%99%E4%BD%9C/</link>
+    <description>Recent content in 写作 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 06 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/tags/%E5%86%99%E4%BD%9C/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>对 AI 时代写作的思考</title>
+      <link>https://mrzhang123.github.io/post/2024/ai3/</link>
+      <pubDate>Sat, 06 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2024/ai3/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;在 AI 的时代，我们能够高效生成内容的同时，是否也会带来大量低质、观点趋同的内容？&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;随着 2022 年 11 月 30 日 OpenAI 发布 ChatGPT，一场 AI 革命就此拉开序幕。如今已经过去一年半，这段时间以来各路 AI 模型及应用层出不穷。底层大模型有 OpenAI 的 GPT-4o、Anthropic 的 Claude-3.5-Sonnet、Google 的 Gemini-1.5、Meta 的 Llama、字节的豆包、腾讯的混元大模型、阿里的通义千问、月之暗面 Kimi 等，应用上有基于 AI 的搜索 Perplexity、秘塔，以及大家应该都已经见到过的各类生成图文内容的应用，例如润色、扩写、总结、续写、风格模拟等等，例如像下面这样：&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

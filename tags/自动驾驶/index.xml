@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>自动驾驶 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/</link>
+    <description>Recent content in 自动驾驶 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 20 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>从萝卜快跑谈对 AI 的态度</title>
+      <link>https://mrzhang123.github.io/post/2024/ai4/</link>
+      <pubDate>Sat, 20 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2024/ai4/</guid>
+      <description>&lt;p&gt;最近，百度旗下的 Robotaxi 萝卜快跑在网络上迅速走红，吸引了大量用户前来体验这项新技术。与普通网约车相比，萝卜快跑的价格极具竞争力，每公里费用不到一块钱，确实便宜了许多。然而，也有网友观察到，由于无人驾驶系统过于谨慎，在复杂的十字路口可能会出现&amp;quot;相互礼让&amp;quot;的情况，导致交通拥堵，连交警都束手无策。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
