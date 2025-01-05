@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.132.1 with theme even" />
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/" />
@@ -50,8 +50,8 @@
 
   <meta itemprop="name" content="RaymondX成长记">
   <meta itemprop="description" content="raymond blog">
-  <meta itemprop="datePublished" content="2023-12-31T00:00:00+00:00">
-  <meta itemprop="dateModified" content="2023-12-31T00:00:00+00:00">
+  <meta itemprop="datePublished" content="2024-06-03T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2024-06-03T00:00:00+00:00">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="RaymondX成长记">
   <meta name="twitter:description" content="raymond blog">
@@ -127,126 +127,133 @@
           <section id="posts" class="posts">
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/2019/2019-axiosparams/">使用Axios请求时如何传递数组？</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/2019/2019-vimperformance/">记一次vim性能优化</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-05-18 </span>
+      <span class="post-time"> 2019-09-01 </span>
       <div class="post-category">
-          <a href="/categories/javascript/"> Javascript </a>
+          <a href="/categories/vim/"> Vim </a>
           </div>
-        <span class="more-meta"> 925 words </span>
+        <span class="more-meta"> 1412 words </span>
+        <span class="more-meta"> 3 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <h3 id="关键点">关键点</h3>
+<ul>
+<li><code>vim -u NONE -N</code>可以不加载vim配置和插件打开vim</li>
+<li><code>vim --startuptime vim.log</code>可以生成vim启动的log</li>
+<li>使用<code>vim-plug</code>插件管理工具，给插件配置<code>for</code> or <code>on</code>可以实现插件懒加载</li>
+<li>设置<code>foldmethod=syntax</code>会导致vim插入模式下卡顿</li>
+</ul>
+    </div>
+    <div class="read-more">
+      <a href="/post/2019/2019-vimperformance/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2019/2019-debtcrisisoverview/">不可不知的债务危机</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-08-07 </span>
+      <div class="post-category">
+          <a href="/categories/%E9%87%91%E8%9E%8D/"> 金融 </a>
+          </div>
+        <span class="more-meta"> 2789 words </span>
+        <span class="more-meta"> 6 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <blockquote>
+<p>在17年年底，因为数字货币的一轮暴涨，开始关注金融，开始关注股票，基金，学习一些跟金融知识，本文是我自写文章以来第一篇关于金融的文章，是我在阅读瑞达里欧《债务危机》的一些摘要和理解。</p>
+</blockquote>
+    </div>
+    <div class="read-more">
+      <a href="/post/2019/2019-debtcrisisoverview/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2019/2019-privatefields/">「译」ES 草案：class私有属性</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-21 </span>
+      <div class="post-category">
+          <a href="/categories/javascript/"> JavaScript </a>
+          </div>
+        <span class="more-meta"> 2645 words </span>
+        <span class="more-meta"> 6 mins read </span>
+    </div>
+  </header>
+  
+  <div class="post-content">
+    <div class="post-summary">
+      <blockquote>
+<p>原文链接：https://2ality.com/2019/07/private-class-fields.html</p>
+</blockquote>
+<p>class属性是关于直接在类体内创建属性和类似构造，这篇播客文章是关于它们的系列文章的一部分：</p>
+<ol>
+<li><a href="https://2ality.com/2019/07/public-class-fields.html">公有class属性</a></li>
+<li>私有class属性</li>
+</ol>
+    </div>
+    <div class="read-more">
+      <a href="/post/2019/2019-privatefields/" class="read-more-link">Read more...</a>
+    </div>
+  </div>
+</article>
+
+    <article class="post">
+  <header class="post-header">
+    <h1 class="post-title"><a class="post-link" href="/post/2019/2019-leetcode-romantoint/">Roman To Int</a></h1>
+    <div class="post-meta">
+      <span class="post-time"> 2019-07-16 </span>
+      <div class="post-category">
+          <a href="/categories/leetcode/"> leetCode </a>
+          </div>
+        <span class="more-meta"> 708 words </span>
         <span class="more-meta"> 2 mins read </span>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      <blockquote>
-<p>最近在项目开发中使用Axios请求，API层使用<strong>Node</strong>，在GET请求传递数组参数时候遇到了一些问题，这里总结一下。</p>
-</blockquote>
-<p>在开发中经常会使用axios作为请求库，在请求过程中，经常会传递数组作为参数，在实际开发过程中发现，如果在POST请求中，直接传递数组即可，但是在GET请求中，本质上是将参数拼接到url后面，作为参数，即<code>http://xx.xx.com?a=1&amp;b=2</code>这样的形式，如果直接传递数组，则在API层拿到的数据就是一个数组样式的字符串，这并不符合我们的要求。那么，如何传递数组呢？</p>
+      <h3 id="题目">题目</h3>
+<p>罗马数字使用七个不同的符号表示：<code>I</code>，<code>V</code>，<code>X</code>，<code>L</code>，<code>C</code>，<code>D</code>和<code>M</code>。</p>
     </div>
     <div class="read-more">
-      <a href="/post/2019/2019-axiosparams/" class="read-more-link">Read more...</a>
+      <a href="/post/2019/2019-leetcode-romantoint/" class="read-more-link">Read more...</a>
     </div>
   </div>
 </article>
 
     <article class="post">
   <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/2019/2019-reacthooks/">简述 React Hooks 特征和使用方式</a></h1>
+    <h1 class="post-title"><a class="post-link" href="/post/2019/2019-leetcode-twosum/">Two Sum</a></h1>
     <div class="post-meta">
-      <span class="post-time"> 2019-03-24 </span>
+      <span class="post-time"> 2019-07-16 </span>
       <div class="post-category">
-          <a href="/categories/react/"> React </a>
+          <a href="/categories/leetcode/"> leetCode </a>
           </div>
-        <span class="more-meta"> 1800 words </span>
-        <span class="more-meta"> 4 mins read </span>
+        <span class="more-meta"> 257 words </span>
+        <span class="more-meta"> 1 min read </span>
     </div>
   </header>
   
   <div class="post-content">
     <div class="post-summary">
-      <blockquote>
-<p>学习React Hooks简单记录一下官方文档关于Hooks的一些特征和使用方式，摘录自官方文档。后续使用后，再做总结</p>
-</blockquote>
+      <h3 id="题目">题目</h3>
+<p>给定一个整数数组，返回两个数的索引，这两个数相加等于特定的目标。</p>
+<p>你可以假定每次输入只有一个解决方案，并且你不会使用相同的元素两次。</p>
     </div>
     <div class="read-more">
-      <a href="/post/2019/2019-reacthooks/" class="read-more-link">Read more...</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/2019/2019-reactnews/">React 新特性总结</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-01-16 </span>
-      <div class="post-category">
-          <a href="/categories/react/"> React </a>
-          </div>
-        <span class="more-meta"> 5190 words </span>
-        <span class="more-meta"> 11 mins read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <blockquote>
-<p>自 React 16 发步以来 React 一直给大家带来很多令人兴奋的新特性，本文旨在将 React 16 发布以来一些重要的特性以及未来将要实现特性串联起来。</p>
-</blockquote>
-    </div>
-    <div class="read-more">
-      <a href="/post/2019/2019-reactnews/" class="read-more-link">Read more...</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/2018/2018-2019newyear/">再见2018，你好2019</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2019-01-07 </span>
-      <div class="post-category">
-          <a href="/categories/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"> 年终总结 </a>
-          </div>
-        <span class="more-meta"> 3906 words </span>
-        <span class="more-meta"> 8 mins read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <blockquote>
-<p>好久没写博客了，不知不觉的，就又到年底了，2018年已经过去，2019已经到来，回望2018这一年，自己又有了新的成长，新的变化，在去年写的一些计划中，自己也实践了一部分并且有所收获，还是非常开心的。这一年总体来说有这么几件大事儿吧，换了一份工作，换了一个身份，开始新的实践，有了新的认知。</p>
-</blockquote>
-    </div>
-    <div class="read-more">
-      <a href="/post/2018/2018-2019newyear/" class="read-more-link">Read more...</a>
-    </div>
-  </div>
-</article>
-
-    <article class="post">
-  <header class="post-header">
-    <h1 class="post-title"><a class="post-link" href="/post/2018/2018-reactlifecycle/">「译」如何使用React生命周期方法</a></h1>
-    <div class="post-meta">
-      <span class="post-time"> 2018-07-28 </span>
-      <div class="post-category">
-          <a href="/categories/react/"> React </a>
-          </div>
-        <span class="more-meta"> 1805 words </span>
-        <span class="more-meta"> 4 mins read </span>
-    </div>
-  </header>
-  
-  <div class="post-content">
-    <div class="post-summary">
-      <blockquote>
-<p>原文链接：<a href="https://www.andreasreiterer.at/reactjs-lifecycle-methods/">How to use React Lifecycle Methods</a></p>
-</blockquote>
-    </div>
-    <div class="read-more">
-      <a href="/post/2018/2018-reactlifecycle/" class="read-more-link">Read more...</a>
+      <a href="/post/2019/2019-leetcode-twosum/" class="read-more-link">Read more...</a>
     </div>
   </div>
 </article>
@@ -309,6 +316,14 @@
 
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 

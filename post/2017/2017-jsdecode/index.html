@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.132.1 with theme even" />
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/post/2017/2017-jsdecode/" />
@@ -43,7 +43,7 @@
 <meta property="og:url" content="https://mrzhang123.github.io/post/2017/2017-jsdecode/">
   <meta property="og:site_name" content="RaymondX成长记">
   <meta property="og:title" content="JS转换转义字符">
-  <meta property="og:description" content=" 这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。">
+  <meta property="og:description" content="这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -52,14 +52,14 @@
     <meta property="article:tag" content="Javascript">
 
   <meta itemprop="name" content="JS转换转义字符">
-  <meta itemprop="description" content=" 这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。">
+  <meta itemprop="description" content="这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。">
   <meta itemprop="datePublished" content="2017-11-25T23:03:40+00:00">
   <meta itemprop="dateModified" content="2017-11-25T23:03:40+00:00">
   <meta itemprop="wordCount" content="1406">
   <meta itemprop="keywords" content="Javascript">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="JS转换转义字符">
-  <meta name="twitter:description" content=" 这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。">
+  <meta name="twitter:description" content="这周在开发后端系统的时候，遇到了需要将后端传过来的转义字符进行转义然后再渲染到html中，因为之前也没有遇到过，所以研究了研究，记录一下。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -204,123 +204,123 @@
 <h2 id="附">附：</h2>
 <h4 id="常见的html转义字符">常见的HTML转义字符</h4>
 <table>
-<thead>
-<tr>
-<th>字符</th>
-<th>十进制</th>
-<th>转义字符</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>&quot;</td>
-<td><code>&amp;#34;</code></td>
-<td><code>&amp;quot;</code></td>
-</tr>
-<tr>
-<td>&amp;</td>
-<td><code>&amp;#38;</code></td>
-<td><code>&amp;amp;</code></td>
-</tr>
-<tr>
-<td>&lt;</td>
-<td><code>&amp;#60;</code></td>
-<td><code>&amp;lt;</code></td>
-</tr>
-<tr>
-<td>&gt;</td>
-<td><code>&amp;#62;</code></td>
-<td><code>&amp;gt;</code></td>
-</tr>
-<tr>
-<td>不断开空格(non-breaking space)</td>
-<td><code>&amp;#160;</code></td>
-<td><code>&amp;nbsp;</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>字符</th>
+          <th>十进制</th>
+          <th>转义字符</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>&quot;</td>
+          <td><code>&amp;#34;</code></td>
+          <td><code>&amp;quot;</code></td>
+      </tr>
+      <tr>
+          <td>&amp;</td>
+          <td><code>&amp;#38;</code></td>
+          <td><code>&amp;amp;</code></td>
+      </tr>
+      <tr>
+          <td>&lt;</td>
+          <td><code>&amp;#60;</code></td>
+          <td><code>&amp;lt;</code></td>
+      </tr>
+      <tr>
+          <td>&gt;</td>
+          <td><code>&amp;#62;</code></td>
+          <td><code>&amp;gt;</code></td>
+      </tr>
+      <tr>
+          <td>不断开空格(non-breaking space)</td>
+          <td><code>&amp;#160;</code></td>
+          <td><code>&amp;nbsp;</code></td>
+      </tr>
+  </tbody>
 </table>
 <p>更多html转义字符见链接：http://tool.oschina.net/commons?type=2</p>
 <h4 id="常见的编程语言的字符表">常见的编程语言的字符表</h4>
 <table>
-<thead>
-<tr>
-<th>转义字符</th>
-<th>意义</th>
-<th>ASCII码值（十进制）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>\a</code></td>
-<td>响铃(BEL)</td>
-<td>007</td>
-</tr>
-<tr>
-<td><code>\b</code></td>
-<td>退格(BS) ，将当前位置移到前一列</td>
-<td>008</td>
-</tr>
-<tr>
-<td><code>\f</code></td>
-<td>换页(FF)，将当前位置移到下页开头</td>
-<td>012</td>
-</tr>
-<tr>
-<td><code>\n</code></td>
-<td>换行(LF) ，将当前位置移到下一行开头</td>
-<td>010</td>
-</tr>
-<tr>
-<td><code>\r</code></td>
-<td>回车(CR) ，将当前位置移到本行开头</td>
-<td>013</td>
-</tr>
-<tr>
-<td><code>\t</code></td>
-<td>水平制表(HT) （跳到下一个TAB位置）</td>
-<td>009</td>
-</tr>
-<tr>
-<td><code>\v</code></td>
-<td>垂直制表(VT)</td>
-<td>011</td>
-</tr>
-<tr>
-<td><code>\\</code></td>
-<td>代表一个反斜线字符&rsquo;&rsquo;'</td>
-<td>092</td>
-</tr>
-<tr>
-<td><code>\'</code></td>
-<td>代表一个单引号（撇号）字符</td>
-<td>039</td>
-</tr>
-<tr>
-<td><code>\&quot;</code></td>
-<td>代表一个双引号字符</td>
-<td>034</td>
-</tr>
-<tr>
-<td><code>\?</code></td>
-<td>代表一个问号</td>
-<td>063</td>
-</tr>
-<tr>
-<td><code>\0</code></td>
-<td>空字符(NULL)</td>
-<td>000</td>
-</tr>
-<tr>
-<td><code>\ooo</code></td>
-<td>1到3位八进制数所代表的任意字符</td>
-<td>三位八进制</td>
-</tr>
-<tr>
-<td><code>\xff</code></td>
-<td>1到2位十六进制所代表的任意字符</td>
-<td>二位十六进制</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>转义字符</th>
+          <th>意义</th>
+          <th>ASCII码值（十进制）</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>\a</code></td>
+          <td>响铃(BEL)</td>
+          <td>007</td>
+      </tr>
+      <tr>
+          <td><code>\b</code></td>
+          <td>退格(BS) ，将当前位置移到前一列</td>
+          <td>008</td>
+      </tr>
+      <tr>
+          <td><code>\f</code></td>
+          <td>换页(FF)，将当前位置移到下页开头</td>
+          <td>012</td>
+      </tr>
+      <tr>
+          <td><code>\n</code></td>
+          <td>换行(LF) ，将当前位置移到下一行开头</td>
+          <td>010</td>
+      </tr>
+      <tr>
+          <td><code>\r</code></td>
+          <td>回车(CR) ，将当前位置移到本行开头</td>
+          <td>013</td>
+      </tr>
+      <tr>
+          <td><code>\t</code></td>
+          <td>水平制表(HT) （跳到下一个TAB位置）</td>
+          <td>009</td>
+      </tr>
+      <tr>
+          <td><code>\v</code></td>
+          <td>垂直制表(VT)</td>
+          <td>011</td>
+      </tr>
+      <tr>
+          <td><code>\\</code></td>
+          <td>代表一个反斜线字符&rsquo;&rsquo;'</td>
+          <td>092</td>
+      </tr>
+      <tr>
+          <td><code>\'</code></td>
+          <td>代表一个单引号（撇号）字符</td>
+          <td>039</td>
+      </tr>
+      <tr>
+          <td><code>\&quot;</code></td>
+          <td>代表一个双引号字符</td>
+          <td>034</td>
+      </tr>
+      <tr>
+          <td><code>\?</code></td>
+          <td>代表一个问号</td>
+          <td>063</td>
+      </tr>
+      <tr>
+          <td><code>\0</code></td>
+          <td>空字符(NULL)</td>
+          <td>000</td>
+      </tr>
+      <tr>
+          <td><code>\ooo</code></td>
+          <td>1到3位八进制数所代表的任意字符</td>
+          <td>三位八进制</td>
+      </tr>
+      <tr>
+          <td><code>\xff</code></td>
+          <td>1到2位十六进制所代表的任意字符</td>
+          <td>二位十六进制</td>
+      </tr>
+  </tbody>
 </table>
     </div>
 
@@ -391,6 +391,14 @@
 
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 

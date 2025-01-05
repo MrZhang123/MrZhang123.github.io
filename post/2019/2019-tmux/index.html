@@ -24,7 +24,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.132.1 with theme even" />
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/post/2019/2019-tmux/" />
@@ -43,7 +43,7 @@
 <meta property="og:url" content="https://mrzhang123.github.io/post/2019/2019-tmux/">
   <meta property="og:site_name" content="RaymondX成长记">
   <meta property="og:title" content="终端复用神器Tmux">
-  <meta property="og:description" content=" 记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。">
+  <meta property="og:description" content="记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -52,14 +52,14 @@
     <meta property="article:tag" content="Linux">
 
   <meta itemprop="name" content="终端复用神器Tmux">
-  <meta itemprop="description" content=" 记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。">
+  <meta itemprop="description" content="记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。">
   <meta itemprop="datePublished" content="2019-06-23T14:32:00+00:00">
   <meta itemprop="dateModified" content="2019-06-23T14:32:00+00:00">
   <meta itemprop="wordCount" content="3370">
   <meta itemprop="keywords" content="Linux">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="终端复用神器Tmux">
-  <meta name="twitter:description" content=" 记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。">
+  <meta name="twitter:description" content="记得第一次接触tmux是在一年前，当时是为了复用终端，不想开多个item2的tab，但是后来发现完全不会用，就一直搁在那儿，直到半年前再次拿起来，开始学习一些tmux的用法，如今半年过去了，真正的明白了为什么说tmux是神器。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -385,418 +385,418 @@
 </div><p>这样通过<code>prefix+HJKL</code>实现pane的扩展</p>
 <h3 id="附">附</h3>
 <table>
-<thead>
-<tr>
-<th>前缀</th>
-<th>指令</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl+b</td>
-<td>?</td>
-<td>显示快捷键帮助文档</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>d</td>
-<td>断开当前会话</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>D</td>
-<td>选择要断开的会话</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>Ctrl+z</td>
-<td>挂起当前会话</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>r</td>
-<td>强制重载当前会话</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>s</td>
-<td>显示会话列表用于选择并切换</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>:</td>
-<td>进入命令行模式，此时可直接输入ls等命令</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>[</td>
-<td>进入复制模式，按q退出</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>]</td>
-<td>粘贴复制模式中复制的文本</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>~</td>
-<td>列出提示信息缓存</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>?</td>
+          <td>显示快捷键帮助文档</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>d</td>
+          <td>断开当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>D</td>
+          <td>选择要断开的会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+z</td>
+          <td>挂起当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>r</td>
+          <td>强制重载当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>s</td>
+          <td>显示会话列表用于选择并切换</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>:</td>
+          <td>进入命令行模式，此时可直接输入ls等命令</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>[</td>
+          <td>进入复制模式，按q退出</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>]</td>
+          <td>粘贴复制模式中复制的文本</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>~</td>
+          <td>列出提示信息缓存</td>
+      </tr>
+  </tbody>
 </table>
 <p>window</p>
 <table>
-<thead>
-<tr>
-<th>前缀</th>
-<th>指令</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl+b</td>
-<td>c</td>
-<td>新建窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>&amp;</td>
-<td>关闭当前窗口（关闭前需输入y or n确认）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>0~9</td>
-<td>切换到指定窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>p</td>
-<td>切换到上一窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>n</td>
-<td>切换到下一窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>w</td>
-<td>打开窗口列表，用于且切换窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>,</td>
-<td>重命名当前窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>.</td>
-<td>修改当前窗口编号（适用于窗口重新排序）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>f</td>
-<td>快速定位到窗口（输入关键字匹配窗口名称）</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>c</td>
+          <td>新建窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>&amp;</td>
+          <td>关闭当前窗口（关闭前需输入y or n确认）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>0~9</td>
+          <td>切换到指定窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>p</td>
+          <td>切换到上一窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>n</td>
+          <td>切换到下一窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>w</td>
+          <td>打开窗口列表，用于且切换窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>,</td>
+          <td>重命名当前窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>.</td>
+          <td>修改当前窗口编号（适用于窗口重新排序）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>f</td>
+          <td>快速定位到窗口（输入关键字匹配窗口名称）</td>
+      </tr>
+  </tbody>
 </table>
 <p>pane</p>
 <table>
-<thead>
-<tr>
-<th>前缀</th>
-<th>指令</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl+b</td>
-<td>&quot;</td>
-<td>当前面板上下一分为二，下侧新建面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>%</td>
-<td>当前面板左右一分为二，右侧新建面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>x</td>
-<td>关闭当前面板（关闭前需输入y or n确认）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>z</td>
-<td>最大化当前面板，再重复一次按键后恢复正常（v1.8版本新增）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>!</td>
-<td>将当前面板移动到新的窗口打开（原窗口中存在两个及以上面板有效）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>;</td>
-<td>切换到最后一次使用的面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>q</td>
-<td>显示面板编号，在编号消失前输入对应的数字可切换到相应的面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>{</td>
-<td>向前置换当前面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>}</td>
-<td>向后置换当前面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>Ctrl+o</td>
-<td>顺时针旋转当前窗口中的所有面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>方向键</td>
-<td>移动光标切换面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>o</td>
-<td>选择下一面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>空格键</td>
-<td>在自带的面板布局中循环切换</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>Alt+方向键</td>
-<td>以5个单元格为单位调整当前面板边缘</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>Ctrl+方向键</td>
-<td>以1个单元格为单位调整当前面板边缘（Mac下被系统快捷键覆盖）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>t</td>
-<td>显示时钟前缀</td>
-</tr>
-<tr>
-<td>&mdash;</td>
-<td>&mdash;</td>
-<td>&mdash;</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>?</td>
-<td>显示快捷键帮助文档</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>d</td>
-<td>断开当前会话</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>D</td>
-<td>选择要断开的会话</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>Ctrl+z</td>
-<td>挂起当前会话</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>r</td>
-<td>强制重载当前会话</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>s</td>
-<td>显示会话列表用于选择并切换</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>:</td>
-<td>进入命令行模式，此时可直接输入ls等命令</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>[</td>
-<td>进入复制模式，按q退出</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>]</td>
-<td>粘贴复制模式中复制的文本</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>~</td>
-<td>列出提示信息缓存</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>&quot;</td>
+          <td>当前面板上下一分为二，下侧新建面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>%</td>
+          <td>当前面板左右一分为二，右侧新建面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>x</td>
+          <td>关闭当前面板（关闭前需输入y or n确认）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>z</td>
+          <td>最大化当前面板，再重复一次按键后恢复正常（v1.8版本新增）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>!</td>
+          <td>将当前面板移动到新的窗口打开（原窗口中存在两个及以上面板有效）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>;</td>
+          <td>切换到最后一次使用的面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>q</td>
+          <td>显示面板编号，在编号消失前输入对应的数字可切换到相应的面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>{</td>
+          <td>向前置换当前面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>}</td>
+          <td>向后置换当前面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+o</td>
+          <td>顺时针旋转当前窗口中的所有面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>方向键</td>
+          <td>移动光标切换面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>o</td>
+          <td>选择下一面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>空格键</td>
+          <td>在自带的面板布局中循环切换</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Alt+方向键</td>
+          <td>以5个单元格为单位调整当前面板边缘</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+方向键</td>
+          <td>以1个单元格为单位调整当前面板边缘（Mac下被系统快捷键覆盖）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>t</td>
+          <td>显示时钟前缀</td>
+      </tr>
+      <tr>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>?</td>
+          <td>显示快捷键帮助文档</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>d</td>
+          <td>断开当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>D</td>
+          <td>选择要断开的会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+z</td>
+          <td>挂起当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>r</td>
+          <td>强制重载当前会话</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>s</td>
+          <td>显示会话列表用于选择并切换</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>:</td>
+          <td>进入命令行模式，此时可直接输入ls等命令</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>[</td>
+          <td>进入复制模式，按q退出</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>]</td>
+          <td>粘贴复制模式中复制的文本</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>~</td>
+          <td>列出提示信息缓存</td>
+      </tr>
+  </tbody>
 </table>
 <p>表二：窗口（window）指令。</p>
 <table>
-<thead>
-<tr>
-<th>前缀</th>
-<th>指令</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl+b</td>
-<td>c</td>
-<td>新建窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>&amp;</td>
-<td>关闭当前窗口（关闭前需输入y or n确认）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>0~9</td>
-<td>切换到指定窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>p</td>
-<td>切换到上一窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>n</td>
-<td>切换到下一窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>w</td>
-<td>打开窗口列表，用于且切换窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>,</td>
-<td>重命名当前窗口</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>.</td>
-<td>修改当前窗口编号（适用于窗口重新排序）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>f</td>
-<td>快速定位到窗口（输入关键字匹配窗口名称）</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>c</td>
+          <td>新建窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>&amp;</td>
+          <td>关闭当前窗口（关闭前需输入y or n确认）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>0~9</td>
+          <td>切换到指定窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>p</td>
+          <td>切换到上一窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>n</td>
+          <td>切换到下一窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>w</td>
+          <td>打开窗口列表，用于且切换窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>,</td>
+          <td>重命名当前窗口</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>.</td>
+          <td>修改当前窗口编号（适用于窗口重新排序）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>f</td>
+          <td>快速定位到窗口（输入关键字匹配窗口名称）</td>
+      </tr>
+  </tbody>
 </table>
 <p>表三：面板（pane）指令。</p>
 <table>
-<thead>
-<tr>
-<th>前缀</th>
-<th>指令</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Ctrl+b</td>
-<td>&quot;</td>
-<td>当前面板上下一分为二，下侧新建面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>%</td>
-<td>当前面板左右一分为二，右侧新建面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>x</td>
-<td>关闭当前面板（关闭前需输入y or n确认）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>z</td>
-<td>最大化当前面板，再重复一次按键后恢复正常（v1.8版本新增）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>!</td>
-<td>将当前面板移动到新的窗口打开（原窗口中存在两个及以上面板有效）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>;</td>
-<td>切换到最后一次使用的面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>q</td>
-<td>显示面板编号，在编号消失前输入对应的数字可切换到相应的面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>{</td>
-<td>向前置换当前面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>}</td>
-<td>向后置换当前面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>Ctrl+o</td>
-<td>顺时针旋转当前窗口中的所有面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>方向键</td>
-<td>移动光标切换面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>o</td>
-<td>选择下一面板</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>空格键</td>
-<td>在自带的面板布局中循环切换</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>Alt+方向键</td>
-<td>以5个单元格为单位调整当前面板边缘</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>Ctrl+方向键</td>
-<td>以1个单元格为单位调整当前面板边缘（Mac下被系统快捷键覆盖）</td>
-</tr>
-<tr>
-<td>Ctrl+b</td>
-<td>t</td>
-<td>显示时钟</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>前缀</th>
+          <th>指令</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>&quot;</td>
+          <td>当前面板上下一分为二，下侧新建面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>%</td>
+          <td>当前面板左右一分为二，右侧新建面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>x</td>
+          <td>关闭当前面板（关闭前需输入y or n确认）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>z</td>
+          <td>最大化当前面板，再重复一次按键后恢复正常（v1.8版本新增）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>!</td>
+          <td>将当前面板移动到新的窗口打开（原窗口中存在两个及以上面板有效）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>;</td>
+          <td>切换到最后一次使用的面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>q</td>
+          <td>显示面板编号，在编号消失前输入对应的数字可切换到相应的面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>{</td>
+          <td>向前置换当前面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>}</td>
+          <td>向后置换当前面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+o</td>
+          <td>顺时针旋转当前窗口中的所有面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>方向键</td>
+          <td>移动光标切换面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>o</td>
+          <td>选择下一面板</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>空格键</td>
+          <td>在自带的面板布局中循环切换</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Alt+方向键</td>
+          <td>以5个单元格为单位调整当前面板边缘</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>Ctrl+方向键</td>
+          <td>以1个单元格为单位调整当前面板边缘（Mac下被系统快捷键覆盖）</td>
+      </tr>
+      <tr>
+          <td>Ctrl+b</td>
+          <td>t</td>
+          <td>显示时钟</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="参考">参考</h3>
 <ul>
@@ -874,6 +874,14 @@
 
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 

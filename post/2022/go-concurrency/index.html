@@ -16,14 +16,16 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="" /><meta name="description" content="Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel" /><meta name="keywords" content="raymond, blog" />
+<meta name="author" content="" /><meta name="description" content="Go 有两种并发编程的风格：
+通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel）。CSP是一个并发的模式，在不同的执行体（goroutine）之间传递至，但是变量本身局限局限于单一的执行体。 传统的共享内存多线程。 goroutine 和通道 goroutine 在 Go 里，每一个并发执行的活动称为 goroutine。
+" /><meta name="keywords" content="raymond, blog" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.132.1 with theme even" />
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/post/2022/go-concurrency/" />
@@ -42,7 +44,8 @@
 <meta property="og:url" content="https://mrzhang123.github.io/post/2022/go-concurrency/">
   <meta property="og:site_name" content="RaymondX成长记">
   <meta property="og:title" content="Go 并发编程初识">
-  <meta property="og:description" content="Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel">
+  <meta property="og:description" content="Go 有两种并发编程的风格：
+通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel）。CSP是一个并发的模式，在不同的执行体（goroutine）之间传递至，但是变量本身局限局限于单一的执行体。 传统的共享内存多线程。 goroutine 和通道 goroutine 在 Go 里，每一个并发执行的活动称为 goroutine。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -52,14 +55,16 @@
     <meta property="article:tag" content="并发">
 
   <meta itemprop="name" content="Go 并发编程初识">
-  <meta itemprop="description" content="Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel">
+  <meta itemprop="description" content="Go 有两种并发编程的风格：
+通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel）。CSP是一个并发的模式，在不同的执行体（goroutine）之间传递至，但是变量本身局限局限于单一的执行体。 传统的共享内存多线程。 goroutine 和通道 goroutine 在 Go 里，每一个并发执行的活动称为 goroutine。">
   <meta itemprop="datePublished" content="2022-06-11T00:00:00+00:00">
   <meta itemprop="dateModified" content="2022-06-11T00:00:00+00:00">
   <meta itemprop="wordCount" content="5469">
   <meta itemprop="keywords" content="Golang,并发">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Go 并发编程初识">
-  <meta name="twitter:description" content="Go 有两种并发编程的风格： 通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel">
+  <meta name="twitter:description" content="Go 有两种并发编程的风格：
+通讯顺序进程（Communicating Sequential Process，CSP），主要使用 goroutine和通道（channel）。CSP是一个并发的模式，在不同的执行体（goroutine）之间传递至，但是变量本身局限局限于单一的执行体。 传统的共享内存多线程。 goroutine 和通道 goroutine 在 Go 里，每一个并发执行的活动称为 goroutine。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -612,62 +617,62 @@
 </div>
 </div><p>直接告诉我们，可能有以下三种情况：</p>
 <table>
-<thead>
-<tr>
-<th>A先</th>
-<th>B先</th>
-<th>A / B / A</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>A1: 200</td>
-<td>B:  200</td>
-<td>A1: 200</td>
-</tr>
-<tr>
-<td>A2: = 200</td>
-<td>A1: 300</td>
-<td>B:  300</td>
-</tr>
-<tr>
-<td>B: = 300</td>
-<td>A2: = 300</td>
-<td>A2: = 300</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>A先</th>
+          <th>B先</th>
+          <th>A / B / A</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>A1: 200</td>
+          <td>B:  200</td>
+          <td>A1: 200</td>
+      </tr>
+      <tr>
+          <td>A2: = 200</td>
+          <td>A1: 300</td>
+          <td>B:  300</td>
+      </tr>
+      <tr>
+          <td>B: = 300</td>
+          <td>A2: = 300</td>
+          <td>A2: = 300</td>
+      </tr>
+  </tbody>
 </table>
 <p>但其实还有第四种情况——数据竞态，B 的操作在 A 操作中间执行，晚于数据读取 A1 read <code>balance + amount</code>，早于数据更新 A1 write <code>balance = </code>，这会导致 B 的操作消失，具体过程如下：</p>
 <table>
-<thead>
-<tr>
-<th>操作</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>A1 read</td>
-<td>0</td>
-</tr>
-<tr>
-<td>B</td>
-<td>100</td>
-</tr>
-<tr>
-<td>A1 write</td>
-<td>200</td>
-</tr>
-<tr>
-<td>A2</td>
-<td>=200</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>操作</th>
+          <th>值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>A1 read</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td>B</td>
+          <td>100</td>
+      </tr>
+      <tr>
+          <td>A1 write</td>
+          <td>200</td>
+      </tr>
+      <tr>
+          <td>A2</td>
+          <td>=200</td>
+      </tr>
+  </tbody>
 </table>
 <p>当发生数据竞态的变量类型是大于一个机器字长的类型（如接口、字符串或slice）时，会出现更复杂的情况：</p>
 <div class="highlight"><div class="chroma">
@@ -1068,6 +1073,14 @@
 
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 

@@ -13,7 +13,7 @@
       <link>https://mrzhang123.github.io/post/2022/file-system/</link>
       <pubDate>Sun, 27 Nov 2022 00:00:00 +0000</pubDate>
       <guid>https://mrzhang123.github.io/post/2022/file-system/</guid>
-      <description>我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文</description>
+      <description>&lt;p&gt;我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文件进行操作？为什么计算机能存储这些文件？其实完成这些工作的背后就是我们今天要介绍的主角——文件系统。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

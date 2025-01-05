@@ -16,14 +16,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="" /><meta name="description" content="我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文" /><meta name="keywords" content="raymond, blog" />
+<meta name="author" content="" /><meta name="description" content="我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文件进行操作？为什么计算机能存储这些文件？其实完成这些工作的背后就是我们今天要介绍的主角——文件系统。
+" /><meta name="keywords" content="raymond, blog" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.132.1 with theme even" />
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/post/2022/file-system/" />
@@ -42,7 +43,7 @@
 <meta property="og:url" content="https://mrzhang123.github.io/post/2022/file-system/">
   <meta property="og:site_name" content="RaymondX成长记">
   <meta property="og:title" content="认识文件系统">
-  <meta property="og:description" content="我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文">
+  <meta property="og:description" content="我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文件进行操作？为什么计算机能存储这些文件？其实完成这些工作的背后就是我们今天要介绍的主角——文件系统。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -52,14 +53,14 @@
     <meta property="article:tag" content="文件系统">
 
   <meta itemprop="name" content="认识文件系统">
-  <meta itemprop="description" content="我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文">
+  <meta itemprop="description" content="我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文件进行操作？为什么计算机能存储这些文件？其实完成这些工作的背后就是我们今天要介绍的主角——文件系统。">
   <meta itemprop="datePublished" content="2022-11-27T00:00:00+00:00">
   <meta itemprop="dateModified" content="2022-11-27T00:00:00+00:00">
   <meta itemprop="wordCount" content="5246">
   <meta itemprop="keywords" content="操作系统,文件系统">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="认识文件系统">
-  <meta name="twitter:description" content="我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文">
+  <meta name="twitter:description" content="我们平时使用计算机时，创建目录、更新目录、创建文件、编辑文件几乎是我们每天在计算机上做的事情。那么你是否深入思考过，为什么计算机能对目录和文件进行操作？为什么计算机能存储这些文件？其实完成这些工作的背后就是我们今天要介绍的主角——文件系统。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -426,6 +427,14 @@
 
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 

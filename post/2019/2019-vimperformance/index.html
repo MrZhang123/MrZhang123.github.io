@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.132.1 with theme even" />
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/post/2019/2019-vimperformance/" />
@@ -42,7 +42,7 @@
 <meta property="og:url" content="https://mrzhang123.github.io/post/2019/2019-vimperformance/">
   <meta property="og:site_name" content="RaymondX成长记">
   <meta property="og:title" content="记一次vim性能优化">
-  <meta property="og:description" content="关键点 vim -u NONE -N可以不加载vim配置和插件打开vim vim --startuptime vim.log可以生成vim启动的log 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载 设置foldmethod=syntax会导致vim插入模式下卡顿 ">
+  <meta property="og:description" content="关键点 vim -u NONE -N可以不加载vim配置和插件打开vim vim --startuptime vim.log可以生成vim启动的log 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载 设置foldmethod=syntax会导致vim插入模式下卡顿">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -51,14 +51,14 @@
     <meta property="article:tag" content="Vim">
 
   <meta itemprop="name" content="记一次vim性能优化">
-  <meta itemprop="description" content="关键点 vim -u NONE -N可以不加载vim配置和插件打开vim vim --startuptime vim.log可以生成vim启动的log 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载 设置foldmethod=syntax会导致vim插入模式下卡顿 ">
+  <meta itemprop="description" content="关键点 vim -u NONE -N可以不加载vim配置和插件打开vim vim --startuptime vim.log可以生成vim启动的log 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载 设置foldmethod=syntax会导致vim插入模式下卡顿">
   <meta itemprop="datePublished" content="2019-09-01T16:15:00+00:00">
   <meta itemprop="dateModified" content="2019-09-01T16:15:00+00:00">
   <meta itemprop="wordCount" content="1412">
   <meta itemprop="keywords" content="Vim">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="记一次vim性能优化">
-  <meta name="twitter:description" content="关键点 vim -u NONE -N可以不加载vim配置和插件打开vim vim --startuptime vim.log可以生成vim启动的log 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载 设置foldmethod=syntax会导致vim插入模式下卡顿 ">
+  <meta name="twitter:description" content="关键点 vim -u NONE -N可以不加载vim配置和插件打开vim vim --startuptime vim.log可以生成vim启动的log 使用vim-plug插件管理工具，给插件配置for or on可以实现插件懒加载 设置foldmethod=syntax会导致vim插入模式下卡顿">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -286,6 +286,14 @@
 
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 

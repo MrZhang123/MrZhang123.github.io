@@ -1,3 +1,6 @@
 /blog_source/themes
 /blog_source/public
 /blog_source/config.old.toml
+
+# OS X temporary files
+.DS_Store

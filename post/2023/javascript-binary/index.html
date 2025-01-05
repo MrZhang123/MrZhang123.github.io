@@ -16,14 +16,15 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="" /><meta name="description" content="在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼" /><meta name="keywords" content="raymond, blog" />
+<meta name="author" content="" /><meta name="description" content="在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼此之间的关系是什么？各自的使用场景是什么？这将是本文内容的重点。
+" /><meta name="keywords" content="raymond, blog" />
 
 
 
 
 
 
-<meta name="generator" content="Hugo 0.132.1 with theme even" />
+<meta name="generator" content="Hugo 0.140.2 with theme even" />
 
 
 <link rel="canonical" href="https://mrzhang123.github.io/post/2023/javascript-binary/" />
@@ -42,7 +43,7 @@
 <meta property="og:url" content="https://mrzhang123.github.io/post/2023/javascript-binary/">
   <meta property="og:site_name" content="RaymondX成长记">
   <meta property="og:title" content="聊一聊 JS 中的二进制">
-  <meta property="og:description" content="在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼">
+  <meta property="og:description" content="在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼此之间的关系是什么？各自的使用场景是什么？这将是本文内容的重点。">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="article:section" content="post">
@@ -52,14 +53,14 @@
     <meta property="article:tag" content="二进制">
 
   <meta itemprop="name" content="聊一聊 JS 中的二进制">
-  <meta itemprop="description" content="在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼">
+  <meta itemprop="description" content="在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼此之间的关系是什么？各自的使用场景是什么？这将是本文内容的重点。">
   <meta itemprop="datePublished" content="2023-02-18T00:00:00+00:00">
   <meta itemprop="dateModified" content="2023-02-18T00:00:00+00:00">
   <meta itemprop="wordCount" content="3492">
   <meta itemprop="keywords" content="Node.js,二进制">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="聊一聊 JS 中的二进制">
-  <meta name="twitter:description" content="在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼">
+  <meta name="twitter:description" content="在 JavaScript 中，有很多跟二进制相关的概念，例如 Buffer，TypedArray，ArrayBuffer，Blob，Stream 等等。那么这些概念彼此之间的关系是什么？各自的使用场景是什么？这将是本文内容的重点。">
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -216,115 +217,115 @@
 </ul>
 <p>DataView 对存储在缓冲内的数据类型没有预设值，它的 API 强制开发者在读、写时指定一个 ElementType，然后 DataView 就会按照指定的类型做相应转换。DataView 支持的 ElementType 有如下 8 种：</p>
 <table>
-<thead>
-<tr>
-<th>类型</th>
-<th>字节</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Int8</td>
-<td>1</td>
-<td>8 位有符号整数</td>
-</tr>
-<tr>
-<td>Uint8</td>
-<td>1</td>
-<td>8 位无符号整数</td>
-</tr>
-<tr>
-<td>Int16</td>
-<td>2</td>
-<td>16 位有符号整数</td>
-</tr>
-<tr>
-<td>Uint16</td>
-<td>2</td>
-<td>16 位无符号整数</td>
-</tr>
-<tr>
-<td>Int32</td>
-<td>4</td>
-<td>32 位有符号整数</td>
-</tr>
-<tr>
-<td>Uint32</td>
-<td>4</td>
-<td>32 位无符号整数</td>
-</tr>
-<tr>
-<td>Float32</td>
-<td>4</td>
-<td>32 位 IEEE-754 浮点数</td>
-</tr>
-<tr>
-<td>Float64</td>
-<td>8</td>
-<td>64 位 IEEE-754 浮点数</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>字节</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Int8</td>
+          <td>1</td>
+          <td>8 位有符号整数</td>
+      </tr>
+      <tr>
+          <td>Uint8</td>
+          <td>1</td>
+          <td>8 位无符号整数</td>
+      </tr>
+      <tr>
+          <td>Int16</td>
+          <td>2</td>
+          <td>16 位有符号整数</td>
+      </tr>
+      <tr>
+          <td>Uint16</td>
+          <td>2</td>
+          <td>16 位无符号整数</td>
+      </tr>
+      <tr>
+          <td>Int32</td>
+          <td>4</td>
+          <td>32 位有符号整数</td>
+      </tr>
+      <tr>
+          <td>Uint32</td>
+          <td>4</td>
+          <td>32 位无符号整数</td>
+      </tr>
+      <tr>
+          <td>Float32</td>
+          <td>4</td>
+          <td>32 位 IEEE-754 浮点数</td>
+      </tr>
+      <tr>
+          <td>Float64</td>
+          <td>8</td>
+          <td>64 位 IEEE-754 浮点数</td>
+      </tr>
+  </tbody>
 </table>
 <p>以上每种类型都暴露了 <code>get</code> 和 <code>set</code> 方法，例如 <code>getInt8(byteOffset, littleEndian)</code>，<code>setFloat32(byteOffset, value ,littleEndian)</code> 。更详细的介绍查看：<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView">DataView</a> 。</p>
 <h3 id="定型数组">定型数组</h3>
 <p>定型数组是另一种形式的 <code>ArrayBuffer</code> 视图，它是用于数组缓冲区的 <strong>特定类型</strong> 的视图，可以直接强制使用特定的数据类型而不是通用的 <code>DataView</code> 对象来操作数组的缓冲区，定型数组遵循原生的字节序。</p>
 <p>定型数组的类型有如下几种：</p>
 <table>
-<thead>
-<tr>
-<th>构造函数名</th>
-<th>字节</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Int8Array</td>
-<td>1</td>
-<td>8 位有符号整数</td>
-</tr>
-<tr>
-<td>Uint8Array</td>
-<td>1</td>
-<td>8 位无符号整数</td>
-</tr>
-<tr>
-<td>Uint8ClampedArray</td>
-<td>1</td>
-<td>8 位无符号整数（强制转换）</td>
-</tr>
-<tr>
-<td>Int16Array</td>
-<td>2</td>
-<td>16 位有符号整数</td>
-</tr>
-<tr>
-<td>Uint16Array</td>
-<td>2</td>
-<td>16 位无符号整数</td>
-</tr>
-<tr>
-<td>Int32Array</td>
-<td>4</td>
-<td>32 位有符号整数</td>
-</tr>
-<tr>
-<td>Uint32Array</td>
-<td>4</td>
-<td>32 位无符号整数</td>
-</tr>
-<tr>
-<td>Float32Array</td>
-<td>4</td>
-<td>32 位 IEEE 浮点数</td>
-</tr>
-<tr>
-<td>Float64Array</td>
-<td>8</td>
-<td>64 位 IEEE 浮点数</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>构造函数名</th>
+          <th>字节</th>
+          <th>说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Int8Array</td>
+          <td>1</td>
+          <td>8 位有符号整数</td>
+      </tr>
+      <tr>
+          <td>Uint8Array</td>
+          <td>1</td>
+          <td>8 位无符号整数</td>
+      </tr>
+      <tr>
+          <td>Uint8ClampedArray</td>
+          <td>1</td>
+          <td>8 位无符号整数（强制转换）</td>
+      </tr>
+      <tr>
+          <td>Int16Array</td>
+          <td>2</td>
+          <td>16 位有符号整数</td>
+      </tr>
+      <tr>
+          <td>Uint16Array</td>
+          <td>2</td>
+          <td>16 位无符号整数</td>
+      </tr>
+      <tr>
+          <td>Int32Array</td>
+          <td>4</td>
+          <td>32 位有符号整数</td>
+      </tr>
+      <tr>
+          <td>Uint32Array</td>
+          <td>4</td>
+          <td>32 位无符号整数</td>
+      </tr>
+      <tr>
+          <td>Float32Array</td>
+          <td>4</td>
+          <td>32 位 IEEE 浮点数</td>
+      </tr>
+      <tr>
+          <td>Float64Array</td>
+          <td>8</td>
+          <td>64 位 IEEE 浮点数</td>
+      </tr>
+  </tbody>
 </table>
 <p>上面的 <code>Uint8ClampedArray</code> 和 <code>Uint8Array</code> 大致相同，唯一的区别在于数组缓冲区中的值如果小于 0 或大于 255，<code>Uint8ClampedArray</code> 会将其分别转换成 0 或者 255。例如，-1 会变成0，300 会变成 255。</p>
 <p>按照 JavaScript 之父 Brendan Eich 的说法：” <code>Uint8ClampedArray</code> 完全是 HTML5 <code>canvas</code> 元素的历史遗留。除非真的做跟 <code>canvas</code> 相关的开发，否则不要使用它。“</p>
@@ -490,6 +491,14 @@
 
 
 <script type="text/javascript" src="/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js"></script>
+  <script type="text/javascript">
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        }
+    };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js" integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin="anonymous"></script>
 
 
 

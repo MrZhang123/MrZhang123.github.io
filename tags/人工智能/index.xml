@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>人工智能 on RaymondX成长记</title>
+    <link>https://mrzhang123.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</link>
+    <description>Recent content in 人工智能 on RaymondX成长记</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 23 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://mrzhang123.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>对 AI 的思考：AI 的应用及局限</title>
+      <link>https://mrzhang123.github.io/post/2024/ai2/</link>
+      <pubDate>Sat, 23 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2024/ai2/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;本期核心观点：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;AI 降低创作门槛，让普通用户可以感受到创作的快乐，但创作出来的作品无法和专业人士的作品相提并论；&lt;/li&gt;&#xA;&lt;li&gt;专业人士利用 AI 可以提升效率，进一步拓展眼界，提升在自己领域的天花板；&lt;/li&gt;&#xA;&lt;li&gt;目前 AI 在艺术领域的应用相对局限，而在科技领域由于对算法准确性要求比较高，所以 AI 有明显的优势；&lt;/li&gt;&#xA;&lt;li&gt;AI 也许会让一些人失去工作，但也只是那些从事机械性重复工作或者简单工作的人，而在复杂领域，相比于 AI 替代人，更可能的方式是 AI 与人协同，共同达到更高的高度。&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;今天体验了一下AI创造音乐：&lt;a href=&#34;https://app.suno.ai/&#34;&gt;SunoAI&lt;/a&gt; ，尝试将 What Took You So Long &amp;ndash; Armin van Buuren &amp;amp; Gryffin 的歌词输入，音乐风格输入 Trance(Main Floor) , Classic Trance,  House, Stutter House，尝试生成了 10 次，选择了一个个人觉得最好听的版本。生成的音乐整体还是非常棒的，对音乐风格把握相对比较准。但是在听完以后再去听原版的 What Took You So Long ，明显能够感受到差距还是很大的。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>AI时代：重塑技能门槛</title>
+      <link>https://mrzhang123.github.io/post/2024/ai1/</link>
+      <pubDate>Fri, 02 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://mrzhang123.github.io/post/2024/ai1/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;核心观点：AI的应用将大幅度降低专业技能的门槛&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;随着AI的普及，我越来越多的使用AI，也搞了一些自己的机器人。在使用AI的过程中，我深刻地意识到，借助 AI，我们能够在短时间内学习新的技能，创造出优质的结果。例如，学习新的编程语言，设计宣传广告，或者编写报告等。在没有AI之前，这些任务通常需要专业人员才能完成。但现在，AI 的出现极大地降低了专业技能的门槛，让平凡的人也可以做到此前无法实现的事情。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
