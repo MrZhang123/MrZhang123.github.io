@@ -2,8 +2,64 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://mrzhang123.github.io/categories/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrzhang123.github.io/post/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://mrzhang123.github.io/</loc>
-    <lastmod>2025-01-05T00:00:00+00:00</lastmod>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrzhang123.github.io/tags/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrzhang123.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrzhang123.github.io/tags/%E5%86%99%E4%BD%9C/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrzhang123.github.io/tags/%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrzhang123.github.io/categories/%E6%80%9D%E8%80%83/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://mrzhang123.github.io/post/2025/ai_and_write/</loc>
+    <lastmod>2025-01-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -17,27 +73,6 @@
   
   <url>
     <loc>https://mrzhang123.github.io/post/2024/year-summary/</loc>
-    <lastmod>2024-12-31T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrzhang123.github.io/categories/</loc>
-    <lastmod>2024-12-31T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrzhang123.github.io/post/</loc>
-    <lastmod>2024-12-31T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrzhang123.github.io/tags/</loc>
     <lastmod>2024-12-31T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -205,20 +240,6 @@
   </url>
   
   <url>
-    <loc>https://mrzhang123.github.io/tags/%E6%80%9D%E8%80%83/</loc>
-    <lastmod>2024-08-25T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrzhang123.github.io/categories/%E6%80%9D%E8%80%83/</loc>
-    <lastmod>2024-08-25T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://mrzhang123.github.io/tags/%E6%B8%B8%E6%88%8F/</loc>
     <lastmod>2024-08-25T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -247,13 +268,6 @@
   </url>
   
   <url>
-    <loc>https://mrzhang123.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
-    <lastmod>2024-07-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://mrzhang123.github.io/post/2024/ai4/</loc>
     <lastmod>2024-07-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -270,13 +284,6 @@
   <url>
     <loc>https://mrzhang123.github.io/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6/</loc>
     <lastmod>2024-07-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://mrzhang123.github.io/tags/%E5%86%99%E4%BD%9C/</loc>
-    <lastmod>2024-07-06T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
